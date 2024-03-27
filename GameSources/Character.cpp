@@ -11,6 +11,7 @@ namespace basecross{
 	//‰Šú‰»
 	void Foo::OnCreate()
 	{
+		//test
 	}
 
 }
