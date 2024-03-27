@@ -7,7 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-
+	//test
 }
 //end basecross
 
