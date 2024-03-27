@@ -1,13 +1,12 @@
 /*!
 @file Player.h
-@brief ƒLƒƒƒ‰ƒNƒ^[‚È‚Ç
+@brief Æ’LÆ’Æ’Æ’â€°Æ’NÆ’^Â[â€šÃˆâ€šÃ‡
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	//test
 	//test
 }
 //end basecross
