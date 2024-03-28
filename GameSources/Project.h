@@ -23,3 +23,8 @@
 #include "Ground.h"
 #include "Effect.h"
 
+#include "AndoStage.h"
+#include "SanpeiStage.h"
+#include "HemmiStage.h"
+#include "OkawaraStage.h"
+#include "TaruiStage.h"
