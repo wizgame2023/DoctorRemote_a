@@ -27,6 +27,7 @@ namespace basecross {
 			ret.x = cntlVec[0].fThumbLX;
 			ret.y = cntlVec[0].fThumbLY;
 		}
+		return ret;
 	}
 
 	void Player::OnCreate(){
