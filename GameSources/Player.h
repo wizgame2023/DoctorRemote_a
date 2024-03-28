@@ -1,13 +1,25 @@
 /*!
 @file Player.h
-@brief ƒLƒƒƒ‰ƒNƒ^[‚È‚Ç
+@brief プレイヤー
+担当：逸見
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	//test
+	//--------------------------------------------------------------------------------------
+	///	プレイヤー
+	//--------------------------------------------------------------------------------------
+	class Player : public GameObject {
+	public:
+		//コンストラクタ
+		Player(const shared_ptr<Stage>& StagePtr);
+		//デストラクタ
+		virtual ~Player() {}
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
+	};
 }
-//end basecross
+//end namespace basecross
 
