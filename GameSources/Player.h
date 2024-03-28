@@ -12,7 +12,12 @@ namespace basecross {
 	///	プレイヤー
 	//--------------------------------------------------------------------------------------
 	class Player : public GameObject {
+
+		wstring m_meshResName;
+	private:
 		Vec2 GetInputState()const;
+		Vec3 GetMoveVector()const;
+
 	public:
 		//コンストラクタ
 		Player(const shared_ptr<Stage>& StagePtr);
