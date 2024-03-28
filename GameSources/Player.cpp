@@ -17,6 +17,16 @@ namespace basecross {
 	{}
 
 	Vec2 Player::GetInputState()const {
+		Vec2 ret;
+		ret.x = 0.0f;
+		ret.y = 0.0f;
+		//ƒRƒ“ƒgƒ[ƒ‰‚ÌŽæ“¾
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cntlVec[0].bConnected)
+		{
+			ret.x = cntlVec[0].fThumbLX;
+			ret.y = cntlVec[0].fThumbLY;
+		}
 	}
 
 	void Player::OnCreate(){
