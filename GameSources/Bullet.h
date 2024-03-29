@@ -1,6 +1,6 @@
 /*!
 @file GameStage.h
-@brief ゲームステージ
+@brief 弾
 */
 
 #pragma once
@@ -12,15 +12,18 @@ namespace basecross {
 	private:
 		Vec3 m_Position;
 		Vec3 m_Scale;
+		float m_Speed;
 	public:
 		Bullet(
 			   const shared_ptr<Stage>& StagePtr,
 			   const Vec3& Position,
-		       const Vec3& Scale
+		       const Vec3& Scale,
+			   float Speed
 		       );
 		~Bullet();
 		void OnCreate()override;//初期化UnityでいうところのStart
 		void OnUpdate()override;//アップデート
+		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
 	};
 }
 //end namespace basecross
