@@ -77,6 +77,7 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		//Šp“x‚ğŒvZ‚µ‚Ä‚¢‚éŠÖ”‚ğ‘ã“ü
 		auto angle = GetMoveVector();
+
 		if (angle.length() > 0.0f) {
 			auto pos = GetComponent<Transform>()->GetPosition();
 			pos += angle * elapsedTime * m_speed;
@@ -94,7 +95,7 @@ namespace basecross {
 	void Player::OnCreate(){
 		//‰ŠúˆÊ’u‚È‚Ç‚Ìİ’è
 		auto ptr = AddComponent<Transform>();
-		ptr->SetScale(1.0f, 1.0f, 1.0f);
+		ptr->SetScale(1.0f, 1.0f, 2.0f);
 		ptr->SetRotation(0.0f, 0.0f, 0.0f);
 		ptr->SetPosition(0.0f, 0.5f, 0.0f);
 
