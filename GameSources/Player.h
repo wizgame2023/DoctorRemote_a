@@ -13,10 +13,12 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	class Player : public GameObject {
 
+		float m_speed;
 		wstring m_meshResName;
 	private:
 		Vec2 GetInputState()const;
 		Vec3 GetMoveVector()const;
+		void MovePlayer();
 
 	public:
 		//コンストラクタ

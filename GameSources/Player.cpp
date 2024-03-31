@@ -14,6 +14,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
+		m_speed(5.0f),
 		m_meshResName(L"DEFAULT_CUBE")
 	{}
 
@@ -46,7 +47,47 @@ namespace basecross {
 			auto front = ptrTrasform->GetPosition() - ptrCamera->GetEye();
 			front.y = 0;
 			front.normalize();
+
+			//is•ûŒü‚ÌŒü‚«‚©‚ç‚ÌŠp“x‚ðŽZo
+			float frontAngle = atan2(front.z, front.x);
+			//ƒRƒ“ƒgƒ[ƒ‰‚ÌŒü‚«‚©‚çŠp“x‚ðŒvŽZ
+			float cntlAngle = atan2(-moveX, moveZ);
+			//ƒg[ƒ^ƒ‹‚ÌŠp“x
+			float totalAngle = frontAngle + cntlAngle;
+			
+			//ƒRƒ“ƒgƒ[ƒ‰‚ÌŒü‚«‚ðŒvŽZ
+			Vec2 moveVec(moveX, moveZ);
+			//Šp“x‚©‚çƒxƒNƒgƒ‹‚ðì¬
+			angle = Vec3(cos(totalAngle), 0.0f, sin(totalAngle));
+			//³‹K‰»
+			angle.normalize();
+
+			//ˆÚ“®ƒTƒCƒY
+			float moveSize = moveVec.length();
+			angle *= moveSize;
+
+			//YŽ²‚Í•Ï‰»‚³‚¹‚È‚¢
+			angle.y = 0.0f;
+			
+		}
 			return angle;
+	}
+
+	void Player::MovePlayer() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//Šp“x‚ðŒvŽZ‚µ‚Ä‚¢‚éŠÖ”‚ð‘ã“ü
+		auto angle = GetMoveVector();
+		if (angle.length() > 0.0f) {
+			auto pos = GetComponent<Transform>()->GetPosition();
+			pos += angle * elapsedTime * m_speed;
+			GetComponent<Transform>()->SetPosition(pos);
+		}
+
+		//‰ñ“]‚ÌŒvŽZ
+		if (angle.length() > 0.0f) {
+			auto unilPtr = GetBehavior<UtilBehavior>();
+			//•âŠÔˆ—‚ðs‚¤‰ñ“]
+			unilPtr->RotToHead(angle, 1.0f);
 		}
 	}
 
@@ -71,7 +112,7 @@ namespace basecross {
 	}
 
 	void Player::OnUpdate(){
-
+		MovePlayer();
 	}
 }
 //end basecross
