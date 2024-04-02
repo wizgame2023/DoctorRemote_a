@@ -39,6 +39,10 @@ namespace basecross {
 		auto ptrShadow = AddComponent<Shadowmap>();
 		ptrShadow->SetMeshResource(m_meshResName);
 
+		//コライダー
+		auto colPtr = AddComponent<CollisionObb>();
+		colPtr->SetDrawActive(true);
+		colPtr->SetAfterCollision(AfterCollision::None);
 
 		AddTag(L"EnemyPiece");
 	}
