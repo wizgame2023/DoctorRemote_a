@@ -109,6 +109,10 @@ namespace basecross {
 		auto shadowComp = AddComponent<Shadowmap>();
 		shadowComp->SetMeshResource(m_meshResName);
 
+		auto colPtr = AddComponent<CollisionObb>();
+		colPtr->SetDrawActive(true);
+		colPtr->SetAfterCollision(AfterCollision::None);
+
 		AddTag(L"Player");
 	}
 
