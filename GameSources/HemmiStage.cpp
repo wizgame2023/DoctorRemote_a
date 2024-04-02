@@ -35,12 +35,12 @@ namespace basecross {
 			{
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.0f,-0.5f,0.0f)
+				Vec3(0.0f,0.5f,0.0f)
 			},
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
-			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
+			AddGameObject<EnemyPiece>(v[0], (Quat)v[1], v[2]);
 		}
 	}
 
