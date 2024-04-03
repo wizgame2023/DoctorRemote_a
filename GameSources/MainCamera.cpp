@@ -1,6 +1,7 @@
 /*!
-@file Character.cpp
-@brief キャラクターなど実体
+@file MainCamera.cpp
+@brief メインカメラ実体
+担当：逸見
 */
 
 #include "stdafx.h"
