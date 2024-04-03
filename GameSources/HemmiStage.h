@@ -19,6 +19,8 @@ namespace basecross {
 		virtual ~HemmiStage() {}
 
 		virtual void OnCreate()override; //‰Šú‰»
+
+		void CreateEnemyPiece();
 	};
 }
 //end namespace basecross

@@ -14,6 +14,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
+		m_speed(5.0f),
 		m_meshResName(L"DEFAULT_CUBE")
 	{}
 
@@ -46,14 +47,55 @@ namespace basecross {
 			auto front = ptrTrasform->GetPosition() - ptrCamera->GetEye();
 			front.y = 0;
 			front.normalize();
+
+			//進行方向の向きからの角度を算出
+			float frontAngle = atan2(front.z, front.x);
+			//コントローラの向きから角度を計算
+			float cntlAngle = atan2(-moveX, moveZ);
+			//トータルの角度
+			float totalAngle = frontAngle + cntlAngle;
+			
+			//コントローラの向きを計算
+			Vec2 moveVec(moveX, moveZ);
+			//角度からベクトルを作成
+			angle = Vec3(cos(totalAngle), 0.0f, sin(totalAngle));
+			//正規化
+			angle.normalize();
+
+			//移動サイズ
+			float moveSize = moveVec.length();
+			angle *= moveSize;
+
+			//Y軸は変化させない
+			angle.y = 0.0f;
+			
+		}
 			return angle;
+	}
+
+	void Player::MovePlayer() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//角度を計算している関数を代入
+		auto angle = GetMoveVector();
+
+		if (angle.length() > 0.0f) {
+			auto pos = GetComponent<Transform>()->GetPosition();
+			pos += angle * elapsedTime * m_speed;
+			GetComponent<Transform>()->SetPosition(pos);
+		}
+
+		//回転の計算
+		if (angle.length() > 0.0f) {
+			auto unilPtr = GetBehavior<UtilBehavior>();
+			//補間処理を行う回転
+			unilPtr->RotToHead(angle, 1.0f);
 		}
 	}
 
 	void Player::OnCreate(){
 		//初期位置などの設定
 		auto ptr = AddComponent<Transform>();
-		ptr->SetScale(1.0f, 1.0f, 1.0f);
+		ptr->SetScale(1.0f, 1.0f, 2.0f);
 		ptr->SetRotation(0.0f, 0.0f, 0.0f);
 		ptr->SetPosition(0.0f, 0.5f, 0.0f);
 
@@ -67,11 +109,15 @@ namespace basecross {
 		auto shadowComp = AddComponent<Shadowmap>();
 		shadowComp->SetMeshResource(m_meshResName);
 
+		auto colPtr = AddComponent<CollisionObb>();
+		colPtr->SetDrawActive(false);
+		colPtr->SetAfterCollision(AfterCollision::None);
+
 		AddTag(L"Player");
 	}
 
 	void Player::OnUpdate(){
-
+		MovePlayer();
 	}
 }
 //end basecross

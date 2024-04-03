@@ -16,7 +16,7 @@ namespace basecross {
 	void HemmiStage::CreateViewLight() {
 		// カメラの設定
 		auto camera = ObjectFactory::Create<Camera>();
-		camera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
+		camera->SetEye(Vec3(0.0f, 10.0f, -10.0f));
 		camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
 		// ビューにカメラを設定
@@ -28,11 +28,33 @@ namespace basecross {
 		light->SetDefaultLighting(); //デフォルトのライティングを指定
 	}
 
+	//敵の欠片を作成
+	void HemmiStage::CreateEnemyPiece() {
+
+		vector<vector<Vec3>> vec = {
+			{
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(5.0f,0.5f,0.0f)
+			},
+			{
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-5.0f,0.0f,5.0f)
+			},
+		};
+		//オブジェクトの作成
+		for (auto v : vec) {
+			AddGameObject<EnemyPiece>(v[0], (Quat)v[1], v[2]);
+		}
+	}
+
 	void HemmiStage::OnCreate() {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
 
+			CreateEnemyPiece();
 			auto ptrPlayer = AddGameObject<Player>();
 		}
 		catch (...) {
