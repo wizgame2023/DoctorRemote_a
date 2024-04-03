@@ -1,11 +1,28 @@
 /*!
-@file GameStage.h
-@brief ゲームステージ
+@file	MainCamera.h
+@brief メインカメラ
+担当：逸見
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
+	//--------------------------------------------------------------------------------------
+	//	class MainCamera : public Camera;
+	//--------------------------------------------------------------------------------------
+
+	class MainCamera :public Camera {
+
+		float m_angleY;
+		float m_distance;
+		float m_height;
+	public:
+		MainCamera() :
+			m_angleY(0.0f),
+			m_distance(5.0f),
+			m_height(3.0f)
+		{}
+	};
 }
 //end namespace basecross
