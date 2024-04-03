@@ -9,8 +9,16 @@
 
 namespace basecross {
 
-	PieceGarge::PieceGarge(shared_ptr<Stage>& StagePtr):
+	PieceGarge::PieceGarge(const shared_ptr<Stage>& StagePtr):
 		GameObject(StagePtr)
 	{}
+
+	void PieceGarge::OnCreate() {
+
+	}
+	void PieceGarge::OnUpdate() {
+
+	}
+
 }
 //end basecross
