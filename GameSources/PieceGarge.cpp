@@ -1,11 +1,16 @@
 /*!
-@file Character.cpp
-@brief キャラクターなど実体
+@file PieceGarge.cpp
+@brief 敵の欠片のゲージ
+担当：逸見
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
+
+	PieceGarge::PieceGarge(shared_ptr<Stage>& StagePtr):
+		GameObject(StagePtr)
+	{}
 }
 //end basecross
