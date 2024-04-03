@@ -14,6 +14,14 @@ namespace basecross {
 
 	//ビューとライトの作成
 	void SanpeiStage::CreateViewLight() {
+		wstring dataDir;
+
+		//サンプルのためアセットディレクトリを取得
+		App::GetApp()->GetAssetsDirectory(dataDir);//今仮で使っているので実際に実装するときは下のを使う
+		//App::GetApp()->GetDataDirectory(dataDir);
+		wstring strTexture = dataDir + L"hakusi.jpg";
+	    App::GetApp()->RegisterTexture(L"White", strTexture);
+
 		// カメラの設定
 		auto camera = ObjectFactory::Create<Camera>();
 		camera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
