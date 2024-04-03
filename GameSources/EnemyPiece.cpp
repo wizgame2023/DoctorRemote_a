@@ -46,5 +46,12 @@ namespace basecross {
 
 		AddTag(L"EnemyPiece");
 	}
+
+	void EnemyPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
+		if (other->FindTag(L"Player")){
+			//Ž©•ªŽ©g‚ð”pŠü‚·‚é
+			GetStage()->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
+		}
+	}
 }
 //end basecross

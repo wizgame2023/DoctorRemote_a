@@ -24,6 +24,8 @@ namespace basecross {
 		virtual ~EnemyPiece();
 
 		virtual void OnCreate() override;
+		//è’ìÀÇµÇΩéû
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
 }
 //end namespace basecross
