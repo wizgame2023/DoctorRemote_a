@@ -1,11 +1,21 @@
 /*!
-@file GameStage.h
-@brief ゲームステージ
+@file Light.h
+@brief 光、光源の表現
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
+	class MyLight : public GameObject
+	{
+	public:	
+		MyLight(const shared_ptr<Stage>& stage);
+		virtual ~MyLight();
+
+	    virtual void OnCreate() override;
+		//virtual void OnUpdate() override {};
+
+	};
 }
 //end namespace basecross
