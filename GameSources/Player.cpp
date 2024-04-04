@@ -114,6 +114,12 @@ namespace basecross {
 		colPtr->SetAfterCollision(AfterCollision::None);
 
 		AddTag(L"Player");
+
+		//カメラオブジェクトを取得する
+		auto ptrCamera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+		if (ptrCamera) {
+			ptrCamera->SetTarget(GetThis<GameObject>());
+		}
 	}
 
 	void Player::OnUpdate(){

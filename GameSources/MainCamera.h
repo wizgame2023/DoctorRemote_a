@@ -20,8 +20,6 @@ namespace basecross {
 		float m_distance;
 		float m_height;
 
-		weak_ptr<Player> m_player;
-
 	public:
 		MainCamera() :
 			m_angleY(0.0f),

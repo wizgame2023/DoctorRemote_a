@@ -56,6 +56,12 @@ namespace basecross {
 
 			CreateEnemyPiece();
 			auto ptrPlayer = AddGameObject<Player>();
+
+			//ƒrƒ…[‚©‚çƒJƒƒ‰‚ðŽæ“¾
+			auto camera = GetView()->GetTargetCamera();
+			auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
+			mainCamera->SetTarget(ptrPlayer);
+
 		}
 		catch (...) {
 			throw;

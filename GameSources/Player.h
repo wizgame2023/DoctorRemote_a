@@ -15,9 +15,11 @@ namespace basecross {
 
 		float m_speed;
 		wstring m_meshResName;
+
+		weak_ptr<MainCamera> m_camera;
+
 	private:
 		Vec2 GetInputState()const;
-		Vec3 GetMoveVector()const;
 		void MovePlayer();
 
 	public:
@@ -27,6 +29,7 @@ namespace basecross {
 		virtual ~Player() {}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+		Vec3 GetMoveVector()const;
 	};
 }
 //end namespace basecross
