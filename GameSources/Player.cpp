@@ -123,11 +123,11 @@ namespace basecross {
 	}
 
 	void Player::OnUpdate(){
+		m_trans = GetComponent<Transform>();
 		MovePlayer();
 	}
 
 	Vec3 Player::GetPos() const{
-
 	}
 
 	Vec3 Player::GetRot() const{
