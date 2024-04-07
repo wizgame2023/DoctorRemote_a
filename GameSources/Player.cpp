@@ -14,6 +14,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
+		m_hp(100),
 		m_speed(5.0f),
 		m_meshResName(L"DEFAULT_CUBE")
 	{}
@@ -94,10 +95,10 @@ namespace basecross {
 
 	void Player::OnCreate(){
 		//初期位置などの設定
-		auto ptr = AddComponent<Transform>();
-		ptr->SetScale(1.0f, 1.0f, 2.0f);
-		ptr->SetRotation(0.0f, 0.0f, 0.0f);
-		ptr->SetPosition(0.0f, 0.5f, 0.0f);
+		m_trans = GetComponent<Transform>();
+		m_trans->SetScale(1.0f, 1.0f, 2.0f);
+		m_trans->SetRotation(0.0f, 0.0f, 0.0f);
+		m_trans->SetPosition(0.0f, 0.5f, 0.0f);
 
 		//描画コンポーネント
 		auto draw_Comp = AddComponent<BcPNStaticDraw>();
@@ -114,10 +115,40 @@ namespace basecross {
 		colPtr->SetAfterCollision(AfterCollision::None);
 
 		AddTag(L"Player");
+
+		//カメラオブジェクトを取得する
+		auto ptrCamera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+		if (ptrCamera) {
+			ptrCamera->SetTarget(GetThis<GameObject>());
+		}
+
 	}
 
 	void Player::OnUpdate(){
 		MovePlayer();
+	}
+
+
+	//Vec3 Player::GetPos() const{
+	//	//return m_trans;
+	//}
+
+	//Vec3 Player::GetRot() const{
+
+	//}
+
+	float Player::GetHp() const {
+		return m_hp;
+	}
+
+	void Player::SetHp(float hp){
+		m_hp = -hp;
+	}
+
+	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
+		if (other->FindTag(L"EnemyPiece")) {
+			SetHp(100.0f);
+		}
 	}
 }
 //end basecross
