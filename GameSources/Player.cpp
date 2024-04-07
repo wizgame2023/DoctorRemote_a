@@ -125,5 +125,13 @@ namespace basecross {
 	void Player::OnUpdate(){
 		MovePlayer();
 	}
+
+	Vec3 Player::GetPos() const{
+
+	}
+
+	Vec3 Player::GetRot() const{
+
+	}
 }
 //end basecross

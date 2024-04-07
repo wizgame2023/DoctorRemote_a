@@ -19,6 +19,7 @@ namespace basecross {
 
 		auto delta = App::GetApp()->GetElapsedTime();
 
+		
 	}
 
 	void MainCamera::SetTarget(const shared_ptr <GameObject>& target)

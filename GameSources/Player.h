@@ -15,6 +15,8 @@ namespace basecross {
 
 		float m_speed;
 		wstring m_meshResName;
+		
+		shared_ptr<Transform> m_trans;
 
 		weak_ptr<MainCamera> m_camera;
 
@@ -30,6 +32,9 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		Vec3 GetMoveVector()const;
+
+		Vec3 GetPos() const;
+		Vec3 GetRot() const;
 	};
 }
 //end namespace basecross
