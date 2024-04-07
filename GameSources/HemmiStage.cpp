@@ -62,6 +62,9 @@ namespace basecross {
 			auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
 			mainCamera->SetTarget(ptrPlayer);
 
+			auto garge = AddGameObject<PieceGarge>(ptrPlayer);
+
+
 		}
 		catch (...) {
 			throw;

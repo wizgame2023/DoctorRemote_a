@@ -13,11 +13,11 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	class Player : public GameObject {
 
+		float m_hp;
 		float m_speed;
 		wstring m_meshResName;
 		
 		shared_ptr<Transform> m_trans;
-
 		weak_ptr<MainCamera> m_camera;
 
 	private:
@@ -33,8 +33,12 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		Vec3 GetMoveVector()const;
 
-		Vec3 GetPos() const;
-		Vec3 GetRot() const;
+		float GetHp() const;
+		void SetHp(float hp);
+		//Vec3 GetPos() const;
+		//Vec3 GetRot() const;
+
+		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
 }
 //end namespace basecross

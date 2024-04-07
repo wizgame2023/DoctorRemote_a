@@ -51,6 +51,7 @@ namespace basecross {
 		if (other->FindTag(L"Player")){
 			//Ž©•ªŽ©g‚ð”pŠü‚·‚é
 			GetStage()->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
+
 		}
 	}
 }
