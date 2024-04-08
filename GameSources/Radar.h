@@ -11,12 +11,12 @@ namespace basecross {
 	class Radar : public GameObject
 	{
 	private:
-		Vec3 m_Position;
-		Vec3 m_Scale;
+		Vec3 m_PlayerPosition;//Playerのポジション
+		Vec3 m_EnemyPosition;//Enemyのポジション
 		float m_angle;//傾く角度
 	public:
 		Radar(
-			const shared_ptr<Stage>& StagePtr
+			const shared_ptr<Stage>& StagePtr,const Vec3 m_PlayerPosition,const Vec3 m_EnemyPosition
 		);
 		~Radar();
 		void OnCreate()override;//初期化UnityでいうところのStart

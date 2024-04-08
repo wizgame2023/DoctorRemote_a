@@ -10,8 +10,10 @@
 
 namespace basecross {
 	//コンストラクタ
-	Radar::Radar(const shared_ptr<Stage>& StagePtr):
-		GameObject(StagePtr)
+	Radar::Radar(const shared_ptr<Stage>& StagePtr,const Vec3 PlayerPosition,const Vec3 EnemyPosition):
+		GameObject(StagePtr),
+		m_PlayerPosition(PlayerPosition),
+		m_EnemyPosition(EnemyPosition)
 	{
 
 	}
@@ -61,9 +63,28 @@ namespace basecross {
 
 	void Radar::OnUpdate()
 	{
+		float degConvert = 180.0f / 3.14f;//radからdegに変換するための変数
 		auto transform = AddComponent<Transform>();		
-		m_angle += 0.1f;
-		transform->SetRotation(0.0f,0.0f,m_angle);//回転を初期化
 
+		//auto& Stage = GetStage()->GetSharedObject(L");
+
+	    auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
+		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//そのオブジェクトのTransformを取得
+		m_PlayerPosition = PlayerTrans->GetPosition();//Positionを取得
+
+
+		Vec3 RadarVec3 = Vec3((m_EnemyPosition.x - m_PlayerPosition.x),
+							   0.0f,
+						   	  ( m_EnemyPosition.z- m_PlayerPosition.z));
+		float rad = atan2f(RadarVec3.z, RadarVec3.x);
+		float deg = (rad * degConvert);
+		m_angle = rad;
+		transform->SetRotation(0.0f,0.0f,m_angle);//回転を初期化
+		transform->SetPosition(0.0f, -300.0f, 0.0f);
+		//デバック用
+		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
+			float a = 1.0f;
+		}
 	}
 }
