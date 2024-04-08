@@ -35,8 +35,6 @@ namespace basecross {
 
 		float GetHp() const;
 		void SetHp(float hp);
-		//Vec3 GetPos() const;
-		//Vec3 GetRot() const;
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};

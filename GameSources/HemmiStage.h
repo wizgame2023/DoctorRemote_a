@@ -21,6 +21,7 @@ namespace basecross {
 		virtual void OnCreate()override; //‰Šú‰»
 
 		void CreateEnemyPiece();
+		void CreatePlayer();
 	};
 }
 //end namespace basecross

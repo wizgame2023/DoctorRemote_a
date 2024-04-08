@@ -21,11 +21,7 @@ namespace basecross {
 		float m_height;
 
 	public:
-		MainCamera() :
-			m_angleY(0.0f),
-			m_distance(5.0f),
-			m_height(3.0f)
-		{}
+		MainCamera();
 		virtual ~MainCamera(){}
 
 		virtual void OnCreate() override;

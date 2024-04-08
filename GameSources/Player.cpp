@@ -129,13 +129,6 @@ namespace basecross {
 	}
 
 
-	//Vec3 Player::GetPos() const{
-	//	//return m_trans;
-	//}
-
-	//Vec3 Player::GetRot() const{
-
-	//}
 
 	float Player::GetHp() const {
 		return m_hp;

@@ -28,6 +28,12 @@ namespace basecross {
 		light->SetDefaultLighting(); //デフォルトのライティングを指定
 	}
 
+	//プレイヤーの作成
+	void HemmiStage::CreatePlayer(){
+		auto ptrPlayer = AddGameObject<Player>();
+		SetSharedGameObject(L"Player", ptrPlayer);
+	}
+
 	//敵の欠片を作成
 	void HemmiStage::CreateEnemyPiece() {
 
@@ -53,16 +59,15 @@ namespace basecross {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
-
+			CreatePlayer();
 			CreateEnemyPiece();
-			auto ptrPlayer = AddGameObject<Player>();
 
 			//ビューからカメラを取得
 			auto camera = GetView()->GetTargetCamera();
 			auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
-			mainCamera->SetTarget(ptrPlayer);
+			//mainCamera->SetTarget(ptrPlayer);
 
-			auto garge = AddGameObject<PieceGarge>(ptrPlayer);
+			auto garge = AddGameObject<PieceGarge>();
 
 
 		}
