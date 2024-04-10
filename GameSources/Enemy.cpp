@@ -8,7 +8,7 @@
 
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
-		GameObject(StagePtr)
+		GameObject(StagePtr),m_Hp(300)
 	{
 	}
 	void Enemy::OnCreate()
@@ -27,6 +27,22 @@ namespace basecross {
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
+		auto ptrColl = AddComponent<CollisionSphere>();
+
+		GetStage()->SetCollisionPerformanceActive(true);
+		GetStage()->SetUpdatePerformanceActive(true);
+		GetStage()->SetDrawPerformanceActive(true);
+	}
+	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Collision)
+	{
+		if (Collision->FindTag(L"Bullet") && m_Hp > 0)
+		{
+			m_Hp = m_Hp - 300;
+		}
+		if (m_Hp <= 0)
+		{
+			DestroyGameObject();
+		}
 	}
 
 }
