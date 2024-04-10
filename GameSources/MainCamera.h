@@ -16,6 +16,8 @@ namespace basecross {
 
 		weak_ptr<Transform> m_targetTrans;
 
+		shared_ptr<Stage> m_stage;
+
 		float m_angleY;
 		float m_distance;
 		float m_height;
@@ -30,6 +32,7 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		void SetTarget(const shared_ptr <GameObject>& target);
+		void SetAngle();
 
 	};
 }
