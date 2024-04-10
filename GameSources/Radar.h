@@ -15,12 +15,12 @@ namespace basecross {
 		Vec3 m_EnemyPosition;//Enemyのポジション
 		float m_angle;//傾く角度
 	public:
-		//Radar(
-		//	const shared_ptr<Stage>& StagePtr, const Vec3 m_PlayerPosition, const Vec3 m_EnemyPosition
-		//);
-		//~Radar();
-		//void OnCreate()override;//初期化UnityでいうところのStart
-		//void OnUpdate()override;//アップデート
+		Radar(
+			const shared_ptr<Stage>& StagePtr, const Vec3 m_PlayerPosition, const Vec3 m_EnemyPosition
+		);
+		~Radar();
+		void OnCreate()override;//初期化UnityでいうところのStart
+		void OnUpdate()override;//アップデート
 		//void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
 	};
 }
