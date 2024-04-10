@@ -33,8 +33,10 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		Vec3 GetMoveVector()const;
 
+		Vec3 GetAngle();
 		float GetHp() const;
 		void SetHp(float hp);
+
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};

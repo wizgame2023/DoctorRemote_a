@@ -26,11 +26,14 @@ namespace basecross {
 
 		auto delta = App::GetApp()->GetElapsedTime();
 
+		auto trans = m_targetTrans.lock()->GetPosition();
+		SetEye(trans);
 	}
 
 	void MainCamera::SetTarget(const shared_ptr <GameObject>& target)
 	{
 		m_targetTrans = target->GetComponent<Transform>();
+
 	}
 }
 //end basecross

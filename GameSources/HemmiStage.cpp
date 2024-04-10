@@ -30,8 +30,8 @@ namespace basecross {
 
 	//プレイヤーの作成
 	void HemmiStage::CreatePlayer(){
-		auto ptrPlayer = AddGameObject<Player>();
-		SetSharedGameObject(L"Player", ptrPlayer);
+		auto m_player = AddGameObject<Player>();
+		SetSharedGameObject(L"Player", m_player);
 	}
 
 	//敵の欠片を作成
@@ -65,7 +65,7 @@ namespace basecross {
 			//ビューからカメラを取得
 			auto camera = GetView()->GetTargetCamera();
 			auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
-			//mainCamera->SetTarget(ptrPlayer);
+			//mainCamera->SetTarget(m_player);
 
 			auto garge = AddGameObject<PieceGarge>();
 

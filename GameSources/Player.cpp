@@ -14,7 +14,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
-		m_hp(100),
+		m_hp(200),
 		m_speed(5.0f),
 		m_meshResName(L"DEFAULT_CUBE")
 	{}
@@ -128,7 +128,10 @@ namespace basecross {
 		MovePlayer();
 	}
 
-
+	Vec3 Player::GetAngle() {
+		auto angle = GetMoveVector();
+		return angle;
+	}
 
 	float Player::GetHp() const {
 		return m_hp;
@@ -140,7 +143,7 @@ namespace basecross {
 
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
 		if (other->FindTag(L"EnemyPiece")) {
-			SetHp(100.0f);
+			SetHp(50.0f);
 		}
 	}
 }

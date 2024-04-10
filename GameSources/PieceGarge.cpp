@@ -45,7 +45,7 @@ namespace basecross {
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
 		Vec3 screenOrigin(-sw * 0.5f, sh * 0.5f, 0);
-		m_transform->SetPosition(screenOrigin + Vec3(200, -30, 0));
+		m_transform->SetPosition(screenOrigin + Vec3(30, -30, 0));
 
 	}
 

@@ -12,13 +12,15 @@ namespace basecross {
 	//	class MainCamera : public Camera;
 	//--------------------------------------------------------------------------------------
 
-	class MainCamera :public Camera {
+	class MainCamera :public Camera{
 
 		weak_ptr<Transform> m_targetTrans;
 
 		float m_angleY;
 		float m_distance;
 		float m_height;
+
+		Vec3 m_playerAngle;
 
 	public:
 		MainCamera();

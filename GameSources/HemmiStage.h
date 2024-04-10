@@ -13,6 +13,8 @@ namespace basecross {
 	class HemmiStage : public Stage {
 		void CreateViewLight(); //ƒrƒ…[‚Ìì¬
 
+		shared_ptr<GameObject> m_player;
+
 	public:
 		//\’z‚Æ”jŠü
 		HemmiStage() :Stage() {}
