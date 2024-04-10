@@ -1,6 +1,7 @@
 /*!
 @file Bullet.cpp
 @brief 弾の実体
+担当　三瓶裕太
 */
 
 #include "stdafx.h"
@@ -8,12 +9,14 @@
 
 namespace basecross {
 	//コンストラクタ
-	Bullet::Bullet(const shared_ptr<Stage>& StagePtr, const Vec3& Position, const Vec3& Scale, float Speed) :
+	Bullet::Bullet(const shared_ptr<Stage>& StagePtr, const Vec3& Position, const Vec3& Scale, float Speed, float Rad, int Attack) :
 		GameObject(StagePtr),
 		m_Position(Position),
 		m_Scale(Scale),
-		m_Speed(Speed)
-	{	
+		m_Speed(Speed),
+		m_angle(Rad),//角度はRad（弧度法）でお願いします
+		m_Attack(Attack)
+	{
 
 	}
 	//デストラクタ
@@ -25,6 +28,8 @@ namespace basecross {
 	void Bullet::OnCreate()
 	{
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
+
+
 
 		ptrTransform->SetPosition(m_Position);//位置を設定
 		ptrTransform->SetScale(m_Scale);//大きさを設定
@@ -43,16 +48,27 @@ namespace basecross {
 
 	}
 	void Bullet::OnUpdate()
-	{	
-
+	{
+		auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
 
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();//デルタタイムを取得
 		//float speed = 1.0f;//速さ
-		m_Position.x += m_Speed*delta;//移動
-		ptrTransform->SetPosition(m_Position);//移動を反映指せる
+		m_Position.x += m_Speed * cos(m_angle) * delta;//移動
+		m_Position.z += m_Speed * sin(m_angle) * delta;//移動
+		ptrTransform->SetPosition(m_Position);//移動を反映させる
+
+		//auto& Vec = GetStage()->GetGameObjectVec();//ゲームオブジェクトの配列を取得
+		//for (auto V : Vec)
+		//{
+		//	bool chack = V->FindTag(L"Bullet");
+		//	if (chack)
+		//	{
+
+		//	}
+		//}
 
 	}
 	//コリジョンがぶつかったら
@@ -63,6 +79,11 @@ namespace basecross {
 		{
 			DestroyGameObject();//自分は消える
 		}
+	}
+
+	float Bullet::GetSpeed()
+	{
+		return m_Speed;
 	}
 }
 //end basecross
