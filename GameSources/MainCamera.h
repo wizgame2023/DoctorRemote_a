@@ -12,7 +12,7 @@ namespace basecross {
 	//	class MainCamera : public Camera;
 	//--------------------------------------------------------------------------------------
 
-	class MainCamera :public Camera {
+	class MainCamera :public Camera{
 
 		weak_ptr<Transform> m_targetTrans;
 
@@ -20,12 +20,10 @@ namespace basecross {
 		float m_distance;
 		float m_height;
 
+		Vec3 m_playerAngle;
+
 	public:
-		MainCamera() :
-			m_angleY(0.0f),
-			m_distance(5.0f),
-			m_height(3.0f)
-		{}
+		MainCamera();
 		virtual ~MainCamera(){}
 
 		virtual void OnCreate() override;

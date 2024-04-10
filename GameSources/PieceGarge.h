@@ -17,7 +17,7 @@ namespace basecross {
 		weak_ptr<Player> m_player;
 
 	public:
-		PieceGarge(const shared_ptr<Stage>& StagePtr, const shared_ptr<Player>& player);
+		PieceGarge(const shared_ptr<Stage>& StagePtr);
 		~PieceGarge(){}
 
 		virtual void OnCreate() override;
