@@ -30,6 +30,7 @@ namespace basecross {
 		void OnUpdate()override;//アップデート
 		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
 		float GetSpeed();
+		int GetAttack();
 
 	};
 }
