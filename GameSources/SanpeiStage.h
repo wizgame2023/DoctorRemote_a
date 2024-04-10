@@ -13,7 +13,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	class SanpeiStage : public Stage {
 		void CreateViewLight(); //ƒrƒ…[‚Ìì¬
-		void CreateBullet();//’e‚Ìì¬
+		//void CreateBullet();//’e‚Ìì¬
 	public:
 		//\’z‚Æ”jŠü
 		SanpeiStage() :Stage() {}

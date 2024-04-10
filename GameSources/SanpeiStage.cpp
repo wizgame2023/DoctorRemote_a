@@ -39,11 +39,11 @@ namespace basecross {
 
 	}
 
-	void SanpeiStage::CreateBullet()
-	{
-		AddGameObject<Bullet>(Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f),1.0f);
-		//AddGameObject<Bullet>(Vec3(3.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f),-1.0f);
-	}
+	//void SanpeiStage::CreateBullet()
+	//{
+	//	AddGameObject<Bullet>(Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f),1.0f);
+	//	//AddGameObject<Bullet>(Vec3(3.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f),-1.0f);
+	//}
 
 	
 
@@ -58,7 +58,7 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			//弾を作成
-			CreateBullet();
+			//CreateBullet();
 		}
 		catch (...) {
 			throw;
