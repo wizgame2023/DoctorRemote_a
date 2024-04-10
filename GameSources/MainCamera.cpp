@@ -15,7 +15,7 @@ namespace basecross {
 	MainCamera::MainCamera():
 		m_angleY(0.0f),
 		m_distance(5.0f),
-		m_height(3.0f)
+		m_height(5.0f)
 	{
 	}
 
@@ -26,14 +26,24 @@ namespace basecross {
 
 		auto delta = App::GetApp()->GetElapsedTime();
 
-		auto trans = m_targetTrans.lock()->GetPosition();
-		SetEye(trans);
+		auto targetTrans = m_targetTrans.lock();
+		//カメラの注視点の設定
+		auto targetPos = targetTrans->GetPosition();
+		auto targetRot = targetTrans->GetRotation();
+		SetAt(targetPos);
+
+
+		//カメラの座標点を設定
+		Vec3 rot(targetRot.x, 0.0f, targetRot.z);
+		auto eye = rot;
+		eye.y = m_height;
+		SetEye(eye);
+
 	}
 
 	void MainCamera::SetTarget(const shared_ptr <GameObject>& target)
 	{
 		m_targetTrans = target->GetComponent<Transform>();
-
 	}
 }
 //end basecross
