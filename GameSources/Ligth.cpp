@@ -1,6 +1,7 @@
 /*!
 @file Ligth.cpp
 @brief ŒõAŒõŒ¹‚È‚Ç‚ÌÀ‘Ì
+’S“–@O•r—T‘¾
 */
 
 #include "stdafx.h"
