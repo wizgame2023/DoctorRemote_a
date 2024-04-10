@@ -1,7 +1,6 @@
 /*!
 @file Light.h
 @brief 光、光源の表現
-担当　三瓶裕太
 */
 
 #pragma once

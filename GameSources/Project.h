@@ -10,6 +10,7 @@
 #include "ProjectBehavior.h"
 #include "Scene.h"
 #include "MainCamera.h"
+#include "TestCamera.h"
 #include "Ligth.h"
 #include "GameStage.h"
 #include "Character.h"

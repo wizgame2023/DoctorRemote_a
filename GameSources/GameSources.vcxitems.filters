@@ -81,6 +81,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h">
       <Filter>Headers\SampleStage</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp">
       <Filter>Sources\SmapleStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
