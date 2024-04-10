@@ -85,5 +85,10 @@ namespace basecross {
 	{
 		return m_Speed;
 	}
+
+	int Bullet::GetAttack()
+	{
+		return m_Attack;
+	}
 }
 //end basecross
