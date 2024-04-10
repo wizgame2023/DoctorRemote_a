@@ -119,7 +119,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			CreateEnemy();
-			AddGameObject<Ground>();//地面を表示
+			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
 			CreateRadar();
 		}
