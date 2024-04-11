@@ -1,11 +1,27 @@
 /*!
-@file Character.cpp
-@brief キャラクターなど実体
+@file Ground.cpp
+@brief 地面
 */
 
 #include "stdafx.h"
 #include "Project.h"
+#include "Ground.h"
 
 namespace basecross {
+
+	//初期化
+	void Ground::OnCreate()
+	{
+		auto drawComp = AddComponent<PNTStaticDraw>();
+		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		drawComp->SetTextureResource(L"Internal");
+		drawComp->SetOwnShadowActive(true); // 影の映り込みを反映させる
+
+		auto transComp = GetComponent<Transform>();
+		transComp->SetScale(15.0f, 1.0f, 15.0f);
+		transComp->SetPosition(0.0f, -0.5f, 0.0f);
+
+	}
+
 }
 //end basecross

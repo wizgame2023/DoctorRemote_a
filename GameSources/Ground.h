@@ -1,11 +1,33 @@
 /*!
-@file GameStage.h
-@brief ゲームステージ
+@file Ground.h
+@brief 地面
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
+
+
+	//--------------------------------------------------------------------------------------
+	//	class Ground : public GameObject;
+	//--------------------------------------------------------------------------------------
+	class Ground : public GameObject
+	{
+	public:
+		// 構築と破棄
+		Ground(const shared_ptr<Stage>& stage) :
+			GameObject(stage)
+		{
+		}
+		virtual ~Ground()
+		{
+		}
+
+		virtual void OnCreate() override; // 初期化
+		//virtual void OnUpdate() override; // 更新
+		//virtual void OnDraw() override; // 描画
+	};
+
 }
-//end namespace basecross
+//end basecross

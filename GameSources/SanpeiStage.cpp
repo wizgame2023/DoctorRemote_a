@@ -26,6 +26,8 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"Arrow", strTexture);
 		strTexture = texPath + L"Black.jpg";
 		App::GetApp()->RegisterTexture(L"Black", strTexture);
+		strTexture = texPath + L"InternalSkin.png";
+		App::GetApp()->RegisterTexture(L"Internal", strTexture);
 
 		// カメラの設定
 		auto camera = ObjectFactory::Create<Camera>();
@@ -122,6 +124,8 @@ namespace basecross {
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
 			CreateRadar();
+			//地面を生成
+			AddGameObject<Ground>();
 		}
 		catch (...) {
 			throw;
