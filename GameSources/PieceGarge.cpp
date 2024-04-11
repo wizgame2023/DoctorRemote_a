@@ -9,9 +9,10 @@
 
 namespace basecross {
 
-	PieceGarge::PieceGarge(const shared_ptr<Stage>& StagePtr):
+	PieceGarge::PieceGarge(const shared_ptr<Stage>& StagePtr,const shared_ptr<Player>& player):
 		GameObject(StagePtr),
-		m_length(200.0f),
+		m_player(player),
+		m_length(100.0f),
 		m_maxLength(200.0f)
 	{}
 
@@ -26,8 +27,8 @@ namespace basecross {
 		vector<VertexPositionColor> vertices = {
 			{Vec3(0,0,0),color}, //0
 			{Vec3(w,0,0),color}, //1
-			{Vec3(0,h,0),color}, //2
-			{Vec3(w,h,0),color}	 //3
+			{Vec3(0,-h,0),color}, //2
+			{Vec3(w,-h,0),color}	 //3
 		};
 
 		//頂点インディックス
@@ -45,17 +46,19 @@ namespace basecross {
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
 		Vec3 screenOrigin(-sw * 0.5f, sh * 0.5f, 0);
-		m_transform->SetPosition(screenOrigin + Vec3(30, -30, 0));
+		m_transform->SetPosition(screenOrigin + Vec3(10, -10, 0));
 
 	}
 
 	void PieceGarge::OnUpdate() {
 
-		auto stage = GetStage();
-		auto player = stage->GetSharedGameObject<Player>(L"Player");
+		m_length = m_player->GetHp() * 1.0f;
+		if (m_length >= m_maxLength) {
+			m_length = 0.0f;
+		}
+		//m_length = 200.0f;
+		m_transform->SetScale(m_length / m_maxLength*2.0f, 1, 1);
 
-		m_length = player->GetHp() * 2.0f;
-		m_transform->SetScale(m_length / m_maxLength, 1, 1);
 	}
 
 }

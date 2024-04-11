@@ -14,7 +14,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
-		m_hp(200),
+		m_hp(0),
 		m_speed(5.0f),
 		m_meshResName(L"DEFAULT_CUBE")
 	{}
@@ -51,15 +51,11 @@ namespace basecross {
 
 			//進行方向の向きからの角度を算出
 			float frontAngle = atan2(front.z, front.x);
-			//コントローラの向きから角度を計算
-			float cntlAngle = atan2(-moveX, moveZ);
-			//トータルの角度
-			float totalAngle = frontAngle + cntlAngle;
 			
 			//コントローラの向きを計算
 			Vec2 moveVec(moveX, moveZ);
 			//角度からベクトルを作成
-			angle = Vec3(cos(totalAngle), 0.0f, sin(totalAngle));
+			angle = Vec3(cos(frontAngle), 0.0f, sin(frontAngle));
 			//正規化
 			angle.normalize();
 
@@ -71,6 +67,7 @@ namespace basecross {
 			angle.y = 0.0f;
 			
 		}
+
 			return angle;
 	}
 
@@ -78,10 +75,20 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		//角度を計算している関数を代入
 		auto angle = GetMoveVector();
+		auto cntl = GetInputState();
 
 		if (angle.length() > 0.0f) {
+
+			Vec3 moveAngle = angle;
+			if (cntl.y < 0.0f) {
+				auto subAngle = atan2(moveAngle.z, moveAngle.x);
+				subAngle += XM_PI;
+				moveAngle = Vec3(cos(subAngle), 0.0f, sin(subAngle));
+			}
+
+
 			auto pos = GetComponent<Transform>()->GetPosition();
-			pos += angle * elapsedTime * m_speed;
+			pos += moveAngle * elapsedTime * m_speed;
 			GetComponent<Transform>()->SetPosition(pos);
 		}
 
@@ -97,7 +104,7 @@ namespace basecross {
 		//初期位置などの設定
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(1.0f, 1.0f, 2.0f);
-		m_trans->SetRotation(0.0f, 0.0f, 0.0f);
+		m_trans->SetRotation(0.0f, 30.0f, 0.0f);
 		m_trans->SetPosition(0.0f, 0.5f, 0.0f);
 
 		//描画コンポーネント
@@ -138,12 +145,12 @@ namespace basecross {
 	}
 
 	void Player::SetHp(float hp){
-		m_hp = -hp;
+		m_hp += hp;
 	}
 
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
 		if (other->FindTag(L"EnemyPiece")) {
-			SetHp(50.0f);
+			SetHp(100.0f);
 		}
 	}
 }

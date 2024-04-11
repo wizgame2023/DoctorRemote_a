@@ -15,7 +15,7 @@ namespace basecross {
 	MainCamera::MainCamera():
 		m_angleY(0.0f),
 		m_distance(5.0f),
-		m_height(10.0f)
+		m_height(2.0f)
 	{
 	}
 
@@ -26,19 +26,37 @@ namespace basecross {
 
 		auto delta = App::GetApp()->GetElapsedTime();
 
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		Vec2 ret;
+		auto speed = 100.0f;
+		if (cntlVec[0].bConnected)
+		{
+			ret.x = cntlVec[0].fThumbLX;
+			ret.y = cntlVec[0].fThumbLY;
+		}
+
+		if (abs(ret.x) > 0.5) {
+			m_angleY -= speed * delta * ret.x;
+		}
+
+
+		//ディグリー角からラジアン角に直す
+		auto rad = XMConvertToRadians(m_angleY);
+		Vec3 radVec(cos(rad), 0.0f, sin(rad));
+
+		Vec3 frontVec(cos(XM_PI + rad), 0.0f, sin(XM_PI + rad));
 
 		auto targetTrans = m_targetTrans.lock();
 		//カメラの注視点の設定
-		auto targetPos = targetTrans->GetPosition();
-		auto targetRot = targetTrans->GetRotation();
-		Vec3 at(targetPos.x, targetPos.y, targetPos.z);
+		auto at = targetTrans->GetPosition();
+
+		at += frontVec * 3.0f;
 		SetAt(at);
 
 
 		//カメラの座標点を設定
-		Vec3 rot(targetRot.x, 0.0f, targetRot.z);
-		auto eye = rot;
-		eye.y = m_height;
+		auto eye = at + radVec * m_distance;
+		eye.y = at.y + m_height;
 		SetEye(eye);
 
 	}
@@ -46,7 +64,6 @@ namespace basecross {
 	void MainCamera::SetTarget(const shared_ptr <GameObject>& target)
 	{
 		m_targetTrans = target->GetComponent<Transform>();
-		m_stage = target->GetStage();
 	}
 
 	void MainCamera::SetAngle() {
