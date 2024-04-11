@@ -104,7 +104,7 @@ namespace basecross {
 		//初期位置などの設定
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(1.0f, 1.0f, 2.0f);
-		m_trans->SetRotation(0.0f, 0.0f, 0.0f);
+		m_trans->SetRotation(0.0f, 30.0f, 0.0f);
 		m_trans->SetPosition(0.0f, 0.5f, 0.0f);
 
 		//描画コンポーネント
