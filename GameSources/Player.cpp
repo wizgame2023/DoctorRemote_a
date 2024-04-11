@@ -100,6 +100,7 @@ namespace basecross {
 		}
 	}
 
+
 	void Player::OnCreate(){
 		//‰ŠúˆÊ’u‚È‚Ç‚Ìİ’è
 		m_trans = GetComponent<Transform>();
@@ -133,6 +134,14 @@ namespace basecross {
 
 	void Player::OnUpdate(){
 		MovePlayer();
+		auto stage = GetStage();
+
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cntlVec[0].bConnected) {
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+				auto bullet = stage->AddGameObject<Bullet>(Vec3(-1.0f, 0.5f, 0.0f), Vec3(0.3f, 0.3f, 0.3f), 1.0f, 0.0f, 1);
+			}
+		}
 	}
 
 	Vec3 Player::GetAngle() {
