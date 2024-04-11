@@ -14,10 +14,10 @@ namespace basecross {
 		float m_length;
 		float m_maxLength;
 
-		weak_ptr<Player> m_player;
+		shared_ptr<Player> m_player;
 
 	public:
-		PieceGarge(const shared_ptr<Stage>& StagePtr);
+		PieceGarge(const shared_ptr<Stage>& StagePtr,const shared_ptr<Player>& player);
 		~PieceGarge(){}
 
 		virtual void OnCreate() override;
