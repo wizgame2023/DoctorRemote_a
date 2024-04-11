@@ -78,6 +78,8 @@ namespace basecross {
 		if (Other->FindTag(L"Enemy"))
 		{
 			DestroyGameObject();//Ž©•ª‚ÍÁ‚¦‚é
+			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+
 		}
 	}
 
