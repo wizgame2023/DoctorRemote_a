@@ -1,6 +1,7 @@
 /*!
 @file Character.cpp
 @brief “G‚È‚ÇÀ‘Ì
+’S“–@‘å‰ÍŒ´
 */
 
 #include "stdafx.h"
@@ -8,7 +9,7 @@
 
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
-		GameObject(StagePtr),m_Hp(300)
+		GameObject(StagePtr),m_Hp(3)
 	{
 	}
 	void Enemy::OnCreate()
@@ -33,11 +34,21 @@ namespace basecross {
 		GetStage()->SetUpdatePerformanceActive(true);
 		GetStage()->SetDrawPerformanceActive(true);
 	}
+
+
+	void Enemy::OnUpdate()
+	{
+
+	}
+
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Collision)
 	{
+		//Collision->GetStage()->SetSharedGameObject(L"Bullet", Bulletptr);
+		int attack = m_bullet.lock()->GetAttack();
+
 		if (Collision->FindTag(L"Bullet") && m_Hp > 0)
 		{
-			m_Hp = m_Hp - 300;
+			m_Hp = m_Hp - attack;
 		}
 		if (m_Hp <= 0)
 		{
