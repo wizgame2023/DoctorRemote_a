@@ -56,6 +56,7 @@ namespace basecross {
 		}
 	}
 
+
 	void HemmiStage::OnCreate() {
 		try {
 			//ビューとライトの作成
