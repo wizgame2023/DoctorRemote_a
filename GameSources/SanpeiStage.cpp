@@ -30,7 +30,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"Internal", strTexture);
 
 		// カメラの設定
-		auto camera = ObjectFactory::Create<Camera>();
+		auto camera = ObjectFactory::Create<MainCamera>();
 		camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
 		camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
@@ -126,6 +126,9 @@ namespace basecross {
 			CreateRadar();
 			//地面を生成
 			AddGameObject<Ground>();
+			//ゲージを追加
+			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
+
 		}
 		catch (...) {
 			throw;
