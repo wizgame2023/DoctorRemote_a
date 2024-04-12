@@ -9,7 +9,7 @@
 
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
-		GameObject(StagePtr),m_Hp(1)
+		GameObject(StagePtr),m_Hp(100)
 	{
 	}
 	void Enemy::OnCreate()
@@ -39,6 +39,15 @@ namespace basecross {
 
 	void Enemy::OnUpdate()
 	{
+
+		auto piece = GetStage()->GetSharedGameObject<PieceGarge>(L"Garge");
+		float pieceBar = piece->GetLength();
+		float maxPieceBar = piece->GetMaxLength();
+
+		if (pieceBar >= maxPieceBar)
+		{
+			m_Hp = 5;
+		}
 
 	}
 
