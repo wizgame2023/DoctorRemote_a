@@ -11,6 +11,7 @@ namespace basecross {
 	class Enemy :public GameObject
 	{
 		float m_Hp;
+		int m_counter;
 
 		weak_ptr<Bullet> m_bullet;
 
