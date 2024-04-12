@@ -169,7 +169,7 @@ namespace basecross {
 
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
 		if (other->FindTag(L"EnemyPiece")) {
-			SetHp(100.0f);
+			SetHp(30.0f);
 		}
 	}
 }

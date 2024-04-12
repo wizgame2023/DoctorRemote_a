@@ -15,7 +15,7 @@ namespace basecross {
 	void Enemy::OnCreate()
 	{
 		auto ptr = GetComponent<Transform>();
-		ptr->SetPosition(0, 0.5f, 0);
+		ptr->SetPosition(20.0f, 0.5f, 23.0f);
 		ptr->SetRotation(0, 0, 0);
 		ptr->SetScale(1, 1, 1);
 

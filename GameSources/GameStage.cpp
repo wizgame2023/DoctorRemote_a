@@ -60,7 +60,7 @@ namespace basecross {
 	{
 		auto ptrPlayer = AddGameObject<Player>();
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを取得
-		auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
+		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
 
 	}
 	//レーダーを追加する関数
@@ -86,16 +86,42 @@ namespace basecross {
 	void GameStage::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{
+			{//1
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(5.0f,0.5f,0.0f)
 			},
-			{
+			{//2
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(-5.0f,0.0f,5.0f)
 			},
+			{//3
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-8.0f,0.0f,3.0f)
+			},
+			{//4
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-10.0f,0.0f,23.0f)
+			},
+			{//5
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-23.0f,0.0f,13.0f)
+			},
+			{//6
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-18.0f,0.0f,3.0f)
+			},
+			{//7
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(15.0f,0.0f,12.0f)
+			}
+
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
@@ -115,7 +141,7 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			//弾を作成
-			CreateBullet();
+			//CreateBullet();
 			//Playerを追加
 			CreatePlayer();
 			//敵のかけらを表示
@@ -128,6 +154,7 @@ namespace basecross {
 			AddGameObject<Ground>();
 			//ゲージを追加
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
+			SetSharedGameObject(L"Garge", garge);
 
 		}
 		catch (...) {

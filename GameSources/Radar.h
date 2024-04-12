@@ -11,6 +11,12 @@ namespace basecross {
 	class Radar : public GameObject
 	{
 	private:
+		vector<VertexPositionColorTexture> m_vertices;
+		vector<uint16_t> m_indices; // 頂点インデックス（頂点のつなげ順）
+		shared_ptr<PCTSpriteDraw> m_drawComp;
+
+
+
 		Vec3 m_PlayerPosition;//Playerのポジション
 		Vec3 m_EnemyPosition;//Enemyのポジション
 		float m_angle;//傾く角度

@@ -37,7 +37,7 @@ namespace basecross {
 		Col4 color(1, 1, 1, 1); // ポリゴンの色
 		const float w = 100.0f; // ポリゴンの幅
 		const float h = 100.0f; // ポリゴンの高さ
-		vector<VertexPositionColorTexture> vertices = { // 頂点データ
+		vector<VertexPositionColorTexture> m_vertices = { // 頂点データ
 			//             座標           ,頂点色,        UV座標
 			{Vec3(-w * 0.5f, +h * 0.5f, 0), color, Vec2(0.0f, 0.0f)}, // 0
 			{Vec3(+w * 0.5f, +h * 0.5f, 0), color, Vec2(1.0f, 0.0f)}, // 1
@@ -45,15 +45,15 @@ namespace basecross {
 			{Vec3(+w * 0.5f, -h * 0.5f, 0), color, Vec2(1.0f, 1.0f)}, // 3
 		};
 
-		vector<uint16_t> indices = { // 頂点インデックス（頂点のつなげ順）
+		vector<uint16_t> m_indices = { // 頂点インデックス（頂点のつなげ順）
 			0, 1, 2, // ←これで一つのポリゴン(三角形)
 			2, 1, 3  // ←こっちも
 		};
 
-		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices); // スプライト用のドローコンポーネント
-		drawComp->SetTextureResource(L"Arrow");//白のテクスチャが欲しいときはHAKUSIを選択してください
-		drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
-		drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
+		m_drawComp = AddComponent<PCTSpriteDraw>(m_vertices, m_indices); // スプライト用のドローコンポーネント
+		m_drawComp->SetTextureResource(L"Arrow");//白のテクスチャが欲しいときはHAKUSIを選択してください
+		m_drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
+		m_drawComp->SetDiffuse(Col4(1, 1, 1, 0.0f)); // ポリゴンを色を設定する
 
 		// アルファブレンド(透過処理)を有効にする
 		SetAlphaActive(true); // true:透過を有効、false:透過を無効
@@ -72,7 +72,6 @@ namespace basecross {
 		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//そのオブジェクトのTransformを取得
 		m_PlayerPosition = PlayerTrans->GetPosition();//Positionを取得
 
-
 		Vec3 RadarVec3 = Vec3((m_EnemyPosition.x - m_PlayerPosition.x),
 			0.0f,
 			(m_EnemyPosition.z - m_PlayerPosition.z));
@@ -81,6 +80,17 @@ namespace basecross {
 		m_angle = rad;
 		transform->SetRotation(0.0f, 0.0f, m_angle);//回転を初期化
 		transform->SetPosition(0.0f, -300.0f, 0.0f);
+
+		auto& ptrGarge = GetStage()->GetSharedGameObject<PieceGarge>(L"Garge");
+		float GargeLength = ptrGarge->GetLength();
+		float GargeMaxLength = ptrGarge->GetMaxLength();
+		int test=0;
+		if (GargeLength >= GargeMaxLength)
+		{
+			m_drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
+			test = 1;
+		}
+
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {

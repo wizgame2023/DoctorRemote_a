@@ -54,11 +54,24 @@ namespace basecross {
 
 		m_length = m_player->GetHp() * 1.0f;
 		if (m_length >= m_maxLength) {
-			m_length = 0.0f;
+
+			//m_length = 0.0f;
+
 		}
 		//m_length = 200.0f;
 		m_transform->SetScale(m_length / m_maxLength*2.0f, 1, 1);
 
+	}
+
+
+	float PieceGarge::GetLength()
+	{
+		return m_length;
+	}
+
+	float PieceGarge::GetMaxLength()
+	{
+		return m_maxLength;
 	}
 
 }

@@ -18,8 +18,8 @@ namespace basecross {
 		drawComp->SetOwnShadowActive(true); // ‰e‚Ì‰f‚è‚İ‚ğ”½‰f‚³‚¹‚é
 
 		auto transComp = GetComponent<Transform>();
-		transComp->SetScale(15.0f, 1.0f, 15.0f);
-		transComp->SetPosition(0.0f, -0.5f, 0.0f);
+		transComp->SetScale(50.0f, 1.0f, 50.0f);
+		transComp->SetPosition(0.0f, -1.0f, 0.0f);
 
 	}
 

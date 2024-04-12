@@ -20,8 +20,11 @@ namespace basecross {
 		PieceGarge(const shared_ptr<Stage>& StagePtr,const shared_ptr<Player>& player);
 		~PieceGarge(){}
 
+		void CreateRadar();
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+		float GetLength();
+		float GetMaxLength();
 	};
 }
 //end namespace basecross
