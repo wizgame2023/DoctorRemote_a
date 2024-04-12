@@ -71,11 +71,11 @@ namespace basecross {
 		//}
 
 		// 原点から20.0f離れた弾は破棄する
-		if (m_Position.length() > 20.0f)
-		{
-			// ステージから自身を破棄する
-			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
-		}
+		//if (m_Position.length() > 20.0f)
+		//{
+		//	// ステージから自身を破棄する
+		//	GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+		//}
 
 
 	}
