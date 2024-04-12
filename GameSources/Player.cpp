@@ -33,6 +33,20 @@ namespace basecross {
 		return ret;
 	}
 
+	float Player::PlayerAngle() const{
+
+		//進行方向の向きを計算
+		auto ptrTrans = GetComponent<Transform>();
+		auto ptrCamera = OnGetDrawCamera();
+		auto front = ptrTrans->GetPosition() - ptrCamera->GetEye();
+		front.y = 0;
+		front.normalize();
+		//進行方向の向きからの角度を算出
+		float frontAngle = atan2(front.z, front.x);
+
+		return frontAngle;
+	}
+
 	Vec3 Player::GetMoveVector()const {
 		Vec3 angle(0, 0, 0);
 		//入力を取得
@@ -41,17 +55,9 @@ namespace basecross {
 		float moveZ = inPut.y;
 		if (moveX != 0 || moveZ != 0){
 			float moveLength = 0; //動いた時のスピード
-			auto ptrTrasform = GetComponent<Transform>();
-			auto ptrCamera = OnGetDrawCamera();
 
-			//進行方向の向きを計算
-			auto front = ptrTrasform->GetPosition() - ptrCamera->GetEye();
-			front.y = 0;
-			front.normalize();
+			float frontAngle = PlayerAngle();
 
-			//進行方向の向きからの角度を算出
-			float frontAngle = atan2(front.z, front.x);
-			
 			//コントローラの向きを計算
 			Vec2 moveVec(moveX, moveZ);
 			//角度からベクトルを作成
@@ -67,7 +73,6 @@ namespace basecross {
 			angle.y = 0.0f;
 			
 		}
-
 			return angle;
 	}
 
@@ -136,21 +141,21 @@ namespace basecross {
 		MovePlayer();
 		auto stage = GetStage();
 
-		//進行方向の向きを計算
-		auto ptrTransform = GetComponent<Transform>();
-		auto ptrPos = ptrTransform->GetPosition();
-		auto ptrCamera = OnGetDrawCamera();
-		auto front = ptrTransform->GetPosition() - ptrCamera->GetEye();
-		front.y = 0;
-		front.normalize();
-		//進行方向の向きからの角度を算出
-		float frontAngle = atan2(front.z, front.x);
+		auto frontAngle = PlayerAngle();
+		auto ptrPos = m_trans->GetPosition();
 
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 				auto bullet = stage->AddGameObject<Bullet>(ptrPos, Vec3(0.3f, 0.3f, 0.3f), 10.0f, frontAngle, 1);
 			}
+		}
+	}
+
+	//衝突判定
+	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
+		if (other->FindTag(L"EnemyPiece")) {
+			SetHp(30.0f);
 		}
 	}
 
@@ -167,10 +172,5 @@ namespace basecross {
 		m_hp += hp;
 	}
 
-	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
-		if (other->FindTag(L"EnemyPiece")) {
-			SetHp(30.0f);
-		}
-	}
 }
 //end basecross
