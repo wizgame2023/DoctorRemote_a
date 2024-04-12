@@ -73,6 +73,10 @@ namespace basecross {
 	{
 		return m_maxLength;
 	}
+	void PieceGarge::SetLength(float length)
+	{
+		m_length = length;
+	}
 
 }
 //end basecross
