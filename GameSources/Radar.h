@@ -16,7 +16,6 @@ namespace basecross {
 		shared_ptr<PCTSpriteDraw> m_drawComp;
 
 
-
 		Vec3 m_PlayerPosition;//Playerのポジション
 		Vec3 m_EnemyPosition;//Enemyのポジション
 		float m_angle;//傾く角度
