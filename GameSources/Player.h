@@ -36,7 +36,7 @@ namespace basecross {
 		Vec3 GetAngle();
 		float GetHp() const;
 		void SetHp(float hp);
-
+		float PlayerAngle() const;
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
