@@ -66,9 +66,12 @@ namespace basecross {
 	//レーダーを追加する関数
 	void SanpeiStage::CreateRadar()
 	{
-		auto ptrPlayer = GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
+		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
 		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//そのオブジェクトのTransformを取得
 		auto PlayerPos = PlayerTrans->GetPosition();//Positionを取得
+		/////auto PlayerAngle = ptrPlayer;//Playerの向いている角度を取得する
+
+
 		auto ptrEnemy = GetSharedObject(L"Enemy");//Enemyというオブジェクトを取得
 		auto EnemyTrans = ptrEnemy->GetComponent<Transform>();//そのオブジェクトのTransformを取得
 		auto EnemyPos = EnemyTrans->GetPosition();//Positionを取得
@@ -86,16 +89,42 @@ namespace basecross {
 	void SanpeiStage::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{
+			{//1
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(5.0f,0.5f,0.0f)
 			},
-			{
+			{//2
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(-5.0f,0.0f,5.0f)
 			},
+			{//3
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-8.0f,0.0f,3.0f)
+			},
+			{//4
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-10.0f,0.0f,23.0f)
+			},
+			{//5
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-23.0f,0.0f,13.0f)
+			},
+			{//6
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(-18.0f,0.0f,3.0f)
+			},
+			{//7
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(15.0f,0.0f,12.0f)
+			}
+
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {

@@ -63,14 +63,22 @@ namespace basecross {
 
 	void Radar::OnUpdate()
 	{
+		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得する
+
+		wstringstream wss;//デバック用文字列
+		//wss << "test" << endl;
+		auto scene = app->GetScene<Scene>();//シーン取得
+
+
 		float degConvert = 180.0f / 3.14f;//radからdegに変換するための変数
 		auto transform = AddComponent<Transform>();
 
 		//auto& Stage = GetStage()->GetSharedObject(L");
 
-		auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
+		auto& ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
 		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//そのオブジェクトのTransformを取得
 		m_PlayerPosition = PlayerTrans->GetPosition();//Positionを取得
+		float PlayerAngle = ptrPlayer->PlayerAngle();//Playerの向いている角度を取得する
 
 		//PlayerとEnemyの距離を取得
 		Vec3 RadarVec3 = Vec3((m_EnemyPosition.x - m_PlayerPosition.x),
@@ -79,7 +87,19 @@ namespace basecross {
 
 		float rad = atan2f(RadarVec3.z, RadarVec3.x);//ベクトルをラジアンに変換
 		float deg = (rad * degConvert);//ラジアンをディグリーに変換
-		m_angle = rad;
+		m_angle = rad - PlayerAngle+ 1.57f;
+
+		if (m_angle < 0.0f)//もし回転する方向が下方面だったら
+		{
+			m_angle = -m_angle;//上方面に直す
+		}
+		if (m_angle > 3.14f)
+		{
+			m_angle = 6.28f - m_angle;
+		}
+
+
+		wss << m_angle << endl;//デバック用文字列を作成
 
 		transform->SetRotation(0.0f, 0.0f, m_angle);//回転を初期化
 		transform->SetPosition(0.0f, -300.0f, 0.0f);
@@ -99,5 +119,8 @@ namespace basecross {
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
 			float a = 1.0f;
 		}
+		//デバック用文字列を生成
+		scene->SetDebugString(L"a\n" + wss.str());
+
 	}
 }
