@@ -72,12 +72,15 @@ namespace basecross {
 		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//そのオブジェクトのTransformを取得
 		m_PlayerPosition = PlayerTrans->GetPosition();//Positionを取得
 
+		//PlayerとEnemyの距離を取得
 		Vec3 RadarVec3 = Vec3((m_EnemyPosition.x - m_PlayerPosition.x),
 			0.0f,
 			(m_EnemyPosition.z - m_PlayerPosition.z));
-		float rad = atan2f(RadarVec3.z, RadarVec3.x);
-		float deg = (rad * degConvert);
+
+		float rad = atan2f(RadarVec3.z, RadarVec3.x);//ベクトルをラジアンに変換
+		float deg = (rad * degConvert);//ラジアンをディグリーに変換
 		m_angle = rad;
+
 		transform->SetRotation(0.0f, 0.0f, m_angle);//回転を初期化
 		transform->SetPosition(0.0f, -300.0f, 0.0f);
 
