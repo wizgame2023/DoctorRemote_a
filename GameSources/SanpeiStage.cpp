@@ -128,6 +128,8 @@ namespace basecross {
 			AddGameObject<Ground>();
 			//ÉQÅ[ÉWÇí«â¡
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
+			SetSharedGameObject(L"Garge", garge);
+
 
 		}
 		catch (...) {
