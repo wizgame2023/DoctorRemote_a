@@ -22,9 +22,9 @@ namespace basecross {
 		AddTag(L"Enemy");
 
 		auto shadowPtr = AddComponent<Shadowmap>();
-		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+		shadowPtr->SetMeshResource(L"DEFAULT_SPHERE");
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		ptrDraw->SetMeshResource(L"DEFAULT_SPHERE");
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
