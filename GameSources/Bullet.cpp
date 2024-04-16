@@ -26,6 +26,7 @@ namespace basecross {
 	//初期化
 	void Bullet::OnCreate()
 	{
+
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
 
@@ -33,8 +34,7 @@ namespace basecross {
 		ptrTransform->SetPosition(m_Position);//位置を設定
 		ptrTransform->SetScale(m_Scale);//大きさを設定
 		ptrTransform->SetQuaternion(Quat());//クトーニアン（回転）を設定
-		auto StartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
-		//m_AllStartPosition = abs(StartPosition.x) + abs(StartPosition.y) + abs(StartPosition.z);
+		m_AllStartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
 		//球体のコリジョンを追加
 		auto ptrcollider = AddComponent<CollisionSphere>();
 
@@ -48,7 +48,9 @@ namespace basecross {
 
 	}
 	void Bullet::OnUpdate()
-	{
+	{		
+		wstringstream wss;//デバック用文字列
+
 		auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
 
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
@@ -59,7 +61,7 @@ namespace basecross {
 		m_Position.x += m_Speed * cos(m_angle) * delta;//移動
 		m_Position.z += m_Speed * sin(m_angle) * delta;//移動
 		ptrTransform->SetPosition(m_Position);//移動を反映させる
-		//auto UpdatePosition = ptrTransform->GetPosition();//移動を反映させたpositionを取得
+		Vec3 UpdatePosition = ptrTransform->GetPosition();//移動を反映させたpositionを取得
 
 		//auto& Vec = GetStage()->GetGameObjectVec();//ゲームオブジェクトの配列を取得
 		//for (auto V : Vec)
@@ -72,14 +74,22 @@ namespace basecross {
 		//}
 
 		
-		//float AllPosition = abs(UpdatePosition.x) + abs(UpdatePosition.y) + abs(UpdatePosition.z);
+		Vec3 PositionVec = Vec3(m_AllStartPosition.x - UpdatePosition.x,m_AllStartPosition.y - UpdatePosition.y,m_AllStartPosition.z - UpdatePosition.z);
+		float AllPosition = abs(PositionVec.x)+abs(PositionVec.y)+abs(PositionVec.z);
 
-		//// 初期位置から20.0f離れた弾は破棄する
-		//if (AllPosition >= m_AllStartPosition)//ちょっと計算違うから直しておく
-		//{
-		//	// ステージから自身を破棄する
-		//	GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
-		//}
+		// 初期位置から20.0f離れた弾は破棄する
+		if (AllPosition >= 10.0f)//ちょっと計算違うから直しておく
+		{
+			// ステージから自身を破棄する
+			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+		}
+		wss << L"AllPosition :" << AllPosition << endl;
+		wss << L"AllStartPosition :" << 10.0f << endl;
+
+
+		//デバック用文字列を生成
+		auto scene = app->GetScene<Scene>();//シーン取得
+		scene->SetDebugString(L"a\n" + wss.str());
 
 
 	}

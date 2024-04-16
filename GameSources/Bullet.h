@@ -15,6 +15,7 @@ namespace basecross {
 		Vec3 m_Scale;//サイズ
 		float m_Speed;//速さ
 		float m_angle;//角度
+		Vec3 m_AllStartPosition;
 		int m_Attack;//攻撃力
 	public:
 		Bullet(
