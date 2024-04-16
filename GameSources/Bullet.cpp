@@ -17,7 +17,6 @@ namespace basecross {
 		m_angle(Rad),//角度はRad（弧度法）でお願いします
 		m_Attack(Attack)
 	{
-
 	}
 	//デストラクタ
 	Bullet::~Bullet()
@@ -34,7 +33,8 @@ namespace basecross {
 		ptrTransform->SetPosition(m_Position);//位置を設定
 		ptrTransform->SetScale(m_Scale);//大きさを設定
 		ptrTransform->SetQuaternion(Quat());//クトーニアン（回転）を設定
-
+		auto StartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
+		//m_AllStartPosition = abs(StartPosition.x) + abs(StartPosition.y) + abs(StartPosition.z);
 		//球体のコリジョンを追加
 		auto ptrcollider = AddComponent<CollisionSphere>();
 
@@ -59,6 +59,7 @@ namespace basecross {
 		m_Position.x += m_Speed * cos(m_angle) * delta;//移動
 		m_Position.z += m_Speed * sin(m_angle) * delta;//移動
 		ptrTransform->SetPosition(m_Position);//移動を反映させる
+		//auto UpdatePosition = ptrTransform->GetPosition();//移動を反映させたpositionを取得
 
 		//auto& Vec = GetStage()->GetGameObjectVec();//ゲームオブジェクトの配列を取得
 		//for (auto V : Vec)
@@ -70,8 +71,11 @@ namespace basecross {
 		//	}
 		//}
 
-		// 原点から20.0f離れた弾は破棄する
-		//if (m_Position.length() > 20.0f)
+		
+		//float AllPosition = abs(UpdatePosition.x) + abs(UpdatePosition.y) + abs(UpdatePosition.z);
+
+		//// 初期位置から20.0f離れた弾は破棄する
+		//if (AllPosition >= m_AllStartPosition)//ちょっと計算違うから直しておく
 		//{
 		//	// ステージから自身を破棄する
 		//	GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
