@@ -23,6 +23,8 @@
 #include "PieceGarge.h"
 #include "Ground.h"
 #include "Effect.h"
+#include "Block.h"
+
 
 #include "AndoStage.h"
 #include "SanpeiStage.h"
