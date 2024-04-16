@@ -1,6 +1,7 @@
 /*!
-@file Data.cpp
-@brief テクスチャ、モデル
+@file Player.cpp
+@brief プレイヤー実体
+担当：逸見
 */
 
 #include "stdafx.h"
@@ -8,4 +9,3 @@
 
 namespace basecross {
 }
-//end basecross

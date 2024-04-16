@@ -1,6 +1,7 @@
 /*!
-@file Data.h
-@brief テクスチャ、モデル
+@file Player.h
+@brief プレイヤー
+担当：逸見
 */
 
 #pragma once
@@ -8,4 +9,3 @@
 
 namespace basecross {
 }
-//end namespace basecross
