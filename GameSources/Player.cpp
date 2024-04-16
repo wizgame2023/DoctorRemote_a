@@ -16,7 +16,7 @@ namespace basecross {
 		GameObject(StagePtr),
 		m_hp(0),
 		m_speed(5.0f),
-		m_meshResName(L"DEFAULT_CUBE")
+		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
 	Vec2 Player::GetInputState()const {
@@ -113,19 +113,40 @@ namespace basecross {
 		m_trans->SetRotation(0.0f, 30.0f, 0.0f);
 		m_trans->SetPosition(0.0f, 0.5f, 0.0f);
 
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, -0.5f, 0.0f)
+		);
+
+
+		////影をつける（シャドウマップを描画する）
+		//auto ptrShadow = AddComponent<Shadowmap>();
+		////影の形（メッシュ）を設定
+		//ptrShadow->SetMultiMeshResource(m_meshResName);
+		//ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		//auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+		//ptrDraw->SetMultiMeshResource(m_meshResName);
+		//ptrDraw->SetMeshToTransformMatrix(spanMat);
+
+
 		//描画コンポーネント
-		auto draw_Comp = AddComponent<BcPNStaticDraw>();
-		draw_Comp->SetMeshResource(m_meshResName);
-		draw_Comp->SetOwnShadowActive(true);
-		draw_Comp->SetFogEnabled(true);
+		auto drawComp = AddComponent<PNTStaticModelDraw>();
+		drawComp->SetMultiMeshResource(m_meshResName);
+		drawComp->SetMeshToTransformMatrix(spanMat);
+
+		drawComp->SetOwnShadowActive(true);
 
 		//影をつける
 		auto shadowComp = AddComponent<Shadowmap>();
-		shadowComp->SetMeshResource(m_meshResName);
+		shadowComp->SetMultiMeshResource(m_meshResName);
+		shadowComp->SetMeshToTransformMatrix(spanMat);
 
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(false);
-		colPtr->SetAfterCollision(AfterCollision::None);
+		colPtr->SetDrawActive(true);
 
 		AddTag(L"Player");
 
