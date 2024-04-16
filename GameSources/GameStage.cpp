@@ -40,8 +40,10 @@ namespace basecross {
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
-		App::GetApp()->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
+		app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
 
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin1.bmf");
+		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
 
 		// カメラの設定
 		auto camera = ObjectFactory::Create<MainCamera>();

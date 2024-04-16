@@ -9,6 +9,7 @@
 #include "ProjectShader.h"
 #include "ProjectBehavior.h"
 #include "Scene.h"
+#include "Data.h"
 #include "MainCamera.h"
 #include "TestCamera.h"
 #include "Ligth.h"
