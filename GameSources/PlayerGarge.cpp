@@ -9,5 +9,9 @@
 
 namespace basecross {
 
+	PlayerGarge::PlayerGarge(const shared_ptr<Stage>& stagePtr) :
+		GameObject(stagePtr)
+	{
+	}
 }
 //end namespace basecross

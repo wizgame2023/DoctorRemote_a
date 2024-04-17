@@ -22,6 +22,7 @@
 #include "EnemyPiece.h"
 #include "FakePiece.h"
 #include "PieceGarge.h"
+#include "PlayerGarge.h"
 #include "Ground.h"
 #include "Effect.h"
 #include "Block.h"
