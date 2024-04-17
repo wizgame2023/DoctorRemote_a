@@ -139,6 +139,10 @@ namespace basecross {
 
 	void SanpeiStage::OnCreate() {
 		try {
+
+			//テクスチャ、モデルの設定データ
+			auto data = AddGameObject<Data>();
+
 			auto& app = App::GetApp();
 
 			auto path = app->GetDataDirWString();
