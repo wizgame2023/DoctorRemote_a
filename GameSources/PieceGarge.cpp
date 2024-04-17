@@ -13,7 +13,7 @@ namespace basecross {
 		GameObject(StagePtr),
 		m_player(player),
 		m_length(100.0f),
-		m_maxLength(200.0f),
+		m_maxLength(100.0f),
 		m_garge(0.0f)
 	{}
 
@@ -21,7 +21,7 @@ namespace basecross {
 		//ポリゴンの自作
 
 		Col4 color(1, 1, 1, 1);
-		const float w = 200.0f;
+		const float w = 40.0f;
 		const float h = m_length;
 
 		//頂点データ
@@ -47,7 +47,7 @@ namespace basecross {
 		m_transform = AddComponent<Transform>();
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
-		Vec3 screenOrigin(750 * 0.5f, -100 * 0.5f, 0);
+		Vec3 screenOrigin(1000 * 0.5f, -500 * 0.5f, 0);
 		m_transform->SetPosition(screenOrigin + Vec3(10, -10, 0));
 		SetAlphaActive(true);
 	}
@@ -57,8 +57,8 @@ namespace basecross {
 		m_length = m_player->GetHp() * 1.0f;
 
 		m_garge = m_length / m_maxLength;
-		//m_transform->SetScale(m_garge * 2.0f, 1, 1);
-		m_transform->SetScale(1, 1, 1);
+		m_transform->SetScale(1,-m_garge * 2.0f, 1);
+		//m_transform->SetScale(1, 1, 1);
 	}
 
 

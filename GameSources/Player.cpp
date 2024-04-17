@@ -165,7 +165,7 @@ namespace basecross {
 	//Õ“Ë”»’è
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
 		if (other->FindTag(L"EnemyPiece")) {
-			SetHp(30.0f);
+			SetHp(15.0f);
 		}
 	}
 
