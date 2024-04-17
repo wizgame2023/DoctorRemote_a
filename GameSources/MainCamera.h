@@ -21,6 +21,7 @@ namespace basecross {
 		float m_angleY;
 		float m_distance;
 		float m_height;
+		float m_camDis;
 
 		Vec3 m_playerAngle;
 

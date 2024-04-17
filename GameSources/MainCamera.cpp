@@ -15,7 +15,8 @@ namespace basecross {
 	MainCamera::MainCamera():
 		m_angleY(0.0f),
 		m_distance(7.0f),
-		m_height(3.0f)
+		m_height(3.0f),
+		m_camDis(6.0f)
 	{
 	}
 
@@ -46,13 +47,12 @@ namespace basecross {
 
 		Vec3 frontVec(cos(XM_PI + rad), 0.0f, sin(XM_PI + rad));
 
-		auto targetTrans = m_targetTrans.lock();
 		//カメラの注視点の設定
+		auto targetTrans = m_targetTrans.lock();
 		auto at = targetTrans->GetPosition();
 
-		at += frontVec * 6.0f;
+		at += frontVec * m_camDis;
 		SetAt(at);
-
 
 		//カメラの座標点を設定
 		auto eye = at + radVec * m_distance;

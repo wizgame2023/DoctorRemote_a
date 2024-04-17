@@ -21,14 +21,14 @@ namespace basecross {
 
 		Col4 color(1, 1, 1, 1);
 		const float w = m_length;
-		const float h = 20.0f;
+		const float h = 100.0f;
 
 		//頂点データ
-		vector<VertexPositionColor> vertices = {
-			{Vec3(0,0,0),color}, //0
-			{Vec3(w,0,0),color}, //1
-			{Vec3(0,-h,0),color}, //2
-			{Vec3(w,-h,0),color}	 //3
+		vector<VertexPositionColorTexture> vertices = {
+			{Vec3(0,0,0),color,Vec2(1.0f,0.0f)}, //0
+			{Vec3(w,0,0),color,Vec2(1.0f,1.0f)}, //1
+			{Vec3(0,-h,0),color,Vec2(0.0f,0.0f)}, //2
+			{Vec3(w,-h,0),color,Vec2(0.0f,1.0f)}  //3
 		};
 
 		//頂点インディックス
@@ -37,17 +37,18 @@ namespace basecross {
 			2,1,3
 		};
 
-		auto drawComp = AddComponent<PCSpriteDraw>(vertices, indices);
+		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices);
+		drawComp->SetTextureResource(L"Bar");
 		drawComp->SetSamplerState(SamplerState::LinearWrap);
 		//色の設定
-		drawComp->SetDiffuse(Col4(0, 1, 0, 0.5f));
+		drawComp->SetDiffuse(Col4(0, 1, 0, 0.7));
 
 		m_transform = AddComponent<Transform>();
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
 		Vec3 screenOrigin(-sw * 0.5f, sh * 0.5f, 0);
 		m_transform->SetPosition(screenOrigin + Vec3(10, -10, 0));
-
+		SetAlphaActive(true);
 	}
 
 	void PieceGarge::OnUpdate() {
