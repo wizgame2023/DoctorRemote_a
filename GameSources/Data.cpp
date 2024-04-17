@@ -32,7 +32,12 @@ namespace basecross {
 		app->RegisterTexture(L"Black", strTexture);
 		strTexture = texPath + L"InternalSkin.png";
 		app->RegisterTexture(L"Internal", strTexture);
-
+		strTexture = texPath + L"Bar.png";
+		app->RegisterTexture(L"Bar", strTexture);
+		strTexture = texPath + L"RadarBar.png";
+		app->RegisterTexture(L"RadarBar", strTexture);
+		strTexture = texPath + L"RadarCover.png";
+		app->RegisterTexture(L"RaderCover", strTexture);
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
