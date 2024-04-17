@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)AndoStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BreakWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Data.h" />
@@ -44,6 +45,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)AndoStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)BreakWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Bullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Data.cpp" />

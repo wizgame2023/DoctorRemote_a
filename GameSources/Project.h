@@ -26,6 +26,7 @@
 #include "Ground.h"
 #include "Effect.h"
 #include "Block.h"
+#include "BreakWall.h"
 
 
 #include "AndoStage.h"
