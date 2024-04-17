@@ -14,8 +14,8 @@ namespace basecross {
 
 	MainCamera::MainCamera():
 		m_angleY(0.0f),
-		m_distance(5.0f),
-		m_height(2.0f)
+		m_distance(7.0f),
+		m_height(3.0f)
 	{
 	}
 
@@ -50,7 +50,7 @@ namespace basecross {
 		//ƒJƒƒ‰‚Ì’Ž‹“_‚ÌÝ’è
 		auto at = targetTrans->GetPosition();
 
-		at += frontVec * 3.0f;
+		at += frontVec * 6.0f;
 		SetAt(at);
 
 

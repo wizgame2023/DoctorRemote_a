@@ -27,6 +27,8 @@
 #include "Effect.h"
 #include "Block.h"
 #include "BreakWall.h"
+#include "RecoveryWall.h"
+#include "Wall.h"
 
 
 #include "AndoStage.h"
