@@ -51,9 +51,9 @@ namespace basecross {
 		};
 
 		m_drawComp = AddComponent<PCTSpriteDraw>(m_vertices, m_indices); // スプライト用のドローコンポーネント
-		m_drawComp->SetTextureResource(L"Arrow");//白のテクスチャが欲しいときはHAKUSIを選択してください
+		m_drawComp->SetTextureResource(L"Radar");//白のテクスチャが欲しいときはHAKUSIを選択してください
 		m_drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
-		m_drawComp->SetDiffuse(Col4(1, 1, 1, 0.0f)); // ポリゴンを色を設定する
+		m_drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
 
 		// アルファブレンド(透過処理)を有効にする
 		SetAlphaActive(true); // true:透過を有効、false:透過を無効
@@ -87,16 +87,16 @@ namespace basecross {
 
 		float rad = atan2f(RadarVec3.z, RadarVec3.x);//ベクトルをラジアンに変換
 		float deg = (rad * degConvert);//ラジアンをディグリーに変換
-		m_angle = rad - PlayerAngle+ 1.57f;
+		m_angle = rad - PlayerAngle;
 
-		if (m_angle < 0.0f)//もし回転する方向が下方面だったら
-		{
-			m_angle = -m_angle;//上方面に直す
-		}
-		if (m_angle > 3.14f)
-		{
-			m_angle = 6.28f - m_angle;
-		}
+		//if (m_angle < 0.0f)//もし回転する方向が下方面だったら
+		//{
+		//	m_angle = -m_angle;//上方面に直す
+		//}
+		//if (m_angle > 3.14f)
+		//{
+		//	m_angle = 6.28f - m_angle;
+		//}
 
 
 		wss << m_angle << endl;//デバック用文字列を作成

@@ -29,7 +29,15 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"Black", strTexture);
 		strTexture = texPath + L"InternalSkin.png";
 		App::GetApp()->RegisterTexture(L"Internal", strTexture);
+		strTexture = texPath + L"Bar.png";
+		App::GetApp()->RegisterTexture(L"Bar", strTexture);
+		strTexture = texPath + L"Radar.png";
+		App::GetApp()->RegisterTexture(L"Radar", strTexture);
+
 		//Playerのモデル生成
+		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modelPath, L"Sensuikan.bmf");
+		App::GetApp()->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
+
 		//auto strModel = MultiMeshResource::CreateStaticModelMultiMesh(modelPath, L"Sensuikan.bmf");
 		//App::GetApp()->RegisterResource(L"PLAYER_MODEL", strModel);
 
@@ -141,7 +149,7 @@ namespace basecross {
 		try {
 
 			//テクスチャ、モデルの設定データ
-			auto data = AddGameObject<Data>();
+			//auto data = AddGameObject<Data>();
 
 			auto& app = App::GetApp();
 
