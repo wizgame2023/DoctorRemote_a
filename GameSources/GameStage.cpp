@@ -16,34 +16,34 @@ namespace basecross {
 	void GameStage::CreateViewLight() {
 		//wstring dataDir;
 
-		//サンプルのためアセットディレクトリを取得
-		//App::GetApp()->GetAssetsDirectory(dataDir);//今仮で使っているので実際に実装するときは下のを使う
-		auto &app = App::GetApp();
+		////サンプルのためアセットディレクトリを取得
+		////App::GetApp()->GetAssetsDirectory(dataDir);//今仮で使っているので実際に実装するときは下のを使う
+		//auto &app = App::GetApp();
 
-		auto path = app->GetDataDirWString();
-		auto texPath = path + L"Textures/";
-		auto modPath = path + L"Models/";
+		//auto path = app->GetDataDirWString();
+		//auto texPath = path + L"Textures/";
+		//auto modPath = path + L"Models/";
 
-		wstring strTexture = texPath + L"hakusi.jpg";
-		app->RegisterTexture(L"White", strTexture);
-		strTexture = texPath + L"arrow2.png";
-		app->RegisterTexture(L"Arrow", strTexture);
-		strTexture = texPath + L"Black.jpg";
-		app->RegisterTexture(L"Black", strTexture);
-		strTexture = texPath + L"InternalSkin.png";
-		app->RegisterTexture(L"Internal", strTexture);
+		//wstring strTexture = texPath + L"hakusi.jpg";
+		//app->RegisterTexture(L"White", strTexture);
+		//strTexture = texPath + L"arrow2.png";
+		//app->RegisterTexture(L"Arrow", strTexture);
+		//strTexture = texPath + L"Black.jpg";
+		//app->RegisterTexture(L"Black", strTexture);
+		//strTexture = texPath + L"InternalSkin.png";
+		//app->RegisterTexture(L"Internal", strTexture);
 
-		wstring strModel = modPath;
+		//wstring strModel = modPath;
 
-		//auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(strModel, L"Sensuikan.bmf");
+		////auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(strModel, L"Sensuikan.bmf");
+		////app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
+
+		////スタティックモデル(マルチメッシュ)の通常リソース
+		//auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
 		//app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
 
-		//スタティックモデル(マルチメッシュ)の通常リソース
-		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
-		app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
-
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin1.bmf");
-		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
+		//staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin1.bmf");
+		//app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
 
 		// カメラの設定
 		auto camera = ObjectFactory::Create<MainCamera>();
@@ -148,16 +148,11 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
-			auto& app = App::GetApp();
 
-			auto path = app->GetDataDirWString();
-			//auto texPath = path + L"Textures/";
-
+			auto data = AddGameObject<Data>();
 
 			//ビューとライトの作成
 			CreateViewLight();
-			//弾を作成
-			//CreateBullet();
 			//Playerを追加
 			CreatePlayer();
 			//敵のかけらを表示
