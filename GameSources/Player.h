@@ -13,7 +13,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	class Player : public GameObject {
 
-		float m_hp;
+		float m_piece;
 		float m_speed;
 		wstring m_meshResName;
 		

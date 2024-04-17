@@ -14,7 +14,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
-		m_hp(0),
+		m_piece(0),
 		m_speed(5.0f),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
@@ -122,17 +122,6 @@ namespace basecross {
 		);
 
 
-		////影をつける（シャドウマップを描画する）
-		//auto ptrShadow = AddComponent<Shadowmap>();
-		////影の形（メッシュ）を設定
-		//ptrShadow->SetMultiMeshResource(m_meshResName);
-		//ptrShadow->SetMeshToTransformMatrix(spanMat);
-
-		//auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-		//ptrDraw->SetMultiMeshResource(m_meshResName);
-		//ptrDraw->SetMeshToTransformMatrix(spanMat);
-
-
 		//描画コンポーネント
 		auto drawComp = AddComponent<PNTStaticModelDraw>();
 		drawComp->SetMultiMeshResource(m_meshResName);
@@ -186,11 +175,11 @@ namespace basecross {
 	}
 
 	float Player::GetHp() const {
-		return m_hp;
+		return m_piece;
 	}
 
-	void Player::SetHp(float hp){
-		m_hp += hp;
+	void Player::SetHp(float piece){
+		m_piece += piece;
 	}
 
 }
