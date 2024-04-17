@@ -23,6 +23,7 @@ namespace basecross {
 		auto texPath = path + L"Textures/";
 		auto modPath = path + L"Models/";
 
+		//テクスチャ
 		wstring strTexture = texPath + L"hakusi.jpg";
 		app->RegisterTexture(L"White", strTexture);
 		strTexture = texPath + L"arrow2.png";
@@ -32,10 +33,6 @@ namespace basecross {
 		strTexture = texPath + L"InternalSkin.png";
 		app->RegisterTexture(L"Internal", strTexture);
 
-		wstring strModel = modPath;
-
-		//auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(strModel, L"Sensuikan.bmf");
-		//app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
@@ -43,6 +40,9 @@ namespace basecross {
 
 		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin1.bmf");
 		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
+
+		//staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera.bmf");
+		//app->RegisterResource(L"Kakera_Mesh", staticMultiModelMesh);
 
 	}
 }
