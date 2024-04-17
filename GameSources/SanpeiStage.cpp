@@ -20,6 +20,7 @@ namespace basecross {
 		//App::GetApp()->GetAssetsDirectory(dataDir);//今仮で使っているので実際に実装するときは下のを使う
 		auto path = App::GetApp()->GetDataDirWString();
 		auto texPath = path + L"Textures/";
+		auto modelPath = path + L"Models/";
 		wstring strTexture = texPath + L"hakusi.jpg";
 		App::GetApp()->RegisterTexture(L"White", strTexture);
 		strTexture = texPath + L"arrow2.png";
@@ -28,6 +29,9 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"Black", strTexture);
 		strTexture = texPath + L"InternalSkin.png";
 		App::GetApp()->RegisterTexture(L"Internal", strTexture);
+		//Playerのモデル生成
+		//auto strModel = MultiMeshResource::CreateStaticModelMultiMesh(modelPath, L"Sensuikan.bmf");
+		//App::GetApp()->RegisterResource(L"PLAYER_MODEL", strModel);
 
 		// カメラの設定
 		auto camera = ObjectFactory::Create<MainCamera>();
@@ -42,7 +46,7 @@ namespace basecross {
 		auto light = CreateLight<MultiLight>();
 		light->SetDefaultLighting(); //デフォルトのライティングを指定	
 
-		//AddGameObject<MyLight>();//光の表現をこれでやる
+		AddGameObject<MyLight>();//光の表現をこれでやる
 
 	}
 
