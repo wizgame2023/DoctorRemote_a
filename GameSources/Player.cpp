@@ -14,7 +14,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
-		m_pieceGarge(0),
+		m_piece(0),
 		m_speed(5.0f),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
@@ -175,11 +175,11 @@ namespace basecross {
 	}
 
 	float Player::GetHp() const {
-		return m_pieceGarge;
+		return m_piece;
 	}
 
-	void Player::SetHp(float pieceGarge){
-		m_pieceGarge += pieceGarge;
+	void Player::SetHp(float piece){
+		m_piece += piece;
 	}
 
 }

@@ -83,11 +83,14 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h">
       <Filter>Headers</Filter>
-	</ClInclude>
-	<ClInclude Include="$(MSBuildThisFileDirectory)Data.h">
-		<Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Data.h">
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Block.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerGarge.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -160,11 +163,14 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp">
       <Filter>Sources</Filter>
-	</ClCompile>
-	<ClCompile Include="$(MSBuildThisFileDirectory)Data.cpp">
-		<Filter>Sources</Filter>
-	</ClCompile>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Data.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerGarge.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
