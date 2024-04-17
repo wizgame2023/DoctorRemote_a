@@ -13,6 +13,7 @@ namespace basecross {
 		shared_ptr<Transform> m_transform;
 		float m_length;
 		float m_maxLength;
+		float m_garge;
 
 		shared_ptr<Player> m_player;
 
