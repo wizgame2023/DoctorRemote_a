@@ -13,22 +13,23 @@ namespace basecross {
 		GameObject(StagePtr),
 		m_player(player),
 		m_length(100.0f),
-		m_maxLength(200.0f)
+		m_maxLength(200.0f),
+		m_garge(0.0f)
 	{}
 
 	void PieceGarge::OnCreate() {
 		//ポリゴンの自作
 
 		Col4 color(1, 1, 1, 1);
-		const float w = m_length;
-		const float h = 100.0f;
+		const float w = 200.0f;
+		const float h = m_length;
 
 		//頂点データ
 		vector<VertexPositionColorTexture> vertices = {
-			{Vec3(0,0,0),color,Vec2(1.0f,0.0f)}, //0
-			{Vec3(w,0,0),color,Vec2(1.0f,1.0f)}, //1
-			{Vec3(0,-h,0),color,Vec2(0.0f,0.0f)}, //2
-			{Vec3(w,-h,0),color,Vec2(0.0f,1.0f)}  //3
+			{Vec3(0,0,0),color,Vec2(0.0f,0.0f)}, //0
+			{Vec3(w,0,0),color,Vec2(1.0f,0.0f)}, //1
+			{Vec3(0,-h,0),color,Vec2(0.0f,1.0f)}, //2
+			{Vec3(w,-h,0),color,Vec2(1.0f,1.0f)}  //3
 		};
 
 		//頂点インディックス
@@ -46,7 +47,7 @@ namespace basecross {
 		m_transform = AddComponent<Transform>();
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
-		Vec3 screenOrigin(-sw * 0.5f, sh * 0.5f, 0);
+		Vec3 screenOrigin(750 * 0.5f, -100 * 0.5f, 0);
 		m_transform->SetPosition(screenOrigin + Vec3(10, -10, 0));
 		SetAlphaActive(true);
 	}
@@ -55,8 +56,9 @@ namespace basecross {
 
 		m_length = m_player->GetHp() * 1.0f;
 
-		m_transform->SetScale(m_length / m_maxLength * 2.0f, 1, 1);
-
+		m_garge = m_length / m_maxLength;
+		//m_transform->SetScale(m_garge * 2.0f, 1, 1);
+		m_transform->SetScale(1, 1, 1);
 	}
 
 
