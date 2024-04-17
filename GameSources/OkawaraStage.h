@@ -9,9 +9,13 @@
 namespace basecross {
 	class O_GameStage :public Stage
 	{
-		void CreateViewLight();
-		void CreateEnemy();
-
+		void CreateViewLight(); //ビューの作成
+		void CreateBullet();//弾の作成
+		void CreatePlayer();//プレイヤーの作成
+		void CreateEnemyPiece();//敵のかけらの作成
+		void CreateEnemy();//敵の作成
+		void CreateRadar();//レーダーの作成
+		void CreateBlock();
 	public:
 		O_GameStage() :Stage(){}
 		~O_GameStage() {}

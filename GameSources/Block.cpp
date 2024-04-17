@@ -7,17 +7,30 @@
 #include "Project.h"
 
 namespace basecross {
-
-	//初期化
+	Block::Block(const shared_ptr<Stage>& StagePtr) :
+		GameObject(StagePtr)
+	{
+	}
 	void Block::OnCreate()
 	{
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(m_meshResName);
-		drawComp->SetTextureResource(L"BLOCK"); // 読み込んだ時に付けたアセット名
-		drawComp->SetOwnShadowActive(true);
+		auto ptr = GetComponent<Transform>();
+		ptr->SetPosition(0.0f, 0.5f, 0.0f);
+		ptr->SetRotation(0, 0, 0);
+		ptr->SetScale(1, 1, 1);
 
-		auto shadowComp = AddComponent<Shadowmap>();
-		shadowComp->SetMeshResource(m_meshResName);
+		auto shadowPtr = AddComponent<Shadowmap>();
+		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		ptrDraw->SetFogEnabled(true);
+		ptrDraw->SetOwnShadowActive(true);
+
+		auto ptrColl = AddComponent<CollisionSphere>();
+
+		GetStage()->SetCollisionPerformanceActive(true);
+		GetStage()->SetUpdatePerformanceActive(true);
+		GetStage()->SetDrawPerformanceActive(true);
+
 	}
 
 }

@@ -15,19 +15,10 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	class Block : public GameObject
 	{
-		std::wstring m_meshResName;
 
 	public:
-		// \’z‚Æ”jŠü
-		Block(const shared_ptr<Stage>& stage) :
-			GameObject(stage),
-			m_meshResName(L"DEFAULT_CUBE")
-		{
-		}
-		virtual ~Block()
-		{
-		}
-
+		Block(const shared_ptr<Stage>& StaegePtr);
+		 ~Block(){}
 		virtual void OnCreate() override; // ‰Šú‰»
 		//virtual void OnUpdate() override; // XV
 		//virtual void OnDraw() override; // •`‰æ
