@@ -42,6 +42,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)AndoStage.cpp" />
@@ -71,6 +72,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
 </Project>
