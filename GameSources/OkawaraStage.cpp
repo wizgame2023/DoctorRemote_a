@@ -144,14 +144,14 @@ namespace basecross {
 	}
 
 
-	void O_GameStage::CreateBlock()
+	void O_GameStage::CreateWall()
 	{
 		auto& app = App::GetApp();
 
 		auto path = app->GetDataDirWString();
 
-		const int MAP_ROWS = 30;
-		const int MAP_COLS = 30;
+		const int MAP_ROWS = 3;
+		const int MAP_COLS = 3;
 		int stageMap[MAP_ROWS][MAP_COLS];
 		auto levelPath = path + L"Levels/";
 
@@ -180,14 +180,14 @@ namespace basecross {
 		{
 			for (int c = 0; c < MAP_COLS; c++)
 			{
-				Vec3 startPos(-0.0f, 0.0f, +0.0f); // 基準となるオフセット座標
+				Vec3 startPos(-5.0f, 0.0f, +5.0f); // 基準となるオフセット座標
 				Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
 
 				// 要素の値によってブロックを配置する
 				switch (stageMap[r][c])
 				{
 				case 1:
-					auto block = AddGameObject<Block>();
+					auto block = AddGameObject<Wall>();
 					auto blockTransComp = block->GetComponent<Transform>();
 					blockTransComp->SetPosition(startPos + pos);
 
@@ -225,7 +225,7 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
 			SetSharedGameObject(L"Garge", garge);
 
-			CreateBlock();
+			CreateWall();
 		}
 		catch (...) {
 			throw;
