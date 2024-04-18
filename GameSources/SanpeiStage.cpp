@@ -31,7 +31,7 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"Internal", strTexture);
 		strTexture = texPath + L"Bar.png";
 		App::GetApp()->RegisterTexture(L"Bar", strTexture);
-		strTexture = texPath + L"Radar.png";
+		strTexture = texPath + L"Radaryoko1.png";
 		App::GetApp()->RegisterTexture(L"Radar", strTexture);
 
 		//Player‚Ìƒ‚ƒfƒ‹¶¬

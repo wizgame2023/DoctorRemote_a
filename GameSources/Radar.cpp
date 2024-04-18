@@ -39,10 +39,10 @@ namespace basecross {
 		const float h = 100.0f; // ポリゴンの高さ
 		vector<VertexPositionColorTexture> m_vertices = { // 頂点データ
 			//             座標           ,頂点色,        UV座標
-			{Vec3(-w * 0.5f, +h * 0.5f, 0), color, Vec2(0.0f, 0.0f)}, // 0
-			{Vec3(+w * 0.5f, +h * 0.5f, 0), color, Vec2(1.0f, 0.0f)}, // 1
-			{Vec3(-w * 0.5f, -h * 0.5f, 0), color, Vec2(0.0f, 1.0f)}, // 2
-			{Vec3(+w * 0.5f, -h * 0.5f, 0), color, Vec2(1.0f, 1.0f)}, // 3
+			{Vec3(+w * 0.0f, +h * 0.5f, 0), color, Vec2(0.0f, 0.0f)}, // 0
+			{Vec3(+w * 1.0f, +h * 0.5f, 0), color, Vec2(1.0f, 0.0f)}, // 1
+			{Vec3(+w * 0.0f, -h * 0.5f, 0), color, Vec2(0.0f, 1.0f)}, // 2
+			{Vec3(+w * 1.0f, -h * 0.5f, 0), color, Vec2(1.0f, 1.0f)}, // 3
 		};
 
 		vector<uint16_t> m_indices = { // 頂点インデックス（頂点のつなげ順）
@@ -87,16 +87,16 @@ namespace basecross {
 
 		float rad = atan2f(RadarVec3.z, RadarVec3.x);//ベクトルをラジアンに変換
 		float deg = (rad * degConvert);//ラジアンをディグリーに変換
-		m_angle = rad - PlayerAngle;
+		m_angle = rad - PlayerAngle+1.54f;
 
-		//if (m_angle < 0.0f)//もし回転する方向が下方面だったら
-		//{
-		//	m_angle = -m_angle;//上方面に直す
-		//}
-		//if (m_angle > 3.14f)
-		//{
-		//	m_angle = 6.28f - m_angle;
-		//}
+		if (m_angle < 0.0f)//もし回転する方向が下方面だったら
+		{
+			m_angle = -m_angle;//上方面に直す
+		}
+		if (m_angle > 3.14f)
+		{
+			m_angle = 6.28f - m_angle;
+		}
 
 
 		wss << m_angle << endl;//デバック用文字列を作成
