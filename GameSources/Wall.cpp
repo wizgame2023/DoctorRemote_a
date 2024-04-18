@@ -17,7 +17,7 @@ namespace basecross {
 		auto ptr = GetComponent<Transform>();
 		ptr->SetPosition(0.0f, 0.5f, 0.0f);
 		ptr->SetRotation(0, 0, 0);
-		ptr->SetScale(1, 1, 1);
+		ptr->SetScale(151.5, 10, 0.5);
 
 		auto shadowPtr = AddComponent<Shadowmap>();
 		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");

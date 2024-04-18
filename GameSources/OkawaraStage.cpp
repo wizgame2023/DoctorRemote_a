@@ -14,33 +14,6 @@ namespace basecross {
 
 	//ビューとライトの作成
 	void O_GameStage::CreateViewLight() {
-		// カメラの設定
-		//App::GetApp()->GetAssetsDirectory(dataDir);//今仮で使っているので実際に実装するときは下のを使う
-		auto& app = App::GetApp();
-
-		auto path = app->GetDataDirWString();
-		auto texPath = path + L"Textures/";
-		auto modPath = path + L"Models/";
-		auto levelPath = path + L"Levels/"; 
-
-
-		wstring strTexture = texPath + L"hakusi.jpg";
-		app->RegisterTexture(L"White", strTexture);
-		strTexture = texPath + L"arrow2.png";
-		app->RegisterTexture(L"Arrow", strTexture);
-		strTexture = texPath + L"Black.jpg";
-		app->RegisterTexture(L"Black", strTexture);
-		strTexture = texPath + L"InternalSkin.png";
-		app->RegisterTexture(L"Internal", strTexture);
-
-		wstring strModel = modPath;
-
-		//auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(strModel, L"Sensuikan.bmf");
-		//app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
-
-		//スタティックモデル(マルチメッシュ)の通常リソース
-		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
-		App::GetApp()->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
 
 
 		// カメラの設定
@@ -157,7 +130,7 @@ namespace basecross {
 
 
 		// 外部ファイルからマップデータを読み込む
-		ifstream ifs(levelPath + L"Pt_Wall2.csv");
+		ifstream ifs(levelPath + L"Pt_Wall3.csv");
 		if (ifs)
 		{
 			int c = 0; // マップデータ参照用
@@ -180,19 +153,54 @@ namespace basecross {
 		{
 			for (int c = 0; c < MAP_COLS; c++)
 			{
-				Vec3 startPos(-5.0f, 0.0f, +5.0f); // 基準となるオフセット座標
-				Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
 
 				// 要素の値によってブロックを配置する
 				switch (stageMap[r][c])
 				{
 				case 1:
+					Vec3 startPos(0.0f, -0.5f, +75.0f); // 基準となるオフセット座標
+					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
 					auto block = AddGameObject<Wall>();
 					auto blockTransComp = block->GetComponent<Transform>();
 					blockTransComp->SetPosition(startPos + pos);
-
 					break;
 				}
+				switch (stageMap[r][c])
+				{
+				case 2:
+					Vec3 startPos(0.0f, -0.5f, -75.0f); // 基準となるオフセット座標
+					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
+					auto block = AddGameObject<Wall>();
+					auto blockTransComp = block->GetComponent<Transform>();
+					blockTransComp->SetPosition(startPos + pos);
+					break;
+				}
+
+
+				switch (stageMap[r][c])
+				{
+				case 3:
+					Vec3 startPos(-75.0f, -0.5f, 0.0f); // 基準となるオフセット座標
+					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
+					auto block = AddGameObject<Wall>();
+					auto blockTransComp = block->GetComponent<Transform>();
+					blockTransComp->SetPosition(startPos + pos);
+					blockTransComp->SetScale(0.5, 10, 151.5);
+					break;
+				}
+
+				switch (stageMap[r][c])
+				{
+				case 4:
+					Vec3 startPos(+75.0f, -0.5f, 0.0f); // 基準となるオフセット座標
+					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
+					auto block = AddGameObject<Wall>();
+					auto blockTransComp = block->GetComponent<Transform>();
+					blockTransComp->SetPosition(startPos + pos);
+					blockTransComp->SetScale(0.5, 10, 151.5);
+					break;
+				}
+
 			}
 		}
 
@@ -201,11 +209,8 @@ namespace basecross {
 
 	void O_GameStage::OnCreate() {
 		try {
-			auto& app = App::GetApp();
 
-			auto path = app->GetDataDirWString();
-			//auto texPath = path + L"Textures/";
-
+			auto data = AddGameObject<Data>();
 
 			//ビューとライトの作成
 			CreateViewLight();
