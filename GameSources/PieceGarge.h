@@ -16,6 +16,8 @@ namespace basecross {
 		float m_garge;
 
 		shared_ptr<Player> m_player;
+		vector<VertexPositionColorTexture> m_vertices;
+		shared_ptr<PCTSpriteDraw> m_drawComp;
 
 	public:
 		PieceGarge(const shared_ptr<Stage>& StagePtr,const shared_ptr<Player>& player);

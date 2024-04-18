@@ -22,12 +22,14 @@ namespace basecross {
 
 		Col4 color(1, 1, 1, 1);
 		const float w = 40.0f;
-		const float h = m_length;
+		//const float h = m_length;
+		const float h = 40.0f;
+
 
 		//頂点データ
 		vector<VertexPositionColorTexture> vertices = {
-			{Vec3(0,0,0),color,Vec2(0.0f,0.0f)}, //0
-			{Vec3(w,0,0),color,Vec2(1.0f,0.0f)}, //1
+			{Vec3(0,0,0),color,Vec2(0.0f,0.75f)}, //0
+			{Vec3(w,0,0),color,Vec2(1.0f,0.75f)}, //1
 			{Vec3(0,-h,0),color,Vec2(0.0f,1.0f)}, //2
 			{Vec3(w,-h,0),color,Vec2(1.0f,1.0f)}  //3
 		};
@@ -47,18 +49,30 @@ namespace basecross {
 		m_transform = AddComponent<Transform>();
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
-		Vec3 screenOrigin(1000 * 0.5f, -500 * 0.5f, 0);
-		m_transform->SetPosition(screenOrigin + Vec3(10, -10, 0));
+		//Vec3 screenOrigin(1000 * 0.5f, -500 * 0.5f, 0);
+		Vec3 screenOrigin(sw * 0.5f, -sh * 0.5f, 0);
+		m_transform->SetPosition(screenOrigin + Vec3(-100, 70, 0));
 		SetAlphaActive(true);
 	}
 
 	void PieceGarge::OnUpdate() {
-
-		m_length = m_player->GetHp() * 1.0f;
+		//デバック用ストリーム
+		wstringstream wss(L"");
 
 		m_garge = m_length / m_maxLength;
-		m_transform->SetScale(1,-m_garge * 2.0f, 1);
-		//m_transform->SetScale(1, 1, 1);
+		m_length = m_player->GetHp() * 1.0f;
+
+		//m_transform->SetScale(1,-m_garge * 2.0f, 1);
+		m_transform->SetScale(1, 1, 1);
+
+		//デバック用
+		auto scene = App::GetApp()->GetScene<Scene>();
+		wss <<L"garge:"<<
+			m_garge << endl;
+		auto dstr = scene->GetDebugString();
+		scene->SetDebugString(dstr + wss.str());
+	
+
 	}
 
 
