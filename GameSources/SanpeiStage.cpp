@@ -31,8 +31,14 @@ namespace basecross {
 		App::GetApp()->RegisterTexture(L"Internal", strTexture);
 		strTexture = texPath + L"Bar.png";
 		App::GetApp()->RegisterTexture(L"Bar", strTexture);
-		strTexture = texPath + L"Radar.png";
+		strTexture = texPath + L"Radaryoko1.png";
 		App::GetApp()->RegisterTexture(L"Radar", strTexture);
+		strTexture = texPath + L"RadarBlueYoko.png";
+		App::GetApp()->RegisterTexture(L"RadarBlue", strTexture);
+		strTexture = texPath + L"RadarOrangeYoko.png";
+		App::GetApp()->RegisterTexture(L"RadarOrange", strTexture);
+		strTexture = texPath + L"RadarRedYoko.png";
+		App::GetApp()->RegisterTexture(L"RadarRed", strTexture);
 
 		//Player‚Ìƒ‚ƒfƒ‹¶¬
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modelPath, L"Sensuikan.bmf");

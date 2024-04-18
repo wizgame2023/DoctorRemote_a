@@ -39,10 +39,10 @@ namespace basecross {
 		const float h = 100.0f; // ポリゴンの高さ
 		vector<VertexPositionColorTexture> m_vertices = { // 頂点データ
 			//             座標           ,頂点色,        UV座標
-			{Vec3(-w * 0.5f, +h * 0.5f, 0), color, Vec2(0.0f, 0.0f)}, // 0
-			{Vec3(+w * 0.5f, +h * 0.5f, 0), color, Vec2(1.0f, 0.0f)}, // 1
-			{Vec3(-w * 0.5f, -h * 0.5f, 0), color, Vec2(0.0f, 1.0f)}, // 2
-			{Vec3(+w * 0.5f, -h * 0.5f, 0), color, Vec2(1.0f, 1.0f)}, // 3
+			{Vec3(+w * 0.0f, +h * 0.5f, 0), color, Vec2(0.0f, 0.0f)}, // 0
+			{Vec3(+w * 1.0f, +h * 0.5f, 0), color, Vec2(1.0f, 0.0f)}, // 1
+			{Vec3(+w * 0.0f, -h * 0.5f, 0), color, Vec2(0.0f, 1.0f)}, // 2
+			{Vec3(+w * 1.0f, -h * 0.5f, 0), color, Vec2(1.0f, 1.0f)}, // 3
 		};
 
 		vector<uint16_t> m_indices = { // 頂点インデックス（頂点のつなげ順）
@@ -80,23 +80,21 @@ namespace basecross {
 		m_PlayerPosition = PlayerTrans->GetPosition();//Positionを取得
 		float PlayerAngle = ptrPlayer->PlayerAngle();//Playerの向いている角度を取得する
 
-		//PlayerとEnemyの距離を取得
-		Vec3 RadarVec3 = Vec3((m_EnemyPosition.x - m_PlayerPosition.x),
-			0.0f,
-			(m_EnemyPosition.z - m_PlayerPosition.z));
+		//PlayerとEnemyの距離のベクトルを取得
+		Vec3 RadarVec3 = PlayerEnemyVec();
 
 		float rad = atan2f(RadarVec3.z, RadarVec3.x);//ベクトルをラジアンに変換
 		float deg = (rad * degConvert);//ラジアンをディグリーに変換
-		m_angle = rad - PlayerAngle;
+		m_angle = rad - PlayerAngle+1.54f;
 
-		//if (m_angle < 0.0f)//もし回転する方向が下方面だったら
-		//{
-		//	m_angle = -m_angle;//上方面に直す
-		//}
-		//if (m_angle > 3.14f)
-		//{
-		//	m_angle = 6.28f - m_angle;
-		//}
+		if (m_angle < 0.0f)//もし回転する方向が下方面だったら
+		{
+			m_angle = -m_angle;//上方面に直す
+		}
+		if (m_angle > 3.14f)
+		{
+			m_angle = 6.28f - m_angle;
+		}
 
 
 		wss << m_angle << endl;//デバック用文字列を作成
@@ -114,6 +112,24 @@ namespace basecross {
 			test = 1;
 		}
 
+		//PlayerとEnemyの距離のベクトルの大きさをを計算
+		float PlayerEnemyLong = abs(RadarVec3.x) + abs(RadarVec3.y) + abs(RadarVec3.z);
+		//距離を合わせて一定の距離以下なら画像を変える
+		if (PlayerEnemyLong <= 10.0f)
+		{
+			m_drawComp->SetTextureResource(L"RadarRed");//白のテクスチャが欲しいときはHAKUSIを選択してください
+		}
+		else if (PlayerEnemyLong <= 20.0f)
+		{
+			m_drawComp->SetTextureResource(L"RadarOrange");//白のテクスチャが欲しいときはHAKUSIを選択してください
+		}
+		else if (PlayerEnemyLong > 20.0f)
+		{
+			m_drawComp->SetTextureResource(L"RadarBlue");//白のテクスチャが欲しいときはHAKUSIを選択してください
+		}
+
+
+
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
@@ -122,5 +138,14 @@ namespace basecross {
 		//デバック用文字列を生成
 		scene->SetDebugString(L"a\n" + wss.str());
 
+	}
+
+	Vec3 Radar::PlayerEnemyVec()
+	{
+		Vec3 RadarVec3 = Vec3((m_EnemyPosition.x - m_PlayerPosition.x),
+			0.0f,
+			(m_EnemyPosition.z - m_PlayerPosition.z));
+
+		return RadarVec3;
 	}
 }
