@@ -15,6 +15,7 @@ namespace basecross {
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
 		m_piece(0),
+		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
@@ -165,7 +166,7 @@ namespace basecross {
 	//è’ìÀîªíË
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
 		if (other->FindTag(L"EnemyPiece")) {
-			SetHp(30.0f);
+			SetPiece(15.0f);
 		}
 	}
 
@@ -178,9 +179,13 @@ namespace basecross {
 		return m_piece;
 	}
 
-	void Player::SetHp(float piece){
+	void Player::SetPiece(float piece){
 		m_piece += piece;
 	}
 
+	float Player::GetPiece() {
+		auto garge = m_piece / m_maxPiece;
+		return garge;
+	}
 }
 //end basecross

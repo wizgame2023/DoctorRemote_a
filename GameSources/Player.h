@@ -14,6 +14,7 @@ namespace basecross {
 	class Player : public GameObject {
 
 		float m_piece;
+		float m_maxPiece;
 		float m_speed;
 		wstring m_meshResName;
 		
@@ -35,7 +36,8 @@ namespace basecross {
 
 		Vec3 GetAngle();
 		float GetHp() const;
-		void SetHp(float hp);
+		void SetPiece(float hp);
+		float GetPiece();
 		float PlayerAngle() const;
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);

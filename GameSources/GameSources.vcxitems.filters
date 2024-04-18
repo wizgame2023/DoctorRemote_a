@@ -193,5 +193,6 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
+      <Filter>Sources</Filter>
   </ItemGroup>
 </Project>

@@ -22,8 +22,11 @@ namespace basecross {
 
 		virtual void OnCreate()override; //初期化
 
-		void CreateEnemyPiece();
-		void CreatePlayer();
+		void CreateBullet();//弾の作成
+		void CreatePlayer();//プレイヤーの作成
+		void CreateEnemyPiece();//敵のかけらの作成
+		void CreateEnemy();//敵の作成
+		void CreateRadar();//レーダーの作成
 	};
 }
 //end namespace basecross
