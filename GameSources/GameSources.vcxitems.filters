@@ -102,7 +102,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
@@ -192,7 +191,5 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
-      <Filter>Sources</Filter>
   </ItemGroup>
 </Project>
