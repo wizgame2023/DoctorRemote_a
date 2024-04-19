@@ -10,10 +10,14 @@
 namespace basecross {
 	class PieceGarge :public GameObject{
 
+		const float m_height;
+		const float m_width;
+
 		shared_ptr<Transform> m_transform;
 		float m_length;
 		float m_maxLength;
 		float m_garge;
+		float m_piece;
 
 		shared_ptr<Player> m_player;
 		vector<VertexPositionColorTexture> m_vertices;
@@ -28,7 +32,7 @@ namespace basecross {
 		float GetLength();
 		float GetMaxLength();
 		void SetLength(float length);
-		void UpdateValue(int value);
+		void UpdateValue(float value);
 	};
 }
 //end namespace basecross

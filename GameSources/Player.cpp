@@ -167,6 +167,9 @@ namespace basecross {
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
 		if (other->FindTag(L"EnemyPiece")) {
 			SetPiece(15.0f);
+			if (m_maxPiece < m_piece) {
+				m_piece = 0;
+			}
 		}
 	}
 

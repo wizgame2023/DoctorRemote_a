@@ -12,27 +12,29 @@ namespace basecross {
 	PieceGarge::PieceGarge(const shared_ptr<Stage>& StagePtr,const shared_ptr<Player>& player):
 		GameObject(StagePtr),
 		m_player(player),
-		m_length(100.0f),
+		m_height(240.0f),
+		m_width(40.0f),
+		m_length(0.0f),
 		m_maxLength(100.0f),
 		m_garge(0.0f)
 	{}
 
 	void PieceGarge::OnCreate() {
+
+		m_piece = m_player->GetPiece();
+
+
 		//ポリゴンの自作
-
 		Col4 color(1, 1, 1, 1);
-		const float w = 40.0f;
 		//const float h = m_length;
-		const float h = 250.0f;
-		const float moveH = 100 / 1024;
-		int number = 9;
-
+		const float moveH = (1024 * m_piece)/1024;
+		
 		//頂点データ
 		m_vertices = {
-			{Vec3(0,0,0),color,Vec2(0.0f,(moveH * number))}, //0
-			{Vec3(w,0,0),color,Vec2(1.0f,(moveH * number))}, //1
-			{Vec3(0,-h,0),color,Vec2(0.0f,0.0f)}, //2
-			{Vec3(w,-h,0),color,Vec2(1.0f,0.0f)}  //3
+			{Vec3(0,0,0),color,Vec2(0.0f,(moveH))}, //0
+			{Vec3(m_width,0,0),color,Vec2(1.0f,(moveH))}, //1
+			{Vec3(0,-m_height,0),color,Vec2(0.0f,0.0f)}, //2
+			{Vec3(m_width,-m_height,0),color,Vec2(1.0f,0.0f)}  //3
 		};
 
 		//頂点インディックス
@@ -68,27 +70,28 @@ namespace basecross {
 		////m_transform->SetScale(1,-m_garge * 2.0f, 1);
 		//m_transform->SetScale(1, 1, 1);
 
-
 		//デバック用
+		auto garge = m_player->GetPiece();
 		auto scene = App::GetApp()->GetScene<Scene>();
 		wss <<L"garge:"<<
-			m_garge << endl;
+			garge <<"\n"<<
+			L"position.y:"<<
+			m_vertices[0].position.y <<
+			endl;
 		auto dstr = scene->GetDebugString();
 		scene->SetDebugString(dstr + wss.str());
 	
 
 	}
 
-	void PieceGarge::UpdateValue(int value) {
-		const float moveH = 102.4 / 1024;
+	void PieceGarge::UpdateValue(float value) {
+		const float moveH = (1024 * value) / 1024;
 
-		m_vertices[0].position.y = -250.0f+value*25;
-		m_vertices[1].position.y = -250.0f+value*25;
+		m_vertices[0].position.y = m_height*value;
+		m_vertices[1].position.y = m_height*value;
 
-		m_vertices[0].textureCoordinate.y = moveH * (value);
-		m_vertices[1].textureCoordinate.y = moveH * (value);
-
-
+		m_vertices[0].textureCoordinate.y = moveH;
+		m_vertices[1].textureCoordinate.y = moveH;
 
 		m_drawComp->UpdateVertices(m_vertices);
 	}
