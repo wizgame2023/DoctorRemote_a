@@ -18,31 +18,31 @@ namespace basecross {
 
 		//サンプルのためアセットディレクトリを取得
 		//App::GetApp()->GetAssetsDirectory(dataDir);//今仮で使っているので実際に実装するときは下のを使う
-		auto path = App::GetApp()->GetDataDirWString();
-		auto texPath = path + L"Textures/";
-		auto modelPath = path + L"Models/";
-		wstring strTexture = texPath + L"hakusi.jpg";
-		App::GetApp()->RegisterTexture(L"White", strTexture);
-		strTexture = texPath + L"arrow2.png";
-		App::GetApp()->RegisterTexture(L"Arrow", strTexture);
-		strTexture = texPath + L"Black.jpg";
-		App::GetApp()->RegisterTexture(L"Black", strTexture);
-		strTexture = texPath + L"InternalSkin.png";
-		App::GetApp()->RegisterTexture(L"Internal", strTexture);
-		strTexture = texPath + L"Bar.png";
-		App::GetApp()->RegisterTexture(L"Bar", strTexture);
-		strTexture = texPath + L"Radaryoko1.png";
-		App::GetApp()->RegisterTexture(L"Radar", strTexture);
-		strTexture = texPath + L"RadarBlueYoko.png";
-		App::GetApp()->RegisterTexture(L"RadarBlue", strTexture);
-		strTexture = texPath + L"RadarOrangeYoko.png";
-		App::GetApp()->RegisterTexture(L"RadarOrange", strTexture);
-		strTexture = texPath + L"RadarRedYoko.png";
-		App::GetApp()->RegisterTexture(L"RadarRed", strTexture);
+		//auto path = App::GetApp()->GetDataDirWString();
+		//auto texPath = path + L"Textures/";
+		//auto modelPath = path + L"Models/";
+		//wstring strTexture = texPath + L"hakusi.jpg";
+		//App::GetApp()->RegisterTexture(L"White", strTexture);
+		//strTexture = texPath + L"arrow2.png";
+		//App::GetApp()->RegisterTexture(L"Arrow", strTexture);
+		//strTexture = texPath + L"Black.jpg";
+		//App::GetApp()->RegisterTexture(L"Black", strTexture);
+		//strTexture = texPath + L"InternalSkin.png";
+		//App::GetApp()->RegisterTexture(L"Internal", strTexture);
+		//strTexture = texPath + L"Bar.png";
+		//App::GetApp()->RegisterTexture(L"Bar", strTexture);
+		//strTexture = texPath + L"Radaryoko1.png";
+		//App::GetApp()->RegisterTexture(L"Radar", strTexture);
+		//strTexture = texPath + L"RadarBlueYoko.png";
+		//App::GetApp()->RegisterTexture(L"RadarBlue", strTexture);
+		//strTexture = texPath + L"RadarOrangeYoko.png";
+		//App::GetApp()->RegisterTexture(L"RadarOrange", strTexture);
+		//strTexture = texPath + L"RadarRedYoko.png";
+		//App::GetApp()->RegisterTexture(L"RadarRed", strTexture);
 
 		//Playerのモデル生成
-		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modelPath, L"Sensuikan.bmf");
-		App::GetApp()->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
+		//auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modelPath, L"Sensuikan.bmf");
+		//App::GetApp()->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
 
 		//auto strModel = MultiMeshResource::CreateStaticModelMultiMesh(modelPath, L"Sensuikan.bmf");
 		//App::GetApp()->RegisterResource(L"PLAYER_MODEL", strModel);
@@ -78,7 +78,7 @@ namespace basecross {
 	{
 		auto ptrPlayer = AddGameObject<Player>();
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを取得
-		auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
+		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
 
 	}
 	//レーダーを追加する関数
@@ -155,7 +155,7 @@ namespace basecross {
 		try {
 
 			//テクスチャ、モデルの設定データ
-			//auto data = AddGameObject<Data>();
+			auto data = AddGameObject<Data>();
 
 			auto& app = App::GetApp();
 
@@ -166,7 +166,7 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			//弾を作成
-			CreateBullet();
+			//CreateBullet();
 			//Playerを追加
 			CreatePlayer();
 			//敵のかけらを表示
@@ -180,6 +180,9 @@ namespace basecross {
 			//ゲージを追加
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
 			SetSharedGameObject(L"Garge", garge);
+
+			//壁を出現（テスト）
+			AddGameObject<BreakWall>(Vec3(1.0f, 1.0f, 1.0f), Vec3(5.0f, 5.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f));
 
 
 		}

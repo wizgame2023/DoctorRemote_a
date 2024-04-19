@@ -1,11 +1,35 @@
 /*!
 @file BreakWall.h
 @brief 壊れる壁
+担当　三瓶裕太
 */
 
 #pragma once
 #include "stdafx.h"
 
-namespace basecross {
+namespace basecross
+{
+	class BreakWall : public GameObject
+	{
+	private:
+		Vec3 m_Scale;
+		Vec3 m_Position;
+		Vec3 m_Rotate;
+		int m_Hp;
+		weak_ptr<Bullet> m_bullet;
+
+
+	public:
+		BreakWall(const shared_ptr<Stage>& StagePtr,		
+						Vec3 m_Position,
+						Vec3 m_Scale,
+						Vec3 m_Rotate
+			     );
+		~BreakWall();
+		void OnCreate()override;//初期化UnityでいうところのStart
+		void OnUpdate()override;//アップデート
+		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
+
+	};
 }
 //end namespace basecross
