@@ -78,13 +78,13 @@ namespace basecross {
 		float AllPosition = abs(PositionVec.x)+abs(PositionVec.y)+abs(PositionVec.z);
 
 		// 初期位置から20.0f離れた弾は破棄する
-		if (AllPosition >= 10.0f)//ちょっと計算違うから直しておく
+		if (AllPosition >= 20.0f)//ちょっと計算違うから直しておく
 		{
 			// ステージから自身を破棄する
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 		}
 		wss << L"AllPosition :" << AllPosition << endl;
-		wss << L"AllStartPosition :" << 10.0f << endl;
+		wss << L"AllStartPosition :" << 20.0f << endl;
 
 
 		//デバック用文字列を生成
@@ -101,7 +101,11 @@ namespace basecross {
 		{
 			DestroyGameObject();//自分は消える
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
-
+		}
+		if (Other->FindTag(L"BreakWall"))
+		{
+			DestroyGameObject();//自分は消える
+			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 		}
 	}
 
