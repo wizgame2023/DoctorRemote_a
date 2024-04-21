@@ -139,7 +139,7 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
 			SetSharedGameObject(L"Garge", garge);
 			
-			garge->UpdateValue(0.5f);
+			garge->UpdateValue(0.3f);
 
 		}
 		catch (...) {

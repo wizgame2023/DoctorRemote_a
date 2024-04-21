@@ -87,8 +87,8 @@ namespace basecross {
 	void PieceGarge::UpdateValue(float value) {
 		const float moveH = (1024 * value) / 1024;
 
-		m_vertices[0].position.y = m_height*value;
-		m_vertices[1].position.y = m_height*value;
+		m_vertices[0].position.y = -m_height + (m_height * value);
+		m_vertices[1].position.y = -m_height + (m_height * value);
 
 		m_vertices[0].textureCoordinate.y = moveH;
 		m_vertices[1].textureCoordinate.y = moveH;
