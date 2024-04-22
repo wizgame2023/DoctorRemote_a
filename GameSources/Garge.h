@@ -52,10 +52,6 @@ namespace basecross {
 
 		void UpdateValue();
 
-		float GetLength();
-		float GetMaxLength();
-		float SetLength();
-
 
 	};
 }

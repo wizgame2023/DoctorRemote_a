@@ -7,7 +7,38 @@
 #include "stdafx.h"
 #include "Project.h"
 
+
 namespace basecross {
+
+	struct GargeValue {
+		float sizeX;
+		float sizeY;
+
+		float moveW;
+		float moveH;
+
+		float ratio;
+
+		float m_heigth;
+		float m_width;
+
+		vector<VertexPositionColorTexture> vertices;
+		vector<uint16_t> indices;
+		shared_ptr<PCTSpriteDraw> draw;
+
+		//頂点の色
+		Col4 color;
+		//画像の色
+		Col4 color2;
+
+		shared_ptr<Transform> trans;
+		wstring meshResName;
+
+		//表示する場所
+		Vec3 screen;
+		Vec3 distance;
+
+	};
 
 	Garge::Garge(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
