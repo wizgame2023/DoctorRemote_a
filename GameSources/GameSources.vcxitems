@@ -25,6 +25,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyPiece.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FakePiece.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Garge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Ground.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HemmiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Ligth.h" />
@@ -57,6 +58,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyPiece.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FakePiece.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Garge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Ground.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HemmiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Ligth.cpp" />
