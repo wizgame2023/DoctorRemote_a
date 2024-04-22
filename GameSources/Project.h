@@ -19,6 +19,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Radar.h"
+#include "Garge.h"
 #include "EnemyPiece.h"
 #include "FakePiece.h"
 #include "PieceGarge.h"
