@@ -61,28 +61,32 @@ namespace basecross {
 	}
 
 	void PieceGarge::OnUpdate() {
-		//デバック用ストリーム
-		wstringstream wss(L"");
 
 		//m_garge = m_length / m_maxLength;
 		//m_length = m_player->GetHp() * 1.0f;
 
 		////m_transform->SetScale(1,-m_garge * 2.0f, 1);
 		//m_transform->SetScale(1, 1, 1);
+		
 
+
+		//デバック用ストリーム
+		wstringstream wss(L"");
 		//デバック用
 		auto garge = m_player->GetPiece();
 		auto scene = App::GetApp()->GetScene<Scene>();
-		wss <<L"garge:"<<
+		wss <<L"piece:"<<
 			garge <<"\n"<<
 			L"position.y:"<<
 			m_vertices[0].position.y <<
 			endl;
 		auto dstr = scene->GetDebugString();
 		scene->SetDebugString(dstr + wss.str());
-	
+
+		UpdateValue(garge);
 
 	}
+
 
 	void PieceGarge::UpdateValue(float value) {
 		const float moveH = (1024 * value) / 1024;

@@ -120,6 +120,7 @@ namespace basecross {
 
 	void HemmiStage::OnCreate() {
 		try {
+
 			//テクスチャ、モデルの設定データ
 			auto data = AddGameObject<Data>();
 
@@ -139,8 +140,8 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
 			SetSharedGameObject(L"Garge", garge);
 			
-			garge->UpdateValue(0.3f);
-
+			auto player = GetSharedGameObject<Player>(L"GamePlayer");
+			//garge->UpdateValue(0.1f);
 		}
 		catch (...) {
 			throw;
