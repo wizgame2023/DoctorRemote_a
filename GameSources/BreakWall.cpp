@@ -34,7 +34,7 @@ namespace basecross {
 
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		ptrDraw->SetMultiMeshResource(L"Obstacle_Mesh1");
 		ptrDraw->SetTextureResource(L"Internal");
 
 
@@ -43,12 +43,15 @@ namespace basecross {
 	};
 	void BreakWall::OnUpdate()
 	{
+		//もし体力がなくなったら削除される
 		if (m_Hp <= 0)
 		{
 			GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
-
+			float damage = 1.0f;//これを壊したときの患者へのダメージ量
 		}
 	};
+
+	
 
 	//コリジョンがぶつかったら
 	void BreakWall::OnCollisionEnter(shared_ptr<GameObject>& Other)
@@ -58,10 +61,10 @@ namespace basecross {
 		if (!m_bullet.expired())
 		{
 			int Attack = m_bullet.lock()->GetAttack();
-			//もしぶつかったコリジョンがEnemyのものだったら
+			//もしぶつかったコリジョンがBulletのものだったら
 			if (Other->FindTag(L"Bullet"))
 			{
-				m_Hp -= Attack;
+				m_Hp -= Attack;//自分のHPが減る
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 
 			}

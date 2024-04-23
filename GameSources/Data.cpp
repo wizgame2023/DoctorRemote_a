@@ -48,6 +48,9 @@ namespace basecross {
 		app->RegisterTexture(L"RadarOrange", strTexture);
 		strTexture = texPath + L"RadarRedYoko.png";
 		app->RegisterTexture(L"RadarRed", strTexture);
+		strTexture = texPath + L"DamageEffect.png";
+		app->RegisterTexture(L"DamageBullet", strTexture);
+
 
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
@@ -56,6 +59,22 @@ namespace basecross {
 
 		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin1.bmf");
 		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
+		
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera.bmf");
+		app->RegisterResource(L"Kakera_Mesh1", staticMultiModelMesh);
+		
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera1.bmf");
+		app->RegisterResource(L"Kakera_Mesh2", staticMultiModelMesh);
+		
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera2.bmf");
+		app->RegisterResource(L"Kakera_Mesh3", staticMultiModelMesh);
+		
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle.bmf");
+		app->RegisterResource(L"Obstacle_Mesh1", staticMultiModelMesh);
+		
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh2", staticMultiModelMesh);
+
 
 		//staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera.bmf");
 		//app->RegisterResource(L"Kakera_Mesh", staticMultiModelMesh);
