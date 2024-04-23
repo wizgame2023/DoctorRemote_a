@@ -26,6 +26,7 @@
 #include "PlayerGarge.h"
 #include "Ground.h"
 #include "Effect.h"
+#include "EffectBullet.h"
 #include "Block.h"
 #include "BreakWall.h"
 #include "RecoveryWall.h"
