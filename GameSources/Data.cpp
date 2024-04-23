@@ -33,8 +33,10 @@ namespace basecross {
 		strTexture = texPath + L"InternalSkin.png";
 		app->RegisterTexture(L"Internal", strTexture);
 		strTexture = texPath + L"Bar2.png";
-		app->RegisterTexture(L"Bar", strTexture);
-		strTexture = texPath + L"RadarBar.png";
+		app->RegisterTexture(L"Bar", strTexture);	
+		strTexture = texPath + L"BarYoko.png";
+		app->RegisterTexture(L"BarSide", strTexture);
+		strTexture = texPath + L"RadarBar.png";		
 		app->RegisterTexture(L"RadarBar", strTexture);
 		strTexture = texPath + L"RadarCover.png";
 		app->RegisterTexture(L"RaderCover", strTexture);
@@ -50,7 +52,6 @@ namespace basecross {
 		app->RegisterTexture(L"RadarRed", strTexture);
 		strTexture = texPath + L"DamageEffect.png";
 		app->RegisterTexture(L"DamageBullet", strTexture);
-
 
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
