@@ -70,7 +70,7 @@ namespace basecross {
 		auto scene = app->GetScene<Scene>();//シーン取得
 
 
-		float degConvert = 180.0f / 3.14f;//radからdegに変換するための変数
+		float degConvert = 180.0f / XM_PI;//radからdegに変換するための変数
 		auto transform = AddComponent<Transform>();
 
 		//auto& Stage = GetStage()->GetSharedObject(L");
@@ -112,8 +112,23 @@ namespace basecross {
 			test = 1;
 		}
 
+		PlayerEnemyLong(RadarVec3);//敵との距離によって色が変わる
+
+
+		//デバック用
+		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
+			float a = 1.0f;
+		}
+		//デバック用文字列を生成
+		scene->SetDebugString(L"a\n" + wss.str());
+
+	}
+
+	void Radar::PlayerEnemyLong(Vec3 RadarVec)
+	{
 		//PlayerとEnemyの距離のベクトルの大きさをを計算
-		float PlayerEnemyLong = abs(RadarVec3.x) + abs(RadarVec3.y) + abs(RadarVec3.z);
+		float PlayerEnemyLong = abs(RadarVec.x) + abs(RadarVec.y) + abs(RadarVec.z);
 		//距離を合わせて一定の距離以下なら画像を変える
 		if (PlayerEnemyLong <= 10.0f)
 		{
@@ -128,17 +143,8 @@ namespace basecross {
 			m_drawComp->SetTextureResource(L"RadarBlue");//白のテクスチャが欲しいときはHAKUSIを選択してください
 		}
 
-
-
-		//デバック用
-		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-			float a = 1.0f;
-		}
-		//デバック用文字列を生成
-		scene->SetDebugString(L"a\n" + wss.str());
-
 	}
+
 
 	Vec3 Radar::PlayerEnemyVec()
 	{
