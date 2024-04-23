@@ -48,6 +48,9 @@ namespace basecross {
 		app->RegisterTexture(L"RadarOrange", strTexture);
 		strTexture = texPath + L"RadarRedYoko.png";
 		app->RegisterTexture(L"RadarRed", strTexture);
+		strTexture = texPath + L"DamageEffect.png";
+		app->RegisterTexture(L"DamageBullet", strTexture);
+
 
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
