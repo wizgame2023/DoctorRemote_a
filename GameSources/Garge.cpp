@@ -106,8 +106,10 @@ namespace basecross {
 		//F‚Ìİ’è
 		m_draw->SetDiffuse(m_color2);
 		//êŠ‚Ìİ’è
+		m_trans = GetComponent<Transform>();
+		
 		m_trans->SetPosition(m_screen + m_distance);
-		m_trans->SetPosition(1000, -1000, 0);
+		//m_trans->SetPosition(-300, 300, 0);
 		
 		SetAlphaActive(true);
 	}

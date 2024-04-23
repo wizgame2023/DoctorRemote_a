@@ -27,11 +27,11 @@ namespace basecross {
 
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
-		Vec3 screen(-sw * 0.5, -sh * 0.5, 0);
+		Vec3 screen(-sw * 0.5, sh * 0.5, 0);
 		Vec3 zero(0, 0, 0);
-		Vec3 dis(400, -0, 0);
+		Vec3 dis(-100, 50, 0);
 
-		m_garge = stage->AddGameObject<Garge>(m_trans, 1024, 0,m_meshResName, m_ratioHp, 200, 200, color, color2, m_screen, zero);
+		m_garge = stage->AddGameObject<Garge>(m_trans, 1024, 0,m_meshResName, m_ratioHp, 200, 200, color, color2, screen, dis);
 
 	}
 
