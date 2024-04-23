@@ -12,5 +12,18 @@ namespace basecross {
 		GameObject(stagePtr)
 	{
 	}
+
+	void PlayerGarge::OnCreate() {
+		auto stage = GetStage();
+
+		auto pos = GetComponent<Transform>()->GetPosition();
+		auto hp = m_currentHp / m_maxHp;
+
+		auto garge = stage->AddGameObject<Garge>();
+	}
+
+	void PlayerGarge::OnUpdate() {
+
+	}
 }
 //end namespace basecross

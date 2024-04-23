@@ -10,40 +10,52 @@
 
 namespace basecross {
 
-	struct GargeValue {
-		float sizeX;
-		float sizeY;
+	//struct GargeValue {
+	//	float sizeX;
+	//	float sizeY;
 
-		float moveW;
-		float moveH;
+	//	float moveW;
+	//	float moveH;
 
-		float ratio;
+	//	float ratio;
 
-		float m_heigth;
-		float m_width;
+	//	float m_heigth;
+	//	float m_width;
 
-		vector<VertexPositionColorTexture> vertices;
-		vector<uint16_t> indices;
-		shared_ptr<PCTSpriteDraw> draw;
+	//	vector<VertexPositionColorTexture> vertices;
+	//	vector<uint16_t> indices;
+	//	shared_ptr<PCTSpriteDraw> draw;
 
-		//頂点の色
-		Col4 color;
-		//画像の色
-		Col4 color2;
+	//	//頂点の色
+	//	Col4 color;
+	//	//画像の色
+	//	Col4 color2;
 
-		shared_ptr<Transform> trans;
-		wstring meshResName;
+	//	shared_ptr<Transform> trans;
+	//	wstring meshResName;
 
-		//表示する場所
-		Vec3 screen;
-		Vec3 distance;
+	//	//表示する場所
+	//	Vec3 screen;
+	//	Vec3 distance;
 
-	};
+	//};
 
-	Garge::Garge(const shared_ptr<Stage>& stagePtr):
+	Garge::Garge(const shared_ptr<Stage>& stagePtr, shared_ptr<Transform> trans,
+		const float sizeX, const float sizeY, //画像のサイズ
+		float ratio, float heigth, float width, //ゲージの割合と表示するサイズ
+		Col4 color,Col4 color2,
+		Vec3 screen,Vec3 distance
+	):
 		GameObject(stagePtr),
-		m_sizeX(),
-		m_sizeY()
+		m_sizeX(sizeX),
+		m_sizeY(sizeY),
+		m_ratio(ratio),
+		m_height(heigth),
+		m_width(width),
+		m_color(color),
+		m_color2(color2),
+		m_screen(screen),
+		m_distance(distance)
 	{}
 
 	void Garge::OnCreate() {
@@ -98,11 +110,16 @@ namespace basecross {
 			m_vertices[0].textureCoordinate.x = m_moveW;
 			m_vertices[2].textureCoordinate.x = m_moveW;
 
-			m_draw->UpdateVertices(m_vertices);
 		}
 		else if (m_moveH > 0) {
+			m_vertices[0].position.y = -m_height + (m_height * m_ratio);
+			m_vertices[1].position.y = -m_height + (m_height * m_ratio);
 
+			m_vertices[0].textureCoordinate.y = m_moveH;
+			m_vertices[1].textureCoordinate.y = m_moveH;
 		}
+		m_draw->UpdateVertices(m_vertices);
+
 	}
 
 
