@@ -9,7 +9,7 @@
 
 namespace basecross {
 	class Garge :public GameObject {
-	private:
+	protected:
 		//•\Ž¦‚·‚é‰æ‘œ‚Ì‘å‚«‚³
 		const float m_sizeX;
 		const float m_sizeY;
