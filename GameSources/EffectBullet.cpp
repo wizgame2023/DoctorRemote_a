@@ -49,7 +49,7 @@ namespace basecross {
 
 		auto Trans = GetComponent<Transform>();//トランスフォームを取得
 		Vec3 Pos = Trans->GetPosition();//自分のPositionを取得
-		Pos = m_Bullet;
+		Trans->SetPosition(m_Bullet);
 		//Trans
 
 		//auto Trans = GetComponent<Transform>();
