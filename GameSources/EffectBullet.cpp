@@ -47,9 +47,13 @@ namespace basecross {
 		drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
 		drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
 
+		auto Trans = GetComponent<Transform>();//トランスフォームを取得
+		Vec3 Pos = Trans->GetPosition();//自分のPositionを取得
+		Pos = m_Bullet;
+		//Trans
 
-		auto Trans = GetComponent<Transform>();
-		Trans->SetPosition(Vec3(10.0f,0.0f,5.0f));
+		//auto Trans = GetComponent<Transform>();
+		//Trans->SetPosition(Vec3(10.0f,0.0f,5.0f));
 
 		// アルファブレンド(透過処理)を有効にする
 		SetAlphaActive(true); // true:透過を有効、false:透過を無効
