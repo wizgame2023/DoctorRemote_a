@@ -21,7 +21,9 @@ namespace basecross {
 		virtual void OnUpdate()override;
 
 		float GetHp();
+		float GetHpRatio();
 		void SetHp(float hp);
+
 	};
 }
 //end namespace basecross

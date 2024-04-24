@@ -24,13 +24,13 @@ namespace basecross {
 		m_trans = GetComponent<Transform>();
 		m_ratioHp = m_currentHp / m_maxHp;
 		Col4 color(1, 1, 1, 1);
-		Col4 color2(1, 0, 0, 1);
+		Col4 color2(0, 1, 0, 1);
 
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
-		Vec3 screen(-sw * 0.5, sh * 0.5, 0);
-		Vec3 zero(0, 0, 0);
-		Vec3 dis(-100, -50, 0);
+		Vec3 screen(-sw * 0.5, -sh * 0.5, 0);
+		//Vec3 zero(0, 0, 0);
+		Vec3 dis(300, 80, 0);
 
 		m_garge = stage->AddGameObject<Garge>(m_trans, 1024, 0,m_meshResName, m_ratioHp, 200, 30, color, color2, screen, dis);
 
@@ -39,21 +39,21 @@ namespace basecross {
 	void PlayerGarge::OnUpdate() {
 		
 		auto stage = GetStage();
-		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
-		auto piece = player->GetPieceRatio();
+		auto player = stage->GetSharedGameObject<StageManager>(L"StageManager");
+		auto piece = player->GetHpRatio();
 		m_garge->UpdateValue(piece);
 		auto position = m_garge->GetComponent<Transform>()->GetPosition();
 
-		//デバック用ストリーム
-		wstringstream wss(L"");
-		//デバック用
-		auto scene = App::GetApp()->GetScene<Scene>();
-		wss << L"transform :" <<
-			position. y<<"\n" << position.x <<
-			"\n" <<
-			endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
+		////デバック用ストリーム
+		//wstringstream wss(L"");
+		////デバック用
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss << L"transform :" <<
+		//	position. y<<"\n" << position.x <<
+		//	"\n" <<
+		//	endl;
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 
 	}
 

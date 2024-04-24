@@ -144,6 +144,10 @@ namespace basecross {
 
 			auto playerGarge = AddGameObject<PlayerGarge>();
 			//playerGarge->GetComponent<Transform>()->SetPosition(300, -300, 0);
+
+			auto stageManager = AddGameObject<StageManager>();
+			SetSharedGameObject(L"StageManager", stageManager);
+
 		}
 		catch (...) {
 			throw;
