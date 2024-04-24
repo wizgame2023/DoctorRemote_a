@@ -44,6 +44,8 @@ namespace basecross {
 	{
 		if (m_Hp <= 0)
 		{
+			int Recovery = 20;
+			GetStage()->GetSharedGameObject<PlayerGarge>(L"PlayerGarge")->SetHp(Recovery);//Hp‚ð‰ñ•œ‚·‚é
 			GetStage()->RemoveGameObject<RecoveryWall>(GetThis<RecoveryWall>());
 
 		}
@@ -61,8 +63,6 @@ namespace basecross {
 			if (Other->FindTag(L"Bullet"))
 			{
 				m_Hp -= Attack;
-				float recovery = 0.0f;
-				recovery = 1.0f;//‘Ì—Í‚ð‰ñ•œ‚³‚¹‚é
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 
 			}
