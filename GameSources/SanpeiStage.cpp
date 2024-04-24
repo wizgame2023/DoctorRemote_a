@@ -186,7 +186,7 @@ namespace basecross {
 			AddGameObject<RecoveryWall>(Vec3(15.0f, 1.0f, 10.0f), Vec3(2.0f, 2.0f, 2.0f), Vec3(0.0f, 0.0f, 0.0f));
 
 			//エフェクトを出現（テスト）
-			AddGameObject<EffectBullet>(L"DamageBullet",3, 2, Vec3(-1.0f, 0.5f, 0.0f), 0.1f);
+			//AddGameObject<EffectBullet>(L"DamageBullet",3, 2, Vec3(-1.0f, 0.5f, 0.0f), 0.1f);
 
 
 
