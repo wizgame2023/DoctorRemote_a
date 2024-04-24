@@ -45,9 +45,10 @@ namespace basecross {
 	{
 		//もし体力がなくなったら削除される
 		if (m_Hp <= 0)
-		{
+		{	
+			int damage = -10;//これを壊したときの患者へのダメージ量
+			GetStage()->GetSharedGameObject<PlayerGarge>(L"PlayerGarge")->SetHp(damage);//ダメージを与える
 			GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
-			float damage = 1.0f;//これを壊したときの患者へのダメージ量
 		}
 	};
 
