@@ -178,17 +178,20 @@ namespace basecross {
 		return angle;
 	}
 
-	float Player::GetHp() const {
+	float Player::GetPiece() const {
 		return m_piece;
+	}
+	float Player::GetMaxPiece() const {
+		return m_maxPiece;
 	}
 
 	void Player::SetPiece(float piece){
 		m_piece += piece;
 	}
 
-	float Player::GetPiece() {
-		auto garge = m_piece / m_maxPiece;
-		return garge;
+	float Player::GetPieceRatio() {
+		auto ratio = m_piece / m_maxPiece;
+		return ratio;
 	}
 }
 //end basecross
