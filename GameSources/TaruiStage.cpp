@@ -15,7 +15,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 
 	//ビューとライトの作成
-	void T_GameStage::CreateViewLight() {
+	void TaruiGameStage::CreateViewLight() {
 		// カメラの設定
 		auto camera = ObjectFactory::Create<Camera>();
 		camera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
@@ -30,12 +30,12 @@ namespace basecross {
 		light->SetDefaultLighting(); //デフォルトのライティングを指定
 	}
 
-	void T_GameStage::CreateEnemy()
+	void TaruiGameStage::CreateEnemy()
 	{
 		auto enemy = AddGameObject<Enemy>();
 	}
 
-	void T_GameStage::OnCreate() {
+	void TaruiGameStage::OnCreate() {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
