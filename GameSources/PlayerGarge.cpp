@@ -12,13 +12,14 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_meshResName(L"BarSide"),
 		m_currentHp(80.0f),
-		m_maxHp(100.0f),
-		m_screen(100,200,0)
+		m_maxHp(100.0f)
 	{
 	}
 
 	void PlayerGarge::OnCreate() {
 		auto stage = GetStage();
+
+		m_ratioHp = m_currentHp / m_maxHp;
 
 		m_trans = GetComponent<Transform>();
 		m_ratioHp = m_currentHp / m_maxHp;
@@ -29,19 +30,17 @@ namespace basecross {
 		float sh = App::GetApp()->GetGameHeight();
 		Vec3 screen(-sw * 0.5, sh * 0.5, 0);
 		Vec3 zero(0, 0, 0);
-		Vec3 dis(-100, 50, 0);
+		Vec3 dis(-100, -50, 0);
 
-		m_garge = stage->AddGameObject<Garge>(m_trans, 1024, 0,m_meshResName, m_ratioHp, 200, 200, color, color2, screen, dis);
+		m_garge = stage->AddGameObject<Garge>(m_trans, 1024, 0,m_meshResName, m_ratioHp, 200, 30, color, color2, screen, dis);
 
 	}
 
 	void PlayerGarge::OnUpdate() {
 		
-		m_ratioHp = m_currentHp / m_maxHp;
-
 		auto stage = GetStage();
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
-		auto piece = player->GetPiece();
+		auto piece = player->GetPieceRatio();
 		m_garge->UpdateValue(piece);
 		auto position = m_garge->GetComponent<Transform>()->GetPosition();
 

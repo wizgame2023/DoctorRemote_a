@@ -40,18 +40,18 @@ namespace basecross {
 	void Enemy::OnUpdate()
 	{
 
-		auto piece = GetStage()->GetSharedGameObject<PieceGarge>(L"Garge");
-		float pieceBar = piece->GetLength();
-		float maxPieceBar = piece->GetMaxLength();
+		//auto piece = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
+		//float pieceBar = piece->GetPiece();
+		//float maxPieceBar = piece->GetMaxPiece();
 	
-		if (pieceBar >= maxPieceBar)
-		{
-			if (m_counter == 0)
-			{
-			  m_Hp = 3;
-			  ++m_counter;
-			}
-		}
+		//if (pieceBar >= maxPieceBar)
+		//{
+		//	if (m_counter == 0)
+		//	{
+		//	  m_Hp = 3;
+		//	  ++m_counter;
+		//	}
+		//}
 
 	}
 

@@ -15,7 +15,6 @@ namespace basecross {
 		vector<uint16_t> m_indices; // 頂点インデックス（頂点のつなげ順）
 		shared_ptr<PCTSpriteDraw> m_drawComp;
 
-
 		Vec3 m_PlayerPosition;//Playerのポジション
 		Vec3 m_EnemyPosition;//Enemyのポジション
 		float m_angle;//傾く角度
@@ -24,6 +23,7 @@ namespace basecross {
 			const shared_ptr<Stage>& StagePtr, const Vec3 m_PlayerPosition, const Vec3 m_EnemyPosition
 		);
 		~Radar();
+
 		void OnCreate()override;//初期化UnityでいうところのStart
 		void OnUpdate()override;//アップデート
 		void PlayerEnemyLong(Vec3 RadarVec);//PlayerとEnemyの距離のベクトルの大きさをを計算

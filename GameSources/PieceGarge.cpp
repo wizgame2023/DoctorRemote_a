@@ -73,7 +73,7 @@ namespace basecross {
 		//デバック用ストリーム
 		wstringstream wss(L"");
 		//デバック用
-		auto garge = m_player->GetPiece();
+		auto garge = m_player->GetPieceRatio();
 		auto scene = App::GetApp()->GetScene<Scene>();
 		wss <<L"piece:"<<
 			garge <<"\n"<<

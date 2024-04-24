@@ -53,7 +53,7 @@ namespace basecross {
 		m_drawComp = AddComponent<PCTSpriteDraw>(m_vertices, m_indices); // スプライト用のドローコンポーネント
 		m_drawComp->SetTextureResource(L"Radar");//白のテクスチャが欲しいときはHAKUSIを選択してください
 		m_drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
-		m_drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
+		m_drawComp->SetDiffuse(Col4(1, 1, 1, 0.0f)); // ポリゴンを色を設定する
 
 		// アルファブレンド(透過処理)を有効にする
 		SetAlphaActive(true); // true:透過を有効、false:透過を無効
@@ -97,23 +97,25 @@ namespace basecross {
 		}
 
 
-		wss << m_angle << endl;//デバック用文字列を作成
 
 		transform->SetRotation(0.0f, 0.0f, m_angle);//回転を初期化
 		transform->SetPosition(0.0f, -300.0f, 0.0f);
 
-		auto& ptrGarge = GetStage()->GetSharedGameObject<PieceGarge>(L"Garge");
-		float GargeLength = ptrGarge->GetLength();
-		float GargeMaxLength = ptrGarge->GetMaxLength();
+		auto flag = ptrPlayer->GetRadarFlag();
 		int test=0;
-		if (GargeLength >= GargeMaxLength)
+		if (flag)
 		{
 			m_drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
 			test = 1;
+			flag = false;
+			ptrPlayer->SetRadarPiece(0.0f);
 		}
 
-		PlayerEnemyLong(RadarVec3);//敵との距離によって色が変わる
+		wss << m_angle
+			<< endl;//デバック用文字列を作成
 
+
+		PlayerEnemyLong(RadarVec3);//敵との距離によって色が変わる
 
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
@@ -154,4 +156,5 @@ namespace basecross {
 
 		return RadarVec3;
 	}
+
 }

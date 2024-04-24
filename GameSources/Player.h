@@ -16,6 +16,9 @@ namespace basecross {
 		float m_piece;
 		float m_maxPiece;
 		float m_speed;
+
+		bool m_radarFlag;
+
 		wstring m_meshResName;
 		
 		shared_ptr<Transform> m_trans;
@@ -40,6 +43,8 @@ namespace basecross {
 		void SetPiece(float hp);
 		float GetPieceRatio();
 		float PlayerAngle() const;
+		bool GetRadarFlag();
+		void SetRadarPiece(float piece);
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
