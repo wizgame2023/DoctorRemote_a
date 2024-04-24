@@ -17,6 +17,7 @@ namespace basecross {
 		m_piece(0),
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
+		m_radarFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
@@ -168,7 +169,7 @@ namespace basecross {
 		if (other->FindTag(L"EnemyPiece")) {
 			SetPiece(15.0f);
 			if (m_maxPiece < m_piece) {
-				m_piece = 0;
+				m_radarFlag = true;
 			}
 		}
 	}
@@ -192,6 +193,10 @@ namespace basecross {
 	float Player::GetPieceRatio() {
 		auto ratio = m_piece / m_maxPiece;
 		return ratio;
+	}
+
+	bool Player::GetRadarFlag() {
+		return m_radarFlag;
 	}
 }
 //end basecross
