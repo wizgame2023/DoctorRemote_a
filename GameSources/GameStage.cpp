@@ -116,12 +116,121 @@ namespace basecross {
 		}
 	}
 
+	void GameStage::CreateWall()
+	{
+
+		for (int count = 1; count < 24; count++)
+		{
+			switch (count)
+			{
+				//外壁1
+			case 1:
+				AddGameObject<Wall>(Vec3(75.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 150.0f));
+				break;
+			case 2:
+				AddGameObject<Wall>(Vec3(-75.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 150.0f));
+				break;
+			case 3:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, 75.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(150.0f, 10.0f, 0.5f));
+				break;
+			case 4:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -75.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(150.0f, 10.0f, 0.5f));
+				break;
+				//外壁2
+			case 5:
+				AddGameObject<Wall>(Vec3(70.0f, 4.5f, -70.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(0.5f, 10.0f, 14.0f));
+				break;
+			case 6:
+				AddGameObject<Wall>(Vec3(70.0f, 4.5f, 70.0f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(0.5f, 10.0f, 14.0f));
+				break;
+			case 7:
+				AddGameObject<Wall>(Vec3(-70.0f, 4.5f, -70.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(14.0f, 10.0f, 0.5f));
+				break;
+			case 8:
+				AddGameObject<Wall>(Vec3(-70.0f, 4.5f, 70.0f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(14.0f, 10.0f, 0.5f));
+				break;
+				//内壁1
+			case 9:
+				AddGameObject<Wall>(Vec3(56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(38.0f, 10.0f, 0.5f));
+				break;
+			case 10:
+				AddGameObject<Wall>(Vec3(-67.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(16.0f, 10.0f, 0.5f));
+				break;
+			case 11:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -63.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 24.0f));
+				break;
+			case 12:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, 56.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 38.0f));
+				break;
+				//内壁2
+			case 13:
+				AddGameObject<Wall>(Vec3(20.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 0.5f));
+				break;
+			case 14:
+				AddGameObject<Wall>(Vec3(-22.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(24.0f, 10.0f, 0.5f));
+				break;
+			case 15:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -27.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 36.0f));
+				break;
+			case 16:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 20.0f));
+				break;
+				//内壁3
+			case 17:
+				AddGameObject<Wall>(Vec3(69.7f, 4.5f, -9.0f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+			case 18:
+				AddGameObject<Wall>(Vec3(64.8f, 4.5f, -65.0f), Vec3(0.0f, XMConvertToRadians(-135.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+				//内壁4
+			case 19:
+				AddGameObject<Wall>(Vec3(31.0f, 4.5f, 4.3f), Vec3(0.0f, XMConvertToRadians(-145.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+			case 20:
+				AddGameObject<Wall>(Vec3(35.15f, 4.5f, -5.25f), Vec3(0.0f, XMConvertToRadians(-135.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+				//内壁5
+			case 21:
+				AddGameObject<Wall>(Vec3(3.6f, 4.5f, -37.3f), Vec3(0.0f, XMConvertToRadians(-65.0f), 0.0f), Vec3(17.0f, 10.0f, 0.5f));
+				break;
+			case 22:
+				AddGameObject<Wall>(Vec3(-6.36f, 4.5f, -47.48f), Vec3(0.0f, XMConvertToRadians(30.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+			}
+			for (int remCount = 23; remCount < 28; remCount++)
+			{
+				switch (remCount)
+				{
+					//内壁5
+				case 23:
+					AddGameObject<Wall>(Vec3(-9.65f, 4.5f, -38.6f), Vec3(0.0f, XMConvertToRadians(-60.0f), 0.0f), Vec3(12.0f, 10.0f, 0.5f));
+					break;
+					//内壁6
+				case 24:
+					AddGameObject<Wall>(Vec3(3.46f, 4.5f, 33.3f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+					break;
+				case 25:
+					AddGameObject<Wall>(Vec3(-2.78f, 4.5f, 40.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(8.0f, 10.0f, 0.5f));
+					break;
+				case 26:
+					AddGameObject<Wall>(Vec3(-5.5f, 4.5f, 35.7f), Vec3(0.0f, 0.0, 0.0f), Vec3(0.5f, 10.0f, 14.0f));
+					break;
+				case 27:
+					AddGameObject<Wall>(Vec3(-4.5f, 4.5f, 65.0f), Vec3(0.0f, XMConvertToRadians(-30.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+					break;
+
+				}
+			}
+		}
+	}
+
 
 	void GameStage::OnCreate() {
 		try {
 			//テクスチャ、モデルの設定データ
 			auto data = AddGameObject<Data>();
 
+			AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
 			CreateViewLight();
 			//Playerを追加
@@ -134,9 +243,12 @@ namespace basecross {
 			CreateRadar();
 			//地面を生成
 			AddGameObject<Ground>();
+			CreateWall();//これでステージの壁を作る
 			//ゲージを追加
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
 			SetSharedGameObject(L"Garge", garge);
+
+
 
 		}
 		catch (...) {
