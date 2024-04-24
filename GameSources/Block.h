@@ -1,27 +1,22 @@
 /*!
 @file Block.h
-@brief ブロックのオブジェクト
+@brief ブロック
 */
 
 #pragma once
 #include "stdafx.h"
 
-
 namespace basecross {
-
-
-	//--------------------------------------------------------------------------------------
-	//	class Block : public GameObject;
-	//--------------------------------------------------------------------------------------
 	class Block : public GameObject
 	{
-
+		Vec3 m_pos;
+		Vec3 m_rot;
+		Vec3 m_scale;
 	public:
-		Block(const shared_ptr<Stage>& StaegePtr);
+		Block(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale);
 		 ~Block(){}
-		virtual void OnCreate() override; // 初期化
-		//virtual void OnUpdate() override; // 更新
-		//virtual void OnDraw() override; // 描画
+		virtual void OnCreate() override; 
+		//virtual void OnUpdate() override;
 	};
 
 }
