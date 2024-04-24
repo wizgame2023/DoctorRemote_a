@@ -35,9 +35,10 @@ namespace basecross {
 		Vec3 GetMoveVector()const;
 
 		Vec3 GetAngle();
-		float GetHp() const;
+		float GetPiece() const;
+		float GetMaxPiece() const;
 		void SetPiece(float hp);
-		float GetPiece();
+		float GetPieceRatio();
 		float PlayerAngle() const;
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
