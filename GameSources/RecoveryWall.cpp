@@ -7,11 +7,11 @@
 #include "Project.h"
 
 namespace basecross {
-	RecoveryWall::RecoveryWall(const shared_ptr<Stage>& StagePtr, Vec3 Position, Vec3 Scale, Vec3 Rotate) :
+	RecoveryWall::RecoveryWall(const shared_ptr<Stage>& StagePtr, Vec3 Position, Vec3 Rotate, Vec3 Scale) :
 		GameObject(StagePtr),
 		m_Position(Position),
-		m_Scale(Scale),
 		m_Rotate(Rotate),
+		m_Scale(Scale),
 		m_Hp(1)
 	{
 
@@ -26,7 +26,7 @@ namespace basecross {
 
 		ptrTransform->SetPosition(m_Position);//位置を設定
 		ptrTransform->SetScale(m_Scale);//大きさを設定
-		ptrTransform->SetQuaternion(Quat());//クトーニアン（回転）を設定
+		ptrTransform->SetRotation(m_Rotate);//クトーニアン（回転）を設定
 		//接触のコリジョンを追加
 		auto ptrcollider = AddComponent<CollisionObb>();
 
