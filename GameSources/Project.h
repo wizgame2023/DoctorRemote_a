@@ -30,6 +30,7 @@
 #include "Effect.h"
 #include "EffectBullet.h"
 #include "Block.h"
+#include "Block2.h"
 #include "BreakWall.h"
 #include "RecoveryWall.h"
 #include "Wall.h"
