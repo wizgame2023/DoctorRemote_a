@@ -245,8 +245,9 @@ namespace basecross {
 			AddGameObject<Ground>();
 			CreateWall();//これでステージの壁を作る
 			//ゲージを追加
-			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
+			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"Garge", garge);
+			auto PGarge = AddGameObject<PlayerGarge>();
 
 
 
