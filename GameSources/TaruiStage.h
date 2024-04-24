@@ -8,14 +8,15 @@
 
 namespace basecross {
 
-	class T_GameStage : public Stage
+	class TaruiGameStage : public Stage
 	{
 		void CreateViewLight();
 		void CreateEnemy();
+		void CreateWall();
 
 	public:
-		T_GameStage() :Stage() {}
-		~T_GameStage() {}
+		TaruiGameStage() :Stage() {}
+		virtual ~TaruiGameStage() {}
 		virtual void OnCreate()override;
 	};
 
