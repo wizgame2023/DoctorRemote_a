@@ -8,5 +8,20 @@
 #include "stdafx.h"
 
 namespace basecross {
+	class StageManager :public GameObject {
+	private:
+		float m_currentHp;
+		float m_maxHp;
+
+	public:
+		StageManager(const shared_ptr<Stage>& stagePtr);
+		virtual ~StageManager(){}
+
+		virtual void OnCreate()override;
+		virtual void OnUpdate()override;
+
+		float GetHp();
+		void SetHp(float hp);
+	};
 }
 //end namespace basecross
