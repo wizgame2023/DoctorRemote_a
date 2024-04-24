@@ -61,14 +61,17 @@ namespace basecross {
 	{}
 
 	void Garge::OnCreate() {
-		m_moveW = 100;//(m_sizeX * m_ratio) / m_sizeX;
-		if (m_sizeY != 0)
-		{
-			m_moveH = (m_sizeY * m_ratio) / m_sizeY;
-
+		if (m_moveW != 0) {
+			m_moveW = (m_sizeX * m_ratio) / m_sizeX;
 		}
-		else
-		{
+		else {
+			m_moveW = 0.0f;
+		}
+
+		if (m_sizeY != 0){
+			m_moveH = (m_sizeY * m_ratio) / m_sizeY;
+		}
+		else{
 			m_moveH = 0.0f;
 		}
 

@@ -57,5 +57,12 @@ namespace basecross {
 		scene->SetDebugString(dstr + wss.str());
 
 	}
+
+	float PlayerGarge::GetHp() {
+		return m_currentHp;
+	}
+	void PlayerGarge::SetHp(float hp) {
+		m_currentHp += hp;
+	}
 }
 //end namespace basecross
