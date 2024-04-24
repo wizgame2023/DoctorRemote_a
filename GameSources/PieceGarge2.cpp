@@ -22,7 +22,7 @@ namespace basecross {
 
 		m_trans = GetComponent<Transform>();
 		Col4 color(1, 1, 1, 1);
-		Col4 color2(0, 1, 0, 1);
+		Col4 color2(1, 0, 0, 1);
 
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
@@ -43,20 +43,20 @@ namespace basecross {
 
 		auto position = m_garge->GetComponent<Transform>()->GetPosition();
 
-		//デバック用ストリーム
-		wstringstream wss(L"");
-		//デバック用
-		auto scene = App::GetApp()->GetScene<Scene>();
-		wss << L"piece transform _x:" <<
-			position.x << "\n" <<
-			L"transform _y:" <<
-			position.y <<
-			"\n" <<
-			piece<<
-			"\n"<<
-			endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
+		////デバック用ストリーム
+		//wstringstream wss(L"");
+		////デバック用
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss << L"piece transform _x:" <<
+		//	position.x << "\n" <<
+		//	L"transform _y:" <<
+		//	position.y <<
+		//	"\n" <<
+		//	piece<<
+		//	"\n"<<
+		//	endl;
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 
 	}
 
