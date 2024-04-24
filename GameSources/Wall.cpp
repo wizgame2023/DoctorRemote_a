@@ -8,7 +8,6 @@
 
 namespace basecross {
 	Wall::Wall(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale) :
-
 		GameObject(StagePtr),m_pos(pos),m_rot(rot),m_scale(scale)
 	{
 	}
