@@ -19,14 +19,16 @@ namespace basecross {
 		uint32_t m_PieceIndex;//おそらくこれはアニメが何フレーム目か数える奴
 		float m_AnimeTime;
 		wstring m_TextureKey;
-		//トータル時間
-		float m_TotalTime;
+		//テクスチャの表示時間
+		float m_displayTime;
 		//バックアップ頂点データ
-		vector<VertexPositionColorTexture> m_BackupVertices;
+		vector<VertexPositionColorTexture> m_Vertices;
+		Vec3 m_Bullet;
+		
 
 	public:
-		EffectBullet(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey, bool Trace,
-			const Vec2& StartScale, const Vec2& StartPos, uint32_t PieceXCount, uint32_t PieceYCount,
+		EffectBullet(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey,
+			uint32_t PieceXCount, uint32_t PieceYCount,Vec3 Bulletpos,
 			float AnimeTime);
 		//破棄
 		virtual ~EffectBullet();
