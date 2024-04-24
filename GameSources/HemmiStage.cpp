@@ -142,6 +142,9 @@ namespace basecross {
 			
 			auto player = GetSharedGameObject<Player>(L"GamePlayer");
 			//garge->UpdateValue(0.1f);
+
+			auto playerGarge = AddGameObject<PlayerGarge>();
+			//playerGarge->GetComponent<Transform>()->SetPosition(300, -300, 0);
 		}
 		catch (...) {
 			throw;
