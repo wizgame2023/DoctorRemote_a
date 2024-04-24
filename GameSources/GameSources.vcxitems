@@ -43,6 +43,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RecoveryWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SanpeiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h" />
@@ -77,6 +78,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RecoveryWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SanpeiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp" />

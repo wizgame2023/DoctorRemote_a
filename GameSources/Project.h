@@ -15,6 +15,7 @@
 #include "Ligth.h"
 #include "GameStage.h"
 #include "Character.h"
+#include "StageManager.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
