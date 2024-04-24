@@ -116,95 +116,112 @@ namespace basecross {
 		}
 	}
 
-
 	void O_GameStage::CreateWall()
-	{
-		auto& app = App::GetApp();
+	{	
 
-		auto path = app->GetDataDirWString();
-
-		const int MAP_ROWS = 3;
-		const int MAP_COLS = 3;
-		int stageMap[MAP_ROWS][MAP_COLS];
-		auto levelPath = path + L"Levels/";
-
-
-		// 外部ファイルからマップデータを読み込む
-		ifstream ifs(levelPath + L"Pt_Wall3.csv");
-		if (ifs)
+		for (int count = 1; count < 24; count++)
 		{
-			int c = 0; // マップデータ参照用
-
-			string line;
-			while (getline(ifs, line)) // ファイルから1行読み取る
+			switch (count)
 			{
-				string data;
-				istringstream ss(line); // 読み取った内容をストリームに変換する
-				while (getline(ss, data, ',')) // そのストリームからカンマ区切りでデータを読み込む
+				//外壁1
+			case 1:
+				AddGameObject<Wall>(Vec3(75.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 150.0f));
+				break;
+			case 2:
+				AddGameObject<Wall>(Vec3(-75.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 150.0f));
+				break;
+			case 3:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, 75.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(150.0f, 10.0f, 0.5f));
+				break;
+			case 4:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -75.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(150.0f, 10.0f, 0.5f));
+				break;
+				//外壁2
+			case 5:
+				AddGameObject<Wall>(Vec3(70.0f, 4.5f, -70.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(0.5f, 10.0f, 14.0f));
+				break;
+			case 6:
+				AddGameObject<Wall>(Vec3(70.0f, 4.5f, 70.0f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(0.5f, 10.0f, 14.0f));
+				break;
+			case 7:
+				AddGameObject<Wall>(Vec3(-70.0f, 4.5f, -70.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(14.0f, 10.0f, 0.5f));
+				break;
+			case 8:
+				AddGameObject<Wall>(Vec3(-70.0f, 4.5f, 70.0f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(14.0f, 10.0f, 0.5f));
+				break;
+				//内壁1
+			case 9:
+				AddGameObject<Wall>(Vec3(56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(38.0f, 10.0f, 0.5f));
+				break;
+			case 10:
+				AddGameObject<Wall>(Vec3(-67.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(16.0f, 10.0f, 0.5f));
+				break;
+			case 11:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -63.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 24.0f));
+				break;
+			case 12:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, 56.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 38.0f));
+				break;
+				//内壁2
+			case 13:
+				AddGameObject<Wall>(Vec3(20.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 0.5f));
+				break;
+			case 14:
+				AddGameObject<Wall>(Vec3(-22.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(24.0f, 10.0f, 0.5f));
+				break;
+			case 15:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -27.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 36.0f));
+				break;
+			case 16:
+				AddGameObject<Wall>(Vec3(0.0f, 4.5f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 20.0f));
+				break;
+				//内壁3
+			case 17:
+				AddGameObject<Wall>(Vec3(69.7f, 4.5f, -9.0f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+			case 18:
+				AddGameObject<Wall>(Vec3(64.8f, 4.5f, -65.0f), Vec3(0.0f, XMConvertToRadians(-135.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+				//内壁4
+			case 19:
+				AddGameObject<Wall>(Vec3(31.0f, 4.5f, 4.3f), Vec3(0.0f, XMConvertToRadians(-145.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+			case 20:
+				AddGameObject<Wall>(Vec3(35.15f, 4.5f, -5.25f), Vec3(0.0f, XMConvertToRadians(-135.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+				//内壁5
+			case 21:
+				AddGameObject<Wall>(Vec3(3.6f, 4.5f, -37.3f), Vec3(0.0f, XMConvertToRadians(-65.0f), 0.0f), Vec3(17.0f, 10.0f, 0.5f));
+				break;
+			case 22:
+				AddGameObject<Wall>(Vec3(-6.36f, 4.5f, -47.48f), Vec3(0.0f, XMConvertToRadians(30.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
+				break;
+			}
+			for (int remCount = 23; remCount < 28; remCount++)
+			{
+				switch (remCount)
 				{
-					int cellData = atoi(data.c_str()); // 読み取ったデータをint型に変換する
-					stageMap[0][c++] = cellData; // マップデータにCSVのデータをコピーする
+					//内壁5
+				case 23:
+					AddGameObject<Wall>(Vec3(-9.65f, 4.5f, -38.6f), Vec3(0.0f, XMConvertToRadians(-60.0f), 0.0f), Vec3(12.0f, 10.0f, 0.5f));
+					break;
+					//内壁6
+				case 24:
+					AddGameObject<Wall>(Vec3(3.46f, 4.5f, 33.3f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+					break;
+				case 25:
+					AddGameObject<Wall>(Vec3(-2.78f, 4.5f, 40.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(8.0f, 10.0f, 0.5f));
+					break;
+				case 26:
+					AddGameObject<Wall>(Vec3(-5.5f, 4.5f, 35.7f), Vec3(0.0f, 0.0, 0.0f), Vec3(0.5f, 10.0f, 14.0f));
+					break;
+				case 27:
+					AddGameObject<Wall>(Vec3(-4.5f, 4.5f, 65.0f), Vec3(0.0f,XMConvertToRadians(-30.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+					break;
+
 				}
 			}
 		}
-
-		// ブロック（二次元配列の「1」の位置にブロックを置く）
-		for (int r = 0; r < MAP_ROWS; r++)
-		{
-			for (int c = 0; c < MAP_COLS; c++)
-			{
-
-				// 要素の値によってブロックを配置する
-				switch (stageMap[r][c])
-				{
-				case 1:
-					Vec3 startPos(0.0f, -0.5f, +75.0f); // 基準となるオフセット座標
-					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
-					auto block = AddGameObject<Wall>();
-					auto blockTransComp = block->GetComponent<Transform>();
-					blockTransComp->SetPosition(startPos + pos);
-					break;
-				}
-				switch (stageMap[r][c])
-				{
-				case 2:
-					Vec3 startPos(0.0f, -0.5f, -75.0f); // 基準となるオフセット座標
-					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
-					auto block = AddGameObject<Wall>();
-					auto blockTransComp = block->GetComponent<Transform>();
-					blockTransComp->SetPosition(startPos + pos);
-					break;
-				}
-
-
-				switch (stageMap[r][c])
-				{
-				case 3:
-					Vec3 startPos(-75.0f, -0.5f, 0.0f); // 基準となるオフセット座標
-					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
-					auto block = AddGameObject<Wall>();
-					auto blockTransComp = block->GetComponent<Transform>();
-					blockTransComp->SetPosition(startPos + pos);
-					blockTransComp->SetScale(0.5, 10, 151.5);
-					break;
-				}
-
-				switch (stageMap[r][c])
-				{
-				case 4:
-					Vec3 startPos(+75.0f, -0.5f, 0.0f); // 基準となるオフセット座標
-					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); // ブロックの位置
-					auto block = AddGameObject<Wall>();
-					auto blockTransComp = block->GetComponent<Transform>();
-					blockTransComp->SetPosition(startPos + pos);
-					blockTransComp->SetScale(0.5, 10, 151.5);
-					break;
-				}
-
-			}
-		}
-
-
 	}
 
 	void O_GameStage::OnCreate() {
