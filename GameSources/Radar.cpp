@@ -107,6 +107,8 @@ namespace basecross {
 		{
 			m_drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
 			test = 1;
+			flag = false;
+			ptrPlayer->SetRadarPiece(0.0f);
 		}
 
 		wss << m_angle
@@ -114,7 +116,6 @@ namespace basecross {
 
 
 		PlayerEnemyLong(RadarVec3);//敵との距離によって色が変わる
-
 
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();

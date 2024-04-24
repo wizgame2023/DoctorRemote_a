@@ -162,6 +162,7 @@ namespace basecross {
 				auto bullet = stage->AddGameObject<Bullet>(ptrPos, Vec3(0.3f, 0.3f, 0.3f), 10.0f, frontAngle, 1);
 			}
 		}
+
 	}
 
 	//è’ìÀîªíË
@@ -197,6 +198,9 @@ namespace basecross {
 
 	bool Player::GetRadarFlag() {
 		return m_radarFlag;
+	}
+	void Player::SetRadarPiece(float piece) {
+		m_piece = piece;
 	}
 }
 //end basecross

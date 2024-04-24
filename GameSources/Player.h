@@ -44,6 +44,7 @@ namespace basecross {
 		float GetPieceRatio();
 		float PlayerAngle() const;
 		bool GetRadarFlag();
+		void SetRadarPiece(float piece);
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
