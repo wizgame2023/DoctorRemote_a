@@ -31,19 +31,21 @@ namespace basecross {
 	{}
 
 	void Garge::OnCreate() {
-		if (m_moveW != 0) {
+		if (m_sizeX != 0) {
 			m_moveW = (m_sizeX * m_ratio) / m_sizeX;
 		}
 		else {
-			m_moveW = 0.0f;
+			m_moveW = 0;
 		}
-
 		if (m_sizeY != 0){
 			m_moveH = (m_sizeY * m_ratio) / m_sizeY;
 		}
-		else{
-			m_moveH = 0.0f;
+		else {
+			m_moveH = 0;
 		}
+
+		//m_moveW = (m_sizeX * m_ratio) / m_sizeX;
+		//m_moveH = (m_sizeY * m_ratio) / m_sizeY;
 
 		if (m_moveW > 0) {
 			m_vertices = {
@@ -60,9 +62,12 @@ namespace basecross {
 			m_vertices = {
 				{Vec3(0,0,0),m_color,Vec2(0.0f,m_moveH)},
 				{Vec3(m_width,0,0),m_color,Vec2(1.0f,m_moveH)},
-				{Vec3(0,m_height,0),m_color,Vec2(0.0f,0.0f)},
+				{Vec3(0,-m_height,0),m_color,Vec2(0.0f,0.0f)},
 				{Vec3(m_width,-m_height,0),m_color,Vec2(1.0f,0.0f)}
 			};
+		}
+		else {
+			return;
 		}
 
 		m_indices = {

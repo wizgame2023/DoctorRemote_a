@@ -9,10 +9,11 @@
 namespace basecross {
 	class PieceGarge2 :public GameObject {
 	private:
+		shared_ptr<Garge> m_garge;
 		shared_ptr<Transform> m_trans;
 		wstring m_meshResName;
+
 		float m_ratio;
-		Vec3 m_screen;
 
 
 	public:
