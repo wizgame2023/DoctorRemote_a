@@ -1,6 +1,6 @@
 /*!
 @file UITime.cpp
-@brief ŽžŠÔ
+@brief 数字の画像
 */
 
 #include "stdafx.h"
