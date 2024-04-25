@@ -70,20 +70,20 @@ namespace basecross {
 		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin1.bmf");
 		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
 		
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera.bmf");
-		app->RegisterResource(L"Kakera_Mesh1", staticMultiModelMesh);
+		auto staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera.bmf");
+		app->RegisterResource(L"Kakera_Mesh", staticModelMesh);
 		
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera1.bmf");
-		app->RegisterResource(L"Kakera_Mesh2", staticMultiModelMesh);
+		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera1.bmf");
+		app->RegisterResource(L"Kakera_Mesh2", staticModelMesh);
 		
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera2.bmf");
-		app->RegisterResource(L"Kakera_Mesh3", staticMultiModelMesh);
+		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera2.bmf");
+		app->RegisterResource(L"Kakera_Mesh3", staticModelMesh);
 		
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle.bmf");
-		app->RegisterResource(L"Obstacle_Mesh1", staticMultiModelMesh);
+		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle1-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh1", staticModelMesh);
 		
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle1.bmf");
-		app->RegisterResource(L"Obstacle_Mesh2", staticMultiModelMesh);
+		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle2-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh2", staticModelMesh);
 
 
 		//staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera.bmf");
