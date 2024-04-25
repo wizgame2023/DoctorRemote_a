@@ -12,6 +12,7 @@ namespace basecross {
 	private:
 		float m_currentHp;
 		float m_maxHp;
+		float m_hpSpeed;
 
 	public:
 		StageManager(const shared_ptr<Stage>& stagePtr);

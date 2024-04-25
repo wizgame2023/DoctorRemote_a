@@ -11,7 +11,8 @@ namespace basecross {
 	StageManager::StageManager(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
 		m_currentHp(100.0f),
-		m_maxHp(100.0f)
+		m_maxHp(100.0f),
+		m_hpSpeed(3.0f)
 	{}
 
 	void StageManager::OnCreate() {
@@ -20,7 +21,7 @@ namespace basecross {
 	void StageManager::OnUpdate() {
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		m_currentHp -= elapsedTime * 3.0f;
+		m_currentHp -= elapsedTime * m_hpSpeed;
 
 		if (m_currentHp <= 0.0f) {
 			m_currentHp = m_maxHp;
