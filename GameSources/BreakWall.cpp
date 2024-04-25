@@ -25,10 +25,18 @@ namespace basecross {
 	{
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
-		ptrTransform->SetPosition(m_Position);//位置を設定
+		ptrTransform->SetPosition(m_Position);//位置を設定	
+		ptrTransform->SetRotation(m_Rotate);//ローテーション（回転）を設定
 		ptrTransform->SetScale(m_Scale);//大きさを設定
-		ptrTransform->SetRotation(m_Rotate);//クトーニアン（回転）を設定
 		//接触のコリジョンを追加
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, XM_PI, 0.0f),
+			Vec3(0.0f, -0.5f, 0.0f)
+		);
+
 		auto ptrcollider = AddComponent<CollisionCapsule>();
 		ptrcollider->SetDrawActive(true);
 

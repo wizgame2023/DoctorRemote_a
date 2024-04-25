@@ -25,8 +25,8 @@ namespace basecross {
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
 		ptrTransform->SetPosition(m_Position);//位置を設定
+		ptrTransform->SetRotation(m_Rotate);//ローテーション（回転）を設定		
 		ptrTransform->SetScale(m_Scale);//大きさを設定
-		ptrTransform->SetRotation(m_Rotate);//クトーニアン（回転）を設定
 		//接触のコリジョンを追加
 		auto ptrcollider = AddComponent<CollisionObb>();
 		ptrcollider->SetDrawActive(true);
