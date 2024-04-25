@@ -154,7 +154,7 @@ namespace basecross {
 				AddGameObject<Wall>(Vec3(56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(38.0f, 10.0f, 0.5f));
 				break;
 			case 10:
-				AddGameObject<Wall>(Vec3(-67.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(16.0f, 10.0f, 0.5f));
+				AddGameObject<Wall>(Vec3(-70.25f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(9.5f, 10.0f, 0.5f));
 				break;
 			case 11:
 				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -63.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 24.0f));
@@ -217,7 +217,7 @@ namespace basecross {
 				AddGameObject<Wall>(Vec3(-5.5f, 4.5f, 35.7f), Vec3(0.0f, 0.0, 0.0f), Vec3(0.5f, 10.0f, 14.0f));
 				break;
 			case 27:
-				AddGameObject<Wall>(Vec3(-4.5f, 4.5f, 65.0f), Vec3(0.0f, XMConvertToRadians(-30.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+				AddGameObject<Wall>(Vec3(-4.9f, 4.5f, 58.0f), Vec3(0.0f, XMConvertToRadians(-50.0f), 0.0f), Vec3(14.0f, 10.0f, 0.5f));
 				break;
 
 			}
@@ -230,33 +230,36 @@ namespace basecross {
 		{
 			switch (count)
 			{
+				//エリア1
 			case 1:
 				AddGameObject<Block>(Vec3(45.0f, 2.0f, -61.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
 			case 2:
-				AddGameObject<Block>(Vec3(60.0f, 2.0f, -40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(68.0f, 2.0f, -43.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
 			case 3:
-				AddGameObject<Block>(Vec3(32.0f, 2.0f, -44.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(29.0f, 2.0f, -44.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
 			case 4:
-				AddGameObject<Block>(Vec3(43.0f, 2.0f, -20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(27.0f, 2.0f, -17.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
+				//エリア2
 			case 5:
-				AddGameObject<Block>(Vec3(47.0f, 2.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(45.0f, 2.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
 			case 6:
-				AddGameObject<Block>(Vec3(25.0f, 2.0f, 17.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(30.0f, 2.0f, 23.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
 			case 7:
-				AddGameObject<Block>(Vec3(34.0f, 2.0f, 40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(50.0f, 2.0f, 50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
 			case 8:
-				AddGameObject<Block>(Vec3(17.0f, 2.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(20.0f, 2.0f, 15.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
 			case 9:
 				AddGameObject<Block>(Vec3(10.0f, 2.0f, 60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
+				//エリア3
 			case 10:
 				AddGameObject<Block>(Vec3(-45.0f, 2.0f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
@@ -293,8 +296,9 @@ namespace basecross {
 			case 21:
 				AddGameObject<Block>(Vec3(-15.0f, 2.0f, -15.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
+				//エリア4
 			case 22:
-				AddGameObject<Block>(Vec3(-20.0f, 2.0f, 15.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-28.0f, 2.0f, 13.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
 			case 23:
 				AddGameObject<Block>(Vec3(-8.0f, 2.0f, 35.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
@@ -305,6 +309,49 @@ namespace basecross {
 			case 25:
 				AddGameObject<Block>(Vec3(-57.0f, 2.5f, 25.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
 				break;
+			}
+		}
+	}
+	void O_GameStage::CreateBlockSecond()
+	{
+		for (int count = 0; count < 12; count++)
+		{
+			switch (count)
+			{
+			case 1:
+				AddGameObject<BlockSecond>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.5f, 10.0f, 20.5f));
+				break;
+			case 2:
+				AddGameObject<BlockSecond>(Vec3(57.8f, 2.5f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 10.0f));
+				break;
+			case 3:
+				AddGameObject<BlockSecond>(Vec3(55.5f, 4.5f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 4:
+				AddGameObject<BlockSecond>(Vec3(15.0f, 4.5f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 5:
+				AddGameObject<BlockSecond>(Vec3(57.0f, 4.5f, 28.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 6:
+				AddGameObject<BlockSecond>(Vec3(27.0f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 7:
+				AddGameObject<BlockSecond>(Vec3(-17.0f, 4.5f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 8:
+				AddGameObject<BlockSecond>(Vec3(-43.0f, 4.5f, -33.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 9:
+				AddGameObject<BlockSecond>(Vec3(-56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 10:
+				AddGameObject<BlockSecond>(Vec3(-20.0f, 4.5f, 40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 11:
+				AddGameObject<BlockSecond>(Vec3(-50.5f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+
 			}
 		}
 	}
@@ -334,6 +381,7 @@ namespace basecross {
 
 			CreateWall();
 			CreateBlock();
+			CreateBlockSecond();
 		}
 		catch (...) {
 			throw;
