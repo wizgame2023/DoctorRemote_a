@@ -148,6 +148,7 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();
 			SetSharedGameObject(L"StageManager", stageManager);
 
+			auto number = AddGameObject<UITime>(3, Vec3(0, 0, 0));
 		}
 		catch (...) {
 			throw;
