@@ -22,6 +22,7 @@
 #include "Radar.h"
 #include "Garge.h"
 #include "UITime.h"
+#include "TimeManager.h"
 #include "EnemyPiece.h"
 #include "FakePiece.h"
 #include "PieceGarge.h"

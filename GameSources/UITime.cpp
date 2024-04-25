@@ -13,7 +13,7 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_number(number),
 		m_pos(pos),
-		m_meshResName(L"NumbersBlack")
+		m_meshResName(L"NumbersWhite")
 	{}
 
 	void UITime::OnCreate() {
