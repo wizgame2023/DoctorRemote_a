@@ -337,6 +337,9 @@ namespace basecross {
 
 			CreateBlock();//障害物を生成
 
+			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
+			SetSharedGameObject(L"StageManager", stageManager);
+
 
 
 		}
