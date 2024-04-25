@@ -29,11 +29,12 @@ namespace basecross {
 		ptrTransform->SetRotation(m_Rotate);//クトーニアン（回転）を設定
 		//接触のコリジョンを追加
 		auto ptrcollider = AddComponent<CollisionObb>();
+		ptrcollider->SetDrawActive(true);
 
 
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		ptrDraw->SetMultiMeshResource(L"Obstacle_Mesh1");
 		//ptrDraw->SetTextureResource(L"Internal");
 
 
@@ -45,7 +46,7 @@ namespace basecross {
 		if (m_Hp <= 0)
 		{
 			int Recovery = 20;
-			GetStage()->GetSharedGameObject<PlayerGarge>(L"PlayerGarge")->SetHp(Recovery);//Hpを回復する
+			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(Recovery);//ダメージを与える
 			GetStage()->RemoveGameObject<RecoveryWall>(GetThis<RecoveryWall>());
 
 		}
