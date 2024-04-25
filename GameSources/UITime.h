@@ -9,8 +9,11 @@
 
 namespace basecross {
 	class UITime :public GameObject {
+	private:
+		float m_time;
+
 	public:
-		UITime(const shared_ptr<Stage>& stagePtr);
+		UITime(const shared_ptr<Stage>& stagePtr,float time);
 		virtual ~UITime(){}
 
 		virtual void OnCreate() override;
