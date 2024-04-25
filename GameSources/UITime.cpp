@@ -8,8 +8,9 @@
 
 namespace basecross {
 
-	UITime::UITime(const shared_ptr<Stage>& stagePtr):
-		GameObject(stagePtr)
+	UITime::UITime(const shared_ptr<Stage>& stagePtr,float time):
+		GameObject(stagePtr),
+		m_time(time)
 	{}
 
 	void UITime::OnCreate() {
