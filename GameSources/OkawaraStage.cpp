@@ -223,7 +223,33 @@ namespace basecross {
 			}
 		}
 	}
+	void O_GameStage::CreateBreakWall()
+	{
 
+		for (int count = 1; count < 5; count++)
+		{
+			switch (count)
+			{
+			case 1:
+				AddGameObject<BreakWall>(Vec3(57.0f, 2.0f, -39.5f), Vec3(0.0f, XMConvertToRadians(10.0f), 0.0f) , Vec3(1.0f, 1.0f, 1.0f));
+				break;
+			//case 2:
+			//	AddGameObject<BreakWall>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+			//	break;
+			//case 3:
+			//	AddGameObject<BreakWall>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+			//	break;
+			//case 4:
+			//	AddGameObject<BreakWall>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+			//	break;
+
+			}
+		}
+	} 
+	void O_GameStage::CreateRecoveryWall()
+	{
+
+	}
 	void O_GameStage::CreateBlock()
 	{
 		for (int count = 0; count < 26; count++)
@@ -380,6 +406,8 @@ namespace basecross {
 			SetSharedGameObject(L"Garge", garge);
 
 			CreateWall();
+			CreateBreakWall();
+			CreateRecoveryWall();
 			CreateBlock();
 			CreateBlockSecond();
 		}
