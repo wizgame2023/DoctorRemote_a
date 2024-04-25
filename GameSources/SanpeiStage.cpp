@@ -183,8 +183,8 @@ namespace basecross {
 			auto PGarge = AddGameObject<PlayerGarge>();
 
 			//壁を出現（テスト）
-			AddGameObject<BreakWall>(Vec3(1.0f, 1.0f, 1.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
-			AddGameObject<RecoveryWall>(Vec3(15.0f, 1.0f, 10.0f), Vec3(2.0f, 2.0f, 2.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(5.0f, 0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<RecoveryWall>(Vec3(15.0f, 0.0f, 10.0f), Vec3(2.0f, 0.0f, 2.0f), Vec3(1.0f, 1.0f, 1.0f));
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャー追加
 			SetSharedGameObject(L"StageManager", stageManager);

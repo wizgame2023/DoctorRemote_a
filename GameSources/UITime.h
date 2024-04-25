@@ -1,7 +1,7 @@
 /*!
 @file UITime.h
-@brief ����
-�S���F�팩
+@brief ŽžŠÔ
+’S“–FˆíŒ©
 */
 
 #pragma once
@@ -10,20 +10,21 @@
 namespace basecross {
 	class UITime :public GameObject {
 	private:
-		//�摜�̑傫���̏��
+
+		//‰æ‘œ‚Ì‘å‚«‚³‚Ìî•ñ
 		float m_width;
 		float m_heigth;
 		float m_moveW;
 		float m_moveH;
 		int m_number;
 
-		//���_�̏��
+		//’¸“_‚Ìî•ñ
 		vector<VertexPositionColorTexture> m_vertices;
 		shared_ptr<PCTSpriteDraw> m_draw;
 		vector<uint16_t> m_indices;
 		wstring m_meshResName;
 
-		//�摜���̂̈ʒu�̏��
+		//‰æ‘œŽ©‘Ì‚ÌˆÊ’u‚Ìî•ñ
 		shared_ptr<Transform> m_trans;
 		Vec3 m_pos;
 
@@ -31,6 +32,7 @@ namespace basecross {
 
 	public:
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos);
+
 		virtual ~UITime(){}
 
 		virtual void OnCreate() override;

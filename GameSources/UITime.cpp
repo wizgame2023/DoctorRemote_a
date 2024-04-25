@@ -1,12 +1,13 @@
 /*!
 @file UITime.cpp
-@brief ŽžŠÔ
+@brief Å½Å¾Å Ã”
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
+
 
 	UITime::UITime(const shared_ptr<Stage>& stagePtr,int number,Vec3 pos):
 		GameObject(stagePtr),

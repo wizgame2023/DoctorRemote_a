@@ -15,8 +15,9 @@ namespace basecross {
 		void CreateEnemyPiece();//“G‚Ì‚©‚¯‚ç‚Ìì¬
 		void CreateEnemy();//“G‚Ìì¬
 		void CreateRadar();//ƒŒ[ƒ_[‚Ìì¬
-		void CreateBlock();
 		void CreateWall();
+		void CreateBlock();
+		void CreateBlockSecond();
 	public:
 		O_GameStage() :Stage(){}
 		~O_GameStage() {}
