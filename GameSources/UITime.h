@@ -1,7 +1,7 @@
 /*!
 @file UITime.h
-@brief ŽžŠÔ
-’S“–FˆíŒ©
+@brief 数字の画像
+担当：逸見
 */
 
 #pragma once
@@ -11,20 +11,20 @@ namespace basecross {
 	class UITime :public GameObject {
 	private:
 
-		//‰æ‘œ‚Ì‘å‚«‚³‚Ìî•ñ
+		//表示するサイズの情報
 		float m_width;
 		float m_heigth;
 		float m_moveW;
 		float m_moveH;
 		int m_number;
 
-		//’¸“_‚Ìî•ñ
+		//頂点の情報
 		vector<VertexPositionColorTexture> m_vertices;
 		shared_ptr<PCTSpriteDraw> m_draw;
 		vector<uint16_t> m_indices;
 		wstring m_meshResName;
 
-		//‰æ‘œŽ©‘Ì‚ÌˆÊ’u‚Ìî•ñ
+		//表示させる位置の情報
 		shared_ptr<Transform> m_trans;
 		Vec3 m_pos;
 
