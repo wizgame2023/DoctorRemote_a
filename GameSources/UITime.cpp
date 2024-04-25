@@ -1,6 +1,6 @@
 /*!
 @file UITime.cpp
-@brief ŽžŠÔ
+@brief 数字の画像
 */
 
 #include "stdafx.h"
@@ -13,7 +13,7 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_number(number),
 		m_pos(pos),
-		m_meshResName(L"Bar")
+		m_meshResName(L"NumbersBlack")
 	{}
 
 	void UITime::OnCreate() {
