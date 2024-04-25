@@ -12,6 +12,9 @@ namespace basecross {
 	public:
 		UITime(const shared_ptr<Stage>& stagePtr);
 		virtual ~UITime(){}
+
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
 	};
 }
 //end namespace basecross
