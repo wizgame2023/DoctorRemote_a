@@ -45,11 +45,15 @@ namespace basecross {
 	};
 	void BreakWall::OnUpdate()
 	{
+		auto ptrStage = GetStage();
 		//もし体力がなくなったら削除される
 		if (m_Hp <= 0)
 		{	
 			int damage = -10;//これを壊したときの患者へのダメージ量
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(damage);//ダメージを与える
+			int piece = 0;//どれくらいピースを手に入るかを決める
+			piece = rand() % 3;//ランダムにどのピースが出るのかを決める変数
+
 			GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 		}
 	};

@@ -71,7 +71,7 @@ namespace basecross {
 			{	
 
 				m_PieceIndex = 0;
-				//GetStage()->RemoveGameObject<EffectBullet>(GetThis<EffectBullet>());
+				GetStage()->RemoveGameObject<EffectBullet>(GetThis<EffectBullet>());
 
 			}				
 
