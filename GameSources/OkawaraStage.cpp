@@ -226,23 +226,40 @@ namespace basecross {
 	void O_GameStage::CreateBreakWall()
 	{
 
-		for (int count = 1; count < 5; count++)
+		for (int count = 1; count < 11; count++)
 		{
 			switch (count)
 			{
 			case 1:
-				AddGameObject<BreakWall>(Vec3(57.0f, 2.0f, -39.5f), Vec3(0.0f, XMConvertToRadians(10.0f), 0.0f) , Vec3(1.0f, 1.0f, 1.0f));
+				AddGameObject<BreakWall>(Vec3(59.0f, 4.0f, -39.0f), Vec3(0.0f, 0.0f, 0.0f) , Vec3(0.5f, 3.0f, 24.0f));
 				break;
-			//case 2:
-			//	AddGameObject<BreakWall>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+			case 2:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -30.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 3:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -36.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 4:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -42.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 5:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -48.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 6:
+				AddGameObject<BreakWall>(Vec3(10.0f, 4.0f, 16.4f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 35.8f));
+				break;
+			//case 7:
+			//	AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -30.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
 			//	break;
-			//case 3:
-			//	AddGameObject<BreakWall>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+			//case 8:
+			//	AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -36.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
 			//	break;
-			//case 4:
-			//	AddGameObject<BreakWall>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+			//case 9:
+			//	AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -42.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
 			//	break;
-
+			//case 10:
+			//	AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -48.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+			//	break;
 			}
 		}
 	} 
