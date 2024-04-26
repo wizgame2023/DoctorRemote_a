@@ -34,7 +34,7 @@ namespace basecross {
 
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetMultiMeshResource(L"Obstacle_Mesh1");
+		ptrDraw->SetMeshResource(L"DEFAULT_CYLINDER");
 		//ptrDraw->SetTextureResource(L"Internal");
 
 
