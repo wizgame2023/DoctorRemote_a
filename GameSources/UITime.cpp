@@ -13,13 +13,13 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_number(number),
 		m_pos(pos),
-		m_meshResName(L"NumbersBlack")
+		m_meshResName(L"NumbersWhite")
 	{}
 
 	void UITime::OnCreate() {
 
-		m_width = 50.0f;
-		m_heigth = 100.0f;
+		m_width = 40.0f;
+		m_heigth = 80.0f;
 		m_moveW = (512.0f / 10) / 512.0f;
 		m_moveH = 128.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
@@ -54,7 +54,7 @@ namespace basecross {
 		auto elapseTime = App::GetApp()->GetElapsedTime();
 		m_time -= elapseTime;
 
-		UpdateValue(m_number);
+		//UpdateValue(m_number);
 	}
 
 	void UITime::UpdateValue(int number) {

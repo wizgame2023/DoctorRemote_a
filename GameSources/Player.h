@@ -31,6 +31,7 @@ namespace basecross {
 	public:
 		//コンストラクタ
 		Player(const shared_ptr<Stage>& StagePtr);
+		Player(const shared_ptr<Stage>& StagePtr, const shared_ptr<Transform>& trans);
 		//デストラクタ
 		virtual ~Player() {}
 		virtual void OnCreate() override;

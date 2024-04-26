@@ -341,7 +341,8 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
 
-
+			//auto number = AddGameObject<UITime>(0, Vec3(0, 0, 0));
+			auto time = AddGameObject<TimeManager>();
 
 		}
 		catch (...) {
