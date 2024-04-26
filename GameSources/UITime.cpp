@@ -54,7 +54,7 @@ namespace basecross {
 		auto elapseTime = App::GetApp()->GetElapsedTime();
 		m_time -= elapseTime;
 
-		UpdateValue(m_number);
+		//UpdateValue(m_number);
 	}
 
 	void UITime::UpdateValue(int number) {

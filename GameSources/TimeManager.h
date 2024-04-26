@@ -11,10 +11,19 @@ namespace basecross {
 	class TimeManager :public GameObject {
 	private:
 		float m_time;
-		float m_first;
-		float m_second;
-		float m_third;
-		float m_fourth;
+		int m_minutes;
+		int m_seconds;
+
+		int m_first;
+		int m_second;
+		int m_third;
+		int m_fourth;
+
+		shared_ptr<UITime> m_firstNum;
+		shared_ptr<UITime> m_secondNum;
+		shared_ptr<UITime> m_thirdNum;
+		shared_ptr<UITime> m_fourthNum;
+
 
 	public:
 		TimeManager(const shared_ptr<Stage>& stagePtr);
@@ -22,6 +31,8 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		void UpdateNumber();
 	};
 }
 //end namespace basecross
