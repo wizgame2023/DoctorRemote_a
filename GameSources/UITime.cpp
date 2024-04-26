@@ -18,8 +18,8 @@ namespace basecross {
 
 	void UITime::OnCreate() {
 
-		m_width = 50.0f;
-		m_heigth = 100.0f;
+		m_width = 40.0f;
+		m_heigth = 80.0f;
 		m_moveW = (512.0f / 10) / 512.0f;
 		m_moveH = 128.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
