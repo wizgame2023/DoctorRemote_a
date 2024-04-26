@@ -9,15 +9,19 @@
 
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
-		GameObject(StagePtr), m_Hp(100), m_counter(0)
+		GameObject(StagePtr), m_Hp(100)
 	{
+	}
+	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale) :
+		GameObject(StagePtr), m_pos(pos), m_rot(rot), m_scale(scale)
+	{ 
 	}
 	void Enemy::OnCreate()
 	{
 		auto ptr = GetComponent<Transform>();
-		ptr->SetPosition(20.0f, 0.5f, 23.0f);
-		ptr->SetRotation(0, 0, 0);
-		ptr->SetScale(1, 1, 1);
+		ptr->SetPosition(m_pos);
+		ptr->SetRotation(m_rot);
+		ptr->SetScale(m_scale);
 
 		AddTag(L"Enemy");
 
