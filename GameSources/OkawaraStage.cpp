@@ -226,7 +226,7 @@ namespace basecross {
 	void O_GameStage::CreateBreakWall()
 	{
 
-		for (int count = 1; count < 11; count++)
+		for (int count = 1; count < 20; count++)
 		{
 			switch (count)
 			{
@@ -246,20 +246,39 @@ namespace basecross {
 				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -48.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
 				break;
 			case 6:
-				AddGameObject<BreakWall>(Vec3(10.0f, 4.0f, 16.4f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 35.8f));
+				AddGameObject<BreakWall>(Vec3(10.0f, 4.0f, 16.2f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 35.7f));
 				break;
-			//case 7:
-			//	AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -30.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
-			//	break;
-			//case 8:
-			//	AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -36.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
-			//	break;
-			//case 9:
-			//	AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -42.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
-			//	break;
-			//case 10:
-			//	AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -48.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
-			//	break;
+			case 7:
+				AddGameObject<BreakWall>(Vec3(16.25f, 1.0f, 2.8f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 8:
+				AddGameObject<BreakWall>(Vec3(13.72f, 1.0f, 8.23f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 9:
+				AddGameObject<BreakWall>(Vec3(11.19f, 1.0f,13.66f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 10:
+				AddGameObject<BreakWall>(Vec3(8.66f, 1.0f, 19.09f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 11:
+				AddGameObject<BreakWall>(Vec3(6.13f, 1.0f, 24.52f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 12:
+				AddGameObject<BreakWall>(Vec3(3.69f, 1.0f, 29.73f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 5.5f));
+				break;
+			case 13:
+				AddGameObject<BreakWall>(Vec3(-31.3f, 4.0f, -38.0f), Vec3(0.0f, XMConvertToRadians(20.0f), 0.0f), Vec3(6.0f, 3.0f, 0.5f));
+				break;
+			case 14:
+				AddGameObject<BreakWall>(Vec3(-31.3f, 1.0f, -38.0f), Vec3(0.0f, XMConvertToRadians(20.0f), 0.0f), Vec3(6.0f, 3.0f, 0.5f));
+				break;
+			case 15:
+				AddGameObject<BreakWall>(Vec3(-11.61f, 4.0f, 50.0f), Vec3(0.0f, XMConvertToRadians(40.0f), 0.0f), Vec3(0.5f, 3.0f, 7.0f));
+				break;
+			case 16:
+				AddGameObject<BreakWall>(Vec3(-11.61f, 1.0f, 50.0f), Vec3(0.0f, XMConvertToRadians(40.0f), 0.0f), Vec3(0.5f, 3.0f, 7.0f));
+				break;
+
 			}
 		}
 	} 
