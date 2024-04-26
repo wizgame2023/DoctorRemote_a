@@ -20,6 +20,15 @@ namespace basecross {
 		m_radarFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
+	Player::Player(const shared_ptr<Stage>& StagePtr, const shared_ptr<Transform>& trans):
+		GameObject(StagePtr),
+		m_trans(trans),
+		m_piece(0),
+		m_maxPiece(100.0f),
+		m_speed(5.0f),
+		m_radarFlag(false),
+		m_meshResName(L"Sensuikan_Mesh")
+	{}
 
 	Vec2 Player::GetInputState()const {
 		Vec2 ret;
@@ -38,9 +47,8 @@ namespace basecross {
 	float Player::PlayerAngle() const{
 
 		//進行方向の向きを計算
-		auto ptrTrans = GetComponent<Transform>();
 		auto ptrCamera = OnGetDrawCamera();
-		auto front = ptrTrans->GetPosition() - ptrCamera->GetEye();
+		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
 		front.y = 0;
 		front.normalize();
 		//進行方向の向きからの角度を算出
