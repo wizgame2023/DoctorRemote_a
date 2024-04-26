@@ -45,8 +45,28 @@ namespace basecross {
 	//Playerを追加する関数
 	void GameStage::CreatePlayer()
 	{
-		auto ptrPlayer = AddGameObject<Player>();
-		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを取得
+		int randamPlayer = 0;
+		randamPlayer = rand() % 3;
+		shared_ptr<Player> ptrPlayer;
+		//ランダムにPlayerの出現場所が決まる
+		switch (randamPlayer)
+		{
+		case 0:
+			ptrPlayer = AddGameObject<Player>();		
+			SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+			break;
+		case 1:
+			ptrPlayer = AddGameObject<Player>();
+			SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+			break;
+		case 2:
+			ptrPlayer = AddGameObject<Player>();
+			SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+			break;
+
+		default:
+			break;
+		}
 		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
 
 	}
@@ -65,6 +85,19 @@ namespace basecross {
 	//敵を作成
 	void GameStage::CreateEnemy()
 	{
+		int randamEnemy = 0;
+		randamEnemy = rand() % 3;
+		switch (randamEnemy)
+		{
+		case 0:
+
+		case 1:
+
+		case 2:
+
+		default:
+			break;
+		}
 		auto ptrEnemy = AddGameObject<Enemy>();
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
