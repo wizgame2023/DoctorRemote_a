@@ -37,13 +37,13 @@ namespace basecross {
 			Vec3(0.0f, -0.5f, 0.0f)
 		);
 
-		auto ptrcollider = AddComponent<CollisionCapsule>();
+		auto ptrcollider = AddComponent<CollisionObb>();
 		ptrcollider->SetDrawActive(true);
 
 
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetMultiMeshResource(L"Obstacle_Mesh1");
+		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 		ptrDraw->SetTextureResource(L"Internal");
 
 
