@@ -13,6 +13,8 @@ namespace basecross {
 		void CreateRadar();//ƒŒ[ƒ_[‚Ìì¬
 		void CreateWall();//•Ç‚Ìì¬
 		void CreateBlock();//áŠQ•¨‚Ìì¬
+		void CreateBreakWall();//‰ó‚ê‚é•Ç‚Ìì¬
+		void CreateBlockSecond();//áŠQ•¨‚Ìì¬‚Q
 		shared_ptr<Transform> m_Trans;
 	public:
 		//\’z‚Æ”jŠü
