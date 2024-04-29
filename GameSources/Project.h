@@ -23,6 +23,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Radar.h"
+#include "Sprite.h"
 #include "Garge.h"
 #include "UITime.h"
 #include "TimeManager.h"

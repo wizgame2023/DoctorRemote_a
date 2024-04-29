@@ -28,14 +28,14 @@ namespace basecross {
 		}
 
 		//デバック用
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		wss << L"currentHp : " <<
-			m_currentHp <<
-			"\n" <<
-			endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss << L"currentHp : " <<
+		//	m_currentHp <<
+		//	"\n" <<
+		//	endl;
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 	}
 
 	float StageManager::GetHp() {

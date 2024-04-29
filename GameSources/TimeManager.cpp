@@ -50,28 +50,29 @@ namespace basecross {
 		m_thirdNum->UpdateValue(m_third);
 		m_fourthNum->UpdateValue(m_fourth);
 
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
+		//デバック用
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
 
-		wss <<L"time : "
-			<<m_time
-			<<"\n"
-			<< L"minutes : "
-			<< minutes
-			<< "\n"
-			<< L"second : "
-			<< seconds
-			<<"\n"
-			<<"Time : "
-			<<m_fourth
-			<<m_third
-			<<L":"
-			<<m_second
-			<<m_first
-			<< endl;
+		//wss <<L"time : "
+		//	<<m_time
+		//	<<"\n"
+		//	<< L"minutes : "
+		//	<< minutes
+		//	<< "\n"
+		//	<< L"second : "
+		//	<< seconds
+		//	<<"\n"
+		//	<<"Time : "
+		//	<<m_fourth
+		//	<<m_third
+		//	<<L":"
+		//	<<m_second
+		//	<<m_first
+		//	<< endl;
 
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 
 	}
 
