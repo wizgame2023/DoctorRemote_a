@@ -29,6 +29,17 @@ namespace basecross {
 		m_radarFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
+	Player::Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos,const Vec3& rot):
+		GameObject(StagePtr),
+		m_pos(pos),
+		m_rot(rot),
+		m_piece(0),
+		m_maxPiece(100.0f),
+		m_speed(5.0f),
+		m_radarFlag(false),
+		m_meshResName(L"Sensuikan_Mesh")
+	{}
+
 
 	Vec2 Player::GetInputState()const {
 		Vec2 ret;
@@ -120,8 +131,8 @@ namespace basecross {
 		//‰ŠúˆÊ’u‚È‚Ç‚Ìİ’è
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(1.0f, 1.0f, 2.0f);
-		m_trans->SetRotation(0.0f, 30.0f, 0.0f);
-		m_trans->SetPosition(0.0f, 0.5f, 0.0f);
+		m_trans->SetRotation(m_rot);
+		m_trans->SetPosition(m_pos);
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
