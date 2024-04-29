@@ -7,11 +7,9 @@
 #include "Project.h"
 
 namespace basecross {
-	Sprite::Sprite(const shared_ptr<Stage>& stagePtr, const float sizeX, const float sizeY,
-		float width, float heigth, wstring meshResName, Vec3 pos):
+	Sprite::Sprite(const shared_ptr<Stage>& stagePtr,float width, float heigth,
+		wstring meshResName, Vec3 pos):
 		GameObject(stagePtr),
-		m_sizeX(sizeX),
-		m_sizeY(sizeY),
 		m_width(width),
 		m_heigth(heigth),
 		m_meshResName(meshResName),
@@ -39,6 +37,9 @@ namespace basecross {
 		m_draw->SetDiffuse(Col4(1, 1, 1, 1.0f));
 
 		SetAlphaActive(true);
+
+		m_trans = GetComponent<Transform>();
+		m_trans->SetPosition(m_pos);
 	}
 	void Sprite::OnUpdate() {
 

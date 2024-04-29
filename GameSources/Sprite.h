@@ -11,8 +11,6 @@ namespace basecross {
 	class Sprite :public GameObject {
 	private:
 		//画像の大きさ
-		const float m_sizeX;
-		const float m_sizeY;
 
 		//画像の表示サイズ
 		float m_width;
@@ -29,8 +27,8 @@ namespace basecross {
 
 
 	public:
-		Sprite(const shared_ptr<Stage>& stagePtr, const float sizeX, const float sizeY,
-			float width, float heigth, wstring meshResName, Vec3 pos);
+		Sprite(const shared_ptr<Stage>& stagePtr,float width, float heigth,
+			wstring meshResName, Vec3 pos);
 		virtual ~Sprite(){}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
