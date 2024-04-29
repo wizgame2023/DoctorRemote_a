@@ -12,7 +12,7 @@ namespace basecross {
     ///    ゲームシーン
     //--------------------------------------------------------------------------------------
     void Scene::CreateResourses() {
-
+        
     }
 
     void Scene::OnCreate() {
@@ -25,7 +25,7 @@ namespace basecross {
 
             //自分自身にイベントを送る
             //これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
         }
         catch (...) {
             throw;
@@ -39,6 +39,15 @@ namespace basecross {
         if (event->m_MsgStr == L"ToGameStage") {
             //ゲームステージの設定
             ResetActiveStage<GameStage>();
+        }
+        else if (event->m_MsgStr == L"ToStartStage") {
+            ResetActiveStage<StartStage>();
+        }
+        else if (event->m_MsgStr == L"ToClearStage") {
+            ResetActiveStage<ClearStage>();
+        }
+        else if (event->m_MsgStr == L"ToGameOverStage") {
+            ResetActiveStage<GameOverStage>();
         }
     }
 
