@@ -183,6 +183,25 @@ namespace basecross {
 			}
 		}
 
+		auto trans = GetComponent<Transform>();
+		//デバック用
+		wstringstream wss(L"");
+		auto scene = App::GetApp()->GetScene<Scene>();
+		wss << L"transform : "
+			<< L"\n"
+			<< L"postion : ("
+			<<L"\nx."
+			<< trans->GetPosition().x
+			<< L","
+			<<"\ny."
+			<< trans->GetPosition().y
+			<< L","
+			<<"\nz."
+			<< trans->GetPosition().z
+			<< L")"
+			<< endl;
+		scene->SetDebugString(wss.str());
+
 	}
 
 	//衝突判定

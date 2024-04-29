@@ -45,6 +45,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RecoveryWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SanpeiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Sprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h" />
@@ -84,6 +85,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RecoveryWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SanpeiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Sprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp" />
