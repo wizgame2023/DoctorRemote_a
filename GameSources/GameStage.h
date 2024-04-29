@@ -13,6 +13,7 @@ namespace basecross {
 		void CreateRadar();//ƒŒ[ƒ_[‚Ìì¬
 		void CreateWall();//•Ç‚Ìì¬
 		void CreateBlock();//áŠQ•¨‚Ìì¬
+		shared_ptr<Transform> m_Trans;
 	public:
 		//\’z‚Æ”jŠü
 		GameStage() :Stage() {}

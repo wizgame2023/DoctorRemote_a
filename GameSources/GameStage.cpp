@@ -43,31 +43,39 @@ namespace basecross {
 	}
 
 	//Playerを追加する関数
-	void GameStage::CreatePlayer()
+	void GameStage::CreatePlayer()//改善すべき点
 	{
 		int randamPlayer = 0;
 		randamPlayer = rand() % 3;
 		shared_ptr<Player> ptrPlayer;
+		shared_ptr<GameObject> nanasi = AddGameObject<GameObject>();//TransformをとるためにGameObjectを生成
+		shared_ptr<Transform> m_Trans;	
+		//shared_ptr<GameObject> nanasiObject;
+		m_Trans = nanasi->GetComponent<Transform>();
+		int a = 0;
 		//ランダムにPlayerの出現場所が決まる
 		switch (randamPlayer)
 		{
-		case 0:
-			ptrPlayer = AddGameObject<Player>();		
-			SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+		case 0:		
+			m_Trans->SetPosition(-60.0f, 0.5f, -52.0f);
+			ptrPlayer = AddGameObject<Player>(m_Trans);
 			break;
 		case 1:
-			ptrPlayer = AddGameObject<Player>();
-			SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+			m_Trans->SetPosition(60.0f, 0.5f, 63.0f);
+			ptrPlayer = AddGameObject<Player>(m_Trans);
 			break;
 		case 2:
-			ptrPlayer = AddGameObject<Player>();
-			SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+			m_Trans->SetPosition(34.0f, 0.5f, 6.0f);
+			ptrPlayer = AddGameObject<Player>(m_Trans);
 			break;
 
 		default:
+			ptrPlayer = AddGameObject<Player>();
 			break;
 		}
-		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
+		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+		RemoveGameObject<GameObject>(nanasi);
+
 
 	}
 	//レーダーを追加する関数
@@ -86,19 +94,26 @@ namespace basecross {
 	void GameStage::CreateEnemy()
 	{
 		int randamEnemy = 0;
-		randamEnemy = rand() % 3;
+		randamEnemy = rand() % 4;	
+		shared_ptr<Enemy> ptrEnemy;
+		randamEnemy = 0;
 		switch (randamEnemy)
 		{
 		case 0:
-
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-60.0f, 0.5f, -50.0f), Vec3(-0.0f, 0.0f, 0.0f),Vec3(1.0f,1.0f,1.0f));
+			break;
 		case 1:
-
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-12.0f, 0.5f, 27.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
 		case 2:
-
+			ptrEnemy = AddGameObject<Enemy>(Vec3(21.0f, 0.5f, 27.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 3:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -42.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));			
+			break;
 		default:
 			break;
-		}
-		auto ptrEnemy = AddGameObject<Enemy>();
+		}	
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
