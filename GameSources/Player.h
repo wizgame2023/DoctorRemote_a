@@ -19,6 +19,9 @@ namespace basecross {
 
 		bool m_radarFlag;
 
+		Vec3 m_pos;
+		Vec3 m_rot;
+
 		wstring m_meshResName;
 		
 		shared_ptr<Transform> m_trans;
@@ -32,6 +35,9 @@ namespace basecross {
 		//コンストラクタ
 		Player(const shared_ptr<Stage>& StagePtr);
 		Player(const shared_ptr<Stage>& StagePtr, const shared_ptr<Transform>& trans);
+		Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot);
+
+
 		//デストラクタ
 		virtual ~Player() {}
 		virtual void OnCreate() override;
