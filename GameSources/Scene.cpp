@@ -17,6 +17,7 @@ namespace basecross {
 		auto path = app->GetDataDirWString();
 		auto texPath = path + L"Textures/";
 		auto modPath = path + L"Models/";
+		auto SoundPath = path + L"Sounds/";
 
 		//ƒeƒNƒXƒ`ƒƒ
 		wstring strTexture = texPath + L"hakusi.jpg";
@@ -31,6 +32,14 @@ namespace basecross {
 		app->RegisterTexture(L"Bar", strTexture);
 		strTexture = texPath + L"BarYoko2.png";
 		app->RegisterTexture(L"BarSide", strTexture);
+
+		strTexture = texPath + L"Clear.png";
+		app->RegisterTexture(L"Clear", strTexture);
+		strTexture = texPath + L"GameOver.png";
+		app->RegisterTexture(L"GameOver", strTexture);
+		strTexture = texPath + L"Start.png";
+		app->RegisterTexture(L"Start", strTexture);
+
 
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -80,6 +89,8 @@ namespace basecross {
 		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle2-1.bmf");
 		app->RegisterResource(L"Obstacle_Mesh2", staticModelMesh);
 
+		wstring soundWav = SoundPath + L"AS_1118965_ƒsƒ…ƒb_^ƒrƒ…ƒb_^…“S–C^”ò‚Ño‚·‰¹";
+		App::GetApp()->RegisterWav(L"cusor", soundWav);
 
     }
 
