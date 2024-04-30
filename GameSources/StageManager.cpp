@@ -24,7 +24,7 @@ namespace basecross {
 		m_currentHp -= elapsedTime * m_hpSpeed;
 
 		if (m_currentHp <= 0.0f) {
-			m_currentHp = m_maxHp;
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
 
 		//デバック用

@@ -9,7 +9,7 @@
 
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
-		GameObject(StagePtr), m_Hp(100)
+		GameObject(StagePtr), m_Hp(10)
 	{
 	}
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale) :
@@ -75,6 +75,8 @@ namespace basecross {
 			if (m_Hp <= 0)
 			{
 				GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+
 			}
 		}
 	}

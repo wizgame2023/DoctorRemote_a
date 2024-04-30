@@ -32,7 +32,7 @@ namespace basecross {
 	void TimeManager::OnUpdate() {
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		m_time -= elapsedTime*10.0f;
+		m_time -= elapsedTime;
 
 		if (m_time <= 0.0f) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
