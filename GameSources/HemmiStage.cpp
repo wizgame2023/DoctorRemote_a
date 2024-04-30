@@ -113,7 +113,7 @@ namespace basecross {
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
-			AddGameObject<EnemyPiece>(v[0], (Quat)v[1], v[2]);
+			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 		}
 	}
 
@@ -315,7 +315,7 @@ namespace basecross {
 	void HemmiStage::OnCreate() {
 		try {
 			//テクスチャ、モデルの設定データ
-			auto data = AddGameObject<Data>();
+			//auto data = AddGameObject<Data>();
 
 			AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
