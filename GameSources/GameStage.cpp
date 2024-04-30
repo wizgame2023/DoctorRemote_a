@@ -96,20 +96,20 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;	
 		shared_ptr<Enemy> ptrEnemy;
-		randamEnemy = 0;
+		randamEnemy = 3;
 		switch (randamEnemy)
 		{
 		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-60.0f, 0.5f, -50.0f), Vec3(-0.0f, 0.0f, 0.0f),Vec3(1.0f,1.0f,1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f),Vec3(1.0f,1.0f,1.0f));
 			break;
 		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-12.0f, 0.5f, 27.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-58.0f, 0.5f, 65.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 			break;
 		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(21.0f, 0.5f, 27.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(41.0f, 0.5f, 63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 			break;
 		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -42.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));			
+			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));			
 			break;
 		default:
 			break;
@@ -121,46 +121,92 @@ namespace basecross {
 	void GameStage::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{//1
+			{//8
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(5.0f,0.5f,0.0f)
+				Vec3(-6.25f,0.0f,24.0f)
 			},
-			{//2
+			{//9
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-5.0f,0.0f,5.0f)
+				Vec3(-4.56f,0.0f,40.0f)
+
 			},
-			{//3
+			{//10
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-8.0f,0.0f,3.0f)
+				Vec3(-7.25f,0.0f,-45.0f)
+			},			
+			{//11
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(28.9f,0.0f,-14.0f)
 			},
-			{//4
+			{//12
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-10.0f,0.0f,23.0f)
+				Vec3(45.0f,0.0f,-7.0f)
 			},
-			{//5
+			{//13
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-23.0f,0.0f,13.0f)
+				Vec3(16.0f,0.0f,10.0f)
 			},
-			{//6
+			{//14
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-18.0f,0.0f,3.0f)
+				Vec3(12.0f,0.0f,41.0f)
 			},
-			{//7
+			{//15
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(15.0f,0.0f,12.0f)
+				Vec3(0.6f,0.0f,34.3f)
+			},
+			{//16
+				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(10.0f,0.0f,20.0f)
 			}
 
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
 			AddGameObject<EnemyPiece>(v[0], (Quat)v[1], v[2]);
+		}
+	}
+
+	void GameStage::CreateEnemyPiece2()
+	{
+		int randamIbent = 0;
+		randamIbent = rand() % 2;
+		int randamCount = 0;
+		randamCount = rand() % 5;
+		shared_ptr<EnemyPiece> lowerLeft;
+		shared_ptr<EnemyPiece> lowerRight;
+		shared_ptr<EnemyPiece> upLeft;
+		shared_ptr<EnemyPiece> upRight;		
+		vector<vector<Vec3>> Trans;
+
+		switch (randamIbent)
+		{
+		case 0:		
+			lowerLeft= AddGameObject<EnemyPiece>(Vec3(0.5f,0.5f,0.5f), Quat(), Vec3(27.6f, 0.0f, 18.4f));//左下
+			lowerRight = AddGameObject<EnemyPiece>(Vec3(0.5f, 0.5f, 0.5f), Quat(), Vec3(20.0f, 0.0f, -43.0f));//右下
+			upLeft = AddGameObject<EnemyPiece>(Vec3(0.5f, 0.5f, 0.5f), Quat(), Vec3(-68.0f, 0.0f, 12.0f));//左上
+			upRight = AddGameObject<EnemyPiece>(Vec3(0.5f, 0.5f, 0.5f), Quat(), Vec3(9.0f, 0.0f, 68.0f));//右上
+			for (int i = 0; i < randamCount; i++)
+			{
+				Trans =
+				{
+					{
+						Vec3(0.5,0.5f,0.5f),
+						Vec3(0.0f,0.0f,0.0f),
+						lowerLeft->GetComponent<Transform>()->GetPosition() + rand() % 5//ランダムにｘ、ｚ成分に足したい
+					}
+				};
+			}
+		default:
+			break;
 		}
 	}
 
@@ -469,7 +515,7 @@ namespace basecross {
 			//テクスチャ、モデルの設定データ
 			auto data = AddGameObject<Data>();
 
-			AddGameObject<MyLight>();//光の表現をこれでやる
+			//AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
 			CreateViewLight();
 			//Playerを追加
