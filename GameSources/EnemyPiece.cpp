@@ -9,14 +9,14 @@
 namespace basecross {
 
 	EnemyPiece::EnemyPiece(const shared_ptr<Stage>& StagePtr,
-		const Vec3& scale,
-		const Quat& qt,
-		const Vec3& position
-	) :
+		const Vec3& position,
+		const Vec3& rotate,
+		const Vec3& scale
+		) :
 		GameObject(StagePtr),
-		m_scale(scale),
-		m_qt(qt),
 		m_position(position),
+		m_rotate(rotate),
+		m_scale(scale),
 		m_meshResName(L"DEFAULT_CUBE")
 
 	{}
@@ -25,7 +25,7 @@ namespace basecross {
 	void EnemyPiece::OnCreate() {
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_scale);
-		ptrTrans->SetQuaternion(m_qt);
+		ptrTrans->SetRotation(m_rotate);
 		ptrTrans->SetPosition(m_position);
 
 		//オブジェクトの描画
@@ -53,6 +53,12 @@ namespace basecross {
 			GetStage()->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
 
 		}
+	}
+	Vec3 EnemyPiece::GetPos() {
+		return m_position;
+	}
+	Vec3 EnemyPiece::GetRot() {
+		return m_rotate;
 	}
 }
 //end basecross
