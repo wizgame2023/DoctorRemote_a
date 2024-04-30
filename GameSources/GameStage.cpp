@@ -522,7 +522,7 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 			//テクスチャ、モデルの設定データ
-			auto data = AddGameObject<Data>();
+			//auto data = AddGameObject<Data>();
 
 			//AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
