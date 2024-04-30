@@ -66,7 +66,27 @@ namespace basecross {
 	//敵を作成
 	void HemmiStage::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>();
+		int randamEnemy = 0;
+		randamEnemy = rand() % 4;
+		shared_ptr<Enemy> ptrEnemy;
+		randamEnemy = 3;
+		switch (randamEnemy)
+		{
+		case 0:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 1:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-58.0f, 0.5f, 65.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 2:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(41.0f, 0.5f, 63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 3:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		default:
+			break;
+		}
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 

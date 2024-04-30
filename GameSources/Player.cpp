@@ -180,6 +180,9 @@ namespace basecross {
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 				auto bullet = stage->AddGameObject<Bullet>(ptrPos, Vec3(0.3f, 0.3f, 0.3f), 10.0f, frontAngle, 1);
+
+				auto soundE = App::GetApp()->GetXAudio2Manager();
+				soundE->Start(L"cusor",0,0.5f);
 			}
 		}
 
@@ -240,6 +243,9 @@ namespace basecross {
 	}
 	void Player::SetRadarPiece(float piece) {
 		m_piece = piece;
+	}
+	bool Player::GetEnemyFlag() {
+		return m_enemyFlag;
 	}
 }
 //end basecross
