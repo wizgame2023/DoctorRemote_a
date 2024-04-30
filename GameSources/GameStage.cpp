@@ -121,92 +121,101 @@ namespace basecross {
 	void GameStage::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{//8
-				Vec3(0.5f,0.5f,0.5f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-6.25f,0.0f,24.0f)
+			{//8				
+				Vec3(-6.25f,0.0f,24.0f),
+				Vec3(0.0f,0.0f,0.0f),	
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
 			{//9
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(-4.56f,0.0f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-4.56f,0.0f,40.0f)
+				Vec3(0.5f,0.5f,0.5f)
 
 			},
 			{//10
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(-7.25f,0.0f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-7.25f,0.0f,-45.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},			
 			{//11
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(28.9f,0.0f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(28.9f,0.0f,-14.0f)
+				Vec3(0.5f,0.5f,0.5f)
 			},
 			{//12
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(45.0f,0.0f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(45.0f,0.0f,-7.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
 			{//13
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(16.0f,0.0f,10.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(16.0f,0.0f,10.0f)
+				Vec3(0.5f,0.5f,0.5f)
 			},
 			{//14
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(12.0f,0.0f,41.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(12.0f,0.0f,41.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
 			{//15
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.6f,0.0f,34.3f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.6f,0.0f,34.3f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
 			{//16
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(10.0f,0.0f,20.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(10.0f,0.0f,20.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			}
 
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
-			AddGameObject<EnemyPiece>(v[0], (Quat)v[1], v[2]);
+			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 		}
 	}
 
 	void GameStage::CreateEnemyPiece2()
 	{
 		int randamIbent = 0;
-		randamIbent = rand() % 2;
 		int randamCount = 0;
-		randamCount = rand() % 5;
+		randamCount = rand() % 5+3;
+		randamCount = 3;
 		shared_ptr<EnemyPiece> lowerLeft;
 		shared_ptr<EnemyPiece> lowerRight;
 		shared_ptr<EnemyPiece> upLeft;
-		shared_ptr<EnemyPiece> upRight;		
-		vector<vector<Vec3>> Trans;
+		shared_ptr<EnemyPiece> upRight;
+		vector<Vec3> Trans;
 
-		switch (randamIbent)
+		lowerLeft = AddGameObject<EnemyPiece>(Vec3(-27.6f, 0.0f, -18.4f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));//左下
+		lowerRight = AddGameObject<EnemyPiece>(Vec3(20.0f, 0.0f, -43.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));//右下
+		upLeft = AddGameObject<EnemyPiece>(Vec3(-68.0f, 0.0f, 12.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));//左上
+		upRight = AddGameObject<EnemyPiece>(Vec3(9.0f, 0.0f, 68.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));//右上
+
+		int test = 0;
+		//左下にランダムに設置するピースの数やPositonを決める
+		auto Position = lowerLeft->GetComponent<Transform>()->GetPosition();//左下のPositionを取得
+		for (int i = 0; i < randamCount; i++)
+		{	
+			srand((unsigned)time(NULL));//乱数リセット
+			int x = Position.x + rand() % 9 + 1;int z = Position.z + rand() % 9 + 1;
+			x - 5; z - 5;
+
+			Vec3 Pos = Vec3(Position.x + x, Position.y, Position.z + z);//これでランダムにピースを置くことができる
+			Trans.push_back(Pos);
+
+			test = 1;
+			
+		}
+		for (auto& v : Trans)
 		{
-		case 0:		
-			lowerLeft= AddGameObject<EnemyPiece>(Vec3(0.5f,0.5f,0.5f), Quat(), Vec3(27.6f, 0.0f, 18.4f));//左下
-			lowerRight = AddGameObject<EnemyPiece>(Vec3(0.5f, 0.5f, 0.5f), Quat(), Vec3(20.0f, 0.0f, -43.0f));//右下
-			upLeft = AddGameObject<EnemyPiece>(Vec3(0.5f, 0.5f, 0.5f), Quat(), Vec3(-68.0f, 0.0f, 12.0f));//左上
-			upRight = AddGameObject<EnemyPiece>(Vec3(0.5f, 0.5f, 0.5f), Quat(), Vec3(9.0f, 0.0f, 68.0f));//右上
-			for (int i = 0; i < randamCount; i++)
-			{
-				Trans =
-				{
-					{
-						Vec3(0.5,0.5f,0.5f),
-						Vec3(0.0f,0.0f,0.0f),
-						lowerLeft->GetComponent<Transform>()->GetPosition() + rand() % 5//ランダムにｘ、ｚ成分に足したい
-					}
-				};
-			}
-		default:
-			break;
+			AddGameObject<EnemyPiece>(Trans[1], Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
 		}
 	}
 
@@ -522,6 +531,7 @@ namespace basecross {
 			CreatePlayer();
 			//敵のかけらを表示
 			CreateEnemyPiece();
+			CreateEnemyPiece2();//ランダムにかけらが出るようになる
 			CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
