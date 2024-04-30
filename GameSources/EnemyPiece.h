@@ -28,6 +28,7 @@ namespace basecross {
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other);
 		Vec3 GetPos();
 		Vec3 GetRot();
+
 	};
 }
 //end namespace basecross
