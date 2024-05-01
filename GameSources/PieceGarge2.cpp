@@ -32,6 +32,8 @@ namespace basecross {
 		Vec3 zero(0, 0, 0);
 
 		m_garge = stage->AddGameObject<Garge>(m_trans, 0, 1024, m_meshResName, m_ratio, 40, 240, color, color2, screen, dis);
+
+		auto frame = stage->AddGameObject<Sprite>(42, 242, L"BarFrame",Vec3(540, -220, 1.0f));
 	}
 
 	void PieceGarge2::OnUpdate() {
