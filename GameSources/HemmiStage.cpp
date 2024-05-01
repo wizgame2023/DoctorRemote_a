@@ -352,6 +352,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			CreateEnemy();
+			auto enemy = AddGameObject<Enemy>(Vec3(5,0,0),Vec3(0,0,0),Vec3(0,0,0));
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
 			CreateRadar();

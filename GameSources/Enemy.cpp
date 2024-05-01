@@ -9,11 +9,13 @@
 
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
-		GameObject(StagePtr), m_Hp(10)
+		GameObject(StagePtr),
+		m_Hp(10),
+		m_meshResName(L"Baikin_Mesh")
 	{
 	}
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale) :
-		GameObject(StagePtr), m_pos(pos), m_rot(rot), m_scale(scale)
+		GameObject(StagePtr), m_pos(pos), m_rot(rot), m_scale(scale),m_meshResName(L"Baikin_Mesh")
 	{ 
 	}
 	void Enemy::OnCreate()
@@ -25,14 +27,26 @@ namespace basecross {
 
 		AddTag(L"Enemy");
 
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+
 		auto shadowPtr = AddComponent<Shadowmap>();
-		shadowPtr->SetMeshResource(L"DEFAULT_SPHERE");
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_SPHERE");
-		ptrDraw->SetFogEnabled(true);
+		shadowPtr->SetMultiMeshResource(m_meshResName);
+		shadowPtr->SetMeshToTransformMatrix(spanMat);
+
+		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+		ptrDraw->SetMultiMeshResource(m_meshResName);
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetOwnShadowActive(true);
 
 		auto ptrColl = AddComponent<CollisionSphere>();
+		ptrColl->SetDrawActive(false);
+
 
 		GetStage()->SetCollisionPerformanceActive(true);
 		GetStage()->SetUpdatePerformanceActive(true);
