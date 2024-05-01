@@ -48,25 +48,19 @@ namespace basecross {
 		int randamPlayer = 0;
 		randamPlayer = rand() % 3;
 		shared_ptr<Player> ptrPlayer;
-		shared_ptr<GameObject> nanasi = AddGameObject<GameObject>();//TransformをとるためにGameObjectを生成
-		shared_ptr<Transform> m_Trans;	
+		randamPlayer = 0;
 		//shared_ptr<GameObject> nanasiObject;
-		m_Trans = nanasi->GetComponent<Transform>();
-		int a = 0;
 		//ランダムにPlayerの出現場所が決まる
 		switch (randamPlayer)
 		{
 		case 0:		
-			m_Trans->SetPosition(-60.0f, 0.5f, -52.0f);
-			ptrPlayer = AddGameObject<Player>(m_Trans);
+			ptrPlayer = AddGameObject<Player>(Vec3(10.0f,0.5f,-40.0f),Vec3(0.0f,0.0f, 0.0f));
 			break;
 		case 1:
-			m_Trans->SetPosition(60.0f, 0.5f, 63.0f);
-			ptrPlayer = AddGameObject<Player>(m_Trans);
+			ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, 0.0f, 0.0f));
 			break;
 		case 2:
-			m_Trans->SetPosition(34.0f, 0.5f, 6.0f);
-			ptrPlayer = AddGameObject<Player>(m_Trans);
+			ptrPlayer = AddGameObject<Player>(Vec3(60.0f, 0.5f, 10.0f), Vec3(0.0f, 0.0f, 0.0f));
 			break;
 
 		default:
@@ -74,7 +68,6 @@ namespace basecross {
 			break;
 		}
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
-		RemoveGameObject<GameObject>(nanasi);
 
 
 	}
@@ -96,7 +89,7 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;	
 		shared_ptr<Enemy> ptrEnemy;
-		randamEnemy = 3;
+		//randamEnemy = 3;
 		switch (randamEnemy)
 		{
 		case 0:
@@ -181,10 +174,10 @@ namespace basecross {
 		}
 	}
 
-	void GameStage::RandamPiecePosition(Vec3 originPosition)
+	void GameStage::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
 	{
 		int randamCount = 0;
-		randamCount = rand() % 1 + 20;
+		randamCount = rand() % 9 + 1;
 		randamCount = 5;
 
 		Vec3 a = Vec3();
@@ -222,6 +215,25 @@ namespace basecross {
 		RandamPiecePosition(upLeft);
 		RandamPiecePosition(upRight);
 
+	}
+
+	void GameStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
+	{
+		int randam = rand() % 3;
+		randam = 0;
+		//右上
+		AddGameObject<EnemyPiece>(Vec3(10.0f, 0.0f, 6.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		AddGameObject<EnemyPiece>(Vec3(4.0f, 0.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		//左上
+		AddGameObject<EnemyPiece>(Vec3(-5.0f, 0.0f, 46.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5, 0.5f));
+		//右下
+		AddGameObject<EnemyPiece>(Vec3(67.0f, 0.0f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));		
+		AddGameObject<EnemyPiece>(Vec3(65.0f, 0.0f, -54.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));	
+		AddGameObject<EnemyPiece>(Vec3(70.0f, 0.0f, -31.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+
+
+		//左下
+		AddGameObject<EnemyPiece>(Vec3(-40.0f, 0.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
 	}
 
 	void GameStage::CreateBreakWall()
@@ -529,7 +541,7 @@ namespace basecross {
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 
-			//AddGameObject<MyLight>();//光の表現をこれでやる
+			AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
 			CreateViewLight();
 			//Playerを追加
@@ -537,6 +549,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			CreateEnemyPiece2();//ランダムにかけらが出るようになる
+			CerateBreakEnemyPiece();
 			CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加

@@ -10,6 +10,7 @@ namespace basecross {
 		void CreatePlayer();//プレイヤーの作成
 		void CreateEnemyPiece();//敵のかけらの作成
 		void CreateEnemyPiece2();//敵のかけらの作成（集まっているかけら何個出るか決める）
+		void CerateBreakEnemyPiece();//壊れる壁の後ろに生成するかけら
 		void CreateEnemy();//敵の作成
 		void CreateRadar();//レーダーの作成
 		void CreateWall();//壁の作成
