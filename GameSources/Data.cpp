@@ -37,6 +37,9 @@ namespace basecross {
 		app->RegisterTexture(L"Bar", strTexture);	
 		strTexture = texPath + L"BarYoko2.png";
 		app->RegisterTexture(L"BarSide", strTexture);
+		strTexture = texPath + L"BarFrame2.png";
+		app->RegisterTexture(L"BarFrame", strTexture);
+
 
 		strTexture = texPath + L"Clear.png";
 		app->RegisterTexture(L"Clear", strTexture);
