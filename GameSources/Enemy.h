@@ -11,12 +11,17 @@ namespace basecross {
 	class Enemy :public GameObject
 	{
 		float m_Hp;
-		int m_counter;
+		Vec3 m_pos;
+		Vec3 m_rot;
+		Vec3 m_scale;
+
 
 		weak_ptr<Bullet> m_bullet;
 
 	public:
 		Enemy(const shared_ptr<Stage>& StaegePtr);
+		Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale);
+
 		~Enemy() {}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;

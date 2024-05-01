@@ -146,7 +146,7 @@ namespace basecross {
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
-			AddGameObject<EnemyPiece>(v[0], (Quat)v[1], v[2]);
+			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 		}
 	}
 

@@ -43,11 +43,32 @@ namespace basecross {
 	}
 
 	//Playerを追加する関数
-	void GameStage::CreatePlayer()
+	void GameStage::CreatePlayer()//改善すべき点
 	{
-		auto ptrPlayer = AddGameObject<Player>();
-		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを取得
-		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
+		int randamPlayer = 0;
+		randamPlayer = rand() % 3;
+		shared_ptr<Player> ptrPlayer;
+		randamPlayer = 0;
+		//shared_ptr<GameObject> nanasiObject;
+		//ランダムにPlayerの出現場所が決まる
+		switch (randamPlayer)
+		{
+		case 0:		
+			ptrPlayer = AddGameObject<Player>(Vec3(10.0f,0.5f,-40.0f),Vec3(0.0f,0.0f, 0.0f));
+			break;
+		case 1:
+			ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, 0.0f, 0.0f));
+			break;
+		case 2:
+			ptrPlayer = AddGameObject<Player>(Vec3(60.0f, 0.5f, 10.0f), Vec3(0.0f, 0.0f, 0.0f));
+			break;
+
+		default:
+			ptrPlayer = AddGameObject<Player>();
+			break;
+		}
+		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+
 
 	}
 	//レーダーを追加する関数
@@ -65,7 +86,27 @@ namespace basecross {
 	//敵を作成
 	void GameStage::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>();
+		int randamEnemy = 0;
+		randamEnemy = rand() % 4;	
+		shared_ptr<Enemy> ptrEnemy;
+		//randamEnemy = 3;
+		switch (randamEnemy)
+		{
+		case 0:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f),Vec3(1.0f,1.0f,1.0f));
+			break;
+		case 1:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-58.0f, 0.5f, 65.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 2:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(41.0f, 0.5f, 63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 3:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));			
+			break;
+		default:
+			break;
+		}	
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -73,48 +114,232 @@ namespace basecross {
 	void GameStage::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{//1
-				Vec3(0.5f,0.5f,0.5f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(5.0f,0.5f,0.0f)
+			{//8				
+				Vec3(-6.25f,0.0f,24.0f),
+				Vec3(0.0f,0.0f,0.0f),	
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//2
-				Vec3(0.5f,0.5f,0.5f),
+			{//9
+				Vec3(-4.56f,0.0f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-5.0f,0.0f,5.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//3
-				Vec3(0.5f,0.5f,0.5f),
+			{//10
+				Vec3(-7.25f,0.0f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-8.0f,0.0f,3.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
+			},			
+			{//11
+				Vec3(28.9f,0.0f,-14.0f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(0.5f,0.5f,0.5f)
 			},
-			{//4
-				Vec3(0.5f,0.5f,0.5f),
+			{//12
+				Vec3(45.0f,0.0f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-10.0f,0.0f,23.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//5
-				Vec3(0.5f,0.5f,0.5f),
+			{//13
+				Vec3(16.0f,0.0f,10.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-23.0f,0.0f,13.0f)
+				Vec3(0.5f,0.5f,0.5f)
 			},
-			{//6
-				Vec3(0.5f,0.5f,0.5f),
+			{//14
+				Vec3(12.0f,0.0f,41.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-18.0f,0.0f,3.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//7
-				Vec3(0.5f,0.5f,0.5f),
+			{//15
+				Vec3(0.6f,0.0f,34.3f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(15.0f,0.0f,12.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
+			},
+			{//16
+				Vec3(10.0f,0.0f,20.0f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(0.5f,0.5f,0.5f)
+
 			}
 
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
-			AddGameObject<EnemyPiece>(v[0], (Quat)v[1], v[2]);
+			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 		}
 	}
+
+	void GameStage::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
+	{
+		int randamCount = 0;
+		randamCount = rand() % 9 + 1;
+		randamCount = 5;
+
+		Vec3 a = Vec3();
+		Vec3 b = Vec3(0.5f, 0.5f, 0.5f);
+		vector<Vec3> Trans;
+		srand(time(0));//ランダムリセット
+
+		for (int i = 0; i < randamCount; i++)
+		{
+			int x = rand() % 9 + 1;//ランダムに中心点からx座標がどれくらい離れているか決める
+
+			int z = rand() % 9 + 1;//ランダムに中心点からy座標がどれくらい離れているか決める
+			x - 5; z - 5;//これで離れている座標の差にマイナスを入れる
+
+			Vec3 Pos = Vec3(originPosition.x + x, originPosition.y, originPosition.z + z);//これでランダムにピースを置くことができる
+			Trans.push_back(Pos);
+
+		}
+		for (auto i : Trans)
+		{
+			AddGameObject<EnemyPiece>(i, a, b);
+		}
+
+	}
+
+	void GameStage::CreateEnemyPiece2()
+	{
+		Vec3 lowerLeft = Vec3(-27.6f, 0.0f, -18.4f);//左下
+		Vec3 lowerRight = Vec3(20.0f, 0.0f, -43.0f);//右下
+		Vec3 upLeft = Vec3(-68.0f, 0.0f, 12.0f);//左上
+		Vec3 upRight = Vec3(9.0f, 0.0f, 68.0f);//右上
+
+		RandamPiecePosition(lowerLeft);
+		RandamPiecePosition(lowerRight);
+		RandamPiecePosition(upLeft);
+		RandamPiecePosition(upRight);
+
+	}
+
+	void GameStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
+	{
+		int randam = rand() % 3;
+		randam = 0;
+		//右上
+		AddGameObject<EnemyPiece>(Vec3(10.0f, 0.0f, 6.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		AddGameObject<EnemyPiece>(Vec3(4.0f, 0.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		//左上
+		AddGameObject<EnemyPiece>(Vec3(-5.0f, 0.0f, 46.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5, 0.5f));
+		//右下
+		AddGameObject<EnemyPiece>(Vec3(67.0f, 0.0f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));		
+		AddGameObject<EnemyPiece>(Vec3(65.0f, 0.0f, -54.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));	
+		AddGameObject<EnemyPiece>(Vec3(70.0f, 0.0f, -31.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+
+
+		//左下
+		AddGameObject<EnemyPiece>(Vec3(-40.0f, 0.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+	}
+
+	void GameStage::CreateBreakWall()
+	{
+
+		for (int count = 1; count < 20; count++)
+		{
+			switch (count)
+			{
+			case 1:
+				AddGameObject<BreakWall>(Vec3(59.0f, 4.0f, -39.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 24.0f));
+				break;
+			case 2:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -30.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 3:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -36.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 4:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -42.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 5:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -48.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 6:
+				AddGameObject<BreakWall>(Vec3(10.0f, 4.0f, 16.2f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 35.7f));
+				break;
+			case 7:
+				AddGameObject<BreakWall>(Vec3(16.25f, 1.0f, 2.8f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 8:
+				AddGameObject<BreakWall>(Vec3(13.72f, 1.0f, 8.23f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 9:
+				AddGameObject<BreakWall>(Vec3(11.19f, 1.0f, 13.66f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 10:
+				AddGameObject<BreakWall>(Vec3(8.66f, 1.0f, 19.09f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 11:
+				AddGameObject<BreakWall>(Vec3(6.13f, 1.0f, 24.52f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 12:
+				AddGameObject<BreakWall>(Vec3(3.69f, 1.0f, 29.73f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 5.5f));
+				break;
+			case 13:
+				AddGameObject<BreakWall>(Vec3(-31.3f, 4.0f, -38.0f), Vec3(0.0f, XMConvertToRadians(20.0f), 0.0f), Vec3(6.0f, 3.0f, 0.5f));
+				break;
+			case 14:
+				AddGameObject<BreakWall>(Vec3(-31.3f, 1.0f, -38.0f), Vec3(0.0f, XMConvertToRadians(20.0f), 0.0f), Vec3(6.0f, 3.0f, 0.5f));
+				break;
+			case 15:
+				AddGameObject<BreakWall>(Vec3(-11.61f, 4.0f, 50.0f), Vec3(0.0f, XMConvertToRadians(40.0f), 0.0f), Vec3(0.5f, 3.0f, 7.0f));
+				break;
+			case 16:
+				AddGameObject<BreakWall>(Vec3(-11.61f, 1.0f, 50.0f), Vec3(0.0f, XMConvertToRadians(40.0f), 0.0f), Vec3(0.5f, 3.0f, 7.0f));
+				break;
+
+			}
+		}
+	}
+
+	void GameStage::CreateBlockSecond()
+	{
+		for (int count = 0; count < 12; count++)
+		{
+			switch (count)
+			{
+			case 1:
+				AddGameObject<BlockSecond>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.5f, 10.0f, 20.5f));
+				break;
+			case 2:
+				AddGameObject<BlockSecond>(Vec3(57.8f, 2.5f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 10.0f));
+				break;
+			case 3:
+				AddGameObject<BlockSecond>(Vec3(55.5f, 4.5f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 4:
+				AddGameObject<BlockSecond>(Vec3(15.0f, 4.5f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 5:
+				AddGameObject<BlockSecond>(Vec3(57.0f, 4.5f, 28.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 6:
+				AddGameObject<BlockSecond>(Vec3(27.0f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 7:
+				AddGameObject<BlockSecond>(Vec3(-17.0f, 4.5f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 8:
+				AddGameObject<BlockSecond>(Vec3(-43.0f, 4.5f, -33.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 9:
+				AddGameObject<BlockSecond>(Vec3(-56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 10:
+				AddGameObject<BlockSecond>(Vec3(-20.0f, 4.5f, 40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 11:
+				AddGameObject<BlockSecond>(Vec3(-50.5f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+
+			}
+		}
+	}
+
 
 	void GameStage::CreateWall()
 	{
@@ -314,7 +539,7 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 			//テクスチャ、モデルの設定データ
-			auto data = AddGameObject<Data>();
+			//auto data = AddGameObject<Data>();
 
 			AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
@@ -323,6 +548,8 @@ namespace basecross {
 			CreatePlayer();
 			//敵のかけらを表示
 			CreateEnemyPiece();
+			CreateEnemyPiece2();//ランダムにかけらが出るようになる
+			CerateBreakEnemyPiece();
 			CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
@@ -330,6 +557,8 @@ namespace basecross {
 			//地面を生成
 			AddGameObject<Ground>();
 			CreateWall();//これでステージの壁を作る
+			CreateBreakWall();//壊れる壁の作成
+			CreateBlockSecond();
 			//ゲージを追加
 			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"Garge", garge);

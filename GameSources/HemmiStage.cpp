@@ -66,7 +66,27 @@ namespace basecross {
 	//敵を作成
 	void HemmiStage::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>();
+		int randamEnemy = 0;
+		randamEnemy = rand() % 4;
+		shared_ptr<Enemy> ptrEnemy;
+		randamEnemy = 3;
+		switch (randamEnemy)
+		{
+		case 0:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 1:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-58.0f, 0.5f, 65.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 2:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(41.0f, 0.5f, 63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		case 3:
+			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			break;
+		default:
+			break;
+		}
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -113,7 +133,7 @@ namespace basecross {
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
-			AddGameObject<EnemyPiece>(v[0], (Quat)v[1], v[2]);
+			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 		}
 	}
 
@@ -315,7 +335,7 @@ namespace basecross {
 	void HemmiStage::OnCreate() {
 		try {
 			//テクスチャ、モデルの設定データ
-			auto data = AddGameObject<Data>();
+			//auto data = AddGameObject<Data>();
 
 			AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
@@ -341,7 +361,10 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
 
+			//auto number = AddGameObject<UITime>(0, Vec3(0, 0, 0));
+			auto time = AddGameObject<TimeManager>();
 
+			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
 
 		}
 		catch (...) {

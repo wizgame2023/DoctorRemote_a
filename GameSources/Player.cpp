@@ -20,6 +20,26 @@ namespace basecross {
 		m_radarFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
+	Player::Player(const shared_ptr<Stage>& StagePtr, const shared_ptr<Transform>& trans):
+		GameObject(StagePtr),
+		m_trans(trans),
+		m_piece(0),
+		m_maxPiece(100.0f),
+		m_speed(5.0f),
+		m_radarFlag(false),
+		m_meshResName(L"Sensuikan_Mesh")
+	{}
+	Player::Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos,const Vec3& rot):
+		GameObject(StagePtr),
+		m_pos(pos),
+		m_rot(rot),
+		m_piece(0),
+		m_maxPiece(100.0f),
+		m_speed(5.0f),
+		m_radarFlag(false),
+		m_meshResName(L"Sensuikan_Mesh")
+	{}
+
 
 	Vec2 Player::GetInputState()const {
 		Vec2 ret;
@@ -38,9 +58,8 @@ namespace basecross {
 	float Player::PlayerAngle() const{
 
 		//進行方向の向きを計算
-		auto ptrTrans = GetComponent<Transform>();
 		auto ptrCamera = OnGetDrawCamera();
-		auto front = ptrTrans->GetPosition() - ptrCamera->GetEye();
+		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
 		front.y = 0;
 		front.normalize();
 		//進行方向の向きからの角度を算出
@@ -112,8 +131,8 @@ namespace basecross {
 		//初期位置などの設定
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(1.0f, 1.0f, 2.0f);
-		m_trans->SetRotation(0.0f, 30.0f, 0.0f);
-		m_trans->SetPosition(0.0f, 0.5f, 0.0f);
+		m_trans->SetRotation(m_rot);
+		m_trans->SetPosition(m_pos);
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
@@ -161,8 +180,30 @@ namespace basecross {
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 				auto bullet = stage->AddGameObject<Bullet>(ptrPos, Vec3(0.3f, 0.3f, 0.3f), 10.0f, frontAngle, 1);
+
+				auto soundE = App::GetApp()->GetXAudio2Manager();
+				soundE->Start(L"cusor",0,0.5f);
 			}
 		}
+
+		auto trans = GetComponent<Transform>();
+		//デバック用
+		wstringstream wss(L"");
+		auto scene = App::GetApp()->GetScene<Scene>();
+		wss << L"transform : "
+			<< L"\n"
+			<< L"postion : ("
+			<<L"\nx."
+			<< trans->GetPosition().x
+			<< L","
+			<<"\ny."
+			<< trans->GetPosition().y
+			<< L","
+			<<"\nz."
+			<< trans->GetPosition().z
+			<< L")"
+			<< endl;
+		scene->SetDebugString(wss.str());
 
 	}
 
@@ -202,6 +243,9 @@ namespace basecross {
 	}
 	void Player::SetRadarPiece(float piece) {
 		m_piece = piece;
+	}
+	bool Player::GetEnemyFlag() {
+		return m_enemyFlag;
 	}
 }
 //end basecross

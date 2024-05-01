@@ -14,7 +14,7 @@ namespace basecross {
 		const float sizeX, const float sizeY, wstring meshResName,//画像のサイズ(動かしたい方に値を入れる)
 		float ratio,  float width, float heigth, //ゲージの割合と表示するサイズ
 		Col4 color,Col4 color2,
-		Vec3 screen,Vec3 distance
+		Vec3 screen,Vec3 distance //大まかな位置と調整
 	):
 		GameObject(stagePtr),
 		m_trans(trans),
@@ -99,16 +99,17 @@ namespace basecross {
 
 		auto position = m_trans->GetPosition();
 
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		wss << L"transform _x:" <<
-			 position.x<< "\n" <<
-			L"transform _y:" <<
-			position.y<<
-			"\n" <<
-			endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
+		//デバック用
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss << L"transform _x:" <<
+		//	 position.x<< "\n" <<
+		//	L"transform _y:" <<
+		//	position.y<<
+		//	"\n" <<
+		//	endl;
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 
 
 	}

@@ -49,7 +49,7 @@ namespace basecross {
 	}
 	void Bullet::OnUpdate()
 	{		
-		wstringstream wss;//デバック用文字列
+		//wstringstream wss;//デバック用文字列
 
 		auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
 
@@ -83,13 +83,13 @@ namespace basecross {
 			// ステージから自身を破棄する
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 		}
-		wss << L"AllPosition :" << AllPosition << endl;
-		wss << L"AllStartPosition :" << 20.0f << endl;
+		//wss << L"AllPosition :" << AllPosition << endl;
+		//wss << L"AllStartPosition :" << 20.0f << endl;
 
 
 		//デバック用文字列を生成
-		auto scene = app->GetScene<Scene>();//シーン取得
-		scene->SetDebugString(L"a\n" + wss.str());
+		//auto scene = app->GetScene<Scene>();//シーン取得
+		//scene->SetDebugString(L"a\n" + wss.str());
 
 
 	}

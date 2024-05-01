@@ -22,6 +22,7 @@ namespace basecross {
 		auto path = app->GetDataDirWString();
 		auto texPath = path + L"Textures/";
 		auto modPath = path + L"Models/";
+		auto SoundPath = path + L"Sounds/";
 
 		//テクスチャ
 		wstring strTexture = texPath + L"hakusi.jpg";
@@ -36,6 +37,13 @@ namespace basecross {
 		app->RegisterTexture(L"Bar", strTexture);	
 		strTexture = texPath + L"BarYoko2.png";
 		app->RegisterTexture(L"BarSide", strTexture);
+
+		strTexture = texPath + L"Clear.png";
+		app->RegisterTexture(L"Clear", strTexture);
+		strTexture = texPath + L"GameOver.png";
+		app->RegisterTexture(L"GameOver", strTexture);
+		strTexture = texPath + L"Start.png";
+		app->RegisterTexture(L"Start", strTexture);
 
 		strTexture = texPath + L"RadarBar.png";		
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -62,6 +70,7 @@ namespace basecross {
 		strTexture = texPath + L"WallSkin2.png";
 		app->RegisterTexture(L"WallSkin2", strTexture);
 
+		
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
@@ -85,6 +94,8 @@ namespace basecross {
 		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle2-1.bmf");
 		app->RegisterResource(L"Obstacle_Mesh2", staticModelMesh);
 
+		wstring soundWav = SoundPath + L"AS_1118965_ピュッ_／ビュッ_／水鉄砲／飛び出す音.wav";
+		App::GetApp()->RegisterWav(L"cusor", soundWav);
 
 		//staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"kakera.bmf");
 		//app->RegisterResource(L"Kakera_Mesh", staticMultiModelMesh);

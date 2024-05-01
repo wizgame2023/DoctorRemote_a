@@ -24,18 +24,18 @@ namespace basecross {
 		m_currentHp -= elapsedTime * m_hpSpeed;
 
 		if (m_currentHp <= 0.0f) {
-			m_currentHp = m_maxHp;
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
 
 		//デバック用
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		wss << L"currentHp : " <<
-			m_currentHp <<
-			"\n" <<
-			endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss << L"currentHp : " <<
+		//	m_currentHp <<
+		//	"\n" <<
+		//	endl;
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 	}
 
 	float StageManager::GetHp() {
