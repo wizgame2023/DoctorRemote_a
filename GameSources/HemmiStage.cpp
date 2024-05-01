@@ -16,6 +16,13 @@ namespace basecross {
 	//ビューとライトの作成
 	void HemmiStage::CreateViewLight() {
 
+		auto& app = App::GetApp();
+
+		auto path = app->GetDataDirWString();
+		auto texPath = path + L"Textures/";
+		wstring strTexture = texPath + L"BarFrame2.png";
+		app->RegisterTexture(L"BarFrame", strTexture);
+
 
 		// カメラの設定
 		auto camera = ObjectFactory::Create<MainCamera>();
@@ -95,14 +102,14 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//1
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(5.0f,0.5f,0.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(5.0f,0.5f,0.0f)
+				Vec3(0.5f,0.5f,0.5f),
 			},
 			{//2
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-5.0f,0.0f,5.0f)
+				Vec3(-20.0f,0.0f,5.0f)
 			},
 			{//3
 				Vec3(0.5f,0.5f,0.5f),
@@ -122,12 +129,12 @@ namespace basecross {
 			{//6
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-18.0f,0.0f,3.0f)
+				Vec3(0.0f,0.0f,3.0f)
 			},
 			{//7
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(15.0f,0.0f,12.0f)
+				Vec3(0.0f,0.0f,0.0f)
 			}
 
 		};
@@ -337,7 +344,7 @@ namespace basecross {
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 
-			AddGameObject<MyLight>();//光の表現をこれでやる
+			//AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
 			CreateViewLight();
 			//Playerを追加
@@ -362,7 +369,7 @@ namespace basecross {
 			SetSharedGameObject(L"StageManager", stageManager);
 
 			//auto number = AddGameObject<UITime>(0, Vec3(0, 0, 0));
-			auto time = AddGameObject<TimeManager>();
+			//auto time = AddGameObject<TimeManager>();
 
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
 

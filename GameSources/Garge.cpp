@@ -80,7 +80,7 @@ namespace basecross {
 		//•`‰æ‚Ì•\¦
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_meshResName);
-		m_draw->SetSamplerState(SamplerState::LinearWrap);
+		m_draw->SetSamplerState(SamplerState::SamplerNone);
 		//F‚Ìİ’è
 		m_draw->SetDiffuse(m_color2);
 		//êŠ‚Ìİ’è
