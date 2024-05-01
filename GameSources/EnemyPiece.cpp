@@ -17,7 +17,7 @@ namespace basecross {
 		m_position(position),
 		m_rotate(rotate),
 		m_scale(scale),
-		m_meshResName(L"DEFAULT_CUBE")
+		m_meshResName(L"Kakera_Mesh")
 
 	{}
 	EnemyPiece::~EnemyPiece() {};
@@ -28,20 +28,30 @@ namespace basecross {
 		ptrTrans->SetRotation(m_rotate);
 		ptrTrans->SetPosition(m_position);
 
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+
 		//オブジェクトの描画
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetFogEnabled(true);
+		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+		//ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshResource(m_meshResName);
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetOwnShadowActive(true);
 		//ptrDraw->SetTextureResource(L"");
 		
 		//オブジェクトの影の描画
 		auto ptrShadow = AddComponent<Shadowmap>();
 		ptrShadow->SetMeshResource(m_meshResName);
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		//コライダー
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(true);
+		colPtr->SetDrawActive(false);
 		colPtr->SetAfterCollision(AfterCollision::None);
 
 		AddTag(L"EnemyPiece");
