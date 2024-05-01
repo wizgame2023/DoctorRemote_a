@@ -157,7 +157,7 @@ namespace basecross {
 
 		auto colPtr = AddComponent<CollisionObb>();
 		colPtr->SetDrawActive(true);
-		colPtr->SetAfterCollision(AfterCollision::None);
+		colPtr->SetAfterCollision(AfterCollision::Auto);
 
 		AddTag(L"Player");
 
