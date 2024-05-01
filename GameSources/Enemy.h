@@ -15,6 +15,7 @@ namespace basecross {
 		Vec3 m_rot;
 		Vec3 m_scale;
 
+		wstring m_meshResName;
 
 		weak_ptr<Bullet> m_bullet;
 
