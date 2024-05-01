@@ -284,7 +284,21 @@ namespace basecross {
 	} 
 	void O_GameStage::CreateRecoveryWall()
 	{
-
+		for (int count = 0;  count < 4;  count++)
+		{
+			switch (count)
+			{
+			case 1:
+				AddGameObject<RecoveryWall>(Vec3(0.5f, 0.5f, -39.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(90.0f)), Vec3(2.0f, 0.5f, 2.0f));
+				break;
+			case 2:
+				AddGameObject<RecoveryWall>(Vec3(30.0f, 0.5f, 74.5f), Vec3(XMConvertToRadians(90.0f), 0.0f, 0.0f), Vec3(2.0f, 0.5f, 2.0f));
+				break;
+			case 3:
+				AddGameObject<RecoveryWall>(Vec3(-7.0f, 0.5f, -60.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(90.0f)), Vec3(2.0f, 0.5f, 2.0f));
+				break;
+			}
+		}
 	}
 	void O_GameStage::CreateBlock()
 	{
