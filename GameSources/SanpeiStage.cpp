@@ -99,7 +99,7 @@ namespace basecross {
 	//敵を作成
 	void SanpeiStage::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>();
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(0.0f,0.0f,0.0f),Vec3(0.0f,0.0f,0.0f),Vec3(1.0f,1.0f,1.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -108,14 +108,14 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//1
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(5.0f,0.5f,0.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(5.0f,0.5f,0.0f)
+				Vec3(0.5f,0.5f,0.5f),
 			},
 			{//2
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-5.0f,0.0f,5.0f)
+				Vec3(-20.0f,0.0f,5.0f)
 			},
 			{//3
 				Vec3(0.5f,0.5f,0.5f),
@@ -135,12 +135,12 @@ namespace basecross {
 			{//6
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-18.0f,0.0f,3.0f)
+				Vec3(0.0f,0.0f,3.0f)
 			},
 			{//7
 				Vec3(0.5f,0.5f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(15.0f,0.0f,12.0f)
+				Vec3(0.0f,0.0f,0.0f)
 			}
 
 		};
@@ -155,7 +155,7 @@ namespace basecross {
 		try {
 
 			//テクスチャ、モデルの設定データ
-			auto data = AddGameObject<Data>();
+			//auto data = AddGameObject<Data>();
 
 			auto& app = App::GetApp();
 
