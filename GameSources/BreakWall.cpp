@@ -37,8 +37,10 @@ namespace basecross {
 			Vec3(0.0f, -0.5f, 0.0f)
 		);
 
-		auto ptrcollider = AddComponent<CollisionObb>();
-		ptrcollider->SetDrawActive(true);
+		auto ptrCollider = AddComponent<CollisionObb>();
+		ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
+
+		ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
 
 
 		//描画コンポーネント

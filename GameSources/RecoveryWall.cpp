@@ -28,8 +28,9 @@ namespace basecross {
 		ptrTransform->SetRotation(m_Rotate);//ローテーション（回転）を設定		
 		ptrTransform->SetScale(m_Scale);//大きさを設定
 		//接触のコリジョンを追加
-		auto ptrcollider = AddComponent<CollisionObb>();
-		ptrcollider->SetDrawActive(true);
+		auto ptrCollider = AddComponent<CollisionObb>();
+		ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
+		ptrCollider->SetDrawActive(true);
 
 
 		//描画コンポーネント
