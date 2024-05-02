@@ -7,8 +7,8 @@
 #include "Project.h"
 
 namespace basecross {
-	Block::Block(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale) :
-		GameObject(StagePtr), m_pos(pos), m_rot(rot), m_scale(scale)
+	Block::Block(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot) :
+		GameObject(StagePtr), m_pos(pos), m_rot(rot)
 	{
 	}
 	void Block::OnCreate()
@@ -16,7 +16,7 @@ namespace basecross {
 		auto ptr = GetComponent<Transform>();
 		ptr->SetPosition(m_pos);
 		ptr->SetRotation(m_rot);
-		ptr->SetScale(m_scale);
+		ptr->SetScale(2.5f, 2.5f, 2.5f);
 
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"Obstacle_Mesh1");
