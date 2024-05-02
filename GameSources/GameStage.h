@@ -16,6 +16,7 @@ namespace basecross {
 		void CreateWall();//•Ç‚Ìì¬
 		void CreateBlock();//áŠQ•¨‚Ìì¬
 		void CreateBreakWall();//‰ó‚ê‚é•Ç‚Ìì¬
+		void CreateRecoveryWall();//¡‚·•Ç‚Ìì¬
 		void CreateBlockSecond();//áŠQ•¨‚Ìì¬‚Q
 		void RandamPiecePosition(Vec3 originPosition);//ƒ‰ƒ“ƒ_ƒ€‚É
 		shared_ptr<Transform> m_Trans;
