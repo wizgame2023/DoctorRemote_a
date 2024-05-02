@@ -22,9 +22,13 @@ namespace basecross {
 		ptrDraw->SetMeshResource(L"Obstacle_Mesh1");
 		ptrDraw->SetFogEnabled(true);
 
+		auto ptrColl = AddComponent<CollisionSphere>();
+
 		GetStage()->SetCollisionPerformanceActive(true);
 		GetStage()->SetUpdatePerformanceActive(true);
 		GetStage()->SetDrawPerformanceActive(true);
+
+		AddTag(L"Obj");
 	}
 }
 
