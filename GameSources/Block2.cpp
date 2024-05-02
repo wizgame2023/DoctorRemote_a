@@ -22,9 +22,14 @@ namespace basecross {
 		ptrDraw->SetMeshResource(L"DEFAULT_CYLINDER");
 		ptrDraw->SetFogEnabled(true);
 
+		auto ptrColl = AddComponent<CollisionSphere>();
+
 		GetStage()->SetCollisionPerformanceActive(true);
 		GetStage()->SetUpdatePerformanceActive(true);
 		GetStage()->SetDrawPerformanceActive(true);
+
+		AddTag(L"Obj");
+
 	}
 }
 //end namespeca basecross
