@@ -130,13 +130,13 @@ namespace basecross {
 	void Player::OnCreate(){
 		//‰ŠúˆÊ’u‚È‚Ç‚Ìİ’è
 		m_trans = GetComponent<Transform>();
-		m_trans->SetScale(1.0f, 1.0f, 2.0f);
+		m_trans->SetScale(2.0f, 2.0f, 4.0f);
 		m_trans->SetRotation(m_rot);
 		m_trans->SetPosition(m_pos);
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.5f, 0.5f, 0.45f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI, 0.0f),
 			Vec3(0.0f, -0.5f, 0.0f)
