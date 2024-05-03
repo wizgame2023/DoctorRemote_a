@@ -68,6 +68,10 @@ namespace basecross {
 		app->RegisterTexture(L"WallSkin", strTexture);
 		strTexture = texPath + L"WallSkin2.png";
 		app->RegisterTexture(L"WallSkin2", strTexture);
+		strTexture = texPath + L"WallSkin3.png";
+		app->RegisterTexture(L"WallBreak", strTexture);
+		strTexture = texPath + L"WallSkin4.png";
+		app->RegisterTexture(L"WallRecovery", strTexture);
 
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
@@ -120,7 +124,7 @@ namespace basecross {
     void Scene::OnEvent(const shared_ptr<Event>& event) {
         if (event->m_MsgStr == L"ToGameStage") {
             //ゲームステージの設定
-            ResetActiveStage<HemmiStage>();
+            ResetActiveStage<GameStage>();
 
         }
         else if (event->m_MsgStr == L"ToStartStage") {
