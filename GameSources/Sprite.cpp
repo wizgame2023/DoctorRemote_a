@@ -44,5 +44,8 @@ namespace basecross {
 	void Sprite::OnUpdate() {
 
 	}
+	void Sprite::SetColor(Col4 color) {
+		m_draw->SetDiffuse(color);
+	}
 }
 //end namespace basecross

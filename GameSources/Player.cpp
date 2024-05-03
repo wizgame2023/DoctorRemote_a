@@ -36,7 +36,7 @@ namespace basecross {
 		m_pos(pos),
 		m_rot(rot),
 		m_piece(0),
-		m_onePiece(15.0f),
+		m_onePiece(7.0f),
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_radarFlag(false),
@@ -185,7 +185,7 @@ namespace basecross {
 				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.3f, 0.3f, 0.3f), 20.0f, frontAngle, 1);
 
 				auto soundE = App::GetApp()->GetXAudio2Manager();
-				soundE->Start(L"cusor",0,0.5f);
+				soundE->Start(L"ShotSE",0,0.5f);
 			}
 		}
 
@@ -217,15 +217,23 @@ namespace basecross {
 			if (m_maxPiece < m_piece) {
 				m_radarFlag = true;
 			}
+
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"ShotSE", 0, 0.5f);
+
 		}
 		if (other->FindTag(L"BigPiece")) {
 			srand(time(0));
 			int num;
-			num = rand() % 50 + m_onePiece;
+			num = rand() % 30 + m_onePiece;
 			SetPiece(num);
 			if (m_maxPiece < m_piece) {
 				m_radarFlag = true;
 			}
+
+			//auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
+			//bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
+
 		}
 	}
 
