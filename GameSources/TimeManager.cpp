@@ -28,6 +28,9 @@ namespace basecross {
 		m_secondNum = stage->AddGameObject<UITime>(m_seconds, pos2);
 		m_thirdNum = stage->AddGameObject<UITime>(m_third, pos1);
 		m_fourthNum = stage->AddGameObject<UITime>(m_fourth, pos);
+
+		auto ten = stage->AddGameObject<Sprite>(40.0f, 70.0f, L"NumbersTen", Vec3(-535, 350, 0));
+		ten->SetColor(Col4(0, 0, 1, 1));
 	}
 	void TimeManager::OnUpdate() {
 

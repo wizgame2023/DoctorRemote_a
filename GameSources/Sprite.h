@@ -24,7 +24,7 @@ namespace basecross {
 		shared_ptr<Transform> m_trans;
 
 		Vec3 m_pos;
-
+		Col4 m_color;
 
 	public:
 		Sprite(const shared_ptr<Stage>& stagePtr,float width, float heigth,
@@ -32,6 +32,8 @@ namespace basecross {
 		virtual ~Sprite(){}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+		
+		void SetColor(Col4 color);
 	};
 
 }
