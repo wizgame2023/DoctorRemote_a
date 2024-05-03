@@ -109,6 +109,11 @@ namespace basecross {
 			DestroyGameObject();//Ž©•ª‚ÍÁ‚¦‚é
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 		}
+		if (Other->FindTag(L"Obj"))
+		{
+			DestroyGameObject();//Ž©•ª‚ÍÁ‚¦‚é
+			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+		}
 	}
 
 	float Bullet::GetSpeed()
