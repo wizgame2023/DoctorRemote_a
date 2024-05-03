@@ -17,7 +17,10 @@ namespace basecross
 		Vec3 m_Rotate;
 		int m_Hp;
 		weak_ptr<Bullet> m_bullet;
+		shared_ptr<CollisionObb> m_ptrCollider;
+		shared_ptr<Transform> m_Trans;
 
+		Vec3 m_StartPosition;
 
 	public:
 		BreakWall(const shared_ptr<Stage>& StagePtr,		
