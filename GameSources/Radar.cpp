@@ -65,8 +65,8 @@ namespace basecross {
 	{
 		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得する
 
-		wstringstream wss;//デバック用文字列
-		wss << "test" << endl;
+		//wstringstream wss;//デバック用文字列
+		//wss << "test" << endl;
 		auto scene = app->GetScene<Scene>();//シーン取得
 
 
@@ -116,8 +116,8 @@ namespace basecross {
 			ptrPlayer->SetRadarPiece(0.0f);
 		}
 
-		wss << m_angle*degConvert
-			<< endl;//デバック用文字列を作成
+		//wss << m_angle*degConvert
+			//<< endl;//デバック用文字列を作成
 
 
 		PlayerEnemyLong(RadarVec3);//敵との距離によって色が変わる
@@ -128,7 +128,7 @@ namespace basecross {
 			float a = 1.0f;
 		}
 		//デバック用文字列を生成
-		scene->SetDebugString(L"a\n" + wss.str());
+		//scene->SetDebugString(L"a\n" + wss.str());
 
 	}
 
