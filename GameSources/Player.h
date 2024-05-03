@@ -16,6 +16,7 @@ namespace basecross {
 		float m_piece;
 		float m_maxPiece;
 		float m_speed;
+		float m_onePiece;
 
 		bool m_radarFlag;
 		bool m_enemyFlag;

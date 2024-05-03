@@ -28,6 +28,7 @@
 #include "UITime.h"
 #include "TimeManager.h"
 #include "EnemyPiece.h"
+#include "BigPiece.h"
 #include "FakePiece.h"
 #include "PieceGarge.h"
 #include "PieceGarge2.h"

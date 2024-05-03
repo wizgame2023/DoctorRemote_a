@@ -16,13 +16,6 @@ namespace basecross {
 	//ビューとライトの作成
 	void HemmiStage::CreateViewLight() {
 
-		auto& app = App::GetApp();
-
-		auto path = app->GetDataDirWString();
-		auto texPath = path + L"Textures/";
-		wstring strTexture = texPath + L"BarFrame2.png";
-		app->RegisterTexture(L"BarFrame", strTexture);
-
 
 		// カメラの設定
 		auto camera = ObjectFactory::Create<MainCamera>();
@@ -51,11 +44,32 @@ namespace basecross {
 	}
 
 	//Playerを追加する関数
-	void HemmiStage::CreatePlayer()
+	void HemmiStage::CreatePlayer()//改善すべき点
 	{
-		auto ptrPlayer = AddGameObject<Player>();
-		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを取得
-		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
+		int randamPlayer = 0;
+		randamPlayer = rand() % 3;
+		shared_ptr<Player> ptrPlayer;
+		randamPlayer = 0;
+		//shared_ptr<GameObject> nanasiObject;
+		//ランダムにPlayerの出現場所が決まる
+		switch (randamPlayer)
+		{
+		case 0:
+			ptrPlayer = AddGameObject<Player>(Vec3(10.0f, 0.5f, -40.0f), Vec3(0.0f, 0.0f, 0.0f));
+			break;
+		case 1:
+			ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, 0.0f, 0.0f));
+			break;
+		case 2:
+			ptrPlayer = AddGameObject<Player>(Vec3(60.0f, 0.5f, 10.0f), Vec3(0.0f, 0.0f, 0.0f));
+			break;
+
+		default:
+			ptrPlayer = AddGameObject<Player>();
+			break;
+		}
+		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
+
 
 	}
 	//レーダーを追加する関数
@@ -76,7 +90,6 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
-		randamEnemy = 3;
 		switch (randamEnemy)
 		{
 		case 0:
@@ -101,40 +114,57 @@ namespace basecross {
 	void HemmiStage::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{//1
-				Vec3(5.0f,0.5f,0.0f),
+			{//8				
+				Vec3(-6.25f,0.0f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//2
-				Vec3(0.5f,0.5f,0.5f),
+			{//9
+				Vec3(-4.56f,0.0f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-20.0f,0.0f,5.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//3
-				Vec3(0.5f,0.5f,0.5f),
+			{//10
+				Vec3(-7.25f,0.0f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-8.0f,0.0f,3.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//4
-				Vec3(0.5f,0.5f,0.5f),
+			{//11
+				Vec3(28.9f,0.0f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-10.0f,0.0f,23.0f)
+				Vec3(0.5f,0.5f,0.5f)
 			},
-			{//5
-				Vec3(0.5f,0.5f,0.5f),
+			{//12
+				Vec3(45.0f,0.0f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-23.0f,0.0f,13.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//6
-				Vec3(0.5f,0.5f,0.5f),
+			{//13
+				Vec3(16.0f,0.0f,10.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.0f,0.0f,3.0f)
+				Vec3(0.5f,0.5f,0.5f)
 			},
-			{//7
-				Vec3(0.5f,0.5f,0.5f),
+			{//14
+				Vec3(12.0f,0.0f,41.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.0f,0.0f,0.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
+			},
+			{//15
+				Vec3(0.6f,0.0f,34.3f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(0.5f,0.5f,0.5f)
+
+			},
+			{//16
+				Vec3(10.0f,0.0f,20.0f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(0.5f,0.5f,0.5f)
+
 			}
 
 		};
@@ -143,6 +173,193 @@ namespace basecross {
 			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 		}
 	}
+
+	void HemmiStage::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
+	{
+		int randamCount = 0;
+		randamCount = rand() % 9 + 1;
+		randamCount = 5;
+
+		Vec3 a = Vec3();
+		Vec3 b = Vec3(0.5f, 0.5f, 0.5f);
+		vector<Vec3> Trans;
+		srand(time(0));//ランダムリセット
+
+		for (int i = 0; i < randamCount; i++)
+		{
+			int x = rand() % 9 + 1;//ランダムに中心点からx座標がどれくらい離れているか決める
+
+			int z = rand() % 9 + 1;//ランダムに中心点からy座標がどれくらい離れているか決める
+			x - 5; z - 5;//これで離れている座標の差にマイナスを入れる
+
+			Vec3 Pos = Vec3(originPosition.x + x, originPosition.y, originPosition.z + z);//これでランダムにピースを置くことができる
+			Trans.push_back(Pos);
+
+		}
+		for (auto i : Trans)
+		{
+			AddGameObject<EnemyPiece>(i, a, b);
+		}
+
+	}
+
+	void HemmiStage::CreateEnemyPiece2()
+	{
+		Vec3 lowerLeft = Vec3(-27.6f, 0.0f, -18.4f);//左下
+		Vec3 lowerRight = Vec3(20.0f, 0.0f, -43.0f);//右下
+		Vec3 upLeft = Vec3(-68.0f, 0.0f, 12.0f);//左上
+		Vec3 upRight = Vec3(9.0f, 0.0f, 68.0f);//右上
+
+		RandamPiecePosition(lowerLeft);
+		RandamPiecePosition(lowerRight);
+		RandamPiecePosition(upLeft);
+		RandamPiecePosition(upRight);
+
+	}
+
+	void HemmiStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
+	{
+		int randam = rand() % 3;
+		randam = 0;
+		//右上
+		AddGameObject<EnemyPiece>(Vec3(10.0f, 0.0f, 6.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		AddGameObject<EnemyPiece>(Vec3(4.0f, 0.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		//左上
+		AddGameObject<EnemyPiece>(Vec3(-5.0f, 0.0f, 46.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5, 0.5f));
+		//右下
+		AddGameObject<EnemyPiece>(Vec3(67.0f, 0.0f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		AddGameObject<EnemyPiece>(Vec3(65.0f, 0.0f, -54.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		AddGameObject<EnemyPiece>(Vec3(70.0f, 0.0f, -31.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+
+
+		//左下
+		AddGameObject<EnemyPiece>(Vec3(-40.0f, 0.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+	}
+
+	void HemmiStage::CreateRecoveryWall()
+	{
+		for (int count = 0; count < 4; count++)
+		{
+			switch (count)
+			{
+			case 1:
+				AddGameObject<RecoveryWall>(Vec3(0.5f, 0.5f, -39.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(90.0f)), Vec3(2.0f, 0.5f, 2.0f));
+				break;
+			case 2:
+				AddGameObject<RecoveryWall>(Vec3(30.0f, 0.5f, 74.5f), Vec3(XMConvertToRadians(90.0f), 0.0f, 0.0f), Vec3(2.0f, 0.5f, 2.0f));
+				break;
+			case 3:
+				AddGameObject<RecoveryWall>(Vec3(-7.0f, 0.5f, -60.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(90.0f)), Vec3(2.0f, 0.5f, 2.0f));
+				break;
+			}
+		}
+	}
+
+
+	void HemmiStage::CreateBreakWall()
+	{
+
+		for (int count = 1; count < 20; count++)
+		{
+			switch (count)
+			{
+			case 1:
+				AddGameObject<BreakWall>(Vec3(59.0f, 4.0f, -39.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 24.0f));
+				break;
+			case 2:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -30.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 3:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -36.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 4:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -42.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 5:
+				AddGameObject<BreakWall>(Vec3(59.0f, 1.0f, -48.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 6:
+				AddGameObject<BreakWall>(Vec3(10.0f, 4.0f, 16.2f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 35.7f));
+				break;
+			case 7:
+				AddGameObject<BreakWall>(Vec3(16.25f, 1.0f, 2.8f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 8:
+				AddGameObject<BreakWall>(Vec3(13.72f, 1.0f, 8.23f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 9:
+				AddGameObject<BreakWall>(Vec3(11.19f, 1.0f, 13.66f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 10:
+				AddGameObject<BreakWall>(Vec3(8.66f, 1.0f, 19.09f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 11:
+				AddGameObject<BreakWall>(Vec3(6.13f, 1.0f, 24.52f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 6.0f));
+				break;
+			case 12:
+				AddGameObject<BreakWall>(Vec3(3.69f, 1.0f, 29.73f), Vec3(0.0f, XMConvertToRadians(-25.0f), 0.0f), Vec3(0.5f, 3.0f, 5.5f));
+				break;
+			case 13:
+				AddGameObject<BreakWall>(Vec3(-31.3f, 4.0f, -38.0f), Vec3(0.0f, XMConvertToRadians(20.0f), 0.0f), Vec3(6.0f, 3.0f, 0.5f));
+				break;
+			case 14:
+				AddGameObject<BreakWall>(Vec3(-31.3f, 1.0f, -38.0f), Vec3(0.0f, XMConvertToRadians(20.0f), 0.0f), Vec3(6.0f, 3.0f, 0.5f));
+				break;
+			case 15:
+				AddGameObject<BreakWall>(Vec3(-11.61f, 4.0f, 50.0f), Vec3(0.0f, XMConvertToRadians(40.0f), 0.0f), Vec3(0.5f, 3.0f, 7.0f));
+				break;
+			case 16:
+				AddGameObject<BreakWall>(Vec3(-11.61f, 1.0f, 50.0f), Vec3(0.0f, XMConvertToRadians(40.0f), 0.0f), Vec3(0.5f, 3.0f, 7.0f));
+				break;
+
+			}
+		}
+	}
+
+	void HemmiStage::CreateBlockSecond()
+	{
+		for (int count = 0; count < 12; count++)
+		{
+			switch (count)
+			{
+			case 1:
+				AddGameObject<BlockSecond>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.5f, 10.0f, 20.5f));
+				break;
+			case 2:
+				AddGameObject<BlockSecond>(Vec3(57.8f, 2.5f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 10.0f));
+				break;
+			case 3:
+				AddGameObject<BlockSecond>(Vec3(55.5f, 4.5f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 4:
+				AddGameObject<BlockSecond>(Vec3(15.0f, 4.5f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 5:
+				AddGameObject<BlockSecond>(Vec3(57.0f, 4.5f, 28.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 6:
+				AddGameObject<BlockSecond>(Vec3(27.0f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 7:
+				AddGameObject<BlockSecond>(Vec3(-17.0f, 4.5f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 8:
+				AddGameObject<BlockSecond>(Vec3(-43.0f, 4.5f, -33.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 9:
+				AddGameObject<BlockSecond>(Vec3(-56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 10:
+				AddGameObject<BlockSecond>(Vec3(-20.0f, 4.5f, 40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+			case 11:
+				AddGameObject<BlockSecond>(Vec3(-50.5f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				break;
+
+			}
+		}
+	}
+
 
 	void HemmiStage::CreateWall()
 	{
@@ -182,7 +399,7 @@ namespace basecross {
 				AddGameObject<Wall>(Vec3(56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(38.0f, 10.0f, 0.5f));
 				break;
 			case 10:
-				AddGameObject<Wall>(Vec3(-67.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(16.0f, 10.0f, 0.5f));
+				AddGameObject<Wall>(Vec3(-70.25f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(9.5f, 10.0f, 0.5f));
 				break;
 			case 11:
 				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -63.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 24.0f));
@@ -225,29 +442,29 @@ namespace basecross {
 				AddGameObject<Wall>(Vec3(-6.36f, 4.5f, -47.48f), Vec3(0.0f, XMConvertToRadians(30.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
 				break;
 			}
-			for (int remCount = 23; remCount < 28; remCount++)
+		}
+		for (int remCount = 23; remCount < 28; remCount++)
+		{
+			switch (remCount)
 			{
-				switch (remCount)
-				{
-					//内壁5
-				case 23:
-					AddGameObject<Wall>(Vec3(-9.65f, 4.5f, -38.6f), Vec3(0.0f, XMConvertToRadians(-60.0f), 0.0f), Vec3(12.0f, 10.0f, 0.5f));
-					break;
-					//内壁6
-				case 24:
-					AddGameObject<Wall>(Vec3(3.46f, 4.5f, 33.3f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
-					break;
-				case 25:
-					AddGameObject<Wall>(Vec3(-2.78f, 4.5f, 40.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(8.0f, 10.0f, 0.5f));
-					break;
-				case 26:
-					AddGameObject<Wall>(Vec3(-5.5f, 4.5f, 35.7f), Vec3(0.0f, 0.0, 0.0f), Vec3(0.5f, 10.0f, 14.0f));
-					break;
-				case 27:
-					AddGameObject<Wall>(Vec3(-4.5f, 4.5f, 65.0f), Vec3(0.0f, XMConvertToRadians(-30.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
-					break;
+				//内壁5
+			case 23:
+				AddGameObject<Wall>(Vec3(-9.65f, 4.5f, -38.6f), Vec3(0.0f, XMConvertToRadians(-60.0f), 0.0f), Vec3(12.0f, 10.0f, 0.5f));
+				break;
+				//内壁6
+			case 24:
+				AddGameObject<Wall>(Vec3(3.46f, 4.5f, 33.3f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+				break;
+			case 25:
+				AddGameObject<Wall>(Vec3(-2.78f, 4.5f, 40.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(8.0f, 10.0f, 0.5f));
+				break;
+			case 26:
+				AddGameObject<Wall>(Vec3(-5.5f, 4.5f, 35.7f), Vec3(0.0f, 0.0, 0.0f), Vec3(0.5f, 10.0f, 14.0f));
+				break;
+			case 27:
+				AddGameObject<Wall>(Vec3(-4.9f, 4.5f, 58.0f), Vec3(0.0f, XMConvertToRadians(-50.0f), 0.0f), Vec3(14.0f, 10.0f, 0.5f));
+				break;
 
-				}
 			}
 		}
 	}
@@ -258,80 +475,84 @@ namespace basecross {
 		{
 			switch (count)
 			{
+				//エリア1
 			case 1:
-				AddGameObject<Block>(Vec3(45.0f, 2.0f, -61.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(45.0f, 0.75f, -61.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 2:
-				AddGameObject<Block>(Vec3(60.0f, 2.0f, -40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(68.0f, 0.75f, -43.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 3:
-				AddGameObject<Block>(Vec3(32.0f, 2.0f, -44.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(29.0f, 0.75f, -44.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 4:
-				AddGameObject<Block>(Vec3(43.0f, 2.0f, -20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(27.0f, 0.75f, -17.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
+				//エリア2
 			case 5:
-				AddGameObject<Block>(Vec3(47.0f, 2.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(45.0f, 0.75f, 10.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 6:
-				AddGameObject<Block>(Vec3(25.0f, 2.0f, 17.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(30.0f, 0.75f, 23.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 7:
-				AddGameObject<Block>(Vec3(34.0f, 2.0f, 40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(50.0f, 0.75f, 50.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 8:
-				AddGameObject<Block>(Vec3(17.0f, 2.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(20.0f, 0.75f, 15.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 9:
-				AddGameObject<Block>(Vec3(10.0f, 2.0f, 60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(10.0f, 0.75f, 60.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
+				//エリア3
 			case 10:
-				AddGameObject<Block>(Vec3(-45.0f, 2.0f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-45.0f, 0.75f, -55.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 11:
-				AddGameObject<Block>(Vec3(-45.0f, 2.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-45.0f, 0.75f, -50.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 12:
-				AddGameObject<Block>(Vec3(-45.0f, 2.0f, -45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-45.0f, 0.75f, -45.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 13:
-				AddGameObject<Block>(Vec3(-40.0f, 2.0f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-40.0f, 0.75f, -55.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 14:
-				AddGameObject<Block>(Vec3(-35.0f, 2.0f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-35.0f, 0.75f, -55.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 15:
-				AddGameObject<Block>(Vec3(-33.5f, 2.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-33.5f, 0.75f, -50.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 16:
-				AddGameObject<Block>(Vec3(-28.5f, 2.0f, -45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-28.5f, 0.75f, -45.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 17:
-				AddGameObject<Block>(Vec3(-26.0f, 2.0f, -40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-26.0f, 0.75f, -40.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 18:
-				AddGameObject<Block>(Vec3(-65.0f, 2.0f, -20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-65.0f, 0.75f, -20.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 19:
-				AddGameObject<Block>(Vec3(-40.0f, 2.0f, 0.5f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-40.0f, 0.75f, 0.5f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 20:
-				AddGameObject<Block>(Vec3(-33.5f, 2.0f, -4.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-33.5f, 0.75f, -4.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 21:
-				AddGameObject<Block>(Vec3(-15.0f, 2.0f, -15.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-15.0f, 0.75f, -15.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
+				//エリア4
 			case 22:
-				AddGameObject<Block>(Vec3(-20.0f, 2.0f, 15.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-28.0f, 0.75f, 13.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 23:
-				AddGameObject<Block>(Vec3(-8.0f, 2.0f, 35.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-8.0f, 0.75f, 35.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 24:
-				AddGameObject<Block>(Vec3(-23.0f, 2.5f, 68.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-23.0f, 0.75f, 68.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 25:
-				AddGameObject<Block>(Vec3(-57.0f, 2.5f, 25.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				//AddGameObject<Block>(Vec3(-57.0f, 0.75f, 25.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			}
 		}
@@ -368,6 +589,8 @@ namespace basecross {
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
+
+			auto bigPiece = AddGameObject<BigPiece>(Vec3(), Vec3(), Vec3(0.7f, 0.7f, 0.7f));
 
 			//auto number = AddGameObject<UITime>(0, Vec3(0, 0, 0));
 			//auto time = AddGameObject<TimeManager>();

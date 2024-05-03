@@ -15,6 +15,7 @@ namespace basecross {
 	Player::Player(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
 		m_piece(0),
+		m_onePiece(15.0f),
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_radarFlag(false),
@@ -24,6 +25,7 @@ namespace basecross {
 		GameObject(StagePtr),
 		m_trans(trans),
 		m_piece(0),
+		m_onePiece(15.0f),
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_radarFlag(false),
@@ -34,6 +36,7 @@ namespace basecross {
 		m_pos(pos),
 		m_rot(rot),
 		m_piece(0),
+		m_onePiece(15.0f),
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_radarFlag(false),
@@ -179,7 +182,7 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				auto bullet = stage->AddGameObject<Bullet>(ptrPos, Vec3(0.3f, 0.3f, 0.3f), 10.0f, frontAngle, 1);
+				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.3f, 0.3f, 0.3f), 20.0f, frontAngle, 1);
 
 				auto soundE = App::GetApp()->GetXAudio2Manager();
 				soundE->Start(L"cusor",0,0.5f);
@@ -210,7 +213,16 @@ namespace basecross {
 	//è’ìÀîªíË
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
 		if (other->FindTag(L"EnemyPiece")) {
-			SetPiece(15.0f);
+			SetPiece(m_onePiece);
+			if (m_maxPiece < m_piece) {
+				m_radarFlag = true;
+			}
+		}
+		if (other->FindTag(L"BigPiece")) {
+			srand(time(0));
+			int num;
+			num = rand() % 50 + m_onePiece;
+			SetPiece(num);
 			if (m_maxPiece < m_piece) {
 				m_radarFlag = true;
 			}
