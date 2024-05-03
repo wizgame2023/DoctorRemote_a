@@ -87,9 +87,8 @@ namespace basecross {
 	void GameStage::CreateEnemy()
 	{
 		int randamEnemy = 0;
-		randamEnemy = rand() % 4;	
+		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
-		//randamEnemy = 3;
 		switch (randamEnemy)
 		{
 		case 0:
@@ -399,7 +398,7 @@ namespace basecross {
 				AddGameObject<Wall>(Vec3(56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(38.0f, 10.0f, 0.5f));
 				break;
 			case 10:
-				AddGameObject<Wall>(Vec3(-67.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(16.0f, 10.0f, 0.5f));
+				AddGameObject<Wall>(Vec3(-70.25f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(9.5f, 10.0f, 0.5f));
 				break;
 			case 11:
 				AddGameObject<Wall>(Vec3(0.0f, 4.5f, -63.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 10.0f, 24.0f));
@@ -442,29 +441,29 @@ namespace basecross {
 				AddGameObject<Wall>(Vec3(-6.36f, 4.5f, -47.48f), Vec3(0.0f, XMConvertToRadians(30.0f), 0.0f), Vec3(15.0f, 10.0f, 0.5f));
 				break;
 			}
-			for (int remCount = 23; remCount < 28; remCount++)
+		}
+		for (int remCount = 23; remCount < 28; remCount++)
+		{
+			switch (remCount)
 			{
-				switch (remCount)
-				{
-					//内壁5
-				case 23:
-					AddGameObject<Wall>(Vec3(-9.65f, 4.5f, -38.6f), Vec3(0.0f, XMConvertToRadians(-60.0f), 0.0f), Vec3(12.0f, 10.0f, 0.5f));
-					break;
-					//内壁6
-				case 24:
-					AddGameObject<Wall>(Vec3(3.46f, 4.5f, 33.3f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
-					break;
-				case 25:
-					AddGameObject<Wall>(Vec3(-2.78f, 4.5f, 40.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(8.0f, 10.0f, 0.5f));
-					break;
-				case 26:
-					AddGameObject<Wall>(Vec3(-5.5f, 4.5f, 35.7f), Vec3(0.0f, 0.0, 0.0f), Vec3(0.5f, 10.0f, 14.0f));
-					break;
-				case 27:
-					AddGameObject<Wall>(Vec3(-4.5f, 4.5f, 65.0f), Vec3(0.0f, XMConvertToRadians(-30.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
-					break;
+				//内壁5
+			case 23:
+				AddGameObject<Wall>(Vec3(-9.65f, 4.5f, -38.6f), Vec3(0.0f, XMConvertToRadians(-60.0f), 0.0f), Vec3(12.0f, 10.0f, 0.5f));
+				break;
+				//内壁6
+			case 24:
+				AddGameObject<Wall>(Vec3(3.46f, 4.5f, 33.3f), Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f), Vec3(10.0f, 10.0f, 0.5f));
+				break;
+			case 25:
+				AddGameObject<Wall>(Vec3(-2.78f, 4.5f, 40.0f), Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f), Vec3(8.0f, 10.0f, 0.5f));
+				break;
+			case 26:
+				AddGameObject<Wall>(Vec3(-5.5f, 4.5f, 35.7f), Vec3(0.0f, 0.0, 0.0f), Vec3(0.5f, 10.0f, 14.0f));
+				break;
+			case 27:
+				AddGameObject<Wall>(Vec3(-4.9f, 4.5f, 58.0f), Vec3(0.0f, XMConvertToRadians(-50.0f), 0.0f), Vec3(14.0f, 10.0f, 0.5f));
+				break;
 
-				}
 			}
 		}
 	}
@@ -475,80 +474,84 @@ namespace basecross {
 		{
 			switch (count)
 			{
+				//エリア1
 			case 1:
-				AddGameObject<Block>(Vec3(45.0f, 2.0f, -61.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(45.0f, 0.75f, -61.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 2:
-				AddGameObject<Block>(Vec3(60.0f, 2.0f, -40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(68.0f, 0.75f, -43.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 3:
-				AddGameObject<Block>(Vec3(32.0f, 2.0f, -44.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(29.0f, 0.75f, -44.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 4:
-				AddGameObject<Block>(Vec3(43.0f, 2.0f, -20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(27.0f, 0.75f, -17.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
+				//エリア2
 			case 5:
-				AddGameObject<Block>(Vec3(47.0f, 2.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(45.0f, 0.75f, 10.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 6:
-				AddGameObject<Block>(Vec3(25.0f, 2.0f, 17.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(30.0f, 0.75f, 23.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 7:
-				AddGameObject<Block>(Vec3(34.0f, 2.0f, 40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(50.0f, 0.75f, 50.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 8:
-				AddGameObject<Block>(Vec3(17.0f, 2.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(20.0f, 0.75f, 15.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 9:
-				AddGameObject<Block>(Vec3(10.0f, 2.0f, 60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(10.0f, 0.75f, 60.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
+				//エリア3
 			case 10:
-				AddGameObject<Block>(Vec3(-45.0f, 2.0f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-45.0f, 0.75f, -55.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 11:
-				AddGameObject<Block>(Vec3(-45.0f, 2.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-45.0f, 0.75f, -50.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 12:
-				AddGameObject<Block>(Vec3(-45.0f, 2.0f, -45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-45.0f, 0.75f, -45.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 13:
-				AddGameObject<Block>(Vec3(-40.0f, 2.0f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-40.0f, 0.75f, -55.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 14:
-				AddGameObject<Block>(Vec3(-35.0f, 2.0f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-35.0f, 0.75f, -55.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 15:
-				AddGameObject<Block>(Vec3(-33.5f, 2.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-33.5f, 0.75f, -50.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 16:
-				AddGameObject<Block>(Vec3(-28.5f, 2.0f, -45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-28.5f, 0.75f, -45.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 17:
-				AddGameObject<Block>(Vec3(-26.0f, 2.0f, -40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-26.0f, 0.75f, -40.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 18:
-				AddGameObject<Block>(Vec3(-65.0f, 2.0f, -20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-65.0f, 0.75f, -20.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 19:
-				AddGameObject<Block>(Vec3(-40.0f, 2.0f, 0.5f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-40.0f, 0.75f, 0.5f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 20:
-				AddGameObject<Block>(Vec3(-33.5f, 2.0f, -4.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-33.5f, 0.75f, -4.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 21:
-				AddGameObject<Block>(Vec3(-15.0f, 2.0f, -15.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-15.0f, 0.75f, -15.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
+				//エリア4
 			case 22:
-				AddGameObject<Block>(Vec3(-20.0f, 2.0f, 15.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-28.0f, 0.75f, 13.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 23:
-				AddGameObject<Block>(Vec3(-8.0f, 2.0f, 35.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-8.0f, 0.75f, 35.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 24:
-				AddGameObject<Block>(Vec3(-23.0f, 2.5f, 68.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				AddGameObject<Block>(Vec3(-23.0f, 0.75f, 68.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 25:
-				AddGameObject<Block>(Vec3(-57.0f, 2.5f, 25.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(5.0f, 5.0f, 5.0f));
+				//AddGameObject<Block>(Vec3(-57.0f, 0.75f, 25.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			}
 		}
@@ -561,7 +564,7 @@ namespace basecross {
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 
-			AddGameObject<MyLight>();//光の表現をこれでやる
+			//AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
 			CreateViewLight();
 			//Playerを追加
@@ -570,10 +573,11 @@ namespace basecross {
 			CreateEnemyPiece();
 			CreateEnemyPiece2();//ランダムにかけらが出るようになる
 			CerateBreakEnemyPiece();
-			CreateEnemy();
+			CreateRecoveryWall();//治す壁を生成
+			//CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
-			CreateRadar();
+			//CreateRadar();
 			//地面を生成
 			AddGameObject<Ground>();
 			CreateWall();//これでステージの壁を作る
@@ -597,5 +601,20 @@ namespace basecross {
 		}
 	}
 
+	void GameStage::OnUpdate()
+	{
+		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		if (ptrPlayer->GetRadarFlag() && m_test==0)
+		{
+			//敵を生成
+			CreateEnemy();
+			//レーダーを生成
+			CreateRadar();
+			m_test = 1;
+		}
+
+	}
+
 }
+
 //end basecross

@@ -11,6 +11,7 @@ namespace basecross {
 	BreakWall::BreakWall(const shared_ptr<Stage>& StagePtr, Vec3 Position,  Vec3 Rotate,Vec3 Scale):
 		GameObject(StagePtr),
 		m_Position(Position),
+		m_StartPosition(Position),
 		m_Rotate(Rotate),
 		m_Scale(Scale),
 		m_Hp(1)
@@ -23,11 +24,11 @@ namespace basecross {
 
 	void BreakWall::OnCreate()
 	{
-		auto ptrTransform = GetComponent<Transform>();//toransformを取得
+		m_Trans = GetComponent<Transform>();//toransformを取得
 
-		ptrTransform->SetPosition(m_Position);//位置を設定	
-		ptrTransform->SetRotation(m_Rotate);//ローテーション（回転）を設定
-		ptrTransform->SetScale(m_Scale);//大きさを設定
+		m_Trans->SetPosition(m_Position);//位置を設定	
+		m_Trans->SetRotation(m_Rotate);//ローテーション（回転）を設定
+		m_Trans->SetScale(m_Scale);//大きさを設定
 		//接触のコリジョンを追加
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
@@ -37,10 +38,12 @@ namespace basecross {
 			Vec3(0.0f, -0.5f, 0.0f)
 		);
 
-		auto ptrCollider = AddComponent<CollisionObb>();
-		ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
+		m_ptrCollider = AddComponent<CollisionObb>();
+		m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
+		//m_ptrCollider->SetAfterCollision(AfterCollision::None);
 
-		ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
+		m_ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
+
 
 
 		//描画コンポーネント
@@ -55,6 +58,8 @@ namespace basecross {
 	};
 	void BreakWall::OnUpdate()
 	{
+		//m_ptrCollider->SetFixed(false);
+
 		auto ptrStage = GetStage();
 		//もし体力がなくなったら削除される
 		if (m_Hp <= 0)
@@ -66,6 +71,17 @@ namespace basecross {
 
 			GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 		}
+
+		//デバック用
+		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
+			float a = 1.0f;
+			m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
+
+		}
+		m_Trans->SetPosition(m_Position);//位置を設定	
+
+
 	};
 
 	
@@ -81,11 +97,16 @@ namespace basecross {
 			//もしぶつかったコリジョンがBulletのものだったら
 			if (Other->FindTag(L"Bullet"))
 			{
+				m_Position = m_StartPosition;
 				m_Hp -= Attack;//自分のHPが減る
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 
 			}
 
+		}		
+		if (Other->FindTag(L"Player"))
+		{
+			m_Position = m_StartPosition;
 		}
 	}
 
