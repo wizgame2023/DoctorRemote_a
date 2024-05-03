@@ -20,6 +20,7 @@ namespace basecross {
 
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CYLINDER");
+		ptrDraw->SetTextureResource(L"WallSkin");
 		ptrDraw->SetFogEnabled(true);
 
 		auto ptrColl = AddComponent<CollisionObb>();
