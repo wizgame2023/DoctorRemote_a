@@ -83,6 +83,10 @@ namespace basecross {
 		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin.bmf");
 		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
 
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh3", staticMultiModelMesh);
+
+
 		auto staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera.bmf");
 		app->RegisterResource(L"Kakera_Mesh", staticModelMesh);
 
@@ -99,7 +103,7 @@ namespace basecross {
 		app->RegisterResource(L"Obstacle_Mesh2", staticModelMesh);
 
 		wstring soundWav = SoundPath + L"ShotSE.wav";
-		App::GetApp()->RegisterWav(L"cusor", soundWav);
+		App::GetApp()->RegisterWav(L"ShotSE", soundWav);
 
     }
 
