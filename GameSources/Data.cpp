@@ -79,7 +79,7 @@ namespace basecross {
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
 		app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
 
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin1.bmf");
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin.bmf");
 		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
 		
 		auto staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera.bmf");

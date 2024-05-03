@@ -74,7 +74,7 @@ namespace basecross {
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
 		app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
 
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin1.bmf");
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin.bmf");
 		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
 
 		auto staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera.bmf");
@@ -120,7 +120,7 @@ namespace basecross {
     void Scene::OnEvent(const shared_ptr<Event>& event) {
         if (event->m_MsgStr == L"ToGameStage") {
             //ゲームステージの設定
-            ResetActiveStage<GameStage>();
+            ResetActiveStage<HemmiStage>();
 
         }
         else if (event->m_MsgStr == L"ToStartStage") {
