@@ -109,6 +109,11 @@ namespace basecross {
 			DestroyGameObject();//©•ª‚ÍÁ‚¦‚é
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 		}
+		if (Other->FindTag(L"RecoveryWall"))
+		{
+			DestroyGameObject();//©•ª‚ÍÁ‚¦‚é
+			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+		}
 		if (Other->FindTag(L"Obj"))
 		{
 			DestroyGameObject();//©•ª‚ÍÁ‚¦‚é

@@ -186,10 +186,13 @@ namespace basecross {
 
 		for (int i = 0; i < randamCount; i++)
 		{
-			int x = rand() % 9 + 1;//ランダムに中心点からx座標がどれくらい離れているか決める
 
-			int z = rand() % 9 + 1;//ランダムに中心点からy座標がどれくらい離れているか決める
-			x - 5; z - 5;//これで離れている座標の差にマイナスを入れる
+			int x = rand() % 19 + 1;//ランダムに中心点からx座標がどれくらい離れているか決める
+
+			srand(rand() * rand() % 7);
+
+			int z = rand() % 19 + 1;//ランダムに中心点からy座標がどれくらい離れているか決める
+			x - 10; z - 10;//これで離れている座標の差にマイナスを入れる
 
 			Vec3 Pos = Vec3(originPosition.x + x, originPosition.y, originPosition.z + z);//これでランダムにピースを置くことができる
 			Trans.push_back(Pos);
@@ -226,10 +229,9 @@ namespace basecross {
 		//左上
 		AddGameObject<EnemyPiece>(Vec3(-5.0f, 0.0f, 46.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5, 0.5f));
 		//右下
-		AddGameObject<EnemyPiece>(Vec3(67.0f, 0.0f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));		
+		AddGameObject<EnemyPiece>(Vec3(67.0f, 0.0f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
 		AddGameObject<EnemyPiece>(Vec3(65.0f, 0.0f, -54.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));	
 		AddGameObject<EnemyPiece>(Vec3(70.0f, 0.0f, -31.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
-
 
 		//左下
 		AddGameObject<EnemyPiece>(Vec3(-40.0f, 0.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
@@ -343,10 +345,10 @@ namespace basecross {
 			switch (count)
 			{
 			case 1:
-				AddGameObject<BlockSecond>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.5f, 10.0f, 20.5f));
+				AddGameObject<BlockSecond>(Vec3(0.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(21.0f, 10.0f, 21.0f));
 				break;
 			case 2:
-				AddGameObject<BlockSecond>(Vec3(57.8f, 2.5f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 10.0f));
+				AddGameObject<BlockSecond>(Vec3(57.8f, 2.5f, -55.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(12.0f, 10.0f, 12.0f));
 				break;
 			case 3:
 				AddGameObject<BlockSecond>(Vec3(55.5f, 4.5f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
@@ -355,7 +357,7 @@ namespace basecross {
 				AddGameObject<BlockSecond>(Vec3(15.0f, 4.5f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
 				break;
 			case 5:
-				AddGameObject<BlockSecond>(Vec3(57.0f, 4.5f, 28.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				AddGameObject<BlockSecond>(Vec3(57.0f, 4.5f, 28.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(24.0f, 10.0f, 24.0f));
 				break;
 			case 6:
 				AddGameObject<BlockSecond>(Vec3(27.0f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
@@ -364,7 +366,7 @@ namespace basecross {
 				AddGameObject<BlockSecond>(Vec3(-17.0f, 4.5f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
 				break;
 			case 8:
-				AddGameObject<BlockSecond>(Vec3(-43.0f, 4.5f, -33.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				AddGameObject<BlockSecond>(Vec3(-42.0f, 4.5f, -35.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(15.6f, 10.0f, 15.6f));
 				break;
 			case 9:
 				AddGameObject<BlockSecond>(Vec3(-56.0f, 4.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
@@ -373,7 +375,7 @@ namespace basecross {
 				AddGameObject<BlockSecond>(Vec3(-20.0f, 4.5f, 40.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
 				break;
 			case 11:
-				AddGameObject<BlockSecond>(Vec3(-50.5f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(20.0f, 10.0f, 20.0f));
+				AddGameObject<BlockSecond>(Vec3(-50.5f, 4.5f, 45.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(17.0f, 10.0f, 17.0f));
 				break;
 
 			}
@@ -553,7 +555,7 @@ namespace basecross {
 				AddGameObject<Block>(Vec3(-65.0f, 0.75f, -20.0f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 19:
-				AddGameObject<Block>(Vec3(-40.0f, 0.75f, 0.5f), Vec3(0.0f, 0.0f, 0.0f));
+				AddGameObject<Block>(Vec3(-45.0f, 0.75f, 0.5f), Vec3(0.0f, 0.0f, 0.0f));
 				break;
 			case 20:
 				AddGameObject<Block>(Vec3(-33.5f, 0.75f, -4.0f), Vec3(0.0f, 0.0f, 0.0f));
@@ -585,7 +587,7 @@ namespace basecross {
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 
-			//AddGameObject<MyLight>();//光の表現をこれでやる
+			AddGameObject<MyLight>();//光の表現をこれでやる
 			//ビューとライトの作成
 			CreateViewLight();
 			//Playerを追加
