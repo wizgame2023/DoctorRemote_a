@@ -237,18 +237,39 @@ namespace basecross {
 
 	void GameStage::CreateRecoveryWall()
 	{
-		for (int count = 0; count < 4; count++)
+		for (int count = 0; count < 11; count++)
 		{
 			switch (count)
 			{
 			case 1:
-				AddGameObject<RecoveryWall>(Vec3(0.5f, 0.5f, -39.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(90.0f)), Vec3(2.0f, 0.5f, 2.0f));
+				AddGameObject<RecoveryWall>(Vec3(2.31f, 0.5f, -34.8f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
 				break;
 			case 2:
-				AddGameObject<RecoveryWall>(Vec3(30.0f, 0.5f, 74.5f), Vec3(XMConvertToRadians(90.0f), 0.0f, 0.0f), Vec3(2.0f, 0.5f, 2.0f));
+				AddGameObject<RecoveryWall>(Vec3(28.0f, 0.5f, 68.0f), Vec3(XMConvertToRadians(0.0f), 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 				break;
 			case 3:
-				AddGameObject<RecoveryWall>(Vec3(-7.0f, 0.5f, -60.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(90.0f)), Vec3(2.0f, 0.5f, 2.0f));
+				AddGameObject<RecoveryWall>(Vec3(-3.0f, 0.5f, -72.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+				break;
+			case 4:
+				AddGameObject<RecoveryWall>(Vec3(-71.0f, 0.5f, -2.6f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+				break;
+			case 5:
+				AddGameObject<RecoveryWall>(Vec3(-68.0f, 0.5f, -2.4f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+				break;
+			case 6:
+				AddGameObject<RecoveryWall>(Vec3(8.77f, 0.5f, -72.7f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+				break;
+			case 7:
+				AddGameObject<RecoveryWall>(Vec3(3.0f, 0.5f, -66.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+				break;
+			case 8:
+				AddGameObject<RecoveryWall>(Vec3(-71.0f, 0.5f, 4.8f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+				break;
+			case 9:
+				AddGameObject<RecoveryWall>(Vec3(71.0f, 0.5f, 34.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+				break;
+			case 10:
+				AddGameObject<RecoveryWall>(Vec3(51.0f, 0.5f, 11.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
 				break;
 			}
 		}
