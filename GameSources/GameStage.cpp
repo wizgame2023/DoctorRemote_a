@@ -574,10 +574,7 @@ namespace basecross {
 			CreateEnemyPiece2();//ランダムにかけらが出るようになる
 			CerateBreakEnemyPiece();
 			CreateRecoveryWall();//治す壁を生成
-			//CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
-			//レーダーを追加
-			//CreateRadar();
 			//地面を生成
 			AddGameObject<Ground>();
 			CreateWall();//これでステージの壁を作る
@@ -604,13 +601,13 @@ namespace basecross {
 	void GameStage::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
-		if (ptrPlayer->GetRadarFlag() && m_test==0)
+		if (ptrPlayer->GetRadarFlag() && m_PieceFlag==0)
 		{
 			//敵を生成
 			CreateEnemy();
 			//レーダーを生成
 			CreateRadar();
-			m_test = 1;
+			m_PieceFlag = 1;
 		}
 
 	}
