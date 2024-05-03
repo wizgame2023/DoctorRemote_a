@@ -34,8 +34,8 @@ namespace basecross {
 		spanMat.affineTransformation(
 			Vec3(1.0f, 1.0f, 1.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, XM_PI, 0.0f),
-			Vec3(0.0f, -0.5f, 0.0f)
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
 		);
 
 		m_ptrCollider = AddComponent<CollisionObb>();
@@ -49,7 +49,8 @@ namespace basecross {
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetTextureResource(L"Internal");
+		ptrDraw->SetTextureResource(L"WallBreak");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
 
 

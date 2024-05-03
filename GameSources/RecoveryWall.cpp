@@ -35,6 +35,7 @@ namespace basecross {
 
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		ptrDraw->SetTextureResource(L"WallRecovery");
 		ptrDraw->SetMeshResource(L"DEFAULT_CYLINDER");
 		//ptrDraw->SetTextureResource(L"Internal");
 
