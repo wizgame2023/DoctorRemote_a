@@ -16,14 +16,25 @@ namespace basecross {
 		auto ptr = GetComponent<Transform>();
 		ptr->SetPosition(m_pos);
 		ptr->SetRotation(m_rot);
-		ptr->SetScale(2.5f, 2.5f, 2.5f);
+		ptr->SetScale(8.0f, 5.0f, 8.0f);//‰Šú‚ª2.5f,2.5f,2.5f
+
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(0.31f, 0.5f, 0.31f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+
 
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"Obstacle_Mesh1");
 		ptrDraw->SetTextureResource(L"WallSkin2");
 		ptrDraw->SetFogEnabled(true);
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
-		auto ptrColl = AddComponent<CollisionObb>();
+
+		auto ptrColl = AddComponent<CollisionCapsule>();
 		ptrColl->SetFixed(true);
 		ptrColl->SetDrawActive(true);//ƒRƒŠƒWƒ‡ƒ“‚ğŒ©‚¦‚é‚æ‚¤‚É‚·‚é
 

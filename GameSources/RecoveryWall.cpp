@@ -10,7 +10,7 @@ namespace basecross {
 	RecoveryWall::RecoveryWall(const shared_ptr<Stage>& StagePtr, Vec3 Position, Vec3 Rotate, Vec3 Scale) :
 		GameObject(StagePtr),
 		m_Position(Position),
-		m_Rotate(Rotate),
+		m_StratPosition(Position),
 		m_Scale(Scale),
 		m_Hp(1)
 	{
@@ -22,11 +22,11 @@ namespace basecross {
 
 	void RecoveryWall::OnCreate()
 	{
-		auto ptrTransform = GetComponent<Transform>();//toransformを取得
+		m_Transform = GetComponent<Transform>();//toransformを取得
 
-		ptrTransform->SetPosition(m_Position);//位置を設定
-		ptrTransform->SetRotation(m_Rotate);//ローテーション（回転）を設定		
-		ptrTransform->SetScale(m_Scale);//大きさを設定
+		m_Transform->SetPosition(m_Position);//位置を設定
+		m_Transform->SetRotation(m_Rotate);//ローテーション（回転）を設定		
+		m_Transform->SetScale(m_Scale);//大きさを設定
 		//接触のコリジョンを追加
 		auto ptrCollider = AddComponent<CollisionObb>();
 		ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
@@ -48,10 +48,12 @@ namespace basecross {
 		if (m_Hp <= 0)
 		{
 			int Recovery = 20;
-			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(Recovery);//ダメージを与える
+			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(Recovery);//回復する
 			GetStage()->RemoveGameObject<RecoveryWall>(GetThis<RecoveryWall>());
 
 		}
+		m_Transform->SetPosition(m_Position);//位置を設定
+
 	};
 
 	//コリジョンがぶつかったら
@@ -70,6 +72,10 @@ namespace basecross {
 
 			}
 
+		}
+		if (Other->FindTag(L"Player"))
+		{
+			m_Position = m_StratPosition;
 		}
 	}
 

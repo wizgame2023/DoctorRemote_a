@@ -13,8 +13,10 @@ namespace basecross {
 		Vec3 m_Scale;
 		Vec3 m_Position;
 		Vec3 m_Rotate;
+		Vec3 m_StratPosition;
 		int m_Hp;
 		weak_ptr<Bullet> m_bullet;
+		shared_ptr<Transform> m_Transform;
 
 
 	public:
