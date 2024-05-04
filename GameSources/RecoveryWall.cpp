@@ -30,7 +30,7 @@ namespace basecross {
 		//接触のコリジョンを追加
 		auto ptrCollider = AddComponent<CollisionObb>();
 		ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
-		ptrCollider->SetDrawActive(true);
+		//ptrCollider->SetDrawActive(true);
 
 
 		//描画コンポーネント

@@ -26,7 +26,7 @@ namespace basecross {
 
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
-		ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
+		//ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
 
 
 		GetStage()->SetCollisionPerformanceActive(true);
