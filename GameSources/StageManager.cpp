@@ -21,7 +21,7 @@ namespace basecross {
 	void StageManager::OnUpdate() {
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		m_currentHp -= elapsedTime * m_hpSpeed * 0.3f;
+		m_currentHp -= elapsedTime * m_hpSpeed * 0.5f;
 
 		if (m_currentHp > m_maxHp) {
 			m_currentHp = m_maxHp;
