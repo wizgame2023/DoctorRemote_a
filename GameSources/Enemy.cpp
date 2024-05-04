@@ -15,7 +15,7 @@ namespace basecross {
 	{
 	}
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale) :
-		GameObject(StagePtr), m_pos(pos), m_rot(rot), m_scale(scale),m_meshResName(L"Baikin_Mesh")
+		GameObject(StagePtr), m_pos(pos), m_rot(rot), m_scale(scale),m_meshResName(L"Baikin_Mesh"),m_Hp(5)
 	{ 
 	}
 	void Enemy::OnCreate()
@@ -71,6 +71,7 @@ namespace basecross {
 		//	}
 		//}
 
+
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Collision)
@@ -86,13 +87,14 @@ namespace basecross {
 			{
 				m_Hp = m_Hp - attack;
 			}
-			if (m_Hp <= 0)
-			{
-				GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-
-			}
+		}	
+		if (m_Hp <= 0)
+		{
+			int a = 0;
+			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 		}
+
 	}
 
 }

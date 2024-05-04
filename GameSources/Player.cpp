@@ -36,7 +36,7 @@ namespace basecross {
 		m_pos(pos),
 		m_rot(rot),
 		m_piece(0),
-		m_onePiece(7.0f),
+		m_onePiece(6.0f),
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_radarFlag(false),
