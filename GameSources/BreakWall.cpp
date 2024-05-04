@@ -70,6 +70,10 @@ namespace basecross {
 			int piece = 0;//どれくらいピースを手に入るかを決める
 			piece = rand() % 3;//ランダムにどのピースが出るのかを決める変数
 
+			auto soundSE = App::GetApp()->GetXAudio2Manager();
+			soundSE->Start(L"BreakWallSE", 0, 0.5f);
+
+
 			GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 		}
 
