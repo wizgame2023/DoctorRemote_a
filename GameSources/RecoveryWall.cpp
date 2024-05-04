@@ -47,7 +47,7 @@ namespace basecross {
 	{
 		if (m_Hp <= 0)
 		{
-			int Recovery = 20;
+			int Recovery = 25;
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(Recovery);//‰ñ•œ‚·‚é
 			GetStage()->RemoveGameObject<RecoveryWall>(GetThis<RecoveryWall>());
 
