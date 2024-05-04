@@ -51,6 +51,9 @@ namespace basecross {
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(Recovery);//‰ñ•œ‚·‚é
 			GetStage()->RemoveGameObject<RecoveryWall>(GetThis<RecoveryWall>());
 
+			auto soundSE = App::GetApp()->GetXAudio2Manager();
+			soundSE->Start(L"RecoveryWallSE", 0, 0.5f);
+
 		}
 		m_Transform->SetPosition(m_Position);//ˆÊ’u‚ğİ’è
 
