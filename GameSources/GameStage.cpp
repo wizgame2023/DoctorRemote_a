@@ -580,6 +580,15 @@ namespace basecross {
 		}
 	}
 
+	//BGM‚ÌÄ¶
+	void GameStage::PlayBGM() {
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
+	void GameStage::OnDestroy() {
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
+	}
 
 
 	void GameStage::OnCreate() {
