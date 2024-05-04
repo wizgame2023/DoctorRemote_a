@@ -99,7 +99,7 @@ namespace basecross {
 		//‚à‚µ‚Ô‚Â‚©‚Á‚½ƒRƒŠƒWƒ‡ƒ“‚ªEnemy‚Ì‚à‚Ì‚¾‚Á‚½‚ç
 		if (Other->FindTag(L"Enemy"))
 		{			
-			GetStage()->AddGameObject<EffectBullet>(L"DamageBullet", 3, 2, GetComponent<Transform>()->GetPosition(), 0.1f);
+			//GetStage()->AddGameObject<EffectBullet>(L"DamageBullet", 3, 2, GetComponent<Transform>()->GetPosition(), 0.1f);
 			//DestroyGameObject();//Ž©•ª‚ÍÁ‚¦‚é
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 
