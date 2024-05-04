@@ -109,7 +109,7 @@ namespace basecross {
 		soundWav = SoundPath + L"GetPiece.wav";
 		App::GetApp()->RegisterWav(L"GetPieceSE", soundWav);
 		soundWav = SoundPath + L"Recovery.wav";
-		App::GetApp()->RegisterWav(L"RecoverySE", soundWav);
+		App::GetApp()->RegisterWav(L"RecoveryWallSE", soundWav);
 		soundWav = SoundPath + L"BreakWall.wav";
 		App::GetApp()->RegisterWav(L"BreakWallSE", soundWav);
 		//BGM
