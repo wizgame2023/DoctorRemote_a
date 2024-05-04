@@ -588,7 +588,7 @@ namespace basecross {
 			//auto data = AddGameObject<Data>();
 
 			AddGameObject<MyLight>();//光の表現をこれでやる
-			//AddGameObject<TimeManager>();//時間制限
+			AddGameObject<TimeManager>();//時間制限
 			//ビューとライトの作成
 			CreateViewLight();
 			//Playerを追加
@@ -613,7 +613,6 @@ namespace basecross {
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
-
 
 
 		}
