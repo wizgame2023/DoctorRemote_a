@@ -623,6 +623,8 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
 
+			//BGM
+			PlayBGM();
 
 		}
 		catch (...) {
