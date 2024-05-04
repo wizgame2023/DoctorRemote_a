@@ -219,7 +219,7 @@ namespace basecross {
 			}
 
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"ShotSE", 0, 0.5f);
+			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
 
 		}
 		if (other->FindTag(L"BigPiece")) {
@@ -231,8 +231,8 @@ namespace basecross {
 				m_radarFlag = true;
 			}
 
-			//auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
-			//bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
+			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
+			bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
 
 		}
 	}

@@ -6,6 +6,7 @@ namespace basecross {
 	class GameStage : public Stage {
 
 		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
+		shared_ptr<SoundItem> m_BGM;
 
 		void CreateViewLight(); //ビューの作成
 		void CreateBullet();//弾の作成
@@ -29,6 +30,9 @@ namespace basecross {
 
 		virtual void OnCreate()override; //初期化
 		void OnUpdate()override;//更新
+
+		void PlayBGM();
+		virtual void OnDestroy() override;
 	};
 
 }
