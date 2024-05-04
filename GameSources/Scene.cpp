@@ -102,8 +102,22 @@ namespace basecross {
 		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle2-1.bmf");
 		app->RegisterResource(L"Obstacle_Mesh2", staticModelMesh);
 
+		//サウンド
+		//SE
 		wstring soundWav = SoundPath + L"ShotSE.wav";
 		App::GetApp()->RegisterWav(L"ShotSE", soundWav);
+		soundWav = SoundPath + L"GetPiece.wav";
+		App::GetApp()->RegisterWav(L"GetPieceSE", soundWav);
+		soundWav = SoundPath + L"Recovery.wav";
+		App::GetApp()->RegisterWav(L"RecoverySE", soundWav);
+		soundWav = SoundPath + L"BreakWall.wav";
+		App::GetApp()->RegisterWav(L"BreakWallSE", soundWav);
+		//BGM
+		soundWav = SoundPath + L"ScaryBGM.wav";
+		App::GetApp()->RegisterWav(L"ScaryBGM", soundWav);
+
+
+
 
     }
 
