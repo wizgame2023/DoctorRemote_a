@@ -38,7 +38,7 @@ namespace basecross {
 		m_time -= elapsedTime;
 
 		if (m_time <= 0.0f) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 
 		}
 
