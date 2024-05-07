@@ -47,5 +47,8 @@ namespace basecross {
 	void Sprite::SetColor(Col4 color) {
 		m_draw->SetDiffuse(color);
 	}
+	shared_ptr<Transform> Sprite::GetTrans() {
+		return m_trans;
+	}
 }
 //end namespace basecross

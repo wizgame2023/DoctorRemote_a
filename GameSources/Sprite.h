@@ -33,6 +33,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		
+		shared_ptr<Transform> GetTrans();
 		void SetColor(Col4 color);
 	};
 
