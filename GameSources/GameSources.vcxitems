@@ -33,6 +33,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Ground.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HemmiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Ligth.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OkawaraStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceGarge.h" />
@@ -49,9 +50,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StatusStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
   </ItemGroup>
@@ -75,6 +78,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Ground.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HemmiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Ligth.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OkawaraStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceGarge.cpp" />
@@ -90,9 +94,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StatusStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
