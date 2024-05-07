@@ -28,7 +28,7 @@ namespace basecross {
 		}
 
 		if (m_currentHp <= 0.0f) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
 
 		//デバック用
