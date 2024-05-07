@@ -22,6 +22,7 @@
 #include "GameOverStage.h"
 #include "Character.h"
 #include "StageManager.h"
+#include "StatusManager.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"

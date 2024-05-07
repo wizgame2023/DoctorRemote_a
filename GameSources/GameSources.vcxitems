@@ -50,6 +50,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StatusManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StatusManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp" />
