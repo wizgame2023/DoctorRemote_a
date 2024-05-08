@@ -11,7 +11,7 @@ namespace basecross {
 	class Sprite :public GameObject {
 	private:
 		//画像の大きさ
-
+		
 		//画像の表示サイズ
 		float m_width;
 		float m_heigth;
@@ -33,7 +33,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		
-		shared_ptr<Transform> GetTrans();
+		Col4 GetColor();
 		void SetColor(Col4 color);
 	};
 

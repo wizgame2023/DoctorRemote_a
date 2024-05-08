@@ -20,18 +20,21 @@ namespace basecross {
 		m_maxX(0.0f),
 		m_width(400.0f),
 		m_checkR(false),
-		m_checkL(false)
+		m_checkL(false),
+		m_colorCheck(false),
+		m_count(10.0f)
 	{}
 
 	void StatusManager::OnCreate() {
 		auto stage = GetStage();
-		auto sprite = stage->AddGameObject<Sprite>(300, 300, L"White", Vec3());
-		
-
+		m_sprite = stage->AddGameObject<Sprite>(350, 350, L"White", Vec3());
+		m_trans = m_sprite->GetComponent<Transform>();
+		m_sprite->SetColor(Col4(0, 0, 0, 1.0f));
 	}
 
 	void StatusManager::OnUpdate() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
 
 		if (cntlVec[0].fThumbLX > 0.9f) {
 			if (m_maxX == 0 && !m_checkR) {
@@ -71,10 +74,29 @@ namespace basecross {
 			m_checkL = false;
 		}
 
+		
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+			m_colorCheck = true;
+		}
 
+
+		if (m_colorCheck) {
+			if ((int)m_count % 2 == 0) {
+				m_sprite->SetColor(Col4(0, 0, 0, 0));
+			}
+			else if ((int)m_count % 2 == 1) {
+				m_sprite->SetColor(Col4(0, 0, 0, 1));
+			}
+			m_count -= elapsedTime*10.0f;
 		}
 		
+		if (m_count < 0) {
+			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+
+		}
+	}
+	int StatusManager::GetStatus() {
+		return m_status;
 	}
 }
 //end namespace basecross

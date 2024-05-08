@@ -13,7 +13,8 @@ namespace basecross {
 		m_width(width),
 		m_heigth(heigth),
 		m_meshResName(meshResName),
-		m_pos(pos)
+		m_pos(pos),
+		m_color(1,1,1,1)
 	{}
 
 	void Sprite::OnCreate() {
@@ -31,10 +32,11 @@ namespace basecross {
 			2,1,3
 		};
 
+
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_meshResName);
 		m_draw->SetSamplerState(SamplerState::LinearWrap);
-		m_draw->SetDiffuse(Col4(1, 1, 1, 1.0f));
+		m_draw->SetDiffuse(Col4(m_color));
 
 		SetAlphaActive(true);
 
@@ -47,8 +49,8 @@ namespace basecross {
 	void Sprite::SetColor(Col4 color) {
 		m_draw->SetDiffuse(color);
 	}
-	shared_ptr<Transform> Sprite::GetTrans() {
-		return m_trans;
+	Col4 Sprite::GetColor() {
+		return m_color;
 	}
 }
 //end namespace basecross

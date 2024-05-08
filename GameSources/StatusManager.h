@@ -6,9 +6,9 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Sprite.h"
 
 namespace basecross {
-
 	class StatusManager :public GameObject {
 	private:
 		float m_maxX;
@@ -16,10 +16,14 @@ namespace basecross {
 		bool m_checkR;
 		bool m_checkL;
 
+		bool m_colorCheck;
+		float m_count;
+
 		int m_status;
 
 		shared_ptr<Transform> m_trans;
-		//shared_ptr<Sprite> m_sprite;
+
+		shared_ptr<Sprite> m_sprite;
 		Col4 m_color;
 
 	public:
@@ -28,6 +32,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
+		int GetStatus();
 	};
 }
 //end namespace basecross
