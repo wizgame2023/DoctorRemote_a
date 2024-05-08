@@ -32,7 +32,8 @@ namespace basecross {
 			throw;
 		}
 	}
-	void TitleStage::OnUpdate() {
+	void TitleStage::OnUpdate()
+	{
 		StageChange();
 	}
 	void TitleStage::StageChange() {

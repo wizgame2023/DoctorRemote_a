@@ -36,9 +36,16 @@ namespace basecross {
 	}
 	void GameOverStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+		if (cntlVec[0].bConnected)
+		{
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)
+			{
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+			}
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
+			{
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+
 			}
 		}
 	}
