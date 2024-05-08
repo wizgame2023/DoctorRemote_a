@@ -22,7 +22,9 @@ namespace basecross {
 		m_checkR(false),
 		m_checkL(false),
 		m_colorCheck(false),
-		m_count(10.0f)
+		m_count(10.0f),
+		m_status(1),
+		m_score(100)
 	{}
 
 	void StatusManager::OnCreate() {
@@ -36,6 +38,7 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
+		//‘I‘ð
 		if (cntlVec[0].fThumbLX > 0.9f) {
 			if (m_maxX == 0 && !m_checkR) {
 				m_maxX = m_width;
@@ -76,10 +79,31 @@ namespace basecross {
 
 		
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-			m_colorCheck = true;
+			m_decision++;
+
+			if (m_score >= 80) {
+				m_colorCheck = true;
+
+			}
+			else if (m_score >= 50) {
+				if (m_status == 0) {
+
+				}
+				else {
+					m_colorCheck = true;
+				}
+			}
+			else {
+				if (m_status == 0 || m_status == 1) {
+
+				}
+				else {
+					m_colorCheck = true;
+				}
+			}
 		}
 
-
+		//“_–Å
 		if (m_colorCheck) {
 			if ((int)m_count % 2 == 0) {
 				m_sprite->SetColor(Col4(0, 0, 0, 0));
@@ -87,7 +111,7 @@ namespace basecross {
 			else if ((int)m_count % 2 == 1) {
 				m_sprite->SetColor(Col4(0, 0, 0, 1));
 			}
-			m_count -= elapsedTime*10.0f;
+			m_count -= elapsedTime * 10.0f;
 		}
 		
 		if (m_count < 0) {
@@ -97,6 +121,9 @@ namespace basecross {
 	}
 	int StatusManager::GetStatus() {
 		return m_status;
+	}
+	int StatusManager::GetDecision() {
+		return m_decision;
 	}
 }
 //end namespace basecross

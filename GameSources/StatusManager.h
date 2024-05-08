@@ -15,11 +15,13 @@ namespace basecross {
 		float m_width;
 		bool m_checkR;
 		bool m_checkL;
-
 		bool m_colorCheck;
 		float m_count;
 
+		int m_decision;
+
 		int m_status;
+		int m_score;
 
 		shared_ptr<Transform> m_trans;
 
@@ -33,6 +35,7 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		int GetStatus();
+		int GetDecision();
 	};
 }
 //end namespace basecross
