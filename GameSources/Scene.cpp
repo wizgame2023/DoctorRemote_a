@@ -74,6 +74,16 @@ namespace basecross {
 		app->RegisterTexture(L"WallBreak", strTexture);
 		strTexture = texPath + L"WallSkin4.png";
 		app->RegisterTexture(L"WallRecovery", strTexture);
+		strTexture = texPath + L"kaihuku.png";
+		app->RegisterTexture(L"PlayerEffectGreen", strTexture);
+		strTexture = texPath + L"PlayerEffectRed.png";
+		app->RegisterTexture(L"PlayerEffectRed", strTexture);
+		//strTexture = texPath + L"DashButton.png";
+		//app->RegisterTexture(L"DashButton", strTexture);
+		//strTexture = texPath + L"BulletButton.png";
+		//app->RegisterTexture(L"BulletButton", strTexture);
+		//strTexture = texPath + L"PieceButton.png";
+		//app->RegisterTexture(L"PieceButton", strTexture);
 
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
@@ -144,7 +154,7 @@ namespace basecross {
     void Scene::OnEvent(const shared_ptr<Event>& event) {
         if (event->m_MsgStr == L"ToGameStage") {
             //ゲームステージの設定
-			ResetActiveStage<GameStage>();
+			ResetActiveStage<SanpeiStage>();
 
         }
         else if (event->m_MsgStr == L"ToStartStage") {
@@ -157,6 +167,9 @@ namespace basecross {
             ResetActiveStage<GameOverStage>();
 
         }
+		//else if (event->m_MsgStr == L"ToStatusStage") {
+		//	ResetActiveStage<StatusStage>();
+		//}
     }
 
 
