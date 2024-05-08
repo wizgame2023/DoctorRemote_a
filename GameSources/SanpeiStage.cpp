@@ -64,6 +64,15 @@ namespace basecross {
 
 	}
 
+	void SanpeiStage::CreateEffect()//エフェクト生成
+	{
+		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen",Vec3(0.2f,0.8f,0.2f));
+		SetSharedGameObject(L"Effect", EffectPtr);
+
+		EffectPtr = AddGameObject<Effect>(L"PlayerEffectRed",Vec3(0.0f,0.0f,0.0f));
+		SetSharedGameObject(L"RedEffect", EffectPtr);
+	}
+
 	void SanpeiStage::CreateBullet()
 	{
 		//弾生成　　引数は左から順番に初期位置→大きさ→スピード→角度（rad）→攻撃力 となっています
@@ -197,7 +206,7 @@ namespace basecross {
 			//エフェクトを出現（テスト）
 			//AddGameObject<EffectBullet>(L"DamageBullet",3, 2, Vec3(-1.0f, 0.5f, 0.0f), 0.1f);
 
-
+			CreateEffect();//エフェクト生成
 
 		}
 		catch (...) {

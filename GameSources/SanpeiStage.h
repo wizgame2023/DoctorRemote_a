@@ -19,6 +19,7 @@ namespace basecross {
 		void CreateEnemyPiece();//敵のかけらの作成
 		void CreateEnemy();//敵の作成
 		void CreateRadar();//レーダーの作成
+		void CreateEffect();//エフェクトの作成
 	public:
 		//構築と破棄
 		SanpeiStage() :Stage() {}
