@@ -35,6 +35,7 @@ namespace basecross {
 	}
 
 	void StatusManager::OnUpdate() {
+		auto stage = GetStage();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
@@ -103,6 +104,9 @@ namespace basecross {
 			}
 		}
 
+		//auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+		//auto bullet = stage->GetSharedGameObject<Bullet>(L"Bullet");
+
 		//“_–Å
 		if (m_colorCheck) {
 			if ((int)m_count % 2 == 0) {
@@ -112,6 +116,21 @@ namespace basecross {
 				m_sprite->SetColor(Col4(0, 0, 0, 1));
 			}
 			m_count -= elapsedTime * 10.0f;
+
+
+			//switch (m_status)
+			//{
+			//case 0:
+			//	player->SetStatusFlag(true);
+			//	break;
+			//case 1:
+			//	bullet->SetStatusFlag(true);
+			//	break;
+
+			//default:
+			//	break;
+			//}
+
 		}
 		
 		if (m_count < 0) {
