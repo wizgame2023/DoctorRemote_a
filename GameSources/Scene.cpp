@@ -78,12 +78,12 @@ namespace basecross {
 		app->RegisterTexture(L"PlayerEffectGreen", strTexture);
 		strTexture = texPath + L"PlayerEffectRed.png";
 		app->RegisterTexture(L"PlayerEffectRed", strTexture);
-		//strTexture = texPath + L"DashButton.png";
-		//app->RegisterTexture(L"DashButton", strTexture);
-		//strTexture = texPath + L"BulletButton.png";
-		//app->RegisterTexture(L"BulletButton", strTexture);
-		//strTexture = texPath + L"PieceButton.png";
-		//app->RegisterTexture(L"PieceButton", strTexture);
+		strTexture = texPath + L"DashButton.png";
+		app->RegisterTexture(L"DashButton", strTexture);
+		strTexture = texPath + L"BulletButton.png";
+		app->RegisterTexture(L"BulletButton", strTexture);
+		strTexture = texPath + L"PieceButton.png";
+		app->RegisterTexture(L"PieceButton", strTexture);
 
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
@@ -167,9 +167,9 @@ namespace basecross {
             ResetActiveStage<GameOverStage>();
 
         }
-		//else if (event->m_MsgStr == L"ToStatusStage") {
-		//	ResetActiveStage<StatusStage>();
-		//}
+		else if (event->m_MsgStr == L"ToStatusStage") {
+			ResetActiveStage<StatusStage>();
+		}
     }
 
 
