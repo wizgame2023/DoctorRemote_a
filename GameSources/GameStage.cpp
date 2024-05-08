@@ -33,6 +33,16 @@ namespace basecross {
 
 	}
 
+	void GameStage::CreateEffect()//エフェクト生成
+	{
+		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", Vec3(0.2f, 0.8f, 0.2f));
+		SetSharedGameObject(L"Effect", EffectPtr);
+
+		EffectPtr = AddGameObject<Effect>(L"PlayerEffectRed", Vec3(0.0f, 0.0f, 0.0f));
+		SetSharedGameObject(L"RedEffect", EffectPtr);
+	}
+
+
 	void GameStage::CreateBullet()
 	{
 		//弾生成　　引数は左から順番に初期位置→大きさ→スピード→角度（rad）→攻撃力 となっています
@@ -600,6 +610,8 @@ namespace basecross {
 			AddGameObject<TimeManager>();//時間制限
 			//ビューとライトの作成
 			CreateViewLight();
+			//Effectの追加
+			CreateEffect();
 			//Playerを追加
 			CreatePlayer();
 			//敵のかけらを表示

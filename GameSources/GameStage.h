@@ -20,7 +20,8 @@ namespace basecross {
 		void CreateBlock();//障害物の作成
 		void CreateBreakWall();//壊れる壁の作成
 		void CreateRecoveryWall();//治す壁の作成
-		void CreateBlockSecond();//障害物の作成２
+		void CreateBlockSecond();//障害物の作成２	
+		void CreateEffect();//エフェクトの作成
 		void RandamPiecePosition(Vec3 originPosition);//ランダムに
 		shared_ptr<Transform> m_Trans;
 	public:
