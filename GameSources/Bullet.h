@@ -17,6 +17,7 @@ namespace basecross {
 		float m_angle;//Šp“x
 		Vec3 m_AllStartPosition;
 		int m_Attack;//UŒ‚—Í
+		int m_hit;//“–‚½‚Á‚½‘Šè‚É‚æ‚Á‚Ä”’l‚ª•Ï‚í‚é
 	public:
 		Bullet(
 			const shared_ptr<Stage>& StagePtr,

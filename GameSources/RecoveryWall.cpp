@@ -57,6 +57,10 @@ namespace basecross {
 		}
 		m_Transform->SetPosition(m_Position);//ˆÊ’u‚ğİ’è
 
+		auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);//‚È‚ºfalse‚ª‚ ‚é‚©’²‚×‚é
+		PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+
+
 	};
 
 	//ƒRƒŠƒWƒ‡ƒ“‚ª‚Ô‚Â‚©‚Á‚½‚ç

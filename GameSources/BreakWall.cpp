@@ -14,7 +14,7 @@ namespace basecross {
 		m_StartPosition(Position),
 		m_Rotate(Rotate),
 		m_Scale(Scale),
-		m_Hp(1)
+		m_Hp(10)
 	{
 
 	}
@@ -105,7 +105,6 @@ namespace basecross {
 				m_Position = m_StartPosition;
 				m_Hp -= Attack;//Ž©•ª‚ÌHP‚ªŒ¸‚é
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
-
 			}
 
 		}		

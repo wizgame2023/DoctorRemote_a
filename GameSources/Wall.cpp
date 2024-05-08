@@ -22,7 +22,7 @@ namespace basecross {
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 		ptrDraw->SetTextureResource(L"WallSkin");
-		ptrDraw->SetFogEnabled(true);
+		//ptrDraw->SetFogEnabled(true);
 
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
