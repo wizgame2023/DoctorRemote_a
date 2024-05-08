@@ -20,6 +20,7 @@ namespace basecross {
 
 		bool m_radarFlag;
 		bool m_enemyFlag;
+		bool m_statusFlag;
 
 		Vec3 m_pos;
 		Vec3 m_rot;
@@ -56,6 +57,7 @@ namespace basecross {
 		bool GetRadarFlag();
 		void SetRadarPiece(float piece);
 		bool GetEnemyFlag();
+		void SetStatusFlag(bool flag);
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
