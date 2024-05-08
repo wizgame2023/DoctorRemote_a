@@ -237,6 +237,30 @@ namespace basecross {
 		}
 	}
 
+	void Player::EffectFlag(int Flag)
+	{		
+		auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
+		switch (Flag)
+		{
+		case 1:
+			//リカバリーウォールの場合
+			if (PtrEffect) {
+				PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);//なぜfalseがあるか調べる
+				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+			}
+			break;
+		case 2:
+			//ブレイクウォールの場合
+			if (PtrEffect) {
+				PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"RedEffect", false);
+				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+			}
+			break;
+		default:
+			break;
+		}
+	}
+
 	Vec3 Player::GetAngle() {
 		auto angle = GetMoveVector();
 		return angle;

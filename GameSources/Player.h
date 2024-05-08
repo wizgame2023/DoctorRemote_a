@@ -45,6 +45,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		Vec3 GetMoveVector()const;
+		void EffectFlag(int Flag);
 
 		Vec3 GetAngle();
 		float GetPiece() const;
