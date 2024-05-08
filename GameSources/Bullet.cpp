@@ -29,8 +29,6 @@ namespace basecross {
 
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
-
-
 		ptrTransform->SetPosition(m_Position);//位置を設定
 		ptrTransform->SetScale(m_Scale);//大きさを設定
 		ptrTransform->SetQuaternion(Quat());//クトーニアン（回転）を設定
@@ -99,7 +97,7 @@ namespace basecross {
 		//もしぶつかったコリジョンがEnemyのものだったら
 		if (Other->FindTag(L"Enemy"))
 		{			
-			//GetStage()->AddGameObject<EffectBullet>(L"DamageBullet", 3, 2, GetComponent<Transform>()->GetPosition(), 0.1f);
+			GetStage()->AddGameObject<EffectBullet>(L"DamageBullet", 3, 2, GetComponent<Transform>()->GetPosition(), 0.1f);
 			//DestroyGameObject();//自分は消える
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 
@@ -108,11 +106,19 @@ namespace basecross {
 		{
 			DestroyGameObject();//自分は消える
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+			m_hit = 1;//壊れる壁に当たった
+			auto& ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
+			ptrPlayer->EffectFlag(2);//これでPlayerからエフェクトを出す
+
 		}
 		if (Other->FindTag(L"RecoveryWall"))
 		{
 			DestroyGameObject();//自分は消える
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+			auto& ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
+			ptrPlayer->EffectFlag(1);//これでPlayerからエフェクトを出す
+			
+
 		}
 		if (Other->FindTag(L"Obj"))
 		{
