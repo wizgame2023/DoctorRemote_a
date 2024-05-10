@@ -25,7 +25,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Data.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectBullet.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectBreaWallk.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectBreakWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyPiece.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
@@ -71,7 +71,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Data.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectBreaWallk.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectBreakWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyPiece.cpp" />

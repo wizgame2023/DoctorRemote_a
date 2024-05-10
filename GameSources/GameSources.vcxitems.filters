@@ -171,7 +171,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectBreaWallk.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectBreakWall.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -308,7 +308,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusManager.cpp">
       <Filter>Sources\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectBreaWallk.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectBreakWall.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

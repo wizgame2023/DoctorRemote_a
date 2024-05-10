@@ -40,7 +40,7 @@
 #include "Ground.h"
 #include "Effect.h"
 #include "EffectBullet.h"
-#include "EffectBreaWallk.h"
+#include "EffectBreakWall.h"
 #include "Block.h"
 #include "Block2.h"
 #include "BreakWall.h"
