@@ -6,6 +6,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include"Player.h"
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
@@ -13,11 +14,18 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	class Player : public GameObject {
 
+	private:
 		float m_piece;
 		float m_maxPiece;
 		float m_speed;
+		float m_maxSpeed;
+		float m_dashSpeed;
+		float m_dashCount;
+		float m_dashCoolTime;
 		float m_onePiece;
 
+		bool m_dashCheck;
+		bool m_dashCooldown;
 		bool m_radarFlag;
 		bool m_enemyFlag;
 		bool m_statusFlag;
@@ -35,6 +43,7 @@ namespace basecross {
 		void MovePlayer();
 
 	public:
+		//static int STATUSPLAYER;
 		//コンストラクタ
 		Player(const shared_ptr<Stage>& StagePtr);
 		Player(const shared_ptr<Stage>& StagePtr, const shared_ptr<Transform>& trans);
@@ -46,7 +55,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		Vec3 GetMoveVector()const;
-		void EffectFlag(int Flag);
+		void Dash();
 
 		Vec3 GetAngle();
 		float GetPiece() const;
@@ -58,6 +67,8 @@ namespace basecross {
 		void SetRadarPiece(float piece);
 		bool GetEnemyFlag();
 		void SetStatusFlag(bool flag);
+
+		void EffectFlag(int Flag);
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};

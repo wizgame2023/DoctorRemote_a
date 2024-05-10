@@ -18,17 +18,8 @@ namespace basecross {
 		m_onePiece(15.0f),
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
-		m_radarFlag(false),
-		m_statusFlag(false),
-		m_meshResName(L"Sensuikan_Mesh")
-	{}
-	Player::Player(const shared_ptr<Stage>& StagePtr, const shared_ptr<Transform>& trans):
-		GameObject(StagePtr),
-		m_trans(trans),
-		m_piece(0),
-		m_onePiece(15.0f),
-		m_maxPiece(100.0f),
-		m_speed(5.0f),
+		m_maxSpeed(5.0f),
+		m_dashSpeed(8.0f),
 		m_radarFlag(false),
 		m_statusFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
@@ -41,6 +32,12 @@ namespace basecross {
 		m_onePiece(6.0f),
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
+		m_maxSpeed(5.0f),
+		m_dashSpeed(20.0f),
+		m_dashCount(0.7f),
+		m_dashCoolTime(8.0f),
+		m_dashCheck(false),
+		m_dashCooldown(false),
 		m_radarFlag(false),
 		m_statusFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
@@ -132,8 +129,26 @@ namespace basecross {
 		}
 	}
 
+	void Player::Dash() {
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		
+		if (cntlVec[0].bRightTrigger >= 0.8f) {
+			m_dashCheck = true;
+			if (m_dashCount > 0) {
+				if (!m_dashCooldown) {
+					m_speed = m_dashSpeed;
+					m_dashCooldown = true;
+				}
+			}
+			else {
+				m_speed = m_maxSpeed;
+			}
+		}
+	}
+
 
 	void Player::OnCreate(){
+		//STATUSPLAYER = 0;
 		//èâä˙à íuÇ»Ç«ÇÃê›íË
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(2.0f, 2.0f, 4.0f);
@@ -176,6 +191,23 @@ namespace basecross {
 	}
 
 	void Player::OnUpdate(){
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		Dash();
+		if (m_dashCheck) {
+			m_dashCount -= elapsedTime;
+			if (m_dashCount <= 0) {
+				m_dashCheck = false;
+			}
+		}
+		if (m_dashCooldown) {
+			m_dashCoolTime -= elapsedTime;
+			if (m_dashCoolTime <= 0) {
+				m_dashCooldown = false;
+				m_dashCount = 0.7f;
+				m_dashCoolTime = 8.0f;
+			}
+		}
+
 		MovePlayer();
 		auto stage = GetStage();
 
@@ -186,7 +218,7 @@ namespace basecross {
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.3f, 0.3f, 0.3f), 20.0f, frontAngle, 1);
-				stage->SetSharedGameObject(L"Bullet", bullet);
+				//stage->SetSharedGameObject(L"Bullet", bullet);
 
 				auto soundE = App::GetApp()->GetXAudio2Manager();
 				soundE->Start(L"ShotSE",0,0.5f);
@@ -209,6 +241,7 @@ namespace basecross {
 			<<"\nz."
 			<< trans->GetPosition().z
 			<< L")"
+			<<m_dashCount
 			<< endl;
 		scene->SetDebugString(wss.str());
 
