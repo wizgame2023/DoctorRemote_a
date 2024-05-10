@@ -20,6 +20,7 @@
 #include "StartStage.h"
 #include "ClearStage.h"
 #include "GameOverStage.h"
+#include "ScoreStage.h"
 #include "Character.h"
 #include "StageManager.h"
 #include "StatusManager.h"

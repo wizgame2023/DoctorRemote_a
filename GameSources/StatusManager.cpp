@@ -104,8 +104,6 @@ namespace basecross {
 			}
 		}
 
-		//auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
-		//auto bullet = stage->GetSharedGameObject<Bullet>(L"Bullet");
 
 		//“_–Å
 		if (m_colorCheck) {
@@ -118,18 +116,18 @@ namespace basecross {
 			m_count -= elapsedTime * 10.0f;
 
 
-			//switch (m_status)
-			//{
-			//case 0:
-			//	player->SetStatusFlag(true);
-			//	break;
-			//case 1:
-			//	bullet->SetStatusFlag(true);
-			//	break;
-
-			//default:
-			//	break;
-			//}
+			switch (m_status)
+			{
+			case 0:
+				//Player::STATUSPLAYER++;
+				break;
+			case 1:
+				//Bullet::STATUSBULLET++;
+			case 2:
+				break;
+			default:
+				break;
+			}
 
 		}
 		
