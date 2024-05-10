@@ -19,6 +19,7 @@ namespace basecross {
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_radarFlag(false),
+		m_statusFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 	Player::Player(const shared_ptr<Stage>& StagePtr, const shared_ptr<Transform>& trans):
@@ -29,6 +30,7 @@ namespace basecross {
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_radarFlag(false),
+		m_statusFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 	Player::Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos,const Vec3& rot):
@@ -40,6 +42,7 @@ namespace basecross {
 		m_maxPiece(100.0f),
 		m_speed(5.0f),
 		m_radarFlag(false),
+		m_statusFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
@@ -183,6 +186,7 @@ namespace basecross {
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.3f, 0.3f, 0.3f), 20.0f, frontAngle, 1);
+				stage->SetSharedGameObject(L"Bullet", bullet);
 
 				auto soundE = App::GetApp()->GetXAudio2Manager();
 				soundE->Start(L"ShotSE",0,0.5f);
@@ -290,6 +294,9 @@ namespace basecross {
 	}
 	bool Player::GetEnemyFlag() {
 		return m_enemyFlag;
+	}
+	void Player::SetStatusFlag(bool flag) {
+		m_statusFlag = flag;
 	}
 }
 //end basecross
