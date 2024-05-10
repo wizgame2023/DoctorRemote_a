@@ -21,6 +21,7 @@ namespace basecross {
 		bool statusFlag;
 
 	public:
+		static int STATUSBULLET;
 		Bullet(
 			const shared_ptr<Stage>& StagePtr,
 			const Vec3& Position,

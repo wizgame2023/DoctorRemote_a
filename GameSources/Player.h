@@ -43,10 +43,9 @@ namespace basecross {
 		void MovePlayer();
 
 	public:
-		//static int STATUSPLAYER;
+		static int STATUSPLAYER;
 		//コンストラクタ
 		Player(const shared_ptr<Stage>& StagePtr);
-		Player(const shared_ptr<Stage>& StagePtr, const shared_ptr<Transform>& trans);
 		Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot);
 
 
