@@ -171,9 +171,9 @@ namespace basecross {
             ResetActiveStage<GameOverStage>();
 
         }
-		//else if (event->m_MsgStr == L"ToStatusStage") {
-		//	ResetActiveStage<StatusStage>();
-		//}
+		else if (event->m_MsgStr == L"ToStatusStage") {
+			ResetActiveStage<StatusStage>();
+		}
     }
 
 

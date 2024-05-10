@@ -15,7 +15,8 @@ namespace basecross {
 		m_Scale(Scale),
 		m_Speed(Speed),
 		m_angle(Rad),//角度はRad（弧度法）でお願いします
-		m_Attack(Attack)
+		m_Attack(Attack),
+		statusFlag(false)
 	{
 	}
 	//デストラクタ
@@ -135,6 +136,9 @@ namespace basecross {
 	int Bullet::GetAttack()
 	{
 		return m_Attack;
+	}
+	void Bullet::SetStatusFlag(bool flag) {
+		statusFlag = flag;
 	}
 }
 //end basecross
