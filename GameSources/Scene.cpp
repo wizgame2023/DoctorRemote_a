@@ -84,6 +84,10 @@ namespace basecross {
 		//app->RegisterTexture(L"BulletButton", strTexture);
 		//strTexture = texPath + L"PieceButton.png";
 		//app->RegisterTexture(L"PieceButton", strTexture);
+		strTexture = texPath + L"Load.png";
+		app->RegisterTexture(L"Load", strTexture);
+		strTexture = texPath + L"taitel.jpg";
+		app->RegisterTexture(L"Title", strTexture);
 
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
@@ -154,7 +158,7 @@ namespace basecross {
     void Scene::OnEvent(const shared_ptr<Event>& event) {
         if (event->m_MsgStr == L"ToGameStage") {
             //ゲームステージの設定
-			ResetActiveStage<GameStage>();
+			ResetActiveStage<SanpeiStage>();
 
         }
         else if (event->m_MsgStr == L"ToStartStage") {
