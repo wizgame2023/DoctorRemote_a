@@ -68,8 +68,8 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f),Vec3(0.1f,0.1f,0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		EffectPtr = AddGameObject<Effect>(L"PlayerEffectRed", 1.0f, 10, Vec3(0.3f, 0.8f, 0.3f));
-		SetSharedGameObject(L"RedEffect", EffectPtr);
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 10, Vec3(0.3f, 0.8f, 0.3f));
+		SetSharedGameObject(L"RedEffect", EffectPtr2);
 	}
 
 	void SanpeiStage::CreateBullet()
