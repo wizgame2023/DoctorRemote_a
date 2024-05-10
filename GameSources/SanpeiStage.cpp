@@ -66,10 +66,9 @@ namespace basecross {
 
 	void SanpeiStage::CreateEffect()//エフェクト生成
 	{
-		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen",Vec3(0.2f,0.8f,0.2f));
+		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f),Vec3(0.1f,0.1f,0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-
-		EffectPtr = AddGameObject<Effect>(L"PlayerEffectRed",Vec3(0.0f,0.0f,0.0f));
+		EffectPtr = AddGameObject<Effect>(L"PlayerEffectRed", 1.0f, 10, Vec3(0.3f, 0.8f, 0.3f));
 		SetSharedGameObject(L"RedEffect", EffectPtr);
 	}
 
@@ -85,7 +84,7 @@ namespace basecross {
 	//Playerを追加する関数
 	void SanpeiStage::CreatePlayer()
 	{
-		auto ptrPlayer = AddGameObject<Player>();
+		auto ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを取得
 		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
 

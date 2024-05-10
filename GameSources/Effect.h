@@ -15,9 +15,10 @@ namespace basecross {
 		Vec3 m_pushPos;
 		Vec3 m_Scale;
 		float m_maxTime;//いつまでパーティクルが出るか決まる時間
+		int m_addNumber;
 	public:
 		//コンストラクタ
-		explicit Effect(shared_ptr<Stage>& StagePtr,wstring TextureName, Vec3 pushPos = Vec3(1.0f, 1.0f, 1.0f),Vec3 Scale = Vec3(1.0f,1.0f,1.0f));
+		Effect(shared_ptr<Stage>& StagePtr,wstring TextureName,float maxTime,int addNumber, Vec3 pushPos = Vec3(1.0f, 1.0f, 1.0f),Vec3 Scale = Vec3(1.0f,1.0f,1.0f));
 		//デストラクタ
 		virtual ~Effect();
 
