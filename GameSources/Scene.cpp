@@ -38,7 +38,7 @@ namespace basecross {
 
 		strTexture = texPath + L"Clear.png";
 		app->RegisterTexture(L"Clear", strTexture);
-		strTexture = texPath + L"GameOver.png";
+		strTexture = texPath + L"GameOver.jpg";
 		app->RegisterTexture(L"GameOver", strTexture);
 		strTexture = texPath + L"Start.png";
 		app->RegisterTexture(L"Start", strTexture);
@@ -86,9 +86,8 @@ namespace basecross {
 		app->RegisterTexture(L"PieceButton", strTexture);
 		strTexture = texPath + L"Load.png";
 		app->RegisterTexture(L"Load", strTexture);
-		strTexture = texPath + L"taitel.jpg";
+		strTexture = texPath + L"Title.jpg";
 		app->RegisterTexture(L"Title", strTexture);
-
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
