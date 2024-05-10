@@ -15,6 +15,7 @@ namespace basecross {
 		//画像の表示サイズ
 		float m_width;
 		float m_heigth;
+		int m_layer;
 
 		vector<VertexPositionColorTexture> m_vertices;
 		vector<uint16_t> m_indices;
@@ -29,6 +30,8 @@ namespace basecross {
 	public:
 		Sprite(const shared_ptr<Stage>& stagePtr,float width, float heigth,
 			wstring meshResName, Vec3 pos);
+		Sprite(const shared_ptr<Stage>& stagePtr, float width, float heigth,
+			wstring meshResName, Vec3 pos,int layer);
 		virtual ~Sprite(){}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;

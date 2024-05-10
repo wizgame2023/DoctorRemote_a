@@ -7,15 +7,27 @@
 #include "Project.h"
 
 namespace basecross {
-	Sprite::Sprite(const shared_ptr<Stage>& stagePtr,float width, float heigth,
-		wstring meshResName, Vec3 pos):
+	Sprite::Sprite(const shared_ptr<Stage>& stagePtr, float width, float heigth,
+		wstring meshResName, Vec3 pos) :
 		GameObject(stagePtr),
 		m_width(width),
 		m_heigth(heigth),
 		m_meshResName(meshResName),
 		m_pos(pos),
-		m_color(1,1,1,1)
+		m_color(1, 1, 1, 1),
+		m_layer(0)
 	{}
+	Sprite::Sprite(const shared_ptr<Stage>& stagePtr, float width, float heigth,
+		wstring meshResName, Vec3 pos, int layer):
+		GameObject(stagePtr),
+			m_width(width),
+			m_heigth(heigth),
+			m_meshResName(meshResName),
+			m_pos(pos),
+			m_color(1, 1, 1, 1),
+			m_layer(layer)
+		{}
+
 
 	void Sprite::OnCreate() {
 
@@ -40,6 +52,8 @@ namespace basecross {
 
 		SetAlphaActive(true);
 
+		SetDrawLayer(m_layer);
+
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(m_pos);
 	}
@@ -52,5 +66,6 @@ namespace basecross {
 	Col4 Sprite::GetColor() {
 		return m_color;
 	}
+
 }
 //end namespace basecross
