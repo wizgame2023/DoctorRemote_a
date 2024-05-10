@@ -9,7 +9,6 @@ namespace basecross {
 		shared_ptr<SoundItem> m_BGM;
 
 		void CreateViewLight(); //ビューの作成
-		void CreateBullet();//弾の作成
 		void CreatePlayer();//プレイヤーの作成
 		void CreateEnemyPiece();//敵のかけらの作成
 		void CreateEnemyPiece2();//敵のかけらの作成（集まっているかけら何個出るか決める）

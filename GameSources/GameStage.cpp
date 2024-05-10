@@ -35,22 +35,13 @@ namespace basecross {
 
 	void GameStage::CreateEffect()//エフェクト生成
 	{
-		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", Vec3(0.2f, 0.8f, 0.2f));
+		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 11.5f, 1, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 		SetSharedGameObject(L"Effect", EffectPtr);
 
-		EffectPtr = AddGameObject<Effect>(L"PlayerEffectRed", Vec3(0.0f, 0.0f, 0.0f));
+		EffectPtr = AddGameObject<Effect>(L"PlayerEffectRed", 3.0f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 		SetSharedGameObject(L"RedEffect", EffectPtr);
 	}
 
-
-	void GameStage::CreateBullet()
-	{
-		//弾生成　　引数は左から順番に初期位置→大きさ→スピード→角度（rad）→攻撃力 となっています
-		auto Bulletptr = AddGameObject<Bullet>(Vec3(-1.0f, 0.5f, 0.0f), Vec3(0.3f, 0.3f, 0.3f), 1.0f, 0.0f, 1);
-		Bulletptr->GetSpeed();
-		//シェア配列にBulletを追加
-		SetSharedGameObject(L"Bullet", Bulletptr);//これでAddしたゲームオブジェクトを取得できる
-	}
 
 	//Playerを追加する関数
 	void GameStage::CreatePlayer()//改善すべき点
