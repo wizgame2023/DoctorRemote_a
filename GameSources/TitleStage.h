@@ -17,6 +17,5 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		void StageChange();
-
 	};
 }
