@@ -21,7 +21,7 @@ namespace basecross {
 		m_maxSpeed(5.0f),
 		m_dashSpeed(8.0f),
 		m_radarFlag(false),
-		m_statusFlag(false),
+		m_status(0),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 	Player::Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos,const Vec3& rot):
@@ -39,7 +39,7 @@ namespace basecross {
 		m_dashCheck(false),
 		m_dashCooldown(false),
 		m_radarFlag(false),
-		m_statusFlag(false),
+		m_status(0),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
@@ -328,8 +328,8 @@ namespace basecross {
 	bool Player::GetEnemyFlag() {
 		return m_enemyFlag;
 	}
-	void Player::SetStatusFlag(bool flag) {
-		m_statusFlag = flag;
+	void Player::SetStatusFlag(int status) {
+		m_status += status;
 	}
 }
 //end basecross
