@@ -1,6 +1,7 @@
 /*!
 @file StatusStage.h
 @brief ステータスステージ実体
+担当：逸見
 */
 
 #include "stdafx.h"
