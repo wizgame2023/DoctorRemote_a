@@ -1,7 +1,7 @@
 /*!
 @file SatusManager.cpp
 @brief ステート全体の処理等
-担当：
+担当：逸見
 */
 
 #include "stdafx.h"
@@ -32,6 +32,8 @@ namespace basecross {
 		m_sprite = stage->AddGameObject<Sprite>(350, 350, L"White", Vec3());
 		m_trans = m_sprite->GetComponent<Transform>();
 		m_sprite->SetColor(Col4(0, 0, 0, 1.0f));
+
+		//m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 	}
 
 	void StatusManager::OnUpdate() {
@@ -115,11 +117,12 @@ namespace basecross {
 			}
 			m_count -= elapsedTime * 10.0f;
 
+			int a = 1;
 
 			switch (m_status)
 			{
 			case 0:
-				//Player::STATUSPLAYER++;
+				App::GetApp()->GetScene<Scene>()->SetStatus(1);
 				break;
 			case 1:
 				//Bullet::STATUSBULLET++;
@@ -132,7 +135,7 @@ namespace basecross {
 		}
 		
 		if (m_count < 0) {
-			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 
 		}
 	}

@@ -130,13 +130,13 @@ namespace basecross {
 		soundWav = SoundPath + L"ScaryBGM.wav";
 		App::GetApp()->RegisterWav(L"ScaryBGM", soundWav);
 
-
-
-
+		
     }
 
     void Scene::OnCreate() {
         try {
+			PLAYER_PROPERTIES playerPro;
+			
             // 背景色を設定
             SetClearColor(Col4(0.0f, 0.11328125f, 0.2578125, 1.0f)); // ミッドナイトブルー
 
@@ -176,6 +176,15 @@ namespace basecross {
 		}
     }
 
+	int Scene::GetStatus() {
+		return m_status;
+	}
+	void Scene::SetStatus(int status) {
+		m_status = status;
+	}
+	void Scene::AddStatus(int status) {
+		m_status += status;
+	}
 
 }
 //test

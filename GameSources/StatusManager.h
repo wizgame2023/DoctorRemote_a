@@ -1,12 +1,13 @@
 /*!
 @file SatusManager.cpp
 @brief ステート全体の処理等
-担当：
+担当：逸見
 */
 
 #pragma once
 #include "stdafx.h"
 #include "Sprite.h"
+#include "Player.h"
 
 namespace basecross {
 	class StatusManager :public GameObject {
@@ -24,6 +25,7 @@ namespace basecross {
 		int m_score;
 
 		shared_ptr<Transform> m_trans;
+		shared_ptr<Player> m_player;
 
 		shared_ptr<Sprite> m_sprite;
 		Col4 m_color;

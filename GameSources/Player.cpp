@@ -188,24 +188,29 @@ namespace basecross {
 			ptrCamera->SetTarget(GetThis<GameObject>());
 		}
 
+		m_status = App::GetApp()->GetScene<Scene>()->GetStatus();
+
 	}
 
 	void Player::OnUpdate(){
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		Dash();
-		if (m_dashCheck) {
-			m_dashCount -= elapsedTime;
-			if (m_dashCount <= 0) {
-				m_dashCheck = false;
+		if (m_status == 1) {
+			Dash();
+			if (m_dashCheck) {
+				m_dashCount -= elapsedTime;
+				if (m_dashCount <= 0) {
+					m_dashCheck = false;
+				}
 			}
-		}
-		if (m_dashCooldown) {
-			m_dashCoolTime -= elapsedTime;
-			if (m_dashCoolTime <= 0) {
-				m_dashCooldown = false;
-				m_dashCount = 0.7f;
-				m_dashCoolTime = 8.0f;
+			if (m_dashCooldown) {
+				m_dashCoolTime -= elapsedTime;
+				if (m_dashCoolTime <= 0) {
+					m_dashCooldown = false;
+					m_dashCount = 0.7f;
+					m_dashCoolTime = 8.0f;
+				}
 			}
+
 		}
 
 		MovePlayer();
