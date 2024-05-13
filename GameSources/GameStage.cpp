@@ -35,11 +35,10 @@ namespace basecross {
 
 	void GameStage::CreateEffect()//エフェクト生成
 	{
-		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 11.5f, 1, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
+		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-
-		EffectPtr = AddGameObject<Effect>(L"PlayerEffectRed", 3.0f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
-		SetSharedGameObject(L"RedEffect", EffectPtr);
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 15, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
+		SetSharedGameObject(L"RedEffect", EffectPtr2);
 	}
 
 
