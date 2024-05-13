@@ -1,6 +1,6 @@
 /*!
-@file ClearStage.h
-@brief クリアステージ
+@file TitleStage.h
+@brief タイトルステージ
 */
 
 #pragma once
