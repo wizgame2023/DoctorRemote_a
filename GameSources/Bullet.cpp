@@ -16,7 +16,7 @@ namespace basecross {
 		m_Speed(Speed),
 		m_angle(Rad),//角度はRad（弧度法）でお願いします
 		m_Attack(Attack),
-		m_statusFlag(false),
+		m_statusFlag(0),
 		m_shotRange(20.0f)
 	{
 	}
@@ -50,8 +50,12 @@ namespace basecross {
 		{
 		case 0:
 			m_shotRange = 20.0f;
+			break;
 		case 1:
 			m_shotRange = 30.0f;
+			break;
+		case 2:
+			break;
 		default:
 			break;
 		}
