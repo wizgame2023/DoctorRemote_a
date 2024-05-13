@@ -24,7 +24,7 @@ namespace basecross {
 		float m_dashCoolTime;
 		float m_onePiece;
 
-		int m_status;
+		int m_statusFlag;
 
 		bool m_dashCheck;
 		bool m_dashCooldown;
@@ -66,7 +66,6 @@ namespace basecross {
 		bool GetRadarFlag();
 		void SetRadarPiece(float piece);
 		bool GetEnemyFlag();
-		void SetStatusFlag(int status);
 
 		void EffectFlag(int Flag);
 

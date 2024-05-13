@@ -80,7 +80,7 @@ namespace basecross {
 			m_checkL = false;
 		}
 
-		
+		//スコアによって選べるステートが異なる
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 			m_decision++;
 
@@ -104,10 +104,25 @@ namespace basecross {
 					m_colorCheck = true;
 				}
 			}
+
+			//選択したステート
+			switch (m_status)
+			{
+			case 0:
+				App::GetApp()->GetScene<Scene>()->AddPlayerStatus(1);
+				break;
+			case 1:
+				//Bullet::STATUSBULLET++;
+			case 2:
+				break;
+			default:
+				break;
+			}
+
 		}
 
 
-		//点滅
+		//決定を押したら点滅
 		if (m_colorCheck) {
 			if ((int)m_count % 2 == 0) {
 				m_sprite->SetColor(Col4(0, 0, 0, 0));
@@ -117,20 +132,20 @@ namespace basecross {
 			}
 			m_count -= elapsedTime * 10.0f;
 
-			int a = 1;
 
-			switch (m_status)
-			{
-			case 0:
-				App::GetApp()->GetScene<Scene>()->SetStatus(1);
-				break;
-			case 1:
-				//Bullet::STATUSBULLET++;
-			case 2:
-				break;
-			default:
-				break;
-			}
+			////選択したステート
+			//switch (m_status)
+			//{
+			//case 0:
+			//	App::GetApp()->GetScene<Scene>()->AddPlayerStatus(1);
+			//	break;
+			//case 1:
+			//	//Bullet::STATUSBULLET++;
+			//case 2:
+			//	break;
+			//default:
+			//	break;
+			//}
 
 		}
 		
