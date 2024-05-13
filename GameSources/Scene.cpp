@@ -48,7 +48,7 @@ namespace basecross {
 		app->RegisterTexture(L"Title", strTexture);
 		strTexture = texPath + L"Score.jpg";
 		app->RegisterTexture(L"Score", strTexture);
-		strTexture = texPath + L"Ligth.jpg";
+		strTexture = texPath + L"Ligth.png";
 		app->RegisterTexture(L"Ligth", strTexture);
 
 		strTexture = texPath + L"RadarBar.png";
@@ -150,7 +150,7 @@ namespace basecross {
 
             //自分自身にイベントを送る
             //これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStatusStage");
+            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
         }
         catch (...) {
             throw;
