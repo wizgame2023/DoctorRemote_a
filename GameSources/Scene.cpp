@@ -144,7 +144,7 @@ namespace basecross {
 
             //自分自身にイベントを送る
             //これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
+            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStatusStage");
         }
         catch (...) {
             throw;
@@ -175,16 +175,19 @@ namespace basecross {
 		}
     }
 
-	int Scene::GetStatus() {
-		return m_status;
+	int Scene::GetPlayerStatus() {
+		return m_playerStatus;
 	}
-	void Scene::SetStatus(int status) {
-		m_status = status;
-	}
-	void Scene::AddStatus(int status) {
-		m_status += status;
+	void Scene::AddPlayerStatus(int status) {
+		m_playerStatus += status;
 	}
 
+	int Scene::GetBulletStatus() {
+		return m_bulletStatus;
+	}
+	void Scene::AddBulletStatus(int status) {
+		m_bulletStatus += status;
+	}
 }
 //test
 //end basecross

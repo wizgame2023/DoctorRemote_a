@@ -17,7 +17,8 @@ namespace basecross{
 			//int m_status;
 		};
 
-		int m_status;
+		int m_playerStatus;
+		int m_bulletStatus;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief ƒŠƒ\[ƒX‚Ìì¬
@@ -52,9 +53,10 @@ namespace basecross{
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
-		int GetStatus();
-		void SetStatus(int status);
-		void AddStatus(int status);
+		int GetPlayerStatus();
+		void AddPlayerStatus(int status);
+		int GetBulletStatus();
+		void AddBulletStatus(int status);
 	};
 
 }
