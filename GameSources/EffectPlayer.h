@@ -8,4 +8,16 @@
 #include "stdafx.h"
 
 namespace basecross {
+	class EffectPlayer : public Effect
+	{
+	private:
+		//int m_addNumber;
+	public:
+		EffectPlayer(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber, Vec3 pushPos = Vec3(1.0f, 1.0f, 1.0f), Vec3 Scale = Vec3(1.0f, 1.0f, 1.0f));
+		~EffectPlayer() override;
+
+		//virtual void InsertEffect(const Vec3& Pos) override;
+
+	};
+
 }
