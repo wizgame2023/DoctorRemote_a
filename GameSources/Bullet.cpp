@@ -16,7 +16,7 @@ namespace basecross {
 		m_Speed(Speed),
 		m_angle(Rad),//角度はRad（弧度法）でお願いします
 		m_Attack(Attack),
-		m_statusFlag(false),
+		m_statusFlag(0),
 		m_shotRange(20.0f)
 	{
 	}

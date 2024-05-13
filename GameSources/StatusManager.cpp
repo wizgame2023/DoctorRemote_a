@@ -22,6 +22,7 @@ namespace basecross {
 		m_checkR(false),
 		m_checkL(false),
 		m_colorCheck(false),
+		m_moveCheck(false),
 		m_count(10.0f),
 		m_status(1),
 		m_score(100)
@@ -43,6 +44,7 @@ namespace basecross {
 
 		//選択
 		if (cntlVec[0].fThumbLX > 0.9f) {
+			if (m_moveCheck) return;
 			if (m_maxX == 0 && !m_checkR) {
 				m_maxX = m_width;
 				m_trans->SetPosition(m_maxX, 0, 0);
@@ -58,10 +60,12 @@ namespace basecross {
 		}
 		if (cntlVec[0].fThumbLX < 0.9f && m_checkR == true)
 		{
+			if (m_moveCheck) return;
 			m_checkR = false;
 		}
 
 		if (cntlVec[0].fThumbLX < -0.9f) {
+			if (m_moveCheck) return;
 			if (m_maxX == 0 && !m_checkL) {
 				m_maxX = -m_width;
 				m_trans->SetPosition(m_maxX, 0, 0);
@@ -77,11 +81,13 @@ namespace basecross {
 		}
 		if (cntlVec[0].fThumbLX > -0.9f && m_checkL == true)
 		{
+			if (m_moveCheck) return;
 			m_checkL = false;
 		}
 
 		//スコアによって選べるステートが異なる
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+			m_moveCheck = true;
 			m_decision++;
 
 			if (m_score >= 80) {
@@ -112,7 +118,8 @@ namespace basecross {
 				App::GetApp()->GetScene<Scene>()->AddPlayerStatus(1);
 				break;
 			case 1:
-				//Bullet::STATUSBULLET++;
+				App::GetApp()->GetScene<Scene>()->AddBulletStatus(1);
+				break;
 			case 2:
 				break;
 			default:
@@ -132,20 +139,6 @@ namespace basecross {
 			}
 			m_count -= elapsedTime * 10.0f;
 
-
-			////選択したステート
-			//switch (m_status)
-			//{
-			//case 0:
-			//	App::GetApp()->GetScene<Scene>()->AddPlayerStatus(1);
-			//	break;
-			//case 1:
-			//	//Bullet::STATUSBULLET++;
-			//case 2:
-			//	break;
-			//default:
-			//	break;
-			//}
 
 		}
 		

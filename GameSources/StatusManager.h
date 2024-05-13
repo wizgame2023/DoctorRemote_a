@@ -17,6 +17,7 @@ namespace basecross {
 		bool m_checkR;
 		bool m_checkL;
 		bool m_colorCheck;
+		bool m_moveCheck;
 		float m_count;
 
 		int m_decision;
