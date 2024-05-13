@@ -104,8 +104,8 @@ namespace basecross {
 				m_Hp -= Attack;//Ž©•ª‚ÌHP‚ªŒ¸‚é
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 
-				auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"RedEffect", false);
-				//PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+				auto PtrEffect = GetStage()->GetSharedGameObject<EffectBreakWall>(L"RedEffect", false);
+				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
 
 			}
 
