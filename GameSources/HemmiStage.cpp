@@ -596,7 +596,7 @@ namespace basecross {
 			//auto time = AddGameObject<TimeManager>();
 
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
-
+			auto ligth = AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3());
 		}
 		catch (...) {
 			throw;
