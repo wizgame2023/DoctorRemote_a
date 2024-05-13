@@ -1,7 +1,7 @@
 /*!
 @file SatusManager.cpp
 @brief ステート全体の処理等
-担当：
+担当：逸見
 */
 
 #include "stdafx.h"
@@ -32,6 +32,8 @@ namespace basecross {
 		m_sprite = stage->AddGameObject<Sprite>(350, 350, L"White", Vec3());
 		m_trans = m_sprite->GetComponent<Transform>();
 		m_sprite->SetColor(Col4(0, 0, 0, 1.0f));
+
+		//m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 	}
 
 	void StatusManager::OnUpdate() {
@@ -78,7 +80,7 @@ namespace basecross {
 			m_checkL = false;
 		}
 
-		
+		//スコアによって選べるステートが異なる
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 			m_decision++;
 
@@ -102,24 +104,12 @@ namespace basecross {
 					m_colorCheck = true;
 				}
 			}
-		}
 
-
-		//点滅
-		if (m_colorCheck) {
-			if ((int)m_count % 2 == 0) {
-				m_sprite->SetColor(Col4(0, 0, 0, 0));
-			}
-			else if ((int)m_count % 2 == 1) {
-				m_sprite->SetColor(Col4(0, 0, 0, 1));
-			}
-			m_count -= elapsedTime * 10.0f;
-
-
+			//選択したステート
 			switch (m_status)
 			{
 			case 0:
-				//Player::STATUSPLAYER++;
+				App::GetApp()->GetScene<Scene>()->AddPlayerStatus(1);
 				break;
 			case 1:
 				//Bullet::STATUSBULLET++;
@@ -130,9 +120,37 @@ namespace basecross {
 			}
 
 		}
+
+
+		//決定を押したら点滅
+		if (m_colorCheck) {
+			if ((int)m_count % 2 == 0) {
+				m_sprite->SetColor(Col4(0, 0, 0, 0));
+			}
+			else if ((int)m_count % 2 == 1) {
+				m_sprite->SetColor(Col4(0, 0, 0, 1));
+			}
+			m_count -= elapsedTime * 10.0f;
+
+
+			////選択したステート
+			//switch (m_status)
+			//{
+			//case 0:
+			//	App::GetApp()->GetScene<Scene>()->AddPlayerStatus(1);
+			//	break;
+			//case 1:
+			//	//Bullet::STATUSBULLET++;
+			//case 2:
+			//	break;
+			//default:
+			//	break;
+			//}
+
+		}
 		
 		if (m_count < 0) {
-			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 
 		}
 	}

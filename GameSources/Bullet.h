@@ -18,7 +18,9 @@ namespace basecross {
 		Vec3 m_AllStartPosition;
 		int m_Attack;//UŒ‚—Í
 		int m_hit;//“–‚½‚Á‚½‘Šè‚É‚æ‚Á‚Ä”’l‚ª•Ï‚í‚é
-		bool statusFlag;
+		int m_statusFlag;
+
+		float m_shotRange;
 
 	public:
 		static int STATUSBULLET;
@@ -36,7 +38,6 @@ namespace basecross {
 		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//ƒRƒŠƒWƒ‡ƒ“‚ª“ü‚Á‚½
 		float GetSpeed();
 		int GetAttack();
-		void SetStatusFlag(bool flag);
 
 	};
 }

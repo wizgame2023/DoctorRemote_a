@@ -1,6 +1,7 @@
 /*!
 @file UITime.cpp
 @brief 数字の画像
+担当：逸見
 */
 
 #include "stdafx.h"
@@ -26,13 +27,13 @@ namespace basecross {
 		//m_moveH = 100.0f/128.0f;
 		auto number = 9;
 
-		Col4 color(1, 1, 1, 1);
+		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 
 		m_vertices = {
-			{Vec3(0,0,0),color,Vec2((m_moveH * number),0.0f)},
-			{Vec3(m_width,0,0),color,Vec2((m_moveH * (number + 1)),0.0f)},
-			{Vec3(0,-m_heigth,0),color,Vec2((m_moveH * number),1.0f)},
-			{Vec3(m_width,-m_heigth,0),color,Vec2((m_moveH * (number + 1)),1.0f)},
+			{Vec3(0.0f,0.0f,0.0f),color,Vec2((m_moveH * number),0.0f)},
+			{Vec3(m_width,0.0f,0.0f),color,Vec2((m_moveH * (number + 1)),0.0f)},
+			{Vec3(0.0f,-m_heigth,0.0f),color,Vec2((m_moveH * number),1.0f)},
+			{Vec3(m_width,-m_heigth,0.0f),color,Vec2((m_moveH * (number + 1)),1.0f)},
 		};
 
 		m_indices = {
@@ -43,7 +44,7 @@ namespace basecross {
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_meshResName);
 		m_draw->SetSamplerState(SamplerState::LinearWrap);
-		m_draw->SetDiffuse(Col4(0, 0, 1, 1));
+		m_draw->SetDiffuse(Col4(0.0f, 0.0f, 1.0f, 1.0f));
 		SetAlphaActive(true);
 
 		m_trans = GetComponent<Transform>();

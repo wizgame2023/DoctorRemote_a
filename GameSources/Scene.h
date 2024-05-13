@@ -12,6 +12,13 @@ namespace basecross{
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
+
+		struct PLAYER_PROPERTIES {
+			//int m_status;
+		};
+
+		int m_playerStatus;
+		int m_bulletStatus;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief リソースの作成
@@ -46,7 +53,10 @@ namespace basecross{
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
-
+		int GetPlayerStatus();
+		void AddPlayerStatus(int status);
+		int GetBulletStatus();
+		void AddBulletStatus(int status);
 	};
 
 }

@@ -129,13 +129,13 @@ namespace basecross {
 		soundWav = SoundPath + L"ScaryBGM.wav";
 		App::GetApp()->RegisterWav(L"ScaryBGM", soundWav);
 
-
-
-
+		
     }
 
     void Scene::OnCreate() {
         try {
+			PLAYER_PROPERTIES playerPro;
+			
             // 背景色を設定
             SetClearColor(Col4(0.0f, 0.11328125f, 0.2578125, 1.0f)); // ミッドナイトブルー
 
@@ -144,7 +144,7 @@ namespace basecross {
 
             //自分自身にイベントを送る
             //これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
+            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStatusStage");
         }
         catch (...) {
             throw;
@@ -175,7 +175,19 @@ namespace basecross {
 		}
     }
 
+	int Scene::GetPlayerStatus() {
+		return m_playerStatus;
+	}
+	void Scene::AddPlayerStatus(int status) {
+		m_playerStatus += status;
+	}
 
+	int Scene::GetBulletStatus() {
+		return m_bulletStatus;
+	}
+	void Scene::AddBulletStatus(int status) {
+		m_bulletStatus += status;
+	}
 }
 //test
 //end basecross

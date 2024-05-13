@@ -16,7 +16,8 @@ namespace basecross {
 		m_Speed(Speed),
 		m_angle(Rad),//角度はRad（弧度法）でお願いします
 		m_Attack(Attack),
-		statusFlag(false)
+		m_statusFlag(false),
+		m_shotRange(20.0f)
 	{
 	}
 	//デストラクタ
@@ -44,7 +45,16 @@ namespace basecross {
 
 		AddTag(L"Bullet");//Bulletタグを追加
 
-
+		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetBulletStatus();
+		switch (m_statusFlag)
+		{
+		case 0:
+			m_shotRange = 20.0f;
+		case 1:
+			m_shotRange = 30.0f;
+		default:
+			break;
+		}
 	}
 	void Bullet::OnUpdate()
 	{		
@@ -77,7 +87,7 @@ namespace basecross {
 		float AllPosition = abs(PositionVec.x)+abs(PositionVec.y)+abs(PositionVec.z);
 
 		// 初期位置から20.0f離れた弾は破棄する
-		if (AllPosition >= 20.0f)//ちょっと計算違うから直しておく
+		if (AllPosition >= m_shotRange)//ちょっと計算違うから直しておく
 		{
 			// ステージから自身を破棄する
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
@@ -136,9 +146,6 @@ namespace basecross {
 	int Bullet::GetAttack()
 	{
 		return m_Attack;
-	}
-	void Bullet::SetStatusFlag(bool flag) {
-		statusFlag = flag;
 	}
 }
 //end basecross

@@ -1,6 +1,7 @@
 /*!
 @file StatusStage.h
 @brief ステータスステージ
+担当：逸見
 */
 
 #pragma once

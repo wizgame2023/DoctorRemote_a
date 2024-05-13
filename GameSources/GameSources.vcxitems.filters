@@ -175,6 +175,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectPlayer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -313,5 +316,8 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectPlayer.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

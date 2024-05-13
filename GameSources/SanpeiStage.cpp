@@ -68,7 +68,7 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f),Vec3(0.1f,0.1f,0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 10, Vec3(0.3f, 0.8f, 0.3f));
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 15, Vec3(0.5f, 0.8f, 0.5f),Vec3(0.85f,0.85f,0.85f));
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 	}
 
@@ -107,7 +107,7 @@ namespace basecross {
 	//敵を作成
 	void SanpeiStage::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>(Vec3(0.0f,0.0f,0.0f),Vec3(0.0f,0.0f,0.0f),Vec3(1.0f,1.0f,1.0f));
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(10.0f,0.0f,10.0f),Vec3(0.0f,0.0f,0.0f),Vec3(1.0f,1.0f,1.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
