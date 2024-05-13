@@ -1,6 +1,6 @@
 /*!
-@file ClearStage.cpp
-@brief クリアステージ実体
+@file TitleStage.cpp
+@brief タイトルステージ実体
 */
 
 #include "stdafx.h"
