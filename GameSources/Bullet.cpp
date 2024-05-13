@@ -50,8 +50,12 @@ namespace basecross {
 		{
 		case 0:
 			m_shotRange = 20.0f;
+			break;
 		case 1:
 			m_shotRange = 30.0f;
+			break;
+		case 2:
+			break;
 		default:
 			break;
 		}
