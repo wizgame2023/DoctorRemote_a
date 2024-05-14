@@ -1,6 +1,7 @@
 /*!
 @file Sprite.cpp
 @brief スプライト
+担当：逸見
 */
 
 #include "stdafx.h"

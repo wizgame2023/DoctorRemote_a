@@ -1,6 +1,7 @@
 /*!
 @file TimeManager.cpp
 @brief ŽžŠÔ‚Ì•\Ž¦
+’S“–FˆíŒ©
 */
 
 #include "stdafx.h"
@@ -17,7 +18,7 @@ namespace basecross {
 
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
-		Vec3 screen(-sw * 0.5, sh * 0.5, 0);
+		Vec3 screen(-100.0f, sh * 0.5, 0.0f);
 		Vec3 dis(15.0f, -10.0f, 0);
 		Vec3 pos = screen + dis;
 		Vec3 pos1(pos.x + 40, pos.y, pos.z);
@@ -29,8 +30,8 @@ namespace basecross {
 		m_thirdNum = stage->AddGameObject<UITime>(m_third, pos1);
 		m_fourthNum = stage->AddGameObject<UITime>(m_fourth, pos);
 
-		auto ten = stage->AddGameObject<Sprite>(40.0f, 70.0f, L"NumbersTen", Vec3(-535, 350, 0));
-		ten->SetColor(Col4(0, 0, 1, 1));
+		auto ten = stage->AddGameObject<Sprite>(40.0f, 70.0f, L"NumbersTen", Vec3(0, 350, 0));
+		ten->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 	void TimeManager::OnUpdate() {
 

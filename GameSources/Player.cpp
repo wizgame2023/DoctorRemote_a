@@ -333,5 +333,6 @@ namespace basecross {
 	bool Player::GetEnemyFlag() {
 		return m_enemyFlag;
 	}
+
 }
 //end basecross

@@ -1,6 +1,7 @@
 /*!
 @file PlayerGarge.cpp
 @brief プレイヤー体力ゲージ実体
+担当：逸見
 */
 
 #include "stdafx.h"
@@ -30,11 +31,11 @@ namespace basecross {
 		float sh = App::GetApp()->GetGameHeight();
 		Vec3 screen(-sw * 0.5, -sh * 0.5, 0);
 		//Vec3 zero(0, 0, 0);
-		Vec3 dis(340, 80, 0);
+		Vec3 dis(340, 70, 0);
 
-		m_garge = stage->AddGameObject<Garge>(m_trans, 1024, 0,m_meshResName, m_ratioHp, 200, 30, color, color2, screen, dis);
+		m_garge = stage->AddGameObject<Garge>(m_trans, 1024, 0,m_meshResName, m_ratioHp, 200, 10, color, color2, screen, dis);
 
-		auto frame = stage->AddGameObject<Sprite>(33, 203, L"BarFrame", Vec3(0, -335, 0.5));
+		auto frame = stage->AddGameObject<Sprite>(12, 203, L"BarFrame", Vec3(0, -335, 0.5));
 		auto frameTrans = frame->GetComponent<Transform>();
 		frameTrans->SetRotation(0, 0, 90 * XM_PI / 180);
 
