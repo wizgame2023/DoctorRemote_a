@@ -1,6 +1,7 @@
 /*!
 @file TimeManager.cpp
 @brief ŠÔ‚Ì•\¦
+’S“–FˆíŒ©
 */
 
 #include "stdafx.h"
