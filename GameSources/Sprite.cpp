@@ -67,6 +67,16 @@ namespace basecross {
 	Col4 Sprite::GetColor() {
 		return m_color;
 	}
+	void Sprite::UpdateValue(int value)
+	{
+		const float numberW =128.0f / 512.0f;
+		m_vertices[0].textureCoordinate.x = numberW * value;
+		m_vertices[1].textureCoordinate.x = numberW * (value + 1);
+		m_vertices[2].textureCoordinate.x = numberW * value;
+		m_vertices[3].textureCoordinate.x = numberW * (value + 1);
 
+		m_draw->UpdateVertices(m_vertices);
+
+	}
 }
 //end namespace basecross

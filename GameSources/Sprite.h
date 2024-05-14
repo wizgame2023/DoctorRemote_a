@@ -35,9 +35,11 @@ namespace basecross {
 		virtual ~Sprite(){}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
-		
+		void UpdateValue(int value);
+
 		Col4 GetColor();
 		void SetColor(Col4 color);
+
 	};
 
 }

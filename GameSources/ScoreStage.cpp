@@ -25,7 +25,9 @@ namespace basecross {
 			CreateViewLight();
 
 			AddGameObject<Sprite>(1280, 800, L"Score", Vec3());
-			AddGameObject<Sprite>(320, 800, L"Rank", Vec3());
+			auto rank= AddGameObject<Sprite>(512, 800, L"Rank", Vec3());
+			srand(time(0));
+			rank->UpdateValue(rand() % 4);
 		}
 		catch (...) {
 			throw;
