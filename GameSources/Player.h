@@ -35,7 +35,7 @@ namespace basecross {
 		Vec3 m_rot;
 
 		wstring m_meshResName;
-		
+
 		shared_ptr<Transform> m_trans;
 		weak_ptr<MainCamera> m_camera;
 
@@ -70,6 +70,14 @@ namespace basecross {
 		void EffectFlag(int Flag);
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
+	};
+
+	class ChildPlayer :public GameObject {
+
+	public:
+		ChildPlayer(const shared_ptr<Stage>& stagePtr, const shared_ptr<GameObject>& parent, const Vec3& vecParent);
+		virtual ~ChildPlayer() {}
+
 	};
 }
 //end namespace basecross
