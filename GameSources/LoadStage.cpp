@@ -18,7 +18,7 @@ namespace basecross {
 		auto ptrMultiLight = CreateLight<MultiLight>();
 		//デフォルトのライティングを指定
 		ptrMultiLight->SetDefaultLighting();
-
+                                                                
 	}
 	void LoadStage::OnCreate() {
 		try {
