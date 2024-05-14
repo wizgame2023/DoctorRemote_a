@@ -44,7 +44,7 @@ namespace basecross {
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_meshResName);
 		m_draw->SetSamplerState(SamplerState::LinearWrap);
-		m_draw->SetDiffuse(Col4(0.0f, 0.0f, 1.0f, 1.0f));
+		m_draw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 		SetAlphaActive(true);
 
 		m_trans = GetComponent<Transform>();
