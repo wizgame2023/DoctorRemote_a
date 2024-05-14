@@ -7,8 +7,9 @@
 #include "Project.h"
 
 namespace basecross {
-	EffectPlayer::EffectPlayer(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber, Vec3 pushPos, Vec3 Scale) :
-		Effect(Stageptr, TextureName, maxTime, addNumber, pushPos, Scale)
+	EffectPlayer::EffectPlayer(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber,float lenght, Vec3 pushPos, Vec3 Scale) :
+		Effect(Stageptr, TextureName, maxTime, addNumber, pushPos, Scale),
+		m_length(lenght)
 	{
 
 	}
@@ -16,5 +17,49 @@ namespace basecross {
 	{
 
 	}
+
+	void EffectPlayer::InsertEffect(const Vec3& Pos)
+	{
+		auto ptrParticle = InsertParticle(m_addNumber);
+		ptrParticle->SetEmitterPos(Pos);
+		ptrParticle->SetTextureResource(m_TextureName);
+		ptrParticle->SetMaxTime(m_maxTime);
+
+
+		float randamPosX = rand() % 30 + 10;
+		randamPosX -= 20;
+		randamPosX /= 10;//小数点を入れる
+		float randamPosZ = rand() % 30 + 10;
+		randamPosZ -= 20;
+		randamPosZ /= 10;//小数点を入れる
+		float randamPosY = rand() % 30 + 10;
+		randamPosY -= 20;
+		randamPosY /= 10;//小数点を入れる
+
+		float test = 3*cosf(XMConvertToRadians(30.0f));
+		float test2 = 3*sinf(XMConvertToRadians(30.0f));
+		test = test + test2;
+
+		for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec())
+		{	
+			float randamDeg = rand() % 360;//Playerからみた方向をランダムに決める
+
+			//パーティクルの生成位置を決定
+			rParticleSprite.m_LocalPos.x = m_length * cosf(XMConvertToRadians(randamDeg));
+			rParticleSprite.m_LocalPos.y = Util::RandZeroToOne();
+			rParticleSprite.m_LocalPos.z = m_length * sinf(XMConvertToRadians(randamDeg));
+			//各パーティクルの移動速度を指定
+			rParticleSprite.m_Velocity = Vec3
+			(
+				rParticleSprite.m_LocalPos.x * m_pushPos.x,
+				rParticleSprite.m_LocalPos.y += m_pushPos.y,
+				rParticleSprite.m_LocalPos.z * m_pushPos.z
+				);
+			rParticleSprite.m_Color = Col4(1.0f, 1.0f, 1.0f, 1.0f);
+
+		}
+
+	};
+
 
 }

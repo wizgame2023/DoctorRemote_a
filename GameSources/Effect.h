@@ -10,7 +10,13 @@
 namespace basecross {
 	class Effect :public MultiParticle
 	{
-	private:
+	protected:
+		wstring m_TextureName;
+		Vec3 m_pushPos;
+		Vec3 m_Scale;
+		float m_maxTime;//いつまでパーティクルが出るか決まる時間
+		int m_addNumber;
+		shared_ptr<Particle> m_ptrParticle;
 
 	public:
 		//コンストラクタ
@@ -23,11 +29,6 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		virtual void InsertEffect(const Vec3& Pos);	
-		wstring m_TextureName;
-		Vec3 m_pushPos;
-		Vec3 m_Scale;
-		float m_maxTime;//いつまでパーティクルが出るか決まる時間
-		int m_addNumber;
 
 	};
 }
