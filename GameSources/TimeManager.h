@@ -19,6 +19,8 @@ namespace basecross {
 		int m_third;
 		int m_fourth;
 
+		bool m_move;
+
 		shared_ptr<UITime> m_firstNum;
 		shared_ptr<UITime> m_secondNum;
 		shared_ptr<UITime> m_thirdNum;
@@ -27,12 +29,14 @@ namespace basecross {
 
 	public:
 		TimeManager(const shared_ptr<Stage>& stagePtr);
+		TimeManager(const shared_ptr<Stage>& stagePtr,bool move);
 		virtual ~TimeManager(){}
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
 		void UpdateNumber();
+		int GetTime();
 	};
 }
 //end namespace basecross

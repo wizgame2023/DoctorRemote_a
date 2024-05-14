@@ -10,15 +10,22 @@
 namespace basecross {
 	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
-		m_time(120.0f)
+		m_time(120.0f),
+		m_move(true)
 	{}
+	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,bool move) :
+		GameObject(stagePtr),
+		m_time(120.0f),
+		m_move(move)
+	{}
+
 
 	void TimeManager::OnCreate() {
 		auto stage = GetStage();
 
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
-		Vec3 screen(-100.0f, sh * 0.5, 0.0f);
+		Vec3 screen(-105.0f, sh * 0.5, 0.0f);
 		Vec3 dis(15.0f, -10.0f, 0);
 		Vec3 pos = screen + dis;
 		Vec3 pos1(pos.x + 40, pos.y, pos.z);
@@ -36,7 +43,10 @@ namespace basecross {
 	void TimeManager::OnUpdate() {
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		m_time -= elapsedTime;
+		if (m_move) {
+			m_time -= elapsedTime;
+
+		}
 
 		if (m_time <= 0.0f) {
 			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
@@ -49,6 +59,7 @@ namespace basecross {
 		m_second = (seconds / 10) % 10;
 		m_third = minutes % 10;
 		m_fourth = (minutes / 10) % 10;
+
 
 		m_firstNum->UpdateValue(m_first);
 		m_secondNum->UpdateValue(m_second);
@@ -96,6 +107,9 @@ namespace basecross {
 		m_third = minutes % 10;
 		m_fourth = (minutes / 10) % 10;
 
+	}
+	int TimeManager::GetTime() {
+		return m_time;
 	}
 }
 //end namespace basecross

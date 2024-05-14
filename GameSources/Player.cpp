@@ -340,9 +340,9 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	ChildPlayer::ChildPlayer(const shared_ptr<Stage>& stagePtr,
 		const shared_ptr<GameObject>& parent, 
-		const Vec3& vecParent
+		const Vec3& vecParent,Vec3& pos, Vec3& rot
 	):
-		GameObject(stagePtr),
+		Player(stagePtr,pos,rot),
 		m_parent(parent),
 		m_vecParent(vecParent)
 	{}
@@ -354,7 +354,40 @@ namespace basecross {
 
 		//ƒRƒŠƒWƒ‡ƒ“
 		auto childCol = AddComponent<CollisionObb>();
+		SetDrawActive(true);
+		auto ptrDraw = AddComponent<BcPNStaticDraw>();
+		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		ptrDraw->SetDrawActive(true);
 
+	}
+	void ChildPlayer::OnUpdate() {
+
+	}
+	void ChildPlayer::OnCollisionEnter(shared_ptr<GameObject>& other) {
+
+		if (other->FindTag(L"EnemyPiece")) {
+			AddPiece(m_onePiece);
+			if (m_maxPiece < m_piece) {
+				m_radarFlag = true;
+			}
+
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
+
+		}
+		if (other->FindTag(L"BigPiece")) {
+			srand(time(0));
+			int num;
+			num = rand() % 30 + m_onePiece;
+			AddPiece(num);
+			if (m_maxPiece < m_piece) {
+				m_radarFlag = true;
+			}
+
+			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
+			bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
+
+		}
 	}
 }
 
