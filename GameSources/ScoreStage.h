@@ -9,6 +9,7 @@
 namespace basecross {
 	class ScoreStage :public Stage
 	{
+		int m_time;
 		void CreateViewLight();
 	public:
 		ScoreStage() :Stage() {}
