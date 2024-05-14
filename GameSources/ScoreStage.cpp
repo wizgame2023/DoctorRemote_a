@@ -27,7 +27,7 @@ namespace basecross {
 			AddGameObject<Sprite>(1280, 800, L"Score", Vec3());
 			auto rank= AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350,50,0));
 			srand(time(0));
-			rank->UpdateValue(rand() % 4);
+			rank->UpdateRank(rand() % 4);
 		}
 		catch (...) {
 			throw;
@@ -36,6 +36,8 @@ namespace basecross {
 
 	void ScoreStage::OnUpdate() {
 		StageChange();
+		AddGameObject<TimeManager>(false);
+		App::GetApp()->GetScene<Scene>()->GetTime();
 	}
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
