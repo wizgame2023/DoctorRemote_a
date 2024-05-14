@@ -29,7 +29,7 @@ namespace basecross {
 
 	public:
 		TimeManager(const shared_ptr<Stage>& stagePtr);
-		TimeManager(const shared_ptr<Stage>& stagePtr,bool move);
+		TimeManager(const shared_ptr<Stage>& stagePtr,bool move,int time);
 		virtual ~TimeManager(){}
 
 		virtual void OnCreate() override;

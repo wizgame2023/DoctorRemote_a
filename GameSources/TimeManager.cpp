@@ -13,9 +13,9 @@ namespace basecross {
 		m_time(120.0f),
 		m_move(true)
 	{}
-	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,bool move) :
+	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,bool move,int time) :
 		GameObject(stagePtr),
-		m_time(120.0f),
+		m_time(time),
 		m_move(move)
 	{}
 
@@ -69,8 +69,8 @@ namespace basecross {
 		App::GetApp()->GetScene<Scene>()->SetTime(m_time);
 
 		//デバック用
-		//wstringstream wss(L"");
-		//auto scene = App::GetApp()->GetScene<Scene>();
+		wstringstream wss(L"");
+		auto scene = App::GetApp()->GetScene<Scene>();
 
 		//wss <<L"time : "
 		//	<<m_time
@@ -89,8 +89,11 @@ namespace basecross {
 		//	<<m_first
 		//	<< endl;
 
-		//auto dstr = scene->GetDebugString();
-		//scene->SetDebugString(dstr + wss.str());
+
+		wss << m_time << endl;
+
+		auto dstr = scene->GetDebugString();
+		scene->SetDebugString(dstr + wss.str());
 
 	}
 

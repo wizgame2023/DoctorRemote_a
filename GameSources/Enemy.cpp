@@ -92,7 +92,7 @@ namespace basecross {
 		{
 			int a = 0;
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
 		}
 
 	}

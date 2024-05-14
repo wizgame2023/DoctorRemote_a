@@ -140,7 +140,6 @@ namespace basecross {
 
     void Scene::OnCreate() {
         try {
-			PLAYER_PROPERTIES playerPro;
 			
             // 背景色を設定
             SetClearColor(Col4(0.0f, 0.11328125f, 0.2578125, 1.0f)); // ミッドナイトブルー
@@ -179,6 +178,15 @@ namespace basecross {
 		else if (event->m_MsgStr == L"ToStatusStage") {
 			ResetActiveStage<StatusStage>();
 		}
+		else if (event->m_MsgStr == L"ToScoreStage") {
+			ResetActiveStage<ScoreStage>();
+		}
+		else if (event->m_MsgStr == L"ToLoadStage") {
+			ResetActiveStage<LoadStage>();
+		}
+
+
+
     }
 
 	int Scene::GetPlayerStatus() {
