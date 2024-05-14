@@ -194,6 +194,12 @@ namespace basecross {
 	void Scene::AddBulletStatus(int status) {
 		m_bulletStatus += status;
 	}
+	int Scene::GetTime() {
+		return m_time;
+	}
+	void Scene::SetTime(int time) {
+		m_time = time;
+	}
 }
 //test
 //end basecross

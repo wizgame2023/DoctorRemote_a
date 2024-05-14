@@ -66,6 +66,8 @@ namespace basecross {
 		m_thirdNum->UpdateValue(m_third);
 		m_fourthNum->UpdateValue(m_fourth);
 
+		App::GetApp()->GetScene<Scene>()->SetTime(m_time);
+
 		//デバック用
 		//wstringstream wss(L"");
 		//auto scene = App::GetApp()->GetScene<Scene>();
@@ -107,9 +109,6 @@ namespace basecross {
 		m_third = minutes % 10;
 		m_fourth = (minutes / 10) % 10;
 
-	}
-	int TimeManager::GetTime() {
-		return m_time;
 	}
 }
 //end namespace basecross
