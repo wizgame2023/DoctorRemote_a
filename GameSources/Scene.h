@@ -13,10 +13,6 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
 
-		struct PLAYER_PROPERTIES {
-			//int m_status;
-		};
-
 		int m_playerStatus;
 		int m_bulletStatus;
 
