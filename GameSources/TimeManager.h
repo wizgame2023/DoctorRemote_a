@@ -36,7 +36,6 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		void UpdateNumber();
-		int GetTime();
 	};
 }
 //end namespace basecross

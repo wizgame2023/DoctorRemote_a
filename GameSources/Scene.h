@@ -19,6 +19,8 @@ namespace basecross{
 
 		int m_playerStatus;
 		int m_bulletStatus;
+
+		int m_time;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief ƒŠƒ\[ƒX‚Ìì¬
@@ -57,6 +59,8 @@ namespace basecross{
 		void AddPlayerStatus(int status);
 		int GetBulletStatus();
 		void AddBulletStatus(int status);
+		int GetTime();
+		void SetTime(int time);
 	};
 
 }
