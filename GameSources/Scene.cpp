@@ -74,10 +74,14 @@ namespace basecross {
 		app->RegisterTexture(L"WallBreak", strTexture);
 		strTexture = texPath + L"WallSkin4.png";
 		app->RegisterTexture(L"WallRecovery", strTexture);
+
 		strTexture = texPath + L"kaihuku.png";
 		app->RegisterTexture(L"PlayerEffectGreen", strTexture);
 		strTexture = texPath + L"PlayerEffectRed.png";
 		app->RegisterTexture(L"PlayerEffectRed", strTexture);
+		strTexture = texPath + L"EffectWhite.png";
+		app->RegisterTexture(L"PlayerEffectWhite", strTexture);
+
 		strTexture = texPath + L"DashButton.png";
 		app->RegisterTexture(L"DashButton", strTexture);
 		strTexture = texPath + L"BulletButton.png";
