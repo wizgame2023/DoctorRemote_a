@@ -24,7 +24,8 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 
-			AddGameObject<Sprite>(1280, 800, L"GameOver", Vec3());
+			AddGameObject<Sprite>(1280, 800, L"Score", Vec3());
+			AddGameObject<Sprite>(320, 800, L"Rank", Vec3());
 		}
 		catch (...) {
 			throw;
