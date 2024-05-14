@@ -14,7 +14,7 @@ namespace basecross {
 		m_StartPosition(Position),
 		m_Rotate(Rotate),
 		m_Scale(Scale),
-		m_Hp(10)
+		m_Hp(1)
 	{
 
 	}
