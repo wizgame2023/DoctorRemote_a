@@ -30,15 +30,15 @@ namespace basecross {
 			m_time = App::GetApp()->GetScene<Scene>()->GetTime();
 			AddGameObject<TimeManager>(false,m_time);
 
-			if (m_time > 50)
+			if (m_time >= 50)
 			{
 				rank->UpdateRank(0);
 			}
-			if (m_time > 40 && m_time < 50)
+			if (m_time >= 40 && m_time < 50)
 			{
 				rank->UpdateRank(1);
 			}
-			if (m_time > 25 && m_time < 40)
+			if (m_time >= 25 && m_time < 40)
 			{
 				rank->UpdateRank(2);
 			}
