@@ -60,7 +60,7 @@ namespace basecross {
 		Vec3 GetAngle();
 		float GetPiece() const;
 		float GetMaxPiece() const;
-		void SetPiece(float hp);
+		void AddPiece(float hp);
 		float GetPieceRatio();
 		float PlayerAngle() const;
 		bool GetRadarFlag();
@@ -73,10 +73,16 @@ namespace basecross {
 	};
 
 	class ChildPlayer :public GameObject {
+	private:
+		weak_ptr<GameObject> m_parent;
+		Vec3 m_vecParent;
 
 	public:
-		ChildPlayer(const shared_ptr<Stage>& stagePtr, const shared_ptr<GameObject>& parent, const Vec3& vecParent);
+		ChildPlayer(const shared_ptr<Stage>& stagePtr, 
+			const shared_ptr<GameObject>& parent, const Vec3& vecParent);
 		virtual ~ChildPlayer() {}
+		virtual void OnCreate() override;
+		//virtual void OnUpdate() override;
 
 	};
 }

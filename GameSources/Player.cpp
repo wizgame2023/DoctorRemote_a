@@ -255,7 +255,7 @@ namespace basecross {
 	//衝突判定
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
 		if (other->FindTag(L"EnemyPiece")) {
-			SetPiece(m_onePiece);
+			AddPiece(m_onePiece);
 			if (m_maxPiece < m_piece) {
 				m_radarFlag = true;
 			}
@@ -268,7 +268,7 @@ namespace basecross {
 			srand(time(0));
 			int num;
 			num = rand() % 30 + m_onePiece;
-			SetPiece(num);
+			AddPiece(num);
 			if (m_maxPiece < m_piece) {
 				m_radarFlag = true;
 			}
@@ -315,7 +315,7 @@ namespace basecross {
 		return m_maxPiece;
 	}
 
-	void Player::SetPiece(float piece){
+	void Player::AddPiece(float piece){
 		m_piece += piece;
 	}
 
@@ -334,5 +334,28 @@ namespace basecross {
 		return m_enemyFlag;
 	}
 
+	//--------------------------------------------------------------------------------------
+	//	class ChildSphere : public GameObject;
+	//　当たり判定用のクラス
+	//--------------------------------------------------------------------------------------
+	ChildPlayer::ChildPlayer(const shared_ptr<Stage>& stagePtr,
+		const shared_ptr<GameObject>& parent, 
+		const Vec3& vecParent
+	):
+		GameObject(stagePtr),
+		m_parent(parent),
+		m_vecParent(vecParent)
+	{}
+
+	void ChildPlayer::OnCreate() {
+		auto childTrans = GetComponent<Transform>();
+		childTrans->SetScale(Vec3(0.5f));
+		childTrans->SetRotation(Vec3());
+
+		//コリジョン
+		auto childCol = AddComponent<CollisionObb>();
+
+	}
 }
+
 //end basecross
