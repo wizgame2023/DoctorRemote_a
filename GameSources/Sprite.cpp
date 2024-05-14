@@ -67,7 +67,7 @@ namespace basecross {
 	Col4 Sprite::GetColor() {
 		return m_color;
 	}
-	void Sprite::UpdateValue(int value)
+	void Sprite::UpdateRank(int value)
 	{
 		const float numberW =128.0f / 512.0f;
 		m_vertices[0].textureCoordinate.x = numberW * value;
