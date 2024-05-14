@@ -170,7 +170,7 @@ namespace basecross {
             ResetActiveStage<TitleStage>();
         }
         else if (event->m_MsgStr == L"ToClearStage") {
-            ResetActiveStage<ClearStage>();
+            ResetActiveStage<ScoreStage>();
         }
         else if (event->m_MsgStr == L"ToGameOverStage") {
             ResetActiveStage<GameOverStage>();
