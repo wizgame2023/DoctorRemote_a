@@ -39,6 +39,10 @@ namespace basecross {
 		SetSharedGameObject(L"Effect", EffectPtr);
 		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 15, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
+		auto EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
+		SetSharedGameObject(L"PlayerEffect", EffectPtr3);
+		EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
+		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
 	}
 
 
@@ -48,7 +52,7 @@ namespace basecross {
 		int randamPlayer = 0;
 		randamPlayer = rand() % 3;
 		shared_ptr<Player> ptrPlayer;
-		randamPlayer = 0;
+		//randamPlayer = 0;//デバック
 		//shared_ptr<GameObject> nanasiObject;
 		//ランダムにPlayerの出現場所が決まる
 		switch (randamPlayer)
@@ -596,7 +600,7 @@ namespace basecross {
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 
-			AddGameObject<MyLight>();//光の表現をこれでやる
+			//auto ligth = AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3());
 			AddGameObject<TimeManager>();//時間制限
 			//ビューとライトの作成
 			CreateViewLight();

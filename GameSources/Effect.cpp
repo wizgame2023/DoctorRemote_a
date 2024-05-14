@@ -14,7 +14,8 @@ namespace basecross {
 		m_pushPos(pushPos),
 		m_Scale(Scale),
 		m_maxTime(maxTime),
-		m_addNumber(addNumber)
+		m_addNumber(addNumber),
+		m_ptrParticle(InsertParticle(addNumber))
 	{
 
 	}
@@ -48,16 +49,17 @@ namespace basecross {
 			}
 		}
 
+
 		//親クラスのOnUpdate()を呼ぶ
 		MultiParticle::OnUpdate();
 	}
 
 	void Effect::InsertEffect(const Vec3& Pos)
 	{
-		auto ptrParticle = InsertParticle(m_addNumber);//何個同時にテクスチャが出てくるか決める
-		ptrParticle->SetEmitterPos(Pos);
-		ptrParticle->SetTextureResource(m_TextureName);
-		ptrParticle->SetMaxTime(m_maxTime);
+		m_ptrParticle = InsertParticle(m_addNumber);//何個同時にテクスチャが出てくるか決める
+		m_ptrParticle->SetEmitterPos(Pos);
+		m_ptrParticle->SetTextureResource(m_TextureName);
+		m_ptrParticle->SetMaxTime(m_maxTime);
 		//srand(time(0));
 		float randamPosX = rand() % 30+10;
 		randamPosX -= 20;
@@ -69,7 +71,7 @@ namespace basecross {
 		randamPosY -= 20;
 		randamPosY /= 10;//小数点を入れる
 
-		for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec())
+		for (auto& rParticleSprite : m_ptrParticle->GetParticleSpriteVec())
 		{	
 			//パーティクルの生成位置を決定
 			rParticleSprite.m_LocalPos.x = (Util::RandZeroToOne() * 2 - 0.5f) * randamPosX;

@@ -70,6 +70,11 @@ namespace basecross {
 		SetSharedGameObject(L"Effect", EffectPtr);
 		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 15, Vec3(0.5f, 0.8f, 0.5f),Vec3(0.85f,0.85f,0.85f));
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
+		auto EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
+		SetSharedGameObject(L"PlayerEffect", EffectPtr3);
+		EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
+		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
+
 	}
 
 	void SanpeiStage::CreateBullet()
@@ -115,40 +120,57 @@ namespace basecross {
 	void SanpeiStage::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{//1
-				Vec3(5.0f,0.5f,0.0f),
+			{//8				
+				Vec3(-6.25f,0.0f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f),
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//2
-				Vec3(0.5f,0.5f,0.5f),
+			{//9
+				Vec3(-4.56f,0.0f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-20.0f,0.0f,5.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//3
-				Vec3(0.5f,0.5f,0.5f),
+			{//10
+				Vec3(-7.25f,0.0f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-8.0f,0.0f,3.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//4
-				Vec3(0.5f,0.5f,0.5f),
+			{//11
+				Vec3(28.9f,0.0f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-10.0f,0.0f,23.0f)
+				Vec3(0.5f,0.5f,0.5f)
 			},
-			{//5
-				Vec3(0.5f,0.5f,0.5f),
+			{//12
+				Vec3(45.0f,0.0f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(-23.0f,0.0f,13.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
 			},
-			{//6
-				Vec3(0.5f,0.5f,0.5f),
+			{//13
+				Vec3(16.0f,0.0f,10.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.0f,0.0f,3.0f)
+				Vec3(0.5f,0.5f,0.5f)
 			},
-			{//7
-				Vec3(0.5f,0.5f,0.5f),
+			{//14
+				Vec3(12.0f,0.0f,41.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.0f,0.0f,0.0f)
+				Vec3(0.5f,0.5f,0.5f)
+
+			},
+			{//15
+				Vec3(0.6f,0.0f,34.3f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(0.5f,0.5f,0.5f)
+
+			},
+			{//16
+				Vec3(10.0f,0.0f,20.0f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(0.5f,0.5f,0.5f)
+
 			}
 
 		};
