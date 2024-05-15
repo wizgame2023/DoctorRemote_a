@@ -21,6 +21,8 @@ namespace basecross {
 		float m_maxSpeed;
 		float m_dashSpeed;
 		float m_dashCount;
+		float m_dashCountTime;
+		float m_dashCool;
 		float m_dashCoolTime;
 		float m_onePiece;
 

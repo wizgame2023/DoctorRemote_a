@@ -29,7 +29,7 @@ namespace basecross {
 
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		Vec2 ret;
-		auto speed = 100.0f;
+		auto speed = 50.0f;
 		if (cntlVec[0].bConnected)
 		{
 			ret.x = cntlVec[0].fThumbLX;

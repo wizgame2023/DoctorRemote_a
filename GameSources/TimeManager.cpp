@@ -10,7 +10,7 @@
 namespace basecross {
 	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
-		m_time(120.0f),
+		m_time(150.0f),
 		m_move(true)
 	{}
 	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,bool move,int time) :
