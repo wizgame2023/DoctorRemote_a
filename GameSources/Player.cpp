@@ -32,7 +32,7 @@ namespace basecross {
 		m_onePiece(6.0f),
 		m_maxPiece(100.0f),
 		m_speed(7.0f),
-		m_maxSpeed(5.0f),
+		m_maxSpeed(7.0f),
 		m_dashSpeed(15.0f),
 		m_dashCountTime(1.0f),
 		m_dashCount(m_dashCoolTime),
@@ -194,7 +194,7 @@ namespace basecross {
 
 	void Player::OnUpdate(){
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		if (m_statusFlag == 0) {
+		if (m_statusFlag == 1) {
 			Dash();
 			if (m_dashCooldown) {
 				m_dashCount -= elapsedTime;
@@ -221,7 +221,7 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.3f, 0.3f, 0.3f), 20.0f, frontAngle, 1);
+				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.2f), 30.0f, frontAngle, 1);
 				//stage->SetSharedGameObject(L"Bullet", bullet);
 
 				auto soundE = App::GetApp()->GetXAudio2Manager();
