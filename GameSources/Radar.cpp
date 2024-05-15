@@ -53,7 +53,7 @@ namespace basecross {
 		m_drawComp = AddComponent<PCTSpriteDraw>(m_vertices, m_indices); // スプライト用のドローコンポーネント
 		m_drawComp->SetTextureResource(L"Radar");//白のテクスチャが欲しいときはHAKUSIを選択してください
 		m_drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
-		m_drawComp->SetDiffuse(Col4(1, 1, 1, 0.0f)); // ポリゴンを色を設定する
+		m_drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
 
 		// アルファブレンド(透過処理)を有効にする
 		SetAlphaActive(true); // true:透過を有効、false:透過を無効
@@ -65,8 +65,8 @@ namespace basecross {
 	{
 		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得する
 
-		//wstringstream wss;//デバック用文字列
-		//wss << "test" << endl;
+		wstringstream wss;//デバック用文字列
+		wss << "test" << endl;
 		auto scene = app->GetScene<Scene>();//シーン取得
 
 
@@ -85,24 +85,32 @@ namespace basecross {
 
 		float rad = atan2f(RadarVec3.z, RadarVec3.x);//ベクトルをラジアンに変換
 		float deg = (rad * degConvert);//ラジアンをディグリーに変換
-		m_angle = rad - PlayerAngle+1.54f;
+		m_angle = rad - PlayerAngle + 1.54f;
+		//if (m_angle < XMConvertToRadians(30.0f) && m_angle >= 0.0f)
+		//{
+		//	m_angle = XMConvertToRadians(30.0f);
+		//}
+		//if (m_angle > XMConvertToRadians(150.0f) && m_angle <= 180.0f)
+		//{
+		//	m_angle = XMConvertToRadians(150.0f);
+		//}
 
-		if (m_angle > 3.14f)
-		{
-			m_angle = 6.28f - m_angle;
-		}
-		if (m_angle < 0.0f)//もし回転する方向が下方面だったら
-		{
-			m_angle = -m_angle;//上方面に直す
-			if (m_angle > 3.14f)
-			{
-				m_angle = 6.28f - m_angle;
-			}
+		//if (m_angle > 3.14f)
+		//{
+		//	m_angle = 6.28f - m_angle;
+		//}
+		//if (m_angle < 0.0f)//もし回転する方向が下方面だったら
+		//{
+		//	m_angle = -m_angle;//上方面に直す
+		//	if (m_angle > 3.14f)
+		//	{
+		//		m_angle = 6.28f - m_angle;
+		//	}
 
-		}
+		//}
 
 
-
+		RadarComvertAngle();
 		transform->SetRotation(0.0f, 0.0f, m_angle);//回転を初期化
 		transform->SetPosition(0.0f, -300.0f, 0.0f);
 
@@ -116,8 +124,8 @@ namespace basecross {
 			ptrPlayer->SetRadarPiece(0.0f);
 		}
 
-		//wss << m_angle*degConvert
-			//<< endl;//デバック用文字列を作成
+		wss << m_angle*degConvert
+			<< endl;//デバック用文字列を作成
 
 
 		PlayerEnemyLong(RadarVec3);//敵との距離によって色が変わる
@@ -128,7 +136,7 @@ namespace basecross {
 			float a = 1.0f;
 		}
 		//デバック用文字列を生成
-		//scene->SetDebugString(L"a\n" + wss.str());
+		scene->SetDebugString(L"a\n" + wss.str());
 
 	}
 
@@ -137,15 +145,15 @@ namespace basecross {
 		//PlayerとEnemyの距離のベクトルの大きさをを計算
 		float PlayerEnemyLong = abs(RadarVec.x) + abs(RadarVec.y) + abs(RadarVec.z);
 		//距離を合わせて一定の距離以下なら画像を変える
-		if (PlayerEnemyLong <= 10.0f)
+		if (PlayerEnemyLong <= 20.0f)
 		{
 			m_drawComp->SetTextureResource(L"RadarRed");//白のテクスチャが欲しいときはHAKUSIを選択してください
 		}
-		else if (PlayerEnemyLong <= 20.0f)
+		else if (PlayerEnemyLong <= 50.0f)
 		{
 			m_drawComp->SetTextureResource(L"RadarOrange");//白のテクスチャが欲しいときはHAKUSIを選択してください
 		}
-		else if (PlayerEnemyLong > 20.0f)
+		else if (PlayerEnemyLong > 50.0f)
 		{
 			m_drawComp->SetTextureResource(L"RadarBlue");//白のテクスチャが欲しいときはHAKUSIを選択してください
 		}
@@ -162,4 +170,20 @@ namespace basecross {
 		return RadarVec3;
 	}
 
+	void Radar::RadarComvertAngle()
+	{
+		if (m_angle > 3.14f)
+		{
+			m_angle = 6.28f - m_angle;
+		}
+		if (m_angle < 0.0f)//もし回転する方向が下方面だったら
+		{
+			m_angle = -m_angle;//上方面に直す
+			if (m_angle > 3.14f)
+			{
+				m_angle = 6.28f - m_angle;
+			}
+
+		}
+	}
 }
