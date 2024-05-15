@@ -36,6 +36,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		void UpdateRank(int value);
+		void UpdateIfClear(int value);
 
 		Col4 GetColor();
 		void SetColor(Col4 color);
