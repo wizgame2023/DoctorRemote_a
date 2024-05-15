@@ -98,6 +98,11 @@ namespace basecross {
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
 
+		strTexture = texPath + L"GameClear.jpg";
+		app->RegisterTexture(L"GameClear", strTexture);
+		strTexture = texPath + L"IfClear.png";
+		app->RegisterTexture(L"IfClear", strTexture);
+
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
