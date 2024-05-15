@@ -78,5 +78,17 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 
 	}
+	void Sprite::UpdateIfClear(int value)
+	{
+		const float numberH = 128.0f / 512.0f;
+		m_vertices[0].textureCoordinate.y = numberH * value;
+		m_vertices[1].textureCoordinate.y = numberH * (value + 1);
+		m_vertices[2].textureCoordinate.y = numberH * value;
+		m_vertices[3].textureCoordinate.y = numberH * (value + 1);
+
+		m_draw->UpdateVertices(m_vertices);
+
+
+	}
 }
 //end namespace basecross

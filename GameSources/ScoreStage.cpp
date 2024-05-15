@@ -54,6 +54,12 @@ namespace basecross {
 
 	void ScoreStage::OnUpdate() {
 		StageChange();
+		int delta = App::GetApp()->GetElapsedTime();
+		AddGameObject<Sprite>(1280, 800, L"Score", Vec3());
+
+		//if (delta == 1)
+		//{
+		//}
 	}
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
