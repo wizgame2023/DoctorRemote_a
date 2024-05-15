@@ -121,6 +121,7 @@ namespace basecross {
 				App::GetApp()->GetScene<Scene>()->AddBulletStatus(1);
 				break;
 			case 2:
+				App::GetApp()->GetScene<Scene>()->AddLigthStatus(1);
 				break;
 			default:
 				break;
