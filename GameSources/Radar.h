@@ -27,6 +27,7 @@ namespace basecross {
 		void OnCreate()override;//初期化UnityでいうところのStart
 		void OnUpdate()override;//アップデート
 		void PlayerEnemyLong(Vec3 RadarVec);//PlayerとEnemyの距離のベクトルの大きさをを計算
+		void RadarComvertAngle();//レーダ専用の回転計算
 		Vec3 PlayerEnemyVec();//PlayerとEnemyとの距離の計算
 		//void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
 	};
