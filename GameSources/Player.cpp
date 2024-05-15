@@ -31,11 +31,13 @@ namespace basecross {
 		m_piece(0),
 		m_onePiece(6.0f),
 		m_maxPiece(100.0f),
-		m_speed(5.0f),
+		m_speed(7.0f),
 		m_maxSpeed(5.0f),
-		m_dashSpeed(20.0f),
-		m_dashCount(0.7f),
+		m_dashSpeed(15.0f),
+		m_dashCountTime(1.0f),
+		m_dashCount(m_dashCoolTime),
 		m_dashCoolTime(8.0f),
+		m_dashCool(m_dashCoolTime),
 		m_dashCheck(false),
 		m_dashCooldown(false),
 		m_radarFlag(false),
@@ -125,7 +127,7 @@ namespace basecross {
 		if (angle.length() > 0.0f) {
 			auto unilPtr = GetBehavior<UtilBehavior>();
 			//•âŠÔˆ—‚ðs‚¤‰ñ“]
-			unilPtr->RotToHead(angle, 1.0f);
+			unilPtr->RotToHead(angle, 0.7f);
 		}
 	}
 
@@ -134,15 +136,13 @@ namespace basecross {
 		
 		if (cntlVec[0].bRightTrigger >= 0.8f) {
 			m_dashCheck = true;
+			m_dashCooldown = true;
 			if (m_dashCount > 0) {
-				if (!m_dashCooldown) {
-					m_speed = m_dashSpeed;
-					m_dashCooldown = true;
-				}
+				m_speed = m_dashSpeed;
 			}
-			else {
-				m_speed = m_maxSpeed;
-			}
+		}
+		else {
+			m_speed = m_maxSpeed;
 		}
 	}
 
@@ -194,20 +194,19 @@ namespace basecross {
 
 	void Player::OnUpdate(){
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		if (m_statusFlag == 1) {
+		if (m_statusFlag == 0) {
 			Dash();
-			if (m_dashCheck) {
+			if (m_dashCooldown) {
 				m_dashCount -= elapsedTime;
 				if (m_dashCount <= 0) {
+					m_speed = m_maxSpeed;
 					m_dashCheck = false;
 				}
-			}
-			if (m_dashCooldown) {
-				m_dashCoolTime -= elapsedTime;
-				if (m_dashCoolTime <= 0) {
+				m_dashCool -= elapsedTime;
+				if (m_dashCool <= 0) {
 					m_dashCooldown = false;
-					m_dashCount = 0.7f;
-					m_dashCoolTime = 8.0f;
+					m_dashCount = m_dashCountTime;
+					m_dashCool = m_dashCoolTime;
 				}
 			}
 
