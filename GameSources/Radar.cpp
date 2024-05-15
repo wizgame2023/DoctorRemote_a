@@ -86,6 +86,9 @@ namespace basecross {
 		float rad = atan2f(RadarVec3.z, RadarVec3.x);//ベクトルをラジアンに変換
 		float deg = (rad * degConvert);//ラジアンをディグリーに変換
 		m_angle = rad - PlayerAngle + 1.54f;
+		wss << L"m_angle変更前：" << m_angle * degConvert
+			<< endl;//デバック用文字列を作成
+
 		//if (m_angle < XMConvertToRadians(30.0f) && m_angle >= 0.0f)
 		//{
 		//	m_angle = XMConvertToRadians(30.0f);
@@ -124,7 +127,7 @@ namespace basecross {
 			ptrPlayer->SetRadarPiece(0.0f);
 		}
 
-		wss << m_angle*degConvert
+		wss << L"m_angle変更後：" << m_angle * degConvert
 			<< endl;//デバック用文字列を作成
 
 
@@ -172,18 +175,30 @@ namespace basecross {
 
 	void Radar::RadarComvertAngle()
 	{
-		if (m_angle > 3.14f)
+		float angle = m_angle;
+
+		if (m_angle > XMConvertToRadians(180.0f))
 		{
-			m_angle = 6.28f - m_angle;
+			m_angle = XMConvertToRadians(360.0f) - m_angle;
 		}
 		if (m_angle < 0.0f)//もし回転する方向が下方面だったら
 		{
 			m_angle = -m_angle;//上方面に直す
-			if (m_angle > 3.14f)
+			if (m_angle > XMConvertToRadians(180.0f))
 			{
-				m_angle = 6.28f - m_angle;
+				m_angle = XMConvertToRadians(360.0f) - m_angle;
 			}
 
+		}	
+
+		if (m_angle < XMConvertToRadians(30.0f) && m_angle >= 0.0f)//角度が30度より小さく0よりも大きい場合
+		{
+			m_angle = XMConvertToRadians(30.0f);
 		}
+		if (m_angle > XMConvertToRadians(150.0f) && m_angle <= 180.0f)//角度が150度よりも大きく180よりも小さい場合
+		{
+			m_angle = XMConvertToRadians(150.0f);
+		}
+
 	}
 }
