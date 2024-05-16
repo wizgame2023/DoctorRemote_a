@@ -18,7 +18,7 @@ namespace basecross {
 
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
-		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigth();
+		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
 		switch (m_ligthStatus)
 		{
 		case 0:
