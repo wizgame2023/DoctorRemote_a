@@ -194,7 +194,11 @@ namespace basecross {
 
 	void Player::OnUpdate(){
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		if (m_statusFlag == 1) {
+		switch (m_statusFlag)
+		{
+		case 0:
+				break;
+		case 1:
 			Dash();
 			if (m_dashCooldown) {
 				m_dashCount -= elapsedTime;
@@ -209,7 +213,26 @@ namespace basecross {
 					m_dashCool = m_dashCoolTime;
 				}
 			}
+			break;
+		case 2:
+			Dash();
+			if (m_dashCooldown) {
+				m_dashCount -= elapsedTime*0.7;
+				if (m_dashCount <= 0) {
+					m_speed = m_maxSpeed;
+					m_dashCheck = false;
+				}
+				m_dashCool -= elapsedTime*1.5f;
+				if (m_dashCool <= 0) {
+					m_dashCooldown = false;
+					m_dashCount = m_dashCountTime;
+					m_dashCool = m_dashCoolTime;
+				}
+			}
+			break;
 
+		default:
+			break;
 		}
 
 		MovePlayer();
