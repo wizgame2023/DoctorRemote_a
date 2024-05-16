@@ -47,13 +47,12 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		if (m_move) {
 			m_time -= elapsedTime;
+			if (m_time <= 0.0f) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 
+			}
 		}
 
-		if (m_time <= 0.0f) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-
-		}
 
 		int minutes = m_time / 60;
 		int seconds = (int)m_time % 60;
@@ -69,7 +68,7 @@ namespace basecross {
 		m_fourthNum->UpdateValue(m_fourth);
 		m_ten->UpdateValue(10);
 
-		//App::GetApp()->GetScene<Scene>()->SetTime(m_time);
+		App::GetApp()->GetScene<Scene>()->SetTime(m_time);
 
 		//デバック用
 		wstringstream wss(L"");
@@ -103,10 +102,6 @@ namespace basecross {
 	void TimeManager::UpdateNumber() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_time -= elapsedTime;
-
-		if (m_time <= 0.0f) {
-			m_time = 100.0f;
-		}
 
 		int minutes = m_time / 60;
 		int seconds = (int)m_time % 60;
