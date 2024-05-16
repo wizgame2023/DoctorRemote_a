@@ -21,15 +21,18 @@ namespace basecross {
 
 		bool m_move;
 
+		Vec3 m_pos;
+
 		shared_ptr<UITime> m_firstNum;
 		shared_ptr<UITime> m_secondNum;
 		shared_ptr<UITime> m_thirdNum;
 		shared_ptr<UITime> m_fourthNum;
+		shared_ptr<UITime> m_ten;
 
 
 	public:
 		TimeManager(const shared_ptr<Stage>& stagePtr);
-		TimeManager(const shared_ptr<Stage>& stagePtr,bool move,int time);
+		TimeManager(const shared_ptr<Stage>& stagePtr,int time,Vec3 pos);
 		virtual ~TimeManager(){}
 
 		virtual void OnCreate() override;
