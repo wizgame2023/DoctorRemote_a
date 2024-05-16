@@ -8,15 +8,28 @@
 #include "Project.h"
 
 namespace basecross {
-	StageManager::StageManager(const shared_ptr<Stage>& stagePtr):
+	StageManager::StageManager(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
 		m_currentHp(100.0f),
 		m_maxHp(100.0f),
-		m_hpSpeed(3.0f)
+		m_hpSpeed(3.0f),
+		m_ligthStatus(0)
 	{}
 
 	void StageManager::OnCreate() {
-
+		auto stage = GetStage();
+		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
+		switch (m_ligthStatus)
+		{
+		case 0:
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3());
+			break;
+		case 1:
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3());
+			break;
+		default:
+			break;
+		}
 	}
 	void StageManager::OnUpdate() {
 

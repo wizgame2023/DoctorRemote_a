@@ -599,8 +599,6 @@ namespace basecross {
 		try {
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
-
-			auto ligth = AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3());
 			AddGameObject<TimeManager>();//時間制限
 			//ビューとライトの作成
 			CreateViewLight();

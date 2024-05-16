@@ -21,11 +21,11 @@ namespace basecross {
 
 		m_width = 40.0f;
 		m_heigth = 80.0f;
-		m_moveW = (512.0f / 10) / 512.0f;
-		m_moveH = 128.0f/128.0f;
+		m_moveW = (512.0f / 11) / 512.0f;
+		m_moveH = 75.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
 		//m_moveH = 100.0f/128.0f;
-		auto number = 9;
+		int number = 9;
 
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -51,9 +51,6 @@ namespace basecross {
 		m_trans->SetPosition(m_pos);
 	}
 	void UITime::OnUpdate() {
-
-		auto elapseTime = App::GetApp()->GetElapsedTime();
-		m_time -= elapseTime;
 
 		//UpdateValue(m_number);
 	}

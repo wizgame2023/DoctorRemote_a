@@ -11,12 +11,14 @@ namespace basecross {
 	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
 		m_time(150.0f),
-		m_move(true)
+		m_move(true),
+		m_pos(-90.0f,380.0f,0.0f)
 	{}
-	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,bool move,int time) :
+	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,int time,Vec3 pos) :
 		GameObject(stagePtr),
 		m_time(time),
-		m_move(move)
+		m_move(false),
+		m_pos(pos)
 	{}
 
 
@@ -25,33 +27,32 @@ namespace basecross {
 
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
-		Vec3 screen(-105.0f, sh * 0.5, 0.0f);
-		Vec3 dis(15.0f, -10.0f, 0);
-		Vec3 pos = screen + dis;
-		Vec3 pos1(pos.x + 40, pos.y, pos.z);
-		Vec3 pos2(pos.x + 100, pos.y, pos.z);
-		Vec3 pos3(pos.x + 140, pos.y, pos.z);
+		//Vec3 screen(-105.0f, sh * 0.5, 0.0f);
+		//Vec3 dis(15.0f, -10.0f, 0);
+		//Vec3 pos = screen + dis;
+		Vec3 pos1(m_pos.x + 40, m_pos.y, m_pos.z);
+		Vec3 posTen(m_pos.x + 70, m_pos.y, m_pos.z);
+		Vec3 pos2(m_pos.x + 100, m_pos.y, m_pos.z);
+		Vec3 pos3(m_pos.x + 140, m_pos.y, m_pos.z);
 
 		m_firstNum = stage->AddGameObject<UITime>(m_first,pos3);
 		m_secondNum = stage->AddGameObject<UITime>(m_seconds, pos2);
 		m_thirdNum = stage->AddGameObject<UITime>(m_third, pos1);
-		m_fourthNum = stage->AddGameObject<UITime>(m_fourth, pos);
+		m_fourthNum = stage->AddGameObject<UITime>(m_fourth, m_pos);
+		m_ten = stage->AddGameObject<UITime>(m_fourth, posTen);
 
-		auto ten = stage->AddGameObject<Sprite>(40.0f, 70.0f, L"NumbersTen", Vec3(0, 350, 0));
-		ten->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 	void TimeManager::OnUpdate() {
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		if (m_move) {
 			m_time -= elapsedTime;
+			if (m_time <= 0.0f) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 
+			}
 		}
 
-		if (m_time <= 0.0f) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-
-		}
 
 		int minutes = m_time / 60;
 		int seconds = (int)m_time % 60;
@@ -65,6 +66,7 @@ namespace basecross {
 		m_secondNum->UpdateValue(m_second);
 		m_thirdNum->UpdateValue(m_third);
 		m_fourthNum->UpdateValue(m_fourth);
+		m_ten->UpdateValue(10);
 
 		App::GetApp()->GetScene<Scene>()->SetTime(m_time);
 
@@ -100,10 +102,6 @@ namespace basecross {
 	void TimeManager::UpdateNumber() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_time -= elapsedTime;
-
-		if (m_time <= 0.0f) {
-			m_time = 100.0f;
-		}
 
 		int minutes = m_time / 60;
 		int seconds = (int)m_time % 60;

@@ -17,6 +17,7 @@ namespace basecross{
 		int m_bulletStatus;
 
 		int m_time;
+		int m_ligthStatus;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief ƒŠƒ\[ƒX‚Ìì¬
@@ -52,9 +53,14 @@ namespace basecross{
 		//--------------------------------------------------------------------------------------
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 		int GetPlayerStatus();
+		void SetPlayerStatus(int status);
 		void AddPlayerStatus(int status);
 		int GetBulletStatus();
+		void SetBulletStataus(int status);
 		void AddBulletStatus(int status);
+		int GetLigthStatus();
+		void SetLigthStatus(int status);
+		void AddLigthStatus(int status);
 		int GetTime();
 		void SetTime(int time);
 	};

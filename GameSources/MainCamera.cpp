@@ -15,8 +15,8 @@ namespace basecross {
 	MainCamera::MainCamera():
 		m_angleY(0.0f),
 		m_distance(7.0f),
-		m_height(3.0f),
-		m_camDis(6.0f)
+		m_height(2.5f),
+		m_camDis(5.0f)
 	{
 	}
 

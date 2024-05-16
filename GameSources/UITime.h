@@ -28,8 +28,6 @@ namespace basecross {
 		shared_ptr<Transform> m_trans;
 		Vec3 m_pos;
 
-		float m_time;
-
 	public:
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos);
 

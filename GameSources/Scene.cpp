@@ -50,6 +50,8 @@ namespace basecross {
 		app->RegisterTexture(L"Score", strTexture);
 		strTexture = texPath + L"Ligth.png";
 		app->RegisterTexture(L"Ligth", strTexture);
+		strTexture = texPath + L"Ligth2.png";
+		app->RegisterTexture(L"Ligth2", strTexture);
 
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -201,6 +203,9 @@ namespace basecross {
 	int Scene::GetPlayerStatus() {
 		return m_playerStatus;
 	}
+	void Scene::SetPlayerStatus(int status) {
+		m_playerStatus = status;
+	}
 	void Scene::AddPlayerStatus(int status) {
 		m_playerStatus += status;
 	}
@@ -208,9 +213,23 @@ namespace basecross {
 	int Scene::GetBulletStatus() {
 		return m_bulletStatus;
 	}
+	void Scene::SetBulletStataus(int status) {
+		m_bulletStatus = status;
+	}
 	void Scene::AddBulletStatus(int status) {
 		m_bulletStatus += status;
 	}
+
+	int Scene::GetLigthStatus() {
+		return m_ligthStatus;
+	}
+	void Scene::SetLigthStatus(int status) {
+		m_ligthStatus = status;
+	}
+	void Scene::AddLigthStatus(int status) {
+		m_ligthStatus += status;
+	}
+
 	int Scene::GetTime() {
 		return m_time;
 	}
