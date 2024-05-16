@@ -53,10 +53,13 @@ namespace basecross{
 		//--------------------------------------------------------------------------------------
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 		int GetPlayerStatus();
+		void SetPlayerStatus(int status);
 		void AddPlayerStatus(int status);
 		int GetBulletStatus();
+		void SetBulletStataus(int status);
 		void AddBulletStatus(int status);
-		int GetLigth();
+		int GetLigthStatus();
+		void SetLigthStatus(int status);
 		void AddLigthStatus(int status);
 		int GetTime();
 		void SetTime(int time);

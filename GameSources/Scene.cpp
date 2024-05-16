@@ -203,17 +203,28 @@ namespace basecross {
 	int Scene::GetPlayerStatus() {
 		return m_playerStatus;
 	}
+	void Scene::SetPlayerStatus(int status) {
+		m_playerStatus = status;
+	}
 	void Scene::AddPlayerStatus(int status) {
 		m_playerStatus += status;
 	}
+
 	int Scene::GetBulletStatus() {
 		return m_bulletStatus;
+	}
+	void Scene::SetBulletStataus(int status) {
+		m_bulletStatus = status;
 	}
 	void Scene::AddBulletStatus(int status) {
 		m_bulletStatus += status;
 	}
-	int Scene::GetLigth() {
+
+	int Scene::GetLigthStatus() {
 		return m_ligthStatus;
+	}
+	void Scene::SetLigthStatus(int status) {
+		m_ligthStatus = status;
 	}
 	void Scene::AddLigthStatus(int status) {
 		m_ligthStatus += status;
