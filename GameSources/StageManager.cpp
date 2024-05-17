@@ -19,13 +19,16 @@ namespace basecross {
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
 		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
-		switch (m_ligthStatus)
+		switch (1)
 		{
 		case 0:
 			stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3());
 			break;
 		case 1:
 			stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3());
+			break;
+		case 2:
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3());
 			break;
 		default:
 			break;
