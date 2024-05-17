@@ -25,41 +25,79 @@ namespace basecross {
 			CreateViewLight();
 
 			AddGameObject<Sprite>(1280, 800, L"Score", Vec3());
-			auto rank= AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350,50,0));
-			srand(time(0));
 			m_time = App::GetApp()->GetScene<Scene>()->GetTime();
-			AddGameObject<TimeManager>(false,m_time);
-
-			if (m_time >= 50)
-			{
-				rank->UpdateRank(0);
-			}
-			if (m_time >= 40 && m_time < 50)
-			{
-				rank->UpdateRank(1);
-			}
-			if (m_time >= 25 && m_time < 40)
-			{
-				rank->UpdateRank(2);
-			}
-			if (m_time < 25)
-			{
-				rank->UpdateRank(3);
-			}
+			AddGameObject<TimeManager>(false, m_time);
 		}
 		catch (...) {
 			throw;
 		}
 	}
 
-	void ScoreStage::OnUpdate() {
-		StageChange();
-		int delta = App::GetApp()->GetElapsedTime();
-		AddGameObject<Sprite>(1280, 800, L"Score", Vec3());
+	void ScoreStage::OnUpdate()
+	{
+		float delta = App::GetApp()->GetElapsedTime();
+		m_countUp += 1*delta;
 
-		//if (delta == 1)
-		//{
-		//}
+		StageChange();
+		if (m_count == 0)
+		{
+			if (m_countUp >= 2.0f && m_timeCount == 0)
+			{
+				auto ifClear = AddGameObject<Sprite>(512, 75, L"IfClear", Vec3(-300, 100, 0));
+				ifClear->UpdateIfClear(0);
+				m_timeCount++;
+			}
+			if (m_time >= 25 && m_countUp >= 3.0f && m_timeCount == 1)
+			{
+				auto ifClear = AddGameObject<Sprite>(512, 75, L"IfClear", Vec3(-300, 10, 0));
+				ifClear->UpdateIfClear(1);
+				m_timeCount++;
+			}
+			if (m_time >= 40 && m_countUp >= 4.0f && m_timeCount == 2)
+			{
+				auto ifClear = AddGameObject<Sprite>(512, 75, L"IfClear", Vec3(-300, -80, 0));
+				ifClear->UpdateIfClear(2);
+				m_timeCount++;
+			}
+			if (m_time >= 50 && m_countUp >= 5.0f && m_timeCount == 3)
+			{
+				auto ifClear = AddGameObject<Sprite>(512, 75, L"IfClear", Vec3(-300, -170, 0));
+				ifClear->UpdateIfClear(3);
+				m_timeCount++;
+			}
+
+
+			if (m_time >= 50&& m_countUp >= 6.0f && m_timeCount == 4)
+			{
+				auto rank = AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350, 50, 0));
+				rank->UpdateRank(0);
+				m_count++;
+			}
+			if (m_time >= 40 && m_time < 50 && m_countUp >= 6.0f && m_timeCount == 4)
+			{
+				auto rank = AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350, 50, 0));
+				rank->UpdateRank(1);
+				m_count++;
+			}
+			if (m_time >= 25 && m_time < 40 && m_countUp >= 6.0f && m_timeCount == 4)
+			{
+				auto rank = AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350, 50, 0));
+				rank->UpdateRank(2);
+				m_count++;
+			}
+			if (m_time < 25 && m_countUp >= 6.0f && m_timeCount == 4)
+			{
+				auto rank = AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350, 50, 0));
+				rank->UpdateRank(3);
+				m_count++;
+			}
+
+		}
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss << m_countUp << endl;
+
+		//scene->SetDebugString( wss.str());
 	}
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
