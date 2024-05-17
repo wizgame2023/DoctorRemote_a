@@ -256,6 +256,7 @@ namespace basecross {
 		//デバック用
 		wstringstream wss(L"");
 		auto scene = App::GetApp()->GetScene<Scene>();
+		auto gameStage = scene->GetGameStage();
 		wss << L"transform : "
 			<< L"\n"
 			<< L"postion : ("
@@ -268,7 +269,8 @@ namespace basecross {
 			<<"\nz."
 			<< trans->GetPosition().z
 			<< L")"
-			<<m_dashCount
+			<<"\ngameStage"
+			<<gameStage
 			<< endl;
 		scene->SetDebugString(wss.str());
 
