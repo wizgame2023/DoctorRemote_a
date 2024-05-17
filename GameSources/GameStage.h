@@ -7,6 +7,7 @@ namespace basecross {
 
 		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
 		shared_ptr<SoundItem> m_BGM;
+		int m_stageCount;
 
 		void CreateViewLight(); //ビューの作成
 		void CreatePlayer();//プレイヤーの作成

@@ -52,6 +52,8 @@ namespace basecross {
 		app->RegisterTexture(L"Ligth", strTexture);
 		strTexture = texPath + L"Ligth2.png";
 		app->RegisterTexture(L"Ligth2", strTexture);
+		strTexture = texPath + L"Ligth3.png";
+		app->RegisterTexture(L"Ligth3", strTexture);
 
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -97,6 +99,8 @@ namespace basecross {
 		app->RegisterTexture(L"BulletButton", strTexture);
 		strTexture = texPath + L"PieceButton.png";
 		app->RegisterTexture(L"PieceButton", strTexture);
+		strTexture = texPath + L"LigthButton.png";
+		app->RegisterTexture(L"LigthButton", strTexture);
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
 
@@ -235,6 +239,12 @@ namespace basecross {
 	}
 	void Scene::SetTime(int time) {
 		m_time = time;
+	}
+	int Scene::GetGameStage() {
+		return m_gameStage;
+	}
+	void Scene::SetGameStage(int gameStage) {
+		m_gameStage = gameStage;
 	}
 }
 //test

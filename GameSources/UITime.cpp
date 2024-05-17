@@ -46,7 +46,7 @@ namespace basecross {
 		m_draw->SetSamplerState(SamplerState::LinearWrap);
 		m_draw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 		SetAlphaActive(true);
-
+		SetDrawLayer(1);
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(m_pos);
 	}

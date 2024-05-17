@@ -597,6 +597,12 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
+			//ステージが何回呼ばれたか
+			auto& scene = App::GetApp()->GetScene<Scene>();
+			m_stageCount = scene->GetGameStage();
+			m_stageCount++;
+			scene->SetGameStage(m_stageCount);
+
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 			AddGameObject<TimeManager>();//時間制限
