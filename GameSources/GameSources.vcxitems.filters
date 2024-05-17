@@ -180,6 +180,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreStage.h">
       <Filter>Headers\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectChase.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -322,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreStage.cpp">
       <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectChase.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
