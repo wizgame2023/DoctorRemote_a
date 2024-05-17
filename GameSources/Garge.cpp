@@ -83,6 +83,7 @@ namespace basecross {
 		m_draw->SetSamplerState(SamplerState::SamplerNone);
 		//色の設定
 		m_draw->SetDiffuse(m_color2);
+		SetDrawLayer(1);
 		//場所の設定
 		m_trans = GetComponent<Transform>();
 		
@@ -97,7 +98,7 @@ namespace basecross {
 		//auto ratio = 2.0f;
 		//UpdateValue(ratio);
 
-		auto position = m_trans->GetPosition();
+		//auto position = m_trans->GetPosition();
 
 		//デバック用
 		//wstringstream wss(L"");
