@@ -37,13 +37,16 @@ namespace basecross {
 		);
 
 		//オブジェクトの描画
-		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
 		//ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshResource(m_meshResName);
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetOwnShadowActive(true);
-		//ptrDraw->SetTextureResource(L"");
-		
+		ptrDraw->AddAnimation(L"Default", 0, 90, true, 30.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Default");
+
+
+
 		//オブジェクトの影の描画
 		auto ptrShadow = AddComponent<Shadowmap>();
 		ptrShadow->SetMeshResource(m_meshResName);
@@ -55,6 +58,12 @@ namespace basecross {
 		colPtr->SetAfterCollision(AfterCollision::None);
 
 		AddTag(L"EnemyPiece");
+	}
+
+	void EnemyPiece::OnUpdate() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
+		ptrDraw->UpdateAnimation(elapsedTime);
 	}
 
 	void EnemyPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {

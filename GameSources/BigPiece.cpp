@@ -34,11 +34,14 @@ namespace basecross {
 		);
 
 		//オブジェクトの描画
-		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
 		//ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshResource(m_meshResName);
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetOwnShadowActive(true);
+		ptrDraw->AddAnimation(L"Default", 0, 90, true, 30.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Default");
+
 
 		//オブジェクトの影の描画
 		auto ptrShadow = AddComponent<Shadowmap>();
@@ -54,7 +57,9 @@ namespace basecross {
 
 	}
 	void BigPiece::OnUpdate() {
-
+		float elapsed = App::GetApp()->GetElapsedTime();
+		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
+		ptrDraw->UpdateAnimation(elapsed);
 	}
 
 	void BigPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {

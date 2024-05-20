@@ -39,10 +39,12 @@ namespace basecross {
 		shadowPtr->SetMultiMeshResource(m_meshResName);
 		shadowPtr->SetMeshToTransformMatrix(spanMat);
 
-		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
 		ptrDraw->SetMultiMeshResource(m_meshResName);
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetOwnShadowActive(true);
+		ptrDraw->AddAnimation(L"Default", 0, 90, true, 30.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		auto ptrColl = AddComponent<CollisionSphere>();
 		ptrColl->SetDrawActive(false);
@@ -57,6 +59,10 @@ namespace basecross {
 
 	void Enemy::OnUpdate()
 	{
+		float elapsed = App::GetApp()->GetElapsedTime();
+
+		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
+		ptrDraw->UpdateAnimation(elapsed);
 
 		//auto piece = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 		//float pieceBar = piece->GetPiece();
