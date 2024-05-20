@@ -1,6 +1,7 @@
 /*!
-@file EffectPlayer.cpp
-@brief Player用のエフェクト
+@file EffectMove.cpp
+@brief 動くエフェクト
+担当　三瓶裕太
 */
 
 #include "stdafx.h"
@@ -35,10 +36,6 @@ namespace basecross {
 		float randamPosY = rand() % 30 + 10;
 		randamPosY -= 20;
 		randamPosY /= 10;//小数点を入れる
-
-		float test = 3*cosf(XMConvertToRadians(30.0f));
-		float test2 = 3*sinf(XMConvertToRadians(30.0f));
-		test = test + test2;
 
 		for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec())
 		{	
