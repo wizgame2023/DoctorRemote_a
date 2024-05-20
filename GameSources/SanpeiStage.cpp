@@ -60,7 +60,7 @@ namespace basecross {
 		auto light = CreateLight<MultiLight>();
 		light->SetDefaultLighting(); //デフォルトのライティングを指定	
 
-		AddGameObject<MyLight>();//光の表現をこれでやる
+		//AddGameObject<MyLight>();//光の表現をこれでやる
 
 	}
 
@@ -68,7 +68,7 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f),Vec3(0.1f,0.1f,0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 15, Vec3(0.5f, 0.8f, 0.5f),Vec3(0.85f,0.85f,0.85f));
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f),Vec3(0.4f,0.4f,0.4f));
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 		auto EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 		SetSharedGameObject(L"PlayerEffect", EffectPtr3);
