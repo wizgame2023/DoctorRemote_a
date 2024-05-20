@@ -31,7 +31,6 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		virtual void InsertEffect(const Vec3& Pos);
-		void SetTragetPos(const Vec3& Pos);
 
 	};
 }

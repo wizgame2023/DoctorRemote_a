@@ -98,9 +98,5 @@ namespace basecross {
 		}
 	}
 
-	void Effect::SetTragetPos(const Vec3& Pos)
-	{
-		m_Traget = Pos;//これで親オブジェクトを設定する
-	}
 }
 //end basecross
