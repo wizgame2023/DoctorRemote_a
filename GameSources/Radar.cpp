@@ -65,8 +65,8 @@ namespace basecross {
 	{
 		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得する
 
-		wstringstream wss;//デバック用文字列
-		wss << "test" << endl;
+		//wstringstream wss;//デバック用文字列
+		//wss << "test" << endl;
 		auto scene = app->GetScene<Scene>();//シーン取得
 
 
@@ -86,34 +86,10 @@ namespace basecross {
 		float rad = atan2f(RadarVec3.z, RadarVec3.x);//ベクトルをラジアンに変換
 		float deg = (rad * degConvert);//ラジアンをディグリーに変換
 		m_angle = rad - PlayerAngle + 1.54f;
-		wss << L"m_angle変更前：" << m_angle * degConvert
-			<< endl;//デバック用文字列を作成
+		//wss << L"m_angle変更前：" << m_angle * degConvert
+		//	<< endl;//デバック用文字列を作成
 
-		//if (m_angle < XMConvertToRadians(30.0f) && m_angle >= 0.0f)
-		//{
-		//	m_angle = XMConvertToRadians(30.0f);
-		//}
-		//if (m_angle > XMConvertToRadians(150.0f) && m_angle <= 180.0f)
-		//{
-		//	m_angle = XMConvertToRadians(150.0f);
-		//}
-
-		//if (m_angle > 3.14f)
-		//{
-		//	m_angle = 6.28f - m_angle;
-		//}
-		//if (m_angle < 0.0f)//もし回転する方向が下方面だったら
-		//{
-		//	m_angle = -m_angle;//上方面に直す
-		//	if (m_angle > 3.14f)
-		//	{
-		//		m_angle = 6.28f - m_angle;
-		//	}
-
-		//}
-
-
-		RadarComvertAngle();
+		RadarComvertAngle();//レーダー用の角度計算
 		transform->SetRotation(0.0f, 0.0f, m_angle);//回転を初期化
 		transform->SetPosition(0.0f, -300.0f, 0.0f);
 
@@ -127,19 +103,19 @@ namespace basecross {
 			ptrPlayer->SetRadarPiece(0.0f);
 		}
 
-		wss << L"m_angle変更後：" << m_angle * degConvert
-			<< endl;//デバック用文字列を作成
+		//wss << L"m_angle変更後：" << m_angle * degConvert
+		//	<< endl;//デバック用文字列を作成
 
 
 		PlayerEnemyLong(RadarVec3);//敵との距離によって色が変わる
 
-		//デバック用
-		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-			float a = 1.0f;
-		}
+		////デバック用
+		//auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		//if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
+		//	float a = 1.0f;
+		//}
 		//デバック用文字列を生成
-		scene->SetDebugString(L"a\n" + wss.str());
+		//scene->SetDebugString(L"a\n" + wss.str());
 
 	}
 
@@ -177,7 +153,7 @@ namespace basecross {
 	{
 		float angle = m_angle;
 
-		if (m_angle > XMConvertToRadians(180.0f))
+		if (m_angle > XMConvertToRadians(180.0f))//もし回転する方向が１８０度よりも高かったら
 		{
 			m_angle = XMConvertToRadians(360.0f) - m_angle;
 		}
