@@ -21,6 +21,12 @@ namespace basecross {
 	}
 	void ScoreStage::OnCreate() {
 		try {
+			//何回クリアしたか
+			auto& scene = App::GetApp()->GetScene<Scene>();
+			m_stageCount = scene->GetGameStage();
+			m_stageCount++;
+			scene->SetGameStage(m_stageCount);
+
 			//ビューとライトの作成
 			CreateViewLight();
 
@@ -108,7 +114,12 @@ namespace basecross {
 		{
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)
 			{
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
+				if (m_stageCount < 3) {
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
+				}
+				else if (m_stageCount >= 3) {
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+				}
 			}
 		}
 	}

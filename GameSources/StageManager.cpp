@@ -1,7 +1,7 @@
 /*!
 @file StageManager.cpp
 @brief ステージ全体の処理等
-担当：
+担当：逸見
 */
 
 #include "stdafx.h"

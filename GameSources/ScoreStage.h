@@ -14,6 +14,7 @@ namespace basecross {
 		int m_count = 0;
 		int m_moveCount = -400;
 		float m_countUp = 0.0f;
+		int m_stageCount;
 		void CreateViewLight();
 	public:
 		ScoreStage() :Stage() {}

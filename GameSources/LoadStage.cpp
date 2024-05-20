@@ -26,7 +26,7 @@ namespace basecross {
 			CreateViewLight();
 
 
-			AddGameObject<Sprite>(1280, 800, L"Load", Vec3(0, 0, 0));
+			AddGameObject<Sprite>(1280, 800, L"Setumei", Vec3(0, 0, 0));
 		}
 		catch (...) {
 			throw;

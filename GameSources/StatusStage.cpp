@@ -32,7 +32,8 @@ namespace basecross {
 			auto bulletButton = AddGameObject<Sprite>(300, 300, L"BulletButton", Vec3(0, 0, 0));
 			auto pieceButton = AddGameObject<Sprite>(300, 300, L"LigthButton", Vec3(400, 0, 0));
 
-
+			auto moji = AddGameObject<Sprite>(1280, 200, L"StatusMoji", Vec3(0.0f, 280.0f, 0.0f));
+			auto moji2 = AddGameObject<Sprite>(1280, 200, L"StatusMoji2", Vec3(0.0f, -300.0f, 0.0f));
 		}
 		catch (...) {
 			throw;
@@ -44,12 +45,12 @@ namespace basecross {
 		auto status = statusManager->GetStatus();
 
 		//デバック用
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		wss << status
-			<<"\n"
-			<< endl;
-		scene->SetDebugString(wss.str());
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss << status
+		//	<<"\n"
+		//	<< endl;
+		//scene->SetDebugString(wss.str());
 
 		
 	}
