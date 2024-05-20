@@ -68,12 +68,15 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f),Vec3(0.1f,0.1f,0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f),Vec3(0.4f,0.4f,0.4f));
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f),Vec3(0.4f,0.4f,0.4f));//Žg‚í‚È‚¢
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
-		auto EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-		SetSharedGameObject(L"PlayerEffect", EffectPtr3);
-		EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
+		auto EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
+		auto EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
+		SetSharedGameObject(L"EffectChase", EffectPtr4);
+		EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
+		SetSharedGameObject(L"PlayerEffectRecovery", EffectPtr4);
+
 
 	}
 
