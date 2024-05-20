@@ -24,6 +24,7 @@ namespace basecross {
 		virtual ~EnemyPiece();
 
 		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
 		//è’ìÀÇµÇΩéû
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other);
 		Vec3 GetPos();

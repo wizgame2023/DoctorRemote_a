@@ -165,16 +165,19 @@ namespace basecross {
 
 
 		//描画コンポーネント
-		auto drawComp = AddComponent<PNTStaticModelDraw>();
-		drawComp->SetMultiMeshResource(m_meshResName);
-		drawComp->SetMeshToTransformMatrix(spanMat);
+		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
+		ptrDraw->SetMultiMeshResource(m_meshResName);
+		ptrDraw->SetSamplerState(SamplerState::LinearWrap);
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
-		drawComp->SetOwnShadowActive(true);
+		ptrDraw->SetOwnShadowActive(true);
+		ptrDraw->AddAnimation(L"Default", 0, 90, true, 30.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		//影をつける
-		auto shadowComp = AddComponent<Shadowmap>();
-		shadowComp->SetMultiMeshResource(m_meshResName);
-		shadowComp->SetMeshToTransformMatrix(spanMat);
+		auto ptrShadow = AddComponent<Shadowmap>();
+		ptrShadow->SetMultiMeshResource(m_meshResName);
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto colPtr = AddComponent<CollisionObb>();
 		//colPtr->SetDrawActive(true);
@@ -194,10 +197,31 @@ namespace basecross {
 
 	void Player::OnUpdate(){
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+		MovePlayer();
+		auto stage = GetStage();
+
+		auto frontAngle = PlayerAngle();
+		auto ptrPos = m_trans->GetPosition();
+
+		auto drawComp = GetComponent<PNTBoneModelDraw>();
+		drawComp->UpdateAnimation(elapsedTime);
+
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cntlVec[0].bConnected) {
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.2f), 30.0f, frontAngle, 1);
+				//stage->SetSharedGameObject(L"Bullet", bullet);
+
+				auto soundE = App::GetApp()->GetXAudio2Manager();
+				soundE->Start(L"ShotSE",0,0.5f);
+			}
+		}
+
 		switch (m_statusFlag)
 		{
 		case 0:
-				break;
+			break;
 		case 1:
 			Dash();
 			if (m_dashCooldown) {
@@ -217,12 +241,12 @@ namespace basecross {
 		case 2:
 			Dash();
 			if (m_dashCooldown) {
-				m_dashCount -= elapsedTime*0.7;
+				m_dashCount -= elapsedTime * 0.7;
 				if (m_dashCount <= 0) {
 					m_speed = m_maxSpeed;
 					m_dashCheck = false;
 				}
-				m_dashCool -= elapsedTime*1.5f;
+				m_dashCool -= elapsedTime * 1.5f;
 				if (m_dashCool <= 0) {
 					m_dashCooldown = false;
 					m_dashCount = m_dashCountTime;
@@ -233,23 +257,6 @@ namespace basecross {
 
 		default:
 			break;
-		}
-
-		MovePlayer();
-		auto stage = GetStage();
-
-		auto frontAngle = PlayerAngle();
-		auto ptrPos = m_trans->GetPosition();
-
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.2f), 30.0f, frontAngle, 1);
-				//stage->SetSharedGameObject(L"Bullet", bullet);
-
-				auto soundE = App::GetApp()->GetXAudio2Manager();
-				soundE->Start(L"ShotSE",0,0.5f);
-			}
 		}
 
 		auto trans = GetComponent<Transform>();

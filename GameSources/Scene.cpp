@@ -58,8 +58,6 @@ namespace basecross {
 		app->RegisterTexture(L"GameOver2", strTexture);
 		strTexture = texPath + L"taitel_2.jpg";
 		app->RegisterTexture(L"Title2", strTexture);
-		strTexture = texPath + L"Setumei.png";
-		app->RegisterTexture(L"Setumei", strTexture);
 
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -109,10 +107,6 @@ namespace basecross {
 		app->RegisterTexture(L"LigthButton", strTexture);
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
-		strTexture = texPath + L"StatusMoji.png";
-		app->RegisterTexture(L"StatusMoji", strTexture);
-		strTexture = texPath + L"StatusMoji2.png";
-		app->RegisterTexture(L"StatusMoji2", strTexture);
 
 		strTexture = texPath + L"GameClear.jpg";
 		app->RegisterTexture(L"GameClear", strTexture);
@@ -121,30 +115,30 @@ namespace basecross {
 
 
 		//スタティックモデル(マルチメッシュ)の通常リソース
-		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Sensuikan.bmf");
-		app->RegisterResource(L"Sensuikan_Mesh", staticMultiModelMesh);
+		auto boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewSensuikan.bmf");
+		app->RegisterResource(L"Sensuikan_Mesh", boneMultiModelMesh);
 
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Baikin.bmf");
-		app->RegisterResource(L"Baikin_Mesh", staticMultiModelMesh);
+		boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewBaikin.bmf");
+		app->RegisterResource(L"Baikin_Mesh", boneMultiModelMesh);
 
-		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-1.bmf");
-		app->RegisterResource(L"Obstacle_Mesh3", staticMultiModelMesh);
+		boneMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh3", boneMultiModelMesh);
 
 
-		auto staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera.bmf");
-		app->RegisterResource(L"Kakera_Mesh", staticModelMesh);
+		auto boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera.bmf");
+		app->RegisterResource(L"Kakera_Mesh", boneModelMesh);
 
-		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera1.bmf");
-		app->RegisterResource(L"Kakera_Mesh2", staticModelMesh);
+		boneModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera1.bmf");
+		app->RegisterResource(L"Kakera_Mesh2", boneModelMesh);
 
-		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera2.bmf");
-		app->RegisterResource(L"Kakera_Mesh3", staticModelMesh);
+		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2.bmf");
+		app->RegisterResource(L"Kakera_Mesh3", boneModelMesh);
 
-		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle1-1.bmf");
-		app->RegisterResource(L"Obstacle_Mesh1", staticModelMesh);
+		boneModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle1-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh1", boneModelMesh);
 
-		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle2-1.bmf");
-		app->RegisterResource(L"Obstacle_Mesh2", staticModelMesh);
+		boneModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle2-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh2", boneModelMesh);
 
 		//サウンド
 		//SE
