@@ -81,19 +81,19 @@ namespace basecross {
 				rank->UpdateRank(0);
 				m_count++;
 			}
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 6.0f && m_timeCount == 5)
+			else if (m_time >= 40 && m_time < 50 && m_countUp >= 6.0f && m_timeCount == 4)
 			{
 				auto rank = AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350, 50, 0));
 				rank->UpdateRank(1);
 				m_count++;
 			}
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 6.0f && m_timeCount == 5)
+			else if (m_time >= 25 && m_time < 40 && m_countUp >= 6.0f && m_timeCount == 3)
 			{
 				auto rank = AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350, 50, 0));
 				rank->UpdateRank(2);
 				m_count++;
 			}
-			else if (m_time < 25 && m_countUp >= 6.0f && m_timeCount == 5)
+			else if (m_time < 25 && m_countUp >= 6.0f && m_timeCount == 2)
 			{
 				auto rank = AddGameObject<Sprite>(512, 800, L"Rank", Vec3(350, 50, 0));
 				rank->UpdateRank(3);
