@@ -31,15 +31,27 @@ namespace basecross {
 	}
 
 	void Effect::OnUpdate()
-	{
-		
+	{	
+
+		//親クラスのOnUpdate()を呼ぶ
+		MultiParticle::OnUpdate();
+
+		//auto ptrTarget = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
+		//auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
+		//m_ptrParticle->SetEmitterPos(pos);
+
+		float ElapsedTime = App::GetApp()->GetElapsedTime();//エルダータイム追加
+
 		for (auto ptrParticle : GetParticleVec())
 		{
 			for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec())
 			{
 				if (rParticleSprite.m_Active)
-				{
-					rParticleSprite.m_LocalScale = m_Scale;//エフェクトのサイズを決める
+				{		
+					//rParticleSprite.m_LocalPos = Vec3(0.0f,0.0f,0.0f);
+					//m_movePos += rParticleSprite.m_Velocity * ElapsedTime;
+					//rParticleSprite.m_LocalPos += Vec3(0.0f, 0.0f, 0.0f) + (rParticleSprite.m_Velocity * ElapsedTime);
+ 					rParticleSprite.m_LocalScale = m_Scale;//エフェクトのサイズを決める
 					//rParticleSprite.m_Color += 0.05f;
 					if (rParticleSprite.m_Color.z >= 1.0f)
 					{
@@ -49,9 +61,6 @@ namespace basecross {
 			}
 		}
 
-
-		//親クラスのOnUpdate()を呼ぶ
-		MultiParticle::OnUpdate();
 	}
 
 	void Effect::InsertEffect(const Vec3& Pos)
@@ -87,6 +96,11 @@ namespace basecross {
 			rParticleSprite.m_Color = Col4(1.0f, 1.0f, 1.0f, 1.0f);
 
 		}
+	}
+
+	void Effect::SetTragetPos(const Vec3& Pos)
+	{
+		m_Traget = Pos;//これで親オブジェクトを設定する
 	}
 }
 //end basecross

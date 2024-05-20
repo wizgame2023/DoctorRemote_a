@@ -17,10 +17,12 @@ namespace basecross {
 		float m_maxTime;//いつまでパーティクルが出るか決まる時間
 		int m_addNumber;
 		shared_ptr<Particle> m_ptrParticle;
+		Vec3 m_Traget;
+		Vec3 m_movePos;//今まで動いた距離を保存する変数
 
 	public:
 		//コンストラクタ
-		Effect(shared_ptr<Stage>& StagePtr, wstring TextureName, float maxTime, int addNumber, Vec3 pushPos = Vec3(1.0f, 1.0f, 1.0f), Vec3 Scale = Vec3(1.0f, 1.0f, 1.0f));
+		Effect(shared_ptr<Stage>& StagePtr,wstring TextureName, float maxTime, int addNumber,Vec3 pushPos = Vec3(1.0f, 1.0f, 1.0f), Vec3 Scale = Vec3(1.0f, 1.0f, 1.0f));
 		//デストラクタ
 		virtual ~Effect()override;
 
@@ -28,7 +30,8 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
-		virtual void InsertEffect(const Vec3& Pos);	
+		virtual void InsertEffect(const Vec3& Pos);
+		void SetTragetPos(const Vec3& Pos);
 
 	};
 }
