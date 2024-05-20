@@ -58,6 +58,8 @@ namespace basecross {
 		app->RegisterTexture(L"GameOver2", strTexture);
 		strTexture = texPath + L"taitel_2.jpg";
 		app->RegisterTexture(L"Title2", strTexture);
+		strTexture = texPath + L"Setumei.png";
+		app->RegisterTexture(L"Setumei", strTexture);
 
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -107,6 +109,10 @@ namespace basecross {
 		app->RegisterTexture(L"LigthButton", strTexture);
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
+		strTexture = texPath + L"StatusMoji.png";
+		app->RegisterTexture(L"StatusMoji", strTexture);
+		strTexture = texPath + L"StatusMoji2.png";
+		app->RegisterTexture(L"StatusMoji2", strTexture);
 
 		strTexture = texPath + L"GameClear.jpg";
 		app->RegisterTexture(L"GameClear", strTexture);
