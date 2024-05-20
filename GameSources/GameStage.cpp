@@ -43,6 +43,8 @@ namespace basecross {
 		SetSharedGameObject(L"PlayerEffect", EffectPtr3);
 		EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
+		auto EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15,1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
+		SetSharedGameObject(L"EffectChase", EffectPtr4);
 	}
 
 
@@ -640,6 +642,9 @@ namespace basecross {
 	void GameStage::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		auto PlayerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
+		AABB CollisionActiveArea(PlayerPos + Vec3(-20.0f, -50.0f, -20.0f), PlayerPos + Vec3(20.0f, 50.0f, 20.0f));
+		GetCollisionManager()->SetRootAABB(CollisionActiveArea);
 		if (ptrPlayer->GetRadarFlag() && m_PieceFlag==0)
 		{
 			//ìGÇê∂ê¨
