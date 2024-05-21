@@ -20,12 +20,15 @@ namespace basecross {
 		void CreateEnemy();//敵の作成
 		void CreateRadar();//レーダーの作成
 		void CreateEffect();//エフェクトの作成
+		shared_ptr<SingleView> m_View;//ビューの変数
 	public:
 		//構築と破棄
 		SanpeiStage() :Stage() {}
 		virtual ~SanpeiStage() {}
 
 		virtual void OnCreate()override; //初期化
+		void OnUpdate()override;//更新
+
 	};
 
 }
