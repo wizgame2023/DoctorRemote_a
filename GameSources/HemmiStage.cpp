@@ -579,13 +579,13 @@ namespace basecross {
 			CreateRadar();
 			//地面を生成
 			AddGameObject<Ground>();
-			CreateWall();//これでステージの壁を作る
+			//CreateWall();//これでステージの壁を作る
 			//ゲージを追加
 			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"Garge", garge);
 			auto PGarge = AddGameObject<PlayerGarge>();
 
-			CreateBlock();//障害物を生成
+			//CreateBlock();//障害物を生成
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
@@ -596,7 +596,8 @@ namespace basecross {
 			//auto time = AddGameObject<TimeManager>();
 
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
-			auto ligth = AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3());
+
+			auto piece = AddGameObject<PieceLittle>();
 		}
 		catch (...) {
 			throw;

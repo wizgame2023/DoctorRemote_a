@@ -183,6 +183,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectChase.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PieceLittle.h">
+      <Filter>Headers\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EscapeManager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -328,6 +334,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectChase.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PieceLittle.cpp">
+      <Filter>Sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EscapeManager.cpp">
+      <Filter>Sources\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

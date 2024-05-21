@@ -1,7 +1,7 @@
 /*!
 @file StageManagar.h
 @brief ステージ全体の処理等
-担当：
+担当：逸見
 */
 
 #pragma once
