@@ -18,12 +18,12 @@ namespace basecross {
 
 		// カメラの設定
 		auto camera = ObjectFactory::Create<MainCamera>();
-		camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
-		camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
+		//camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
+		//camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
 		// ビューにカメラを設定
-		auto view = CreateView<SingleView>();
-		view->SetCamera(camera);
+		m_View = CreateView<SingleView>();
+		m_View->SetCamera(camera);
 
 		//マルチライトの作成
 		auto light = CreateLight<MultiLight>();
@@ -37,14 +37,14 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 15, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
-		auto EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-		SetSharedGameObject(L"PlayerEffect", EffectPtr3);
-		EffectPtr3 = AddGameObject<EffectPlayer>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
+		auto EffectPtr3 = AddGameObject<EffectMove>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
-		auto EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15,1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
+		auto EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr4);
+		EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
+		SetSharedGameObject(L"PlayerEffectRecovery", EffectPtr4);
 	}
 
 
@@ -245,42 +245,42 @@ namespace basecross {
 
 	void GameStage::CreateRecoveryWall()
 	{
-		for (int count = 0; count < 11; count++)
-		{
-			switch (count)
-			{
-			case 1:
-				AddGameObject<RecoveryWall>(Vec3(2.31f, 0.5f, -34.8f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 2:
-				AddGameObject<RecoveryWall>(Vec3(28.0f, 0.5f, 68.0f), Vec3(XMConvertToRadians(0.0f), 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 3:
-				AddGameObject<RecoveryWall>(Vec3(-3.0f, 0.5f, -72.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 4:
-				AddGameObject<RecoveryWall>(Vec3(-71.0f, 0.5f, -2.6f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 5:
-				AddGameObject<RecoveryWall>(Vec3(-68.0f, 0.5f, -2.4f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 6:
-				AddGameObject<RecoveryWall>(Vec3(8.77f, 0.5f, -72.7f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 7:
-				AddGameObject<RecoveryWall>(Vec3(3.0f, 0.5f, -66.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 8:
-				AddGameObject<RecoveryWall>(Vec3(-71.0f, 0.5f, 4.8f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 9:
-				AddGameObject<RecoveryWall>(Vec3(71.0f, 0.5f, 34.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			case 10:
-				AddGameObject<RecoveryWall>(Vec3(51.0f, 0.5f, 11.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
-				break;
-			}
-		}
+		//for (int count = 0; count < 11; count++)
+		//{
+		//	switch (count)
+		//	{
+		//	case 1:
+		//		AddGameObject<RecoveryWall>(Vec3(2.31f, 0.5f, -34.8f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 2:
+		//		AddGameObject<RecoveryWall>(Vec3(28.0f, 0.5f, 68.0f), Vec3(XMConvertToRadians(0.0f), 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 3:
+		//		AddGameObject<RecoveryWall>(Vec3(-3.0f, 0.5f, -72.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 4:
+		//		AddGameObject<RecoveryWall>(Vec3(-71.0f, 0.5f, -2.6f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 5:
+		//		AddGameObject<RecoveryWall>(Vec3(-68.0f, 0.5f, -2.4f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 6:
+		//		AddGameObject<RecoveryWall>(Vec3(8.77f, 0.5f, -72.7f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 7:
+		//		AddGameObject<RecoveryWall>(Vec3(3.0f, 0.5f, -66.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 8:
+		//		AddGameObject<RecoveryWall>(Vec3(-71.0f, 0.5f, 4.8f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 9:
+		//		AddGameObject<RecoveryWall>(Vec3(71.0f, 0.5f, 34.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	case 10:
+		//		AddGameObject<RecoveryWall>(Vec3(51.0f, 0.5f, 11.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(0.0f)), Vec3(1.0f, 1.0f, 1.0f));
+		//		break;
+		//	}
+		//}
 	}
 
 
@@ -613,7 +613,7 @@ namespace basecross {
 			CreateEnemyPiece();
 			CreateEnemyPiece2();//ランダムにかけらが出るようになる
 			CerateBreakEnemyPiece();
-			CreateRecoveryWall();//治す壁を生成
+			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			//AddGameObject<Ground>();//地面を表示
 			//地面を生成
 			AddGameObject<Ground>();
@@ -643,7 +643,7 @@ namespace basecross {
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		auto PlayerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
-		AABB CollisionActiveArea(PlayerPos + Vec3(-20.0f, -50.0f, -20.0f), PlayerPos + Vec3(20.0f, 50.0f, 20.0f));
+		AABB CollisionActiveArea(PlayerPos + Vec3(-50.0f, -50.0f, -50.0f), PlayerPos + Vec3(50.0f, 50.0f, 50.0f));
 		GetCollisionManager()->SetRootAABB(CollisionActiveArea);
 		if (ptrPlayer->GetRadarFlag() && m_PieceFlag==0)
 		{
