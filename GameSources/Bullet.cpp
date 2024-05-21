@@ -127,15 +127,15 @@ namespace basecross {
 			ptrPlayer->EffectFlag(2);//これでPlayerからエフェクトを出す
 
 		}
-		if (Other->FindTag(L"RecoveryWall"))
-		{
-			DestroyGameObject();//自分は消える
-			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
-			auto& ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
-			ptrPlayer->EffectFlag(1);//これでPlayerからエフェクトを出す
-			
+		//if (Other->FindTag(L"RecoveryWall"))
+		//{
+		//	DestroyGameObject();//自分は消える
+		//	GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+		//	auto& ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
+		//	ptrPlayer->EffectFlag(1);//これでPlayerからエフェクトを出す
+		//	
 
-		}
+		//}
 		if (Other->FindTag(L"Obj"))
 		{
 			DestroyGameObject();//自分は消える
