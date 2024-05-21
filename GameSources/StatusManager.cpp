@@ -32,7 +32,7 @@ namespace basecross {
 		auto stage = GetStage();
 		m_sprite = stage->AddGameObject<Sprite>(350, 350, L"White", Vec3());
 		m_trans = m_sprite->GetComponent<Transform>();
-		m_sprite->SetColor(Col4(0, 0, 0, 1.0f));
+		m_sprite->SetColor(Col4(0, 1, 0, 1.0f));
 
 		//m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 	}

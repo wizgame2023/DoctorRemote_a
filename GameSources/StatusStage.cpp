@@ -34,6 +34,8 @@ namespace basecross {
 
 			auto moji = AddGameObject<Sprite>(1280, 200, L"StatusMoji", Vec3(0.0f, 280.0f, 0.0f));
 			auto moji2 = AddGameObject<Sprite>(1280, 200, L"StatusMoji2", Vec3(0.0f, -300.0f, 0.0f));
+
+			auto back = AddGameObject<Sprite>(1280,800,L"Back",Vec3(),-1);
 		}
 		catch (...) {
 			throw;
