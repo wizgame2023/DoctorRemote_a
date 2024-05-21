@@ -317,17 +317,17 @@ namespace basecross {
 		auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
 		switch (Flag)
 		{
-		case 1:
-			//リカバリーウォールの場合
-			if (PtrEffect) {
-				PtrEffect = GetStage()->GetSharedGameObject<EffectPlayer>(L"PlayerEffect", false);
-				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
-			}
-			break;
+			//case 1:
+			//	//リカバリーウォールの場合
+			//	if (PtrEffect) {
+			//		PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"PlayerEffectRecovery", false);
+			//		PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+			//	}
+			//	break;
 		case 2:
 			//ブレイクウォールの場合
 			if (PtrEffect) {
-				PtrEffect = GetStage()->GetSharedGameObject<EffectBreakWall>(L"RedEffect", false);
+				//PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"EffectChase", false);
 				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
 			}
 			break;
@@ -335,7 +335,7 @@ namespace basecross {
 			//かけらを拾った場合
 			if (PtrEffect)
 			{
-				PtrEffect = GetStage()->GetSharedGameObject<EffectPlayer>(L"PlayerEffectWhite", false);
+				//PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"PlayerEffectWhite", false);
 				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
 			}
 			break;
