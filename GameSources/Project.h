@@ -34,6 +34,7 @@
 #include "TimeManager.h"
 #include "EnemyPiece.h"
 #include "BigPiece.h"
+#include "PieceLittle.h"
 #include "FakePiece.h"
 #include "PieceGarge.h"
 #include "PieceGarge2.h"
