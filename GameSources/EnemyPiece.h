@@ -21,7 +21,7 @@ namespace basecross {
 			const Vec3& rotate,
 			const Vec3& scale
 		);
-		virtual ~EnemyPiece();
+		virtual ~EnemyPiece(){}
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;

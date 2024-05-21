@@ -20,7 +20,6 @@ namespace basecross {
 		m_meshResName(L"Kakera_Mesh")
 
 	{}
-	EnemyPiece::~EnemyPiece() {};
 
 	void EnemyPiece::OnCreate() {
 		auto ptrTrans = GetComponent<Transform>();
