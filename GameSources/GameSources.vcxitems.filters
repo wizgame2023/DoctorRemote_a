@@ -174,7 +174,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectBreakWall.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectPlayer.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectMove.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreStage.h">
@@ -326,7 +326,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectBreakWall.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectPlayer.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectMove.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreStage.cpp">

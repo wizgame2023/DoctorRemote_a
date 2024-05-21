@@ -1,24 +1,25 @@
 /*!
-@file EffectPlayer.cpp
-@brief Player用のエフェクト
+@file EffectMove.cpp
+@brief 動くエフェクト
+担当　三瓶裕太
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	EffectPlayer::EffectPlayer(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber,float lenght, Vec3 pushPos, Vec3 Scale) :
+	EffectMove::EffectMove(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber,float lenght, Vec3 pushPos, Vec3 Scale) :
 		Effect(Stageptr, TextureName, maxTime, addNumber, pushPos, Scale),
 		m_length(lenght)
 	{
 
 	}
-	EffectPlayer::~EffectPlayer()
+	EffectMove::~EffectMove()
 	{
 
 	}
 
-	void EffectPlayer::InsertEffect(const Vec3& Pos)
+	void EffectMove::InsertEffect(const Vec3& Pos)
 	{
 		auto ptrParticle = InsertParticle(m_addNumber);
 		ptrParticle->SetEmitterPos(Pos);
@@ -35,10 +36,6 @@ namespace basecross {
 		float randamPosY = rand() % 30 + 10;
 		randamPosY -= 20;
 		randamPosY /= 10;//小数点を入れる
-
-		float test = 3*cosf(XMConvertToRadians(30.0f));
-		float test2 = 3*sinf(XMConvertToRadians(30.0f));
-		test = test + test2;
 
 		for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec())
 		{	
