@@ -8,18 +8,18 @@
 #include "Project.h"
 
 namespace basecross {
-	EffectPlayer::EffectPlayer(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber,float lenght, Vec3 pushPos, Vec3 Scale) :
+	EffectMove::EffectMove(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber,float lenght, Vec3 pushPos, Vec3 Scale) :
 		Effect(Stageptr, TextureName, maxTime, addNumber, pushPos, Scale),
 		m_length(lenght)
 	{
 
 	}
-	EffectPlayer::~EffectPlayer()
+	EffectMove::~EffectMove()
 	{
 
 	}
 
-	void EffectPlayer::InsertEffect(const Vec3& Pos)
+	void EffectMove::InsertEffect(const Vec3& Pos)
 	{
 		auto ptrParticle = InsertParticle(m_addNumber);
 		ptrParticle->SetEmitterPos(Pos);

@@ -8,7 +8,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class EffectChase : public EffectPlayer
+	class EffectChase : public EffectMove
 	{
 	private:
 		//int m_addNumber;

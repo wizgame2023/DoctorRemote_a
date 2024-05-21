@@ -42,7 +42,7 @@
 #include "Effect.h"
 #include "EffectBullet.h"
 #include "EffectBreakWall.h"
-#include "EffectPlayer.h"
+#include "EffectMove.h"
 #include "EffectChase.h"
 #include "Block.h"
 #include "Block2.h"

@@ -9,7 +9,7 @@
 
 namespace basecross {
 	EffectChase::EffectChase(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber,float lenght, Vec3 pushPos, Vec3 Scale) :
-		EffectPlayer(Stageptr, TextureName, maxTime, addNumber,lenght, pushPos, Scale)
+		EffectMove(Stageptr, TextureName, maxTime, addNumber,lenght, pushPos, Scale)
 	{
 
 	}
