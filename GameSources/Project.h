@@ -24,6 +24,7 @@
 #include "Character.h"
 #include "StageManager.h"
 #include "StatusManager.h"
+#include "EscapeManager.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
