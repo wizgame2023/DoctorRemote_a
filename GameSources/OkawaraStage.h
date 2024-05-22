@@ -25,7 +25,7 @@ namespace basecross {
 		O_GameStage() :Stage(){}
 		~O_GameStage() {}
 		virtual void OnCreate()override;
-
+		virtual void OnUpdate()override;
 	};
 }
 //end namespace basecross
