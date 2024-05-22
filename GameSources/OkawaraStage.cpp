@@ -117,7 +117,69 @@ namespace basecross {
 	}
 	void O_GameStage::CreateMap()
 	{
+		int count;
+		auto path = App::GetApp()->GetDataDirWString();
+		auto levelPath = path + L"Levels/"; 
+		vector<vector<int>> stageMap;
 
+		ifstream ifs(levelPath += L"Levels.csv");
+			if (ifs)
+			{
+				string line;
+				while (getline(ifs, line))
+				{
+					vector<int> mapData;
+
+					string data;
+					istringstream ss(line); 
+					while (getline(ss, data, ','))
+					{
+						int cellData = atoi(data.c_str()); 
+						mapData.push_back(cellData);
+					}
+
+					stageMap.push_back(mapData);
+				}
+			}
+			float stageW= static_cast<float>(stageMap[0].size());
+			float stageD= static_cast<float>(stageMap.size());
+
+			for (int r = 0; r < stageMap.size(); r++)
+			{
+				for (int c = 0; c < stageMap[0].size(); c++)
+				{
+					Vec3 startPos(-stageW * 0.5f + 0.5f, 0.0f, +stageD * 0.5f - 0.5f); 
+					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); 
+					switch (stageMap[r][c])
+					{
+						case 1:
+						{
+							auto wall = AddGameObject<Wall>();
+							auto wallTransComp = wall->GetComponent<Transform>();
+							wallTransComp->SetPosition(startPos + pos);
+							break;
+						}
+						case 2:
+						{
+							auto wall = AddGameObject<Wall>();
+							auto wallTransComp = wall->GetComponent<Transform>();
+							wallTransComp->SetPosition(startPos + pos);
+							wallTransComp->SetRotation(Vec3(0, XMConvertToRadians(45.0f), 0));
+							wallTransComp->SetScale(Vec3(0.5, 10, 2));
+							break;
+						}
+						case 3:
+						{
+							auto wall = AddGameObject<Wall>();
+							auto wallTransComp = wall->GetComponent<Transform>();
+							wallTransComp->SetPosition(startPos + pos);
+							wallTransComp->SetRotation(Vec3(0, XMConvertToRadians(-45.0f), 0));
+							wallTransComp->SetScale(Vec3(0.5, 10, 2));
+						}
+					}
+
+				}
+			}
 	}
 	//void O_GameStage::CreateWall()
 	//{	
@@ -447,7 +509,7 @@ namespace basecross {
 			//Playerを追加
 			CreatePlayer();
 			//敵のかけらを表示
-			CreateEnemyPiece();
+			//CreateEnemyPiece();
 			CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
@@ -457,7 +519,7 @@ namespace basecross {
 			//ゲージを追加
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
 			SetSharedGameObject(L"Garge", garge);
-
+			CreateMap();
 			//CreateWall();
 			//CreateBreakWall();
 			//CreateRecoveryWall();
@@ -468,5 +530,14 @@ namespace basecross {
 			throw;
 		}
 	}
+	void O_GameStage::OnUpdate()
+	{
+		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		auto PlayerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
+		AABB CollisionActiveArea(PlayerPos + Vec3(-50.0f, -50.0f, -50.0f), PlayerPos + Vec3(50.0f, 50.0f, 50.0f));
+		GetCollisionManager()->SetRootAABB(CollisionActiveArea);
+	}
+
 }
 //end basecross
+

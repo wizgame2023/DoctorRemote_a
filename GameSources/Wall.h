@@ -14,6 +14,7 @@ namespace basecross {
 		Vec3 m_scale;
 	public:
 		Wall(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale);
+		Wall(const shared_ptr<Stage>& StagePtr);
 		~Wall() {}
 		virtual void OnCreate() override; // ‰Šú‰»
 		//virtual void OnUpdate() override; // XV
