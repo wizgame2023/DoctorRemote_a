@@ -13,10 +13,16 @@ namespace basecross {
 		Vec3 m_position;
 		Vec3 m_rotete;
 		Vec3 m_scale;
+		Vec3 m_velocity;
 
+		float m_deg;
+
+		bool m_ground;
+
+		shared_ptr<GameObject> m_obj;
 		wstring m_meshResName;
 	public:
-		PieceLittle(const shared_ptr<Stage>& stagePtr);
+		PieceLittle(const shared_ptr<Stage>& stagePtr, const shared_ptr<GameObject>& obj,const float deg);
 		virtual ~PieceLittle(){}
 
 		virtual void OnCreate() override;
