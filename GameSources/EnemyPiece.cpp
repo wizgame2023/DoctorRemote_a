@@ -66,10 +66,17 @@ namespace basecross {
 	}
 
 	void EnemyPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
-		if (other->FindTag(L"Player")){
+		auto stage = GetStage();
+		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+		if (other->FindTag(L"Bullet")){
 			//Ž©•ªŽ©g‚ð”pŠü‚·‚é
 			GetStage()->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
-
+			stage->AddGameObject<PieceLittle>(other,player, 0.0f);
+			stage->AddGameObject<PieceLittle>(other,player, 72.0f);
+			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
+			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
+			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);
+			
 		}
 	}
 	Vec3 EnemyPiece::GetPos() {
