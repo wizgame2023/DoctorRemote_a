@@ -117,53 +117,53 @@ namespace basecross {
 			{//8				
 				Vec3(-6.25f,0.0f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
 				Vec3(-4.56f,0.0f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
 				Vec3(-7.25f,0.0f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
 				Vec3(28.9f,0.0f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//12
 				Vec3(45.0f,0.0f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//13
 				Vec3(16.0f,0.0f,10.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//14
 				Vec3(12.0f,0.0f,41.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//15
 				Vec3(0.6f,0.0f,34.3f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//16
 				Vec3(10.0f,0.0f,20.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			}
 
@@ -172,6 +172,7 @@ namespace basecross {
 		for (auto v : vec) {
 			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 		}
+
 	}
 
 	void HemmiStage::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
@@ -181,7 +182,7 @@ namespace basecross {
 		randamCount = 5;
 
 		Vec3 a = Vec3();
-		Vec3 b = Vec3(0.5f, 0.5f, 0.5f);
+		Vec3 b = Vec3(2.0f, 2.0f, 2.0f);
 		vector<Vec3> Trans;
 		srand(time(0));//ランダムリセット
 
@@ -590,14 +591,13 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
 
-			auto bigPiece = AddGameObject<BigPiece>(Vec3(), Vec3(), Vec3(0.7f, 0.7f, 0.7f));
+			//auto bigPiece = AddGameObject<BigPiece>(Vec3(), Vec3(), Vec3(0.7f, 0.7f, 0.7f));
 
 			//auto number = AddGameObject<UITime>(0, Vec3(0, 0, 0));
 			//auto time = AddGameObject<TimeManager>();
 
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
 
-			auto piece = AddGameObject<PieceLittle>();
 		}
 		catch (...) {
 			throw;
