@@ -21,6 +21,10 @@ namespace basecross {
 		transComp->SetScale(150.0f, 1.0f, 150.0f);
 		transComp->SetPosition(0.0f, -1.0f, 0.0f);
 
+		auto colPtr = AddComponent<CollisionObb>();
+		colPtr->SetDrawActive(false);
+
+		AddTag(L"Ground");
 	}
 
 }

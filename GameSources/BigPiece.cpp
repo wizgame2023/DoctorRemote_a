@@ -63,10 +63,13 @@ namespace basecross {
 	}
 
 	void BigPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
-		if (other->FindTag(L"Player")) {
+		if (other->FindTag(L"Bullet")) {
 			//Ž©•ªŽ©g‚ð”pŠü‚·‚é
 			GetStage()->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
-
+		}
+		if (other->FindTag(L"Player")) {
+			auto stageManager = GetStage()->GetSharedGameObject<StageManager>(L"StageManage");
+			stageManager->SetHp(-20.0f);
 		}
 	}
 

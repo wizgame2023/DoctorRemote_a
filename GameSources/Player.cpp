@@ -29,7 +29,7 @@ namespace basecross {
 		m_pos(pos),
 		m_rot(rot),
 		m_piece(0),
-		m_onePiece(6.0f),
+		m_onePiece(2.0f),
 		m_maxPiece(100.0f),
 		m_speed(7.0f),
 		m_maxSpeed(7.0f),
@@ -180,7 +180,7 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto colPtr = AddComponent<CollisionObb>();
-		//colPtr->SetDrawActive(true);
+		colPtr->SetDrawActive(true);
 		colPtr->SetAfterCollision(AfterCollision::Auto);
 
 		AddTag(L"Player");
@@ -285,7 +285,7 @@ namespace basecross {
 
 	//è’ìÀîªíË
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
-		if (other->FindTag(L"EnemyPiece")) {
+		if (other->FindTag(L"PieceLittle")) {
 			AddPiece(m_onePiece);
 			if (m_maxPiece < m_piece) {
 				m_radarFlag = true;
