@@ -20,6 +20,7 @@ namespace basecross {
 		void CreateRecoveryWall();
 		void CreateBlock();
 		void CreateBlockSecond();
+		void CreateMap();
 	public:
 		O_GameStage() :Stage(){}
 		~O_GameStage() {}
