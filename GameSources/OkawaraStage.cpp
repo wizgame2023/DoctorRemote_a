@@ -114,7 +114,24 @@ namespace basecross {
 		for (auto v : vec) {
 			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 		}
+
 	}
+	void O_GameStage::CreateEffect()//エフェクト生成
+	{
+		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
+		SetSharedGameObject(L"Effect", EffectPtr);
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f), Vec3(0.4f, 0.4f, 0.4f));//使わない
+		SetSharedGameObject(L"RedEffect", EffectPtr2);
+		auto EffectPtr3 = AddGameObject<EffectMove>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
+		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
+		auto EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
+		SetSharedGameObject(L"EffectChase", EffectPtr4);
+		EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
+		SetSharedGameObject(L"PlayerEffectRecovery", EffectPtr4);
+
+
+	}
+
 	void O_GameStage::CreateMap()
 	{
 		int count;
@@ -152,30 +169,39 @@ namespace basecross {
 					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); 
 					switch (stageMap[r][c])
 					{
-						case 1:
-						{
-							auto wall = AddGameObject<Wall>();
-							auto wallTransComp = wall->GetComponent<Transform>();
-							wallTransComp->SetPosition(startPos + pos);
-							break;
-						}
-						case 2:
-						{
-							auto wall = AddGameObject<Wall>();
-							auto wallTransComp = wall->GetComponent<Transform>();
-							wallTransComp->SetPosition(startPos + pos);
-							wallTransComp->SetRotation(Vec3(0, XMConvertToRadians(45.0f), 0));
-							wallTransComp->SetScale(Vec3(0.5, 10, 2));
-							break;
-						}
-						case 3:
-						{
-							auto wall = AddGameObject<Wall>();
-							auto wallTransComp = wall->GetComponent<Transform>();
-							wallTransComp->SetPosition(startPos + pos);
-							wallTransComp->SetRotation(Vec3(0, XMConvertToRadians(-45.0f), 0));
-							wallTransComp->SetScale(Vec3(0.5, 10, 2));
-						}
+					case 1:
+						
+						AddGameObject<Wall>(startPos + pos,Vec3(0,0,0),Vec3(3.0, 10, 1.0));
+						break;
+						
+					case 2:
+						
+						AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 3.0));
+						break;
+						
+					case 3:
+						
+						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.5));
+						break;
+						
+					case 4:
+						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.5));
+						break;
+					case 5:
+						AddGameObject<BreakWall>(startPos + pos,Vec3(0,0,0),Vec3(3,10,1));
+						break;	
+					case 6:
+						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 3));
+						break;
+					case 7:
+						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 3));
+						break;
+					case 8:
+						AddGameObject<Block>(startPos + pos, Vec3(0, 0, 0));
+						break;
+					case 9:
+						AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0),Vec3(23.0f, 10.0f, 18.0f));
+						break;
 					}
 
 				}
@@ -499,6 +525,8 @@ namespace basecross {
 
 	void O_GameStage::OnCreate() {
 		try {
+			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
+			SetSharedGameObject(L"StageManager", stageManager);
 
 			//auto data = AddGameObject<Data>();
 
@@ -520,6 +548,7 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
 			SetSharedGameObject(L"Garge", garge);
 			CreateMap();
+			CreateEffect();
 			//CreateWall();
 			//CreateBreakWall();
 			//CreateRecoveryWall();
