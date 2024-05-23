@@ -111,5 +111,9 @@ namespace basecross {
 		m_fourth = (minutes / 10) % 10;
 
 	}
+
+	void TimeManager::SetTimeFlag(bool timeFlag) {
+		m_move = timeFlag;
+	}
 }
 //end namespace basecross

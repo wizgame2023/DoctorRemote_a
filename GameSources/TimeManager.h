@@ -39,6 +39,7 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		void UpdateNumber();
+		void SetTimeFlag(bool timeFlag);
 	};
 }
 //end namespace basecross
