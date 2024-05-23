@@ -78,7 +78,7 @@ namespace basecross {
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
 
-	class ChildPlayer :public Player{
+	class ChildPlayer :public GameObject{
 	private:
 		weak_ptr<GameObject> m_parent;
 		Vec3 m_vecParent;
@@ -86,11 +86,10 @@ namespace basecross {
 	public:
 
 		ChildPlayer(const shared_ptr<Stage>& stagePtr, 
-			const shared_ptr<GameObject>& parent, const Vec3& vecParent,Vec3& pos,Vec3& rot);
+			const shared_ptr<GameObject>& parent, const Vec3& vecParent);
 		virtual ~ChildPlayer() {}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
-		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 	};
 }
 //end namespace basecross

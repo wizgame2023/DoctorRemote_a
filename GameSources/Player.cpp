@@ -260,7 +260,7 @@ namespace basecross {
 			break;
 		}
 		
-		//欠片に触れたらノックバック
+
 		if (m_enemyPieceFlag) {
 			auto obj = GetObj();
 			auto objTrans = obj->GetComponent<Transform>();
@@ -270,7 +270,7 @@ namespace basecross {
 				auto pos = ptrPos;
 				pos.x += -pullTrans.x * 0.08f + elapsedTime;
 				pos.z += -pullTrans.z * 0.08f + elapsedTime;
-				m_trans->SetPosition(Vec3(pos.x,pos.y,pos.z));
+				m_trans->SetPosition(Vec3(pos.x, pos.y, pos.z));
 			}
 			else {
 				m_enemyPieceFlag = false;
@@ -412,54 +412,33 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	ChildPlayer::ChildPlayer(const shared_ptr<Stage>& stagePtr,
 		const shared_ptr<GameObject>& parent, 
-		const Vec3& vecParent,Vec3& pos, Vec3& rot
+		const Vec3& vecParent
 	):
-		Player(stagePtr,pos,rot),
+		GameObject(stagePtr),
 		m_parent(parent),
 		m_vecParent(vecParent)
 	{}
 
 	void ChildPlayer::OnCreate() {
 		auto childTrans = GetComponent<Transform>();
-		childTrans->SetScale(Vec3(0.5f));
-		childTrans->SetRotation(Vec3());
+		childTrans->SetScale(Vec3(1.0f));
 
-		//コリジョン
-		auto childCol = AddComponent<CollisionObb>();
-		SetDrawActive(true);
 		auto ptrDraw = AddComponent<BcPNStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 		ptrDraw->SetDrawActive(true);
+		//コリジョン
+		auto ptrCol = AddComponent<CollisionObb>();
+		ptrCol->SetAfterCollision(AfterCollision::None);
+		SetDrawActive(true);
+
+		AddTag(L"Player");
 
 	}
 	void ChildPlayer::OnUpdate() {
+		auto ptrTrans = GetComponent<Transform>();
+		auto parentTrans = m_parent.lock()->GetComponent<Transform>();
+		ptrTrans->SetPosition(parentTrans->GetPosition()+Vec3(3.0f,0.0f,0.0f));
 
-	}
-	void ChildPlayer::OnCollisionEnter(shared_ptr<GameObject>& other) {
-
-		if (other->FindTag(L"EnemyPiece")) {
-			AddPiece(m_onePiece);
-			if (m_maxPiece < m_piece) {
-				m_radarFlag = true;
-			}
-
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
-
-		}
-		if (other->FindTag(L"BigPiece")) {
-			srand(time(0));
-			int num;
-			num = rand() % 30 + m_onePiece;
-			AddPiece(num);
-			if (m_maxPiece < m_piece) {
-				m_radarFlag = true;
-			}
-
-			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
-			bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
-
-		}
 	}
 }
 
