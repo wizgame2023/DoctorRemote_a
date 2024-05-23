@@ -117,31 +117,37 @@ namespace basecross {
 		app->RegisterTexture(L"IfClear", strTexture);
 
 
-		//スタティックモデル(マルチメッシュ)の通常リソース
+		//ボーンマルチモデル(マルチメッシュ)の通常リソース
 		auto boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewSensuikan.bmf");
 		app->RegisterResource(L"Sensuikan_Mesh", boneMultiModelMesh);
 
 		boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewBaikin.bmf");
 		app->RegisterResource(L"Baikin_Mesh", boneMultiModelMesh);
 
-		boneMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-1.bmf");
-		app->RegisterResource(L"Obstacle_Mesh3", boneMultiModelMesh);
+		//スタティックマルチモデル
+		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh3", staticMultiModelMesh);
 
-
+		//ボーンモデル
 		auto boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera.bmf");
 		app->RegisterResource(L"Kakera_Mesh", boneModelMesh);
-
-		boneModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera1.bmf");
-		app->RegisterResource(L"Kakera_Mesh2", boneModelMesh);
 
 		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2.bmf");
 		app->RegisterResource(L"Kakera_Mesh3", boneModelMesh);
 
-		boneModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle1-1.bmf");
-		app->RegisterResource(L"Obstacle_Mesh1", boneModelMesh);
+		//スタティックモデル
+		auto staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera1.bmf");
+		app->RegisterResource(L"Kakera_Mesh2", staticModelMesh);
 
-		boneModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle2-1.bmf");
-		app->RegisterResource(L"Obstacle_Mesh2", boneModelMesh);
+		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle1-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh1", staticModelMesh);
+
+		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Obstacle2-1.bmf");
+		app->RegisterResource(L"Obstacle_Mesh2", staticModelMesh);
+
+		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Littlekakera.bmf");
+		app->RegisterResource(L"LittleKakera", staticModelMesh);
+
 
 		//サウンド
 		//SE
