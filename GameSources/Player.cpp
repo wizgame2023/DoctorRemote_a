@@ -42,6 +42,7 @@ namespace basecross {
 		m_dashCooldown(false),
 		m_radarFlag(false),
 		m_statusFlag(0),
+		m_enemyPieceFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
@@ -258,6 +259,24 @@ namespace basecross {
 		default:
 			break;
 		}
+		
+		//欠片に触れたらノックバック
+		if (m_enemyPieceFlag) {
+			auto obj = GetObj();
+			auto objTrans = obj->GetComponent<Transform>();
+			auto pullTrans = objTrans->GetPosition() - ptrPos;
+			float range = sqrt(pullTrans.x * pullTrans.x + pullTrans.z * pullTrans.z);
+			if (range < 8.0f) {
+				auto pos = ptrPos;
+				pos.x += -pullTrans.x * 0.08f + elapsedTime;
+				pos.z += -pullTrans.z * 0.08f + elapsedTime;
+				m_trans->SetPosition(Vec3(pos.x,pos.y,pos.z));
+			}
+			else {
+				m_enemyPieceFlag = false;
+			}
+		}
+
 
 		auto trans = GetComponent<Transform>();
 		//デバック用
@@ -285,6 +304,8 @@ namespace basecross {
 
 	//衝突判定
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
+		auto ptrTrans = GetComponent<Transform>();
+
 		if (other->FindTag(L"PieceLittle")) {
 			AddPiece(m_onePiece);
 			if (m_maxPiece < m_piece) {
@@ -309,6 +330,10 @@ namespace basecross {
 			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
 			bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
 
+		}
+		if (other->FindTag(L"EnemyPiece")) {
+			m_enemyPieceFlag = true;
+			SetObj(other);
 		}
 	}
 
@@ -373,6 +398,12 @@ namespace basecross {
 	}
 	bool Player::GetEnemyFlag() {
 		return m_enemyFlag;
+	}
+	shared_ptr<GameObject>Player::GetObj() {
+		return m_obj;
+	}
+	void Player::SetObj(shared_ptr<GameObject>& obj) {
+		m_obj = obj;
 	}
 
 	//--------------------------------------------------------------------------------------

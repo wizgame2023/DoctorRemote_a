@@ -32,6 +32,7 @@ namespace basecross {
 		bool m_dashCooldown;
 		bool m_radarFlag;
 		bool m_enemyFlag;
+		bool m_enemyPieceFlag;
 
 		Vec3 m_pos;
 		Vec3 m_rot;
@@ -40,6 +41,7 @@ namespace basecross {
 
 		shared_ptr<Transform> m_trans;
 		weak_ptr<MainCamera> m_camera;
+		shared_ptr<GameObject> m_obj;
 
 	private:
 		Vec2 GetInputState()const;
@@ -68,6 +70,8 @@ namespace basecross {
 		bool GetRadarFlag();
 		void SetRadarPiece(float piece);
 		bool GetEnemyFlag();
+		shared_ptr<GameObject> GetObj();
+		void SetObj(shared_ptr<GameObject>& obj);
 
 		void EffectFlag(int Flag);
 
