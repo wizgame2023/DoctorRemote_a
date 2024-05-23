@@ -56,7 +56,7 @@ namespace basecross {
 
 		m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerStartPos);
 		m_Player.lock()->GetComponent<Transform>()->SetRotation(0.0f, 0.0f, 0.0f);
-		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//Positionを取得
+		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//PlayerのPositionを取得
 
 		AABB CollisionActiveArea(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 		stage->GetCollisionManager()->SetRootAABB(CollisionActiveArea);
@@ -83,8 +83,8 @@ namespace basecross {
 	
 		if (m_UpdateFlag == 1)
 		{
-			wstringstream wss;//デバック用文字列
-			wss << L"エスケープマネージャー：" << endl;
+			//wstringstream wss;//デバック用文字列
+			//wss << L"エスケープマネージャー：" << endl;
 
 
 			float speed = 5.0f;//速さ
@@ -92,19 +92,18 @@ namespace basecross {
 			float VecZ = m_TargetPos.z - m_PlayerPos.z;//目標位置とPlayerとのZ座標の距離を測っている
 			float rad = atan2(VecZ, VecX);//角度を求める（ラジアン）
 
-			wss << "VecX:" << VecX << endl << "VecZ:" << VecZ << endl;//デバック文字列
+			//wss << "VecX:" << VecX << endl << "VecZ:" << VecZ << endl;//デバック文字列
 
 			auto& app = App::GetApp();
 			float delta = app->GetElapsedTime();//デルタタイムを取得
-			m_Time += delta;
-			//m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();
+			m_Time += delta;//時間経過
 			m_PlayerPos.x += (speed * cos(rad)) * delta;//間接的に距離を足している
 			m_PlayerPos.z += (speed * sin(rad)) * delta;//間接的に距離を足している
 
 			m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerPos);
 			if (m_Time >= 1.0f)
 			{		
-				m_SpriteCol.w += 0.2f * delta;
+				m_SpriteCol.w += 0.2f * delta;//だんだんと画面が暗くなる
 				m_Sprite->SetColor(m_SpriteCol);
 				if (m_SpriteCol.w > 1.0f)
 				{
@@ -112,8 +111,8 @@ namespace basecross {
 				}
 			}
 			//デバック用文字列を生成
-			auto scene = app->GetScene<Scene>();
-			scene->SetDebugString(L"a\n" + wss.str());
+			//auto scene = app->GetScene<Scene>();
+			//scene->SetDebugString(L"a\n" + wss.str());
 
 		}
 	}
