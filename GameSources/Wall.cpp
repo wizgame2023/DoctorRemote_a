@@ -11,10 +11,6 @@ namespace basecross {
 		GameObject(StagePtr),m_pos(pos),m_rot(rot),m_scale(scale)
 	{
 	}
-	Wall::Wall(const shared_ptr<Stage>& StagePtr) :
-		GameObject(StagePtr), m_pos(Vec3()), m_rot(Vec3()), m_scale(Vec3(1.0,10,1.0))
-	{
-	}
 	void Wall::OnCreate()
 	{
 		auto ptr = GetComponent<Transform>();
