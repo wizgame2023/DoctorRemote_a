@@ -45,11 +45,13 @@ namespace basecross {
 	void TimeManager::OnUpdate() {
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+		bool start = GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->StartFlag();
 		if (m_move) {
-			m_time -= elapsedTime;
-			if (m_time <= 0.0f) {
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-
+			if (start) {
+				m_time -= elapsedTime;
+				if (m_time <= 0.0f) {
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+				}
 			}
 		}
 
