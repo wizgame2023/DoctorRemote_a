@@ -37,6 +37,8 @@ namespace basecross {
 		m_AllStartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
 		//球体のコリジョンを追加
 		auto ptrcollider = AddComponent<CollisionSphere>();
+		ptrcollider->SetAfterCollision(AfterCollision::None);
+
 
 
 		//描画コンポーネント
