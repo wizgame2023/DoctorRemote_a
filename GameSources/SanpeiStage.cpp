@@ -13,7 +13,8 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 
 	//ビューとライトの作成
-	void SanpeiStage::CreateViewLight() {
+	void SanpeiStage::CreateViewLight() 
+	{
 		//wstring dataDir;
 
 		//サンプルのためアセットディレクトリを取得
@@ -92,7 +93,7 @@ namespace basecross {
 	//Playerを追加する関数
 	void SanpeiStage::CreatePlayer()
 	{
-		auto ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
+		auto ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 1.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを取得
 		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
 
@@ -122,7 +123,8 @@ namespace basecross {
 	//敵の欠片を作成
 	void SanpeiStage::CreateEnemyPiece() {
 
-		vector<vector<Vec3>> vec = {
+		vector<vector<Vec3>> vec = 
+		{
 			{//8				
 				Vec3(-6.25f,0.0f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
@@ -215,6 +217,8 @@ namespace basecross {
 			SetSharedGameObject(L"Garge", garge);
 			auto PGarge = AddGameObject<PlayerGarge>();
 
+			AddGameObject<TimeManager>();//時間制限
+
 			//壁を出現（テスト）
 			AddGameObject<BreakWall>(Vec3(5.0f, 0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
 			AddGameObject<RecoveryWall>(Vec3(15.0f, 0.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
@@ -240,22 +244,20 @@ namespace basecross {
 
 	void SanpeiStage::OnUpdate()
 	{
+		Vec3 PlayerPos = GetSharedGameObject<Player>(L"GamePlayer")->GetComponent<Transform>()->GetPosition();
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-			float a = 1.0f;
+			AddGameObject<EscapeManager>(Vec3(-10.0f, 8.0f, -15.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-20.0f, 0.0f, 3.0f), Vec3(-3.0f, 0.0f, 8.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-10.0f, 2.0f, 26.0f));
+			int test = 1;
+			//カメラの設定
+		   //auto camera = ObjectFactory::Create<Camera>();
+		   //camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
+		   //camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
-			// カメラの設定
-			auto camera = ObjectFactory::Create<Camera>();
-			camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
-			camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
-
-			m_View->SetCamera(camera);
+		   //m_View->SetCamera(camera);
 
 		}
-
 	}
-
-
 }
 //end basecross

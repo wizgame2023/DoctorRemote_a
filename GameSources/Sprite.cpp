@@ -65,6 +65,7 @@ namespace basecross {
 		m_draw->SetDiffuse(color);
 	}
 	Col4 Sprite::GetColor() {
+		m_color = m_draw->GetDiffuse();
 		return m_color;
 	}
 	void Sprite::UpdateRank(int value)
