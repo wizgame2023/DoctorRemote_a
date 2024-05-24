@@ -42,6 +42,7 @@ namespace basecross {
 		m_dashCooldown(false),
 		m_radarFlag(false),
 		m_statusFlag(0),
+		m_enemyPieceFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
@@ -151,16 +152,16 @@ namespace basecross {
 		//STATUSPLAYER = 0;
 		//初期位置などの設定
 		m_trans = GetComponent<Transform>();
-		m_trans->SetScale(2.0f, 2.0f, 4.0f);
+		m_trans->SetScale(1.5f, 2.0f, 8.5f);
 		m_trans->SetRotation(m_rot);
 		m_trans->SetPosition(m_pos);
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
-			Vec3(0.5f, 0.5f, 0.45f),
+			Vec3(0.75f, 0.5f, 0.25f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI, 0.0f),
-			Vec3(0.0f, -0.5f, 0.0f)
+			Vec3(0.0f, -0.5f, -0.05f)
 		);
 
 
@@ -258,6 +259,24 @@ namespace basecross {
 		default:
 			break;
 		}
+		
+
+		if (m_enemyPieceFlag) {
+			auto obj = GetObj();
+			auto objTrans = obj->GetComponent<Transform>();
+			auto pullTrans = objTrans->GetPosition() - ptrPos;
+			float range = sqrt(pullTrans.x * pullTrans.x + pullTrans.z * pullTrans.z);
+			if (range < 8.0f) {
+				auto pos = ptrPos;
+				pos.x += -pullTrans.x * 0.08f + elapsedTime;
+				pos.z += -pullTrans.z * 0.08f + elapsedTime;
+				m_trans->SetPosition(Vec3(pos.x, pos.y, pos.z));
+			}
+			else {
+				m_enemyPieceFlag = false;
+			}
+		}
+
 
 		auto trans = GetComponent<Transform>();
 		//デバック用
@@ -285,6 +304,8 @@ namespace basecross {
 
 	//衝突判定
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
+		auto ptrTrans = GetComponent<Transform>();
+
 		if (other->FindTag(L"PieceLittle")) {
 			AddPiece(m_onePiece);
 			if (m_maxPiece < m_piece) {
@@ -309,6 +330,10 @@ namespace basecross {
 			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
 			bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
 
+		}
+		if (other->FindTag(L"EnemyPiece")) {
+			m_enemyPieceFlag = true;
+			SetObj(other);
 		}
 	}
 
@@ -374,6 +399,12 @@ namespace basecross {
 	bool Player::GetEnemyFlag() {
 		return m_enemyFlag;
 	}
+	shared_ptr<GameObject>Player::GetObj() {
+		return m_obj;
+	}
+	void Player::SetObj(shared_ptr<GameObject>& obj) {
+		m_obj = obj;
+	}
 
 	//--------------------------------------------------------------------------------------
 	//	class ChildSphere : public GameObject;
@@ -381,54 +412,33 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	ChildPlayer::ChildPlayer(const shared_ptr<Stage>& stagePtr,
 		const shared_ptr<GameObject>& parent, 
-		const Vec3& vecParent,Vec3& pos, Vec3& rot
+		const Vec3& vecParent
 	):
-		Player(stagePtr,pos,rot),
+		GameObject(stagePtr),
 		m_parent(parent),
 		m_vecParent(vecParent)
 	{}
 
 	void ChildPlayer::OnCreate() {
 		auto childTrans = GetComponent<Transform>();
-		childTrans->SetScale(Vec3(0.5f));
-		childTrans->SetRotation(Vec3());
+		childTrans->SetScale(Vec3(1.0f));
 
-		//コリジョン
-		auto childCol = AddComponent<CollisionObb>();
-		SetDrawActive(true);
 		auto ptrDraw = AddComponent<BcPNStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 		ptrDraw->SetDrawActive(true);
+		//コリジョン
+		auto ptrCol = AddComponent<CollisionObb>();
+		ptrCol->SetAfterCollision(AfterCollision::None);
+		SetDrawActive(true);
+
+		AddTag(L"Player");
 
 	}
 	void ChildPlayer::OnUpdate() {
+		auto ptrTrans = GetComponent<Transform>();
+		auto parentTrans = m_parent.lock()->GetComponent<Transform>();
+		ptrTrans->SetPosition(parentTrans->GetPosition()+Vec3(3.0f,0.0f,0.0f));
 
-	}
-	void ChildPlayer::OnCollisionEnter(shared_ptr<GameObject>& other) {
-
-		if (other->FindTag(L"EnemyPiece")) {
-			AddPiece(m_onePiece);
-			if (m_maxPiece < m_piece) {
-				m_radarFlag = true;
-			}
-
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
-
-		}
-		if (other->FindTag(L"BigPiece")) {
-			srand(time(0));
-			int num;
-			num = rand() % 30 + m_onePiece;
-			AddPiece(num);
-			if (m_maxPiece < m_piece) {
-				m_radarFlag = true;
-			}
-
-			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
-			bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
-
-		}
 	}
 }
 

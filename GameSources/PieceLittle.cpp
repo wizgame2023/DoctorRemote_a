@@ -19,9 +19,9 @@ namespace basecross {
 		m_deg(deg),
 		m_scale(Vec3(0.5f)),
 		m_ground(false),
-		m_collect(7.0f),//‰ñû‹——£
+		m_collect(6.0f),//‰ñû‹——£
 		m_count(8.0f), //Á–Å‚Ü‚Å‚Ì•b”
-		m_meshResName(L"DEFAULT_SPHERE")
+		m_meshResName(L"LittleKakera")
 	{}
 
 	void PieceLittle::OnCreate() {
@@ -47,18 +47,25 @@ namespace basecross {
 		m_velocity = velo;
 		ptrTrans->SetPosition(pos);
 
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(0.5f, 0.5f, 0.5f),
+			Vec3(0.0f, 10.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
 
 		//•`‰æ
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
 		ptrDraw->SetMeshResource(m_meshResName);
-		ptrDraw->SetTextureResource(L"White");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetOwnShadowActive(true);
-		ptrDraw->SetColorAndAlpha(Col4(1.0f, 1.0f, 1.0f, 1.0f));
-
 
 		//‰e‚Ì•`‰æ
 		auto ptrShadow = AddComponent<Shadowmap>();
 		ptrShadow->SetMeshResource(m_meshResName);
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
 
 		//ƒRƒ‰ƒCƒ_[
 		auto colPtr = AddComponent<CollisionSphere>();

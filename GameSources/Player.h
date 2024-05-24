@@ -32,6 +32,7 @@ namespace basecross {
 		bool m_dashCooldown;
 		bool m_radarFlag;
 		bool m_enemyFlag;
+		bool m_enemyPieceFlag;
 
 		Vec3 m_pos;
 		Vec3 m_rot;
@@ -40,6 +41,7 @@ namespace basecross {
 
 		shared_ptr<Transform> m_trans;
 		weak_ptr<MainCamera> m_camera;
+		shared_ptr<GameObject> m_obj;
 
 	private:
 		Vec2 GetInputState()const;
@@ -68,13 +70,15 @@ namespace basecross {
 		bool GetRadarFlag();
 		void SetRadarPiece(float piece);
 		bool GetEnemyFlag();
+		shared_ptr<GameObject> GetObj();
+		void SetObj(shared_ptr<GameObject>& obj);
 
 		void EffectFlag(int Flag);
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
 
-	class ChildPlayer :public Player{
+	class ChildPlayer :public GameObject{
 	private:
 		weak_ptr<GameObject> m_parent;
 		Vec3 m_vecParent;
@@ -82,11 +86,10 @@ namespace basecross {
 	public:
 
 		ChildPlayer(const shared_ptr<Stage>& stagePtr, 
-			const shared_ptr<GameObject>& parent, const Vec3& vecParent,Vec3& pos,Vec3& rot);
+			const shared_ptr<GameObject>& parent, const Vec3& vecParent);
 		virtual ~ChildPlayer() {}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
-		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 	};
 }
 //end namespace basecross

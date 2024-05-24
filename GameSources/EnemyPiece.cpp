@@ -53,8 +53,8 @@ namespace basecross {
 
 		//コライダー
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(false);
-		colPtr->SetAfterCollision(AfterCollision::None);
+		colPtr->SetDrawActive(true);
+		colPtr->SetAfterCollision(AfterCollision::Auto);
 
 		AddTag(L"EnemyPiece");
 	}
