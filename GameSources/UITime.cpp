@@ -14,13 +14,22 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_number(number),
 		m_pos(pos),
-		m_meshResName(L"NumbersWhite")
+		m_meshResName(L"NumbersWhite"),
+		m_width(40.0f),
+		m_heigth(80.0f)
 	{}
+	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos,float width,float heigth) :
+		GameObject(stagePtr),
+		m_number(number),
+		m_pos(pos),
+		m_meshResName(L"NumbersWhite"),
+		m_width(width),
+		m_heigth(heigth)
+	{}
+
 
 	void UITime::OnCreate() {
 
-		m_width = 40.0f;
-		m_heigth = 80.0f;
 		m_moveW = (512.0f / 11) / 512.0f;
 		m_moveH = 75.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
@@ -64,6 +73,9 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 	}
 
+	void UITime::ThisDestory() {
+		GetStage()->RemoveGameObject<UITime>(GetThis<UITime>());
 
+	}
 }
 //end namespace basecross
