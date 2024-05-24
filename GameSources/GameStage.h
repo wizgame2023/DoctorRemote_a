@@ -16,6 +16,7 @@ namespace basecross {
 		void CerateBreakEnemyPiece();//‰ó‚ê‚é•Ç‚ÌŒã‚ë‚É¶¬‚·‚é‚©‚¯‚ç
 		void CreateEnemy();//“G‚Ìì¬
 		void CreateRadar();//ƒŒ[ƒ_[‚Ìì¬
+		void CreateMap();
 		void CreateWall();//•Ç‚Ìì¬
 		void CreateBlock();//áŠQ•¨‚Ìì¬
 		void CreateBreakWall();//‰ó‚ê‚é•Ç‚Ìì¬
