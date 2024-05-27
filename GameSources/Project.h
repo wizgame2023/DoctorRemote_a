@@ -32,6 +32,7 @@
 #include "Sprite.h"
 #include "Garge.h"
 #include "UITime.h"
+#include "Comment.h"
 #include "TimeManager.h"
 #include "EnemyPiece.h"
 #include "BigPiece.h"
