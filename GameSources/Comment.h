@@ -36,6 +36,7 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		void UpdateValue(int letter);
+		void UpdateValue2(int letter);
 	};
 }
 //end namespace basecross
