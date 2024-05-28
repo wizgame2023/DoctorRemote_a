@@ -17,9 +17,13 @@ namespace basecross {
 		float m_uvHeigth;
 
 		float m_count;
+		float m_countTime;
 
-		int m_mojinum;
+		int m_line;
+		int m_mojiNum;
 		int m_moji;
+
+		bool m_lineFlag;
 
 		vector<VertexPositionColorTexture> m_vertices;
 		shared_ptr<PCTSpriteDraw> m_draw;
@@ -30,13 +34,15 @@ namespace basecross {
 
 	public:
 		Comment(const shared_ptr<Stage>& stagePtr);
+		Comment(const shared_ptr<Stage>& stagePtr,const int mojiNum,const int line);
 		virtual ~Comment() override{}
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
 		void UpdateValue(int letter);
-		void UpdateValue2(int letter);
+		void UpdateLine(int letter,int line);
+
 	};
 }
 //end namespace basecross

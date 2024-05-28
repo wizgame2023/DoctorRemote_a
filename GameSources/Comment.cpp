@@ -8,23 +8,38 @@
 #include "Project.h"
 
 namespace basecross {
-
-	Comment::Comment(const shared_ptr<Stage>& stagePtr):
+	Comment::Comment(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
 		m_moji(0),
-		m_mojinum(12),
-		m_count(0.5f),
+		m_mojiNum(0),
+		m_line(0),
+		m_countTime(0.2f),
+		m_lineFlag(false),
 		m_meshResName(L"comment")
 	{}
 
-	void Comment::OnCreate() {
-		m_width = 256.0f/13;
-		m_heigth = 256.0f/8;
-		m_uvWidth = (256.0f / 13) / 256.0;
-		m_uvHeigth = (256.0f / 8) / 256.0;
+	Comment::Comment(const shared_ptr<Stage>& stagePtr,const int mojiNum,const int line):
+		GameObject(stagePtr),
+		m_moji(0),
+		m_mojiNum(mojiNum),//‰½•¶Žš–Ú‚©
+		m_line(line+1),    //‰½s–Ú‚©
+		m_countTime(0.2f),//ŽŸ‚Ì•¶Žš‚Ü‚Å‚àŠÔŠu
+		m_bes(13),//‰¡‚Ì•ªŠ„”
+		m_ver(8), //c‚Ì•ªŠ„”
+		m_widthSize(256.0f),
+		m_heigthSize(256.0f),
+		m_lineFlag(false),
+		m_meshResName(L"comment")
+	{
+		
+	}
 
-		//int line = 13;
-		//int column = 6;
+	void Comment::OnCreate() {
+		m_width = m_widthSize/m_bes;
+		m_heigth = m_heigthSize/m_ver;
+		m_uvWidth = (m_widthSize / m_bes) / m_widthSize;
+		m_uvHeigth = (m_heigthSize / m_ver) / m_heigthSize;
+
 		int moji = 0;
 		int mojiLine = moji % 13;
 		int mojiColumn = moji / 13;
@@ -59,29 +74,20 @@ namespace basecross {
 		m_count -= elapase;
 		if (0.0f > m_count) {
 			m_moji++;
-			m_count = 0.2f;
+			m_count = m_countTime;
 		}
-		if (m_moji < m_mojinum) {
-			UpdateValue2(m_moji);
+		if (m_moji < m_mojiNum) {
+			if (!m_lineFlag) {
+				UpdateLine(m_moji, m_line);
+			}
 		}
-
+		if(m_moji > m_mojiNum) {
+			m_lineFlag = true;
+		}
 	}
+
+	//letter‚É‚¢‚ê‚½•¶Žš”‚Ü‚Å•\Ž¦
 	void Comment::UpdateValue(int letter) {
-		//int moji = letter;
-		//m_vertices[0].textureCoordinate.x = m_uvWidth * letter;
-		//m_vertices[2].textureCoordinate.x = m_uvWidth * letter;
-
-
-		m_vertices[1].textureCoordinate.x = m_uvWidth * (letter + 1);
-		m_vertices[3].textureCoordinate.x = m_uvWidth * (letter + 1);
-
-		m_vertices[1].position.x = m_width * (letter+1);
-		m_vertices[3].position.x = m_width * (letter+1);
-
-		m_draw->UpdateVertices(m_vertices);
-	}
-
-	void Comment::UpdateValue2(int letter) {
 		int mojiLine = letter / 13;
 		int mojiColumn = letter % 13;
 
@@ -106,5 +112,31 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 
 	}
+
+	//‰½—ñ–Ú‚Ì‰½•¶Žš–Ú‚Ü‚Å•\Ž¦
+	void Comment::UpdateLine(int letter,int line) {
+		int mojiColumn = letter % 13;
+
+		m_vertices[1].textureCoordinate.x = m_uvWidth * (mojiColumn + 1);
+		m_vertices[3].textureCoordinate.x = m_uvWidth * (mojiColumn + 1);
+		m_vertices[1].textureCoordinate.y = m_uvHeigth * (line);
+		m_vertices[3].textureCoordinate.y = m_uvHeigth * (line + 1);
+
+
+		m_vertices[0].textureCoordinate.y = m_uvHeigth * (line);
+		m_vertices[2].textureCoordinate.y = m_uvHeigth * (line + 1);
+
+		m_vertices[1].position.x = m_width * (mojiColumn + 1);
+		m_vertices[3].position.x = m_width * (mojiColumn + 1);
+		m_vertices[1].position.y = -m_heigth * (line);
+		m_vertices[3].position.y = -m_heigth * (line + 1);
+
+		m_vertices[0].position.y = -m_heigth * (line);
+		m_vertices[2].position.y = -m_heigth * (line + 1);
+
+		m_draw->UpdateVertices(m_vertices);
+
+	}
+
 }
 //end namespace basecross
