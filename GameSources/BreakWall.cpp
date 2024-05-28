@@ -11,7 +11,6 @@ namespace basecross {
 	BreakWall::BreakWall(const shared_ptr<Stage>& StagePtr, Vec3 Position,  Vec3 Rotate,Vec3 Scale):
 		GameObject(StagePtr),
 		m_Position(Position),
-		m_StartPosition(Position),
 		m_Rotate(Rotate),
 		m_Scale(Scale),
 		m_Hp(1)
@@ -64,7 +63,7 @@ namespace basecross {
 		if (m_Hp <= 0)
 		{	
 			int damage = -20;//これを壊したときの患者へのダメージ量
-			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(damage);//ダメージを与える
+			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp((float)damage);//ダメージを与える
 			int piece = 0;//どれくらいピースを手に入るかを決める
 			piece = rand() % 3;//ランダムにどのピースが出るのかを決める変数
 
@@ -82,7 +81,7 @@ namespace basecross {
 			m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
 
 		}
-		m_Trans->SetPosition(m_Position);//位置を設定	
+		m_Trans->SetPosition(m_Position);//位置を設定
 
 
 	};
@@ -100,7 +99,6 @@ namespace basecross {
 			//もしぶつかったコリジョンがBulletのものだったら
 			if (Other->FindTag(L"Bullet"))
 			{
-				m_Position = m_StartPosition;
 				m_Hp -= Attack;//自分のHPが減る
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 
@@ -112,8 +110,17 @@ namespace basecross {
 		}		
 		if (Other->FindTag(L"Player"))
 		{
-			m_Position = m_StartPosition;
+			m_ptrCollider->SetFixed(true);//これでぶつかっても動かないようにする
 		}
+	}
+
+	void BreakWall::OnCollisionExit(shared_ptr<GameObject>& Other)
+	{
+		if (Other->FindTag(L"Player"))
+		{
+			m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
+		}
+
 	}
 
 }

@@ -20,8 +20,6 @@ namespace basecross
 		shared_ptr<CollisionObb> m_ptrCollider;
 		shared_ptr<Transform> m_Trans;
 
-		Vec3 m_StartPosition;
-
 	public:
 		BreakWall(const shared_ptr<Stage>& StagePtr,		
 						Vec3 m_Position,
@@ -32,6 +30,7 @@ namespace basecross
 		void OnCreate()override;//初期化UnityでいうところのStart
 		void OnUpdate()override;//アップデート
 		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
+		void OnCollisionExit(shared_ptr<GameObject>& Other) override;//コリジョンが抜けたとき
 
 	};
 }
