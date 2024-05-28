@@ -39,10 +39,10 @@ namespace basecross {
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 
 		m_vertices = {
-			{Vec3(0.0f,0.0f,0.0f),color,Vec2((m_moveH * number),0.0f)},
-			{Vec3(m_width,0.0f,0.0f),color,Vec2((m_moveH * (number + 1)),0.0f)},
-			{Vec3(0.0f,-m_heigth,0.0f),color,Vec2((m_moveH * number),1.0f)},
-			{Vec3(m_width,-m_heigth,0.0f),color,Vec2((m_moveH * (number + 1)),1.0f)},
+			{Vec3(0.0f,0.0f,0.0f),color,Vec2((m_moveW * number),0.0f)},
+			{Vec3(m_width,0.0f,0.0f),color,Vec2((m_moveW * (number + 1)),0.0f)},
+			{Vec3(0.0f,-m_heigth,0.0f),color,Vec2((m_moveW * number),1.0f)},
+			{Vec3(m_width,-m_heigth,0.0f),color,Vec2((m_moveW * (number + 1)),1.0f)},
 		};
 
 		m_indices = {
