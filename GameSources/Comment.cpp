@@ -26,8 +26,10 @@ namespace basecross {
 		m_countTime(0.2f),//次の文字までも間隔
 		m_bes(13),//横の分割数
 		m_ver(8), //縦の分割数
-		m_widthSize(256.0f),
-		m_heigthSize(256.0f),
+		m_widthSize(256.0f),//画像サイズ(横)
+		m_heigthSize(256.0f),//画像サイズ(縦)
+		m_sizeW(350),
+		m_sizeH(350),
 		m_lineFlag(false),
 		m_meshResName(L"comment")
 	{
@@ -35,8 +37,8 @@ namespace basecross {
 	}
 
 	void Comment::OnCreate() {
-		m_width = m_widthSize/m_bes;
-		m_heigth = m_heigthSize/m_ver;
+		m_width = m_sizeW/m_bes;
+		m_heigth = m_sizeH/m_ver;
 		m_uvWidth = (m_widthSize / m_bes) / m_widthSize;
 		m_uvHeigth = (m_heigthSize / m_ver) / m_heigthSize;
 

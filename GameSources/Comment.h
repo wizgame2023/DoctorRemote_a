@@ -16,6 +16,13 @@ namespace basecross {
 		float m_uvWidth;
 		float m_uvHeigth;
 
+		int m_ver;
+		int m_bes;
+		float m_widthSize;
+		float m_heigthSize;
+		float m_sizeW;
+		float m_sizeH;
+
 		float m_count;
 		float m_countTime;
 
