@@ -192,6 +192,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Comment.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommentMnager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -346,6 +349,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Comment.cpp">
       <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CommentManager.cpp">
+      <Filter>Sources\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
