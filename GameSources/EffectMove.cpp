@@ -27,19 +27,19 @@ namespace basecross {
 		ptrParticle->SetMaxTime(m_maxTime);
 
 
-		float randamPosX = rand() % 30 + 10;
+		float randamPosX = (float)(rand() % 30 + 10);
 		randamPosX -= 20;
 		randamPosX /= 10;//小数点を入れる
-		float randamPosZ = rand() % 30 + 10;
+		float randamPosZ = (float)(rand() % 30 + 10);
 		randamPosZ -= 20;
 		randamPosZ /= 10;//小数点を入れる
-		float randamPosY = rand() % 30 + 10;
+		float randamPosY = (float)(rand() % 30 + 10);
 		randamPosY -= 20;
 		randamPosY /= 10;//小数点を入れる
 
 		for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec())
 		{	
-			float randamDeg = rand() % 360;//Playerからみた方向をランダムに決める
+			float randamDeg = (float)(rand() % 360);//Playerからみた方向をランダムに決める
 
 			//パーティクルの生成位置を決定
 			rParticleSprite.m_LocalPos.x = m_length * cosf(XMConvertToRadians(randamDeg));
