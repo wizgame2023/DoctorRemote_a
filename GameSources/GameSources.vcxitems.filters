@@ -213,6 +213,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectSprite.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleManager.cpp">
       <Filter>Sources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectSprite.cpp">
+      <Filter>Sources\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
