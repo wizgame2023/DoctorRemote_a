@@ -28,6 +28,7 @@ namespace basecross {
 		void CollisionActive(bool On);//コリジョンの判定のきりかえ
 		shared_ptr<Transform> m_Trans;
 		shared_ptr<SingleView> m_View;//ビューの変数
+		
 	public:
 		//構築と破棄
 		GameStage() :Stage() {}
@@ -37,7 +38,10 @@ namespace basecross {
 		void OnUpdate()override;//更新
 
 		void PlayBGM();
-		virtual void OnDestroy() override;
+		virtual void OnDestroy() override;	
+
+		void SetCollisionSwich(bool ONorOFF);
+
 	};
 
 }
