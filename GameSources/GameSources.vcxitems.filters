@@ -195,11 +195,21 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CommentManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage3.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)JoinManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageCollisionManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage3.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)JoinManager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageCollisionManager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -358,10 +368,20 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CommentManager.cpp">
       <Filter>Sources\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage3.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)JoinManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageCollisionManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage3.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)JoinManager.cpp">
+      <Filter>Sources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageCollisionManager.cpp">
+      <Filter>Sources\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
