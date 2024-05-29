@@ -210,6 +210,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollisionManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleManager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -381,6 +384,9 @@
       <Filter>Sources\Manager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StageCollisionManager.cpp">
+      <Filter>Sources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleManager.cpp">
       <Filter>Sources\Manager</Filter>
     </ClCompile>
   </ItemGroup>

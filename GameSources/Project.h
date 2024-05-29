@@ -31,6 +31,7 @@
 #include "StageCollisionManager.h"
 #include "JoinManager.h"
 #include "CommentManager.h"
+#include "TitleManager.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
