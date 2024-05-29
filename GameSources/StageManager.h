@@ -7,6 +7,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Sprite.h"
+#include "UITime.h"
 
 namespace basecross {
 	class StageManager :public GameObject {
@@ -14,10 +15,13 @@ namespace basecross {
 		float m_currentHp;
 		float m_maxHp;
 		float m_hpSpeed;
+		float m_count;
 
 		int m_ligthStatus;
+		bool m_start;
 
 		shared_ptr<Sprite> m_ligth;
+		shared_ptr<UITime> m_num;
 
 	public:
 		StageManager(const shared_ptr<Stage>& stagePtr);
@@ -29,7 +33,7 @@ namespace basecross {
 		float GetHp();
 		float GetHpRatio();
 		void SetHp(float hp);
-
+		bool StartFlag();
 	};
 }
 //end namespace basecross

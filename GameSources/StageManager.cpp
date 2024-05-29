@@ -13,7 +13,9 @@ namespace basecross {
 		m_currentHp(100.0f),
 		m_maxHp(100.0f),
 		m_hpSpeed(3.0f),
-		m_ligthStatus(0)
+		m_ligthStatus(0),
+		m_count(4.0f),
+		m_start(false)
 	{}
 
 	void StageManager::OnCreate() {
@@ -33,15 +35,19 @@ namespace basecross {
 		default:
 			break;
 		}
+		m_num = GetStage()->AddGameObject<UITime>((int)m_count, Vec3(-120.0f,120.0f,0.0f),240.0f,480.0f);
 	}
 	void StageManager::OnUpdate() {
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		//m_currentHp -= elapsedTime * m_hpSpeed * 0.5f;
-
-		//if (m_currentHp > m_maxHp) {
-		//	m_currentHp = m_maxHp;
-		//}
+		m_count -= elapsedTime;
+		if (m_count > 1) {
+			m_num->UpdateValue(m_count);
+		}
+		if (m_count < 1) {
+			m_num->ThisDestory();
+			m_start = true;
+		}
 
 		if (m_currentHp <= 0.0f) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
@@ -67,6 +73,9 @@ namespace basecross {
 	}
 	void StageManager::SetHp(float hp) {
 		m_currentHp += hp;
+	}
+	bool StageManager::StartFlag() {
+		return m_start;
 	}
 }
 //end namespace basecross

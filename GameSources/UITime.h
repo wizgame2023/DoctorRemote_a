@@ -30,6 +30,7 @@ namespace basecross {
 
 	public:
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos);
+		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth);
 
 		virtual ~UITime(){}
 
@@ -37,6 +38,7 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		void UpdateValue(int number);
+		void ThisDestory();
 	};
 }
 //end namespace basecross
