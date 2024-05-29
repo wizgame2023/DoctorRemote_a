@@ -113,6 +113,8 @@ namespace basecross {
 		}
 		if (other->FindTag(L"Ground")) {
 			m_ground = true;
+			auto gra = GetComponent< Gravity>();
+			gra->SetGravityZero();
 		}
 	}
 
