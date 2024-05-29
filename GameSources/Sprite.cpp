@@ -61,6 +61,11 @@ namespace basecross {
 	void Sprite::OnUpdate() {
 
 	}
+
+	void Sprite::ThisDestory() {
+		GetStage()->RemoveGameObject<Sprite>(GetThis<Sprite>());
+	}
+
 	void Sprite::SetColor(Col4 color) {
 		m_draw->SetDiffuse(color);
 	}
