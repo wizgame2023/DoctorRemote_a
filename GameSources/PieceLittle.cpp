@@ -56,8 +56,9 @@ namespace basecross {
 		);
 
 		//描画
-		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
+		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
 		ptrDraw->SetMeshResource(m_meshResName);
+		ptrDraw->SetSamplerState(SamplerState::LinearWrap);
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetOwnShadowActive(true);
 
@@ -65,8 +66,7 @@ namespace basecross {
 		auto ptrShadow = AddComponent<Shadowmap>();
 		ptrShadow->SetMeshResource(m_meshResName);
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
-
-
+		
 		//コライダー
 		auto colPtr = AddComponent<CollisionSphere>();
 		colPtr->SetDrawActive(false);

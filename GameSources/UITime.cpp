@@ -14,13 +14,22 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_number(number),
 		m_pos(pos),
-		m_meshResName(L"NumbersWhite")
+		m_meshResName(L"NumbersWhite"),
+		m_width(40.0f),
+		m_heigth(80.0f)
 	{}
+	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos,float width,float heigth) :
+		GameObject(stagePtr),
+		m_number(number),
+		m_pos(pos),
+		m_meshResName(L"NumbersWhite"),
+		m_width(width),
+		m_heigth(heigth)
+	{}
+
 
 	void UITime::OnCreate() {
 
-		m_width = 40.0f;
-		m_heigth = 80.0f;
 		m_moveW = (512.0f / 11) / 512.0f;
 		m_moveH = 75.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
@@ -30,10 +39,10 @@ namespace basecross {
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 
 		m_vertices = {
-			{Vec3(0.0f,0.0f,0.0f),color,Vec2((m_moveH * number),0.0f)},
-			{Vec3(m_width,0.0f,0.0f),color,Vec2((m_moveH * (number + 1)),0.0f)},
-			{Vec3(0.0f,-m_heigth,0.0f),color,Vec2((m_moveH * number),1.0f)},
-			{Vec3(m_width,-m_heigth,0.0f),color,Vec2((m_moveH * (number + 1)),1.0f)},
+			{Vec3(0.0f,0.0f,0.0f),color,Vec2((m_moveW * number),0.0f)},
+			{Vec3(m_width,0.0f,0.0f),color,Vec2((m_moveW * (number + 1)),0.0f)},
+			{Vec3(0.0f,-m_heigth,0.0f),color,Vec2((m_moveW * number),1.0f)},
+			{Vec3(m_width,-m_heigth,0.0f),color,Vec2((m_moveW * (number + 1)),1.0f)},
 		};
 
 		m_indices = {
@@ -64,6 +73,9 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 	}
 
+	void UITime::ThisDestory() {
+		GetStage()->RemoveGameObject<UITime>(GetThis<UITime>());
 
+	}
 }
 //end namespace basecross

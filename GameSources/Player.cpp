@@ -198,27 +198,46 @@ namespace basecross {
 
 	void Player::OnUpdate(){
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-
-		MovePlayer();
 		auto stage = GetStage();
+		bool start = stage->GetSharedGameObject<StageManager>(L"StageManager")->StartFlag();
+		if (start) {
+			MovePlayer();
+			auto frontAngle = PlayerAngle();
+			auto ptrPos = m_trans->GetPosition();
 
-		auto frontAngle = PlayerAngle();
-		auto ptrPos = m_trans->GetPosition();
+			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+			if (cntlVec[0].bConnected) {
+				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+					auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.2f), 30.0f, frontAngle, 1);
+					//stage->SetSharedGameObject(L"Bullet", bullet);
 
+					auto soundE = App::GetApp()->GetXAudio2Manager();
+					soundE->Start(L"ShotSE",0,0.5f);
+				}
+			}
+			if (m_enemyPieceFlag) {
+				auto obj = GetObj();
+				auto objTrans = obj->GetComponent<Transform>();
+				auto pullTrans = objTrans->GetPosition() - ptrPos;
+				float range = sqrt(pullTrans.x * pullTrans.x + pullTrans.z * pullTrans.z);
+				if (range < 8.0f) {
+					auto pos = ptrPos;
+					pos.x += -pullTrans.x * 0.08f + elapsedTime;
+					pos.z += -pullTrans.z * 0.08f + elapsedTime;
+					m_trans->SetPosition(Vec3(pos.x, pos.y, pos.z));
+				}
+				else {
+					m_enemyPieceFlag = false;
+				}
+			}
+
+		}
+
+		//アニメーションの更新
 		auto drawComp = GetComponent<PNTBoneModelDraw>();
 		drawComp->UpdateAnimation(elapsedTime);
 
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.2f), 30.0f, frontAngle, 1);
-				//stage->SetSharedGameObject(L"Bullet", bullet);
-
-				auto soundE = App::GetApp()->GetXAudio2Manager();
-				soundE->Start(L"ShotSE",0,0.5f);
-			}
-		}
-
+		//ダッシュ
 		switch (m_statusFlag)
 		{
 		case 0:
@@ -259,24 +278,6 @@ namespace basecross {
 		default:
 			break;
 		}
-		
-
-		if (m_enemyPieceFlag) {
-			auto obj = GetObj();
-			auto objTrans = obj->GetComponent<Transform>();
-			auto pullTrans = objTrans->GetPosition() - ptrPos;
-			float range = sqrt(pullTrans.x * pullTrans.x + pullTrans.z * pullTrans.z);
-			if (range < 8.0f) {
-				auto pos = ptrPos;
-				pos.x += -pullTrans.x * 0.08f + elapsedTime;
-				pos.z += -pullTrans.z * 0.08f + elapsedTime;
-				m_trans->SetPosition(Vec3(pos.x, pos.y, pos.z));
-			}
-			else {
-				m_enemyPieceFlag = false;
-			}
-		}
-
 
 		auto trans = GetComponent<Transform>();
 		//デバック用

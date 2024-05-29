@@ -52,10 +52,13 @@ namespace basecross {
 		randamPlayer = 0;
 		//shared_ptr<GameObject> nanasiObject;
 		//ƒ‰ƒ“ƒ_ƒ€‚ÉPlayer‚ÌoŒ»êŠ‚ªŒˆ‚Ü‚é
+
+		float deg =-90;
+		float rad = XMConvertToRadians(deg);
 		switch (randamPlayer)
 		{
 		case 0:
-			ptrPlayer = AddGameObject<Player>(Vec3(10.0f, 0.5f, -40.0f), Vec3(0.0f, 0.0f, 0.0f));
+			ptrPlayer = AddGameObject<Player>(Vec3(10.0f, 0.5f, -40.0f), Vec3(0.0f, rad, 0.0f));
 			break;
 		case 1:
 			ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, 0.0f, 0.0f));
@@ -594,7 +597,7 @@ namespace basecross {
 			//auto bigPiece = AddGameObject<BigPiece>(Vec3(), Vec3(), Vec3(0.7f, 0.7f, 0.7f));
 
 			//auto number = AddGameObject<UITime>(0, Vec3(0, 0, 0));
-			//auto time = AddGameObject<TimeManager>();
+			auto time = AddGameObject<TimeManager>();
 
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
 
