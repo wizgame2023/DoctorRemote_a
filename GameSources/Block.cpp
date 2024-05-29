@@ -16,7 +16,7 @@ namespace basecross {
 		auto ptr = GetComponent<Transform>();
 		ptr->SetPosition(m_pos);
 		ptr->SetRotation(m_rot);
-		ptr->SetScale(5.0f, 5.0f, 5.0f);//‰Šú‚ª2.5f,2.5f,2.5f
+		ptr->SetScale(6.0f, 6.0f, 6.0f);//‰Šú‚ª2.5f,2.5f,2.5f
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
