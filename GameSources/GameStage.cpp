@@ -57,16 +57,18 @@ namespace basecross {
 		//randamPlayer = 0;//デバック
 		//shared_ptr<GameObject> nanasiObject;
 		//ランダムにPlayerの出現場所が決まる
+		float deg = -90;
+		float rad = XMConvertToRadians(deg);
 		switch (randamPlayer)
 		{
 		case 0:		
-			ptrPlayer = AddGameObject<Player>(Vec3(10.0f,0.5f,-40.0f),Vec3(0.0f,0.0f, 0.0f));
+			ptrPlayer = AddGameObject<Player>(Vec3(10.0f,0.5f,-40.0f),Vec3(0.0f,rad, 0.0f));
 			break;
 		case 1:
-			ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, 0.0f, 0.0f));
+			ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, rad, 0.0f));
 			break;
 		case 2:
-			ptrPlayer = AddGameObject<Player>(Vec3(60.0f, 0.5f, 10.0f), Vec3(0.0f, 0.0f, 0.0f));
+			ptrPlayer = AddGameObject<Player>(Vec3(60.0f, 0.5f, 10.0f), Vec3(0.0f, rad, 0.0f));
 			break;
 
 		default:
@@ -679,15 +681,24 @@ namespace basecross {
 	//}
 
 	//BGMの再生
-	void GameStage::PlayBGM() {
+	void GameStage::PlayBGM()
+	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
-	void GameStage::OnDestroy() {
+	void GameStage::OnDestroy() 
+	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
 
+	void GameStage::CollisionActive(bool On)
+	{
+		if (On)
+		{
+
+		}
+	}
 
 	void GameStage::OnCreate() {
 		try {
