@@ -17,7 +17,7 @@ namespace basecross {
 		float m_MiniMapSize;//ミニマップのサイズ
 		float m_MapMagnification;//マップの倍率
 	public:	
-		MiniMapPlayer(const shared_ptr<Stage>& stage,Vec3 StartPos,float lenght,float m_MapSize,float m_MiniMapSize);
+		MiniMapPlayer(const shared_ptr<Stage>& stagePtr,Vec3 StartPos,float lenght,float m_MapSize,float m_MiniMapSize);
 		~MiniMapPlayer();
 
 	    void OnCreate() override;
