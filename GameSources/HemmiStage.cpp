@@ -600,7 +600,10 @@ namespace basecross {
 			auto time = AddGameObject<TimeManager>();
 
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
-
+			auto com = AddGameObject<Sprite>(350, 350, L"comment", Vec3(-200, -200, 0));
+			//auto com2 = AddGameObject<Comment>(13, 0);
+			auto comment = AddGameObject<CommentManager>(50);
+			//auto comment2 = AddGameObject<CommentManager>(10,2);
 		}
 		catch (...) {
 			throw;
