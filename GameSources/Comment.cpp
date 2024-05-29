@@ -28,8 +28,8 @@ namespace basecross {
 		m_ver(8), //縦の分割数
 		m_widthSize(256.0f),//画像サイズ(横)
 		m_heigthSize(256.0f),//画像サイズ(縦)
-		m_sizeW(350),
-		m_sizeH(350),
+		m_sizeW(350),//表示サイズ(横)
+		m_sizeH(350),//表示サイズ(縦)
 		m_lineFlag(false),
 		m_meshResName(L"comment")
 	{
