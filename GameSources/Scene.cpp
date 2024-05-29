@@ -57,6 +57,12 @@ namespace basecross {
 		strTexture = texPath + L"Back.png";
 		app->RegisterTexture(L"Back", strTexture);
 
+		strTexture = texPath + L"MiniMapDataVer3.0.png";
+		app->RegisterTexture(L"MiniMap", strTexture);
+		strTexture = texPath + L"Triangle.png";
+		app->RegisterTexture(L"MiniMapPlayer", strTexture);
+
+
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
 		strTexture = texPath + L"RadarCover.png";
