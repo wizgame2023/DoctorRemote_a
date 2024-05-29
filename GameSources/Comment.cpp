@@ -22,7 +22,8 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_moji(0),
 		m_mojiNum(mojiNum),//‰½•¶š–Ú‚©
-		m_line(line+1),    //‰½s–Ú‚©
+		m_line(line),    //‰½s–Ú‚©
+		m_count(0.2f),
 		m_countTime(0.2f),//Ÿ‚Ì•¶š‚Ü‚Å‚àŠÔŠu
 		m_bes(13),//‰¡‚Ì•ªŠ„”
 		m_ver(8), //c‚Ì•ªŠ„”
