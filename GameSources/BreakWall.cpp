@@ -112,20 +112,20 @@ namespace basecross {
 		}		
 		if (Other->FindTag(L"Player"))
 		{
-			//m_Position = m_StartPosition;
-			m_ptrCollider->SetFixed(true);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
+			m_Position = m_StartPosition;
+			//m_ptrCollider->SetFixed(true);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
 		}
 	}
 
-	void BreakWall::OnCollisionExit(shared_ptr<GameObject>& Other)
-	{
-		if (Other->FindTag(L"Player"))
-		{
-			//m_Position = m_StartPosition;
-			m_ptrCollider->SetFixed(false);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
-		}
+	//void BreakWall::OnCollisionExit(shared_ptr<GameObject>& Other)
+	//{
+	//	if (Other->FindTag(L"Player"))
+	//	{
+	//		//m_Position = m_StartPosition;
+	//		m_ptrCollider->SetFixed(false);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
+	//	}
 
-	}
+	//}
 
 }
 //end namespace basecross
