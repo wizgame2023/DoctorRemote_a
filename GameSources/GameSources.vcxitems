@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -95,7 +95,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HemmiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MiniMapPlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)JoinManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Ligth.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OkawaraStage.cpp" />
