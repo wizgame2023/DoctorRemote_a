@@ -17,11 +17,12 @@ namespace basecross {
 		void CreateEnemy();//敵の作成
 		void CreateRadar();//レーダーの作成
 		void CreateMap();
-		void CreateWall();//壁の作成
-		void CreateBlock();//障害物の作成
-		void CreateBreakWall();//壊れる壁の作成
-		void CreateRecoveryWall();//治す壁の作成
-		void CreateBlockSecond();//障害物の作成２	
+		//void CreateWall();//壁の作成
+		//void CreateBlock();//障害物の作成
+		//void CreateBreakWall();//壊れる壁の作成
+		//void CreateRecoveryWall();//治す壁の作成
+		//void CreateBlockSecond();//障害物の作成２	
+		void CreateMiniMap();//ミニマップの生成
 		void CreateEffect();//エフェクトの作成
 		void RandamPiecePosition(Vec3 originPosition);//ランダムに
 		shared_ptr<Transform> m_Trans;

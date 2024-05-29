@@ -120,55 +120,55 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//8				
-				Vec3(-6.25f,0.0f,24.0f),
+				Vec3(-6.25f,1.0f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),	
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//9
-				Vec3(-4.56f,0.0f,40.0f),
+				Vec3(-4.56f,1.0f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//10
-				Vec3(-7.25f,0.0f,-45.0f),
+				Vec3(-7.25f,1.0f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 
 			},			
 			{//11
-				Vec3(28.9f,0.0f,-14.0f),
+				Vec3(28.9f,1.0f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 			},
 			{//12
-				Vec3(45.0f,0.0f,-7.0f),
+				Vec3(45.0f,1.0f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//13
-				Vec3(16.0f,0.0f,10.0f),
+				Vec3(16.0f,1.0f,10.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 			},
 			{//14
-				Vec3(12.0f,0.0f,41.0f),
+				Vec3(12.0f,1.0f,41.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//15
-				Vec3(0.6f,0.0f,34.3f),
+				Vec3(0.6f,1.0f,34.3f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//16
-				Vec3(10.0f,0.0f,20.0f),
+				Vec3(10.0f,1.0f,20.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(0.5f,0.5f,0.5f)
+				Vec3(1.0f,1.0f,1.0f)
 
 			}
 
@@ -185,8 +185,8 @@ namespace basecross {
 		randamCount = rand() % 9 + 1;
 		randamCount = 5;
 
-		Vec3 a = Vec3();
-		Vec3 b = Vec3(0.5f, 0.5f, 0.5f);
+		Vec3 rotate = Vec3();
+		Vec3 size = Vec3(1.0f, 1.0f, 1.1f);
 		vector<Vec3> Trans;
 		srand(time(0));//ランダムリセット
 
@@ -198,7 +198,7 @@ namespace basecross {
 			srand(rand() * rand() % 7);
 
 			int z = rand() % 19 + 1;//ランダムに中心点からy座標がどれくらい離れているか決める
-			x - 10; z - 10;//これで離れている座標の差にマイナスを入れる
+			x - 10; z - 10;//これで離れている座標の差にマイナスを入れる ここ計算式意味ない書き方している可能性あり
 
 			Vec3 Pos = Vec3(originPosition.x + x, originPosition.y, originPosition.z + z);//これでランダムにピースを置くことができる
 			Trans.push_back(Pos);
@@ -206,7 +206,7 @@ namespace basecross {
 		}
 		for (auto i : Trans)
 		{
-			AddGameObject<EnemyPiece>(i, a, b);
+			AddGameObject<EnemyPiece>(i, rotate, size);
 		}
 
 	}
@@ -321,6 +321,14 @@ namespace basecross {
 
 			}
 		}
+	}
+
+	void GameStage::CreateMiniMap()
+	{
+		float Lenght = 225.0f;//ミニマップの直径
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 1);//ミニマップ生成
+		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 3.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+
 	}
 
 	//void GameStage::CreateRecoveryWall()
@@ -699,7 +707,8 @@ namespace basecross {
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
-			CreateMap();
+			CreateMap();//マップを生成
+			CreateMiniMap();//ミニマップ生成
 			//CreateWall();//これでステージの壁を作る
 			//CreateBreakWall();//壊れる壁の作成
 			//CreateBlockSecond();
@@ -708,7 +717,6 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"Garge", garge);
 			auto PGarge = AddGameObject<PlayerGarge>();
-
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
 
