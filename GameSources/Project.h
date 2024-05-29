@@ -25,6 +25,7 @@
 #include "StageManager.h"
 #include "StatusManager.h"
 #include "EscapeManager.h"
+#include "JoinManager.h"
 #include "CommentManager.h"
 #include "Player.h"
 #include "Bullet.h"

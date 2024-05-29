@@ -38,6 +38,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Garge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Ground.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HemmiStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)JoinManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Ligth.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Garge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Ground.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HemmiStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)JoinManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Ligth.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
