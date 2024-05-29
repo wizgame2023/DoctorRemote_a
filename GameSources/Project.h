@@ -12,7 +12,7 @@
 #include "Data.h"
 #include "MainCamera.h"
 #include "TestCamera.h"
-#include "Ligth.h"
+#include "MiniMapPlayer.h"
 #include "GameStage.h"
 #include "TitleStage.h"
 #include "LoadStage.h"

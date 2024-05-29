@@ -70,13 +70,13 @@ namespace basecross {
 		m_ptrParticle->SetTextureResource(m_TextureName);
 		m_ptrParticle->SetMaxTime(m_maxTime);
 		//srand(time(0));
-		float randamPosX = rand() % 30+10;
+		float randamPosX = (float)(rand() % 30 + 10);
 		randamPosX -= 20;
 		randamPosX /= 10;//¬”“_‚ğ“ü‚ê‚é
-		float randamPosZ = rand() % 30 + 10;
+		float randamPosZ = (float)(rand() % 30 + 10);
 		randamPosZ -= 20;
 		randamPosZ /= 10;//¬”“_‚ğ“ü‚ê‚é
-		float randamPosY = rand() % 30 + 10;
+		float randamPosY = (float)(rand() % 30 + 10);
 		randamPosY -= 20;
 		randamPosY /= 10;//¬”“_‚ğ“ü‚ê‚é
 

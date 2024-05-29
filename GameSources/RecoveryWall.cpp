@@ -48,7 +48,7 @@ namespace basecross {
 		if (m_Hp <= 0)
 		{
 			int Recovery = 25;
-			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(Recovery);//‰ñ•œ‚·‚é
+			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp((float)Recovery);//‰ñ•œ‚·‚é
 			GetStage()->RemoveGameObject<RecoveryWall>(GetThis<RecoveryWall>());
 
 			auto soundSE = App::GetApp()->GetXAudio2Manager();

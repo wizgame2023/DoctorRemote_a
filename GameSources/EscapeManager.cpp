@@ -70,8 +70,7 @@ namespace basecross {
 	{	
 		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//Positionを取得
 
-		//m_MinRange = Vec3(-20.0f, 0.0f, 3.0f);//最小の値 メンバ変数
-		//m_MaxRange = Vec3(-3.0f, 0.0f, 8.0f);//最大の値　メンバ変数
+		//この範囲にいたら脱出シーンが起きる
 		if (m_PlayerPos.x <= m_MaxRange.x && m_PlayerPos.x >= m_MinRange.x && m_UpdateFlag == 0)
 		{
 			if (m_PlayerPos.z <= m_MaxRange.z && m_PlayerPos.z >= m_MinRange.z)

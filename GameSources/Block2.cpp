@@ -25,7 +25,7 @@ namespace basecross {
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
-			Vec3(0.8f, 1.0f, 0.8f),
+			Vec3(1.0f, 1.0f, 1.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f)
@@ -34,7 +34,7 @@ namespace basecross {
 
 		auto ptrColl = AddComponent<CollisionCapsule>();
 		ptrColl->SetFixed(true);
-		//ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
+		ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
 
