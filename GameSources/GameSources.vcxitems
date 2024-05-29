@@ -23,7 +23,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Comment.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CommentMnager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommentManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Data.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectBullet.h" />

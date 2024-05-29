@@ -192,7 +192,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Comment.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CommentMnager.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommentManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
   </ItemGroup>
