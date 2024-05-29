@@ -93,7 +93,7 @@ namespace basecross {
 	//Playerを追加する関数
 	void SanpeiStage::CreatePlayer()
 	{
-		auto ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 1.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
+		auto ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを取得
 		//auto ptrTarget = GetSharedObject(L"Bullet");//Addしたゲームオブジェクト(Bullet)を取得する
 
@@ -185,6 +185,13 @@ namespace basecross {
 		}
 	}
 
+	void SanpeiStage::SetMiniMap()//ミニマップ生成 分からないところが多すぎるのでしっかり授業のデータを見直して考える
+	{
+		float Lenght = 225.0f;//ミニマップの直径
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 1);//ミニマップ生成
+		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 3.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+	}
+
 
 	void SanpeiStage::OnCreate() {
 		try {
@@ -209,7 +216,10 @@ namespace basecross {
 			CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
-			CreateRadar();
+			CreateRadar();	
+			//ミニマップを生成
+			SetMiniMap();
+
 			//地面を生成
 			AddGameObject<Ground>();
 			//ゲージを追加
@@ -220,7 +230,9 @@ namespace basecross {
 			AddGameObject<TimeManager>();//時間制限
 
 			//壁を出現（テスト）
-			AddGameObject<BreakWall>(Vec3(5.0f, 0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(5.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(7.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(3.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
 			AddGameObject<RecoveryWall>(Vec3(15.0f, 0.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 
 			AddGameObject<Block>(Vec3(10.0f, -0.5f,-2.0f), Vec3(0.0f, 0.0f, 0.0f));
