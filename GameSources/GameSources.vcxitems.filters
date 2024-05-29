@@ -54,7 +54,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Ligth.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)MiniMapPlayer.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h">
@@ -206,7 +206,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Ligth.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)MiniMapPlayer.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp">
