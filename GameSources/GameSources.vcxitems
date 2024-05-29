@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -35,6 +35,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage3.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Garge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Ground.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HemmiStage.h" />
@@ -57,6 +59,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusManager.h" />
@@ -65,6 +68,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
   </ItemGroup>
@@ -90,6 +94,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage3.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Garge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Ground.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HemmiStage.cpp" />
@@ -111,6 +117,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusManager.cpp" />
@@ -119,6 +126,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
