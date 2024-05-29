@@ -30,10 +30,12 @@ namespace basecross {
 
 	void StatusManager::OnCreate() {
 		auto stage = GetStage();
-		m_sprite = stage->AddGameObject<Sprite>(350, 350, L"White", Vec3());
+		m_sprite = stage->AddGameObject<Sprite>(330, 330, L"White", Vec3());
 		m_trans = m_sprite->GetComponent<Transform>();
-		m_sprite->SetColor(Col4(0, 1, 0, 1.0f));
 
+		m_color = Col4(0.105, 0.75, 0, 1.0f);
+		m_sprite->SetColor(m_color);
+		
 		//m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 	}
 
@@ -136,7 +138,7 @@ namespace basecross {
 				m_sprite->SetColor(Col4(0, 0, 0, 0));
 			}
 			else if ((int)m_count % 2 == 1) {
-				m_sprite->SetColor(Col4(0, 0, 0, 1));
+				m_sprite->SetColor(Col4(m_color));
 			}
 			m_count -= elapsedTime * 10.0f;
 
