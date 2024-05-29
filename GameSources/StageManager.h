@@ -16,11 +16,13 @@ namespace basecross {
 		float m_maxHp;
 		float m_hpSpeed;
 		float m_count;
+		float m_countStart;
 
 		int m_ligthStatus;
 		bool m_start;
 
 		shared_ptr<Sprite> m_ligth;
+		shared_ptr<Sprite> m_startSprite;
 		shared_ptr<UITime> m_num;
 
 	public:

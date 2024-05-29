@@ -15,6 +15,7 @@ namespace basecross {
 		m_hpSpeed(3.0f),
 		m_ligthStatus(0),
 		m_count(4.0f),
+		m_countStart(0.5f),
 		m_start(false)
 	{}
 
@@ -46,7 +47,15 @@ namespace basecross {
 		}
 		if (m_count < 1) {
 			m_num->ThisDestory();
+			if (!m_start) {
+				m_startSprite = GetStage()->AddGameObject<Sprite>(500,500,L"Start",Vec3());
+			}
 			m_start = true;
+
+			m_countStart -= elapsedTime;
+			if (m_countStart < 0) {
+				m_startSprite->ThisDestory();
+			}
 		}
 
 		if (m_currentHp <= 0.0f) {
