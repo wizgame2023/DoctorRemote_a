@@ -260,7 +260,7 @@ namespace basecross {
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-			AddGameObject<EscapeManager>(Vec3(-10.0f, 8.0f, -15.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-20.0f, 0.0f, 3.0f), Vec3(-3.0f, 0.0f, 8.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-10.0f, 2.0f, 26.0f));
+			AddGameObject<JoinManager>(Vec3(-10.0f, 8.0f, -15.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-20.0f, 0.0f, 3.0f), Vec3(-3.0f, 0.0f, 8.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-10.0f, 2.0f, 26.0f));
 			int test = 1;
 			//カメラの設定
 		   //auto camera = ObjectFactory::Create<Camera>();

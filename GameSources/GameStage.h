@@ -16,7 +16,7 @@ namespace basecross {
 		void CerateBreakEnemyPiece();//壊れる壁の後ろに生成するかけら
 		void CreateEnemy();//敵の作成
 		void CreateRadar();//レーダーの作成
-		void CreateMap();
+		void CreateMap();//マップの生成
 		//void CreateWall();//壁の作成
 		//void CreateBlock();//障害物の作成
 		//void CreateBreakWall();//壊れる壁の作成
@@ -25,6 +25,7 @@ namespace basecross {
 		void CreateMiniMap();//ミニマップの生成
 		void CreateEffect();//エフェクトの作成
 		void RandamPiecePosition(Vec3 originPosition);//ランダムに
+		void CollisionActive(bool On);//コリジョンの判定のきりかえ
 		shared_ptr<Transform> m_Trans;
 		shared_ptr<SingleView> m_View;//ビューの変数
 	public:

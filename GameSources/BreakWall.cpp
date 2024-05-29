@@ -39,6 +39,7 @@ namespace basecross {
 		);
 
 		m_ptrCollider = AddComponent<CollisionObb>();
+		m_ptrCollider->SetSleepActive(true);
 		m_ptrCollider->SetFixed(false);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
 		//m_ptrCollider->SetAfterCollision(AfterCollision::None);
 
@@ -113,7 +114,7 @@ namespace basecross {
 		if (Other->FindTag(L"Player"))
 		{
 			m_Position = m_StartPosition;
-			//m_ptrCollider->SetFixed(true);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
+			m_ptrCollider->SetFixed(true);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
 		}
 	}
 
