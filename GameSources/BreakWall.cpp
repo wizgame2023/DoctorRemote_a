@@ -11,6 +11,7 @@ namespace basecross {
 	BreakWall::BreakWall(const shared_ptr<Stage>& StagePtr, Vec3 Position,  Vec3 Rotate,Vec3 Scale):
 		GameObject(StagePtr),
 		m_Position(Position),
+		m_StartPosition(Position),
 		m_Rotate(Rotate),
 		m_Scale(Scale),
 		m_Hp(1)
@@ -99,6 +100,7 @@ namespace basecross {
 			//‚à‚µ‚Ô‚Â‚©‚Á‚½ƒRƒŠƒWƒ‡ƒ“‚ªBullet‚Ì‚à‚Ì‚¾‚Á‚½‚ç
 			if (Other->FindTag(L"Bullet"))
 			{
+				m_Position = m_StartPosition;
 				m_Hp -= Attack;//Ž©•ª‚ÌHP‚ªŒ¸‚é
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 
@@ -110,6 +112,7 @@ namespace basecross {
 		}		
 		if (Other->FindTag(L"Player"))
 		{
+			//m_Position = m_StartPosition;
 			m_ptrCollider->SetFixed(true);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
 		}
 	}
@@ -118,6 +121,7 @@ namespace basecross {
 	{
 		if (Other->FindTag(L"Player"))
 		{
+			//m_Position = m_StartPosition;
 			m_ptrCollider->SetFixed(false);//‚±‚ê‚Å‚Ô‚Â‚©‚Á‚Ä‚à“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
 		}
 

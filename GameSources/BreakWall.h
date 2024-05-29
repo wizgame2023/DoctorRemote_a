@@ -20,6 +20,8 @@ namespace basecross
 		shared_ptr<CollisionObb> m_ptrCollider;
 		shared_ptr<Transform> m_Trans;
 
+		Vec3 m_StartPosition;
+
 	public:
 		BreakWall(const shared_ptr<Stage>& StagePtr,		
 						Vec3 m_Position,
