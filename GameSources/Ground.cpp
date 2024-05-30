@@ -22,7 +22,7 @@ namespace basecross {
 		transComp->SetPosition(0.0f, -1.5f, 0.0f);
 
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(false);
+		colPtr->SetDrawActive(true);
 		colPtr->SetAfterCollision(AfterCollision::None);
 
 		AddTag(L"Ground");

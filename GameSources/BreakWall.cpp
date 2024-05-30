@@ -39,11 +39,11 @@ namespace basecross {
 		);
 
 		m_ptrCollider = AddComponent<CollisionObb>();
-		m_ptrCollider->SetSleepActive(true);
+		//m_ptrCollider->SetSleepActive(true);
 		m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
 		//m_ptrCollider->SetAfterCollision(AfterCollision::None);
 
-		//m_ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
+		m_ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
 
 
 
@@ -64,10 +64,10 @@ namespace basecross {
 		//もし体力がなくなったら削除される
 		if (m_Hp <= 0)
 		{	
-			int damage = -20;//これを壊したときの患者へのダメージ量
-			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp((float)damage);//ダメージを与える
-			int piece = 0;//どれくらいピースを手に入るかを決める
-			piece = rand() % 3;//ランダムにどのピースが出るのかを決める変数
+			//int damage = -20;//これを壊したときの患者へのダメージ量
+			//GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp((float)damage);//ダメージを与える
+			//int piece = 0;//どれくらいピースを手に入るかを決める
+			//piece = rand() % 3;//ランダムにどのピースが出るのかを決める変数
 
 			auto soundSE = App::GetApp()->GetXAudio2Manager();
 			soundSE->Start(L"BreakWallSE", 0, 0.5f);
@@ -114,7 +114,7 @@ namespace basecross {
 		if (Other->FindTag(L"Player"))
 		{
 			m_Position = m_StartPosition;
-			m_ptrCollider->SetFixed(true);//これでぶつかっても動かないようにする
+			//m_ptrCollider->SetFixed(true);//これでぶつかっても動かないようにする
 		}
 	}
 
