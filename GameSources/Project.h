@@ -32,6 +32,7 @@
 #include "JoinManager.h"
 #include "CommentManager.h"
 #include "TitleManager.h"
+#include "RandCreateManager.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"

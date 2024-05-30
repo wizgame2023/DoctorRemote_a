@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -54,6 +54,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Radar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RandCreateManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RecoveryWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SanpeiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
@@ -114,6 +115,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Radar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RandCreateManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RecoveryWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SanpeiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
