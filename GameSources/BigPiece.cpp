@@ -68,7 +68,7 @@ namespace basecross {
 			GetStage()->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
 		}
 		if (other->FindTag(L"Player")) {
-			auto stageManager = GetStage()->GetSharedGameObject<StageManager>(L"StageManage");
+			auto stageManager = GetStage()->GetSharedGameObject<StageManager>(L"StageManager");
 			stageManager->SetHp(-20.0f);
 		}
 	}

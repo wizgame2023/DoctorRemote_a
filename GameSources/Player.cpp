@@ -319,13 +319,9 @@ namespace basecross {
 
 		}
 		if (other->FindTag(L"BigPiece")) {
-			srand(time(0));
-			int num;
-			num = rand() % 30 + m_onePiece;
-			AddPiece(num);
-			if (m_maxPiece < m_piece) {
-				m_radarFlag = true;
-			}
+
+			m_enemyPieceFlag = true;
+			SetObj(other);
 
 			EffectFlag(3);
 			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();

@@ -34,6 +34,12 @@ namespace basecross {
 		app->RegisterTexture(L"BarSide", strTexture);
 		strTexture = texPath + L"BarFrame2.png";
 		app->RegisterTexture(L"BarFrame", strTexture);
+		strTexture = texPath + L"GageBar.png";
+		app->RegisterTexture(L"GargeBar", strTexture);
+		strTexture = texPath + L"Gage.png";
+		app->RegisterTexture(L"Garge", strTexture);
+		strTexture = texPath + L"Hearts.png";
+		app->RegisterTexture(L"Hearts", strTexture);
 
 
 		strTexture = texPath + L"Clear.png";
@@ -44,7 +50,7 @@ namespace basecross {
 		app->RegisterTexture(L"Start", strTexture);
 		strTexture = texPath + L"Load.png";
 		app->RegisterTexture(L"Load", strTexture);
-		strTexture = texPath + L"Title.jpg";
+		strTexture = texPath + L"Title_3.jpg";
 		app->RegisterTexture(L"Title", strTexture);
 		strTexture = texPath + L"Score.jpg";
 		app->RegisterTexture(L"Score", strTexture);
@@ -58,19 +64,14 @@ namespace basecross {
 		app->RegisterTexture(L"Back", strTexture);
 		strTexture = texPath + L"GameScreen.png";
 		app->RegisterTexture(L"GameScreen", strTexture);
+		strTexture = texPath + L"Frame.png";
+		app->RegisterTexture(L"Frame", strTexture);
 
 
 		strTexture = texPath + L"MiniMapDataVer3.0.png";
 		app->RegisterTexture(L"MiniMap", strTexture);
 		strTexture = texPath + L"Triangle.png";
 		app->RegisterTexture(L"MiniMapPlayer", strTexture);
-
-
-		strTexture = texPath + L"MiniMapDataVer3.0.png";
-		app->RegisterTexture(L"MiniMap", strTexture);
-		strTexture = texPath + L"Triangle.png";
-		app->RegisterTexture(L"MiniMapPlayer", strTexture);
-
 
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -209,17 +210,22 @@ namespace basecross {
         if (event->m_MsgStr == L"ToGameStage") {
             //ゲームステージの設定
 			ResetActiveStage<GameStage>();
-
         }
+		if (event->m_MsgStr == L"ToGameStage2") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage2>();
+		}
         else if (event->m_MsgStr == L"ToStartStage") {
             ResetActiveStage<TitleStage>();
         }
+		else if (event->m_MsgStr == L"ToTutorialStage") {
+			ResetActiveStage<TutorialStage>();
+		}
         else if (event->m_MsgStr == L"ToClearStage") {
             ResetActiveStage<ScoreStage>();
         }
         else if (event->m_MsgStr == L"ToGameOverStage") {
             ResetActiveStage<GameOverStage>();
-
         }
 		else if (event->m_MsgStr == L"ToStatusStage") {
 			ResetActiveStage<StatusStage>();

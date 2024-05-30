@@ -12,7 +12,7 @@ namespace basecross {
 
 	PieceGarge2::PieceGarge2(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
-		m_meshResName(L"Bar"),
+		m_meshResName(L"Garge"),
 		m_ratio(0.5f)
 	{}
 
@@ -22,18 +22,18 @@ namespace basecross {
 
 		m_trans = GetComponent<Transform>();
 		Col4 color(1, 1, 1, 1);
-		Col4 color2(1, 0, 0, 1);
+		Col4 color2(1, 1, 1, 1);
 
 		float sw = App::GetApp()->GetGameWidth();
 		float sh = App::GetApp()->GetGameHeight();
 
 		Vec3 screen(-sw * 0.5f, -sh * 0.5f, 0);
-		Vec3 dis(73, 300, 0);
+		Vec3 dis(47, 320, 0);
 		Vec3 zero(0, 0, 0);
 
-		m_garge = stage->AddGameObject<Garge>(m_trans, 0, 1024, m_meshResName, m_ratio, 55, 240, color, color2, screen, dis);
+		m_garge = stage->AddGameObject<Garge>(m_trans, 0, 300, m_meshResName, m_ratio, 128, 300, color, color2, screen, dis);
 
-		auto frame = stage->AddGameObject<Sprite>(57, 242, L"BarFrame",Vec3(-540, -220, 1.0f),1);
+		auto frame = stage->AddGameObject<Sprite>(128, 350, L"GargeBar",Vec3(-530, -190, 1.0f),2);
 	}
 
 	void PieceGarge2::OnUpdate() {

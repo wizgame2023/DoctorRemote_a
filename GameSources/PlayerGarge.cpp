@@ -11,7 +11,7 @@ namespace basecross {
 
 	PlayerGarge::PlayerGarge(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
-		m_meshResName(L"BarSide"),
+		m_meshResName(L"Hearts"),
 		m_currentHp(80.0f),
 		m_maxHp(100.0f)
 	{
@@ -31,13 +31,13 @@ namespace basecross {
 		float sh = App::GetApp()->GetGameHeight();
 		Vec3 screen(-sw * 0.5, -sh * 0.5, 0);
 		//Vec3 zero(0, 0, 0);
-		Vec3 dis(340, 70, 0);
+		Vec3 dis(320, 100, 0);
 
-		m_garge = stage->AddGameObject<Garge>(m_trans, 1024, 0,m_meshResName, m_ratioHp, 200, 10, color, color2, screen, dis);
+		m_garge = stage->AddGameObject<Garge>(m_trans, 220, 0,m_meshResName, m_ratioHp, 220, 40, color, color2, screen, dis);
 
-		auto frame = stage->AddGameObject<Sprite>(12, 203, L"BarFrame", Vec3(0, -335, 0.5),1);
-		auto frameTrans = frame->GetComponent<Transform>();
-		frameTrans->SetRotation(0, 0, 90 * XM_PI / 180);
+		//auto frame = stage->AddGameObject<Sprite>(12, 203, L"BarFrame", Vec3(0, -335, 0.5),1);
+		//auto frameTrans = frame->GetComponent<Transform>();
+		//frameTrans->SetRotation(0, 0, 90 * XM_PI / 180);
 
 	}
 
