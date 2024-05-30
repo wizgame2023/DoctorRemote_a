@@ -829,6 +829,10 @@ namespace basecross {
 			CreateRadar();
 			m_StageFlag = 1;
 
+			OnDestroy();
+			auto XAPtr = App::GetApp()->GetXAudio2Manager();
+			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.5f);
+
 		}
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
