@@ -38,6 +38,7 @@ namespace basecross {
 		void UpdateRank(int value);
 		void UpdateIfClear(int value);
 		void ThisDestory();
+		void Blinking(float count,Col4 color);
 
 		Col4 GetColor();
 		void SetColor(Col4 color);
