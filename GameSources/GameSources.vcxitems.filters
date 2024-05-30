@@ -216,6 +216,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectSprite.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RandCreateManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -395,5 +396,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectSprite.cpp">
       <Filter>Sources\UI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RandCreateManager.cpp" />
   </ItemGroup>
 </Project>

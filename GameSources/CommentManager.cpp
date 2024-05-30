@@ -10,29 +10,76 @@
 namespace basecross {
 	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr,const int moji):
 		GameObject(stagePtr),
-		m_mojiNum(moji),
-		m_addLine(0),
-		m_line(8),
-		m_column(13),
-		m_mtime(0.2),
-		m_count(m_mtime * m_column),
-		m_moji{13,13,13,13,13,13,13,13,13,13},
-		m_cnt(0)
+		m_mojiNum(moji),//文字数
+		m_addLine(0),//何行目から
+		m_line(8),      //何行
+		m_column(13),   //何列
+		m_mtime(0.2f),   //文字と文字の間を秒数
+		m_widthSize(256),//画像サイズ横
+		m_heigthSize(256),//画像サイズ縦
+		m_sizeW(350),//大きさ横
+		m_sizeH(350),//大きさ縦
+		m_count(m_mtime* m_column),//次の行までの時間
+		m_moji{ 13,13,13,13,13,13,13,13,13,13 },
+		m_cnt(0),
+		m_pos(Vec3()),
+		m_meshResName(L"comment")
 	{}
 	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr, const int moji,const int line) :
 		GameObject(stagePtr),
 		m_mojiNum(moji),//文字数
-		m_addLine(line),//何行目か
+		m_addLine(line),//何行目から
 		m_line(8),      //何行
 		m_column(13),   //何列
-		m_mtime(0.2),   //文字と文字の間を何行と仮定するか
-		m_count(m_mtime * m_column),//次の行までの時間
+		m_mtime(0.2f),   //文字と文字の間を秒数
+		m_widthSize(256),//画像サイズ横
+		m_heigthSize(256),//画像サイズ縦
+		m_sizeW(350),//大きさ横
+		m_sizeH(350),//大きさ縦
+		m_count(m_mtime* m_column),//次の行までの時間
 		m_moji{ 13,13,13,13,13,13,13,13,13,13 },
-		m_cnt(0)
+		m_cnt(0),
+		m_pos(Vec3()),
+		m_meshResName(L"comment")
+
+	{}
+	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr,
+		const int mojiNum,
+		const int line,
+		const float mtime,
+		const float widthSize,
+		const float heigthSize,
+		const float sizeW,
+		const float sizeH,
+		const int ber,
+		const int ver,
+		const Vec3 pos,
+		const wstring mesh
+	):
+		GameObject(stagePtr),
+		m_mojiNum(mojiNum),//文字数
+		m_addLine(line),//何行目から
+		m_line(ber),      //何行
+		m_column(ver),   //何列
+		m_mtime(mtime),   //文字と文字の間を秒数
+		m_widthSize(widthSize),//画像サイズ横
+		m_heigthSize(heigthSize),//画像サイズ縦
+		m_sizeW(sizeW),//大きさ横
+		m_sizeH(sizeH),//大きさ縦
+		m_count(m_mtime* m_column),//次の行までの時間
+		m_moji{ ver,ver,ver,ver,ver,ver,ver,ver,ver,ver },
+		m_cnt(0),
+		m_pos(pos),
+		m_meshResName(mesh)
 	{}
 
 
+
+
 	void CommentManager::OnCreate() {
+		//m_trans = GetComponent<Transform>();
+		//m_trans->SetPosition(m_pos);
+
 		m_mojiLine = m_mojiNum / m_column;
 		m_mojiColumn = m_mojiNum % m_column;
 
@@ -48,7 +95,9 @@ namespace basecross {
 				if (m_addLine > 0) {
 					m_moji[m_mojiLine] = m_mojiNum % (m_column * (m_cnt + 1));
 				}
-				m_com[m_cnt] = stage->AddGameObject<Comment>(m_moji[m_cnt], m_cnt+m_addLine);
+				m_com[m_cnt] = stage->AddGameObject<Comment>(m_moji[m_cnt], m_cnt + m_addLine, m_countTime,
+					m_widthSize, m_heigthSize, m_sizeW, m_sizeH,
+					m_ber, m_ver, m_pos, m_meshResName);
 
 				m_count = m_mtime * m_column;
 				m_cnt++;
