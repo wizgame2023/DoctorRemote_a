@@ -53,28 +53,28 @@ namespace basecross {
 	{
 		int randamPlayer = 0;
 		randamPlayer = rand() % 3;
-		shared_ptr<Player> ptrPlayer;
 		//randamPlayer = 0;//デバック
 		//shared_ptr<GameObject> nanasiObject;
 		//ランダムにPlayerの出現場所が決まる
 		float deg = -90;
-		float rad = XMConvertToRadians(deg);
-		switch (randamPlayer)
-		{
-		case 0:		
-			ptrPlayer = AddGameObject<Player>(Vec3(10.0f,0.5f,-40.0f),Vec3(0.0f,rad, 0.0f));
-			break;
-		case 1:
-			ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, rad, 0.0f));
-			break;
-		case 2:
-			ptrPlayer = AddGameObject<Player>(Vec3(60.0f, 0.5f, 10.0f), Vec3(0.0f, rad, 0.0f));
-			break;
+		float rad = XMConvertToRadians(deg);	
+		shared_ptr<Player> ptrPlayer= AddGameObject<Player>(Vec3(0.0f,0.5f,0.0f),Vec3(0.0f,rad,0.0f));
+		//switch (randamPlayer)
+		//{
+		//case 0:		
+		//	ptrPlayer = AddGameObject<Player>(Vec3(10.0f,0.5f,-40.0f),Vec3(0.0f,rad, 0.0f));
+		//	break;
+		//case 1:
+		//	ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, rad, 0.0f));
+		//	break;
+		//case 2:
+		//	ptrPlayer = AddGameObject<Player>(Vec3(60.0f, 0.5f, 10.0f), Vec3(0.0f, rad, 0.0f));
+		//	break;
 
-		default:
-			ptrPlayer = AddGameObject<Player>();
-			break;
-		}
+		//default:
+		//	ptrPlayer = AddGameObject<Player>();
+		//	break;
+		//}
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 
@@ -181,7 +181,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
+	void GameStage::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる 消去予定
 	{
 		int randamCount = 0;
 		randamCount = rand() % 9 + 1;
@@ -271,20 +271,21 @@ namespace basecross {
 
 	void GameStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
-		int randam = rand() % 3;
-		randam = 0;
 		//右上
-		AddGameObject<BigPiece>(Vec3(10.0f, 0.0f, 6.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
-		AddGameObject<BigPiece>(Vec3(4.0f, 0.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		auto Piece1 = AddGameObject<BigPiece>(Vec3(51.0f, 0.0f, 70.0f), Vec3(0.0f, 0.2f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		SetSharedGameObject(L"BigPiece1", Piece1);
 		//左上
-		AddGameObject<BigPiece>(Vec3(-5.0f, 0.0f, 46.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5, 0.5f));
+		auto Piece2 = AddGameObject<BigPiece>(Vec3(-10.0f, 0.0f, 10.0f), Vec3(0.0f, 0.2f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		SetSharedGameObject(L"BigPiece2", Piece2);
+
 		//右下
-		AddGameObject<BigPiece>(Vec3(67.0f, 0.0f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
-		AddGameObject<BigPiece>(Vec3(65.0f, 0.0f, -54.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));	
-		AddGameObject<BigPiece>(Vec3(70.0f, 0.0f, -31.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		auto Piece3 = AddGameObject<BigPiece>(Vec3(52.0f, 0.0f, -44.0f), Vec3(0.0f, 0.2f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		SetSharedGameObject(L"BigPiece3", Piece3);
 
 		//左下
-		AddGameObject<BigPiece>(Vec3(-40.0f, 0.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		auto Piece4 = AddGameObject<BigPiece>(Vec3(-43.0f, 0.0f, -6.0f), Vec3(0.0f, 0.2f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		SetSharedGameObject(L"BigPiece4", Piece4);
+
 	}
 
 
@@ -372,6 +373,21 @@ namespace basecross {
 		float Lenght = 225.0f;//ミニマップの直径
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 1);//ミニマップ生成
 		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 3.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+
+		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
+		auto PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece1")->GetComponent<Transform>()->GetPosition();	
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f)+PiecePos.x * Bairitu, (400.0f - (Lenght / 2.0f))+PiecePos.z * Bairitu, 0.0f), 2);//ミニマップ上でBigPieceの位置を表示
+
+		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece2")->GetComponent<Transform>()->GetPosition();
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, (400.0f - (Lenght / 2.0f)) + PiecePos.z*Bairitu, 0.0f), 2);//ミニマップ上でBigPieceの位置を表示
+
+		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece3")->GetComponent<Transform>()->GetPosition();
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, 400.0f - (Lenght / 2.0f) + PiecePos.z*Bairitu, 0.0f), 2);//ミニマップ上でBigPieceの位置を表示
+
+		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece4")->GetComponent<Transform>()->GetPosition();
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, 400.0f - (Lenght / 2.0f) + PiecePos.z*Bairitu, 0.0f), 2);//ミニマップ上でBigPieceの位置を表示
+
+		
 
 	}
 
@@ -734,25 +750,25 @@ namespace basecross {
 		XAPtr->Stop(m_BGM);
 	}
 
-	void GameStage::CollisionActive(bool On)
+	void GameStage::CollisionActive(bool On)//消去予定
 	{
-		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
-		auto PlayerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
+		//auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		//auto PlayerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
 
-		if (On == true)
-		{
-			AABB CollisionActiveArea = AABB(PlayerPos + Vec3(-50.0f, -50.0f, -50.0f), PlayerPos + Vec3(50.0f, 50.0f, 50.0f));
-			GetCollisionManager()->SetRootAABB(CollisionActiveArea);
-		}
-		if (On == false)
-		{
-			AABB CollisionActiveArea = AABB(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
-			GetCollisionManager()->SetRootAABB(CollisionActiveArea);
-		}
+		//if (On == true)
+		//{
+		//	AABB CollisionActiveArea = AABB(PlayerPos + Vec3(-50.0f, -50.0f, -50.0f), PlayerPos + Vec3(50.0f, 50.0f, 50.0f));
+		//	GetCollisionManager()->SetRootAABB(CollisionActiveArea);
+		//}
+		//if (On == false)
+		//{
+		//	AABB CollisionActiveArea = AABB(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
+		//	GetCollisionManager()->SetRootAABB(CollisionActiveArea);
+		//}
 
 	}
 
-	void GameStage::SetCollisionSwich(bool ONorOFF)
+	void GameStage::SetCollisionSwich(bool ONorOFF)//消去予定
 	{
 	}
 
@@ -786,10 +802,15 @@ namespace basecross {
 			auto PGarge = AddGameObject<PlayerGarge>();
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
+			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
+			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
+
+			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(-10.0f, 0.5f, -14.8f));//ステージ開始時の演出
+
 
 			//BGM
 			PlayBGM();
-
+			m_StageFlag = 0;//初期化
 		}
 		catch (...) {
 			throw;
@@ -799,14 +820,26 @@ namespace basecross {
 	void GameStage::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
-		CollisionActive(true);
-		if (ptrPlayer->GetRadarFlag() && m_PieceFlag==0)
+		//CollisionActive(true);
+		if (ptrPlayer->GetRadarFlag() && m_StageFlag == 0)
 		{
 			//敵を生成
 			CreateEnemy();
 			//レーダーを生成
 			CreateRadar();
-			m_PieceFlag = 1;
+			m_StageFlag = 1;
+
+		}
+		//デバック用
+		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) 
+		{
+			//AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -13.4f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-8.0f, 0.5f, -12.0f), Vec3(8.0f, 0.5f, -5.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 12.0f), Vec3(0.0f, 0.5f, 13.0f), Vec3(0.0f, 0.5f, 0.0f));
+
+		}
+		if (m_StageFlag == 1)//敵を倒したとき
+		{
 		}
 
 	}
