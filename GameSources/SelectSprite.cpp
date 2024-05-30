@@ -21,6 +21,7 @@ namespace basecross {
 		m_height(-100),
 		m_heightMax(-100),
 		m_heightMin(-325),
+		m_spaces(75.0f),
 		m_count(10.0f),
 		m_checkD(false),
 		m_checkU(false),
@@ -34,8 +35,8 @@ namespace basecross {
 		m_sprite = stage->AddGameObject<Sprite>(170, 70, L"White", Vec3(0.0f, -100.0f, 0.0f),-1);
 		m_trans = m_sprite->GetComponent<Transform>();
 		m_trans->SetPosition(Vec3(0, -100, 0));
-		auto color = Col4(0.0f, 0.0f, 0, 1.0f);
-		m_sprite->SetColor(color);
+		m_color = Col4(1.0f, 1.0f, 1.0f, 1.0f);
+		m_sprite->SetColor(m_color);
 
 	}
 	void SelectSprite::OnUpdate() {
@@ -47,7 +48,7 @@ namespace basecross {
 		if (cntlVec[0].fThumbLY < -0.9f) {
 			if (m_moveCheck) return;
 			if (m_heightMin < m_height && !m_checkD) {
-				m_height -= 75;
+				m_height -= m_spaces;
 				m_trans->SetPosition(0.0f,m_height, 0.0f);
 				m_checkD = true;
 			}
@@ -60,7 +61,7 @@ namespace basecross {
 		if (cntlVec[0].fThumbLY > 0.9) {
 			if (m_moveCheck) return;
 			if (m_heightMax > m_height && !m_checkU) {
-				m_height += 75;
+				m_height += m_spaces;
 				m_trans->SetPosition(0.0f, m_height, 0.0f);
 				m_checkU = true;
 			}
@@ -79,13 +80,13 @@ namespace basecross {
 		if (m_height == m_heightMax) {
 			m_stage = TUTORIAL;
 		}
-		else if (m_height == m_heightMax-75) {
+		else if (m_height == m_heightMax-m_spaces) {
 			m_stage = STAGE1;
 		}
-		else if (m_height == m_heightMax - 75 * 2) {
+		else if (m_height == m_heightMax - m_spaces * 2) {
 			m_stage = STAGE2;
 		}
-		else if (m_height == m_heightMax - 75 * 3) {
+		else if (m_height == m_heightMax - m_spaces * 3) {
 			m_stage = STAGE3;
 		}
 
@@ -95,7 +96,7 @@ namespace basecross {
 				m_sprite->SetColor(Col4(0, 0, 0, 0));
 			}
 			else if ((int)m_count % 2 == 1) {
-				m_sprite->SetColor(Col4(0, 0, 0, 1));
+				m_sprite->SetColor(m_color);
 			}
 			m_count -= elapsed * 10.0f;
 		}
@@ -103,13 +104,13 @@ namespace basecross {
 			switch (m_stage)
 			{
 			case 0:
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTutorialStage");
 				break;
 			case 1:
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 				break;
 			case 2:
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
 				break;
 			case 3:
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");

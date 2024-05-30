@@ -18,6 +18,7 @@ namespace basecross {
 		float m_height;
 		float m_heightMax;
 		float m_heightMin;
+		float m_spaces;
 		float m_count;
 
 		bool m_checkD;
