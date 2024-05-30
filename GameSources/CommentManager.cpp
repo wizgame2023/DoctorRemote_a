@@ -51,7 +51,7 @@ namespace basecross {
 		const float heigthSize,
 		const float sizeW,
 		const float sizeH,
-		const int ber,
+		const int bes,
 		const int ver,
 		const Vec3 pos,
 		const wstring mesh
@@ -59,15 +59,15 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_mojiNum(mojiNum),//文字数
 		m_addLine(line),//何行目から
-		m_line(ber),      //何行
-		m_column(ver),   //何列
+		m_column(bes),   //何列
+		m_line(ver),      //何行
 		m_mtime(mtime),   //文字と文字の間を秒数
 		m_widthSize(widthSize),//画像サイズ横
 		m_heigthSize(heigthSize),//画像サイズ縦
 		m_sizeW(sizeW),//大きさ横
 		m_sizeH(sizeH),//大きさ縦
 		m_count(m_mtime* m_column),//次の行までの時間
-		m_moji{ ver,ver,ver,ver,ver,ver,ver,ver,ver,ver },
+		m_moji{ bes,bes,bes,bes,bes,bes,bes,bes,bes,bes, },
 		m_cnt(0),
 		m_pos(pos),
 		m_meshResName(mesh)
@@ -95,9 +95,9 @@ namespace basecross {
 				if (m_addLine > 0) {
 					m_moji[m_mojiLine] = m_mojiNum % (m_column * (m_cnt + 1));
 				}
-				m_com[m_cnt] = stage->AddGameObject<Comment>(m_moji[m_cnt], m_cnt + m_addLine, m_countTime,
+				m_com[m_cnt] = stage->AddGameObject<Comment>(m_moji[m_cnt], m_cnt + m_addLine, m_mtime,
 					m_widthSize, m_heigthSize, m_sizeW, m_sizeH,
-					m_ber, m_ver, m_pos, m_meshResName);
+					m_column,m_line, m_pos, m_meshResName);
 
 				m_count = m_mtime * m_column;
 				m_cnt++;
