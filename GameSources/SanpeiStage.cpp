@@ -116,7 +116,7 @@ namespace basecross {
 	//敵を作成
 	void SanpeiStage::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>(Vec3(10.0f,0.0f,10.0f),Vec3(0.0f,0.0f,0.0f),Vec3(1.0f,1.0f,1.0f));
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(10.0f,0.5f,10.0f),Vec3(0.0f,0.0f,0.0f),Vec3(1.0f,1.0f,1.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -242,7 +242,10 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャー追加
 			SetSharedGameObject(L"StageManager", stageManager);
 
+			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
+			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
+			AddGameObject<JoinManager>(Vec3(0.0f,0.5f,0.0f),Vec3(10.0f,0.5f,0.0f));//侵入する際の動作追加
 			//エフェクトを出現（テスト）
 			//AddGameObject<EffectBullet>(L"DamageBullet",3, 2, Vec3(-1.0f, 0.5f, 0.0f), 0.1f);
 
@@ -260,7 +263,7 @@ namespace basecross {
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-			AddGameObject<JoinManager>(Vec3(-10.0f, 8.0f, -15.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-20.0f, 0.0f, 3.0f), Vec3(-3.0f, 0.0f, 8.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-10.0f, 2.0f, 26.0f));
+			AddGameObject<EscapeManager>(Vec3(-10.0f, 8.0f, -15.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-20.0f, 0.0f, 3.0f), Vec3(-3.0f, 0.0f, 8.0f), Vec3(-10.0f, 2.0f, 0.0f), Vec3(-10.0f, 2.0f, 26.0f));
 			int test = 1;
 			//カメラの設定
 		   //auto camera = ObjectFactory::Create<Camera>();
