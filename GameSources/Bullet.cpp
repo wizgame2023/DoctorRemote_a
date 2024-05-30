@@ -17,7 +17,8 @@ namespace basecross {
 		m_angle(Rad),//角度はRad（弧度法）でお願いします
 		m_Attack(Attack),
 		m_statusFlag(0),
-		m_shotRange(20.0f)
+		m_shotRange(20.0f),
+		m_meshResName(L"Bullet")
 	{
 	}
 	//デストラクタ
@@ -35,15 +36,29 @@ namespace basecross {
 		ptrTransform->SetScale(m_Scale);//大きさを設定
 		ptrTransform->SetQuaternion(Quat());//クトーニアン（回転）を設定
 		m_AllStartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
+
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(0.5f, 0.5f, 0.5f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+
+		//描画コンポーネント
+		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+		ptrDraw->SetMeshResource(m_meshResName);
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+		ptrDraw->SetOwnShadowActive(true);
+
+		//オブジェクトの影の描画
+		auto ptrShadow = AddComponent<Shadowmap>();
+		ptrShadow->SetMeshResource(m_meshResName);
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
 		//球体のコリジョンを追加
 		auto ptrcollider = AddComponent<CollisionSphere>();
 		ptrcollider->SetAfterCollision(AfterCollision::None);
-
-
-
-		//描画コンポーネント
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_SPHERE");
 
 		AddTag(L"Bullet");//Bulletタグを追加
 

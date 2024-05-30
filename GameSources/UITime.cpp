@@ -53,9 +53,10 @@ namespace basecross {
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_meshResName);
 		m_draw->SetSamplerState(SamplerState::LinearWrap);
-		m_draw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+		m_draw->SetDiffuse(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
+
 		SetAlphaActive(true);
-		SetDrawLayer(1);
+		SetDrawLayer(2);
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(m_pos);
 	}
@@ -77,5 +78,12 @@ namespace basecross {
 		GetStage()->RemoveGameObject<UITime>(GetThis<UITime>());
 
 	}
+	Col4 UITime::GetColor() {
+		return m_draw->GetDiffuse();
+	}
+	void UITime::SetColor(Col4 color) {
+		m_draw->SetDiffuse(color);
+	}
+
 }
 //end namespace basecross

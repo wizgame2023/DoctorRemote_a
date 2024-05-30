@@ -28,12 +28,12 @@ namespace basecross {
 		float sh = App::GetApp()->GetGameHeight();
 
 		Vec3 screen(-sw * 0.5f, -sh * 0.5f, 0);
-		Vec3 dis(47, 320, 0);
+		Vec3 dis(70, 300, 0);
 		Vec3 zero(0, 0, 0);
 
-		m_garge = stage->AddGameObject<Garge>(m_trans, 0, 300, m_meshResName, m_ratio, 128, 300, color, color2, screen, dis);
+		m_garge = stage->AddGameObject<Garge>(m_trans, 0, 92, m_meshResName, m_ratio, 32*2.5, 92*2.5, color, color2, screen, dis);
 
-		auto frame = stage->AddGameObject<Sprite>(128, 350, L"GargeBar",Vec3(-530, -190, 1.0f),2);
+		auto frame = stage->AddGameObject<Sprite>(32*2.5, 128*2.5, L"GargeBar",Vec3(-530, -170, 1.0f),2);
 	}
 
 	void PieceGarge2::OnUpdate() {

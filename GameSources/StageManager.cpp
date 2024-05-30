@@ -1,7 +1,7 @@
 /*!
 @file StageManager.cpp
-@brief ƒXƒe[ƒW‘S‘Ì‚Ìˆ—“™
-’S“–FˆíŒ©
+@brief ã‚¹ãƒ†ãƒ¼ã‚¸å…¨ä½“ã®å‡¦ç†ç­‰
+æ‹…å½“ï¼šé€¸è¦‹
 */
 
 #include "stdafx.h"
@@ -23,8 +23,7 @@ namespace basecross {
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
 
-		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame",Vec3(),2);
-
+		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame",Vec3(),1);
 
 		//m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
 		//switch (m_ligthStatus)
@@ -49,7 +48,7 @@ namespace basecross {
 
 		if (m_countFlag)
 		{
-			//ƒJƒEƒ“ƒgƒ_ƒEƒ“‚Ì•\¦
+			//ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã®è¡¨ç¤º
 			m_count -= elapsedTime;
 			if (m_count > 1) {
 				m_num->UpdateValue(m_count);
@@ -72,12 +71,12 @@ namespace basecross {
 
 
 
-		//‘Ì—Í‚ª0‚É‚È‚Á‚½‚çGameOver
+		//ä½“åŠ›ãŒ0ã«ãªã£ãŸã‚‰GameOver
 		if (m_currentHp <= 0.0f) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
 
-		//ƒfƒoƒbƒN—p
+		//ãƒ‡ãƒãƒƒã‚¯ç”¨
 		//wstringstream wss(L"");
 		//auto scene = App::GetApp()->GetScene<Scene>();
 		//wss << L"currentHp : " <<

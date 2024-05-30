@@ -22,6 +22,8 @@ namespace basecross {
 
 		float m_shotRange;
 
+		wstring m_meshResName;
+
 	public:
 		static int STATUSBULLET;
 		Bullet(
