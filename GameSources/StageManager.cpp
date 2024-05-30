@@ -21,26 +21,32 @@ namespace basecross {
 
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
+
+		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame",Vec3(),2);
+
+
 		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
 		switch (m_ligthStatus)
 		{
 		case 0:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3());
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);
 			break;
 		case 1:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3());
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(),0);
 			break;
 		case 2:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3());
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3(),0);
 			break;
 		default:
 			break;
 		}
+
 		m_num = GetStage()->AddGameObject<UITime>((int)m_count, Vec3(-120.0f,120.0f,0.0f),240.0f,480.0f);
 	}
 	void StageManager::OnUpdate() {
-
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+		//カウントダウンの表示
 		m_count -= elapsedTime;
 		if (m_count > 1) {
 			m_num->UpdateValue(m_count);
@@ -58,6 +64,10 @@ namespace basecross {
 			}
 		}
 
+
+
+
+		//体力が0になったらGameOver
 		if (m_currentHp <= 0.0f) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
