@@ -117,62 +117,62 @@ namespace basecross {
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
-	//敵の欠片を作成
+	//固定の敵の欠片を作成
 	void GameStage::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
 			{//8				
-				Vec3(-6.25f,1.0f,24.0f),
-				Vec3(0.0f,0.0f,0.0f),	
+				Vec3(-6.25f,0.0f,24.0f),
+				Vec3(0.0f,0.0f,0.0f),
 				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//9
-				Vec3(-4.56f,1.0f,40.0f),
+				Vec3(-4.56f,0.0f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//10
-				Vec3(-7.25f,1.0f,-45.0f),
+				Vec3(-7.25f,0.0f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(1.0f,1.0f,1.0f)
 
 			},			
 			{//11
-				Vec3(28.9f,1.0f,-14.0f),
+				Vec3(27.7f,0.0f,-9.1f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(1.0f,1.0f,1.0f)
 			},
 			{//12
-				Vec3(45.0f,1.0f,-7.0f),
+				Vec3(31.0f,0.0f,-6.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//13
-				Vec3(16.0f,1.0f,10.0f),
+				Vec3(39.0f,0.0f,6.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(1.0f,1.0f,1.0f)
 			},
 			{//14
-				Vec3(12.0f,1.0f,41.0f),
+				Vec3(29.0f,0.0f,15.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(1.0f,1.0f,1.0f)
 
 			},
 			{//15
-				Vec3(0.6f,1.0f,34.3f),
+				Vec3(13.0f,0.0f,44.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(1.0f,1.0f,1.0f)
 
 			},
-			{//16
-				Vec3(10.0f,1.0f,20.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+			//{//16
+			//	Vec3(10.0f,1.0f,20.0f),
+			//	Vec3(0.0f,0.0f,0.0f),
+			//	Vec3(1.0f,1.0f,1.0f)
 
-			}
+			//}
 
 		};
 		//オブジェクトの作成
@@ -213,17 +213,59 @@ namespace basecross {
 
 	}
 
-	void GameStage::CreateEnemyPiece2()
+	void GameStage::CreateEnemyPiece2()//ランダムな場所にかけらを生成する
 	{
-		Vec3 lowerLeft = Vec3(-27.6f, 0.0f, -18.4f);//左下
-		Vec3 lowerRight = Vec3(20.0f, 0.0f, -43.0f);//右下
-		Vec3 upLeft = Vec3(-68.0f, 0.0f, 12.0f);//左上
-		Vec3 upRight = Vec3(9.0f, 0.0f, 68.0f);//右上
 
-		RandamPiecePosition(lowerLeft);
-		RandamPiecePosition(lowerRight);
-		RandamPiecePosition(upLeft);
-		RandamPiecePosition(upRight);
+		auto& app = App::GetApp();
+		auto path = app->GetDataDirWString();
+		auto levelPath = path + L"Levels/";
+
+		vector<vector<int>> kakeraMap;//マップの2次元座標を表す変数
+
+		ifstream ifs(levelPath + L"kakeraMapDateLevels.csv");
+		if (ifs)
+		{
+			string line;
+			while (getline(ifs, line))
+			{
+				vector<int> datas;
+
+				string data;
+				istringstream ss(line);
+				while (getline(ss, data, ','))
+				{
+					int cellData = atoi(data.c_str());//読み取ったデータをint型に変換する
+					datas.push_back(cellData);//マップデータにCSVのデータをコピーする
+				}
+
+				kakeraMap.push_back(datas);//マップデータを一行一行入れていく
+			}
+		}
+
+		int count = 0;//どれくらい生成したか数える
+		while (count < 30)
+		{
+			int kakeraPosX = (rand() % 1500) - 750;//ランダムにかけらの場所を決める
+			float fKakeraPosX = (float)kakeraPosX / 10;//floatに変更
+			int kakeraPosZ = (rand() % 1500) - 750;//ランダムにかけらの場所を決める
+			float fKakeraPosZ = (float)kakeraPosZ / 10;//floatに変更
+			Vec3 Pos(fKakeraPosX, 0.0f, fKakeraPosZ);//かけらの場所
+
+			int charkX = (int)fKakeraPosX+75;//小数点切り捨て
+			int charkZ = (int)fKakeraPosZ+75;//小数点切り捨て
+			int testyou = 0;//デバック用変数
+
+			switch (kakeraMap[charkZ][charkX])
+			{
+			case 0:
+				AddGameObject<EnemyPiece>(Pos, Vec3(), Vec3(1.0f, 1.0f, 1.0f));
+				count += 1;
+			default:
+				break;
+			}
+			testyou=1;//デバック用変数
+		}
+
 
 	}
 
