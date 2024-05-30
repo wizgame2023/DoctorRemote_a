@@ -6,12 +6,14 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Sprite.h"
 
 namespace basecross {
 	class StatusStage :public Stage {
 
 		void CreateViewLight(); //ƒrƒ…[‚Ìì¬
 
+		shared_ptr<Sprite> m_moji2;
 
 	public:
 		StatusStage() :Stage() {}

@@ -11,8 +11,8 @@ namespace basecross {
 
 	enum STSTUS {
 		DASH,
-		BULLET_RANGE,
-		PIECE_RANGE
+		BULLET,
+		LIGHT
 	};
 
 	StatusManager::StatusManager(const shared_ptr<Stage>& stagePtr):
@@ -51,13 +51,13 @@ namespace basecross {
 				m_maxX = m_width;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkR = true;
-				m_status = PIECE_RANGE;
+				m_status = LIGHT;
 			}
 			if (m_maxX < 0 && !m_checkR) {
 				m_maxX = 0.0f;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkR = true;
-				m_status = BULLET_RANGE;
+				m_status = BULLET;
 			}
 		}
 		if (cntlVec[0].fThumbLX < 0.9f && m_checkR == true)
@@ -78,7 +78,7 @@ namespace basecross {
 				m_maxX = 0.0f;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkL = true;
-				m_status = BULLET_RANGE;
+				m_status = BULLET;
 			}
 		}
 		if (cntlVec[0].fThumbLX > -0.9f && m_checkL == true)
@@ -128,6 +128,9 @@ namespace basecross {
 			default:
 				break;
 			}
+
+			//auto sprite = GetStage()->GetSharedGameObject<Sprite>(L"Moji2");
+			//sprite->Blinking(20.0f, Col4(1, 1, 1, 1));
 
 		}
 
