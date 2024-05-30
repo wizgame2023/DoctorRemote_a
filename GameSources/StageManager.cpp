@@ -1,7 +1,7 @@
 /*!
 @file StageManager.cpp
-@brief ƒXƒe[ƒW‘S‘Ì‚Ìˆ—“™
-’S“–FˆíŒ©
+@brief ã‚¹ãƒ†ãƒ¼ã‚¸å…¨ä½“ã®å‡¦ç†ç­‰
+æ‹…å½“ï¼šé€¸è¦‹
 */
 
 #include "stdafx.h"
@@ -16,7 +16,8 @@ namespace basecross {
 		m_ligthStatus(0),
 		m_count(4.0f),
 		m_countStart(0.5f),
-		m_start(false)
+		m_start(false),
+		m_countFlag(false)
 	{}
 
 	void StageManager::OnCreate() {
@@ -24,55 +25,58 @@ namespace basecross {
 
 		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame",Vec3(),1);
 
-		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
-		switch (m_ligthStatus)
-		{
-		case 0:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);
-			break;
-		case 1:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(),0);
-			break;
-		case 2:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3(),0);
-			break;
-		default:
-			break;
-		}
+		//m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
+		//switch (m_ligthStatus)
+		//{
+		//case 0:
+		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);
+		//	break;
+		//case 1:
+		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(),0);
+		//	break;
+		//case 2:
+		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3(),0);
+		//	break;
+		//default:
+		//	break;
+		//}
 
-		m_num = GetStage()->AddGameObject<UITime>((int)m_count, Vec3(-120.0f,120.0f,0.0f),240.0f,480.0f);
-		m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+		m_num = GetStage()->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
 	}
 	void StageManager::OnUpdate() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
-		//ƒJƒEƒ“ƒgƒ_ƒEƒ“‚Ì•\¦
-		m_count -= elapsedTime;
-		if (m_count > 1) {
-			m_num->UpdateValue(m_count);
-		}
-		if (m_count < 1) {
-			m_num->ThisDestory();
-			if (!m_start) {
-				m_startSprite = GetStage()->AddGameObject<Sprite>(500,500,L"Start",Vec3());
+		if (m_countFlag)
+		{
+			//ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã®è¡¨ç¤º
+			m_count -= elapsedTime;
+			if (m_count > 1) {
+				m_num->UpdateValue(m_count);
 			}
-			m_start = true;
+			if (m_count < 1) {
+				m_num->ThisDestory();
+				if (!m_start) {
+					m_startSprite = GetStage()->AddGameObject<Sprite>(500,500,L"Start",Vec3());
+				}
+				m_start = true;
 
-			m_countStart -= elapsedTime;
-			if (m_countStart < 0) {
-				m_startSprite->ThisDestory();
+				m_countStart -= elapsedTime;
+				if (m_countStart < 0) {
+					m_startSprite->ThisDestory();
+				}
 			}
+
 		}
 
 
 
 
-		//‘Ì—Í‚ª0‚É‚È‚Á‚½‚çGameOver
+		//ä½“åŠ›ãŒ0ã«ãªã£ãŸã‚‰GameOver
 		if (m_currentHp <= 0.0f) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
 
-		//ƒfƒoƒbƒN—p
+		//ãƒ‡ãƒãƒƒã‚¯ç”¨
 		//wstringstream wss(L"");
 		//auto scene = App::GetApp()->GetScene<Scene>();
 		//wss << L"currentHp : " <<
@@ -92,6 +96,9 @@ namespace basecross {
 	}
 	void StageManager::SetHp(float hp) {
 		m_currentHp += hp;
+	}	
+	void StageManager::SetCountFlag(bool OnOff) {
+		m_countFlag = OnOff;
 	}
 	bool StageManager::StartFlag() {
 		return m_start;

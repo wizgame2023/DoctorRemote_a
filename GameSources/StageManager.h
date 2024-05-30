@@ -20,6 +20,7 @@ namespace basecross {
 
 		int m_ligthStatus;
 		bool m_start;
+		bool m_countFlag;
 
 		shared_ptr<Sprite> m_ligth;
 		shared_ptr<Sprite> m_startSprite;
@@ -35,6 +36,7 @@ namespace basecross {
 		float GetHp();
 		float GetHpRatio();
 		void SetHp(float hp);
+		void SetCountFlag(bool OnOff);
 		bool StartFlag();
 	};
 }
