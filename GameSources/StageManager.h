@@ -17,13 +17,18 @@ namespace basecross {
 		float m_hpSpeed;
 		float m_count;
 		float m_countStart;
+		float m_comX;
 
 		int m_ligthStatus;
 		bool m_start;
+		bool m_cfFlag;
+		bool m_comFlag;
 
 		shared_ptr<Sprite> m_ligth;
 		shared_ptr<Sprite> m_startSprite;
 		shared_ptr<UITime> m_num;
+		shared_ptr<Sprite> m_comFrame;
+		shared_ptr<Transform> m_comTrans;
 
 	public:
 		StageManager(const shared_ptr<Stage>& stagePtr);
