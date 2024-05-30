@@ -165,8 +165,8 @@ namespace basecross {
 			{
 				for (int c = 0; c < stageMap[0].size(); c++)
 				{
-					Vec3 startPos(-stageW * 0.5f + 0.5f, 2.5f, +stageD * 0.5f - 0.5f); 
-					Vec3 BlockStartPos(-stageW * 0.5f + 0.5f, 1.5f, +stageD * 0.5f - 0.5f);
+					Vec3 startPos(-stageW * 0.5f + 0.5f, 0.0f, +stageD * 0.5f - 0.5f); 
+					//Vec3 BlockStartPos(-stageW * 0.5f + 0.5f, 1.25f, +stageD * 0.5f - 0.5f);
 					Vec3 pos(static_cast<float>(c), 0.5f, -static_cast<float>(r)); 
 					switch (stageMap[r][c])
 					{
@@ -180,11 +180,11 @@ namespace basecross {
 						
 					case 3:
 						
-						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.24));
+						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
 						
 					case 4:
-						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.24));
+						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
 					case 5:
 						AddGameObject<BreakWall>(startPos + pos,Vec3(0,0,0),Vec3(3,10,1));
@@ -193,13 +193,13 @@ namespace basecross {
 						AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3));
 						break;
 					case 7:
-						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.24));
+						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
 					case 8:
-						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.24));
+						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
 					case 9:
-						AddGameObject<Block>(BlockStartPos + pos, Vec3(0, 0, 0));
+						AddGameObject<Block>(startPos + pos, Vec3(0, 0, 0));
 						break;
 					case 10:
 						AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0),Vec3(20.0f, 10.0f, 20.0f));
