@@ -79,7 +79,7 @@ namespace basecross {
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);		
 		}
 		if (other->FindTag(L"Player")) {
-			stageManager->SetHp(-15.0f);
+			stageManager->SetHp(-10.0f);
 		}
 	}
 	Vec3 EnemyPiece::GetPos() {

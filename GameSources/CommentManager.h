@@ -11,13 +11,10 @@
 namespace basecross {
 	class CommentManager :public GameObject {
 	private:
-		float m_countTime;
 		float m_widthSize;
 		float m_heigthSize;
 		float m_sizeW;
 		float m_sizeH;
-		int m_ber;
-		int m_ver;
 		Vec3 m_pos;
 		wstring m_meshResName;
 

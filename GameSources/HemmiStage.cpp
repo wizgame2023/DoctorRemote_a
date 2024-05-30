@@ -604,7 +604,11 @@ namespace basecross {
 			//auto com3 = AddGameObject<Comment>(13, 0);
 			//auto com2 = AddGameObject<Comment>(14, 0,0.2f,512,256,700,350,26,8,Vec3(-200,200.0f,0.0f),L"StatusMoji");
 			//auto comment = AddGameObject<CommentManager>(50);
-			auto comment2 = AddGameObject<CommentManager>(10,2);
+			//auto comment2 = AddGameObject<CommentManager>(10,2);
+			auto comment2 = AddGameObject<CommentManager>(15, 0,0.2f,
+				512, 256,512,256,
+				7,3,Vec3(),L"IfClear");
+
 		}
 		catch (...) {
 			throw;

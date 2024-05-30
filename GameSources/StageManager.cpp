@@ -22,8 +22,7 @@ namespace basecross {
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
 
-		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame",Vec3(),2);
-
+		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame",Vec3(),1);
 
 		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
 		switch (m_ligthStatus)
@@ -42,6 +41,7 @@ namespace basecross {
 		}
 
 		m_num = GetStage()->AddGameObject<UITime>((int)m_count, Vec3(-120.0f,120.0f,0.0f),240.0f,480.0f);
+		m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 	void StageManager::OnUpdate() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();

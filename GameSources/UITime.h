@@ -39,6 +39,8 @@ namespace basecross {
 
 		void UpdateValue(int number);
 		void ThisDestory();
+		Col4 GetColor();
+		void SetColor(Col4 color);
 	};
 }
 //end namespace basecross
