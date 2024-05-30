@@ -139,7 +139,7 @@ namespace basecross {
 		auto levelPath = path + L"Levels/"; 
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_2.csv");
+		ifstream ifs(levelPath += L"Tutorial.csv");
 			if (ifs)
 			{
 				string line;
@@ -179,32 +179,21 @@ namespace basecross {
 						break;
 						
 					case 3:
-						
-						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
-						break;
-						
-					case 4:
-						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
-						break;
-					case 5:
-						AddGameObject<BreakWall>(startPos + pos,Vec3(0,0,0),Vec3(3,10,1));
-						break;
-					case 6:
 						AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3));
 						break;
-					case 7:
+					case 4:
 						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
-					case 8:
+					case 5:
 						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
-					case 9:
+					case 6:
 						AddGameObject<Block>(startPos + pos, Vec3(0, 0, 0));
 						break;
-					case 10:
+					case 7:
 						AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0),Vec3(20.0f, 10.0f, 20.0f));
 						break;
-					case 11:
+					case 8:
 						AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 						break;
 					}
