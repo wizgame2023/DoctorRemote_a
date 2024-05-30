@@ -32,9 +32,10 @@ namespace basecross {
 			auto bulletButton = AddGameObject<Sprite>(300, 300, L"BulletButton", Vec3(0, 0, 0));
 			auto pieceButton = AddGameObject<Sprite>(300, 300, L"LigthButton", Vec3(400, 0, 0));
 
-			auto moji = AddGameObject<Sprite>(1280, 200, L"StatusMoji", Vec3(0.0f, 280.0f, 0.0f));
-			auto moji2 = AddGameObject<Sprite>(1280, 200, L"StatusMoji2", Vec3(0.0f, -300.0f, 0.0f));
 
+			auto moji = AddGameObject<Comment>(14, 0, 0.2f, 512, 256, 700 * 2, 350 * 2, 26, 8, Vec3(-400, 300.0f, 0.0f), L"StatusMoji");
+			m_moji2 = AddGameObject<Sprite>(300,300, L"StatusMoji2",Vec3(500, -300.0f, 0.0f));
+			SetSharedGameObject(L"Moji2", m_moji2);
 			auto back = AddGameObject<Sprite>(1280,800,L"Back",Vec3(),-1);
 		}
 		catch (...) {

@@ -29,8 +29,16 @@ namespace basecross {
 			scene->SetPlayerStatus(0);
 			scene->SetBulletStataus(0);
 			scene->SetLigthStatus(0);
+
+			auto sprite = AddGameObject<Sprite>(150, 50, L"White", Vec3(0.0f,-100.0f,0.0f));
+			auto sprite2 = AddGameObject<Sprite>(150, 50, L"White", Vec3(0.0f, -175.0f, 0.0f));
+			auto sprite3 = AddGameObject<Sprite>(150, 50, L"White", Vec3(0.0f, -250.0f, 0.0f));
+			auto sprite4 = AddGameObject<Sprite>(150, 50, L"White", Vec3(0.0f, -325.0f, 0.0f));
+
+			auto spriteManager = AddGameObject<SelectSprite>();
 			//AddGameObject<Player>(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
-			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-1);
+			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-3);
+
 		}
 		catch (...) {
 			throw;
@@ -38,7 +46,7 @@ namespace basecross {
 	}
 	void TitleStage::OnUpdate()
 	{
-		StageChange();
+		//StageChange();
 	}
 	void TitleStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();

@@ -38,10 +38,28 @@ namespace basecross {
 		wstring m_meshResName;
 
 		shared_ptr<Transform> m_trans;
+		Vec3 m_pos;
 
 	public:
 		Comment(const shared_ptr<Stage>& stagePtr);
-		Comment(const shared_ptr<Stage>& stagePtr,const int mojiNum,const int line);
+		Comment(const shared_ptr<Stage>& stagePtr,
+			const int mojiNum,
+			const int line
+		);
+		Comment(const shared_ptr<Stage>& stagePtr,
+			const int mojiNum,
+			const int line,
+			const float countTime,
+			const float widthSize,
+			const float heigthSize,
+			const float sizeW,
+			const float sizeH,
+			const int ber,
+			const int ver,
+			const Vec3 pos,
+			const wstring mesh
+		);
+
 		virtual ~Comment() override{}
 
 		virtual void OnCreate() override;

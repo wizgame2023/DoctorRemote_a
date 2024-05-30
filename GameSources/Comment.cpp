@@ -11,31 +11,73 @@ namespace basecross {
 	Comment::Comment(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
 		m_moji(0),
-		m_mojiNum(0),
-		m_line(0),
-		m_countTime(0.2f),
-		m_lineFlag(false),
-		m_meshResName(L"comment")
-	{}
-
-	Comment::Comment(const shared_ptr<Stage>& stagePtr,const int mojiNum,const int line):
-		GameObject(stagePtr),
-		m_moji(0),
-		m_mojiNum(mojiNum),//何文字目か
-		m_line(line),    //何行目か
-		m_count(0.2f),
+		m_mojiNum(13),//何文字目か
+		m_line(0),    //何行目か
 		m_countTime(0.2f),//次の文字までも間隔
+		m_count(m_countTime),
 		m_bes(13),//横の分割数
 		m_ver(8), //縦の分割数
 		m_widthSize(256.0f),//画像サイズ(横)
 		m_heigthSize(256.0f),//画像サイズ(縦)
-		m_sizeW(350),//表示サイズ(横)
-		m_sizeH(350),//表示サイズ(縦)
+		m_sizeW(350.0f),//表示サイズ(横)
+		m_sizeH(350.0f),//表示サイズ(縦)
 		m_lineFlag(false),
+		m_pos(Vec3(0)),
 		m_meshResName(L"comment")
-	{
-		
-	}
+	{}
+
+	Comment::Comment(const shared_ptr<Stage>& stagePtr, 
+		const int mojiNum, 
+		const int line
+	) :
+		GameObject(stagePtr),
+		m_moji(0),
+		m_mojiNum(mojiNum),//何文字目か
+		m_line(line),    //何行目か
+		m_countTime(0.2f),//次の文字までも間隔
+		m_count(m_countTime),
+		m_bes(13),//横の分割数
+		m_ver(8), //縦の分割数
+		m_widthSize(256.0f),//画像サイズ(横)
+		m_heigthSize(256.0f),//画像サイズ(縦)
+		m_sizeW(350.0f),//表示サイズ(横)
+		m_sizeH(350.0f),//表示サイズ(縦)
+		m_lineFlag(false),
+		m_pos(0),
+		m_meshResName(L"comment")
+	{}
+
+	Comment::Comment(const shared_ptr<Stage>& stagePtr,
+		const int mojiNum,
+		const int line,
+		const float countTime,
+		const float widthSize,
+		const float heigthSize,
+		const float sizeW,
+		const float sizeH,
+		const int ber,
+		const int ver,
+		const Vec3 pos,
+		const wstring mesh
+	):
+		GameObject(stagePtr),
+		m_moji(0),
+		m_mojiNum(mojiNum),//何文字目か
+		m_line(line),    //何行目か
+		m_countTime(countTime),//次の文字までも間隔
+		m_count(m_countTime),
+		m_bes(ber),//横の分割数
+		m_ver(ver), //縦の分割数
+		m_widthSize(widthSize),//画像サイズ(横)
+		m_heigthSize(heigthSize),//画像サイズ(縦)
+		m_sizeW(sizeW),//表示サイズ(横)
+		m_sizeH(sizeH),//表示サイズ(縦)
+		m_lineFlag(false),
+		m_pos(pos),
+		m_meshResName(mesh)
+	{}
+
+
 
 	void Comment::OnCreate() {
 		m_width = m_sizeW/m_bes;
@@ -70,6 +112,8 @@ namespace basecross {
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(Vec3());
 
+		m_trans = GetComponent<Transform>();
+		m_trans->SetPosition(m_pos);
 
 	}
 	void Comment::OnUpdate() {
@@ -91,8 +135,8 @@ namespace basecross {
 
 	//letterにいれた文字数まで表示
 	void Comment::UpdateValue(int letter) {
-		int mojiLine = letter / 13;
-		int mojiColumn = letter % 13;
+		int mojiLine = letter / m_bes;
+		int mojiColumn = letter % m_bes;
 
 		m_vertices[1].textureCoordinate.x = m_uvWidth * (mojiColumn + 1);
 		m_vertices[3].textureCoordinate.x = m_uvWidth * (mojiColumn + 1);
@@ -118,7 +162,7 @@ namespace basecross {
 
 	//何列目の何文字目まで表示
 	void Comment::UpdateLine(int letter,int line) {
-		int mojiColumn = letter % 13;
+		int mojiColumn = letter % m_bes;
 
 		m_vertices[1].textureCoordinate.x = m_uvWidth * (mojiColumn + 1);
 		m_vertices[3].textureCoordinate.x = m_uvWidth * (mojiColumn + 1);

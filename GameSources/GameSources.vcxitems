@@ -58,6 +58,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SanpeiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
@@ -67,6 +68,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h" />
@@ -116,6 +118,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SanpeiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
@@ -125,6 +128,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp" />

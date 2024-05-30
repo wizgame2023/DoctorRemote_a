@@ -15,7 +15,7 @@ namespace basecross {
 		m_line(8),
 		m_column(13),
 		m_mtime(0.2),
-		m_count(m_mtime * 13),
+		m_count(m_mtime * m_column),
 		m_moji{13,13,13,13,13,13,13,13,13,13},
 		m_cnt(0)
 	{}
@@ -26,7 +26,7 @@ namespace basecross {
 		m_line(8),      //何行
 		m_column(13),   //何列
 		m_mtime(0.2),   //文字と文字の間を何行と仮定するか
-		m_count(m_mtime * 13),//次の行までの時間
+		m_count(m_mtime * m_column),//次の行までの時間
 		m_moji{ 13,13,13,13,13,13,13,13,13,13 },
 		m_cnt(0)
 	{}

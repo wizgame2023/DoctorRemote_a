@@ -11,8 +11,8 @@ namespace basecross {
 
 	enum STSTUS {
 		DASH,
-		BULLET_RANGE,
-		PIECE_RANGE
+		BULLET,
+		LIGHT
 	};
 
 	StatusManager::StatusManager(const shared_ptr<Stage>& stagePtr):
@@ -30,10 +30,12 @@ namespace basecross {
 
 	void StatusManager::OnCreate() {
 		auto stage = GetStage();
-		m_sprite = stage->AddGameObject<Sprite>(350, 350, L"White", Vec3());
+		m_sprite = stage->AddGameObject<Sprite>(330, 330, L"White", Vec3());
 		m_trans = m_sprite->GetComponent<Transform>();
-		m_sprite->SetColor(Col4(0, 1, 0, 1.0f));
 
+		m_color = Col4(0.105, 0.75, 0, 1.0f);
+		m_sprite->SetColor(m_color);
+		
 		//m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 	}
 
@@ -49,13 +51,13 @@ namespace basecross {
 				m_maxX = m_width;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkR = true;
-				m_status = PIECE_RANGE;
+				m_status = LIGHT;
 			}
 			if (m_maxX < 0 && !m_checkR) {
 				m_maxX = 0.0f;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkR = true;
-				m_status = BULLET_RANGE;
+				m_status = BULLET;
 			}
 		}
 		if (cntlVec[0].fThumbLX < 0.9f && m_checkR == true)
@@ -76,7 +78,7 @@ namespace basecross {
 				m_maxX = 0.0f;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkL = true;
-				m_status = BULLET_RANGE;
+				m_status = BULLET;
 			}
 		}
 		if (cntlVec[0].fThumbLX > -0.9f && m_checkL == true)
@@ -127,6 +129,9 @@ namespace basecross {
 				break;
 			}
 
+			//auto sprite = GetStage()->GetSharedGameObject<Sprite>(L"Moji2");
+			//sprite->Blinking(20.0f, Col4(1, 1, 1, 1));
+
 		}
 
 
@@ -136,7 +141,7 @@ namespace basecross {
 				m_sprite->SetColor(Col4(0, 0, 0, 0));
 			}
 			else if ((int)m_count % 2 == 1) {
-				m_sprite->SetColor(Col4(0, 0, 0, 1));
+				m_sprite->SetColor(Col4(m_color));
 			}
 			m_count -= elapsedTime * 10.0f;
 
