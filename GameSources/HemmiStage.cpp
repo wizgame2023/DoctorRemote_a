@@ -601,9 +601,10 @@ namespace basecross {
 
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
 			auto com = AddGameObject<Sprite>(350, 350, L"comment", Vec3(-200, -200, 0));
-			//auto com2 = AddGameObject<Comment>(13, 0);
-			auto comment = AddGameObject<CommentManager>(50);
-			//auto comment2 = AddGameObject<CommentManager>(10,2);
+			//auto com3 = AddGameObject<Comment>(13, 0);
+			//auto com2 = AddGameObject<Comment>(14, 0,0.2f,512,256,700,350,26,8,Vec3(-200,200.0f,0.0f),L"StatusMoji");
+			//auto comment = AddGameObject<CommentManager>(50);
+			auto comment2 = AddGameObject<CommentManager>(10,2);
 		}
 		catch (...) {
 			throw;
