@@ -37,8 +37,7 @@ namespace basecross {
 
 			auto spriteManager = AddGameObject<SelectSprite>();
 			//AddGameObject<Player>(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
-			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-1);
-
+			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-3);
 
 		}
 		catch (...) {
@@ -47,7 +46,7 @@ namespace basecross {
 	}
 	void TitleStage::OnUpdate()
 	{
-		StageChange();
+		//StageChange();
 	}
 	void TitleStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
