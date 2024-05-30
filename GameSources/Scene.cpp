@@ -40,6 +40,8 @@ namespace basecross {
 		app->RegisterTexture(L"Garge", strTexture);
 		strTexture = texPath + L"Hearts.png";
 		app->RegisterTexture(L"Hearts", strTexture);
+		strTexture = texPath + L"HeartsFrame.png";
+		app->RegisterTexture(L"HeartsFrame", strTexture);
 
 
 		strTexture = texPath + L"Clear.png";
@@ -167,6 +169,9 @@ namespace basecross {
 		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Littlekakera.bmf");
 		app->RegisterResource(L"LittleKakera", staticModelMesh);
 
+		staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"Sphere.bmf");
+		app->RegisterResource(L"Bullet", staticModelMesh);
+
 
 		//サウンド
 		//SE
@@ -181,6 +186,8 @@ namespace basecross {
 		//BGM
 		soundWav = SoundPath + L"ScaryBGM.wav";
 		App::GetApp()->RegisterWav(L"ScaryBGM", soundWav);
+		soundWav = SoundPath + L"BossBGM.wav";
+		App::GetApp()->RegisterWav(L"BossBGM", soundWav);
 
 		
     }
