@@ -57,24 +57,23 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_comTrans = m_comFrame->GetComponent<Transform>();
 
+		if (!m_cfFlag) {
+			m_comX -= 500.0f * elapsedTime;
+			m_comTrans->SetPosition(m_comX, -265.0f, 0.0f);
+		}
+		if (m_comX < 420) {
+			m_cfFlag = true;
+		}
+
+		if (m_cfFlag) {
+			if (!m_comFlag) {
+				auto commnet = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0,Vec3(250, -180, 0.0f), L"SousaCom");
+				m_comFlag = true;
+			}
+		}
 
 		if (m_countFlag)
 		{
-			if (!m_cfFlag) {
-				m_comX -= 500.0f * elapsedTime;
-				m_comTrans->SetPosition(m_comX, -265.0f, 0.0f);
-			}
-			if (m_comX < 420) {
-				m_cfFlag = true;
-			}
-
-
-			if (m_cfFlag) {
-				if (!m_comFlag) {
-					auto commnet = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, 0.15f, 256, 256, 300, 300, 13, 8, Vec3(250, -180, 0.0f), L"SousaCom");
-					m_comFlag = true;
-				}
-			}
 
 			//カウントダウンの表示
 			m_count -= elapsedTime;
