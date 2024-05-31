@@ -90,7 +90,7 @@ namespace basecross {
 			}
 
 
-			else if (m_time <= 25 && m_countUp >= 3.0f && m_timeCount == 2)//m_time >= 25 && m_time < 40 &&
+			else if (m_time <= 25 && m_countUp >= 2.0f && m_timeCount == 1)//m_time >= 25 && m_time < 40 &&
 			{
 				//auto ifClear = AddGameObject<Sprite>(512, 75, L"IfClear", Vec3(-300, -80, 0));
 				//ifClear->UpdateIfClear(2);
@@ -101,25 +101,25 @@ namespace basecross {
 
 
 			//Rank
-			else if (m_time >= 50 && m_countUp >= 5.0f && m_timeCount == 3)
+			else if (m_time >= 50 && m_countUp >= 4.0f && m_timeCount == 2)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(270, 0, 0)); // S
 				rank->UpdateRank(0);
 				m_timeCount++;
 			}
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 5.0f && m_timeCount == 3)
+			else if (m_time >= 40 && m_time < 50 && m_countUp >= 4.0f && m_timeCount == 2)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0)); // A
 				rank->UpdateRank(1);
 				m_timeCount++;
 			}
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 5.0f && m_timeCount == 3)
+			else if (m_time >= 25 && m_time < 40 && m_countUp >= 4.0f && m_timeCount == 2)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0)); // B
 				rank->UpdateRank(2);
 				m_timeCount++;
 			}
-			else if (m_time <= 25 && m_countUp >= 5.0f && m_timeCount == 3)
+			else if (m_time <= 25 && m_countUp >= 4.0f && m_timeCount == 2)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0)); // C
 				rank->UpdateRank(3);
@@ -127,7 +127,7 @@ namespace basecross {
 			}
 
 
-			else if (m_countUp >= 6.0f && m_timeCount == 4)
+			else if (m_countUp >= 5.0f && m_timeCount == 3)
 			{
 				auto moji3 = AddGameObject<Comment>(7, 0, 0.2f, 256, 64, 256, 64, 7, 1, // Bƒ{ƒ^ƒ“‚ÅŽŸ‚Ö
 					Vec3(-550.0f, -300.0f, 0.0f), L"ResultMoji2");
@@ -137,17 +137,17 @@ namespace basecross {
 				m_moveCount = -400;
 
 		}
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		wss << m_countUp << endl;
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss << m_countUp << endl;
 
-		scene->SetDebugString( wss.str());
+		//scene->SetDebugString( wss.str());
 	}
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].bConnected)
 		{
-			if (m_countUp >= 7.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)
+			if (m_countUp >= 6.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)
 			{
 				if (m_stageCount < 3) {
 					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
