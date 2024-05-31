@@ -73,7 +73,6 @@ namespace basecross {
 		bool GetEnemyFlag();
 		shared_ptr<GameObject> GetObj();
 		void SetObj(shared_ptr<GameObject>& obj);
-
 		void EffectFlag(int Flag);
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
