@@ -131,7 +131,14 @@ namespace basecross {
 		app->RegisterTexture(L"StatusMoji2", strTexture);
 		strTexture = texPath + L"comment2.png";
 		app->RegisterTexture(L"comment", strTexture);
-
+		strTexture = texPath + L"SousaCom.png";
+		app->RegisterTexture(L"SousaCom", strTexture);
+		strTexture = texPath + L"CommentFrame.png";
+		app->RegisterTexture(L"CommentFrame", strTexture);
+		strTexture = texPath + L"ResultMoji1.png";
+		app->RegisterTexture(L"ResultMoji1", strTexture);
+		strTexture = texPath + L"ResultMoji2.png";
+		app->RegisterTexture(L"ResultMoji2", strTexture);
 
 
 		strTexture = texPath + L"GameClear.jpg";

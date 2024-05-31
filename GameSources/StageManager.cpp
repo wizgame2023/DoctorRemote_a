@@ -17,14 +17,18 @@ namespace basecross {
 		m_count(4.0f),
 		m_countStart(0.5f),
 		m_stageFlag(0),
+		m_comX(800.0f),
 		m_start(false),
+		m_cfFlag(false),
+		m_comFlag(false),
 		m_countFlag(false)
+
 	{}
 
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
 
-		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame",Vec3(),1);
+		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);
 
 		//m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
 		//switch (m_ligthStatus)
@@ -42,22 +46,45 @@ namespace basecross {
 		//	break;
 		//}
 
-		m_num = GetStage()->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
+		m_num = stage->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
+		m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+
+		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f));//415,265
+		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.4f));
+
 	}
 	void StageManager::OnUpdate() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+		m_comTrans = m_comFrame->GetComponent<Transform>();
 
-		if (m_countFlag)
+
+		if (m_comFlag)
 		{
+			if (!m_cfFlag) {
+				m_comX -= 500.0f * elapsedTime;
+				m_comTrans->SetPosition(m_comX, -265.0f, 0.0f);
+			}
+			if (m_comX < 420) {
+				m_cfFlag = true;
+			}
+
+
+			if (m_cfFlag) {
+				if (!m_comFlag) {
+					auto commnet = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, 0.15f, 256, 256, 300, 300, 13, 8, Vec3(250, -180, 0.0f), L"SousaCom");
+					m_comFlag = true;
+				}
+			}
 			//カウントダウンの表示
 			m_count -= elapsedTime;
 			if (m_count > 1) {
 				m_num->UpdateValue(m_count);
+
 			}
 			if (m_count < 1) {
 				m_num->ThisDestory();
 				if (!m_start) {
-					m_startSprite = GetStage()->AddGameObject<Sprite>(500,500,L"Start",Vec3());
+					m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());
 				}
 				m_start = true;
 
@@ -100,7 +127,7 @@ namespace basecross {
 	}
 	void StageManager::SetHp(float hp) {
 		m_currentHp += hp;
-	}	
+	}
 	void StageManager::SetCountFlag(bool OnOff) {
 		m_countFlag = OnOff;
 	}
