@@ -45,7 +45,7 @@ namespace basecross {
 	void TimeManager::OnUpdate() {
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		bool start = GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->StartFlag();
+		bool start = GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStartFlag();
 		if (m_move) {
 			if (start) {
 				m_time -= elapsedTime;

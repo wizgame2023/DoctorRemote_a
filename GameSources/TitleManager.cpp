@@ -41,9 +41,9 @@ namespace basecross {
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		//‰e‚ð‚Â‚¯‚é
-		//auto ptrShadow = AddComponent<Shadowmap>();
-		//ptrShadow->SetMultiMeshResource(L"Sensuikan_Mesh");
-		//ptrShadow->SetMeshToTransformMatrix(spanMat);
+		auto ptrShadow = AddComponent<Shadowmap>();
+		ptrShadow->SetMultiMeshResource(L"Sensuikan_Mesh");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 	}
 
