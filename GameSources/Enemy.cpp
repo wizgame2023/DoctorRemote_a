@@ -99,7 +99,7 @@ namespace basecross {
 			int a = 0;
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(2);//ステージの全体フラグ進行
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
+			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
 		}
 
 	}
