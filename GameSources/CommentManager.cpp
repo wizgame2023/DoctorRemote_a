@@ -8,6 +8,7 @@
 #include "Project.h"
 
 namespace basecross {
+	//文字数だけ
 	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr,const int moji):
 		GameObject(stagePtr),
 		m_mojiNum(moji),//文字数
@@ -25,6 +26,7 @@ namespace basecross {
 		m_pos(Vec3()),
 		m_meshResName(L"comment")
 	{}
+	//
 	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr, const int moji,const int line) :
 		GameObject(stagePtr),
 		m_mojiNum(moji),//文字数
@@ -43,6 +45,25 @@ namespace basecross {
 		m_meshResName(L"comment")
 
 	{}
+	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr, const int moji, const int line,Vec3 pos,const wstring mesh) :
+		GameObject(stagePtr),
+		m_mojiNum(moji),//文字数
+		m_addLine(line),//何行目から
+		m_line(8),      //何行
+		m_column(13),   //何列
+		m_mtime(0.15f),   //文字と文字の間を秒数
+		m_widthSize(256),//画像サイズ横
+		m_heigthSize(256),//画像サイズ縦
+		m_sizeW(300),//大きさ横
+		m_sizeH(300),//大きさ縦
+		m_count(m_mtime* m_column),//次の行までの時間
+		m_moji{ 13,13,13,13,13,13,13,13,13,13 },
+		m_cnt(0),
+		m_pos(pos),
+		m_meshResName(mesh)
+
+	{}
+
 	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr,
 		const int mojiNum,
 		const int line,
