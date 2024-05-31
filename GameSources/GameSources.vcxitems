@@ -18,6 +18,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BigPiece.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Block3.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BreakWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
@@ -80,6 +81,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)BigPiece.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Block3.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BreakWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Bullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />

@@ -217,6 +217,9 @@
       <Filter>Headers\UI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)RandCreateManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Block3.h">
+      <Filter>Headers\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -397,5 +400,8 @@
       <Filter>Sources\UI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)RandCreateManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Block3.cpp">
+      <Filter>Sources\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
