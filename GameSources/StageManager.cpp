@@ -19,6 +19,7 @@ namespace basecross {
 		m_stageFlag(0),
 		m_comX(800.0f),
 		m_start(false),
+		m_countNumFlag(false),
 		m_cfFlag(false),
 		m_comFlag(false),
 		m_countFlag(false)
@@ -46,19 +47,18 @@ namespace basecross {
 		//	break;
 		//}
 
-		m_num = stage->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
-		m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 
 		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f));//415,265
 		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.4f));
 
 	}
 	void StageManager::OnUpdate() {
+		auto stage = GetStage();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_comTrans = m_comFrame->GetComponent<Transform>();
 
 
-		if (m_comFlag)
+		if (m_countFlag)
 		{
 			if (!m_cfFlag) {
 				m_comX -= 500.0f * elapsedTime;
@@ -75,9 +75,15 @@ namespace basecross {
 					m_comFlag = true;
 				}
 			}
+
 			//カウントダウンの表示
 			m_count -= elapsedTime;
 			if (m_count > 1) {
+				if (!m_countNumFlag) {
+					m_num = stage->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
+					m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+					m_countNumFlag = true;
+				}
 				m_num->UpdateValue(m_count);
 
 			}
