@@ -123,6 +123,18 @@ namespace basecross {
 		app->RegisterTexture(L"PieceButton", strTexture);
 		strTexture = texPath + L"LightMode.png";
 		app->RegisterTexture(L"LigthButton", strTexture);
+		strTexture = texPath + L"SelectMoji.png";
+		app->RegisterTexture(L"SelectTutorial", strTexture);
+		strTexture = texPath + L"SelectMoji1.png";
+		app->RegisterTexture(L"SelectGameStage", strTexture);
+		strTexture = texPath + L"SelectMoji2.png";
+		app->RegisterTexture(L"SelectGameStage2", strTexture);
+		strTexture = texPath + L"SelectMoji3.png";
+		app->RegisterTexture(L"SelectGameStage3", strTexture);
+		strTexture = texPath + L"SelectWhite.png";
+		app->RegisterTexture(L"SelectWhite", strTexture);
+
+
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
 		strTexture = texPath + L"StatusMoji.png";
