@@ -56,8 +56,8 @@ namespace basecross {
 		//randamPlayer = 0;//デバック
 		//shared_ptr<GameObject> nanasiObject;
 		//ランダムにPlayerの出現場所が決まる
-		float deg = -90;
-		float rad = XMConvertToRadians(deg);	
+		float deg = -180;
+		float rad = XMConvertToRadians(deg);
 		shared_ptr<Player> ptrPlayer= AddGameObject<Player>(Vec3(0.0f,0.5f,0.0f),Vec3(0.0f,rad,0.0f));
 		//switch (randamPlayer)
 		//{
@@ -372,21 +372,23 @@ namespace basecross {
 	void GameStage::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 5);//ミニマップ生成
-		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 3.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 5);//ミニマップ生成
+		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 3.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
 
+		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
+
 		auto PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece1")->GetComponent<Transform>()->GetPosition();	
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f)+PiecePos.x * Bairitu, (400.0f - (Lenght / 2.0f))+PiecePos.z * Bairitu, 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x+(PiecePos.x * Bairitu), StartPos.y+(PiecePos.z * Bairitu), 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece2")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, (400.0f - (Lenght / 2.0f)) + PiecePos.z*Bairitu, 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece3")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, 400.0f - (Lenght / 2.0f) + PiecePos.z*Bairitu, 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece4")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, 400.0f - (Lenght / 2.0f) + PiecePos.z*Bairitu, 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
 
 		
 
@@ -841,12 +843,12 @@ namespace basecross {
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) 
 		{
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 15.0f), Vec3(0.0f, 0.5f, 13.0f), Vec3(0.0f, 0.5f, 0.0f));
 
 		}
 		if (m_StageFlag == 2)//敵を倒したとき
 		{	
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -13.4f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-8.0f, 0.5f, -12.0f), Vec3(8.0f, 0.5f, -5.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 12.0f), Vec3(0.0f, 0.5f, 13.0f), Vec3(0.0f, 0.5f, 0.0f));
 
 		}
 
