@@ -32,10 +32,10 @@ namespace basecross {
 
 	void SelectSprite::OnCreate() {
 		auto stage = GetStage();
-		m_sprite = stage->AddGameObject<Sprite>(170, 70, L"White", Vec3(0.0f, -100.0f, 0.0f),-1);
+		m_sprite = stage->AddGameObject<Sprite>(170, 70, L"SelectWhite", Vec3(0.0f, -100.0f, 0.0f),-1);
 		m_trans = m_sprite->GetComponent<Transform>();
 		m_trans->SetPosition(Vec3(0, -100, 0));
-		m_color = Col4(1.0f, 1.0f, 1.0f, 1.0f);
+		m_color = Col4(1.0f, 1.0f, 1.0f, 0.5f);
 		m_sprite->SetColor(m_color);
 
 	}
