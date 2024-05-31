@@ -1,7 +1,7 @@
 /*!
 @file StageManagar.h
-@brief ã‚¹ãƒ†ãƒ¼ã‚¸å…¨ä½“ã®å‡¦ç†ç­‰
-æ‹…å½“ï¼šé€¸è¦‹
+@brief ƒXƒe[ƒW‘S‘Ì‚Ìˆ—“™
+’S“–FˆíŒ©
 */
 
 #pragma once
