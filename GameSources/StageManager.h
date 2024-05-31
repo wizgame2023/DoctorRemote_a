@@ -23,6 +23,7 @@ namespace basecross {
 		int m_stageFlag;//ステージ全体のフラグ
 		bool m_start;
 
+		bool m_countNumFlag;
 		bool m_cfFlag;
 		bool m_comFlag;
 		bool m_countFlag;

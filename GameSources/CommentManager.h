@@ -38,6 +38,7 @@ namespace basecross {
 	public:
 		CommentManager(const shared_ptr<Stage>& stagePtr,const int moji);
 		CommentManager(const shared_ptr<Stage>& stagePtr, const int moji,const int line);
+		CommentManager(const shared_ptr<Stage>& stagePtr, const int moji, const int line,Vec3 pos,const wstring mesh);
 		CommentManager(const shared_ptr<Stage>& stagePtr,
 			const int mojiNum,
 			const int line,
