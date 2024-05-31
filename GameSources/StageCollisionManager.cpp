@@ -26,7 +26,7 @@ namespace basecross {
 
 	void StageCollisionManager::OnUpdate()
 	{
-		CollisionActive(true);
+		CollisionActive(m_CollisionSwhich);
 	}
 
 	void StageCollisionManager::CollisionActive(bool On)

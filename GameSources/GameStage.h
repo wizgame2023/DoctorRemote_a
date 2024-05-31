@@ -5,9 +5,9 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	class GameStage : public Stage {
 
-		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
+		bool m_PieceFlag;//ステージ全体のフラグ
 		shared_ptr<SoundItem> m_BGM;
-		int m_stageCount;
+		int m_StageFlag;//ステージ全体のフラグ
 
 		void CreateViewLight(); //ビューの作成
 		void CreatePlayer();//プレイヤーの作成

@@ -1,7 +1,7 @@
 /*!
 @file StageManagar.h
-@brief ƒXƒe[ƒW‘S‘Ì‚Ìˆ—“™
-’S“–FˆíŒ©
+@brief ã‚¹ãƒ†ãƒ¼ã‚¸å…¨ä½“ã®å‡¦ç†ç­‰
+æ‹…å½“ï¼šé€¸è¦‹
 */
 
 #pragma once
@@ -21,8 +21,11 @@ namespace basecross {
 
 		int m_ligthStatus;
 		bool m_start;
+
 		bool m_cfFlag;
 		bool m_comFlag;
+		bool m_countFlag;
+
 
 		shared_ptr<Sprite> m_ligth;
 		shared_ptr<Sprite> m_startSprite;
@@ -40,6 +43,7 @@ namespace basecross {
 		float GetHp();
 		float GetHpRatio();
 		void SetHp(float hp);
+		void SetCountFlag(bool OnOff);
 		bool StartFlag();
 	};
 }

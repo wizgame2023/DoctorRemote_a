@@ -58,8 +58,10 @@ namespace basecross {
 		m_Player.lock()->GetComponent<Transform>()->SetRotation(0.0f, 0.0f, 0.0f);
 		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//PlayerのPositionを取得
 
-		AABB CollisionActiveArea(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
-		stage->GetCollisionManager()->SetRootAABB(CollisionActiveArea);
+		auto stageManager = stage->GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager");//コリジョンマネージャー取得
+		stageManager->SetCollisionSwhich(false);//当たり判定を消す
+		//AABB CollisionActiveArea(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
+		//stage->GetCollisionManager()->SetRootAABB(CollisionActiveArea);
 
 		m_Sprite = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0));
 		m_Sprite->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
