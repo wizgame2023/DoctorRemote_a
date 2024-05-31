@@ -158,6 +158,9 @@ namespace basecross {
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-1.bmf");
 		app->RegisterResource(L"Obstacle_Mesh3", staticMultiModelMesh);
 
+		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Pillar.bmf");
+		app->RegisterResource(L"Obstacle_Gate", staticMultiModelMesh);
+
 		//ボーンモデル
 		auto boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera.bmf");
 		app->RegisterResource(L"Kakera_Mesh", boneModelMesh);
