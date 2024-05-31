@@ -142,8 +142,11 @@ namespace basecross {
 	{
 		m_stageFlag = Flag;
 	}
-	bool StageManager::StartFlag() {
+	bool StageManager::GetStartFlag() {
 		return m_start;
+	}
+	void StageManager::SetStartFlag(bool start) {
+		m_start = start;
 	}
 }
 //end namespace basecross
