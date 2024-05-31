@@ -31,7 +31,7 @@ namespace basecross {
 
 		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);
 
-		//m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
+		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
 		//switch (m_ligthStatus)
 		//{
 		//case 0:
@@ -48,9 +48,11 @@ namespace basecross {
 		//}
 
 
-		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f));//415,265
-		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.4f));
+		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f),2);//415,265
+		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
 
+		auto mapFrame = stage->AddGameObject<Sprite>(235, 235, L"CommentFrame", Vec3(475, 238, 0.0f), 2);
+		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
 	}
 	void StageManager::OnUpdate() {
 		auto stage = GetStage();
