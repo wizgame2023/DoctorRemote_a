@@ -48,7 +48,9 @@ namespace basecross {
 		void SetCountFlag(bool OnOff);
 		void SetStageFlag(int Flag);
 		int GetStageFlag();
-		bool StartFlag();
+		bool GetStartFlag();
+		void SetStartFlag(bool start);
+
 	};
 }
 //end namespace basecross

@@ -29,7 +29,7 @@ namespace basecross {
 		m_pos(pos),
 		m_rot(rot),
 		m_piece(0),
-		m_onePiece(2.0f),
+		m_onePiece(1.0f),
 		m_maxPiece(100.0f),
 		m_speed(7.0f),
 		m_maxSpeed(7.0f),
@@ -201,7 +201,7 @@ namespace basecross {
 		m_trans->SetPosition(Vec3(m_position.x, m_pos.y, m_position.z));
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto stage = GetStage();
-		bool start = stage->GetSharedGameObject<StageManager>(L"StageManager")->StartFlag();
+		bool start = stage->GetSharedGameObject<StageManager>(L"StageManager")->GetStartFlag();
 		if (start) {
 			MovePlayer();
 			auto frontAngle = PlayerAngle();
