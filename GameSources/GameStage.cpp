@@ -820,7 +820,7 @@ namespace basecross {
 	void GameStage::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
-		m_StageFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();
+		m_StageFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_StageFlag == 0)
 		{
@@ -833,6 +833,7 @@ namespace basecross {
 			OnDestroy();
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.5f);
+			GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(1);//進行度を進める
 
 		}
 		//デバック用
@@ -841,7 +842,7 @@ namespace basecross {
 		{
 
 		}
-		if (m_StageFlag == 1)//敵を倒したとき
+		if (m_StageFlag == 2)//敵を倒したとき
 		{	
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -13.4f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-8.0f, 0.5f, -12.0f), Vec3(8.0f, 0.5f, -5.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 12.0f), Vec3(0.0f, 0.5f, 13.0f), Vec3(0.0f, 0.5f, 0.0f));
