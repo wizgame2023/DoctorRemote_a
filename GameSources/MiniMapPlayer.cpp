@@ -51,7 +51,7 @@ namespace basecross {
 		// アルファブレンド(透過処理)を有効にする
 		SetAlphaActive(true); // true:透過を有効、false:透過を無効
 
-		SetDrawLayer(10);//表示の優先度を決める
+		SetDrawLayer(6);//表示の優先度を決める
 
 	}
 
