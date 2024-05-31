@@ -20,6 +20,7 @@ namespace basecross {
 		float m_comX;
 
 		int m_ligthStatus;
+		int m_stageFlag;//ステージ全体のフラグ
 		bool m_start;
 
 		bool m_cfFlag;
@@ -44,6 +45,8 @@ namespace basecross {
 		float GetHpRatio();
 		void SetHp(float hp);
 		void SetCountFlag(bool OnOff);
+		void SetStageFlag(int Flag);
+		int GetStageFlag();
 		bool StartFlag();
 	};
 }

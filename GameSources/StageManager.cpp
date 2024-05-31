@@ -16,6 +16,7 @@ namespace basecross {
 		m_ligthStatus(0),
 		m_count(4.0f),
 		m_countStart(0.5f),
+		m_stageFlag(0),
 		m_comX(800.0f),
 		m_start(false),
 		m_cfFlag(false),
@@ -113,7 +114,10 @@ namespace basecross {
 		//auto dstr = scene->GetDebugString();
 		//scene->SetDebugString(dstr + wss.str());
 	}
-
+	int StageManager::GetStageFlag()
+	{
+		return m_stageFlag;
+	}
 	float StageManager::GetHp() {
 		return m_currentHp;
 	}
@@ -126,6 +130,10 @@ namespace basecross {
 	}
 	void StageManager::SetCountFlag(bool OnOff) {
 		m_countFlag = OnOff;
+	}
+	void StageManager::SetStageFlag(int Flag)
+	{
+		m_stageFlag = Flag;
 	}
 	bool StageManager::StartFlag() {
 		return m_start;

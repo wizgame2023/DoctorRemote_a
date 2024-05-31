@@ -371,21 +371,21 @@ namespace basecross {
 	void GameStage::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 1);//ミニマップ生成
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 5);//ミニマップ生成
 		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f), 400.0f - (Lenght / 2.0f), 0.0f), 3.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
 
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 		auto PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece1")->GetComponent<Transform>()->GetPosition();	
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f)+PiecePos.x * Bairitu, (400.0f - (Lenght / 2.0f))+PiecePos.z * Bairitu, 0.0f), 2);//ミニマップ上でBigPieceの位置を表示
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f)+PiecePos.x * Bairitu, (400.0f - (Lenght / 2.0f))+PiecePos.z * Bairitu, 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece2")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, (400.0f - (Lenght / 2.0f)) + PiecePos.z*Bairitu, 0.0f), 2);//ミニマップ上でBigPieceの位置を表示
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, (400.0f - (Lenght / 2.0f)) + PiecePos.z*Bairitu, 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece3")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, 400.0f - (Lenght / 2.0f) + PiecePos.z*Bairitu, 0.0f), 2);//ミニマップ上でBigPieceの位置を表示
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, 400.0f - (Lenght / 2.0f) + PiecePos.z*Bairitu, 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece4")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, 400.0f - (Lenght / 2.0f) + PiecePos.z*Bairitu, 0.0f), 2);//ミニマップ上でBigPieceの位置を表示
+		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(640.0f - (Lenght / 2.0f) + PiecePos.x*Bairitu, 400.0f - (Lenght / 2.0f) + PiecePos.z*Bairitu, 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
 
 		
 
@@ -805,7 +805,7 @@ namespace basecross {
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
-			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(-10.0f, 0.5f, -14.8f));//ステージ開始時の演出
+			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -10.8f));//ステージ開始時の演出
 
 
 			//BGM
@@ -820,6 +820,7 @@ namespace basecross {
 	void GameStage::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		m_StageFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_StageFlag == 0)
 		{
@@ -832,18 +833,20 @@ namespace basecross {
 			OnDestroy();
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.5f);
+			GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(1);//進行度を進める
 
 		}
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) 
 		{
-			//AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -13.4f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-8.0f, 0.5f, -12.0f), Vec3(8.0f, 0.5f, -5.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 12.0f), Vec3(0.0f, 0.5f, 13.0f), Vec3(0.0f, 0.5f, 0.0f));
 
 		}
-		if (m_StageFlag == 1)//敵を倒したとき
-		{
+		if (m_StageFlag == 2)//敵を倒したとき
+		{	
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -13.4f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-8.0f, 0.5f, -12.0f), Vec3(8.0f, 0.5f, -5.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 12.0f), Vec3(0.0f, 0.5f, 13.0f), Vec3(0.0f, 0.5f, 0.0f));
+
 		}
 
 	}
