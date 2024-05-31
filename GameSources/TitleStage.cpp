@@ -30,10 +30,10 @@ namespace basecross {
 			scene->SetBulletStataus(0);
 			scene->SetLigthStatus(0);
 
-			auto sprite = AddGameObject<Sprite>(150, 50, L"White", Vec3(0.0f,-100.0f,0.0f));
-			auto sprite2 = AddGameObject<Sprite>(150, 50, L"White", Vec3(0.0f, -175.0f, 0.0f));
-			auto sprite3 = AddGameObject<Sprite>(150, 50, L"White", Vec3(0.0f, -250.0f, 0.0f));
-			auto sprite4 = AddGameObject<Sprite>(150, 50, L"White", Vec3(0.0f, -325.0f, 0.0f));
+			auto sprite = AddGameObject<Sprite>(512/2, 45/2, L"SelectTutorial", Vec3(0.0f,-100.0f,0.0f));
+			auto sprite2 = AddGameObject<Sprite>(300/2, 45/2, L"SelectGameStage", Vec3(0.0f, -175.0f, 0.0f));
+			auto sprite3 = AddGameObject<Sprite>(300/2, 45/2, L"SelectGameStage2", Vec3(0.0f, -250.0f, 0.0f));
+			auto sprite4 = AddGameObject<Sprite>(300/2, 45/2, L"SelectGameStage3", Vec3(0.0f, -325.0f, 0.0f));
 
 			auto spriteManager = AddGameObject<SelectSprite>();
 			//AddGameObject<Player>(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));

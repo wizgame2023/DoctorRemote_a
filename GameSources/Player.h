@@ -35,6 +35,7 @@ namespace basecross {
 		bool m_enemyPieceFlag;
 
 		Vec3 m_pos;
+		Vec3 m_position;
 		Vec3 m_rot;
 
 		wstring m_meshResName;

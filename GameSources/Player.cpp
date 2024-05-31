@@ -197,6 +197,8 @@ namespace basecross {
 	}
 
 	void Player::OnUpdate(){
+		m_position = m_trans->GetPosition();
+		m_trans->SetPosition(Vec3(m_position.x, m_pos.y, m_position.z));
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto stage = GetStage();
 		bool start = stage->GetSharedGameObject<StageManager>(L"StageManager")->StartFlag();
