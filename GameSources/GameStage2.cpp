@@ -102,77 +102,77 @@ namespace basecross {
 			{//1			
 				Vec3(-19.0f,0.1f,22.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//2
 				Vec3(-12.0f,0.1f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//3
 				Vec3(-45.0f,0.1f,9.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//4
 				Vec3(-23.0f,0.1f,-3.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 			},
 			{//5
 				Vec3(-25.0f,0.1f,-3.8f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//6
 				Vec3(-39.0f,0.1f,-12.8f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 			},
 			{//7
 				Vec3(-64.0f,0.1f,-13.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//8
 				Vec3(-55.6f,0.1f,-65.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//9
 				Vec3(-6.0f,0.1f,-64.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//10
 				Vec3(16.5f,0.1f,6.7f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//11
 				Vec3(25.5f,0.1f,29.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//12
 				Vec3(20.0f,0.1f,-4.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//13
 				Vec3(22.0f,0.1f,26.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			}
 
@@ -389,6 +389,8 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels2.csv", 150);//ランダムにかけらが出るようになる
+
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
