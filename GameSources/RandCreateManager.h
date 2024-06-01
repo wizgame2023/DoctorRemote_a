@@ -1,6 +1,6 @@
 /*!
 @file RandCreateManager.h
-@brief ランダムなかけらの配置
+@brief ランダムオブジェクトの配置
 担当：三瓶裕太
 */
 
@@ -11,9 +11,10 @@ namespace basecross {
 	class RandCreateManager :public GameObject
 	{
 	private:
-
+		wstring m_ObjMapDataName;//データの名前を保存する変数
+		int m_MapSize;//マップの大きさを保存する変数
 	public:
-		RandCreateManager(shared_ptr<Stage>& stagePtr);
+		RandCreateManager(shared_ptr<Stage>& stagePtr,wstring objMapDataName,int mapSize);
 		~RandCreateManager()override;
 		void OnCreate() override;
 	};
