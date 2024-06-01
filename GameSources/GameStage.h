@@ -17,15 +17,9 @@ namespace basecross {
 		void CreateEnemy();//敵の作成
 		void CreateRadar();//レーダーの作成
 		void CreateMap();//マップの生成
-		//void CreateWall();//壁の作成
-		//void CreateBlock();//障害物の作成
-		//void CreateBreakWall();//壊れる壁の作成
-		//void CreateRecoveryWall();//治す壁の作成
-		//void CreateBlockSecond();//障害物の作成２	
 		void CreateMiniMap();//ミニマップの生成
 		void CreateEffect();//エフェクトの作成
 		void RandamPiecePosition(Vec3 originPosition);//ランダムに
-		void CollisionActive(bool On);//コリジョンの判定のきりかえ
 		shared_ptr<Transform> m_Trans;
 		shared_ptr<SingleView> m_View;//ビューの変数
 		
@@ -39,9 +33,6 @@ namespace basecross {
 
 		void PlayBGM();
 		virtual void OnDestroy() override;	
-
-		void SetCollisionSwich(bool ONorOFF);
-
 	};
 
 }
