@@ -26,8 +26,8 @@ namespace basecross {
 		spanMat.affineTransformation(
 			Vec3(0.6f, 0.7f, 0.6f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 1.075f, 0.0f)
+			Vec3(0.0f, XMConvertToRadians(130.0f), 0.0f),
+			Vec3(0.0f, 0.8f, 0.0f)
 		);
 
 
