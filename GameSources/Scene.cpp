@@ -183,7 +183,14 @@ namespace basecross {
 		app->RegisterTexture(L"Sousa", strTexture);
 		strTexture = comPath + L"UISetumeiEnd.png";
 		app->RegisterTexture(L"UISetumeiEnd", strTexture);
-
+		strTexture = comPath + L"Setumei_1.png";
+		app->RegisterTexture(L"Setumei1", strTexture);
+		strTexture = comPath + L"Setumei_2.png";
+		app->RegisterTexture(L"Setumei2", strTexture);
+		strTexture = comPath + L"Setumei_3.png";
+		app->RegisterTexture(L"Setumei3", strTexture);
+		strTexture = comPath + L"WallSetumei.png";
+		app->RegisterTexture(L"WallSetumei", strTexture);
 
 
 		//ボーンマルチモデル(マルチメッシュ)の通常リソース
