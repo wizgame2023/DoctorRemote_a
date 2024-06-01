@@ -101,49 +101,49 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//8				
-				Vec3(-6.25f,0.0f,24.0f),
+				Vec3(-6.25f,0.1f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//9
-				Vec3(-4.56f,0.0f,40.0f),
+				Vec3(-4.56f,0.1f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//10
-				Vec3(-7.25f,0.0f,-45.0f),
+				Vec3(-7.25f,0.1f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},			
 			{//11
-				Vec3(27.7f,0.0f,-9.1f),
+				Vec3(27.7f,0.1f,-9.1f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 			},
 			{//12
-				Vec3(31.0f,0.0f,-6.0f),
+				Vec3(31.0f,0.1f,-6.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//13
-				Vec3(39.0f,0.0f,6.0f),
+				Vec3(39.0f,0.1f,6.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 			},
 			{//14
-				Vec3(29.0f,0.0f,15.0f),
+				Vec3(29.0f,0.1f,15.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			{//15
-				Vec3(13.0f,0.0f,44.0f),
+				Vec3(13.0f,0.1f,44.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(1.25f,1.25f,1.25f)
 
 			},
 			//{//16
@@ -167,7 +167,7 @@ namespace basecross {
 		randamCount = 5;
 
 		Vec3 rotate = Vec3();
-		Vec3 size = Vec3(1.0f, 1.0f, 1.1f);
+		Vec3 size = Vec3(1.0f, 1.0f, 1.0f);
 		vector<Vec3> Trans;
 		srand(time(0));//ランダムリセット
 
@@ -228,7 +228,7 @@ namespace basecross {
 			float fKakeraPosX = (float)kakeraPosX / 10;//floatに変更
 			int kakeraPosZ = (rand() % 1500) - 750;//ランダムにかけらの場所を決める
 			float fKakeraPosZ = (float)kakeraPosZ / 10;//floatに変更
-			Vec3 Pos(fKakeraPosX, 0.0f, fKakeraPosZ);//かけらの場所
+			Vec3 Pos(fKakeraPosX, 0.1f, fKakeraPosZ);//かけらの場所
 
 			int charkX = (int)fKakeraPosX+75;//小数点切り捨て
 			int charkZ = (int)fKakeraPosZ+75;//小数点切り捨て
@@ -237,7 +237,7 @@ namespace basecross {
 			switch (kakeraMap[charkZ][charkX])
 			{
 			case 0:
-				AddGameObject<EnemyPiece>(Pos, Vec3(), Vec3(1.0f, 1.0f, 1.0f));//オブジェクト生成
+				AddGameObject<EnemyPiece>(Pos, Vec3(), Vec3(1.25f, 1.25f, 1.25f));//オブジェクト生成
 				count++;//カウント
 			default:
 				break;
@@ -250,18 +250,18 @@ namespace basecross {
 	void GameStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 		//右上
-		auto Piece1 = AddGameObject<BigPiece>(Vec3(51.0f, 0.0f, 70.0f), Vec3(0.0f, 0.2f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		auto Piece1 = AddGameObject<BigPiece>(Vec3(51.0f, 0.2f, 70.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));
 		SetSharedGameObject(L"BigPiece1", Piece1);
 		//左上
-		auto Piece2 = AddGameObject<BigPiece>(Vec3(-10.0f, 0.0f, 10.0f), Vec3(0.0f, 0.2f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		auto Piece2 = AddGameObject<BigPiece>(Vec3(-10.0f, 0.2f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));
 		SetSharedGameObject(L"BigPiece2", Piece2);
 
 		//右下
-		auto Piece3 = AddGameObject<BigPiece>(Vec3(52.0f, 0.0f, -44.0f), Vec3(0.0f, 0.2f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		auto Piece3 = AddGameObject<BigPiece>(Vec3(52.0f, 0.2f, -44.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));
 		SetSharedGameObject(L"BigPiece3", Piece3);
 
 		//左下
-		auto Piece4 = AddGameObject<BigPiece>(Vec3(-43.0f, 0.0f, -6.0f), Vec3(0.0f, 0.2f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		auto Piece4 = AddGameObject<BigPiece>(Vec3(-43.0f, 0.2f, -6.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));
 		SetSharedGameObject(L"BigPiece4", Piece4);
 
 	}
