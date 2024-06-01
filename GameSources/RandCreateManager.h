@@ -1,11 +1,20 @@
 /*!
-@file TitleManager.h
-@brief タイトルの選択
-担当：
+@file RandCreateManager.h
+@brief ランダムなかけらの配置
+担当：三瓶裕太
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
+	class RandCreateManager :public GameObject
+	{
+	private:
+
+	public:
+		RandCreateManager(shared_ptr<Stage>& stagePtr);
+		~RandCreateManager()override;
+		void OnCreate() override;
+	};
 }
