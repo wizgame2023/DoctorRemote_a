@@ -54,9 +54,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MiniMapPlayer.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -216,9 +213,20 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectSprite.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)RandCreateManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block3.h">
       <Filter>Headers\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MiniMapBigPiece.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialManager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RandCreateManager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MiniMapPlayer.h">
+      <Filter>Headers\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -235,9 +243,6 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MiniMapPlayer.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp">
@@ -399,9 +404,20 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectSprite.cpp">
       <Filter>Sources\UI</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)RandCreateManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block3.cpp">
       <Filter>Sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MiniMapBigPiece.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialManager.cpp">
+      <Filter>Sources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MiniMapPlayer.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RandCreateManager.cpp">
+      <Filter>Sources\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

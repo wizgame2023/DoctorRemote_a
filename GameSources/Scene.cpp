@@ -68,6 +68,8 @@ namespace basecross {
 		app->RegisterTexture(L"GameScreen", strTexture);
 		strTexture = texPath + L"Frame.png";
 		app->RegisterTexture(L"Frame", strTexture);
+		strTexture = texPath + L"Fukidasi.png";
+		app->RegisterTexture(L"Fukidasi", strTexture);
 
 
 		strTexture = texPath + L"MiniMapDataVer3.0.png";
@@ -151,6 +153,7 @@ namespace basecross {
 		app->RegisterTexture(L"ResultMoji1", strTexture);
 		strTexture = texPath + L"ResultMoji2.png";
 		app->RegisterTexture(L"ResultMoji2", strTexture);
+
 
 
 		strTexture = texPath + L"GameClear.jpg";

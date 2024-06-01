@@ -41,6 +41,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Garge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Ground.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HemmiStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MiniMapBigPiece.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MiniMapPlayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)JoinManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
@@ -72,6 +73,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
@@ -104,6 +106,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Garge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Ground.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HemmiStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MiniMapBigPiece.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MiniMapPlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)JoinManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
@@ -134,6 +137,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />

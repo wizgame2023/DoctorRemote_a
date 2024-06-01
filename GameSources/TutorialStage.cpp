@@ -384,10 +384,13 @@ namespace basecross {
 			auto PGarge = AddGameObject<PlayerGarge>();
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
-
+			stageManager->SetStartFlag(true);
+			auto collisionManager = AddGameObject<StageCollisionManager>();
 			//BGM
 			PlayBGM();
 
+			//auto Fukidasi = AddGameObject<Sprite>(256, 128, L"Fukidasi", Vec3());
+			//Fukidasi->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
 		}
 		catch (...) {
 			throw;
