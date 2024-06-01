@@ -356,19 +356,28 @@ namespace basecross {
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
-		auto PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece1")->GetComponent<Transform>()->GetPosition();	
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x+(PiecePos.x * Bairitu), StartPos.y+(PiecePos.z * Bairitu), 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
+		//マスターアップする前にforループするようにしてね
+		auto PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece1")->GetComponent<Transform>()->GetPosition();//ビックピースの場所を取得
+		auto miniMapBigPiece = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece1");//ミニマップ上にビックピースの場所を表示
+		SetSharedGameObject(L"MiniMapBigPiece1", miniMapBigPiece);//ミニマップマップに表示されるビックピースの名前を決める
+		GetSharedGameObject<BigPiece>(L"BigPiece1")->MyMiniMapName(L"MiniMapBigPiece1");//ビックピースにミニマップのビックピースの名前を教える
+
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece2")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
+		auto miniMapBigPiece2 = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece2");//ミニマップ上でBigPieceの位置を表示
+		SetSharedGameObject(L"MiniMapBigPiece2", miniMapBigPiece2);//ミニマップマップに表示されるビックピースの名前を決める
+		GetSharedGameObject<BigPiece>(L"BigPiece2")->MyMiniMapName(L"MiniMapBigPiece2");//ビックピースにミニマップのビックピースの名前を教える
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece3")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
+		auto miniMapBigPiece3 = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece3");//ミニマップ上でBigPieceの位置を表示
+		SetSharedGameObject(L"MiniMapBigPiece3", miniMapBigPiece3);//ミニマップマップに表示されるビックピースの名前を決める
+		GetSharedGameObject<BigPiece>(L"BigPiece3")->MyMiniMapName(L"MiniMapBigPiece3");//ビックピースにミニマップのビックピースの名前を教える
 
 		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece4")->GetComponent<Transform>()->GetPosition();
-		AddGameObject<Sprite>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6);//ミニマップ上でBigPieceの位置を表示
+		auto miniMapBigPiece4 = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece4");//ミニマップ上でBigPieceの位置を表示
+		SetSharedGameObject(L"MiniMapBigPiece4", miniMapBigPiece4);//ミニマップマップに表示されるビックピースの名前を決める
+		GetSharedGameObject<BigPiece>(L"BigPiece4")->MyMiniMapName(L"MiniMapBigPiece4");//ビックピースにミニマップのビックピースの名前を教える
 
-		
 
 	}
 

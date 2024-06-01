@@ -14,6 +14,7 @@ namespace basecross {
 		Vec3 m_rotate;
 		Vec3 m_position;
 		wstring m_meshResName;
+		wstring m_myMiniMapName;
 
 	public:
 		BigPiece(const shared_ptr<Stage>& stagePtr,
@@ -26,6 +27,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate()override;
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
+		void MyMiniMapName(wstring Name);//自分の位置がミニマップに表示するオブジェクトの名前
 
 	};
 }
