@@ -15,6 +15,7 @@ namespace basecross {
 		m_heigth(heigth),
 		m_meshResName(meshResName),
 		m_pos(pos),
+		m_rot(Vec3()),
 		m_color(1, 1, 1, 1),
 		m_layer(0)
 	{}
@@ -25,6 +26,7 @@ namespace basecross {
 			m_heigth(heigth),
 			m_meshResName(meshResName),
 			m_pos(pos),
+			m_rot(Vec3()),
 			m_color(1, 1, 1, 1),
 			m_layer(layer)
 		{}
@@ -57,6 +59,7 @@ namespace basecross {
 
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(m_pos);
+		m_trans->SetRotation(m_rot);
 	}
 	void Sprite::OnUpdate() {
 
@@ -99,7 +102,6 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 
 	}
-
 
 }
 //end namespace basecross

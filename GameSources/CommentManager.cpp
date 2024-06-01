@@ -129,9 +129,9 @@ namespace basecross {
 
 	//Œ»Ý‚Ì¶¬‚³‚ê‚Ä‚¢‚é•¶Žš—ñ‚ðŽ©•ªŽ©g‚ðíœ
 	void CommentManager::ThisDestroy() {
+		GetStage()->RemoveGameObject<CommentManager>(GetThis<CommentManager>());
 		for (int i = 0; i < m_cnt; i++) {
 			m_com[i]->ThisDestroy();
 		}
-		GetStage()->RemoveGameObject<CommentManager>(GetThis<CommentManager>());
 	}
 }

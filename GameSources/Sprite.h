@@ -25,6 +25,7 @@ namespace basecross {
 		shared_ptr<Transform> m_trans;
 
 		Vec3 m_pos;
+		Vec3 m_rot;
 		Col4 m_color;
 
 	public:
@@ -42,7 +43,6 @@ namespace basecross {
 
 		Col4 GetColor();
 		void SetColor(Col4 color);
-
 	};
 
 }
