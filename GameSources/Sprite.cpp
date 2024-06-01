@@ -73,6 +73,10 @@ namespace basecross {
 		m_color = m_draw->GetDiffuse();
 		return m_color;
 	}
+
+	void Sprite::Blinking(float count) {
+	}
+
 	void Sprite::UpdateRank(int value)
 	{
 		const float numberW =128.0f / 512.0f;
@@ -95,15 +99,7 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 
 	}
-	void Sprite::Blinking(float count,Col4 color) {
-		float elapsed = App::GetApp()->GetElapsedTime();
-		if ((int)count % 2 == 0) {
-			GetThis<Sprite>()->SetColor(Col4(0, 0, 0, 0));
-		}
-		else if ((int)count % 2 == 1) {
-			GetThis<Sprite>()->SetColor(Col4(color));
-		}
-		count -= elapsed * 10.0f;
-	}
+
+
 }
 //end namespace basecross
