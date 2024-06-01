@@ -15,6 +15,7 @@ namespace basecross {
 		auto& app = App::GetApp();
 
 		auto path = app->GetDataDirWString();
+		auto comPath = path + L"Comments/";
 		auto texPath = path + L"Textures/";
 		auto modPath = path + L"Models/";
 		auto SoundPath = path + L"Sounds/";
@@ -43,7 +44,7 @@ namespace basecross {
 		strTexture = texPath + L"HeartsFrame.png";
 		app->RegisterTexture(L"HeartsFrame", strTexture);
 
-
+		//背景など1280x800
 		strTexture = texPath + L"Clear.png";
 		app->RegisterTexture(L"Clear", strTexture);
 		strTexture = texPath + L"GameOver.jpg";
@@ -68,8 +69,10 @@ namespace basecross {
 		app->RegisterTexture(L"GameScreen", strTexture);
 		strTexture = texPath + L"Frame.png";
 		app->RegisterTexture(L"Frame", strTexture);
-		strTexture = texPath + L"Fukidasi.png";
-		app->RegisterTexture(L"Fukidasi", strTexture);
+		strTexture = texPath + L"triDot.png";
+		app->RegisterTexture(L"TriDot", strTexture);
+		strTexture = texPath + L"Button.png";
+		app->RegisterTexture(L"Bbutton", strTexture);
 
 
 		strTexture = texPath + L"MiniMapDataVer3.0.png";
@@ -136,7 +139,7 @@ namespace basecross {
 		strTexture = texPath + L"SelectWhite.png";
 		app->RegisterTexture(L"SelectWhite", strTexture);
 
-
+		//文字の表示等
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
 		strTexture = texPath + L"StatusMoji.png";
@@ -153,13 +156,29 @@ namespace basecross {
 		app->RegisterTexture(L"ResultMoji1", strTexture);
 		strTexture = texPath + L"ResultMoji2.png";
 		app->RegisterTexture(L"ResultMoji2", strTexture);
-
-
-
 		strTexture = texPath + L"GameClear.jpg";
 		app->RegisterTexture(L"GameClear", strTexture);
 		strTexture = texPath + L"IfClear.png";
 		app->RegisterTexture(L"IfClear", strTexture);
+
+
+		//コメントファイルの文字テクスチャ
+		strTexture = comPath + L"AIaisatu.png";
+		app->RegisterTexture(L"AIaisatu", strTexture);
+		strTexture = comPath + L"Comment_s.png";
+		app->RegisterTexture(L"Comment_s", strTexture);
+		strTexture = comPath + L"Garge_s.png";
+		app->RegisterTexture(L"Garge_s", strTexture);
+		strTexture = comPath + L"Hp_s.png";
+		app->RegisterTexture(L"Hp_s", strTexture);
+		strTexture = comPath + L"Map_s.png";
+		app->RegisterTexture(L"Map_s", strTexture);
+		strTexture = comPath + L"Time_s.png";
+		app->RegisterTexture(L"Time_s", strTexture);
+		strTexture = comPath + L"SetumeiStart.png";
+		app->RegisterTexture(L"SetumeiStart", strTexture);
+		strTexture = comPath + L"Dassyutu.png";
+		app->RegisterTexture(L"Dassyutu", strTexture);
 
 
 		//ボーンマルチモデル(マルチメッシュ)の通常リソース
