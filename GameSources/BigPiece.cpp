@@ -66,6 +66,7 @@ namespace basecross {
 		auto stage = GetStage();
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 		if (other->FindTag(L"Bullet")) {
+			GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);//Ž©•ªŽ©g(BigPiece)‚ª‚¢‚È‚­‚È‚é‚±‚Æ‚ð“`‚¦‚é
 			//Ž©•ªŽ©g‚ð”pŠü‚·‚é
 			GetStage()->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
 			stage->AddGameObject<PieceLittle>(other, player, 0.0f);
@@ -83,6 +84,11 @@ namespace basecross {
 			auto stageManager = GetStage()->GetSharedGameObject<StageManager>(L"StageManager");
 			stageManager->SetHp(-20.0f);
 		}
+	}
+
+	void BigPiece::MyMiniMapName(wstring Name)
+	{
+		m_myMiniMapName = Name;
 	}
 
 }
