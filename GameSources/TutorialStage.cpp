@@ -230,18 +230,10 @@ namespace basecross {
 	{
 		int randam = rand() % 3;
 		randam = 0;
-		//右上
-		AddGameObject<BigPiece>(Vec3(10.0f, 0.0f, 6.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
-		AddGameObject<BigPiece>(Vec3(4.0f, 0.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
-		//左上
-		AddGameObject<BigPiece>(Vec3(-5.0f, 0.0f, 46.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5, 0.5f));
-		//右下
-		AddGameObject<BigPiece>(Vec3(67.0f, 0.0f, -60.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
-		AddGameObject<BigPiece>(Vec3(65.0f, 0.0f, -54.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
-		AddGameObject<BigPiece>(Vec3(70.0f, 0.0f, -31.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
-
-		//左下
-		AddGameObject<BigPiece>(Vec3(-40.0f, 0.0f, -50.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		AddGameObject<BigPiece>(Vec3(-26.0f, 0.0f, 1.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		AddGameObject<BigPiece>(Vec3(-23.0f, 0.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.3f, 1.3, 1.3f));
+		auto bigPiece = AddGameObject<BigPiece>(Vec3(-20.0f, 0.0f, 2.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.3f, 1.3f, 1.3f));
+		SetSharedGameObject(L"BigPiece", bigPiece);
 	}
 
 
@@ -372,7 +364,7 @@ namespace basecross {
 			CreatePlayer();
 			//敵のかけらを表示
 			CreateEnemyPiece();
-			CreateEnemyPiece2();//ランダムにかけらが出るようになる
+			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
@@ -384,13 +376,11 @@ namespace basecross {
 			auto PGarge = AddGameObject<PlayerGarge>();
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
-			stageManager->SetStartFlag(true);
+			stageManager->SetStartFlag(false);
 			auto collisionManager = AddGameObject<StageCollisionManager>();
 			//BGM
 			PlayBGM();
-
-			//auto Fukidasi = AddGameObject<Sprite>(256, 128, L"Fukidasi", Vec3());
-			//Fukidasi->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
+			auto tutorialManager = AddGameObject<TutorialManager>();
 		}
 		catch (...) {
 			throw;
@@ -400,7 +390,7 @@ namespace basecross {
 	void TutorialStage::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
-		CollisionActive(true);
+		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_PieceFlag == 0)
 		{
 			//敵を生成
