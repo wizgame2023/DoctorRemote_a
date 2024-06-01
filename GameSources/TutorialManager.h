@@ -7,6 +7,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Sprite.h"
+#include "StageManager.h"
 
 namespace basecross {
 	class TutorialManager :public GameObject {
@@ -19,10 +20,12 @@ namespace basecross {
 		bool m_textutreCheck;
 		bool m_blinkFlag;
 		bool m_comFrameFlag;
+		bool m_startFlag;
 
 		shared_ptr<Sprite> m_triDot[10];
 		shared_ptr<Sprite> m_bButton;
 		shared_ptr<CommentManager> m_com[10];
+		shared_ptr<StageManager> m_stageManager;
 
 
 	public:
@@ -32,7 +35,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
-		void Comment(int moji, wstring mesh,bool delet);
-		void UIComment(int moji, wstring mesh, Vec3 triPos, float deg,bool delet);
+		void Comment(int moji, wstring mesh,bool delet,bool delet2);
+		void UIComment(int moji, wstring mesh, Vec3 triPos, float deg,bool delet,bool delte2);
 	};
 }

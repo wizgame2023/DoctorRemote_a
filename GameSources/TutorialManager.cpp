@@ -21,6 +21,7 @@ namespace basecross {
 		auto stage = GetStage();
 
 		m_bButton = stage->AddGameObject<Sprite>(40, 40, L"Bbutton", Vec3(560.0f,-330.0f,0.0f),3);
+		m_stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 	}
 	void TutorialManager::OnUpdate() {
 		auto stage = GetStage();
@@ -47,6 +48,12 @@ namespace basecross {
 				m_blinkFlag = false;
 			}
 		}
+		if (m_count < 8) {
+			m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking2));
+		}
+		else {
+			m_bButton->ThisDestory();
+		}
 		
 		//点滅処理　triDot
 		if (m_blinking2 > 0) {
@@ -56,7 +63,6 @@ namespace basecross {
 			m_blinking2 = 1.5f;
 		}
 
-		m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking2));
 
 		//フレームがで終わるまで待つ
 		if (!m_comFrameFlag) return;
@@ -65,31 +71,42 @@ namespace basecross {
 		{
 		case 0:
 			//挨拶
-			Comment(13 * 4, L"AIaisatu", false);
+			Comment(13 * 4, L"AIaisatu", false,false);
 			break;
 		case 1:
 			//説明を始める
-			Comment(13 * 4, L"SetumeiStart",true);
+			Comment(13 * 4, L"SetumeiStart",true,false);
 			break;
 		case 2:
 			//コメントの説明
-			UIComment(13 * 4, L"Comment_s", Vec3(260, -150, 0.0f), 0, false);
+			UIComment(13 * 4, L"Comment_s", Vec3(260, -150, 0.0f), 0, true,false);
 			break;
 		case 3:
 			//体力の説明
-			UIComment(13 * 4, L"Hp_s", Vec3(-80,-280,0.0f),0,true);
+			UIComment(13 * 4, L"Hp_s", Vec3(-80,-280,0.0f),0,true,true);
 			break;
 		case 4:
 			//ゲージの説明
-			UIComment(13 * 4, L"Garge_s", Vec3(-470, -50, 0.0f),-90,true);
+			UIComment(13 * 4, L"Garge_s", Vec3(-470, -50, 0.0f),-90,true,true);
 			break;
 		case 5:
-			UIComment(13 * 4, L"Time_s", Vec3(-105, 320, 0.0f), 90,true);
+			//時間の説明
+			UIComment(13 * 4, L"Time_s", Vec3(-105, 320, 0.0f), 90,true,true);
 			break;
 		case 6:
-			UIComment(13 * 4, L"Map_s", Vec3(330,320,0.0f),90,true);
+			//マップの説明
+			UIComment(13 * 4, L"Map_s", Vec3(330,320,0.0f),90,true,true);
 			break;
 		case 7:
+			//UI説明終了
+			Comment(13 * 2, L"UISetumeiEnd", true,true);
+			break;
+		case 8:
+			//操作説明
+			Comment(13 * 2, L"Sousa", true, false);
+			m_stageManager->SetStartFlag(true);
+			break;
+		case 9:
 			break;
 		default:
 			break;
@@ -97,8 +114,11 @@ namespace basecross {
 
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				m_count++;
-				m_textutreCheck = false;
+				if (m_count < 9) {
+					m_count++;
+					m_textutreCheck = false;
+
+				}
 
 			}
 		}
@@ -108,17 +128,20 @@ namespace basecross {
 		wstringstream wss(L"");
 		auto scene = App::GetApp()->GetScene<Scene>();
 		auto gameStage = scene->GetGameStage();
-		wss <<L"blinking : "
-			<<m_blinking
+		wss <<L"count : "
+			<<m_count
 			<< endl;
 		scene->SetDebugString(wss.str());
 
 	}
 	//コメントを表示　文字数と文字のテクスチャ
-	void TutorialManager::Comment(int moji,wstring mesh,bool delet) {
+	void TutorialManager::Comment(int moji,wstring mesh,bool delet,bool delet2) {
 		auto stage = GetStage();
 		if (delet) {
 			m_com[m_count - 1]->ThisDestroy();
+		}
+		if (delet2) {
+			m_triDot[m_count - 3]->ThisDestory();
 		}
 		if (!m_textutreCheck) {
 			m_com[m_count] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(250, -180, 0.0f), mesh);
@@ -127,11 +150,13 @@ namespace basecross {
 
 	}
 	//コメントの表示とUIの説明に使うポインタ
-	void TutorialManager::UIComment(int moji, wstring mesh, Vec3 triPos, float deg, bool delet) {
+	void TutorialManager::UIComment(int moji, wstring mesh, Vec3 triPos, float deg, bool delet,bool delet2) {
 		auto stage = GetStage();
 		float rad = XMConvertToRadians(deg);
-		m_com[m_count - 1]->ThisDestroy();
 		if (delet) {
+			m_com[m_count - 1]->ThisDestroy();
+		}
+		if (delet2) {
 			m_triDot[m_count - 3]->ThisDestory();
 		}
 		if (!m_textutreCheck) {
