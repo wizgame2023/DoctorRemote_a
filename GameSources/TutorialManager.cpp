@@ -8,7 +8,7 @@
 #include "Project.h"
 
 namespace basecross {
-	ToturialManager::ToturialManager(const shared_ptr<Stage>& stagePtr) :
+	TutorialManager::TutorialManager(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
 		m_count(0),
 		m_blinking(0.7f),
@@ -17,25 +17,18 @@ namespace basecross {
 		m_textutreCheck(false)
 	{}
 
-	void ToturialManager::OnCreate() {
+	void TutorialManager::OnCreate() {
 		auto stage = GetStage();
 
-		m_bButton = stage->AddGameObject<Sprite>(50, 50, L"Bbutton", Vec3());
+		m_bButton = stage->AddGameObject<Sprite>(40, 40, L"Bbutton", Vec3(560.0f,-330.0f,0.0f),3);
 	}
-	void ToturialManager::OnUpdate() {
+	void TutorialManager::OnUpdate() {
 		auto stage = GetStage();
 		auto elapsed = App::GetApp()->GetElapsedTime();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 		m_comFrameFlag = stageManager->GetComFrameFlag();
 
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				m_count++;
-				m_textutreCheck = false;
-
-			}
-		}
 
 		//点滅処理　Button
 		if (m_blinking > 0) {
@@ -63,41 +56,53 @@ namespace basecross {
 			m_blinking2 = 1.5f;
 		}
 
+		m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking2));
+
 		//フレームがで終わるまで待つ
 		if (!m_comFrameFlag) return;
+
 		switch (m_count)
 		{
 		case 0:
-			if (!m_textutreCheck) {
-				m_com[m_count]=stage->AddGameObject<CommentManager>(13*4, 0, Vec3(250, -180, 0.0f), L"AIaisatu");
-				m_textutreCheck = true;
-			}
+			//挨拶
+			Comment(13 * 4, L"AIaisatu", false);
 			break;
 		case 1:
-			m_com[m_count-1]->ThisDestroy();
-			if (!m_textutreCheck) {
-				m_com[m_count] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(250, -180, 0.0f), L"SetumeiStart");
-				m_textutreCheck = true;
-			}
+			//説明を始める
+			Comment(13 * 4, L"SetumeiStart",true);
 			break;
 		case 2:
+			//コメントの説明
+			UIComment(13 * 4, L"Comment_s", Vec3(260, -150, 0.0f), 0, false);
 			break;
-			
+		case 3:
+			//体力の説明
+			UIComment(13 * 4, L"Hp_s", Vec3(-80,-280,0.0f),0,true);
+			break;
 		case 4:
-			//if (!m_textutreCheck) {
-			//	m_triDot[0]=stage->AddGameObject<Sprite>(50, 50, L"TriDot", Vec3());
-			//	m_textutreCheck = true;
-			//}
+			//ゲージの説明
+			UIComment(13 * 4, L"Garge_s", Vec3(-470, -50, 0.0f),-90,true);
 			break;
 		case 5:
-			//if (!m_textutreCheck) {
-			//	m_triDot[0]->ThisDestory();
-			//	m_textutreCheck = true;
-			//}
+			UIComment(13 * 4, L"Time_s", Vec3(-105, 320, 0.0f), 90,true);
+			break;
+		case 6:
+			UIComment(13 * 4, L"Map_s", Vec3(330,320,0.0f),90,true);
+			break;
+		case 7:
 			break;
 		default:
 			break;
 		}
+
+		if (cntlVec[0].bConnected) {
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+				m_count++;
+				m_textutreCheck = false;
+
+			}
+		}
+
 
 		//m_triDot[0]->SetColor(Col4(1.0f, 0.0f, 0.0f, m_blinking));
 		wstringstream wss(L"");
@@ -108,6 +113,34 @@ namespace basecross {
 			<< endl;
 		scene->SetDebugString(wss.str());
 
+	}
+	//コメントを表示　文字数と文字のテクスチャ
+	void TutorialManager::Comment(int moji,wstring mesh,bool delet) {
+		auto stage = GetStage();
+		if (delet) {
+			m_com[m_count - 1]->ThisDestroy();
+		}
+		if (!m_textutreCheck) {
+			m_com[m_count] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(250, -180, 0.0f), mesh);
+			m_textutreCheck = true;
+		}
+
+	}
+	//コメントの表示とUIの説明に使うポインタ
+	void TutorialManager::UIComment(int moji, wstring mesh, Vec3 triPos, float deg, bool delet) {
+		auto stage = GetStage();
+		float rad = XMConvertToRadians(deg);
+		m_com[m_count - 1]->ThisDestroy();
+		if (delet) {
+			m_triDot[m_count - 3]->ThisDestory();
+		}
+		if (!m_textutreCheck) {
+			m_com[m_count] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(250, -180, 0.0f), mesh);
+			m_triDot[m_count - 2] = stage->AddGameObject<Sprite>(30, 30, L"TriDot",triPos);
+			m_triDot[m_count - 2]->AddComponent<Transform>()->SetRotation(Vec3(0.0f, 0.0f, rad));
+			m_textutreCheck = true;
+		}
+		m_triDot[m_count - 2]->SetColor(Col4(1.0f, 0.0f, 0.0f, m_blinking));
 
 	}
 }

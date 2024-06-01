@@ -9,7 +9,7 @@
 #include "Sprite.h"
 
 namespace basecross {
-	class ToturialManager :public GameObject {
+	class TutorialManager :public GameObject {
 	private:
 		float m_blinking;
 		float m_blinking2;
@@ -26,10 +26,13 @@ namespace basecross {
 
 
 	public:
-		ToturialManager(const shared_ptr<Stage>& stagePtr);
-		virtual ~ToturialManager(){}
+		TutorialManager(const shared_ptr<Stage>& stagePtr);
+		virtual ~TutorialManager(){}
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		void Comment(int moji, wstring mesh,bool delet);
+		void UIComment(int moji, wstring mesh, Vec3 triPos, float deg,bool delet);
 	};
 }
