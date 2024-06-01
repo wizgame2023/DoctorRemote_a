@@ -51,7 +51,7 @@ namespace basecross {
 		m_addLine(line),//何行目から
 		m_line(8),      //何行
 		m_column(13),   //何列
-		m_mtime(0.15f),   //文字と文字の間を秒数
+		m_mtime(0.1f),   //文字と文字の間を秒数
 		m_widthSize(256),//画像サイズ横
 		m_heigthSize(256),//画像サイズ縦
 		m_sizeW(300),//大きさ横
