@@ -234,8 +234,8 @@ namespace basecross {
 	{
 
 		Vec3 Pos[] = { Vec3(35.2f,0.2f,50.0f),Vec3(-35.0f,0.2f,-37.0f),Vec3(-55.0f,0.2f,50.0f),Vec3(37.0f,0.2f,13.0f),Vec3(6.0f,0.2f,-50.0f),Vec3(13.0f,0.2f,-38.0f) };//BigPieceのPosision一覧
-		auto PosLength = sizeof(Pos) / sizeof(Vec3);//Posの要素数
-		for (int i = 0; i < PosLength; i++)
+		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
+		for (int i = 0; i < m_BigPieceLength; i++)
 		{
 			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));//オブジェクトを生成する
 			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
@@ -338,37 +338,17 @@ namespace basecross {
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
-		//マスターアップする前にforループするようにしてね
-		auto PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece1")->GetComponent<Transform>()->GetPosition();//ビックピースの場所を取得
-		auto miniMapBigPiece = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece1");//ミニマップ上にビックピースの場所を表示
-		SetSharedGameObject(L"MiniMapBigPiece1", miniMapBigPiece);//ミニマップマップに表示されるビックピースの名前を決める
-		GetSharedGameObject<BigPiece>(L"BigPiece1")->MyMiniMapName(L"MiniMapBigPiece1");//ビックピースにミニマップのビックピースの名前を教える
-
-
-		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece2")->GetComponent<Transform>()->GetPosition();
-		auto miniMapBigPiece2 = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece2");//ミニマップ上でBigPieceの位置を表示
-		SetSharedGameObject(L"MiniMapBigPiece2", miniMapBigPiece2);//ミニマップマップに表示されるビックピースの名前を決める
-		GetSharedGameObject<BigPiece>(L"BigPiece2")->MyMiniMapName(L"MiniMapBigPiece2");//ビックピースにミニマップのビックピースの名前を教える
-
-		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece3")->GetComponent<Transform>()->GetPosition();
-		auto miniMapBigPiece3 = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece3");//ミニマップ上でBigPieceの位置を表示
-		SetSharedGameObject(L"MiniMapBigPiece3", miniMapBigPiece3);//ミニマップマップに表示されるビックピースの名前を決める
-		GetSharedGameObject<BigPiece>(L"BigPiece3")->MyMiniMapName(L"MiniMapBigPiece3");//ビックピースにミニマップのビックピースの名前を教える
-
-		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece4")->GetComponent<Transform>()->GetPosition();
-		auto miniMapBigPiece4 = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece4");//ミニマップ上でBigPieceの位置を表示
-		SetSharedGameObject(L"MiniMapBigPiece4", miniMapBigPiece4);//ミニマップマップに表示されるビックピースの名前を決める
-		GetSharedGameObject<BigPiece>(L"BigPiece4")->MyMiniMapName(L"MiniMapBigPiece4");//ビックピースにミニマップのビックピースの名前を教える
-
-		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece5")->GetComponent<Transform>()->GetPosition();
-		auto miniMapBigPiece5 = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece4");//ミニマップ上でBigPieceの位置を表示
-		SetSharedGameObject(L"MiniMapBigPiece5", miniMapBigPiece5);//ミニマップマップに表示されるビックピースの名前を決める
-		GetSharedGameObject<BigPiece>(L"BigPiece5")->MyMiniMapName(L"MiniMapBigPiece5");//ビックピースにミニマップのビックピースの名前を教える
-
-		PiecePos = GetSharedGameObject<BigPiece>(L"BigPiece6")->GetComponent<Transform>()->GetPosition();
-		auto miniMapBigPiece6 = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, L"BigPiece4");//ミニマップ上でBigPieceの位置を表示
-		SetSharedGameObject(L"MiniMapBigPiece6", miniMapBigPiece6);//ミニマップマップに表示されるビックピースの名前を決める
-		GetSharedGameObject<BigPiece>(L"BigPiece6")->MyMiniMapName(L"MiniMapBigPiece6");//ビックピースにミニマップのビックピースの名前を教える
+		for (int i = 0; i < m_BigPieceLength; i++)
+		{
+			wstring BigPieceName = L"BigPiece";//参照元の名前
+			BigPieceName += to_wstring(i + 1);//番号振り分け
+			wstring miniMapBigPieceName = L"MiniMapBigPiece";//参照元の名前
+			miniMapBigPieceName += to_wstring(i + 1);//番号振り分け
+			auto PiecePos = GetSharedGameObject<BigPiece>(BigPieceName)->GetComponent<Transform>()->GetPosition();//ビックピースの場所を取得
+			auto miniMapBigPiece = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, BigPieceName);
+			SetSharedGameObject(miniMapBigPieceName, miniMapBigPiece);//ミニマップに表示されるビックピースの名前を決める
+			GetSharedGameObject<BigPiece>(BigPieceName)->MyMiniMapName(miniMapBigPieceName);//ビックピースにミニマップのビックピースの名前を教える
+		}
 
 	}
 

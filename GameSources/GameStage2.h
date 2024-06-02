@@ -13,6 +13,7 @@ namespace basecross {
 		shared_ptr<SoundItem> m_BGM;
 		int m_stageCount;
 		int m_StageFlag;//ステージ全体のフラグ
+		int m_BigPieceLength;//BigPieceの合計の数
 
 		void CreateViewLight(); //ビューの作成
 		void CreatePlayer();//プレイヤーの作成
