@@ -96,23 +96,7 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
-		switch (randamEnemy)
-		{
-		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-			break;
-		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-58.0f, 0.5f, 65.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-			break;
-		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(41.0f, 0.5f, 63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-			break;
-		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-			break;
-		default:
-			break;
-		}
+		ptrEnemy = AddGameObject<Enemy>(Vec3(28.0f, 0.5f, 32.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -381,6 +365,7 @@ namespace basecross {
 			//BGM
 			PlayBGM();
 			auto tutorialManager = AddGameObject<TutorialManager>();
+			SetSharedGameObject(L"TutorialManager", tutorialManager);
 		}
 		catch (...) {
 			throw;
@@ -395,6 +380,8 @@ namespace basecross {
 		{
 			//敵を生成
 			CreateEnemy();
+			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemyTutorial(true);
+
 			//レーダーを生成
 			CreateRadar();
 			m_PieceFlag = 1;
