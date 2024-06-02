@@ -58,5 +58,7 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		void ThisDestroy();
 	};
 }

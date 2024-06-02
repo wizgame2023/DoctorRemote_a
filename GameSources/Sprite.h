@@ -25,6 +25,7 @@ namespace basecross {
 		shared_ptr<Transform> m_trans;
 
 		Vec3 m_pos;
+		Vec3 m_rot;
 		Col4 m_color;
 
 	public:
@@ -38,11 +39,10 @@ namespace basecross {
 		void UpdateRank(int value);
 		void UpdateIfClear(int value);
 		void ThisDestory();
-		void Blinking(float count,Col4 color);
+		void Blinking(float count);
 
 		Col4 GetColor();
 		void SetColor(Col4 color);
-
 	};
 
 }

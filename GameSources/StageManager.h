@@ -50,7 +50,7 @@ namespace basecross {
 		int GetStageFlag();
 		bool GetStartFlag();
 		void SetStartFlag(bool start);
-
+		bool GetComFrameFlag();
 	};
 }
 //end namespace basecross

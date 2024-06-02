@@ -15,6 +15,8 @@ namespace basecross {
 		Vec3 m_position;
 		wstring m_meshResName;
 
+		int m_enemyDeletFlag;
+
 	public:
 		EnemyPiece(const shared_ptr<Stage>& StagePtr,
 			const Vec3& position,
@@ -30,6 +32,7 @@ namespace basecross {
 		Vec3 GetPos();
 		Vec3 GetRot();
 
+		int GetDeletFlag();
 	};
 }
 //end namespace basecross

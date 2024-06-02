@@ -68,6 +68,8 @@ namespace basecross {
 		void UpdateValue(int letter);
 		void UpdateLine(int letter,int line);
 
+		void ThisDestroy();
+
 	};
 }
 //end namespace basecross

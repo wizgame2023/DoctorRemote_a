@@ -63,13 +63,13 @@ namespace basecross {
 			m_comX -= 500.0f * elapsedTime;
 			m_comTrans->SetPosition(m_comX, -265.0f, 0.0f);
 		}
-		if (m_comX < 420) {
+		if (m_comX < 430) {
 			m_cfFlag = true;
 		}
 
 		if (m_cfFlag) {
 			if (!m_comFlag) {
-				auto commnet = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0,Vec3(250, -180, 0.0f), L"SousaCom");
+				//auto commnet = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0,Vec3(250, -180, 0.0f), L"SousaCom");
 				m_comFlag = true;
 			}
 		}
@@ -147,6 +147,9 @@ namespace basecross {
 	}
 	void StageManager::SetStartFlag(bool start) {
 		m_start = start;
+	}
+	bool StageManager::GetComFrameFlag() {
+		return m_cfFlag;
 	}
 }
 //end namespace basecross

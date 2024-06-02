@@ -6,11 +6,16 @@
 
 #pragma once
 #include "stdafx.h" 
+#include "Bullet.h"
+#include "TutorialManager.h"
 
 namespace basecross {
 	class Enemy :public GameObject
 	{
+		bool m_enemyflag;
+
 		float m_Hp;
+		float m_posX;
 		Vec3 m_pos;
 		Vec3 m_rot;
 		Vec3 m_scale;
@@ -18,6 +23,7 @@ namespace basecross {
 		wstring m_meshResName;
 
 		weak_ptr<Bullet> m_bullet;
+		shared_ptr<Transform> m_trans;
 
 	public:
 		Enemy(const shared_ptr<Stage>& StaegePtr);
@@ -27,7 +33,8 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
-
+		void SetEnemyTutorial(bool enemy);
+		bool GetEnemyTutirial();
 	};
 }
 //end namespace basecross

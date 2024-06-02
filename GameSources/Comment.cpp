@@ -133,6 +133,8 @@ namespace basecross {
 		}
 	}
 
+	
+
 	//letter‚É‚¢‚ê‚½•¶Žš”‚Ü‚Å•\Ž¦
 	void Comment::UpdateValue(int letter) {
 		int mojiLine = letter / m_bes;
@@ -182,6 +184,11 @@ namespace basecross {
 		m_vertices[2].position.y = -m_heigth * (line + 1);
 
 		m_draw->UpdateVertices(m_vertices);
+
+	}
+
+	void Comment::ThisDestroy() {
+		GetStage()->RemoveGameObject<Comment>(GetThis<Comment>());
 
 	}
 

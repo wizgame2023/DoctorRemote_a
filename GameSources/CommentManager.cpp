@@ -51,7 +51,7 @@ namespace basecross {
 		m_addLine(line),//何行目から
 		m_line(8),      //何行
 		m_column(13),   //何列
-		m_mtime(0.15f),   //文字と文字の間を秒数
+		m_mtime(0.1f),   //文字と文字の間を秒数
 		m_widthSize(256),//画像サイズ横
 		m_heigthSize(256),//画像サイズ縦
 		m_sizeW(300),//大きさ横
@@ -98,10 +98,9 @@ namespace basecross {
 
 
 	void CommentManager::OnCreate() {
-		//m_trans = GetComponent<Transform>();
-		//m_trans->SetPosition(m_pos);
-
+		//何行目か
 		m_mojiLine = m_mojiNum / m_column;
+		//何文字目か
 		m_mojiColumn = m_mojiNum % m_column;
 
 	}
@@ -111,6 +110,7 @@ namespace basecross {
 		auto stage = GetStage();
 		m_count -= elapsed;
 		
+		//必要な行数文字列を生成
 		if (m_cnt <= m_mojiLine) {
 			if (m_count < 0) {
 				if (m_addLine > 0) {
@@ -124,6 +124,14 @@ namespace basecross {
 				m_cnt++;
 				int a = 0;
 			}
+		}
+	}
+
+	//現在の生成されている文字列を自分自身を削除
+	void CommentManager::ThisDestroy() {
+		GetStage()->RemoveGameObject<CommentManager>(GetThis<CommentManager>());
+		for (int i = 0; i < m_cnt; i++) {
+			m_com[i]->ThisDestroy();
 		}
 	}
 }

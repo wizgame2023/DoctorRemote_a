@@ -17,6 +17,7 @@ namespace basecross {
 		m_position(position),
 		m_rotate(rotate),
 		m_scale(scale),
+		m_enemyDeletFlag(0),
 		m_meshResName(L"Kakera_Mesh")
 
 	{}
@@ -77,6 +78,7 @@ namespace basecross {
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);		
+			m_enemyDeletFlag++;
 		}
 		if (other->FindTag(L"Player")) {
 			stageManager->SetHp(-10.0f);
@@ -87,6 +89,9 @@ namespace basecross {
 	}
 	Vec3 EnemyPiece::GetRot() {
 		return m_rotate;
+	}
+	int EnemyPiece::GetDeletFlag() {
+		return m_enemyDeletFlag;
 	}
 }
 //end basecross

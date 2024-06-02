@@ -5,13 +5,14 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Enemy.h"
 
 namespace basecross {
 	class TutorialStage : public Stage
 	{
 		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
-		shared_ptr<SoundItem> m_BGM;
 		int m_stageCount;
+		shared_ptr<SoundItem> m_BGM;
 
 		void CreateViewLight(); //ビューの作成
 		void CreatePlayer();//プレイヤーの作成
