@@ -30,10 +30,10 @@ namespace basecross {
 	}
 	void Enemy::OnCreate()
 	{
-		auto ptr = GetComponent<Transform>();
-		ptr->SetPosition(m_pos);
-		ptr->SetRotation(m_rot);
-		ptr->SetScale(m_scale);
+		m_trans = GetComponent<Transform>();
+		m_trans->SetPosition(m_pos);
+		m_trans->SetRotation(m_rot);
+		m_trans->SetScale(m_scale);
 
 		AddTag(L"Enemy");
 
@@ -74,9 +74,9 @@ namespace basecross {
 		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
 		ptrDraw->UpdateAnimation(elapsed);
 		
-		//if (m_enemyflag) {
-		//	m_tutorialManager = GetStage()->GetSharedGameObject<TutorialManager>(L"TutorialManager");
-		//}
+		m_trans = GetComponent<Transform>();
+		m_pos = m_trans->GetPosition();
+		
 
 		//auto piece = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 		//float pieceBar = piece->GetPiece();
