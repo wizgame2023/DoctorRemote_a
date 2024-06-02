@@ -39,9 +39,9 @@ namespace basecross {
 		SetSharedGameObject(L"Effect", EffectPtr);
 		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
-		auto EffectPtr3 = AddGameObject<EffectMove>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
+		auto EffectPtr3 = AddGameObject<EffectMove>(L"GetEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
-		auto EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
+		auto EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 10, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr4);
 		EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 		SetSharedGameObject(L"PlayerEffectRecovery", EffectPtr4);
@@ -249,20 +249,16 @@ namespace basecross {
 
 	void GameStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
-		//右上
-		auto Piece1 = AddGameObject<BigPiece>(Vec3(51.0f, 0.2f, 70.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));
-		SetSharedGameObject(L"BigPiece1", Piece1);
-		//左上
-		auto Piece2 = AddGameObject<BigPiece>(Vec3(-10.0f, 0.2f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));
-		SetSharedGameObject(L"BigPiece2", Piece2);
 
-		//右下
-		auto Piece3 = AddGameObject<BigPiece>(Vec3(52.0f, 0.2f, -44.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));
-		SetSharedGameObject(L"BigPiece3", Piece3);
-
-		//左下
-		auto Piece4 = AddGameObject<BigPiece>(Vec3(-43.0f, 0.2f, -6.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));
-		SetSharedGameObject(L"BigPiece4", Piece4);
+		Vec3 Pos[] = { Vec3(52.0f,0.2f,70.0f),Vec3(-10.0f,0.2f,10.0f),Vec3(52.0f,0.2f,-44.0f),Vec3(-43.0f,0.2f,-6.0f) };//BigPieceのPos一覧
+		auto PosLength = sizeof(Pos)/sizeof(Vec3);//Posの要素数
+		for (int i = 0; i < PosLength; i++)
+		{
+			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));//オブジェクトを生成する
+			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
+			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
+			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける
+		}
 
 	}
 
@@ -351,6 +347,8 @@ namespace basecross {
 	{
 		float Lenght = 225.0f;//ミニマップの直径
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 5);//ミニマップ生成
+		SetSharedGameObject(L"MiniMap", miniMap);
+
 		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 3.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
 
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
@@ -407,7 +405,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels.csv", 150);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels.csv", 150, 30);//ランダムにかけらが出るようになる
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
@@ -451,11 +449,7 @@ namespace basecross {
 			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.5f);
 			GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(1);//進行度を進める
 
-		}
-		//デバック用
-		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) 
-		{
+
 
 		}
 		if (m_StageFlag == 1)
@@ -463,11 +457,16 @@ namespace basecross {
 			m_StageFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
 		}
 		if (m_StageFlag == 2)//敵を倒したとき
-		{	
-			//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
+		{			
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 15.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f));
-			m_StageFlag = 3;
+					
+			auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
+			float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
+			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, 15.0f, 0.0f), 6);
+			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, -15.0f, 0.0f), 6);
+
+			m_StageFlag = 3;	
 
 		}
 
