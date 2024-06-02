@@ -11,7 +11,7 @@ namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
 		m_Hp(10),
-		m_posX(0.0f),
+		m_posX(1.0f),
 		m_enemyflag(false),
 		m_meshResName(L"Baikin_Mesh")
 	{
@@ -22,7 +22,7 @@ namespace basecross {
 		m_pos(pos),
 		m_rot(rot),
 		m_scale(scale),
-		m_posX(0.0f),
+		m_posX(false),
 		m_enemyflag(false),
 		m_meshResName(L"Baikin_Mesh"),
 		m_Hp(5)
@@ -75,9 +75,25 @@ namespace basecross {
 		ptrDraw->UpdateAnimation(elapsed);
 		
 		m_trans = GetComponent<Transform>();
-		m_pos = m_trans->GetPosition();
-		
+		m_posCur = m_trans->GetPosition();
 
+		if (m_pos.x + 1.0f < m_posCur.x) {
+			m_posX = false;
+		}
+		else if (m_pos.x - 1.0f > m_posCur.x) {
+			m_posX = true;
+		}
+
+		if (m_posX) {
+
+			m_posCur.x += 1.0f * elapsed;
+		}
+		else if (!m_posX) {
+			m_posCur.x -= 1.0f * elapsed;
+		}
+		m_trans->SetPosition(Vec3(m_posCur));
+		 
+		 
 		//auto piece = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 		//float pieceBar = piece->GetPiece();
 		//float maxPieceBar = piece->GetMaxPiece();
@@ -113,20 +129,19 @@ namespace basecross {
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(2);//ステージの全体フラグ進行
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
 			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
-			m_enemyflag = GetEnemyTutirial();
+			m_enemyflag = GetEnemy();
 
 			if (m_enemyflag) {
-				GetStage()->GetSharedGameObject<TutorialManager>(L"TutorialManager")->SetEnemyFlag(true);
-				int a = 0;
+				GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetEnemyFlag(true);
 			}
 		}
 
 	}
 
-	void Enemy::SetEnemyTutorial(bool enemy) {
+	void Enemy::SetEnemy(bool enemy) {
 		m_enemyflag = enemy;
 	}
-	bool Enemy::GetEnemyTutirial() {
+	bool Enemy::GetEnemy() {
 		return m_enemyflag;
 	}
 }
