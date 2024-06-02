@@ -10,8 +10,10 @@
 namespace basecross {
 	class TutorialStage : public Stage
 	{
-		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
+		//bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
 		int m_stageCount;
+		int m_BigPieceLength;//ビックピースの合計の数
+		int m_StageFlag;//ステージ全体のフラグ
 		shared_ptr<SoundItem> m_BGM;
 
 		void CreateViewLight(); //ビューの作成
