@@ -8,14 +8,25 @@
 #include "Project.h"
 
 namespace basecross {
-	JoinManager::JoinManager(const shared_ptr<Stage>& stagePtr,Vec3 playerStartPos,Vec3 TagetPos):
-	GameObject(stagePtr),
-	m_Time(0.0f),
-	m_UpdateFlag(0),
-	m_PlayerStartPos(playerStartPos),
-	m_TargetPos(TagetPos),
-	m_MinRange(Vec3(TagetPos.x-0.5f,TagetPos.y,TagetPos.z-0.5f)),
-	m_MaxRange(Vec3(TagetPos.x+0.5f,TagetPos.y,TagetPos.z+0.5f))
+	JoinManager::JoinManager(const shared_ptr<Stage>& stagePtr, Vec3 playerStartPos, Vec3 TagetPos) ://コンストラクタ１
+		GameObject(stagePtr),
+		m_Time(0.0f),
+		m_UpdateFlag(0),
+		m_PlayerStartPos(playerStartPos),
+		m_TargetPos(TagetPos),
+		m_MinRange(Vec3(TagetPos.x - 0.5f, TagetPos.y, TagetPos.z - 0.5f)),
+		m_MaxRange(Vec3(TagetPos.x + 0.5f, TagetPos.y, TagetPos.z + 0.5f))
+	{
+
+	}
+
+	JoinManager::JoinManager(const shared_ptr<Stage>& stagePtr,Vec3 TagetPos) ://コンストラクタ2
+		GameObject(stagePtr),
+		m_Time(0.0f),
+		m_UpdateFlag(0),
+		m_TargetPos(TagetPos),
+		m_MinRange(Vec3(TagetPos.x - 0.5f, TagetPos.y, TagetPos.z - 0.5f)),
+		m_MaxRange(Vec3(TagetPos.x + 0.5f, TagetPos.y, TagetPos.z + 0.5f))
 	{
 
 	}

@@ -24,7 +24,8 @@ namespace basecross {
 		int m_UpdateFlag;
 		float m_Time;
 	public:
-		JoinManager(const shared_ptr<Stage>& stagePtr,Vec3 playerStart, Vec3 m_TargetPos);//コンストラクタ
+		JoinManager(const shared_ptr<Stage>& stagePtr, Vec3 playerStart, Vec3 m_TargetPos);//コンストラクタ
+		JoinManager(const shared_ptr<Stage>& stagePtr,Vec3 m_TargetPos);//コンストラクタ
 		virtual ~JoinManager();//デストラクタ
 
 		virtual void OnCreate() override;//生成
