@@ -134,6 +134,7 @@ namespace basecross {
 			if (m_enemyflag) {
 				GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetEnemyFlag(true);
 			}
+			int a = 0;
 		}
 
 	}

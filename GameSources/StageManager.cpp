@@ -84,7 +84,8 @@ namespace basecross {
 		//敵を倒したらコメント
 		if (GetEnemyFlag()) {
 			if (!m_comFlag2) {
-				m_com[0]->ThisDestroy();
+				//m_com[0]->ThisDestroy();//ここがエラーのもと
+				int a = 0;
 				m_com[1] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
 				m_comFlag2 = true;
 			}

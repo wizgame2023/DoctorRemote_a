@@ -67,6 +67,7 @@ namespace basecross {
 		auto EnemyTrans = ptrEnemy->GetComponent<Transform>();//そのオブジェクトのTransformを取得
 		auto EnemyPos = EnemyTrans->GetPosition();//Positionを取得
 		auto ptrRadar = AddGameObject<Radar>(PlayerPos, EnemyPos);//レーダーを生成
+		SetSharedGameObject(L"Radar", ptrRadar);
 	}
 
 	//敵を作成
@@ -460,6 +461,8 @@ namespace basecross {
 		}
 		if (m_StageFlag == 2)//敵を倒したとき
 		{
+			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f));
 					

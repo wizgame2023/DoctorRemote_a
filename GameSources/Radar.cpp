@@ -177,4 +177,9 @@ namespace basecross {
 		}
 
 	}
+
+	void Radar::MyRemove()
+	{
+		GetStage()->RemoveGameObject<Radar>(GetThis<Radar>());
+	}
 }

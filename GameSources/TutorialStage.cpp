@@ -72,6 +72,7 @@ namespace basecross {
 		auto EnemyTrans = ptrEnemy->GetComponent<Transform>();//そのオブジェクトのTransformを取得
 		auto EnemyPos = EnemyTrans->GetPosition();//Positionを取得
 		auto ptrRadar = AddGameObject<Radar>(PlayerPos, EnemyPos);//レーダーを生成
+		SetSharedGameObject(L"Radar", ptrRadar);
 	}
 
 	//敵を作成
@@ -417,13 +418,13 @@ namespace basecross {
 		}
 		if (m_StageFlag == 2)//敵を倒したとき
 		{
-			//AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
+			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+
 			AddGameObject<EscapeManager>(Vec3(-6.2f, 3.0f, -14.8f), Vec3(-27.0f, 0.5f, -14.5f), Vec3(-21.0f, 0.5f, -26.0f), Vec3(-10.0f, 0.5f, 5.8f), Vec3(-12.0f, 0.5f, -13.0f), Vec3(-27.5f, 0.5f, -14.5f));
 
 			auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
 			float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 			AddGameObject<Sprite>(15.0f, 15.0f, L"White", StartPos + Vec3(-39.0f, -41.0f, 0.0f), 6);
-			//AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, -15.0f, 0.0f), 6);
 
 			m_StageFlag = 3;
 
