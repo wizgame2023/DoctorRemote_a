@@ -8,6 +8,8 @@
 #include "stdafx.h"
 #include "Sprite.h"
 #include "UITime.h"
+#include "CommentManager.h"
+#include "Enemy.h"
 
 namespace basecross {
 	class StageManager :public GameObject {
@@ -26,7 +28,9 @@ namespace basecross {
 		bool m_countNumFlag;
 		bool m_cfFlag;
 		bool m_comFlag;
+		bool m_comFlag2;
 		bool m_countFlag;
+		bool m_enemyFlag;
 
 
 		shared_ptr<Sprite> m_ligth;
@@ -34,6 +38,8 @@ namespace basecross {
 		shared_ptr<UITime> m_num;
 		shared_ptr<Sprite> m_comFrame;
 		shared_ptr<Transform> m_comTrans;
+		shared_ptr<CommentManager> m_com[2];
+
 
 	public:
 		StageManager(const shared_ptr<Stage>& stagePtr);
@@ -51,6 +57,8 @@ namespace basecross {
 		bool GetStartFlag();
 		void SetStartFlag(bool start);
 		bool GetComFrameFlag();
+		bool GetEnemyFlag();
+		void SetEnemyFlag(bool enemy);
 	};
 }
 //end namespace basecross
