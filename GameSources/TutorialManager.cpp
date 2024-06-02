@@ -14,14 +14,20 @@ namespace basecross {
 		m_blinking(0.7f),
 		m_blinking2(1.5f),
 		m_blinkFlag(false),
-		m_textutreCheck(false)
+		m_textutreCheck(false),
+		m_mapSetumeiCheck(false),
+		m_startFlag(false),
+		m_raderFlag(false),
+		m_enemyFlag(false),
+		m_enemyFlag2(false)
 	{}
 
+	TutorialManager::~TutorialManager() {
+	}
 	void TutorialManager::OnCreate() {
 		auto stage = GetStage();
 
 		m_bButton = stage->AddGameObject<Sprite>(40, 40, L"Bbutton", Vec3(560.0f,-330.0f,0.0f),3);
-		m_stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 	}
 	void TutorialManager::OnUpdate() {
 		auto stage = GetStage();
@@ -29,6 +35,8 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 		m_comFrameFlag = stageManager->GetComFrameFlag();
+		m_stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
+		m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 
 
 		//点滅処理　Button
@@ -48,7 +56,7 @@ namespace basecross {
 				m_blinkFlag = false;
 			}
 		}
-		if (m_count < 8) {
+		if (m_count < 10) {
 			m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking2));
 		}
 		else {
@@ -98,23 +106,49 @@ namespace basecross {
 			UIComment(13 * 4, L"Map_s", Vec3(330,320,0.0f),90,true,true);
 			break;
 		case 7:
+			UIComment(13 * 4, L"Map_s2", Vec3(330, 100, 0.0f), 90, true, true);
+			if (!m_mapSetumeiCheck) {
+				m_mapSetumei = stage->AddGameObject<Sprite>(256*0.8, 128*0.8,L"MapSetumei", Vec3(450, 80, 0.0f), 3);
+				m_mapSetumeiCheck = true;
+			}
+			break;
+		case 8:
 			//UI説明終了
 			Comment(13 * 2, L"UISetumeiEnd", true,true);
 			break;
-		case 8:
-			//操作説明
-			Comment(13 * 2, L"Sousa", true, false);
-			m_stageManager->SetStartFlag(true);
-			break;
 		case 9:
+			//操作説明
+			Comment(13 * 3, L"Sousa", true, false);
+			break;
+		case 10: 
+			//欠片の説明
+			Comment(13 * 3, L"Setumei1", true, false);
+			m_startFlag = true;
+			break;
+		case 11:
+			//レーダーの説明（ゲージMax時）
+			if (!m_raderFlag) {
+				Comment(13 * 3, L"Setumei3", true, false);
+				m_raderFlag = true;
+			}
+			break;
+		case 12:
+			//脱出の説明（敵を倒したら）
+			if (!m_enemyFlag2) {
+				Comment(13 * 3, L"Dassyutu", true, false);
+				m_enemyFlag2 = true;
+			}
 			break;
 		default:
 			break;
 		}
+		if (m_startFlag) {
+			m_stageManager->SetStartFlag(true);
+		}
 
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				if (m_count < 9) {
+				if (m_count < 10) {
 					m_count++;
 					m_textutreCheck = false;
 
@@ -122,9 +156,15 @@ namespace basecross {
 
 			}
 		}
+		if (m_player->GetRadarFlag()&&!m_raderFlag) {
+			m_textutreCheck = false;
+			m_count = 11;
+		}
+		if (GetEnemyFlag()) {
+			m_textutreCheck = false;
+			m_count = 12;
+		}
 
-
-		//m_triDot[0]->SetColor(Col4(1.0f, 0.0f, 0.0f, m_blinking));
 		wstringstream wss(L"");
 		auto scene = App::GetApp()->GetScene<Scene>();
 		auto gameStage = scene->GetGameStage();
@@ -167,5 +207,13 @@ namespace basecross {
 		}
 		m_triDot[m_count - 2]->SetColor(Col4(1.0f, 0.0f, 0.0f, m_blinking));
 
+	}
+
+	bool TutorialManager::GetEnemyFlag() {
+		return m_enemyFlag;
+	}
+
+	void TutorialManager::SetEnemyFlag(bool enemyFlag) {
+		m_enemyFlag = enemyFlag;
 	}
 }
