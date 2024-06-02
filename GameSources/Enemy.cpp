@@ -11,11 +11,21 @@ namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
 		m_Hp(10),
+		m_posX(0.0f),
+		m_enemyflag(false),
 		m_meshResName(L"Baikin_Mesh")
 	{
 	}
-	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale) :
-		GameObject(StagePtr), m_pos(pos), m_rot(rot), m_scale(scale),m_meshResName(L"Baikin_Mesh"),m_Hp(5)
+	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale
+	) :
+		GameObject(StagePtr),
+		m_pos(pos),
+		m_rot(rot),
+		m_scale(scale),
+		m_posX(0.0f),
+		m_enemyflag(false),
+		m_meshResName(L"Baikin_Mesh"),
+		m_Hp(5)
 	{ 
 	}
 	void Enemy::OnCreate()
@@ -47,7 +57,7 @@ namespace basecross {
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		auto ptrColl = AddComponent<CollisionSphere>();
-		ptrColl->SetDrawActive(false);
+		ptrColl->SetDrawActive(true);
 
 
 		GetStage()->SetCollisionPerformanceActive(true);
@@ -63,6 +73,10 @@ namespace basecross {
 
 		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
 		ptrDraw->UpdateAnimation(elapsed);
+		
+		//if (m_enemyflag) {
+		//	m_tutorialManager = GetStage()->GetSharedGameObject<TutorialManager>(L"TutorialManager");
+		//}
 
 		//auto piece = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 		//float pieceBar = piece->GetPiece();
@@ -96,13 +110,24 @@ namespace basecross {
 		}	
 		if (m_Hp <= 0)
 		{
-			int a = 0;
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(2);//ステージの全体フラグ進行
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
 			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
+			m_enemyflag = GetEnemyTutirial();
+
+			if (m_enemyflag) {
+				GetStage()->GetSharedGameObject<TutorialManager>(L"TutorialManager")->SetEnemyFlag(true);
+				int a = 0;
+			}
 		}
 
 	}
 
+	void Enemy::SetEnemyTutorial(bool enemy) {
+		m_enemyflag = enemy;
+	}
+	bool Enemy::GetEnemyTutirial() {
+		return m_enemyflag;
+	}
 }
 //end basecross
