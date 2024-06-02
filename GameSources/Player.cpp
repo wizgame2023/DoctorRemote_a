@@ -334,12 +334,13 @@ namespace basecross {
 			m_enemyPieceFlag = true;
 			SetObj(other);
 
-			EffectFlag(3);
+			EffectFlag(2);
 			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
 			bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
 
 		}
 		if (other->FindTag(L"EnemyPiece")) {
+			EffectFlag(2);
 			m_enemyPieceFlag = true;
 			SetObj(other);
 		}
@@ -360,7 +361,7 @@ namespace basecross {
 		case 2:
 			//ブレイクウォールの場合
 			if (PtrEffect) {
-				//PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"EffectChase", false);
+				PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"EffectChase", false);
 				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
 			}
 			break;
@@ -368,7 +369,7 @@ namespace basecross {
 			//かけらを拾った場合
 			if (PtrEffect)
 			{
-				//PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"PlayerEffectWhite", false);
+				PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"PlayerEffectWhite", false);
 				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
 			}
 			break;

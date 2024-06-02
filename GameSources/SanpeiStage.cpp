@@ -236,7 +236,7 @@ namespace basecross {
 			//AddGameObject<RecoveryWall>(Vec3(15.0f, 0.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 
 			//AddGameObject<Block>(Vec3(10.0f, -0.5f,-2.0f), Vec3(0.0f, 0.0f, 0.0f));
-			AddGameObject<Block3>(Vec3(0.5f, 1.5f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(23.0f, 10.0f, 18.0f));
+			AddGameObject<Block3>(Vec3(0.5f, 0.0f, 0.0f), Vec3(0.0f, XMConvertToRadians(45.0f+90.0f), 0.0f), Vec3(23.0f, 10.0f, 18.0f));
 
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャー追加
@@ -260,6 +260,7 @@ namespace basecross {
 	void SanpeiStage::OnUpdate()
 	{
 		Vec3 PlayerPos = GetSharedGameObject<Player>(L"GamePlayer")->GetComponent<Transform>()->GetPosition();
+		GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
