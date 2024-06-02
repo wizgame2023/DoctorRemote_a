@@ -15,12 +15,14 @@ namespace basecross {
 		Vec3 m_position;
 		wstring m_meshResName;
 		wstring m_myMiniMapName;
+		int m_var;//ビックピースのどの形態にするかを決める
 
 	public:
 		BigPiece(const shared_ptr<Stage>& stagePtr,
 			const Vec3& position,
 			const Vec3& rotate,
-			const Vec3 scale
+			const Vec3 scale,
+			int var = 1
 		);
 		virtual ~BigPiece() {}
 

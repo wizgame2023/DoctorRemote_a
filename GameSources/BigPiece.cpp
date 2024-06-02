@@ -10,12 +10,14 @@ namespace basecross {
 	BigPiece::BigPiece(const shared_ptr<Stage>& stagePtr,
 		const Vec3& position,
 		const Vec3& rotate,
-		const Vec3 scale
+		const Vec3 scale,
+		int var
 		) :
 		GameObject(stagePtr),
 		m_position(position),
 		m_rotate(rotate),
 		m_scale(scale),
+		m_var(var),
 		m_meshResName(L"Kakera_Mesh3")
 	{}
 
@@ -33,6 +35,18 @@ namespace basecross {
 			Vec3(0.0f, 0.0f, 0.0f)
 		);
 
+		if (m_var == 1)
+		{
+			m_meshResName = L"Kakera_Mesh3";
+		}
+		if (m_var == 2)
+		{
+			m_meshResName = L"Kakera_Mesh4";
+		}
+		if (m_var == 3)
+		{
+			m_meshResName = L"Kakera_Mesh5";
+		}
 		//オブジェクトの描画
 		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
 		//ptrDraw->SetFogEnabled(true);
