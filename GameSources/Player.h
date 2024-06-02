@@ -28,6 +28,7 @@ namespace basecross {
 
 		int m_statusFlag;
 
+		bool m_startFlag;
 		bool m_dashCheck;
 		bool m_dashCooldown;
 		bool m_radarFlag;

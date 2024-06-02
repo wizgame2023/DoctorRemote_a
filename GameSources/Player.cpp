@@ -20,6 +20,7 @@ namespace basecross {
 		m_speed(5.0f),
 		m_maxSpeed(5.0f),
 		m_dashSpeed(8.0f),
+		m_startFlag(false),
 		m_radarFlag(false),
 		m_statusFlag(0),
 		m_meshResName(L"Sensuikan_Mesh")
@@ -29,7 +30,7 @@ namespace basecross {
 		m_pos(pos),
 		m_rot(rot),
 		m_piece(0),
-		m_onePiece(1.0f),
+		m_onePiece(100.0f),
 		m_maxPiece(100.0f),
 		m_speed(7.0f),
 		m_maxSpeed(7.0f),
@@ -40,6 +41,7 @@ namespace basecross {
 		m_dashCool(m_dashCoolTime),
 		m_dashCheck(false),
 		m_dashCooldown(false),
+		m_startFlag(false),
 		m_radarFlag(false),
 		m_statusFlag(0),
 		m_enemyPieceFlag(false),
@@ -201,13 +203,16 @@ namespace basecross {
 		m_trans->SetPosition(Vec3(m_position.x, m_pos.y, m_position.z));
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto stage = GetStage();
-		bool start = stage->GetSharedGameObject<StageManager>(L"StageManager")->GetStartFlag();
-		if (start) {
+		m_startFlag = stage->GetSharedGameObject<StageManager>(L"StageManager")->GetStartFlag();
+
+		//“±“ü‚È‚Ç‚ªI‚í‚èƒtƒ‰ƒO‚ª“¥‚Ü‚ê‚½‚ç‘€ì‚Å‚«‚é‚æ‚¤‚É‚·‚é
+		if (m_startFlag) {
 			MovePlayer();
 			auto frontAngle = PlayerAngle();
 			auto ptrPos = m_trans->GetPosition();
-
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
+			//‚aƒ{ƒ^ƒ“‚Å’e‚ð”­ŽË
 			if (cntlVec[0].bConnected) {
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 					auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.2f), 30.0f, frontAngle, 1);
@@ -217,6 +222,8 @@ namespace basecross {
 					soundE->Start(L"ShotSE",0,0.5f);
 				}
 			}
+
+			//EnemyPiece‚ÉG‚ê‚½‚ç‰Ÿ‚µo‚µ
 			if (m_enemyPieceFlag) {
 				auto obj = GetObj();
 				auto objTrans = obj->GetComponent<Transform>();
@@ -224,12 +231,14 @@ namespace basecross {
 				float range = sqrt(pullTrans.x * pullTrans.x + pullTrans.z * pullTrans.z);
 				if (range < 8.0f) {
 					auto pos = ptrPos;
-					pos.x += -pullTrans.x * 0.08f + elapsedTime;
-					pos.z += -pullTrans.z * 0.08f + elapsedTime;
+					pos.x += -pullTrans.x * 0.2f + elapsedTime;
+					pos.z += -pullTrans.z * 0.2f + elapsedTime;
 					m_trans->SetPosition(Vec3(pos.x, pos.y, pos.z));
+					m_startFlag = false;
 				}
 				else {
 					m_enemyPieceFlag = false;
+					m_startFlag = true;
 				}
 			}
 
