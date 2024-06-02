@@ -8,10 +8,11 @@
 #include "Project.h"
 
 namespace basecross {
-	RandCreateManager::RandCreateManager(shared_ptr<Stage>& stagePtr,wstring objMapDataName,int mapSize) :
+	RandCreateManager::RandCreateManager(shared_ptr<Stage>& stagePtr,wstring objMapDataName,int mapSize,int num) :
 		GameObject(stagePtr),
 		m_ObjMapDataName(objMapDataName),
-		m_MapSize(mapSize)
+		m_MapSize(mapSize),
+		m_Num(num)
 	{
 
 	}
@@ -50,7 +51,7 @@ namespace basecross {
 		}
 
 		int count = 0;//Ç«ÇÍÇ≠ÇÁÇ¢ê∂ê¨ÇµÇΩÇ©êîÇ¶ÇÈ
-		while (count < 30)
+		while (count < m_Num)
 		{
 			int kakeraPosX = (rand() % (m_MapSize * 10)) - (m_MapSize * 10) / 2;//ÉâÉìÉ_ÉÄÇ…Ç©ÇØÇÁÇÃèÍèäÇåàÇﬂÇÈ
 			float fKakeraPosX = (float)kakeraPosX / 10;//floatÇ…ïœçX
