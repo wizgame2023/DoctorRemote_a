@@ -88,6 +88,7 @@ namespace basecross {
 		auto EnemyTrans = ptrEnemy->GetComponent<Transform>();//そのオブジェクトのTransformを取得
 		auto EnemyPos = EnemyTrans->GetPosition();//Positionを取得
 		auto ptrRadar = AddGameObject<Radar>(PlayerPos, EnemyPos);//レーダーを生成
+		SetSharedGameObject(L"Radar", ptrRadar);
 	}
 
 	//敵を作成
