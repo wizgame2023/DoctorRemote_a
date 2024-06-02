@@ -160,6 +160,9 @@ namespace basecross {
 		app->RegisterTexture(L"GameClear", strTexture);
 		strTexture = texPath + L"IfClear.png";
 		app->RegisterTexture(L"IfClear", strTexture);
+		strTexture = texPath + L"MapSetumei.png";
+		app->RegisterTexture(L"MapSetumei", strTexture);
+
 
 
 		//コメントファイルの文字テクスチャ
@@ -173,6 +176,8 @@ namespace basecross {
 		app->RegisterTexture(L"Hp_s", strTexture);
 		strTexture = comPath + L"Map_s.png";
 		app->RegisterTexture(L"Map_s", strTexture);
+		strTexture = comPath + L"Map_s2.png";
+		app->RegisterTexture(L"Map_s2", strTexture);
 		strTexture = comPath + L"Time_s.png";
 		app->RegisterTexture(L"Time_s", strTexture);
 		strTexture = comPath + L"SetumeiStart.png";
