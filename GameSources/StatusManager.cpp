@@ -41,6 +41,7 @@ namespace basecross {
 
 	void StatusManager::OnUpdate() {
 		auto stage = GetStage();
+		auto& scene = App::GetApp()->GetScene<Scene>();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
@@ -149,7 +150,20 @@ namespace basecross {
 		}
 		
 		if (m_count < 0) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+			switch (scene->GetGameStage())
+			{
+			case 0:
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+				break;
+			case 1:
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
+				break;
+			case 2:
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+				break;
+			default:
+				break;
+			}
 
 		}
 	}

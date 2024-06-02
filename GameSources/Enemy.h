@@ -13,10 +13,11 @@ namespace basecross {
 	class Enemy :public GameObject
 	{
 		bool m_enemyflag;
-
+		bool m_posX;
 		float m_Hp;
-		float m_posX;
+		
 		Vec3 m_pos;
+		Vec3 m_posCur;
 		Vec3 m_rot;
 		Vec3 m_scale;
 
@@ -33,8 +34,8 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
-		void SetEnemyTutorial(bool enemy);
-		bool GetEnemyTutirial();
+		void SetEnemy(bool enemy);
+		bool GetEnemy();
 	};
 }
 //end namespace basecross

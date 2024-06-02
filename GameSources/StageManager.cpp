@@ -7,6 +7,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
+
 namespace basecross {
 	StageManager::StageManager(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
@@ -22,7 +23,9 @@ namespace basecross {
 		m_countNumFlag(false),
 		m_cfFlag(false),
 		m_comFlag(false),
-		m_countFlag(false)
+		m_comFlag2(false),
+		m_countFlag(false),
+		m_enemyFlag(false)
 
 	{}
 
@@ -30,6 +33,13 @@ namespace basecross {
 		auto stage = GetStage();
 
 		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);
+
+		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f),2);//415,265
+		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
+
+		auto mapFrame = stage->AddGameObject<Sprite>(235, 235, L"CommentFrame", Vec3(475, 238, 0.0f), 2);
+		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
+
 
 		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
 		//switch (m_ligthStatus)
@@ -48,14 +58,10 @@ namespace basecross {
 		//}
 
 
-		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f),2);//415,265
-		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
-
-		auto mapFrame = stage->AddGameObject<Sprite>(235, 235, L"CommentFrame", Vec3(475, 238, 0.0f), 2);
-		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
 	}
 	void StageManager::OnUpdate() {
 		auto stage = GetStage();
+		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_comTrans = m_comFrame->GetComponent<Transform>();
 
@@ -69,8 +75,18 @@ namespace basecross {
 
 		if (m_cfFlag) {
 			if (!m_comFlag) {
-				//auto commnet = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0,Vec3(250, -180, 0.0f), L"SousaCom");
+				if (scene->GetGameStage() > 0) {
+					m_com[0] = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, Vec3(250, -180, 0.0f), L"SousaCom");
+				}
 				m_comFlag = true;
+			}
+		}
+		//敵を倒したらコメント
+		if (GetEnemyFlag()) {
+			if (!m_comFlag2) {
+				m_com[0]->ThisDestroy();
+				m_com[1] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
+				m_comFlag2 = true;
 			}
 		}
 
@@ -150,6 +166,12 @@ namespace basecross {
 	}
 	bool StageManager::GetComFrameFlag() {
 		return m_cfFlag;
+	}
+	bool StageManager::GetEnemyFlag() {
+		return m_enemyFlag;
+	}
+	void StageManager::SetEnemyFlag(bool enemy) {
+		m_enemyFlag = enemy;
 	}
 }
 //end namespace basecross

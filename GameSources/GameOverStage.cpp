@@ -36,6 +36,7 @@ namespace basecross {
 	}
 	void GameOverStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto& scene = App::GetApp()->GetScene<Scene>();
 		if (cntlVec[0].bConnected)
 		{
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)
@@ -44,8 +45,21 @@ namespace basecross {
 			}
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
-
+				auto stage = scene->GetGameStage();
+				switch (stage)
+				{
+				case 0:
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTutorialStage");
+					break;
+				case 1:
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+					break;
+				case 2:
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
+					break;
+				default:
+					break;
+				}
 			}
 		}
 	}

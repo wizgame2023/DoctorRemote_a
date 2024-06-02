@@ -79,6 +79,8 @@ namespace basecross {
 		app->RegisterTexture(L"MiniMap", strTexture);
 		strTexture = texPath + L"MiniMapData2.png";//ミニマップStage2
 		app->RegisterTexture(L"MiniMapStage2", strTexture);
+		strTexture = texPath + L"MiniMapDataTutorial.png";//ミニマップチュートリアル
+		app->RegisterTexture(L"MiniMapTutorial", strTexture);
 
 		strTexture = texPath + L"Triangle.png";
 		app->RegisterTexture(L"MiniMapPlayer", strTexture);
@@ -233,6 +235,10 @@ namespace basecross {
 
 		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2-2.bmf");
 		app->RegisterResource(L"Kakera_Mesh5", boneModelMesh);
+
+		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Wall.bmf");
+		app->RegisterResource(L"Wall", boneModelMesh);
+
 
 		//スタティックモデル
 		auto staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera1.bmf");
