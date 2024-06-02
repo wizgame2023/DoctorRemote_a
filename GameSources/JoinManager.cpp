@@ -39,11 +39,6 @@ namespace basecross {
 
 		m_Player = stage->GetSharedGameObject<Player>(L"GamePlayer");//Player‚ðŽæ“¾
 		
-		//m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerStartPos);
-		//m_Player.lock()->GetComponent<Transform>()->SetRotation(0.0f, 0.0f, 0.0f);
-		//m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//Player‚ÌPosition‚ðŽæ“¾
-
-
 	}
 
 	void JoinManager::OnUpdate()
