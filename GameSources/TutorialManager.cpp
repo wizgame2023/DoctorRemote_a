@@ -160,18 +160,19 @@ namespace basecross {
 			m_textutreCheck = false;
 			m_count = 11;
 		}
-		if (GetEnemyFlag()) {
+
+		if (m_stageManager->GetEnemyFlag()) {
 			m_textutreCheck = false;
 			m_count = 12;
 		}
 
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		auto gameStage = scene->GetGameStage();
-		wss <<L"count : "
-			<<m_count
-			<< endl;
-		scene->SetDebugString(wss.str());
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//auto gameStage = scene->GetGameStage();
+		//wss <<L"count : "
+		//	<<m_count
+		//	<< endl;
+		//scene->SetDebugString(wss.str());
 
 	}
 	//コメントを表示　文字数と文字のテクスチャ
@@ -209,11 +210,4 @@ namespace basecross {
 
 	}
 
-	bool TutorialManager::GetEnemyFlag() {
-		return m_enemyFlag;
-	}
-
-	void TutorialManager::SetEnemyFlag(bool enemyFlag) {
-		m_enemyFlag = enemyFlag;
-	}
 }

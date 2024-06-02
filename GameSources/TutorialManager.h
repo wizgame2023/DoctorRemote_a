@@ -47,8 +47,5 @@ namespace basecross {
 
 		void Comment(int moji, wstring mesh,bool delet,bool delet2);
 		void UIComment(int moji, wstring mesh, Vec3 triPos, float deg,bool delet,bool delte2);
-		bool GetEnemyFlag();
-		void SetEnemyFlag(bool enemyFlag);
-
 	};
 }
