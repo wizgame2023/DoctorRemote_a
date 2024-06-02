@@ -75,8 +75,11 @@ namespace basecross {
 		app->RegisterTexture(L"Bbutton", strTexture);
 
 
-		strTexture = texPath + L"MiniMapDataVer3.0.png";
+		strTexture = texPath + L"MiniMapDataVer3.0.png";//ミニマップStage1
 		app->RegisterTexture(L"MiniMap", strTexture);
+		strTexture = texPath + L"MiniMapData2.png";//ミニマップStage2
+		app->RegisterTexture(L"MiniMapStage2", strTexture);
+
 		strTexture = texPath + L"Triangle.png";
 		app->RegisterTexture(L"MiniMapPlayer", strTexture);
 		strTexture = texPath + L"Red.png";
@@ -113,12 +116,18 @@ namespace basecross {
 		strTexture = texPath + L"WallSkin4.png";
 		app->RegisterTexture(L"WallRecovery", strTexture);
 
+		//エフェクト関連
 		strTexture = texPath + L"kaihuku.png";
 		app->RegisterTexture(L"PlayerEffectGreen", strTexture);
 		strTexture = texPath + L"PlayerEffectRed.png";
 		app->RegisterTexture(L"PlayerEffectRed", strTexture);
 		strTexture = texPath + L"EffectWhite.png";
 		app->RegisterTexture(L"PlayerEffectWhite", strTexture);
+		strTexture = texPath + L"RecoveryEffect.png";
+		app->RegisterTexture(L"RecoveryEffect", strTexture);
+		strTexture = texPath + L"GetEffect.png";
+		app->RegisterTexture(L"GetEffect", strTexture);
+
 
 		strTexture = texPath + L"DashMode.png";
 		app->RegisterTexture(L"DashButton", strTexture);
@@ -218,6 +227,12 @@ namespace basecross {
 
 		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2.bmf");
 		app->RegisterResource(L"Kakera_Mesh3", boneModelMesh);
+
+		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2-1.bmf");
+		app->RegisterResource(L"Kakera_Mesh4", boneModelMesh);
+
+		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2-2.bmf");
+		app->RegisterResource(L"Kakera_Mesh5", boneModelMesh);
 
 		//スタティックモデル
 		auto staticModelMesh = MeshResource::CreateStaticModelMesh(modPath, L"kakera1.bmf");
