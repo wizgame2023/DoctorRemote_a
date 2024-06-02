@@ -391,6 +391,8 @@ namespace basecross {
 
 	void GameStage2::OnCreate() {
 		try {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(2);
+
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 			AddGameObject<TimeManager>();//時間制限
@@ -439,6 +441,7 @@ namespace basecross {
 		{
 			//敵を生成
 			CreateEnemy();
+			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//レーダーを生成
 			CreateRadar();
 			m_StageFlag = 1;

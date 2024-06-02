@@ -24,7 +24,6 @@ namespace basecross {
 			//‰½‰ñƒNƒŠƒA‚µ‚½‚©
 			auto& scene = App::GetApp()->GetScene<Scene>();
 			m_stageCount = scene->GetGameStage();
-			m_stageCount++;
 			scene->SetGameStage(m_stageCount);
 
 
@@ -149,11 +148,19 @@ namespace basecross {
 		{
 			if (m_countUp >= 6.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)
 			{
-				if (m_stageCount < 3) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
-				}
-				else if (m_stageCount >= 3) {
+				switch (m_stageCount)
+				{
+				case 0:
 					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+					break;
+				case 1:
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
+					break;
+				case 2:
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+					break;
+				default:
+					break;
 				}
 			}
 		}

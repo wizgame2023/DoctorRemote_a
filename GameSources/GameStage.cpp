@@ -372,7 +372,7 @@ namespace basecross {
 	void GameStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.5f);
+		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 	void GameStage::OnDestroy() 
 	{
@@ -382,6 +382,7 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(1);
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 			AddGameObject<TimeManager>();//時間制限
@@ -429,13 +430,14 @@ namespace basecross {
 		{
 			//敵を生成
 			CreateEnemy();
+			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//レーダーを生成
 			CreateRadar();
 			m_StageFlag = 1;
 
 			OnDestroy();
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
-			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.5f);
+			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 			GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(1);//進行度を進める
 
 
