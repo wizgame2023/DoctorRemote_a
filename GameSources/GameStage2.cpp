@@ -358,7 +358,7 @@ namespace basecross {
 	void GameStage2::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 	void GameStage2::OnDestroy()
 	{
@@ -448,7 +448,7 @@ namespace basecross {
 
 			OnDestroy();
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
-			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.5f);
+			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 			GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(1);//進行度を進める
 
 
