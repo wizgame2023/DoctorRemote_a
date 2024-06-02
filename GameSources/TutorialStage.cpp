@@ -398,7 +398,7 @@ namespace basecross {
 		{
 			//“G‚ğ¶¬
 			CreateEnemy();
-			//GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
+			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//ƒŒ[ƒ_[‚ğ¶¬
 			CreateRadar();
 			m_StageFlag = 1;
