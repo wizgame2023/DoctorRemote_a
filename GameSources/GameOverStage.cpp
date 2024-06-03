@@ -57,6 +57,9 @@ namespace basecross {
 				case 2:
 					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
 					break;
+				case 3:
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage3");
+					break;
 				default:
 					break;
 				}
