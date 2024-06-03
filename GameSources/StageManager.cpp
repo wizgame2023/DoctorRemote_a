@@ -33,6 +33,8 @@ namespace basecross {
 		auto stage = GetStage();
 
 		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);
+		auto raderWaku = stage->AddGameObject<Sprite>(450, 250, L"RaderFrame", Vec3(0.0f,-250,0.0f));
+		raderWaku->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.5f));
 
 		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f),2);//415,265
 		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
@@ -72,50 +74,54 @@ namespace basecross {
 		if (m_comX < 430) {
 			m_cfFlag = true;
 		}
-
-		if (m_cfFlag) {
-			if (!m_comFlag) {
-				if (scene->GetGameStage() > 0) {
-					m_com[0] = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, Vec3(250, -180, 0.0f), L"SousaCom");
+		if (scene->GetGameStage() > 0) {
+			if (m_cfFlag) {
+				if (!m_comFlag) {
+					if (scene->GetGameStage() > 0) {
+						m_com[0] = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, Vec3(250, -180, 0.0f), L"SousaCom");
+					}
+					m_comFlag = true;
 				}
-				m_comFlag = true;
 			}
-		}
-		//敵を倒したらコメント
-		if (GetEnemyFlag()) {
-			if (!m_comFlag2) {
-				//m_com[0]->ThisDestroy();//ここがエラーのもと
-				int a = 0;
-				m_com[1] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
-				m_comFlag2 = true;
+			//敵を倒したらコメント
+			if (GetEnemyFlag()) {
+				if (!m_comFlag2) {
+					m_com[0]->ThisDestroy();//ここがエラーのもと
+					int a = 0;
+					m_com[1] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
+					m_comFlag2 = true;
+				}
 			}
+
 		}
 
 		if (m_countFlag)
 		{
+			if (scene->GetGameStage() > 0) {
+				//カウントダウンの表示
+				m_count -= elapsedTime;
+				if (m_count > 1) {
+					if (!m_countNumFlag) {
+						m_num = stage->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
+						m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+						m_countNumFlag = true;
+					}
+					m_num->UpdateValue(m_count);
 
-			//カウントダウンの表示
-			m_count -= elapsedTime;
-			if (m_count > 1) {
-				if (!m_countNumFlag) {
-					m_num = stage->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
-					m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
-					m_countNumFlag = true;
 				}
-				m_num->UpdateValue(m_count);
+				if (m_count < 1) {
+					m_num->ThisDestory();
+					if (!m_start) {
+						m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());
+					}
+					m_start = true;
 
-			}
-			if (m_count < 1) {
-				m_num->ThisDestory();
-				if (!m_start) {
-					m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());
+					m_countStart -= elapsedTime;
+					if (m_countStart < 0) {
+						m_startSprite->ThisDestory();
+					}
 				}
-				m_start = true;
 
-				m_countStart -= elapsedTime;
-				if (m_countStart < 0) {
-					m_startSprite->ThisDestory();
-				}
 			}
 
 		}
@@ -152,10 +158,13 @@ namespace basecross {
 	void StageManager::SetHp(float hp) {
 		m_currentHp += hp;
 	}
+	bool StageManager::GetCountFlag() {
+		return m_countFlag;
+	}
 	void StageManager::SetCountFlag(bool OnOff) {
 		m_countFlag = OnOff;
 	}
-	void StageManager::SetStageFlag(int Flag)
+	void StageManager::SetCareerFlag(int Flag)
 	{
 		m_stageFlag = Flag;
 	}
