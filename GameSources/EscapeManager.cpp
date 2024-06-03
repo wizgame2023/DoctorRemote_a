@@ -84,8 +84,8 @@ namespace basecross {
 	
 		if (m_UpdateFlag == 1)
 		{
-			//wstringstream wss;//デバック用文字列
-			//wss << L"エスケープマネージャー：" << endl;
+			wstringstream wss;//デバック用文字列
+			wss << L"エスケープマネージャー：" << endl;
 
 
 			float speed = 5.0f;//速さ
@@ -93,13 +93,15 @@ namespace basecross {
 			float VecZ = m_TargetPos.z - m_PlayerPos.z;//目標位置とPlayerとのZ座標の距離を測っている
 			float rad = atan2(VecZ, VecX);//角度を求める（ラジアン）
 
-			//wss << "VecX:" << VecX << endl << "VecZ:" << VecZ << endl;//デバック文字列
-
+			wss << "VecX:" << VecX << endl << "VecZ:" << VecZ << endl;//デバック文字列
+			wss << m_UpdateFlag<<endl;
 			auto& app = App::GetApp();
 			float delta = app->GetElapsedTime();//デルタタイムを取得
 			m_Time += delta;//時間経過
 			m_PlayerPos.x += (speed * cos(rad)) * delta;//間接的に距離を足している
 			m_PlayerPos.z += (speed * sin(rad)) * delta;//間接的に距離を足している
+			wss << "PosX:" << m_PlayerPos.x << endl << "PosZ:" << m_PlayerPos.z << endl;//デバック文字列
+
 
 			m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerPos);
 			if (m_Time >= 1.0f)
@@ -112,8 +114,8 @@ namespace basecross {
 				}
 			}
 			//デバック用文字列を生成
-			//auto scene = app->GetScene<Scene>();
-			//scene->SetDebugString(L"a\n" + wss.str());
+			auto scene = app->GetScene<Scene>();
+			scene->SetDebugString(L"a\n" + wss.str());
 
 		}
 	}
