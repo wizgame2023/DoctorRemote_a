@@ -123,7 +123,9 @@ namespace basecross {
 		case 10: 
 			//欠片の説明
 			Comment(13 * 3, L"Setumei1", true, false);
-			m_startFlag = true;
+			if (m_stageManager->GetCountFlag()) {
+				m_stageManager->SetStartFlag(true);
+			}
 			break;
 		case 11:
 			//レーダーの説明（ゲージMax時）
@@ -142,9 +144,9 @@ namespace basecross {
 		default:
 			break;
 		}
-		if (m_startFlag) {
-			m_stageManager->SetStartFlag(true);
-		}
+		//if (m_stageManager->GetStartFlag()) {
+		//	//m_stageManager->SetStartFlag(true);
+		//}
 
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
