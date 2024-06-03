@@ -33,7 +33,7 @@ namespace basecross {
 
 		auto ptrColl = AddComponent<CollisionCapsule>();
 		ptrColl->SetFixed(true);
-		ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
+		//ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
 

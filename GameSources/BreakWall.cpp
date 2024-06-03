@@ -43,7 +43,7 @@ namespace basecross {
 		m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
 		//m_ptrCollider->SetAfterCollision(AfterCollision::None);
 
-		m_ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
+		//m_ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
 
 
 
