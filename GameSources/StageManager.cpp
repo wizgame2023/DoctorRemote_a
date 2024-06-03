@@ -44,20 +44,20 @@ namespace basecross {
 
 
 		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
-		//switch (m_ligthStatus)
-		//{
-		//case 0:
-		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);
-		//	break;
-		//case 1:
-		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(),0);
-		//	break;
-		//case 2:
-		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3(),0);
-		//	break;
-		//default:
-		//	break;
-		//}
+		switch (m_ligthStatus)
+		{
+		case 0:
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);
+			break;
+		case 1:
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(),0);
+			break;
+		case 2:
+			stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3(),0);
+			break;
+		default:
+			break;
+		}
 
 
 	}
