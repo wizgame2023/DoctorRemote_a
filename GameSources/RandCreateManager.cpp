@@ -67,6 +67,7 @@ namespace basecross {
 			case 0:
 				GetStage()->AddGameObject<EnemyPiece>(Pos, Vec3(), Vec3(1.25f, 1.25f, 1.25f));//オブジェクト生成
 				count++;//カウント
+				break;
 			default:
 				break;
 			}
