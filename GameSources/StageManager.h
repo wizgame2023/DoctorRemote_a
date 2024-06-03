@@ -51,8 +51,9 @@ namespace basecross {
 		float GetHp();
 		float GetHpRatio();
 		void SetHp(float hp);
+		bool GetCountFlag();
 		void SetCountFlag(bool OnOff);
-		void SetStageFlag(int Flag);
+		void SetCareerFlag(int Flag);
 		int GetStageFlag();
 		bool GetStartFlag();
 		void SetStartFlag(bool start);
