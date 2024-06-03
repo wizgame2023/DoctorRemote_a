@@ -103,6 +103,8 @@ namespace basecross {
 		app->RegisterTexture(L"RadarRed", strTexture);
 		strTexture = texPath + L"DamageEffect.png";
 		app->RegisterTexture(L"DamageBullet", strTexture);
+		strTexture = texPath + L"RadarWaku.png";//レーダーの枠組み
+		app->RegisterTexture(L"RaderFrame", strTexture);
 		strTexture = texPath + L"numbers.png";
 		app->RegisterTexture(L"NumbersBlack", strTexture);
 		strTexture = texPath + L"numbers_w.png";
@@ -267,6 +269,8 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"RecoveryWallSE", soundWav);
 		soundWav = SoundPath + L"BreakWall.wav";
 		App::GetApp()->RegisterWav(L"BreakWallSE", soundWav);
+		soundWav = SoundPath + L"PieceDown.wav";
+		App::GetApp()->RegisterWav(L"PieceDownSE", soundWav);
 		//BGM
 		soundWav = SoundPath + L"ScaryBGM.wav";
 		App::GetApp()->RegisterWav(L"ScaryBGM", soundWav);
@@ -302,11 +306,15 @@ namespace basecross {
             //ゲームステージの設定
 			ResetActiveStage<GameStage>();
         }
-		if (event->m_MsgStr == L"ToGameStage2") {
+		else if (event->m_MsgStr == L"ToGameStage2") {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage2>();
 		}
-        else if (event->m_MsgStr == L"ToStartStage") {
+		else if (event->m_MsgStr == L"ToGameStage3") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage3>();
+		}
+		else if (event->m_MsgStr == L"ToStartStage") {
             ResetActiveStage<TitleStage>();
         }
 		else if (event->m_MsgStr == L"ToTutorialStage") {
