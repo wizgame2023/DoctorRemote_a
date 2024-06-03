@@ -38,7 +38,8 @@ namespace basecross {
 		virtual void OnCreate()override; //‰Šú‰»
 		void OnUpdate()override;//XV
 
-		void PlayBGM();
+		void BaseBGM();
+		void BossBGM();
 		virtual void OnDestroy() override;
 
 		void SetCollisionSwich(bool ONorOFF);
