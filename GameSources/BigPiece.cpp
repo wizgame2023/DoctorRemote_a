@@ -86,14 +86,16 @@ namespace basecross {
 			//Ž©•ªŽ©g‚ð”pŠü‚·‚é
 			GetStage()->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
 			stage->AddGameObject<PieceLittle>(other, player, 0.0f);
-			stage->AddGameObject<PieceLittle>(other, player, 45.0f);
-			stage->AddGameObject<PieceLittle>(other, player, 45.0f * 2);
-			stage->AddGameObject<PieceLittle>(other, player, 45.0f * 3);
-			stage->AddGameObject<PieceLittle>(other, player, 45.0f * 4);
-			stage->AddGameObject<PieceLittle>(other, player, 45.0f * 5);
-			stage->AddGameObject<PieceLittle>(other, player, 45.0f * 6);
-			stage->AddGameObject<PieceLittle>(other, player, 45.0f * 7);
-			stage->AddGameObject<PieceLittle>(other, player, 45.0f * 8);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 2);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 3);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 4);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 5);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 6);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 7);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 8);
+			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 9);
+
 
 		}
 		if (other->FindTag(L"Player")) {
