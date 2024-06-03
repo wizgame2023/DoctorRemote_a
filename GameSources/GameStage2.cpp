@@ -356,10 +356,14 @@ namespace basecross {
 
 
 	//BGMの再生
-	void GameStage2::PlayBGM()
+	void GameStage2::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+	}
+	void GameStage2::BossBGM() {
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 	void GameStage2::OnDestroy()
 	{
@@ -424,7 +428,7 @@ namespace basecross {
 			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -10.0f));//導入を追加
 
 			//BGM
-			PlayBGM();	
+			BaseBGM();	
 			
 			
 
@@ -448,8 +452,7 @@ namespace basecross {
 			m_StageFlag = 1;
 
 			OnDestroy();
-			auto XAPtr = App::GetApp()->GetXAudio2Manager();
-			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+			BossBGM();
 			GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(1);//進行度を進める
 
 
@@ -471,8 +474,10 @@ namespace basecross {
 			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, 15.0f, 0.0f),6);
 			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, -15.0f, 0.0f),6);
 
-
 			m_StageFlag = 3;
+
+			OnDestroy();
+			BaseBGM();
 
 		}
 

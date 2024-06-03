@@ -314,10 +314,14 @@ namespace basecross {
 
 
 	//BGMの再生
-	void TutorialStage::PlayBGM()
+	void TutorialStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
+	void TutorialStage::BossBGM() {
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 	void TutorialStage::OnDestroy()
 	{
@@ -381,7 +385,7 @@ namespace basecross {
 			SetSharedGameObject(L"StageCollisionManager",collisionManager);
 			AddGameObject<JoinManager>(Vec3(-12.0f, 0.5f, -13.0f));//侵入のムービー
 			//BGM
-			PlayBGM();
+			BaseBGM();
 			auto tutorialManager = AddGameObject<TutorialManager>();
 			SetSharedGameObject(L"TutorialManager", tutorialManager);
 		}
@@ -405,8 +409,7 @@ namespace basecross {
 			m_StageFlag = 1;
 
 			OnDestroy();
-			auto XAPtr = App::GetApp()->GetXAudio2Manager();
-			m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.5f);
+			BossBGM();
 			GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(1);//進行度を進める
 
 
@@ -427,6 +430,9 @@ namespace basecross {
 			AddGameObject<Sprite>(15.0f, 15.0f, L"White", StartPos + Vec3(-39.0f, -41.0f, 0.0f), 6);
 
 			m_StageFlag = 3;
+
+			OnDestroy();
+			BaseBGM();
 
 		}
 

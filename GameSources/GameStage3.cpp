@@ -349,10 +349,14 @@ namespace basecross {
 
 
 	//BGMÇÃçƒê∂
-	void GameStage3::PlayBGM()
+	void GameStage3::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
+	void GameStage3::BossBGM() {
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 	void GameStage3::OnDestroy()
 	{
@@ -414,7 +418,7 @@ namespace basecross {
 			SetSharedGameObject(L"StageManager", stageManager);
 
 			//BGM
-			PlayBGM();
+			BaseBGM();
 
 		}
 		catch (...) {
@@ -433,6 +437,9 @@ namespace basecross {
 			//ÉåÅ[É_Å[Çê∂ê¨
 			CreateRadar();
 			m_PieceFlag = 1;
+
+			OnDestroy();
+			BossBGM();
 		}
 
 	}
