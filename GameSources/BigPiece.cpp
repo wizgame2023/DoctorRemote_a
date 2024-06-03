@@ -64,7 +64,7 @@ namespace basecross {
 
 		//コライダー
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(true);
+		colPtr->SetDrawActive(false);
 		colPtr->SetAfterCollision(AfterCollision::None);
 
 		AddTag(L"BigPiece");

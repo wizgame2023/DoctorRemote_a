@@ -183,7 +183,7 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(true);
+		colPtr->SetDrawActive(false);
 		colPtr->SetAfterCollision(AfterCollision::Auto);
 
 		AddTag(L"Player");
