@@ -319,7 +319,10 @@ namespace basecross {
 		auto ptrTrans = GetComponent<Transform>();
 
 		if (other->FindTag(L"PieceLittle")) {
-			AddPiece(m_onePiece);
+			if(!m_radarFlag){
+				AddPiece(m_onePiece);
+
+			}
 			if (m_maxPiece < m_piece) {
 				m_radarFlag = true;
 			}

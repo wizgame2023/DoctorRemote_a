@@ -399,27 +399,27 @@ namespace basecross {
 		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
-		if (ptrPlayer->GetRadarFlag() && m_StageFlag == 0)
+		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
 			//敵を生成
 			CreateEnemy();
 			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//レーダーを生成
 			CreateRadar();
-			m_StageFlag = 1;
+			m_CareerFlag = 1;
 
 			OnDestroy();
 			BossBGM();
-			GetSharedGameObject<StageManager>(L"StageManager")->SetStageFlag(1);//進行度を進める
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
 
 
 
 		}
-		if (m_StageFlag == 1)
+		if (m_CareerFlag == 1)
 		{
-			m_StageFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
+			m_CareerFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
 		}
-		if (m_StageFlag == 2)//敵を倒したとき
+		if (m_CareerFlag == 2)//敵を倒したとき
 		{
 			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
 
@@ -429,7 +429,7 @@ namespace basecross {
 			float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 			AddGameObject<Sprite>(15.0f, 15.0f, L"White", StartPos + Vec3(-39.0f, -41.0f, 0.0f), 6);
 
-			m_StageFlag = 3;
+			m_CareerFlag = 3;
 
 			OnDestroy();
 			BaseBGM();

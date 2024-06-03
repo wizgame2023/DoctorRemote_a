@@ -15,7 +15,7 @@ namespace basecross {
 
 		bool m_PieceFlag;//ステージ全体のフラグ
 		shared_ptr<SoundItem> m_BGM;
-		int m_StageFlag;//ステージ全体のフラグ
+		int m_CareerFlag;//ステージ全体のフラグ
 		int m_BigPieceLength;//BigPieceの合計の数
 
 		void CreateViewLight(); //ビューの作成
