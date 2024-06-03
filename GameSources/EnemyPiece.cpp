@@ -71,13 +71,15 @@ namespace basecross {
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 		auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 		if (other->FindTag(L"Bullet")){
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"PieceDownSE", 0, 0.5f);//SE‚Í‚¶‚ß
 			//Ž©•ªŽ©g‚ð”pŠü‚·‚é
 			stage->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
 			stage->AddGameObject<PieceLittle>(other,player, 0.0f);
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f);
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);		
+			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);	
 			m_enemyDeletFlag++;
 		}
 		if (other->FindTag(L"Player")) {

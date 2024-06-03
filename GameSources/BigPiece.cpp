@@ -81,6 +81,8 @@ namespace basecross {
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 		if (other->FindTag(L"Bullet")) {
 			GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);//Ž©•ªŽ©g(BigPiece)‚ª‚¢‚È‚­‚È‚é‚±‚Æ‚ð“`‚¦‚é
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"PieceDownSE", 0, 0.5f);
 			//Ž©•ªŽ©g‚ð”pŠü‚·‚é
 			GetStage()->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
 			stage->AddGameObject<PieceLittle>(other, player, 0.0f);
