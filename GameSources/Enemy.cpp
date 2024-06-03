@@ -57,7 +57,7 @@ namespace basecross {
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		auto ptrColl = AddComponent<CollisionSphere>();
-		ptrColl->SetDrawActive(true);
+		ptrColl->SetDrawActive(false);
 
 
 		GetStage()->SetCollisionPerformanceActive(true);

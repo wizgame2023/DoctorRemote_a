@@ -53,7 +53,7 @@ namespace basecross {
 		static int STATUSPLAYER;
 		//コンストラクタ
 		Player(const shared_ptr<Stage>& StagePtr);
-		Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot);
+		Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot,float onePiece = 2.0f);
 
 
 		//デストラクタ

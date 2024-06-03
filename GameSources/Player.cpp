@@ -25,13 +25,13 @@ namespace basecross {
 		m_statusFlag(0),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
-	Player::Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos,const Vec3& rot):
+	Player::Player(const shared_ptr<Stage>& StagePtr, const Vec3& pos,const Vec3& rot,float onePiece):
 		GameObject(StagePtr),
 		m_pos(pos),
 		m_rot(rot),
 		m_piece(0),
-		m_onePiece(100.0f),
-		m_maxPiece(100.0f),
+		m_onePiece(onePiece),
+		m_maxPiece(150.0f),
 		m_speed(7.0f),
 		m_maxSpeed(7.0f),
 		m_dashSpeed(15.0f),
@@ -183,7 +183,7 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(true);
+		colPtr->SetDrawActive(false);
 		colPtr->SetAfterCollision(AfterCollision::Auto);
 
 		AddTag(L"Player");
