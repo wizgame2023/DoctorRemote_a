@@ -50,32 +50,11 @@ namespace basecross {
 	//Playerを追加する関数
 	void GameStage3::CreatePlayer()//改善すべき点
 	{
-		int randamPlayer = 0;
-		randamPlayer = rand() % 3;
-		shared_ptr<Player> ptrPlayer;
-		//randamPlayer = 0;//デバック
-		//shared_ptr<GameObject> nanasiObject;
-		//ランダムにPlayerの出現場所が決まる
-		float deg = -90;
+		//Playerの出現場所を決める
+		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		switch (randamPlayer)
-		{
-		case 0:
-			ptrPlayer = AddGameObject<Player>(Vec3(10.0f, 0.5f, -40.0f), Vec3(0.0f, rad, 0.0f));
-			break;
-		case 1:
-			ptrPlayer = AddGameObject<Player>(Vec3(-60.0f, 0.5f, 63.0f), Vec3(0.0f, rad, 0.0f));
-			break;
-		case 2:
-			ptrPlayer = AddGameObject<Player>(Vec3(60.0f, 0.5f, 10.0f), Vec3(0.0f, rad, 0.0f));
-			break;
-
-		default:
-			ptrPlayer = AddGameObject<Player>();
-			break;
-		}
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f));
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
-
 
 	}
 	//レーダーを追加する関数
@@ -408,6 +387,11 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
 
+			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
+			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
+
+			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, -10.8f));
+
 			//BGM
 			BaseBGM();
 
@@ -420,7 +404,6 @@ namespace basecross {
 	void GameStage3::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
-		CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_PieceFlag == 0)
 		{
 			//敵を生成
