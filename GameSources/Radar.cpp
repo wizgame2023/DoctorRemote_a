@@ -35,7 +35,7 @@ namespace basecross {
 		// ポリゴンの自作
 
 		Col4 color(1, 1, 1, 1); // ポリゴンの色
-		const float w = 100.0f; // ポリゴンの幅
+		const float w = 200.0f; // ポリゴンの幅
 		const float h = 100.0f; // ポリゴンの高さ
 		vector<VertexPositionColorTexture> m_vertices = { // 頂点データ
 			//             座標           ,頂点色,        UV座標
