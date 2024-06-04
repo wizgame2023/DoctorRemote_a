@@ -14,6 +14,7 @@ namespace basecross {
 	{
 		bool m_enemyflag;
 		bool m_posX;
+		bool m_posY;
 		float m_Hp;
 		
 		Vec3 m_pos;

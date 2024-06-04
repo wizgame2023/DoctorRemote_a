@@ -1,7 +1,7 @@
 /*!
 @file Character.cpp
 @brief ìGÇ»Ç«é¿ëÃ
-íSìñÅ@ëÂâÕå¥
+íSìñÅ@àÌå©
 */
 
 #include "stdafx.h"
@@ -23,9 +23,10 @@ namespace basecross {
 		m_rot(rot),
 		m_scale(scale),
 		m_posX(false),
+		m_posY(false),
 		m_enemyflag(false),
 		m_meshResName(L"Baikin_Mesh"),
-		m_Hp(5)
+		m_Hp(7)
 	{ 
 	}
 	void Enemy::OnCreate()
@@ -42,12 +43,8 @@ namespace basecross {
 			Vec3(1.0f, 1.0f, 1.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, 0.3f, 0.0f)
 		);
-
-		auto shadowPtr = AddComponent<Shadowmap>();
-		shadowPtr->SetMultiMeshResource(m_meshResName);
-		shadowPtr->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
 		ptrDraw->SetMultiMeshResource(m_meshResName);
@@ -56,8 +53,12 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"Default", 0, 90, true, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
+		auto shadowPtr = AddComponent<Shadowmap>();
+		shadowPtr->SetMultiMeshResource(m_meshResName);
+		shadowPtr->SetMeshToTransformMatrix(spanMat);
+
 		auto ptrColl = AddComponent<CollisionSphere>();
-		ptrColl->SetDrawActive(false);
+		ptrColl->SetDrawActive(true);
 
 
 		GetStage()->SetCollisionPerformanceActive(true);
@@ -71,42 +72,47 @@ namespace basecross {
 	{
 		float elapsed = App::GetApp()->GetElapsedTime();
 
-		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
-		ptrDraw->UpdateAnimation(elapsed);
+		//auto ptrDraw = GetComponent<PNTBoneModelDraw>();
+		//ptrDraw->UpdateAnimation(elapsed);
 		
 		m_trans = GetComponent<Transform>();
 		m_posCur = m_trans->GetPosition();
+		m_trans->SetScale(m_scale);
 
-		if (m_pos.x + 1.0f < m_posCur.x) {
+		//ç∂âEÇÃìÆÇ´
+		if (m_pos.x + 3.0f < m_posCur.x) {
 			m_posX = false;
 		}
-		else if (m_pos.x - 1.0f > m_posCur.x) {
+		else if (m_pos.x - 3.0f > m_posCur.x) {
 			m_posX = true;
 		}
 
 		if (m_posX) {
 
-			m_posCur.x += 1.0f * elapsed;
+			m_posCur.x += 2.0f * elapsed;
 		}
 		else if (!m_posX) {
-			m_posCur.x -= 1.0f * elapsed;
+			m_posCur.x -= 2.0f * elapsed;
 		}
+
+		//ècÇÃìÆÇ´
+		if (m_pos.y + 1.0f < m_posCur.y) {
+			m_posY = false;
+		}
+		if (m_pos.y > m_posCur.y) {
+			m_posY = true;
+		}
+		if (m_posY) {
+			m_posCur.y += 1.0f * elapsed;
+		}
+		else if (!m_posY) {
+			m_posCur.y -= 1.0f * elapsed;
+		}
+
+
 		m_trans->SetPosition(Vec3(m_posCur));
 		 
 		 
-		//auto piece = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
-		//float pieceBar = piece->GetPiece();
-		//float maxPieceBar = piece->GetMaxPiece();
-	
-		//if (pieceBar >= maxPieceBar)
-		//{
-		//	if (m_counter == 0)
-		//	{
-		//	  m_Hp = 3;
-		//	  ++m_counter;
-		//	}
-		//}
-
 
 	}
 
@@ -121,7 +127,9 @@ namespace basecross {
 
 			if (Collision->FindTag(L"Bullet") && m_Hp > 0)
 			{
-				m_Hp = m_Hp - attack;
+				m_Hp -=attack;
+				m_scale -= 0.4f;
+				m_pos.y -= 0.1f;
 			}
 		}	
 		if (m_Hp <= 0)
