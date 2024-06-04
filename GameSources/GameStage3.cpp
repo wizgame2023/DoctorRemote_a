@@ -370,7 +370,9 @@ namespace basecross {
 			CreatePlayer();
 			//敵のかけらを表示
 			CreateEnemyPiece();
-			CreateEnemyPiece2();//ランダムにかけらが出るようになる
+			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels3.csv", 150, 30);//ランダムにかけらが出るようになる
+
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
@@ -391,6 +393,7 @@ namespace basecross {
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
 			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, -10.8f));
+			m_CareerFlag = 0;//進行度フラグの初期化
 
 			//BGM
 			BaseBGM();
@@ -404,16 +407,44 @@ namespace basecross {
 	void GameStage3::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
-		if (ptrPlayer->GetRadarFlag() && m_PieceFlag == 0)
+		//CollisionActive(true);
+		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
 			//敵を生成
 			CreateEnemy();
+			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//レーダーを生成
 			CreateRadar();
-			m_PieceFlag = 1;
+			m_CareerFlag = 1;
 
 			OnDestroy();
 			BossBGM();
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
+
+
+
+		}
+		if (m_CareerFlag == 1)
+		{
+			m_CareerFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
+		}
+		if (m_CareerFlag == 2)//敵を倒したとき
+		{
+			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f));
+
+			auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
+			float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
+			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, 15.0f, 0.0f), 6);
+			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, -15.0f, 0.0f), 6);
+
+			m_CareerFlag = 3;
+
+			OnDestroy();
+			BaseBGM();
+
 		}
 
 	}
