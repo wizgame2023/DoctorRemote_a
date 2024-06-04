@@ -36,5 +36,6 @@ namespace basecross {
 
 		virtual void OnCreate();
 		virtual void OnUpdate();
+		bool GetMoveCheck();
 	};
 }

@@ -30,6 +30,9 @@ namespace basecross {
 			scene->SetBulletStataus(0);
 			scene->SetLigthStatus(0);
 
+			auto spriteManager = AddGameObject<SelectSprite>();
+			SetSharedGameObject(L"SelectSprite", spriteManager);
+
 			auto titleManager = AddGameObject<TitleManager>();
 
 			auto sprite = AddGameObject<Sprite>(512/2, 45/2, L"SelectTutorial", Vec3(0.0f,-100.0f,0.0f));
@@ -37,7 +40,6 @@ namespace basecross {
 			auto sprite3 = AddGameObject<Sprite>(300/2, 45/2, L"SelectGameStage2", Vec3(0.0f, -250.0f, 0.0f));
 			auto sprite4 = AddGameObject<Sprite>(300/2, 45/2, L"SelectGameStage3", Vec3(0.0f, -325.0f, 0.0f));
 
-			auto spriteManager = AddGameObject<SelectSprite>();
 			//AddGameObject<Player>(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-3);
 
