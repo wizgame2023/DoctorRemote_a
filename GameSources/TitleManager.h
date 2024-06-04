@@ -6,11 +6,14 @@
 
 #pragma once
 #include "stdafx.h"
+#include"SelectSprite.h"
 
 namespace basecross {
 	class TitleManager :public GameObject {
 	private:
-
+		shared_ptr<Sprite> m_blackBoard;
+		shared_ptr<SelectSprite>m_selectSprite;
+		float m_anCollar;
 	public:
 		TitleManager(const shared_ptr<Stage>& stagePtr);
 		virtual ~TitleManager(){}

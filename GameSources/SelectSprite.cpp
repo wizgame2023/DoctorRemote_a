@@ -135,5 +135,8 @@ namespace basecross {
 		//scene->SetDebugString(wss.str());
 
 	}
-
+	bool SelectSprite::GetMoveCheck()
+	{
+		return m_moveCheck;
+	}
 }
