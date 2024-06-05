@@ -52,12 +52,14 @@ namespace basecross {
 				m_maxX = m_width;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkR = true;
+				m_comFlag = false;
 				m_status = LIGHT;
 			}
 			if (m_maxX < 0 && !m_checkR) {
 				m_maxX = 0.0f;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkR = true;
+				m_comFlag = false;
 				m_status = BULLET;
 			}
 		}
@@ -73,12 +75,14 @@ namespace basecross {
 				m_maxX = -m_width;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkL = true;
+				m_comFlag = false;
 				m_status = DASH;
 			}
 			if (m_maxX > 0 && !m_checkL) {
 				m_maxX = 0.0f;
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkL = true;
+				m_comFlag = false;
 				m_status = BULLET;
 			}
 		}
@@ -132,9 +136,7 @@ namespace basecross {
 
 			//auto sprite = GetStage()->GetSharedGameObject<Sprite>(L"Moji2");
 			//sprite->Blinking(20.0f, Col4(1, 1, 1, 1));
-
 		}
-
 
 		//決定を押したら点滅
 		if (m_colorCheck) {
@@ -145,10 +147,8 @@ namespace basecross {
 				m_sprite->SetColor(Col4(m_color));
 			}
 			m_count -= elapsedTime * 10.0f;
-
-
 		}
-		
+	
 		if (m_count < 0) {
 			switch (scene->GetGameStage())
 			{
@@ -164,8 +164,43 @@ namespace basecross {
 			default:
 				break;
 			}
-
 		}
+
+		//コメントの表示
+		if (m_status == 1) {
+			if (m_com[0]) {
+				m_com[0]->ThisDestroy();
+			}
+			if (m_com[2]) {
+				m_com[2]->ThisDestroy();
+			}
+			if (m_comFlag) return;
+			m_com[1] = stage->AddGameObject<CommentManager>(3, 0, 0.05f, 512, 50, 300, 30, 9, 1, Vec3(-150.0f, -180.0f, 0.0f), L"StatusMoji1-2");
+			m_comFlag = true;
+		}
+		if (m_status == 0) {
+			if (m_com[1]) {
+				m_com[1]->ThisDestroy();
+			}
+			if (m_com[2]) {
+				m_com[2]->ThisDestroy();
+			}
+			if (m_comFlag) return;
+			m_com[0] = stage->AddGameObject<CommentManager>(16, 0, 0.05f, 450, 195, 250, 120, 8, 3, Vec3(-525.0f, -180.0f, 0.0f), L"StatusMoji1-3");
+			m_comFlag = true;
+		}
+		if (m_status == 2) {
+			if (m_com[0]) {
+				m_com[0]->ThisDestroy();
+			}
+			if (m_com[1]) {
+				m_com[1]->ThisDestroy();
+			}
+			if (m_comFlag) return;
+			m_com[2] = stage->AddGameObject<CommentManager>(17, 0, 0.05f, 512, 120, 300, 80, 9, 2, Vec3(250.0f, -180.0f, 0.0f), L"StatusMoji1-1");
+			m_comFlag = true;
+		}
+
 	}
 	int StatusManager::GetStatus() {
 		return m_status;
