@@ -8,10 +8,10 @@
 
 namespace basecross {
 
-    //--------------------------------------------------------------------------------------
-    ///    ゲームシーン
-    //--------------------------------------------------------------------------------------
-    void Scene::CreateResourses() {
+	//--------------------------------------------------------------------------------------
+	///    ゲームシーン
+	//--------------------------------------------------------------------------------------
+	void Scene::CreateResourses() {
 		auto& app = App::GetApp();
 
 		auto path = app->GetDataDirWString();
@@ -277,35 +277,35 @@ namespace basecross {
 		soundWav = SoundPath + L"BossBGM.wav";
 		App::GetApp()->RegisterWav(L"BossBGM", soundWav);
 
-		
-    }
 
-    void Scene::OnCreate() {
-        try {
-			
-            // 背景色を設定
-            SetClearColor(Col4(0.0f, 0.11328125f, 0.2578125, 1.0f)); // ミッドナイトブルー
+	}
 
-            //リソース作成
-            CreateResourses();
+	void Scene::OnCreate() {
+		try {
 
-            //自分自身にイベントを送る
-            //これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-            PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
-        }
-        catch (...) {
-            throw;
-        }
-    }
+			// 背景色を設定
+			SetClearColor(Col4(0.0f, 0.11328125f, 0.2578125, 1.0f)); // ミッドナイトブルー
 
-    Scene::~Scene() {
-    }
+			//リソース作成
+			CreateResourses();
 
-    void Scene::OnEvent(const shared_ptr<Event>& event) {
-        if (event->m_MsgStr == L"ToGameStage") {
-            //ゲームステージの設定
+			//自分自身にイベントを送る
+			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
+		}
+		catch (...) {
+			throw;
+		}
+	}
+
+	Scene::~Scene() {
+	}
+
+	void Scene::OnEvent(const shared_ptr<Event>& event) {
+		if (event->m_MsgStr == L"ToGameStage") {
+			//ゲームステージの設定
 			ResetActiveStage<GameStage>();
-        }
+		}
 		else if (event->m_MsgStr == L"ToGameStage2") {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage2>();
@@ -315,17 +315,17 @@ namespace basecross {
 			ResetActiveStage<GameStage3>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
-            ResetActiveStage<TitleStage>();
-        }
+			ResetActiveStage<TitleStage>();
+		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
 		}
-        else if (event->m_MsgStr == L"ToClearStage") {
-            ResetActiveStage<ScoreStage>();
-        }
-        else if (event->m_MsgStr == L"ToGameOverStage") {
-            ResetActiveStage<GameOverStage>();
-        }
+		else if (event->m_MsgStr == L"ToClearStage") {
+			ResetActiveStage<ScoreStage>();
+		}
+		else if (event->m_MsgStr == L"ToGameOverStage") {
+			ResetActiveStage<GameOverStage>();
+		}
 		else if (event->m_MsgStr == L"ToStatusStage") {
 			ResetActiveStage<StatusStage>();
 		}
@@ -338,7 +338,7 @@ namespace basecross {
 
 
 
-    }
+	}
 
 	int Scene::GetPlayerStatus() {
 		return m_playerStatus;
@@ -382,6 +382,18 @@ namespace basecross {
 	void Scene::SetGameStage(int gameStage) {
 		m_gameStage = gameStage;
 	}
+
+	int  Scene::GetAchievementPoint()
+	{
+		return m_achievementPoint;
+	}
+
+	void Scene::SetAchievementPoint(int achievementPoint)
+	{
+		m_achievementPoint += achievementPoint;
+	}
+
+
 }
 //test
 //end basecross
