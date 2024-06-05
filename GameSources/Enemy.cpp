@@ -11,24 +11,38 @@ namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
 		m_Hp(10),
-		m_posX(1.0f),
+		m_posXFlag(1.0f),
 		m_enemyflag(false),
 		m_meshResName(L"Baikin_Mesh")
-	{
-	}
-	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale
+	{}
+	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, 
+		const Vec3& pos, 
+		const Vec3& rot, 
+		const Vec3& scale
 	) :
 		GameObject(StagePtr),
 		m_pos(pos),
 		m_rot(rot),
 		m_scale(scale),
-		m_posX(false),
-		m_posY(false),
+		m_width(3.0f),
+		m_widthSpeed(2.0f),
+		m_hegiht(2.0f),
+		m_hegihtSpeed(1.0f),
+		m_scaleReduct(0.4f),
+		m_posYRedect(0.1f),
+		m_pieceTime(0.1f),
+		m_bigPieceTime(0.1f),
+		m_pieceCount(0),
+		m_bigPieceCount(0),
+		m_posXFlag(false),
+		m_posYFlag(false),
 		m_enemyflag(false),
+		m_pieceFlag(false),
+		m_event(false),
 		m_meshResName(L"Baikin_Mesh"),
 		m_Hp(7)
-	{ 
-	}
+	{}
+
 	void Enemy::OnCreate()
 	{
 		m_trans = GetComponent<Transform>();
@@ -36,6 +50,7 @@ namespace basecross {
 		m_trans->SetRotation(m_rot);
 		m_trans->SetScale(m_scale);
 
+		auto stage = GetStage();
 		AddTag(L"Enemy");
 
 		Mat4x4 spanMat;
@@ -58,6 +73,7 @@ namespace basecross {
 		shadowPtr->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrColl = AddComponent<CollisionSphere>();
+		ptrColl->SetAfterCollision(AfterCollision::None);
 		ptrColl->SetDrawActive(true);
 
 
@@ -71,54 +87,106 @@ namespace basecross {
 	void Enemy::OnUpdate()
 	{
 		float elapsed = App::GetApp()->GetElapsedTime();
-
+		auto stage = GetStage();
 		//auto ptrDraw = GetComponent<PNTBoneModelDraw>();
 		//ptrDraw->UpdateAnimation(elapsed);
 		
 		m_trans = GetComponent<Transform>();
 		m_posCur = m_trans->GetPosition();
 		m_trans->SetScale(m_scale);
+		m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+		auto playerTrans = m_player->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition();
+		auto eventPos = playerPos - m_posCur;
+		auto eventLenght = sqrt(eventPos.x * eventPos.x + eventPos.z * eventPos.z);
 
 		//左右の動き
-		if (m_pos.x + 3.0f < m_posCur.x) {
-			m_posX = false;
+		if (m_pos.x + m_width < m_posCur.x) {
+			m_posXFlag = false;
 		}
-		else if (m_pos.x - 3.0f > m_posCur.x) {
-			m_posX = true;
+		else if (m_pos.x - m_width > m_posCur.x) {
+			m_posXFlag = true;
 		}
 
-		if (m_posX) {
+		if (m_posXFlag) {
 
-			m_posCur.x += 2.0f * elapsed;
+			m_posCur.x += m_widthSpeed * elapsed;
 		}
-		else if (!m_posX) {
-			m_posCur.x -= 2.0f * elapsed;
+		else if (!m_posXFlag) {
+			m_posCur.x -= m_widthSpeed * elapsed;
 		}
 
 		//縦の動き
-		if (m_pos.y + 1.0f < m_posCur.y) {
-			m_posY = false;
+		if (m_pos.y + m_hegiht < m_posCur.y) {
+			m_posYFlag = false;
 		}
 		if (m_pos.y > m_posCur.y) {
-			m_posY = true;
+			m_posYFlag = true;
 		}
-		if (m_posY) {
-			m_posCur.y += 1.0f * elapsed;
+		if (m_posYFlag) {
+			m_posCur.y += m_hegihtSpeed * elapsed;
 		}
-		else if (!m_posY) {
-			m_posCur.y -= 1.0f * elapsed;
+		else if (!m_posYFlag) {
+			m_posCur.y -= m_hegihtSpeed * elapsed;
 		}
-
-
 		m_trans->SetPosition(Vec3(m_posCur));
 		 
-		 
+		//まき散らすウイルスの更新
+
+		if (eventLenght < 20.0f) {
+			m_event = true;
+		}
+		if (m_event) {
+			if (m_pieceCount < 10) {
+				m_pieceTime -= elapsed;
+				if (m_pieceTime < 0.0f) {
+					m_enemyPiece[m_pieceCount] = stage->AddGameObject<EnemyPiece>(m_pos, m_rot, m_scale * 0.7f,false);
+					m_enemyPiece[m_pieceCount]->Event(360 / 10 * m_pieceCount);
+					m_pieceFlag = true;
+					m_pieceCount++;
+					m_pieceTime = 0.1f;
+				}
+			}
+			if (m_bigPieceCount < 10&&m_pieceCount == 10) {
+				m_bigPieceTime -= elapsed;
+				if (m_bigPieceTime < 0.0f) {
+					m_bigEnemyPiece[m_bigPieceCount] = stage->AddGameObject<EnemyPiece>(m_pos, m_rot, m_scale * 0.7f, false);
+					m_bigEnemyPiece[m_bigPieceCount]->Event(360 / 10 * m_bigPieceCount);
+					m_bigPieceCount++;
+					m_bigPieceTime = 0.1f;
+				}
+
+			}
+			else {
+				m_event = false;
+			}
+			
+
+		}
+		//for (int i = 0; i < 1; i++) {
+		//	m_enemyPiece[i] = stage->AddGameObject<EnemyPiece>(m_pos, m_rot, m_scale * 0.7);
+		//	m_enemyPiece[i]->Event(360/6 * i);
+		//	m_pieceFlag = true;
+		//}
+
+		if (m_pieceFlag) {
+			for (int i = 0; i < m_pieceCount; i++) {
+				m_enemyPiece[i]->UpdateEvent();
+			}
+			if (m_bigPieceCount > 0) {
+				for (int i = 0; i < m_bigPieceCount; i++) {
+					m_bigEnemyPiece[i]->UpdateEvent();
+				}
+
+			}
+		}
 
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Collision)
 	{
 		m_bullet = dynamic_pointer_cast<Bullet>(Collision);
+		auto stage = GetStage();
 		//Collision->GetStage()->SetSharedGameObject(L"Bullet", Bulletptr);
 		if (!m_bullet.expired())
 		{
@@ -128,8 +196,9 @@ namespace basecross {
 			if (Collision->FindTag(L"Bullet") && m_Hp > 0)
 			{
 				m_Hp -=attack;
-				m_scale -= 0.4f;
-				m_pos.y -= 0.1f;
+				m_scale -= m_scaleReduct;
+				m_pos.y -= m_posYRedect;
+
 			}
 		}	
 		if (m_Hp <= 0)
@@ -144,6 +213,10 @@ namespace basecross {
 			}
 			int a = 0;
 		}
+
+	}
+
+	void Enemy::EventMove() {
 
 	}
 

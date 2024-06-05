@@ -8,33 +8,58 @@
 #include "stdafx.h" 
 #include "Bullet.h"
 #include "TutorialManager.h"
+#include "EnemyPiece.h"
+#include "Player.h"
 
 namespace basecross {
 	class Enemy :public GameObject
 	{
 		bool m_enemyflag;
-		bool m_posX;
-		bool m_posY;
+		bool m_posXFlag;
+		bool m_posYFlag;
+		bool m_pieceFlag;
+		bool m_bigPieceCount;
+		bool m_event;
 		float m_Hp;
+		float m_width;
+		float m_widthSpeed;
+		float m_hegiht;
+		float m_hegihtSpeed;
+		float m_scaleReduct;
+		float m_posYRedect;
+		float m_pieceTime;
+		float m_bigPieceTime;
+
+		float m_deg;
+		int m_pieceCount;
 		
-		Vec3 m_pos;
-		Vec3 m_posCur;
+		Vec3 m_pos;   //èâä˙íl
+		Vec3 m_posCur;//ìÆÇ©Ç∑pos
 		Vec3 m_rot;
 		Vec3 m_scale;
 
 		wstring m_meshResName;
 
 		weak_ptr<Bullet> m_bullet;
+		shared_ptr<Player> m_player;
 		shared_ptr<Transform> m_trans;
+		shared_ptr<EnemyPiece> m_enemyPiece[10];
+		shared_ptr<EnemyPiece> m_bigEnemyPiece[10];
+
 
 	public:
 		Enemy(const shared_ptr<Stage>& StaegePtr);
-		Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale);
+		Enemy(const shared_ptr<Stage>& StagePtr,
+			const Vec3& pos,
+			const Vec3& rot,
+			const Vec3& scale
+		);
 
 		~Enemy() {}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
+		void EventMove();
 		void SetEnemy(bool enemy);
 		bool GetEnemy();
 	};
