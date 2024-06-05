@@ -47,6 +47,7 @@ namespace basecross {
 
 	void ScoreStage::OnUpdate()
 	{
+		auto scene = App::GetApp()->GetScene<Scene>();
 		float delta = App::GetApp()->GetElapsedTime();
 		m_countUp += 1 * delta;
 		StageChange();
@@ -61,8 +62,6 @@ namespace basecross {
 					Vec3(-550.0f, 350.0f, 0.0f), L"ResultMoji1");
 				m_timeCount++;
 			}
-
-			
 			else if (m_time >= 50 && m_countUp >= 2.0f && m_timeCount == 1)
 			{
 				//auto ifClear = AddGameObject<Sprite>(512, 75, L"IfClear", Vec3(-300, 100, 0));
@@ -78,6 +77,7 @@ namespace basecross {
 				auto moji1 = AddGameObject<Comment>(7, 1, 0.2f, 512, 256, 512, 256, 7, 4, // 40秒残して生還
 					Vec3(-500.0f, 70.0f, 0.0f), L"IfClear");
 				m_timeCount++;
+
 			}
 			else if (m_time >= 25 && m_time < 40 && m_countUp >= 2.0f && m_timeCount == 1)//m_time >= 40 && m_time < 50 &&
 			{
@@ -105,42 +105,48 @@ namespace basecross {
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(270, 0, 0)); // S
 				rank->UpdateRank(0);
 				m_timeCount++;
+				m_achievementPoint += 100;
+				m_count++;
 			}
 			else if (m_time >= 40 && m_time < 50 && m_countUp >= 4.0f && m_timeCount == 2)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0)); // A
 				rank->UpdateRank(1);
 				m_timeCount++;
+				m_achievementPoint += 75;
+				m_count++;
 			}
 			else if (m_time >= 25 && m_time < 40 && m_countUp >= 4.0f && m_timeCount == 2)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0)); // B
 				rank->UpdateRank(2);
 				m_timeCount++;
+				m_achievementPoint += 50;
+				m_count;
 			}
 			else if (m_time <= 25 && m_countUp >= 4.0f && m_timeCount == 2)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0)); // C
 				rank->UpdateRank(3);
 				m_timeCount++;
+				m_achievementPoint += 25;
+				m_count;
 			}
-
-
-			else if (m_countUp >= 5.0f && m_timeCount == 3)
-			{
-				auto moji3 = AddGameObject<Comment>(7, 0, 0.2f, 256, 64, 256, 64, 7, 1, // Bボタンで次へ
-					Vec3(-550.0f, -300.0f, 0.0f), L"ResultMoji2");
-				m_timeCount++;
-			}
-
-				m_moveCount = -400;
-
+			scene->SetAchievementPoint(m_achievementPoint);
 		}
-		//wstringstream wss(L"");
-		//auto scene = App::GetApp()->GetScene<Scene>();
-		//wss << m_countUp << endl;
+		else if (m_count == 1)
+		{
+			auto moji3 = AddGameObject<Comment>(7, 0, 0.2f, 256, 64, 256, 64, 7, 1, // Aボタンで次へ
+			Vec3(-550.0f, -300.0f, 0.0f), L"ResultMoji2");
+			m_timeCount++;
+			m_count++;
+		}
 
-		//scene->SetDebugString( wss.str());
+		int test = scene->GetAchievementPoint();//デバック用変数
+		wstringstream wss(L"");
+		wss << test << endl;
+
+		scene->SetDebugString( wss.str());
 	}
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
@@ -168,5 +174,4 @@ namespace basecross {
 			}
 		}
 	}
-
 }

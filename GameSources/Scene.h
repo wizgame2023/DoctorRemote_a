@@ -19,6 +19,7 @@ namespace basecross{
 		int m_time;
 		int m_ligthStatus;
 		int m_gameStage;
+		int m_achievementPoint;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief ƒŠƒ\[ƒX‚Ìì¬
@@ -66,6 +67,8 @@ namespace basecross{
 		void SetTime(int time);
 		int GetGameStage();
 		void SetGameStage(int gameStage);
+		void SetAchievementPoint(int achievementPoint);
+		int GetAchievementPoint();
 	};
 
 }
