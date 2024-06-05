@@ -9,10 +9,10 @@
 namespace basecross {
 	class ScoreStage :public Stage
 	{
-		int m_time;
-		int m_timeCount = 0;
-		int m_count = 0;
-		float m_countUp = 0.0f;
+		int m_time;//ステージクリアした時の残りタイムを格納する変数
+		float m_countUp = 0.0f;//スコアステージが生成されてから何秒経ったかを表す変数
+		int m_timeCount = 0;//if文に「m_countUp」を何回使ったかを表す変数
+		int m_control = 0;//「OnUpdate」の中で１回しか通さないように制御する変数
 		int m_stageCount;
 
 		int m_achievementPoint;
