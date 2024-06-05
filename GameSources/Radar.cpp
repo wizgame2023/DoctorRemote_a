@@ -130,7 +130,7 @@ namespace basecross {
 		}
 		else if (PlayerEnemyLong <= 50.0f)
 		{
-			m_drawComp->SetTextureResource(L"RadarOrange");//白のテクスチャが欲しいときはHAKUSIを選択してください
+			m_drawComp->SetTextureResource(L"RadarYellow");//白のテクスチャが欲しいときはHAKUSIを選択してください
 		}
 		else if (PlayerEnemyLong > 50.0f)
 		{
