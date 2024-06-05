@@ -8,6 +8,7 @@
 #include "stdafx.h"
 #include "Sprite.h"
 #include "Player.h"
+#include "CommentManager.h"
 
 namespace basecross {
 	class StatusManager :public GameObject {
@@ -18,6 +19,7 @@ namespace basecross {
 		bool m_checkL;
 		bool m_colorCheck;
 		bool m_moveCheck;
+		bool m_comFlag;
 		float m_count;
 
 		int m_decision;
@@ -27,6 +29,7 @@ namespace basecross {
 
 		shared_ptr<Transform> m_trans;
 		shared_ptr<Player> m_player;
+		shared_ptr<CommentManager> m_com[3];
 
 		shared_ptr<Sprite> m_sprite;
 		Col4 m_color;
