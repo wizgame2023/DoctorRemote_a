@@ -10,9 +10,11 @@
 namespace basecross {
 	class BigPiece :public GameObject {
 	private:
+		bool m_ground;
 		Vec3 m_scale;
 		Vec3 m_rotate;
 		Vec3 m_position;
+		Vec3 m_velocity;
 		wstring m_meshResName;
 		wstring m_myMiniMapName;
 		int m_var;//ビックピースのどの形態にするかを決める
@@ -30,6 +32,8 @@ namespace basecross {
 		virtual void OnUpdate()override;
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 		void MyMiniMapName(wstring Name);//自分の位置がミニマップに表示するオブジェクトの名前
+		void Event(float deg);
+		void UpdateEvent();
 
 	};
 }

@@ -102,7 +102,43 @@ namespace basecross {
 			auto stageManager = GetStage()->GetSharedGameObject<StageManager>(L"StageManager");
 			stageManager->SetHp(-20.0f);
 		}
+		if (other->FindTag(L"Ground")) {
+			m_ground = true;
+		}
 	}
+
+	void BigPiece::Event(float deg) {
+		auto grav = AddComponent<Gravity>();
+		auto ptrTrans = GetComponent<Transform>();
+		Vec3 pos = ptrTrans->GetPosition();
+
+		//—Ž‚¿‚Ä‚­‚é‚‚³
+		pos.y += 5.0f;
+		Quat qt = ptrTrans->GetQuaternion();
+		float rad = XMConvertToRadians(deg);
+
+		Vec3 velo(sin(rad), 1.0f, cos(rad));
+		velo *= 8.0f;
+		m_velocity = velo;
+		ptrTrans->SetPosition(pos);
+
+	}
+	void BigPiece::UpdateEvent() {
+		//auto grav = GetComponent<Gravity>();
+		auto elapsed = App::GetApp()->GetElapsedTime();
+		auto ptrTrans = GetComponent<Transform>();
+		if (!m_ground) {
+			auto pos = ptrTrans->GetPosition();
+			pos += m_velocity * elapsed;
+			ptrTrans->SetPosition(pos);
+		}
+		else if (m_ground) {
+			auto grav = GetComponent<Gravity>();
+			grav->SetGravityZero();
+		}
+
+	}
+
 
 	void BigPiece::MyMiniMapName(wstring Name)
 	{
