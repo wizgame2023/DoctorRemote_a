@@ -97,8 +97,8 @@ namespace basecross {
 		app->RegisterTexture(L"Radar", strTexture);
 		strTexture = texPath + L"RadarBlueYoko.png";
 		app->RegisterTexture(L"RadarBlue", strTexture);
-		strTexture = texPath + L"RadarOrangeYoko.png";
-		app->RegisterTexture(L"RadarOrange", strTexture);
+		strTexture = texPath + L"RadarYellowYoko.png";
+		app->RegisterTexture(L"RadarYellow", strTexture);
 		strTexture = texPath + L"RadarRedYoko.png";
 		app->RegisterTexture(L"RadarRed", strTexture);
 		strTexture = texPath + L"DamageEffect.png";
@@ -137,6 +137,10 @@ namespace basecross {
 		app->RegisterTexture(L"DashButton", strTexture);
 		strTexture = texPath + L"BulletMode.png";
 		app->RegisterTexture(L"BulletButton", strTexture);
+
+		strTexture = texPath + L"GageMode.png";
+		app->RegisterTexture(L"GageButton", strTexture);
+
 		strTexture = texPath + L"PieceButton.png";
 		app->RegisterTexture(L"PieceButton", strTexture);
 		strTexture = texPath + L"LightMode.png";
@@ -177,6 +181,12 @@ namespace basecross {
 		app->RegisterTexture(L"MapSetumei", strTexture);
 
 
+		strTexture = texPath + L"StatusMoji1-1.png";
+		app->RegisterTexture(L"StatusMoji1-1", strTexture);
+		strTexture = texPath + L"StatusMoji1-2.png";
+		app->RegisterTexture(L"StatusMoji1-2", strTexture);
+		strTexture = texPath + L"StatusMoji1-3.png";
+		app->RegisterTexture(L"StatusMoji1-3", strTexture);
 
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";
