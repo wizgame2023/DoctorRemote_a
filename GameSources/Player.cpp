@@ -229,7 +229,7 @@ namespace basecross {
 				auto objTrans = obj->GetComponent<Transform>();
 				auto pullTrans = objTrans->GetPosition() - ptrPos;
 				float range = sqrt(pullTrans.x * pullTrans.x + pullTrans.z * pullTrans.z);
-				if (range < 8.0f) {
+				if (range < 10.0f) {
 					auto pos = ptrPos;
 					pos.x += -pullTrans.x * 0.2f + elapsedTime;
 					pos.z += -pullTrans.z * 0.2f + elapsedTime;
