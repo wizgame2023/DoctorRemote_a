@@ -18,8 +18,25 @@ namespace basecross {
 		m_rotate(rotate),
 		m_scale(scale),
 		m_var(var),
+		m_littlePieceFlag(true),
 		m_meshResName(L"Kakera_Mesh3")
 	{}
+	BigPiece::BigPiece(const shared_ptr<Stage>& stagePtr,
+		const Vec3& position,
+		const Vec3& rotate,
+		const Vec3 scale,
+		const bool littlePieceFlag,
+		const int var
+	) :
+		GameObject(stagePtr),
+		m_position(position),
+		m_rotate(rotate),
+		m_scale(scale),
+		m_var(var),
+		m_littlePieceFlag(littlePieceFlag),
+		m_meshResName(L"Kakera_Mesh3")
+	{}
+
 
 	void BigPiece::OnCreate() {
 		auto ptrTrans = GetComponent<Transform>();
@@ -29,7 +46,7 @@ namespace basecross {
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.5f, 0.5f, 0.5f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f)
@@ -63,9 +80,10 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		//コライダー
-		auto colPtr = AddComponent<CollisionObb>();
+		auto colPtr = AddComponent<CollisionSphere>();
 		colPtr->SetDrawActive(false);
 		colPtr->SetAfterCollision(AfterCollision::None);
+		colPtr->SetFixed(false);
 
 		AddTag(L"BigPiece");
 
@@ -79,22 +97,25 @@ namespace basecross {
 	void BigPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
 		auto stage = GetStage();
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+
 		if (other->FindTag(L"Bullet")) {
-			GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);//自分自身(BigPiece)がいなくなることを伝える
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
 			pieceSE->Start(L"PieceDownSE", 0, 0.5f);
 			//自分自身を廃棄する
 			GetStage()->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
-			stage->AddGameObject<PieceLittle>(other, player, 0.0f);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 2);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 3);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 4);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 5);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 6);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 7);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 8);
-			stage->AddGameObject<PieceLittle>(other, player, 36.0f * 9);
+			if (m_littlePieceFlag) {
+				GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);//自分自身(BigPiece)がいなくなることを伝える
+				stage->AddGameObject<PieceLittle>(other, player, 0.0f);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 2);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 3);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 4);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 5);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 6);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 7);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 8);
+				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 9);
+			}
 
 
 		}
@@ -118,7 +139,7 @@ namespace basecross {
 		float rad = XMConvertToRadians(deg);
 
 		Vec3 velo(sin(rad), 1.0f, cos(rad));
-		velo *= 8.0f;
+		velo *= 5.0f;
 		m_velocity = velo;
 		ptrTrans->SetPosition(pos);
 

@@ -11,6 +11,7 @@ namespace basecross {
 	class BigPiece :public GameObject {
 	private:
 		bool m_ground;
+		bool m_littlePieceFlag;
 		Vec3 m_scale;
 		Vec3 m_rotate;
 		Vec3 m_position;
@@ -25,6 +26,13 @@ namespace basecross {
 			const Vec3& rotate,
 			const Vec3 scale,
 			int var = 1
+		);
+		BigPiece(const shared_ptr<Stage>& stagePtr,
+			const Vec3& position,
+			const Vec3& rotate,
+			const Vec3 scale,
+			const bool littlePiece,
+			const int var = 1
 		);
 		virtual ~BigPiece() {}
 
