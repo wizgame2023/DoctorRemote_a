@@ -1,7 +1,7 @@
 /*!
 @file Character.cpp
 @brief ìGÇ»Ç«é¿ëÃ
-íSìñÅ@ëÂâÕå¥
+íSìñÅ@àÌå©
 */
 
 #include "stdafx.h"
@@ -11,23 +11,43 @@ namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
 		m_Hp(10),
-		m_posX(1.0f),
+		m_posXFlag(1.0f),
 		m_enemyflag(false),
 		m_meshResName(L"Baikin_Mesh")
-	{
-	}
-	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, const Vec3& pos, const Vec3& rot, const Vec3& scale
+	{}
+	Enemy::Enemy(const shared_ptr<Stage>& StagePtr, 
+		const Vec3& pos, 
+		const Vec3& rot, 
+		const Vec3& scale
 	) :
 		GameObject(StagePtr),
 		m_pos(pos),
 		m_rot(rot),
 		m_scale(scale),
-		m_posX(false),
+		m_width(3.0f),
+		m_widthSpeed(2.0f),
+		m_hegiht(2.0f),
+		m_hegihtSpeed(1.0f),
+		m_scaleReduct(0.4f),
+		m_posYRedect(0.1f),
+		m_pieceTime(0.1f),
+		m_bigPieceTime(0.5f),
+		m_bigPieceTime2(0.2f),
+		m_pieceCount(0),
+		m_bigPieceCount(0),
+		m_bigPieceCount2(0),
+		m_posXFlag(false),
+		m_posYFlag(false),
 		m_enemyflag(false),
+		m_pieceFlag(false),
+		m_bigPieceFlag(false),
+		m_bigPieceFlag2(false),
+		m_event(false),
+		m_event2(false),
 		m_meshResName(L"Baikin_Mesh"),
-		m_Hp(5)
-	{ 
-	}
+		m_Hp(7)
+	{}
+
 	void Enemy::OnCreate()
 	{
 		m_trans = GetComponent<Transform>();
@@ -35,6 +55,7 @@ namespace basecross {
 		m_trans->SetRotation(m_rot);
 		m_trans->SetScale(m_scale);
 
+		auto stage = GetStage();
 		AddTag(L"Enemy");
 
 		Mat4x4 spanMat;
@@ -42,12 +63,8 @@ namespace basecross {
 			Vec3(1.0f, 1.0f, 1.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, 0.3f, 0.0f)
 		);
-
-		auto shadowPtr = AddComponent<Shadowmap>();
-		shadowPtr->SetMultiMeshResource(m_meshResName);
-		shadowPtr->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
 		ptrDraw->SetMultiMeshResource(m_meshResName);
@@ -56,8 +73,13 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"Default", 0, 90, true, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
+		auto shadowPtr = AddComponent<Shadowmap>();
+		shadowPtr->SetMultiMeshResource(m_meshResName);
+		shadowPtr->SetMeshToTransformMatrix(spanMat);
+
 		auto ptrColl = AddComponent<CollisionSphere>();
-		ptrColl->SetDrawActive(false);
+		ptrColl->SetAfterCollision(AfterCollision::None);
+		ptrColl->SetDrawActive(true);
 
 
 		GetStage()->SetCollisionPerformanceActive(true);
@@ -70,49 +92,124 @@ namespace basecross {
 	void Enemy::OnUpdate()
 	{
 		float elapsed = App::GetApp()->GetElapsedTime();
-
-		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
-		ptrDraw->UpdateAnimation(elapsed);
+		auto stage = GetStage();
+		//auto ptrDraw = GetComponent<PNTBoneModelDraw>();
+		//ptrDraw->UpdateAnimation(elapsed);
 		
 		m_trans = GetComponent<Transform>();
 		m_posCur = m_trans->GetPosition();
+		m_trans->SetScale(m_scale);
+		m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+		auto playerTrans = m_player->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition();
+		auto eventPos = playerPos - m_posCur;
+		auto eventLenght = sqrt(eventPos.x * eventPos.x + eventPos.z * eventPos.z);
 
-		if (m_pos.x + 1.0f < m_posCur.x) {
-			m_posX = false;
+		//ç∂âEÇÃìÆÇ´
+		if (m_pos.x + m_width < m_posCur.x) {
+			m_posXFlag = false;
 		}
-		else if (m_pos.x - 1.0f > m_posCur.x) {
-			m_posX = true;
+		else if (m_pos.x - m_width > m_posCur.x) {
+			m_posXFlag = true;
 		}
 
-		if (m_posX) {
+		if (m_posXFlag) {
 
-			m_posCur.x += 1.0f * elapsed;
+			m_posCur.x += m_widthSpeed * elapsed;
 		}
-		else if (!m_posX) {
-			m_posCur.x -= 1.0f * elapsed;
+		else if (!m_posXFlag) {
+			m_posCur.x -= m_widthSpeed * elapsed;
+		}
+
+		//ècÇÃìÆÇ´
+		if (m_pos.y + m_hegiht < m_posCur.y) {
+			m_posYFlag = false;
+		}
+		if (m_pos.y > m_posCur.y) {
+			m_posYFlag = true;
+		}
+		if (m_posYFlag) {
+			m_posCur.y += m_hegihtSpeed * elapsed;
+		}
+		else if (!m_posYFlag) {
+			m_posCur.y -= m_hegihtSpeed * elapsed;
 		}
 		m_trans->SetPosition(Vec3(m_posCur));
 		 
-		 
-		//auto piece = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
-		//float pieceBar = piece->GetPiece();
-		//float maxPieceBar = piece->GetMaxPiece();
-	
-		//if (pieceBar >= maxPieceBar)
-		//{
-		//	if (m_counter == 0)
-		//	{
-		//	  m_Hp = 3;
-		//	  ++m_counter;
-		//	}
-		//}
+		//Ç‹Ç´éUÇÁÇ∑ÉEÉCÉãÉXÇÃçXêV
 
+		if (eventLenght < 20.0f) {
+			m_event = true;
+		}
+		if (m_event) {
+			if (m_pieceCount < 10) {
+				m_pieceTime -= elapsed;
+				if (m_pieceTime < 0.0f) {
+					m_enemyPiece[m_pieceCount] = stage->AddGameObject<EnemyPiece>(m_pos, m_rot, Vec3(2.0f), false);
+					m_enemyPiece[m_pieceCount]->Event(360 / 10 * m_pieceCount);
+					m_pieceFlag = true;
+					m_pieceCount++;
+					m_pieceTime = 0.1f;
+				}
+			}
+			if (m_bigPieceCount < 6&&m_pieceCount==10) {
+				m_bigPieceTime -= elapsed;
+				if (m_bigPieceTime < 0.0f) {
+					m_bigEnemyPiece[m_bigPieceCount] = stage->AddGameObject<BigPiece>(m_pos, m_rot, Vec3(2.0f),false);
+					m_bigEnemyPiece[m_bigPieceCount]->Event(360 / 6 * m_bigPieceCount);
+					m_bigPieceFlag = true;
+					m_bigPieceCount++;
+					m_bigPieceTime = 0.5f;
+				}
+			}
+			else {
+				m_event = false;
+			}
+			
+
+		}
+		if (m_Hp < 4) {
+			m_event2 = true;
+		}
+		if (m_event2) {
+			if (m_bigPieceCount2 < 8) {
+				m_bigPieceTime2 -= elapsed;
+				if (m_bigPieceTime2 < 0) {
+					m_bigEnemyPiece2[m_bigPieceCount2] = stage->AddGameObject<BigPiece>(m_pos, m_rot, Vec3(2.0f), false);
+					m_bigEnemyPiece2[m_bigPieceCount2]->Event(360 / 8 * m_bigPieceCount2);
+					m_bigPieceFlag2 = true;
+					m_bigPieceCount2++;
+					m_bigPieceTime2 = 0.2f;
+				}
+
+			}
+			else {
+				m_event2 = false;
+			}
+		}
+
+		if (m_pieceFlag) {
+			for (int i = 0; i < m_pieceCount; i++) {
+				m_enemyPiece[i]->UpdateEvent();
+			}
+		}
+		if (m_bigPieceFlag) {
+			for (int i = 0; i < m_bigPieceCount; i++) {
+				m_bigEnemyPiece[i]->UpdateEvent();
+			}
+		}
+		if (m_bigPieceFlag2) {
+			for (int i = 0; i < m_bigPieceCount2; i++) {
+				m_bigEnemyPiece2[i]->UpdateEvent();
+			}
+		}
 
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Collision)
 	{
 		m_bullet = dynamic_pointer_cast<Bullet>(Collision);
+		auto stage = GetStage();
 		//Collision->GetStage()->SetSharedGameObject(L"Bullet", Bulletptr);
 		if (!m_bullet.expired())
 		{
@@ -121,7 +218,10 @@ namespace basecross {
 
 			if (Collision->FindTag(L"Bullet") && m_Hp > 0)
 			{
-				m_Hp = m_Hp - attack;
+				m_Hp -=attack;
+				m_scale -= m_scaleReduct;
+				m_pos.y -= m_posYRedect;
+
 			}
 		}	
 		if (m_Hp <= 0)
@@ -136,6 +236,10 @@ namespace basecross {
 			}
 			int a = 0;
 		}
+
+	}
+
+	void Enemy::EventMove() {
 
 	}
 

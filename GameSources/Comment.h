@@ -31,6 +31,7 @@ namespace basecross {
 		int m_moji;
 
 		bool m_lineFlag;
+		bool m_loopFlag;
 
 		vector<VertexPositionColorTexture> m_vertices;
 		shared_ptr<PCTSpriteDraw> m_draw;
@@ -44,7 +45,8 @@ namespace basecross {
 		Comment(const shared_ptr<Stage>& stagePtr);
 		Comment(const shared_ptr<Stage>& stagePtr,
 			const int mojiNum,
-			const int line
+			const int line,
+			const bool loopFlag = false
 		);
 		Comment(const shared_ptr<Stage>& stagePtr,
 			const int mojiNum,
@@ -57,7 +59,8 @@ namespace basecross {
 			const int ber,
 			const int ver,
 			const Vec3 pos,
-			const wstring mesh
+			const wstring mesh,
+			const bool loopFlag = false
 		);
 
 		virtual ~Comment() override{}

@@ -93,23 +93,23 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
-		switch (randamEnemy)
-		{
-		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-			break;
-		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-58.0f, 0.5f, 65.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-			break;
-		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(41.0f, 0.5f, 63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-			break;
-		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
-			break;
-		default:
-			break;
-		}
+		ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+		//switch (randamEnemy)
+		//{
+		//case 0:
+		//	break;
+		//case 1:
+		//	ptrEnemy = AddGameObject<Enemy>(Vec3(-58.0f, 0.5f, 65.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+		//	break;
+		//case 2:
+		//	ptrEnemy = AddGameObject<Enemy>(Vec3(41.0f, 0.5f, 63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+		//	break;
+		//case 3:
+		//	ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+		//	break;
+		//default:
+		//	break;
+		//}
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -593,21 +593,18 @@ namespace basecross {
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
-
+			stageManager->SetStartFlag(true);
 			//auto bigPiece = AddGameObject<BigPiece>(Vec3(), Vec3(), Vec3(0.7f, 0.7f, 0.7f));
 
 			//auto number = AddGameObject<UITime>(0, Vec3(0, 0, 0));
 			auto time = AddGameObject<TimeManager>();
 
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
-			auto com = AddGameObject<Sprite>(350, 350, L"comment", Vec3(-200, -200, 0));
+			//auto com = AddGameObject<Sprite>(350, 350, L"comment", Vec3(-200, -200, 0));
 			//auto com3 = AddGameObject<Comment>(13, 0);
-			//auto com2 = AddGameObject<Comment>(14, 0,0.2f,512,256,700,350,26,8,Vec3(-200,200.0f,0.0f),L"StatusMoji");
+			//auto com2 = AddGameObject<Comment>(14, 0,0.2f,512,256,700,350,26,8,Vec3(-200,200.0f,0.0f),L"StatusMoji",true);
 			//auto comment = AddGameObject<CommentManager>(50);
 			//auto comment2 = AddGameObject<CommentManager>(10,2);
-			auto comment2 = AddGameObject<CommentManager>(15, 0,0.2f,
-				512, 256,512,256,
-				7,3,Vec3(),L"IfClear");
 
 		}
 		catch (...) {

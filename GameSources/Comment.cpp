@@ -22,13 +22,15 @@ namespace basecross {
 		m_sizeW(350.0f),//表示サイズ(横)
 		m_sizeH(350.0f),//表示サイズ(縦)
 		m_lineFlag(false),
+		m_loopFlag(false),
 		m_pos(Vec3(0)),
 		m_meshResName(L"comment")
 	{}
 
 	Comment::Comment(const shared_ptr<Stage>& stagePtr, 
 		const int mojiNum, 
-		const int line
+		const int line,
+		const bool loopFlag
 	) :
 		GameObject(stagePtr),
 		m_moji(0),
@@ -43,6 +45,7 @@ namespace basecross {
 		m_sizeW(350.0f),//表示サイズ(横)
 		m_sizeH(350.0f),//表示サイズ(縦)
 		m_lineFlag(false),
+		m_loopFlag(loopFlag),
 		m_pos(0),
 		m_meshResName(L"comment")
 	{}
@@ -58,7 +61,8 @@ namespace basecross {
 		const int ber,
 		const int ver,
 		const Vec3 pos,
-		const wstring mesh
+		const wstring mesh,
+		const bool loopFlag
 	):
 		GameObject(stagePtr),
 		m_moji(0),
@@ -73,6 +77,7 @@ namespace basecross {
 		m_sizeW(sizeW),//表示サイズ(横)
 		m_sizeH(sizeH),//表示サイズ(縦)
 		m_lineFlag(false),
+		m_loopFlag(loopFlag),
 		m_pos(pos),
 		m_meshResName(mesh)
 	{}
@@ -130,7 +135,12 @@ namespace basecross {
 		}
 		if(m_moji > m_mojiNum) {
 			m_lineFlag = true;
+			if (m_loopFlag) {
+				m_moji = 0;
+				m_lineFlag = false;
+			}
 		}
+		
 	}
 
 	
