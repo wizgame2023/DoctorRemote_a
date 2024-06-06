@@ -15,7 +15,7 @@ namespace basecross {
 		LIGHT
 	};
 
-	StatusManager::StatusManager(const shared_ptr<Stage>& stagePtr):
+	StatusManager::StatusManager(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
 		m_maxX(0.0f),
 		m_width(400.0f),
@@ -25,7 +25,8 @@ namespace basecross {
 		m_moveCheck(false),
 		m_count(10.0f),
 		m_status(1),
-		m_score(100)
+		m_score(100),
+		m_control(0)
 	{}
 
 	void StatusManager::OnCreate() {
@@ -37,6 +38,10 @@ namespace basecross {
 		m_sprite->SetColor(m_color);
 		
 		//m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+
+		m_score = rand() % 10*10;
+
+		//m_score = App::GetApp()->GetScene<Scene>()->GetAchievementPoint();
 	}
 
 	void StatusManager::OnUpdate() {
@@ -94,27 +99,48 @@ namespace basecross {
 
 		//スコアによって選べるステートが異なる
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-			m_moveCheck = true;
+			//m_moveCheck = true;
 			m_decision++;
 
 			if (m_score >= 80) {
 				m_colorCheck = true;
 
+				if (m_status == 0 && m_control == 0) {
+					scene->SetAchievementPoint(-50);
+				}
+				else if(m_status==1 && m_control == 0){
+					scene->SetAchievementPoint(-25);
+				}
+				else if(m_control == 0){
+					scene->SetAchievementPoint(-75);
+				}
+				m_control++;
 			}
 			else if (m_score >= 50) {
 				if (m_status == 0) {
 
 				}
-				else {
+				else if(m_status==1 && m_control == 0){
 					m_colorCheck = true;
+					scene->SetAchievementPoint(-25);
+					m_control++;
+				}
+				else if(m_control == 0)
+				{
+					m_colorCheck = true;
+					scene->SetAchievementPoint(-75);
+					m_control++;
+
 				}
 			}
 			else {
 				if (m_status == 0 || m_status == 1) {
 
 				}
-				else {
+				else if(m_control == 0) {
 					m_colorCheck = true;
+					scene->SetAchievementPoint(-75);
+					m_control++;
 				}
 			}
 
@@ -133,7 +159,6 @@ namespace basecross {
 			default:
 				break;
 			}
-
 			//auto sprite = GetStage()->GetSharedGameObject<Sprite>(L"Moji2");
 			//sprite->Blinking(20.0f, Col4(1, 1, 1, 1));
 		}
@@ -200,6 +225,10 @@ namespace basecross {
 			m_com[2] = stage->AddGameObject<CommentManager>(17, 0, 0.05f, 512, 120, 300, 80, 9, 2, Vec3(250.0f, -180.0f, 0.0f), L"StatusMoji1-1");
 			m_comFlag = true;
 		}
+		int test = scene->GetAchievementPoint();//デバック用変数
+		wstringstream wss(L"");
+		wss << test <<"\n" << m_score << endl;
+		scene->SetDebugString( wss.str());
 
 	}
 	int StatusManager::GetStatus() {
