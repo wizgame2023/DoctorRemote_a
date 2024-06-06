@@ -31,14 +31,19 @@ namespace basecross {
 		m_scaleReduct(0.4f),
 		m_posYRedect(0.1f),
 		m_pieceTime(0.1f),
-		m_bigPieceTime(0.1f),
+		m_bigPieceTime(0.5f),
+		m_bigPieceTime2(0.2f),
 		m_pieceCount(0),
 		m_bigPieceCount(0),
+		m_bigPieceCount2(0),
 		m_posXFlag(false),
 		m_posYFlag(false),
 		m_enemyflag(false),
 		m_pieceFlag(false),
+		m_bigPieceFlag(false),
+		m_bigPieceFlag2(false),
 		m_event(false),
+		m_event2(false),
 		m_meshResName(L"Baikin_Mesh"),
 		m_Hp(7)
 	{}
@@ -140,22 +145,22 @@ namespace basecross {
 			if (m_pieceCount < 10) {
 				m_pieceTime -= elapsed;
 				if (m_pieceTime < 0.0f) {
-					m_enemyPiece[m_pieceCount] = stage->AddGameObject<EnemyPiece>(m_pos, m_rot, m_scale * 0.7f,false);
+					m_enemyPiece[m_pieceCount] = stage->AddGameObject<EnemyPiece>(m_pos, m_rot, Vec3(2.0f), false);
 					m_enemyPiece[m_pieceCount]->Event(360 / 10 * m_pieceCount);
 					m_pieceFlag = true;
 					m_pieceCount++;
 					m_pieceTime = 0.1f;
 				}
 			}
-			if (m_bigPieceCount < 10&&m_pieceCount == 10) {
+			if (m_bigPieceCount < 6&&m_pieceCount==10) {
 				m_bigPieceTime -= elapsed;
 				if (m_bigPieceTime < 0.0f) {
-					m_bigEnemyPiece[m_bigPieceCount] = stage->AddGameObject<EnemyPiece>(m_pos, m_rot, m_scale * 0.7f, false);
-					m_bigEnemyPiece[m_bigPieceCount]->Event(360 / 10 * m_bigPieceCount);
+					m_bigEnemyPiece[m_bigPieceCount] = stage->AddGameObject<BigPiece>(m_pos, m_rot, Vec3(2.0f),false);
+					m_bigEnemyPiece[m_bigPieceCount]->Event(360 / 6 * m_bigPieceCount);
+					m_bigPieceFlag = true;
 					m_bigPieceCount++;
-					m_bigPieceTime = 0.1f;
+					m_bigPieceTime = 0.5f;
 				}
-
 			}
 			else {
 				m_event = false;
@@ -163,21 +168,39 @@ namespace basecross {
 			
 
 		}
-		//for (int i = 0; i < 1; i++) {
-		//	m_enemyPiece[i] = stage->AddGameObject<EnemyPiece>(m_pos, m_rot, m_scale * 0.7);
-		//	m_enemyPiece[i]->Event(360/6 * i);
-		//	m_pieceFlag = true;
-		//}
+		if (m_Hp < 4) {
+			m_event2 = true;
+		}
+		if (m_event2) {
+			if (m_bigPieceCount2 < 8) {
+				m_bigPieceTime2 -= elapsed;
+				if (m_bigPieceTime2 < 0) {
+					m_bigEnemyPiece2[m_bigPieceCount2] = stage->AddGameObject<BigPiece>(m_pos, m_rot, Vec3(2.0f), false);
+					m_bigEnemyPiece2[m_bigPieceCount2]->Event(360 / 8 * m_bigPieceCount2);
+					m_bigPieceFlag2 = true;
+					m_bigPieceCount2++;
+					m_bigPieceTime2 = 0.2f;
+				}
+
+			}
+			else {
+				m_event2 = false;
+			}
+		}
 
 		if (m_pieceFlag) {
 			for (int i = 0; i < m_pieceCount; i++) {
 				m_enemyPiece[i]->UpdateEvent();
 			}
-			if (m_bigPieceCount > 0) {
-				for (int i = 0; i < m_bigPieceCount; i++) {
-					m_bigEnemyPiece[i]->UpdateEvent();
-				}
-
+		}
+		if (m_bigPieceFlag) {
+			for (int i = 0; i < m_bigPieceCount; i++) {
+				m_bigEnemyPiece[i]->UpdateEvent();
+			}
+		}
+		if (m_bigPieceFlag2) {
+			for (int i = 0; i < m_bigPieceCount2; i++) {
+				m_bigEnemyPiece2[i]->UpdateEvent();
 			}
 		}
 

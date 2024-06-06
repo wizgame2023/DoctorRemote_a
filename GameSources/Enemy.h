@@ -9,6 +9,7 @@
 #include "Bullet.h"
 #include "TutorialManager.h"
 #include "EnemyPiece.h"
+#include "BigPiece.h"
 #include "Player.h"
 
 namespace basecross {
@@ -18,8 +19,8 @@ namespace basecross {
 		bool m_posXFlag;
 		bool m_posYFlag;
 		bool m_pieceFlag;
-		bool m_bigPieceCount;
-		bool m_event;
+		bool m_bigPieceFlag;
+		bool m_bigPieceFlag2;
 		float m_Hp;
 		float m_width;
 		float m_widthSpeed;
@@ -29,9 +30,15 @@ namespace basecross {
 		float m_posYRedect;
 		float m_pieceTime;
 		float m_bigPieceTime;
+		float m_bigPieceTime2;
+
 
 		float m_deg;
 		int m_pieceCount;
+		int m_bigPieceCount;
+		int m_bigPieceCount2;
+		int m_event;
+		int m_event2;
 		
 		Vec3 m_pos;   //èâä˙íl
 		Vec3 m_posCur;//ìÆÇ©Ç∑pos
@@ -44,7 +51,8 @@ namespace basecross {
 		shared_ptr<Player> m_player;
 		shared_ptr<Transform> m_trans;
 		shared_ptr<EnemyPiece> m_enemyPiece[10];
-		shared_ptr<EnemyPiece> m_bigEnemyPiece[10];
+		shared_ptr<BigPiece> m_bigEnemyPiece[10];
+		shared_ptr<BigPiece> m_bigEnemyPiece2[10];
 
 
 	public:
