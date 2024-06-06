@@ -26,7 +26,7 @@ namespace basecross {
 
 		int m_status;
 		int m_score;
-
+		int m_control;
 		shared_ptr<Transform> m_trans;
 		shared_ptr<Player> m_player;
 		shared_ptr<CommentManager> m_com[3];
