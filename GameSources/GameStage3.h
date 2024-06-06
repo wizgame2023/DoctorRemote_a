@@ -28,7 +28,6 @@ namespace basecross {
 		void CreateEffect();//エフェクトの作成
 		void RandamPiecePosition(Vec3 originPosition);//ランダムに
 		void CollisionActive(bool On);//コリジョンの判定のきりかえ
-		shared_ptr<Transform> m_Trans;
 		shared_ptr<SingleView> m_View;//ビューの変数
 
 	public:

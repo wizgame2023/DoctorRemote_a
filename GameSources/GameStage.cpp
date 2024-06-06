@@ -17,7 +17,7 @@ namespace basecross {
 
 
 		// カメラの設定
-		auto camera = ObjectFactory::Create<MainCamera>();
+		auto camera = ObjectFactory::Create<MainCamera>(90.0f);
 		//camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
 		//camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
@@ -28,8 +28,6 @@ namespace basecross {
 		//マルチライトの作成
 		auto light = CreateLight<MultiLight>();
 		light->SetDefaultLighting(); //デフォルトのライティングを指定	
-
-		//AddGameObject<MyLight>();//光の表現をこれでやる
 
 	}
 
@@ -54,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer= AddGameObject<Player>(Vec3(0.0f,0.5f,0.0f),Vec3(0.0f,rad,0.0f));
+		shared_ptr<Player> ptrPlayer= AddGameObject<Player>(Vec3(0.0f,0.5f,0.0f),Vec3(0.0f,rad,0.0f),100);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -147,12 +145,6 @@ namespace basecross {
 				Vec3(1.25f,1.25f,1.25f)
 
 			},
-			//{//16
-			//	Vec3(10.0f,1.0f,20.0f),
-			//	Vec3(0.0f,0.0f,0.0f),
-			//	Vec3(1.0f,1.0f,1.0f)
-
-			//}
 
 		};
 		//オブジェクトの作成
@@ -355,6 +347,7 @@ namespace basecross {
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
+		//BigPieceの場所をミニマップに映す
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
 			wstring BigPieceName = L"BigPiece";//参照元の名前
@@ -390,7 +383,8 @@ namespace basecross {
 			App::GetApp()->GetScene<Scene>()->SetGameStage(1);
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
-			AddGameObject<TimeManager>();//時間制限
+			auto timeManager = AddGameObject<TimeManager>();//時間制限
+			SetSharedGameObject(L"TimeManager", timeManager);
 			//ビューとライトの作成
 			CreateViewLight();
 			//Effectの追加
@@ -399,7 +393,6 @@ namespace basecross {
 			CreatePlayer();
 			//敵のかけらを表示
 			CreateEnemyPiece();
-			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
 			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels.csv", 150, 30);//ランダムにかけらが出るようになる
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
@@ -415,7 +408,7 @@ namespace basecross {
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
-			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -10.8f));//ステージ開始時の演出
+			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//ステージ開始時の演出
 
 
 			//BGM
@@ -456,7 +449,7 @@ namespace basecross {
 			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
 
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 15.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 15.0f), Vec3(0.0f, 0.5f, 13.0f), Vec3(0.0f, 0.5f, 0.0f));
 					
 			auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
 			float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)

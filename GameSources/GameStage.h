@@ -29,7 +29,6 @@ namespace basecross {
 		void CreateMiniMap();//ミニマップの生成
 		void CreateEffect();//エフェクトの作成
 		void RandamPiecePosition(Vec3 originPosition);//ランダムに
-		shared_ptr<Transform> m_Trans;
 		shared_ptr<SingleView> m_View;//ビューの変数
 		
 	public:

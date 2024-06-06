@@ -16,7 +16,7 @@ namespace basecross {
 
 
 		// カメラの設定
-		auto camera = ObjectFactory::Create<MainCamera>();
+		auto camera = ObjectFactory::Create<MainCamera>(90.0f);
 		//camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
 		//camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
@@ -27,7 +27,6 @@ namespace basecross {
 		//マルチライトの作成
 		auto light = CreateLight<MultiLight>();
 		light->SetDefaultLighting(); //デフォルトのライティングを指定	
-
 		//AddGameObject<MyLight>();//光の表現をこれでやる
 
 	}
@@ -236,6 +235,7 @@ namespace basecross {
 
 		Vec3 Pos[] = { Vec3(35.2f,0.2f,50.0f),Vec3(-35.0f,0.2f,-37.0f),Vec3(-55.0f,0.2f,50.0f),Vec3(37.0f,0.2f,13.0f),Vec3(6.0f,0.2f,-50.0f),Vec3(13.0f,0.2f,-38.0f) };//BigPieceのPosision一覧
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
+
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
 			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));//オブジェクトを生成する
@@ -339,6 +339,7 @@ namespace basecross {
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
+		//BigPieceの場所をミニマップに映す
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
 			wstring BigPieceName = L"BigPiece";//参照元の名前
@@ -400,7 +401,8 @@ namespace basecross {
 
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
-			AddGameObject<TimeManager>();//時間制限
+			auto timeManager = AddGameObject<TimeManager>();//時間制限
+			SetSharedGameObject(L"TimeManager", timeManager);
 			//ビューとライトの作成
 			CreateViewLight();
 			//Effectの追加
@@ -425,7 +427,7 @@ namespace basecross {
 			SetSharedGameObject(L"StageManager", stageManager);
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
-			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -10.0f));//導入を追加
+			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//導入を追加
 
 			//BGM
 			BaseBGM();	
