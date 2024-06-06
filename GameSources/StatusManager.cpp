@@ -39,9 +39,8 @@ namespace basecross {
 		
 		//m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 
-		m_score = rand() % 10*10;
 
-		//m_score = App::GetApp()->GetScene<Scene>()->GetAchievementPoint();
+		m_score = App::GetApp()->GetScene<Scene>()->GetAchievementPoint();
 	}
 
 	void StatusManager::OnUpdate() {
