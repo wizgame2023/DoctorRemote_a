@@ -12,7 +12,7 @@ namespace basecross {
 		const Vec3& position,
 		const Vec3& rotate,
 		const Vec3& scale,
-		const bool littlePiece
+		const bool littlePieceFlag
 		) :
 		GameObject(StagePtr),
 		m_position(position),
@@ -21,7 +21,7 @@ namespace basecross {
 		m_enemyDeletFlag(0),
 		m_pieceDeleteFlag(false),
 		m_pieceDeleteTime(0.25f),
-		m_littlePiece(littlePiece),
+		m_littlePieceFlag(littlePieceFlag),
 		m_meshResName(L"Kakera_Mesh")
 
 	{}
@@ -98,7 +98,7 @@ namespace basecross {
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
 			pieceSE->Start(L"PieceDownSE", 0, 0.5f);//SE‚Í‚¶‚ß
 			//Œ‡•Ð‚ð‚Î‚ç‚Ü‚­
-			if (m_littlePiece) {
+			if (m_littlePieceFlag) {
 			stage->AddGameObject<PieceLittle>(other,player, 0.0f);
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f);
 			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
@@ -125,12 +125,12 @@ namespace basecross {
 
 		//pos = bossPos;
 		//—Ž‚¿‚Ä‚­‚é‚‚³
-		pos.y += 4.0f;
+		pos.y += 6.0f;
 		Quat qt = ptrTrans->GetQuaternion();
 		float rad = XMConvertToRadians(deg);
 
 		Vec3 velo(sin(rad), 1.0f, cos(rad));
-		velo *= 5.0f;
+		velo *= 7.0f;
 		m_velocity = velo;
 		ptrTrans->SetPosition(pos);
 

@@ -15,7 +15,7 @@ namespace basecross {
 		float m_deg;
 		bool m_pieceDeleteFlag;
 		bool m_ground;
-		bool m_littlePiece;
+		bool m_littlePieceFlag;
 		Vec3 m_scale;
 		Vec3 m_rotate;
 		Vec3 m_position;
