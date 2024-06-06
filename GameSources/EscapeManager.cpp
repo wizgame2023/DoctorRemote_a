@@ -42,12 +42,12 @@ namespace basecross {
 	{
 		auto stage = GetStage();//ステージ取得
 
-		m_Camera = ObjectFactory::Create<Camera>();
-		m_Camera->SetEye(m_CameraEye);//メンバ変数
-		m_Camera->SetAt(m_CameraAt);//メンバ変数
+		m_Camera = ObjectFactory::Create<Camera>();//カメラの生成
+		m_Camera->SetEye(m_CameraEye);
+		m_Camera->SetAt(m_CameraAt);
 
 
-		auto View = stage->CreateView<SingleView>();
+		auto View = stage->CreateView<SingleView>();//新たなビューの生成
 		View->SetCamera(m_Camera);
 		stage->SetView(View);//ステージのビューを設定
 
@@ -84,6 +84,8 @@ namespace basecross {
 	
 		if (m_UpdateFlag == 1)
 		{
+			GetStage()->GetSharedGameObject<TimeManager>(L"TimeManager")->SetTimeFlag(false);//制限時間のカウントを終わらせる
+			
 			wstringstream wss;//デバック用文字列
 			wss << L"エスケープマネージャー：" << endl;
 
