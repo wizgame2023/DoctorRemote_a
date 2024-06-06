@@ -10,7 +10,7 @@
 namespace basecross {
 	class EnemyPiece :public GameObject {
 	private:
-		int m_enemyDeletFlag;
+		bool m_enemyDeletFlag;
 		float m_pieceDeleteTime;
 		float m_deg;
 		bool m_pieceDeleteFlag;

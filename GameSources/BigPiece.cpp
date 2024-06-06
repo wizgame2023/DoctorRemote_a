@@ -49,7 +49,7 @@ namespace basecross {
 			Vec3(0.5f, 0.5f, 0.5f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, 0.3f, 0.0f)
 		);
 
 		if (m_var == 1)
@@ -81,7 +81,7 @@ namespace basecross {
 
 		//コライダー
 		auto colPtr = AddComponent<CollisionSphere>();
-		colPtr->SetDrawActive(false);
+		colPtr->SetDrawActive(true);
 		colPtr->SetAfterCollision(AfterCollision::None);
 		colPtr->SetFixed(false);
 
@@ -128,7 +128,7 @@ namespace basecross {
 		}
 	}
 
-	void BigPiece::Event(float deg) {
+	void BigPiece::Event(float deg,float power) {
 		auto grav = AddComponent<Gravity>();
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
@@ -139,7 +139,7 @@ namespace basecross {
 		float rad = XMConvertToRadians(deg);
 
 		Vec3 velo(sin(rad), 1.0f, cos(rad));
-		velo *= 5.0f;
+		velo *= power;
 		m_velocity = velo;
 		ptrTrans->SetPosition(pos);
 

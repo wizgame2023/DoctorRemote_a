@@ -40,7 +40,7 @@ namespace basecross {
 		virtual void OnUpdate()override;
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 		void MyMiniMapName(wstring Name);//自分の位置がミニマップに表示するオブジェクトの名前
-		void Event(float deg);
+		void Event(float deg, float power=6.0f);
 		void UpdateEvent();
 
 	};

@@ -28,8 +28,8 @@ namespace basecross {
 		m_widthSpeed(2.0f),
 		m_hegiht(2.0f),
 		m_hegihtSpeed(1.0f),
-		m_scaleReduct(0.4f),
-		m_posYRedect(0.1f),
+		m_scaleReduct(0.4f),//どれくらい小さくするか
+		m_posYRedect(0.15f),//敵が小さくなる時に下げる高さ
 		m_pieceTime(0.1f),
 		m_bigPieceTime(0.5f),
 		m_bigPieceTime2(0.2f),
@@ -138,7 +138,7 @@ namespace basecross {
 		 
 		//まき散らすウイルスの更新
 
-		if (eventLenght < 20.0f) {
+		if (eventLenght < 30.0f) {
 			m_event = true;
 		}
 		if (m_event) {
@@ -175,8 +175,8 @@ namespace basecross {
 			if (m_bigPieceCount2 < 8) {
 				m_bigPieceTime2 -= elapsed;
 				if (m_bigPieceTime2 < 0) {
-					m_bigEnemyPiece2[m_bigPieceCount2] = stage->AddGameObject<BigPiece>(m_pos, m_rot, Vec3(2.0f), false);
-					m_bigEnemyPiece2[m_bigPieceCount2]->Event(360 / 8 * m_bigPieceCount2);
+					m_bigEnemyPiece2[m_bigPieceCount2] = stage->AddGameObject<BigPiece>(m_pos, m_rot, Vec3(1.5f), false);
+					m_bigEnemyPiece2[m_bigPieceCount2]->Event(360 / 8 * m_bigPieceCount2,3.0f);
 					m_bigPieceFlag2 = true;
 					m_bigPieceCount2++;
 					m_bigPieceTime2 = 0.2f;
