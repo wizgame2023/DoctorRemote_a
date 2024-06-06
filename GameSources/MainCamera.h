@@ -23,9 +23,11 @@ namespace basecross {
 		float m_height;
 		float m_camDis;
 
+		bool m_MoveFlag;
 		Vec3 m_playerAngle;
 
 	public:
+		MainCamera(float angleY);
 		MainCamera();
 		virtual ~MainCamera(){}
 
@@ -34,6 +36,7 @@ namespace basecross {
 
 		void SetTarget(const shared_ptr <GameObject>& target);
 		void SetAngle();
+		void SetMove(bool MoveOn);
 
 	};
 }

@@ -43,13 +43,20 @@ namespace basecross {
 
 		m_Sprite = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0));
 		m_Sprite->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));//半透明で出す
-		//m_SpriteCol = m_Sprite->GetColor();
 
 		m_stageCollionManager = stage->GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager");//CollisionManagerを取得
 		m_stageCollionManager->SetCollisionSwhich(false);//ステージ上のコリジョン判定をなくす
 
 		m_Player = stage->GetSharedGameObject<Player>(L"GamePlayer");//Playerを取得
+
 		
+		auto ptrCamera = stage->GetView()->GetTargetCamera();
+//		MainCamera
+		m_Camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+		if (m_Camera) 
+		{
+			m_Camera->SetMove(false);//カメラの操作を無視させる
+		}
 	}
 
 	void JoinManager::OnUpdate()

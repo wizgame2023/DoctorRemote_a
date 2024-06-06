@@ -16,7 +16,7 @@ namespace basecross {
 
 
 		// カメラの設定
-		auto camera = ObjectFactory::Create<MainCamera>();
+		auto camera = ObjectFactory::Create<MainCamera>(180.0f);
 		//camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
 		//camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
@@ -50,12 +50,7 @@ namespace basecross {
 	//Playerを追加する関数
 	void TutorialStage::CreatePlayer()//改善すべき点
 	{
-		int randamPlayer = 0;
-		randamPlayer = rand() % 3;
-		randamPlayer = 0;//デバック
-		//shared_ptr<GameObject> nanasiObject;
-		//ランダムにPlayerの出現場所が決まる
-		float deg = -90;
+		float deg = 90.0f;
 		float rad = XMConvertToRadians(deg);
 		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),4.0f);//Player生成
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
@@ -357,7 +352,8 @@ namespace basecross {
 			App::GetApp()->GetScene<Scene>()->SetGameStage(0);
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
-			AddGameObject<TimeManager>();//時間制限
+			auto timeManager = AddGameObject<TimeManager>();//時間制限
+			SetSharedGameObject(L"TimeManager", timeManager);
 			//ビューとライトの作成
 			CreateViewLight();
 			//Effectの追加
