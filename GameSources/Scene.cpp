@@ -73,6 +73,8 @@ namespace basecross {
 		app->RegisterTexture(L"TriDot", strTexture);
 		strTexture = texPath + L"Button.png";
 		app->RegisterTexture(L"Bbutton", strTexture);
+		strTexture = texPath + L"LoadScene.png";
+		app->RegisterTexture(L"LoadScene", strTexture);
 
 
 		strTexture = texPath + L"MiniMapDataVer4.0.png";//ミニマップStage1
@@ -119,6 +121,10 @@ namespace basecross {
 		app->RegisterTexture(L"WallBreak", strTexture);
 		strTexture = texPath + L"WallSkin4.png";
 		app->RegisterTexture(L"WallRecovery", strTexture);
+		strTexture = texPath + L"ResultWaku.png";
+		app->RegisterTexture(L"ResultWaku", strTexture);
+		strTexture = texPath + L"CheckMark.png";
+		app->RegisterTexture(L"CheckMark", strTexture);
 
 		//エフェクト関連
 		strTexture = texPath + L"kaihuku.png";
@@ -179,14 +185,18 @@ namespace basecross {
 		app->RegisterTexture(L"IfClear", strTexture);
 		strTexture = texPath + L"MapSetumei.png";
 		app->RegisterTexture(L"MapSetumei", strTexture);
-
-
 		strTexture = texPath + L"StatusMoji1-1.png";
 		app->RegisterTexture(L"StatusMoji1-1", strTexture);
 		strTexture = texPath + L"StatusMoji1-2.png";
 		app->RegisterTexture(L"StatusMoji1-2", strTexture);
 		strTexture = texPath + L"StatusMoji1-3.png";
 		app->RegisterTexture(L"StatusMoji1-3", strTexture);
+		strTexture = texPath + L"ScoreTime.png";
+		app->RegisterTexture(L"ScoreComment", strTexture);
+		strTexture = texPath + L"LoadMoji.png";
+		app->RegisterTexture(L"LoadMoji", strTexture);
+		strTexture = texPath + L"LoadMoji1.png";
+		app->RegisterTexture(L"LoadMoji1", strTexture);
 
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";
@@ -325,7 +335,7 @@ namespace basecross {
 			ResetActiveStage<GameStage3>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<TitleStage>();
+			ResetActiveStage<LoadStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
