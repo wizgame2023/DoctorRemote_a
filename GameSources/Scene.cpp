@@ -335,7 +335,7 @@ namespace basecross {
 			ResetActiveStage<GameStage3>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<LoadStage>();
+			ResetActiveStage<TitleStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
