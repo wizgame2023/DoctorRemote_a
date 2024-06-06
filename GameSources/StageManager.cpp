@@ -110,6 +110,7 @@ namespace basecross {
 
 				}
 				if (m_count < 1) {
+					dynamic_pointer_cast<MainCamera>(OnGetDrawCamera())->SetMove(true);//カメラを操作できるようになる
 					m_num->ThisDestory();
 					if (!m_start) {
 						m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());
