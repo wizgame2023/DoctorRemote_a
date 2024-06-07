@@ -236,6 +236,10 @@ namespace basecross {
 			}
 			int a = 0;
 		}
+		if (Collision->FindTag(L"Player")) {
+			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(-10.0f);
+		}
+
 
 	}
 
