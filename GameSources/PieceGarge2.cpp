@@ -13,7 +13,8 @@ namespace basecross {
 	PieceGarge2::PieceGarge2(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
 		m_meshResName(L"Garge"),
-		m_ratio(0.5f)
+		m_ratio(0.5f),
+		m_gargeMaxFlag(false)
 	{}
 
 	void PieceGarge2::OnCreate() {
@@ -31,7 +32,7 @@ namespace basecross {
 		Vec3 dis(70, 300, 0);
 		Vec3 zero(0, 0, 0);
 
-		m_garge = stage->AddGameObject<Garge>(m_trans, 0, 92, m_meshResName, m_ratio, 32*2.5, 92*2.5, color, color2, screen, dis);
+		m_garge = stage->AddGameObject<Garge>(0, 92, m_meshResName, m_ratio, 32*2.5, 92*2.5, color, color2, screen, dis);
 
 		auto frame = stage->AddGameObject<Sprite>(32*2.5, 128*2.5, L"GargeBar",Vec3(-530, -170, 1.0f),2);
 	}
@@ -40,8 +41,24 @@ namespace basecross {
 		auto stage = GetStage();
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 		auto piece = player->GetPieceRatio();
+		auto trans = GetComponent<Transform>();
+
+		float sw = App::GetApp()->GetGameWidth();
+		float sh = App::GetApp()->GetGameHeight();
+
+		Vec3 screen(-sw * 0.5f, -sh * 0.5f, 0);
+		Vec3 dis(70, 300, 0);
+		Vec3 zero(0, 0, 0);
 
 		m_garge->UpdateValue(piece);
+
+		if (stage->GetSharedGameObject<Player>(L"GamePlayer")->GetRadarFlag()) {
+			if (!m_gargeMaxFlag) {
+				m_garge->ThisDestroy();
+				auto garge= stage->AddGameObject<Garge>(0, 92, m_meshResName, 1.0f, 32 * 2.5, 92 * 2.5, Col4(1.0f),Col4(1.0f,0.0f,0.0f,1.0f), screen, dis);
+				m_gargeMaxFlag=true;
+			}
+		}
 
 		auto position = m_garge->GetComponent<Transform>()->GetPosition();
 
