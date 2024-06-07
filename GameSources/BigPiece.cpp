@@ -120,9 +120,6 @@ namespace basecross {
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 
 		if (other->FindTag(L"Bullet")) {
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"PieceDownSE", 0, 0.5f);
-
 			if (m_enemyDeletFlag) return;
 			//Œ‡•Ð‚Ì¶¬
 			if (m_littlePieceFlag) {
@@ -139,6 +136,10 @@ namespace basecross {
 				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 9);
 			}
 			m_enemyDeletFlag = true;
+
+			//Œø‰Ê‰¹
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"PieceDownSE", 0, 0.5f);
 
 		}
 		if (other->FindTag(L"Player")) {
