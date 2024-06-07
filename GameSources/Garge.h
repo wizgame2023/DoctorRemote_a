@@ -44,7 +44,7 @@ namespace basecross {
 		Vec3 m_distance;
 
 	public:
-		Garge(const shared_ptr<Stage>& stagePtr, shared_ptr<Transform>& trans,
+		Garge(const shared_ptr<Stage>& stagePtr,
 			const float sizeX, const float sizeY, wstring meshResName, //画像のサイズ
 			float ratio, float width, float heigth, //ゲージの割合と表示するサイズ
 			Col4 color, Col4 color2, Vec3 screen, Vec3 distance);
@@ -54,7 +54,7 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		void UpdateValue(float ratio);
-
+		void ThisDestroy();
 
 	};
 }
