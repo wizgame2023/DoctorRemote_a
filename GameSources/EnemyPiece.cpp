@@ -20,7 +20,7 @@ namespace basecross {
 		m_scale(scale),
 		m_enemyDeletFlag(0),
 		m_pieceDeleteFlag(false),
-		m_pieceDeleteTime(0.25f),
+		m_pieceDeleteTime(scale.x * 0.15f),
 		m_littlePieceFlag(littlePieceFlag),
 		m_meshResName(L"Kakera_Mesh")
 
@@ -99,11 +99,11 @@ namespace basecross {
 			//Œ‡•Ð‚ð‚Î‚ç‚Ü‚­
 			if (m_enemyDeletFlag) return;
 			if (m_littlePieceFlag) {
-			stage->AddGameObject<PieceLittle>(other,player, 0.0f);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);	
+				stage->AddGameObject<PieceLittle>(other,player, 0.0f);
+				stage->AddGameObject<PieceLittle>(other,player, 72.0f);
+				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
+				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
+				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);	
 			}
 			m_enemyDeletFlag = true;
 			//m_enemyDeletFlag++;
