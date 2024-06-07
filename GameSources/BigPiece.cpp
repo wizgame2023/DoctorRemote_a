@@ -18,7 +18,9 @@ namespace basecross {
 		m_rotate(rotate),
 		m_scale(scale),
 		m_var(var),
+		m_pieceDeleteTime(scale.x * 0.15f),
 		m_littlePieceFlag(true),
+		m_enemyDeletFlag(false),
 		m_meshResName(L"Kakera_Mesh3")
 	{}
 	BigPiece::BigPiece(const shared_ptr<Stage>& stagePtr,
@@ -34,15 +36,17 @@ namespace basecross {
 		m_scale(scale),
 		m_var(var),
 		m_littlePieceFlag(littlePieceFlag),
+		m_pieceDeleteTime(scale.x *0.15f),
+		m_enemyDeletFlag(false),
 		m_meshResName(L"Kakera_Mesh3")
 	{}
 
 
 	void BigPiece::OnCreate() {
-		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(m_scale);
-		ptrTrans->SetRotation(m_rotate);
-		ptrTrans->SetPosition(m_position);
+		m_trans = GetComponent<Transform>();
+		m_trans->SetScale(m_scale);
+		m_trans->SetRotation(m_rotate);
+		m_trans->SetPosition(m_position);
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
@@ -89,9 +93,26 @@ namespace basecross {
 
 	}
 	void BigPiece::OnUpdate() {
+		auto stage = GetStage();
 		float elapsed = App::GetApp()->GetElapsedTime();
 		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
 		ptrDraw->UpdateAnimation(elapsed);
+		m_trans = GetComponent<Transform>();
+		m_trans->SetScale(m_scale);
+
+		//éûä‘ç∑Ç≈è¨Ç≥Ç≠ÇµÇƒè¡Ç∑
+		if (m_enemyDeletFlag) {
+			m_pieceDeleteTime -= elapsed;
+			m_scale -= 2.0f * elapsed * 3.0f;
+			if (m_pieceDeleteTime < 0) {
+				//é©ï™é©êgÇîpä¸Ç∑ÇÈ
+				stage->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
+				m_enemyDeletFlag = false;
+			}
+
+		}
+
+
 	}
 
 	void BigPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
@@ -101,8 +122,9 @@ namespace basecross {
 		if (other->FindTag(L"Bullet")) {
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
 			pieceSE->Start(L"PieceDownSE", 0, 0.5f);
-			//é©ï™é©êgÇîpä¸Ç∑ÇÈ
-			GetStage()->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
+
+			if (m_enemyDeletFlag) return;
+			//åáï–ÇÃê∂ê¨
 			if (m_littlePieceFlag) {
 				GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);//é©ï™é©êg(BigPiece)Ç™Ç¢Ç»Ç≠Ç»ÇÈÇ±Ç∆Çì`Ç¶ÇÈ
 				stage->AddGameObject<PieceLittle>(other, player, 0.0f);
@@ -116,7 +138,7 @@ namespace basecross {
 				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 8);
 				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 9);
 			}
-
+			m_enemyDeletFlag = true;
 
 		}
 		if (other->FindTag(L"Player")) {
