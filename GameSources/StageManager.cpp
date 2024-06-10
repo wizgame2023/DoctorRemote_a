@@ -40,9 +40,10 @@ namespace basecross {
 
 		auto mapFrame = stage->AddGameObject<Sprite>(235, 235, L"CommentFrame", Vec3(475, 238, 0.0f), 2);
 		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
+		//画面上のライト
+		stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
 
-
-		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
+		//m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetPieceStatus();
 		//switch (m_ligthStatus)
 		//{
 		//case 0:

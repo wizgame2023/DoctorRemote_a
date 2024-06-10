@@ -12,7 +12,7 @@ namespace basecross {
 	enum STSTUS {
 		DASH,
 		BULLET,
-		LIGHT
+		PIECE
 	};
 
 	StatusManager::StatusManager(const shared_ptr<Stage>& stagePtr) :
@@ -57,7 +57,7 @@ namespace basecross {
 				m_trans->SetPosition(m_maxX, 0, 0);
 				m_checkR = true;
 				m_comFlag = false;
-				m_status = LIGHT;
+				m_status = PIECE;
 			}
 			if (m_maxX < 0 && !m_checkR) {
 				m_maxX = 0.0f;
@@ -153,7 +153,7 @@ namespace basecross {
 				App::GetApp()->GetScene<Scene>()->AddBulletStatus(1);
 				break;
 			case 2:
-				App::GetApp()->GetScene<Scene>()->AddLigthStatus(1);
+				App::GetApp()->GetScene<Scene>()->AddPieceStatus(1);
 				break;
 			default:
 				break;

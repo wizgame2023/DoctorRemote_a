@@ -14,6 +14,7 @@ namespace basecross {
 		bool m_enemyDeletFlag;
 		bool m_littlePieceFlag;
 		int m_var;//ビックピースのどの形態にするかを決める
+		int m_status;
 		float m_pieceDeleteTime;
 
 		Vec3 m_scale;

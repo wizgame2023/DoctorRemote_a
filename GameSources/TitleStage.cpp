@@ -28,7 +28,7 @@ namespace basecross {
 
 			scene->SetPlayerStatus(0);
 			scene->SetBulletStataus(0);
-			scene->SetLigthStatus(0);
+			scene->SetPieceStatus(0);
 
 			auto spriteManager = AddGameObject<SelectSprite>();
 			SetSharedGameObject(L"SelectSprite", spriteManager);
