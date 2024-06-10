@@ -17,7 +17,7 @@ namespace basecross {
 		m_piece(0),
 		m_onePiece(15.0f),
 		m_maxPiece(100.0f),
-		m_speed(5.0f),
+		m_speed(0.0f),
 		m_maxSpeed(5.0f),
 		m_dashSpeed(8.0f),
 		m_startFlag(false),
@@ -32,12 +32,13 @@ namespace basecross {
 		m_piece(0),
 		m_onePiece(onePiece),
 		m_maxPiece(150.0f),
-		m_speed(7.0f),
+		m_speed(0.0f),
 		m_maxSpeed(7.0f),
 		m_dashSpeed(15.0f),
 		m_dashCountTime(1.0f),
 		m_dashCount(m_dashCoolTime),
 		m_dashCoolTime(8.0f),
+		m_lastAngle(0.0f,0.0f,0.0f),
 		m_dashCool(m_dashCoolTime),
 		m_dashCheck(false),
 		m_dashCooldown(false),
@@ -49,7 +50,7 @@ namespace basecross {
 	{}
 
 
-	Vec2 Player::GetInputState()const {
+	Vec2 Player::GetInputState() {
 		Vec2 ret;
 		ret.x = 0.0f;
 		ret.y = 0.0f;
@@ -59,7 +60,12 @@ namespace basecross {
 		{
 			ret.x = cntlVec[0].fThumbLX;
 			ret.y = cntlVec[0].fThumbLY;
+			if (ret.x != 0 || ret.y != 0) {//コントローラー(アナログステック)を動かしたら
+				m_PadLastAngle = ret;
+
+			}
 		}
+
 		return ret;
 	}
 
@@ -76,14 +82,14 @@ namespace basecross {
 		return frontAngle;
 	}
 
-	Vec3 Player::GetMoveVector()const {
+	Vec3 Player::GetMoveVector() {
 		Vec3 angle(0, 0, 0);
 		//入力を取得
-		auto inPut = GetInputState();
+		auto inPut = GetInputState();//コントローラーの入力の傾きを入れている
 		float moveX = inPut.x;
 		float moveZ = inPut.y;
-		if (moveX != 0 || moveZ != 0){
-			float moveLength = 0; //動いた時のスピード
+		if (moveX != 0 || moveZ != 0){//コントローラー(アナログステック)を動かしたら
+			float moveLength = 0;
 
 			float frontAngle = PlayerAngle();
 
@@ -95,35 +101,115 @@ namespace basecross {
 			angle.normalize();
 
 			//移動サイズ
-			float moveSize = moveVec.length();
-			angle *= moveSize;
+			//float moveSize = moveVec.length();
+			//angle *= moveSize;
+
+			//wstringstream wss(L"");
+			//auto scene = App::GetApp()->GetScene<Scene>();
+			//auto gameStage = scene->GetGameStage();
+			//wss << L"angle.x : " << moveVec.x << L"angle.z : " << moveVec.y
+			//	<< endl;
+			//scene->SetDebugString(wss.str());
 
 			//Y軸は変化させない
 			angle.y = 0.0f;
-			
+			//最後に傾けた値を保存する
+			m_lastAngle = angle;
+
 		}
 			return angle;
 	}
 
-	void Player::MovePlayer() {
+	void Player::SpeedCalculation()//Playerの進むスピードを計算する
+	{
+		Vec2 input = GetInputState();//入力を取得
+		input.length();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		//角度を計算している関数を代入
-		auto angle = GetMoveVector();
-		auto cntl = GetInputState();
 
-		if (angle.length() > 0.0f) {
 
-			Vec3 moveAngle = angle;
-			if (cntl.y < 0.0f) {
-				auto subAngle = atan2(moveAngle.z, moveAngle.x);
-				subAngle += XM_PI;
-				moveAngle = Vec3(cos(subAngle), 0.0f, sin(subAngle));
+
+		if (input.x != 0 || input.y != 0)//アナログステックが傾けられた場合
+		{	
+			if (m_maxSpeed >= m_speed)
+			{
+				m_speed += (input.y * 6.0f) * elapsedTime;//ステックを縦に傾けば傾くほど加速する
 			}
 
+			if (!m_dashCheck)//ダッシュ効果適応外
+			{
+				if(m_maxSpeed <= m_speed)//限界のスピードを超えたとき
+				{
+					m_speed = m_maxSpeed;//限界のスピードまでに制限
+				}
+				if (-m_maxSpeed/2 >= m_speed)//バックの限界のスピードを超えたとき
+				{
+					m_speed = -m_maxSpeed/2;//バックの限界のスピードまでに制限
+				}
+
+			}
+
+			//if (m_dashCheck)//ダッシュ効果適応中
+			//{
+			//	//if (m_maxSpeed >= m_speed)
+			//	//{
+			//	//	m_speed += (input.y * 2.0f) * elapsedTime;
+			//	//}
+			//	if(m_dashSpeed <= m_speed)
+			//	{
+			//		//m_speed = m_dashSpeed;
+			//	}
+			//}
+
+		}
+		if(input.x == 0 && input.y == 0)//アナログスティックを動かしていない場合
+		{
+			if (m_speed < 0)//現在のスピードが０より小さかった時
+			{	
+				m_speed += elapsedTime * 5.0f;//スピードがどんどん落ちてくる
+				if (m_speed >= -0.5f)//スピードが０に近くなったら
+				{
+					m_speed = 0;//スピードを０とみなす
+				}
+			}
+			if (m_speed > 0)//現在のスピードが０より大きかった時
+			{
+				m_speed -= elapsedTime*5.0f;//スピードがどんどん落ちてくる
+				if (m_speed <= 0.5)//スピードが０に近くなったら
+				{
+					m_speed = 0;//スピードを０とみなす
+				}
+
+			}
+
+		}
+
+
+
+	}
+
+	void Player::MovePlayer() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//角度を計算している関数を代入	
+		auto angle = m_lastAngle;
+		if (GetMoveVector() != Vec3(0.0f, 0.0f, 0.0f))
+		{
+			angle = GetMoveVector();
+		}
+		//auto cntl = GetInputState();
+		SpeedCalculation();//スピードの計算
+		if (angle.length() >= 0.0f) {
+
+			Vec3 moveAngle = angle;
+			//if (m_PadLastAngle.y < 0.0f) {//yの数値がマイナスの場合バックする
+			//	auto subAngle = atan2(moveAngle.z, moveAngle.x);
+			//	subAngle += XM_PI;
+			//	moveAngle = Vec3(cos(subAngle), 0.0f, sin(subAngle));
+			//}
 
 			auto pos = GetComponent<Transform>()->GetPosition();
-			pos += moveAngle * elapsedTime * m_speed;
+			pos += moveAngle * elapsedTime * m_speed;//ここで進む距離を決めている
 			GetComponent<Transform>()->SetPosition(pos);
+
 		}
 
 		//回転の計算
@@ -137,15 +223,15 @@ namespace basecross {
 	void Player::Dash() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		
-		if (cntlVec[0].bRightTrigger >= 0.8f) {
+		if (cntlVec[0].bRightTrigger >= 0.8f) {//RTボタンを押したら
 			m_dashCheck = true;
 			m_dashCooldown = true;
 			if (m_dashCount > 0) {
-				m_speed = m_dashSpeed;
+				m_speed = m_dashSpeed;//スピードをダッシュ用のスピードに変更する
 			}
 		}
 		else {
-			m_speed = m_maxSpeed;
+			//m_speed = m_maxSpeed;
 		}
 	}
 
@@ -257,10 +343,12 @@ namespace basecross {
 			Dash();
 			if (m_dashCooldown) {
 				m_dashCount -= elapsedTime;
+				//ダッシュの効果時間が過ぎたらダッシュを出来なくなる
 				if (m_dashCount <= 0) {
-					m_speed = m_maxSpeed;
+					//m_speed = m_maxSpeed;
 					m_dashCheck = false;
 				}
+				//ダッシュのクールタイムが過ぎたらダッシュを再使用できるようになる
 				m_dashCool -= elapsedTime;
 				if (m_dashCool <= 0) {
 					m_dashCooldown = false;
@@ -290,6 +378,9 @@ namespace basecross {
 			break;
 		}
 
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();//デバック用です
+
+
 		auto trans = GetComponent<Transform>();
 		//デバック用
 		wstringstream wss(L"");
@@ -298,17 +389,31 @@ namespace basecross {
 		wss << L"transform : "
 			<< L"\n"
 			<< L"postion : ("
-			<<L"\nx."
+			<< L"\nx."
 			<< trans->GetPosition().x
 			<< L","
-			<<"\ny."
+			<< "\ny."
 			<< trans->GetPosition().y
 			<< L","
-			<<"\nz."
+			<< "\nz."
 			<< trans->GetPosition().z
 			<< L")"
-			<<"\ngameStage"
-			<<gameStage
+			<< "\ngameStage"
+			<< gameStage
+			<< "\nVectorX"
+			<< m_lastAngle.x
+			<< "\nVectorY"
+			<< m_lastAngle.y
+			<< "\nVectorZ"
+			<< m_lastAngle.z
+			<< "\nSpeed"
+			<< m_speed
+			<< "\ncntlVec[0].bRightTrigger"
+			<< cntlVec[0].bRightTrigger
+			<<"\nm_dashCheck"
+			<< (bool)m_dashCheck
+			<<"\nelapsedTime"
+			<< elapsedTime
 			<< endl;
 		scene->SetDebugString(wss.str());
 
