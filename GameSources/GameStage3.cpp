@@ -240,19 +240,19 @@ namespace basecross {
 		//BigPieceのPos一覧
 		Vec3 Pos[] = 
 		{
-			Vec3(-29.2f,0.2f,35.6f),//1
-			Vec3(3.0f,0.2f,49.5f),//2
-			Vec3(54.7f,0.2f,65.0f),//3
-			Vec3(62.0f,0.2f,5.0f),//4
-			Vec3(53.7f,0.2f,-65.2f),//5
-			Vec3(-63.6f,0.2f,-71.0f),//6
-			Vec3(-53.2f,0.2f,-29.0f)//7
+			Vec3(-29.2f,0.3f,35.6f),//1
+			Vec3(3.0f,0.3f,49.5f),//2
+			Vec3(54.7f,0.3f,65.0f),//3
+			Vec3(62.0f,0.3f,5.0f),//4
+			Vec3(53.7f,0.3f,-65.2f),//5
+			Vec3(-63.6f,0.3f,-71.0f),//6
+			Vec3(-53.2f,0.3f,-29.0f)//7
 
 		};
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
-			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f));//オブジェクトを生成する
+			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.2f, 0.0f), Vec3(3.5f, 3.5f, 3.5f));//オブジェクトを生成する
 			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
 			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
 			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける
