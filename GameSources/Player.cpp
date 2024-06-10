@@ -44,7 +44,7 @@ namespace basecross {
 		m_dashCooldown(false),
 		m_startFlag(false),
 		m_radarFlag(false),
-		m_statusFlag(0),
+		m_statusFlag(2),
 		m_enemyPieceFlag(false),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
@@ -132,7 +132,7 @@ namespace basecross {
 		{	
 			if (m_maxSpeed >= m_speed)
 			{
-				m_speed += (input.y * 6.0f) * elapsedTime;//ステックを縦に傾けば傾くほど加速する
+				m_speed += (input.y * 6.5f) * elapsedTime;//ステックを縦に傾けば傾くほど加速する
 			}
 
 			if (!m_dashCheck)//ダッシュ効果適応外
@@ -173,7 +173,7 @@ namespace basecross {
 			}
 			if (m_speed > 0)//現在のスピードが０より大きかった時
 			{
-				m_speed -= elapsedTime*5.0f;//スピードがどんどん落ちてくる
+				m_speed -= elapsedTime*6.8f;//スピードがどんどん落ちてくる
 				if (m_speed <= 0.5)//スピードが０に近くなったら
 				{
 					m_speed = 0;//スピードを０とみなす
@@ -222,12 +222,17 @@ namespace basecross {
 
 	void Player::Dash() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
+		Vec2 input = GetInputState();//入力を取得
 		
 		if (cntlVec[0].bRightTrigger >= 0.8f) {//RTボタンを押したら
 			m_dashCheck = true;
 			m_dashCooldown = true;
 			if (m_dashCount > 0) {
-				m_speed = m_dashSpeed;//スピードをダッシュ用のスピードに変更する
+				if (input.x != 0 || input.y != 0)
+				{
+					m_speed = m_dashSpeed;//スピードをダッシュ用のスピードに変更する
+				}
 			}
 		}
 		else {
@@ -301,7 +306,7 @@ namespace basecross {
 			//Ｂボタンで弾を発射
 			if (cntlVec[0].bConnected) {
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-					auto bullet = stage->AddGameObject<Bullet>(ptrPos,Vec3(0.2f), 30.0f, frontAngle, 1);
+					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x,ptrPos.y-0.3f,ptrPos.z),Vec3(0.2f), 30.0f, frontAngle, 1);
 					//stage->SetSharedGameObject(L"Bullet", bullet);
 
 					auto soundE = App::GetApp()->GetXAudio2Manager();
@@ -315,10 +320,10 @@ namespace basecross {
 				auto objTrans = obj->GetComponent<Transform>();
 				auto pullTrans = objTrans->GetPosition() - ptrPos;
 				float range = sqrt(pullTrans.x * pullTrans.x + pullTrans.z * pullTrans.z);
-				if (range < 10.0f) {
+				if (range < 7.0f) {
 					auto pos = ptrPos;
-					pos.x += -pullTrans.x * 0.2f + elapsedTime;
-					pos.z += -pullTrans.z * 0.2f + elapsedTime;
+					pos.x += -pullTrans.x * 0.15f + elapsedTime;
+					pos.z += -pullTrans.z * 0.15f + elapsedTime;
 					m_trans->SetPosition(Vec3(pos.x, pos.y, pos.z));
 					m_startFlag = false;
 				}
