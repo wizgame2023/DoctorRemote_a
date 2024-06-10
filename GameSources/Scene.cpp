@@ -384,13 +384,13 @@ namespace basecross {
 		m_bulletStatus += status;
 	}
 
-	int Scene::GetLigthStatus() {
+	int Scene::GetPieceStatus() {
 		return m_ligthStatus;
 	}
-	void Scene::SetLigthStatus(int status) {
+	void Scene::SetPieceStatus(int status) {
 		m_ligthStatus = status;
 	}
-	void Scene::AddLigthStatus(int status) {
+	void Scene::AddPieceStatus(int status) {
 		m_ligthStatus += status;
 	}
 
