@@ -141,16 +141,12 @@ namespace basecross {
 		app->RegisterTexture(L"RecoveryEffect", strTexture);
 		strTexture = texPath + L"GetEffect.png";
 		app->RegisterTexture(L"GetEffect", strTexture);
-
-
 		strTexture = texPath + L"DashMode.png";
 		app->RegisterTexture(L"DashButton", strTexture);
 		strTexture = texPath + L"BulletMode.png";
 		app->RegisterTexture(L"BulletButton", strTexture);
-
 		strTexture = texPath + L"GageMode.png";
 		app->RegisterTexture(L"GageButton", strTexture);
-
 		strTexture = texPath + L"PieceButton.png";
 		app->RegisterTexture(L"PieceButton", strTexture);
 		strTexture = texPath + L"LightMode.png";
@@ -169,6 +165,8 @@ namespace basecross {
 		//文字の表示等
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
+		strTexture = texPath + L"Point.png";
+		app->RegisterTexture(L"Point", strTexture);
 		strTexture = texPath + L"StatusMoji.png";
 		app->RegisterTexture(L"StatusMoji", strTexture);
 		strTexture = texPath + L"StatusMoji2.png";
@@ -183,6 +181,8 @@ namespace basecross {
 		app->RegisterTexture(L"ResultMoji1", strTexture);
 		strTexture = texPath + L"ResultMoji2.png";
 		app->RegisterTexture(L"ResultMoji2", strTexture);
+		strTexture = texPath + L"ResultMoji3.png";
+		app->RegisterTexture(L"ResultMoji3", strTexture);
 		strTexture = texPath + L"GameClear.jpg";
 		app->RegisterTexture(L"GameClear", strTexture);
 		strTexture = texPath + L"IfClear.png";
@@ -339,7 +339,7 @@ namespace basecross {
 			ResetActiveStage<GameStage3>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<TitleStage>();
+			ResetActiveStage<ScoreStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
