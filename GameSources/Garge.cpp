@@ -139,6 +139,9 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 
 	}
+	void Garge::SetColor(Col4 color) {
+		m_draw->SetDiffuse(color);
+	}
 	void Garge::ThisDestroy() {
 		GetStage()->RemoveGameObject<Garge>(GetThis<Garge>());
 	}
