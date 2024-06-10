@@ -46,11 +46,10 @@ namespace basecross {
 		if (m_control == 0)
 		{			
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) //Aボタンが押されたらスキップ(カウントを10秒プラス)する
-			{
-				m_skip = 0.0f;
-				m_countUp+= 10;
-			}
+			//if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) //Aボタンが押されたらスキップ(カウントを10秒プラス)する
+			//{
+			//	m_countUp+= 10;
+			//}
 
 			//スコアステージが生成されてから1秒後に、「レコード」を表示
 			if (m_countUp >= 1.0f && m_timeCount == 0)
@@ -85,35 +84,34 @@ namespace basecross {
 			//スコアステージが生成されてから5秒後で、評価の文字を表示
 			else if (m_countUp >= 5.0f && m_timeCount == 4)
 			{
-				m_skip = 0.0f;
-				auto moji2 = AddGameObject<CommentManager>(27, 0, m_skip, 512, 512, 400, 512, 9, 5, //評価の文字を表示
+				auto moji2 = AddGameObject<CommentManager>(27, 0, 0.05f, 512, 512, 400, 512, 9, 5, //評価の文字を表示
 					Vec3(-570.0f, 140.0f, 0.0f), L"IfClear");
 				m_timeCount++;
 			}
 
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが50秒以上だったら表示
-			else if (m_time >= 50 && m_countUp >= 7.0f && m_timeCount == 5)//m_time >= 50 && 
+			else if (m_time >= 50 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
 				auto moji3 = AddGameObject<CommentManager>(16, 0, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを4つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが40秒以上だったら表示
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 7.0f && m_timeCount == 5)//m_time >= 40 && m_time < 50 && 
+			else if (m_time >= 40 && m_time < 50 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
 				auto moji3 = AddGameObject<CommentManager>(16, 1, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを3つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが25秒以上だったら表示
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 7.0f && m_timeCount == 5)//m_time >= 25 && m_time < 40 && 
+			else if (m_time >= 25 && m_time < 40 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
 				auto moji3 = AddGameObject<CommentManager>(16, 2, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを2つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアしたら表示
-			else if (m_time < 25 && m_countUp >= 7.0f && m_timeCount == 5)//m_time < 25 && 
+			else if (m_time < 25 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
 				auto moji3 = AddGameObject<Comment>(16, 3, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを1つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
@@ -138,7 +136,7 @@ namespace basecross {
 			//スコアステージが生成されてから9秒後で、ステージクリアした時の残りタイムが40秒以上だったらポイント「75」を表示
 			else if (m_time >= 40 && m_time < 50 && m_countUp >= 9.0f && m_timeCount == 7) 
 			{
-				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-78.0f, -285.0f, 0.0f));//「75」を表示 m_time >= 25 && m_time < 40 && 
+				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-78.0f, -285.0f, 0.0f));//「75」を表示
 				rank->UpdateIfClear(1);
 				m_timeCount++;
 			}
@@ -152,7 +150,7 @@ namespace basecross {
 			//スコアステージが生成されてから9秒後で、ステージクリアしたらポイント「25」を表示
 			else if (m_time < 25 && m_countUp >= 9.0f && m_timeCount == 7)
 			{
-				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-78.0f, -283.0f, 0.0f));//「25」を表示 m_time < 25 && 
+				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-78.0f, -283.0f, 0.0f));//「25」を表示
 				rank->UpdateIfClear(3);
 				m_timeCount++;
 			}
@@ -194,7 +192,6 @@ namespace basecross {
 				m_control++;
 			}
 			scene->SetAchievementPoint(m_achievementPoint);
-			m_skip = 0.05;
 		}
 		//スコアステージが生成されてから6秒後に「Bボタンで次へ」を表示
 		else if (m_control == 1 && m_countUp >= 11.0f)
@@ -204,17 +201,17 @@ namespace basecross {
 			m_timeCount++;
 			m_control++;
 		}
-		int test = scene->GetAchievementPoint();//デバック用変数
-		wstringstream wss(L"");
-		wss << m_countUp << "\n" << test << endl;
+		//int test = scene->GetAchievementPoint();//デバック用変数
+		//wstringstream wss(L"");
+		//wss << m_countUp << "\n" << test << endl;
 
-		scene->SetDebugString(wss.str());
+		//scene->SetDebugString(wss.str());
 	}
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].bConnected)
 		{
-			if (m_countUp >= 10.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
+			if (m_countUp >= 12.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
 				switch (m_stageCount)
 				{
