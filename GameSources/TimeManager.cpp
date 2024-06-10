@@ -94,7 +94,7 @@ namespace basecross {
 		//	<< endl;
 
 
-		wss << m_time << endl;
+		//wss << m_time << endl;
 
 		auto dstr = scene->GetDebugString();
 		scene->SetDebugString(dstr + wss.str());
