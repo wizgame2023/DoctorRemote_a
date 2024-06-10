@@ -98,10 +98,10 @@ namespace basecross {
 			if (m_enemyDeletFlag) return;
 			if (m_littlePieceFlag) {
 				stage->AddGameObject<PieceLittle>(other,player, 0.0f);
-				stage->AddGameObject<PieceLittle>(other,player, 72.0f);
-				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
-				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
-				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);	
+				stage->AddGameObject<PieceLittle>(other,player, 120.0f);
+				stage->AddGameObject<PieceLittle>(other,player, 120.0f * 2);
+				//stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
+				//stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);	
 			}
 			m_enemyDeletFlag = true;
 			//m_enemyDeletFlag++;
