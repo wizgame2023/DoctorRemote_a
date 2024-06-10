@@ -14,6 +14,8 @@ const wchar_t* pWndTitle = L"DoctorRemote";
 //ウィンドウモードの時の幅と高さ
 int g_ClientWidth = 1280;
 int g_ClientHeight = 800;
+//ウィンドウモード
+bool g_IsFullscreen = false;
 
 
 //--------------------------------------------------------------------------------------
@@ -108,6 +110,10 @@ HWND InitInstance(HINSTANCE hInstance, int nCmdShow, bool isFullScreen, int iCli
 			return 0;   //エラー終了
 		}
 	}
+
+	//マウスカーソルOFF
+	ShowCursor(FALSE);
+
 	//ウインドウの表示
 	ShowWindow(
 		hWnd,       //取得したウインドウのハンドル
@@ -236,7 +242,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	// フルスクリーンにするかどうかの判定
 	// コマンドラインに/fが設定されていたらフルスクリーンにする
-	bool isFullScreen = false;
+	bool isFullScreen = g_IsFullscreen;
 	wstring wstrcmd = lpCmdLine;
 	if (wstrcmd == L"/f" || wstrcmd == L"/F") {
 		isFullScreen = true;     // フラグをtrueに設定
