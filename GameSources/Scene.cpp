@@ -43,6 +43,8 @@ namespace basecross {
 		app->RegisterTexture(L"Hearts", strTexture);
 		strTexture = texPath + L"HeartsFrame.png";
 		app->RegisterTexture(L"HeartsFrame", strTexture);
+		strTexture = texPath + L"GargeLight.png";
+		app->RegisterTexture(L"GargeLight", strTexture);
 
 		//背景など1280x800
 		strTexture = texPath + L"Clear.png";
