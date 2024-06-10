@@ -65,7 +65,7 @@ namespace basecross {
 			switch (kakeraMap[charkZ][charkX])
 			{
 			case 0:
-				GetStage()->AddGameObject<EnemyPiece>(Pos, Vec3(), Vec3(1.25f, 1.25f, 1.25f));//オブジェクト生成
+				GetStage()->AddGameObject<EnemyPiece>(Pos, Vec3(), Vec3(2.0f, 2.0f, 2.0f));//オブジェクト生成
 				count++;//カウント
 				break;
 			default:

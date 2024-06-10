@@ -38,6 +38,8 @@ namespace basecross {
 		Vec3 m_pos;
 		Vec3 m_position;
 		Vec3 m_rot;
+		Vec3 m_lastAngle;//Playerの進む角度を保存する
+		Vec2 m_PadLastAngle;//最後に傾けたpadの傾きを保存する
 
 		wstring m_meshResName;
 
@@ -46,7 +48,7 @@ namespace basecross {
 		shared_ptr<GameObject> m_obj;
 
 	private:
-		Vec2 GetInputState()const;
+		Vec2 GetInputState();
 		void MovePlayer();
 
 	public:
@@ -60,7 +62,7 @@ namespace basecross {
 		virtual ~Player() {}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
-		Vec3 GetMoveVector()const;
+		Vec3 GetMoveVector();
 		void Dash();
 
 		Vec3 GetAngle();
@@ -75,6 +77,7 @@ namespace basecross {
 		shared_ptr<GameObject> GetObj();
 		void SetObj(shared_ptr<GameObject>& obj);
 		void EffectFlag(int Flag);
+		void SpeedCalculation();//スピードを計算する
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};

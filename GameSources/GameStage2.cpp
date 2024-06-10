@@ -52,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f));
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),100);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -78,16 +78,16 @@ namespace basecross {
 		switch (randamEnemy)
 		{
 		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-34.5f, 0.5f, -43.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-34.5f, 0.5f, -43.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(31.0f, 0.5f, 0.54f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(54.0f, 0.5f, 50.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-14.0f, 0.5f, 42.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-26.0f, 0.5f, -1.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(39.0f, 0.5f, -15.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(56.0f, 0.5f, -63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		default:
 			break;
@@ -102,77 +102,77 @@ namespace basecross {
 			{//1			
 				Vec3(-19.0f,0.1f,22.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//2
 				Vec3(-12.0f,0.1f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//3
 				Vec3(-45.0f,0.1f,9.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//4
 				Vec3(-23.0f,0.1f,-3.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//5
 				Vec3(-25.0f,0.1f,-3.8f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//6
 				Vec3(-39.0f,0.1f,-12.8f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//7
 				Vec3(-64.0f,0.1f,-13.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//8
 				Vec3(-55.6f,0.1f,-65.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
 				Vec3(-6.0f,0.1f,-64.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
 				Vec3(16.5f,0.1f,6.7f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
 				Vec3(25.5f,0.1f,29.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//12
 				Vec3(20.0f,0.1f,-4.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//13
 				Vec3(22.0f,0.1f,26.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			}
 
@@ -233,12 +233,12 @@ namespace basecross {
 	void GameStage2::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 
-		Vec3 Pos[] = { Vec3(35.2f,0.2f,50.0f),Vec3(-35.0f,0.2f,-37.0f),Vec3(-55.0f,0.2f,50.0f),Vec3(37.0f,0.2f,13.0f),Vec3(6.0f,0.2f,-50.0f),Vec3(13.0f,0.2f,-38.0f) };//BigPieceのPosision一覧
+		Vec3 Pos[] = { Vec3(35.2f,0.2f,50.0f),Vec3(-35.0f,0.3f,-37.0f),Vec3(-55.0f,0.3f,50.0f),Vec3(37.0f,0.3f,13.0f),Vec3(6.0f,0.3f,-50.0f),Vec3(13.0f,0.3f,-38.0f) };//BigPieceのPosision一覧
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
-			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));//オブジェクトを生成する
+			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f));//オブジェクトを生成する
 			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
 			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
 			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける

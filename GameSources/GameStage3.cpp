@@ -79,16 +79,16 @@ namespace basecross {
 		switch (randamEnemy)
 		{
 		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-54.0f, 0.5f, -22.4f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-54.0f, 0.5f, -22.4f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.8f, 0.5f, 54.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-42.8f, 0.5f, 54.6f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, 16.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, 16.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		default:
 			break;
@@ -103,83 +103,83 @@ namespace basecross {
 			{//1
 				Vec3(12.0f,0.1f,-19.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//2
 				Vec3(28.2f,0.1f,-17.9f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//3
 				Vec3(37.3f,0.1f,-21.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//4
 				Vec3(42.3f,0.1f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//5
 				Vec3(47.0f,0.1f,-15.9f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//6
 				Vec3(-15.0f,0.1f,0.5f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//7
 				Vec3(-33.0f,0.1f,16.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//8
 				Vec3(-49.0f,0.1f,9.4f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
 				Vec3(-54.0f,0.1f,-5.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
 				Vec3(-57.0f,0.1f,22.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
 				Vec3(54.0f,0.1f,-4.6f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//12
 				Vec3(-10.0f,0.1f,-42.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//12
 				Vec3(-21.0f,0.1f,-62.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//13
 				Vec3(-29.5f,0.1f,-51.8f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},		
 		};
@@ -240,19 +240,19 @@ namespace basecross {
 		//BigPieceのPos一覧
 		Vec3 Pos[] = 
 		{
-			Vec3(-29.2f,0.2f,35.6f),//1
-			Vec3(3.0f,0.2f,49.5f),//2
-			Vec3(54.7f,0.2f,65.0f),//3
-			Vec3(62.0f,0.2f,5.0f),//4
-			Vec3(53.7f,0.2f,-65.2f),//5
-			Vec3(-63.6f,0.2f,-71.0f),//6
-			Vec3(-53.2f,0.2f,-29.0f)//7
+			Vec3(-29.2f,0.3f,35.6f),//1
+			Vec3(3.0f,0.3f,49.5f),//2
+			Vec3(54.7f,0.3f,65.0f),//3
+			Vec3(62.0f,0.3f,5.0f),//4
+			Vec3(53.7f,0.3f,-65.2f),//5
+			Vec3(-63.6f,0.3f,-71.0f),//6
+			Vec3(-53.2f,0.3f,-29.0f)//7
 
 		};
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
-			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));//オブジェクトを生成する
+			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.2f, 0.0f), Vec3(3.5f, 3.5f, 3.5f));//オブジェクトを生成する
 			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
 			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
 			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける
@@ -300,16 +300,12 @@ namespace basecross {
 				case 1:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(3.0, 10, 1.0));
 					break;
-
 				case 2:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 3.0));
 					break;
-
 				case 3:
-
 					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
 					break;
-
 				case 4:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 					break;

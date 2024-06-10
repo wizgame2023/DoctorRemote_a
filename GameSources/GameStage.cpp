@@ -35,7 +35,7 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f), Vec3(0.4f, 0.4f, 0.4f));
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20);
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 		auto EffectPtr3 = AddGameObject<EffectMove>(L"GetEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
@@ -72,22 +72,22 @@ namespace basecross {
 	//敵を作成
 	void GameStage::CreateEnemy()
 	{
-		int randamEnemy = 0;
+		int randamEnemy = 3;
 		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
 		switch (randamEnemy)
 		{
 		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f),Vec3(1.0f,1.0f,1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-22.0f, 0.5f, -42.0f), Vec3(-0.0f, 0.0f, 0.0f),Vec3(3.0f,3.0f,3.0f));
 			break;
 		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-58.0f, 0.5f, 65.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-34.0f, 0.5f, 35.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(41.0f, 0.5f, 63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(44.0f, 0.5f, 35.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(24.0f, 0.5f, -9.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));			
+			ptrEnemy = AddGameObject<Enemy>(Vec3(60.5f, 0.5f, -64.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));			
 			break;
 		default:
 			break;
@@ -102,47 +102,47 @@ namespace basecross {
 			{//8				
 				Vec3(-6.25f,0.1f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
 				Vec3(-4.56f,0.1f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
 				Vec3(-7.25f,0.1f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},			
 			{//11
 				Vec3(27.7f,0.1f,-9.1f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//12
 				Vec3(31.0f,0.1f,-6.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//13
 				Vec3(39.0f,0.1f,6.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//14
 				Vec3(29.0f,0.1f,15.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//15
 				Vec3(13.0f,0.1f,44.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.25f,1.25f,1.25f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 
@@ -243,11 +243,11 @@ namespace basecross {
 	void GameStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 
-		Vec3 Pos[] = { Vec3(52.0f,0.2f,70.0f),Vec3(-10.0f,0.2f,10.0f),Vec3(52.0f,0.2f,-44.0f),Vec3(-43.0f,0.2f,-6.0f) };//BigPieceのPos一覧
+		Vec3 Pos[] = { Vec3(52.0f,0.3f,70.0f),Vec3(-10.0f,0.3f,10.0f),Vec3(52.0f,0.3f,-44.0f),Vec3(-43.0f,0.3f,-6.0f) };//BigPieceのPos一覧
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
-			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));//オブジェクトを生成する
+			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f));//オブジェクトを生成する
 			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
 			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
 			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける
