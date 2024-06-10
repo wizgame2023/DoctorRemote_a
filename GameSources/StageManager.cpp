@@ -16,7 +16,6 @@ namespace basecross {
 		m_hpSpeed(3.0f),
 		m_ligthStatus(0),
 		m_count(4.0f),
-		m_countStart(0.5f),
 		m_stageFlag(0),
 		m_comX(800.0f),
 		m_start(false),
@@ -32,7 +31,7 @@ namespace basecross {
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
 
-		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);
+		//auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);
 		auto raderWaku = stage->AddGameObject<Sprite>(450, 250, L"RaderFrame", Vec3(0.0f,-250,0.0f));
 		raderWaku->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.5f));
 
@@ -44,20 +43,20 @@ namespace basecross {
 
 
 		m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetLigthStatus();
-		switch (m_ligthStatus)
-		{
-		case 0:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);
-			break;
-		case 1:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(),0);
-			break;
-		case 2:
-			stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3(),0);
-			break;
-		default:
-			break;
-		}
+		//switch (m_ligthStatus)
+		//{
+		//case 0:
+		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);
+		//	break;
+		//case 1:
+		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(),0);
+		//	break;
+		//case 2:
+		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3(),0);
+		//	break;
+		//default:
+		//	break;
+		//}
 
 
 	}
@@ -110,15 +109,14 @@ namespace basecross {
 
 				}
 				if (m_count < 1) {
-					dynamic_pointer_cast<MainCamera>(OnGetDrawCamera())->SetMove(true);//カメラを操作できるようになる
 					m_num->ThisDestory();
-					if (!m_start) {
-						m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());
+					if (!m_start) {		
+						m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());					
 					}
 					m_start = true;
 
-					m_countStart -= elapsedTime;
-					if (m_countStart < 0) {
+					if (m_count <= 0) return;//カウントが０秒より少なかった場合リターンする
+					if (m_count < 0.1f) {			
 						m_startSprite->ThisDestory();
 					}
 				}

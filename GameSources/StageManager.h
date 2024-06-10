@@ -18,7 +18,6 @@ namespace basecross {
 		float m_maxHp;
 		float m_hpSpeed;
 		float m_count;
-		float m_countStart;
 		float m_comX;
 
 		int m_ligthStatus;

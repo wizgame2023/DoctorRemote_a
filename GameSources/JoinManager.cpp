@@ -84,6 +84,7 @@ namespace basecross {
 		{
 			if (m_PlayerPos.z <= m_MaxRange.z && m_PlayerPos.z >= m_MinRange.z)
 			{
+				dynamic_pointer_cast<MainCamera>(OnGetDrawCamera())->SetMove(true);//カメラを操作できるようになる
 				m_stageCollionManager->SetCollisionSwhich(true);//ステージ上のコリジョン判定を復活させる
 				auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 				stageManager->SetCountFlag(true);//ステージのカウントを開始する
