@@ -230,13 +230,13 @@ namespace basecross {
 			AddGameObject<TimeManager>();//時間制限
 
 			//壁を出現（テスト）
-			//AddGameObject<BreakWall>(Vec3(5.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
-			//AddGameObject<BreakWall>(Vec3(7.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
-			//AddGameObject<BreakWall>(Vec3(3.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(5.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(7.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(3.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
 			//AddGameObject<RecoveryWall>(Vec3(15.0f, 0.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 
 			//AddGameObject<Block>(Vec3(10.0f, -0.5f,-2.0f), Vec3(0.0f, 0.0f, 0.0f));
-			AddGameObject<Block3>(Vec3(0.5f, 0.0f, 0.0f), Vec3(0.0f, XMConvertToRadians(45.0f+90.0f), 0.0f), Vec3(23.0f, 10.0f, 18.0f));
+			//AddGameObject<Block3>(Vec3(0.5f, 0.0f, 0.0f), Vec3(0.0f, XMConvertToRadians(45.0f+90.0f), 0.0f), Vec3(23.0f, 10.0f, 18.0f));
 
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャー追加
