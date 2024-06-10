@@ -76,7 +76,7 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
-		ptrEnemy = AddGameObject<Enemy>(Vec3(28.0f, 0.5f, 32.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+		ptrEnemy = AddGameObject<Enemy>(Vec3(15.5f, 0.5f, -7.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -87,53 +87,53 @@ namespace basecross {
 			{//8				
 				Vec3(-6.25f,1.0f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
 				Vec3(-4.56f,1.0f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
 				Vec3(-7.25f,1.0f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
 				Vec3(28.9f,1.0f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//12
 				Vec3(45.0f,1.0f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//13
 				Vec3(16.0f,1.0f,10.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//14
 				Vec3(12.0f,1.0f,41.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//15
 				Vec3(0.6f,1.0f,34.3f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//16
 				Vec3(10.0f,1.0f,20.0f),
 				Vec3(0.0f,0.0f,0.0f),
-				Vec3(1.0f,1.0f,1.0f)
+				Vec3(2.0f,2.0f,2.0f)
 
 			}
 
