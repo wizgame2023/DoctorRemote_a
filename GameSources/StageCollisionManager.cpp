@@ -37,7 +37,7 @@ namespace basecross {
 
 		if (On == true)
 		{
-			AABB CollisionActiveArea = AABB(PlayerPos + Vec3(-50.0f, -50.0f, -50.0f), PlayerPos + Vec3(50.0f, 50.0f, 50.0f));
+			AABB CollisionActiveArea = AABB(PlayerPos + Vec3(-50.0f, -10.0f, -50.0f), PlayerPos + Vec3(50.0f, 1.0f, 50.0f));
 			stage->GetCollisionManager()->SetRootAABB(CollisionActiveArea);
 		}
 		if (On == false)
