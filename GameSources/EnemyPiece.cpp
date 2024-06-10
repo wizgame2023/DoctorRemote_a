@@ -20,7 +20,7 @@ namespace basecross {
 		m_scale(scale),
 		m_enemyDeletFlag(0),
 		m_pieceDeleteFlag(false),
-		m_pieceDeleteTime(0.25f),
+		m_pieceDeleteTime(scale.x * 0.15f),
 		m_littlePieceFlag(littlePieceFlag),
 		m_meshResName(L"Kakera_Mesh")
 
@@ -37,7 +37,7 @@ namespace basecross {
 			Vec3(0.5f, 0.5f, 0.5f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, 0.2f, 0.0f)
 		);
 
 		//オブジェクトの描画
@@ -58,7 +58,7 @@ namespace basecross {
 
 		//コライダー
 		auto colPtr = AddComponent<CollisionSphere>();
-		colPtr->SetDrawActive(false);
+		colPtr->SetDrawActive(true);
 		colPtr->SetAfterCollision(AfterCollision::None);
 		colPtr->SetFixed(false);
 
@@ -83,7 +83,7 @@ namespace basecross {
 			if (m_pieceDeleteTime < 0) {
 				//自分自身を廃棄する
 				stage->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
-				m_pieceDeleteFlag = false;
+				m_enemyDeletFlag = false;
 			}
 
 		}
@@ -94,18 +94,21 @@ namespace basecross {
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 		auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 		if (other->FindTag(L"Bullet")){
+			//欠片をばらまく
+			if (m_enemyDeletFlag) return;
+			if (m_littlePieceFlag) {
+				stage->AddGameObject<PieceLittle>(other,player, 0.0f);
+				stage->AddGameObject<PieceLittle>(other,player, 72.0f);
+				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
+				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
+				stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);	
+			}
 			m_enemyDeletFlag = true;
+			//m_enemyDeletFlag++;
+			
+			//効果音
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
 			pieceSE->Start(L"PieceDownSE", 0, 0.5f);//SEはじめ
-			//欠片をばらまく
-			if (m_littlePieceFlag) {
-			stage->AddGameObject<PieceLittle>(other,player, 0.0f);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 2);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
-			stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);	
-			}
-			m_enemyDeletFlag++;
 		}
 		if (other->FindTag(L"Player")) {
 			stageManager->SetHp(-10.0f);

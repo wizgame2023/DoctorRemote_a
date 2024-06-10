@@ -18,7 +18,9 @@ namespace basecross {
 		m_rotate(rotate),
 		m_scale(scale),
 		m_var(var),
+		m_pieceDeleteTime(scale.x * 0.15f),
 		m_littlePieceFlag(true),
+		m_enemyDeletFlag(false),
 		m_meshResName(L"Kakera_Mesh3")
 	{}
 	BigPiece::BigPiece(const shared_ptr<Stage>& stagePtr,
@@ -34,22 +36,24 @@ namespace basecross {
 		m_scale(scale),
 		m_var(var),
 		m_littlePieceFlag(littlePieceFlag),
+		m_pieceDeleteTime(scale.x *0.15f),
+		m_enemyDeletFlag(false),
 		m_meshResName(L"Kakera_Mesh3")
 	{}
 
 
 	void BigPiece::OnCreate() {
-		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(m_scale);
-		ptrTrans->SetRotation(m_rotate);
-		ptrTrans->SetPosition(m_position);
+		m_trans = GetComponent<Transform>();
+		m_trans->SetScale(m_scale);
+		m_trans->SetRotation(m_rotate);
+		m_trans->SetPosition(m_position);
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
 			Vec3(0.5f, 0.5f, 0.5f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, 0.3f, 0.0f)
 		);
 
 		if (m_var == 1)
@@ -81,7 +85,7 @@ namespace basecross {
 
 		//コライダー
 		auto colPtr = AddComponent<CollisionSphere>();
-		colPtr->SetDrawActive(false);
+		colPtr->SetDrawActive(true);
 		colPtr->SetAfterCollision(AfterCollision::None);
 		colPtr->SetFixed(false);
 
@@ -89,9 +93,26 @@ namespace basecross {
 
 	}
 	void BigPiece::OnUpdate() {
+		auto stage = GetStage();
 		float elapsed = App::GetApp()->GetElapsedTime();
 		auto ptrDraw = GetComponent<PNTBoneModelDraw>();
 		ptrDraw->UpdateAnimation(elapsed);
+		m_trans = GetComponent<Transform>();
+		m_trans->SetScale(m_scale);
+
+		//時間差で小さくして消す
+		if (m_enemyDeletFlag) {
+			m_pieceDeleteTime -= elapsed;
+			m_scale -= 2.0f * elapsed * 3.0f;
+			if (m_pieceDeleteTime < 0) {
+				//自分自身を廃棄する
+				stage->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
+				m_enemyDeletFlag = false;
+			}
+
+		}
+
+
 	}
 
 	void BigPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
@@ -99,10 +120,8 @@ namespace basecross {
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 
 		if (other->FindTag(L"Bullet")) {
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"PieceDownSE", 0, 0.5f);
-			//自分自身を廃棄する
-			GetStage()->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
+			if (m_enemyDeletFlag) return;
+			//欠片の生成
 			if (m_littlePieceFlag) {
 				GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);//自分自身(BigPiece)がいなくなることを伝える
 				stage->AddGameObject<PieceLittle>(other, player, 0.0f);
@@ -116,7 +135,11 @@ namespace basecross {
 				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 8);
 				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 9);
 			}
+			m_enemyDeletFlag = true;
 
+			//効果音
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"PieceDownSE", 0, 0.5f);
 
 		}
 		if (other->FindTag(L"Player")) {
@@ -128,7 +151,7 @@ namespace basecross {
 		}
 	}
 
-	void BigPiece::Event(float deg) {
+	void BigPiece::Event(float deg,float power) {
 		auto grav = AddComponent<Gravity>();
 		auto ptrTrans = GetComponent<Transform>();
 		Vec3 pos = ptrTrans->GetPosition();
@@ -139,7 +162,7 @@ namespace basecross {
 		float rad = XMConvertToRadians(deg);
 
 		Vec3 velo(sin(rad), 1.0f, cos(rad));
-		velo *= 5.0f;
+		velo *= power;
 		m_velocity = velo;
 		ptrTrans->SetPosition(pos);
 

@@ -10,14 +10,13 @@
 
 namespace basecross {
 
-	Garge::Garge(const shared_ptr<Stage>& stagePtr, shared_ptr<Transform>& trans,
+	Garge::Garge(const shared_ptr<Stage>& stagePtr,
 		const float sizeX, const float sizeY, wstring meshResName,//画像のサイズ(動かしたい方に値を入れる)
 		float ratio,  float width, float heigth, //ゲージの割合と表示するサイズ
 		Col4 color,Col4 color2,
 		Vec3 screen,Vec3 distance //大まかな位置と調整
 	):
 		GameObject(stagePtr),
-		m_trans(trans),
 		m_sizeX(sizeX),
 		m_sizeY(sizeY),
 		m_meshResName(meshResName),
@@ -139,6 +138,12 @@ namespace basecross {
 		}
 		m_draw->UpdateVertices(m_vertices);
 
+	}
+	void Garge::SetColor(Col4 color) {
+		m_draw->SetDiffuse(color);
+	}
+	void Garge::ThisDestroy() {
+		GetStage()->RemoveGameObject<Garge>(GetThis<Garge>());
 	}
 
 
