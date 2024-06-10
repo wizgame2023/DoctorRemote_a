@@ -112,6 +112,10 @@ namespace basecross {
 
 		}
 
+		//if (m_trans->GetPosition().y < 0.1f) {
+		//	m_ground = true;
+
+		//}
 
 	}
 
@@ -125,15 +129,16 @@ namespace basecross {
 			if (m_littlePieceFlag) {
 				GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);//Ž©•ªŽ©g(BigPiece)‚ª‚¢‚È‚­‚È‚é‚±‚Æ‚ð“`‚¦‚é
 				stage->AddGameObject<PieceLittle>(other, player, 0.0f);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 2);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 3);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 4);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 5);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 6);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 7);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 8);
-				stage->AddGameObject<PieceLittle>(other, player, 36.0f * 9);
+				stage->AddGameObject<PieceLittle>(other, player, 40.0f);
+				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 2);
+				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 3);
+				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 4);
+				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 5);
+				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 6);
+				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 7);
+				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 8);
+				//stage->AddGameObject<PieceLittle>(other, player, 45.0f * 9);
+
 			}
 			m_enemyDeletFlag = true;
 

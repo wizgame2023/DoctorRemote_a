@@ -19,6 +19,7 @@ namespace basecross {
 		float m_collect;
 		float m_count;
 		bool m_ground;
+		int m_enemyPoint;
 
 		shared_ptr<GameObject> m_obj;
 		shared_ptr<GameObject> m_target;
@@ -32,6 +33,9 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other);
+
+		int GetEnemyPoint();
+		void SetEnemyPoint(int point);
 	};
 
 }
