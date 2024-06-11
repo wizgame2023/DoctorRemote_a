@@ -542,6 +542,9 @@ namespace basecross {
 		m_obj = obj;
 	}
 
+	bool Player::GetDashFlag() {
+		return m_dashCooldown;
+	}
 	//--------------------------------------------------------------------------------------
 	//	class ChildSphere : public GameObject;
 	//　当たり判定用のクラス
