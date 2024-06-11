@@ -52,7 +52,7 @@ namespace basecross {
 	{
 		float deg = 90.0f;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),4.0f);//Player生成
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),2.0f);//Player生成
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 
@@ -197,7 +197,7 @@ namespace basecross {
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
-			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(1.5f, 1.5f, 1.5f));//オブジェクトを生成する
+			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f));//オブジェクトを生成する
 			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
 			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
 			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける
@@ -366,7 +366,6 @@ namespace basecross {
 			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels.csv", 75, 7);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
-			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
 			CreateMap();//マップを生成
 			CreateMiniMap();//ミニマップ生成
