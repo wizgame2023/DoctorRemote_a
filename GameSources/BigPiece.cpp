@@ -18,6 +18,7 @@ namespace basecross {
 		m_rotate(rotate),
 		m_scale(scale),
 		m_var(var),
+		m_status(0),
 		m_pieceDeleteTime(scale.x * 0.15f),
 		m_littlePieceFlag(true),
 		m_enemyDeletFlag(false),
@@ -35,6 +36,7 @@ namespace basecross {
 		m_rotate(rotate),
 		m_scale(scale),
 		m_var(var),
+		m_status(0),
 		m_littlePieceFlag(littlePieceFlag),
 		m_pieceDeleteTime(scale.x *0.15f),
 		m_enemyDeletFlag(false),
@@ -88,6 +90,10 @@ namespace basecross {
 		colPtr->SetDrawActive(true);
 		colPtr->SetAfterCollision(AfterCollision::None);
 		colPtr->SetFixed(false);
+		
+		//ステータス
+		auto scene = App::GetApp()->GetScene<Scene>();
+		m_status = scene->GetPieceStatus();
 
 		AddTag(L"BigPiece");
 
@@ -125,20 +131,22 @@ namespace basecross {
 
 		if (other->FindTag(L"Bullet")) {
 			if (m_enemyDeletFlag) return;
-			//欠片の生成
+			//欠片をまき散らす
 			if (m_littlePieceFlag) {
-				GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);//自分自身(BigPiece)がいなくなることを伝える
-				stage->AddGameObject<PieceLittle>(other, player, 0.0f);
-				stage->AddGameObject<PieceLittle>(other, player, 40.0f);
-				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 2);
-				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 3);
-				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 4);
-				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 5);
-				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 6);
-				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 7);
-				stage->AddGameObject<PieceLittle>(other, player, 40.0f * 8);
-				//stage->AddGameObject<PieceLittle>(other, player, 45.0f * 9);
+				//自分自身(BigPiece)がいなくなることを伝える
+				GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);
+				//欠片の生成
+				auto pieceNum = 6;
+				if (m_status==1) {
+					pieceNum = 8;
+				}
+				else if (m_status == 2) {
+					pieceNum = 10;
+				}
 
+				for (int i = 0; i < pieceNum; i++) {
+					stage->AddGameObject<PieceLittle>(other, player, 360 / pieceNum * i,L"BigPieceLittle");
+				}
 			}
 			m_enemyDeletFlag = true;
 

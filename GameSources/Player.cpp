@@ -442,6 +442,20 @@ namespace basecross {
 			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
 
 		}
+		if (other->FindTag(L"BigPieceLittle")) {
+			if (!m_radarFlag) {
+				AddPiece(m_onePiece*3);
+
+			}
+			if (m_maxPiece < m_piece) {
+				m_radarFlag = true;
+			}
+
+			EffectFlag(3);
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
+
+		}
 		if (other->FindTag(L"BigPiece")) {
 
 			m_enemyPieceFlag = true;
@@ -528,6 +542,9 @@ namespace basecross {
 		m_obj = obj;
 	}
 
+	bool Player::GetDashFlag() {
+		return m_dashCooldown;
+	}
 	//--------------------------------------------------------------------------------------
 	//	class ChildSphere : public GameObject;
 	//　当たり判定用のクラス

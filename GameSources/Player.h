@@ -78,6 +78,7 @@ namespace basecross {
 		void SetObj(shared_ptr<GameObject>& obj);
 		void EffectFlag(int Flag);
 		void SpeedCalculation();//スピードを計算する
+		bool GetDashFlag();
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};

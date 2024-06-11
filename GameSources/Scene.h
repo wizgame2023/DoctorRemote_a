@@ -60,9 +60,9 @@ namespace basecross{
 		int GetBulletStatus();
 		void SetBulletStataus(int status);
 		void AddBulletStatus(int status);
-		int GetLigthStatus();
-		void SetLigthStatus(int status);
-		void AddLigthStatus(int status);
+		int GetPieceStatus();
+		void SetPieceStatus(int status);
+		void AddPieceStatus(int status);
 		int GetTime();
 		void SetTime(int time);
 		int GetGameStage();

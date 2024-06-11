@@ -11,18 +11,19 @@ namespace basecross {
 	PieceLittle::PieceLittle(const shared_ptr<Stage>& stagePtr,
 		const shared_ptr<GameObject>& obj,
 		const shared_ptr<GameObject>& target,
-		const float deg
+		const float deg,
+		const wstring tag
 	):
 		GameObject(stagePtr),
 		m_obj(obj),
 		m_target(target),
 		m_deg(deg),
-		m_enemyPoint(2.0f),
 		m_scale(Vec3(0.5f)),
 		m_ground(false),
 		m_collect(6.0f),//‰ñû‹——£
 		m_count(8.0f), //Á–Å‚Ü‚Å‚Ì•b”
-		m_meshResName(L"LittleKakera")
+		m_meshResName(L"LittleKakera"),
+		m_tag(tag)
 	{}
 
 	void PieceLittle::OnCreate() {
@@ -76,7 +77,7 @@ namespace basecross {
 		//d—Í‚ğ‚Â‚¯‚é
 		auto grav = AddComponent<Gravity>();
 		
-		AddTag(L"PieceLittle");
+		AddTag(m_tag);
 
 	}
 
@@ -119,12 +120,6 @@ namespace basecross {
 		}
 	}
 
-	int PieceLittle::GetEnemyPoint() {
-		return m_enemyPoint;
-	}
-	void PieceLittle::SetEnemyPoint(int point) {
-		m_enemyPoint = point;
-	}
 
 }
 //end namespace basecross
