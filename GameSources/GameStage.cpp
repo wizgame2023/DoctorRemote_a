@@ -52,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer= AddGameObject<Player>(Vec3(0.0f,0.5f,0.0f),Vec3(0.0f,rad,0.0f),100);
+		shared_ptr<Player> ptrPlayer= AddGameObject<Player>(Vec3(0.0f,0.5f,0.0f),Vec3(0.0f,rad,0.0f),1.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -242,12 +242,12 @@ namespace basecross {
 
 	void GameStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
-
 		Vec3 Pos[] = { Vec3(52.0f,0.3f,70.0f),Vec3(-10.0f,0.3f,10.0f),Vec3(52.0f,0.3f,-44.0f),Vec3(-43.0f,0.3f,-6.0f) };//BigPieceのPos一覧
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 		for (int i = 0; i < m_BigPieceLength; i++)
-		{
-			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f));//オブジェクトを生成する
+		{		
+			int randMesh = rand() % 3 + 1;//ランダムにどのどのメッシュになるかが決まる
+			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f),randMesh);//オブジェクトを生成する
 			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
 			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
 			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける
@@ -348,7 +348,7 @@ namespace basecross {
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
-		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 3.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 4.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
 
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
