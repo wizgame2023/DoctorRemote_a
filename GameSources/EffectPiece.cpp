@@ -1,6 +1,7 @@
 /*!
-@file GameStage.cpp
-@brief ゲームステージ実体
+@file EffectMove.cpp
+@brief 動くエフェクト
+担当：逸見
 */
 
 #include "stdafx.h"

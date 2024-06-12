@@ -37,6 +37,12 @@
     <Filter Include="Sources\Manager">
       <UniqueIdentifier>{d6b9dc7c-16c6-46c9-a731-de737e74def3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Effect">
+      <UniqueIdentifier>{11e544fa-1c4c-4101-8e27-76bddd7047cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Effect">
+      <UniqueIdentifier>{86b6e35a-78de-44a3-8293-0e73adb9088b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -52,9 +58,6 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HemmiStage.h">
@@ -78,10 +81,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Data.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectBullet.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage4.h">
       <Filter>Headers\Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h">
@@ -168,17 +168,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectBreakWall.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectMove.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreStage.h">
       <Filter>Headers\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectChase.h">
-      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceLittle.h">
       <Filter>Headers\GameObject</Filter>
@@ -192,10 +183,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CommentManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage8.h">
       <Filter>Headers\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage3.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage10.h">
       <Filter>Headers\Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h">
@@ -228,6 +219,48 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MiniMapPlayer.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage1.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage3.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage5.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage6.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage7.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage9.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMovieManager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h">
+      <Filter>Headers\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectBreakWall.h">
+      <Filter>Headers\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectBullet.h">
+      <Filter>Headers\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectChase.h">
+      <Filter>Headers\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectMove.h">
+      <Filter>Headers\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectPiece.h">
+      <Filter>Headers\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -243,9 +276,6 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HemmiStage.cpp">
@@ -269,13 +299,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Data.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectBullet.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp">
       <Filter>Sources\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage4.cpp">
       <Filter>Sources\Stage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp">
@@ -359,17 +386,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusManager.cpp">
       <Filter>Sources\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectBreakWall.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectMove.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreStage.cpp">
       <Filter>Sources\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectChase.cpp">
-      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceLittle.cpp">
       <Filter>Sources\GameObject</Filter>
@@ -383,10 +401,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CommentManager.cpp">
       <Filter>Sources\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage8.cpp">
       <Filter>Sources\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage3.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage10.cpp">
       <Filter>Sources\Stage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp">
@@ -418,6 +436,48 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)RandCreateManager.cpp">
       <Filter>Sources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage1.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage3.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage5.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage6.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage7.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage9.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyMovieManager.cpp">
+      <Filter>Sources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp">
+      <Filter>Sources\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectBreakWall.cpp">
+      <Filter>Sources\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectBullet.cpp">
+      <Filter>Sources\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectChase.cpp">
+      <Filter>Sources\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectMove.cpp">
+      <Filter>Sources\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectPiece.cpp">
+      <Filter>Sources\Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
