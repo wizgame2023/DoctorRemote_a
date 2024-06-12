@@ -11,7 +11,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	//	ゲームステージクラス
 	//--------------------------------------------------------------------------------------
-	class GameStage : public Stage {
+	class GameStage4 : public Stage {
 
 		bool m_PieceFlag;//ステージ全体のフラグ
 		shared_ptr<SoundItem> m_BGM;
@@ -33,8 +33,8 @@ namespace basecross {
 		
 	public:
 		//構築と破棄
-		GameStage() :Stage() {}
-		virtual ~GameStage() {}
+		GameStage4() :Stage() {}
+		virtual ~GameStage4() {}
 
 		virtual void OnCreate()override; //初期化
 		void OnUpdate()override;//更新

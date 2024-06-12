@@ -12,7 +12,7 @@ namespace basecross {
 //--------------------------------------------------------------------------------------
 
 //ビューとライトの作成
-	void GameStage3::CreateViewLight() {
+	void GameStage10::CreateViewLight() {
 
 
 		// カメラの設定
@@ -32,7 +32,7 @@ namespace basecross {
 
 	}
 
-	void GameStage3::CreateEffect()//エフェクト生成
+	void GameStage10::CreateEffect()//エフェクト生成
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
@@ -48,7 +48,7 @@ namespace basecross {
 
 
 	//Playerを追加する関数
-	void GameStage3::CreatePlayer()//改善すべき点
+	void GameStage10::CreatePlayer()//改善すべき点
 	{
 		//Playerの出現場所を決める
 		float deg = 90;
@@ -58,7 +58,7 @@ namespace basecross {
 
 	}
 	//レーダーを追加する関数
-	void GameStage3::CreateRadar()
+	void GameStage10::CreateRadar()
 	{
 		auto ptrPlayer = GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
 		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//そのオブジェクトのTransformを取得
@@ -71,7 +71,7 @@ namespace basecross {
 	}
 
 	//敵を作成
-	void GameStage3::CreateEnemy()
+	void GameStage10::CreateEnemy()
 	{
 		int randamEnemy = 1;
 		//randamEnemy = rand() % 4;
@@ -97,7 +97,7 @@ namespace basecross {
 	}
 
 	//敵の欠片を作成
-	void GameStage3::CreateEnemyPiece() {
+	void GameStage10::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
 			{//1
@@ -189,7 +189,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage3::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
+	void GameStage10::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
 	{
 		int randamCount = 0;
 		randamCount = rand() % 9 + 1;
@@ -221,7 +221,7 @@ namespace basecross {
 
 	}
 
-	void GameStage3::CreateEnemyPiece2()
+	void GameStage10::CreateEnemyPiece2()
 	{
 		Vec3 lowerLeft = Vec3(-27.6f, 0.0f, -18.4f);//左下
 		Vec3 lowerRight = Vec3(20.0f, 0.0f, -43.0f);//右下
@@ -235,7 +235,7 @@ namespace basecross {
 
 	}
 
-	void GameStage3::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
+	void GameStage10::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 		//BigPieceのPos一覧
 		Vec3 Pos[] = 
@@ -261,13 +261,13 @@ namespace basecross {
 	}
 
 
-	void GameStage3::CreateMap()
+	void GameStage10::CreateMap()
 	{
 		auto path = App::GetApp()->GetDataDirWString();
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_3.csv");
+		ifstream ifs(levelPath += L"Level_10.csv");
 		if (ifs)
 		{
 			string line;
@@ -347,7 +347,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage3::CreateMiniMap()
+	void GameStage10::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage3", Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
@@ -376,22 +376,22 @@ namespace basecross {
 
 
 	//BGMの再生
-	void GameStage3::BaseBGM()
+	void GameStage10::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
-	void GameStage3::BossBGM() {
+	void GameStage10::BossBGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
-	void GameStage3::OnDestroy()
+	void GameStage10::OnDestroy()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
 
-	void GameStage3::CollisionActive(bool On)
+	void GameStage10::CollisionActive(bool On)
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		auto PlayerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
@@ -409,12 +409,12 @@ namespace basecross {
 
 	}
 
-	void GameStage3::SetCollisionSwich(bool ONorOFF)
+	void GameStage10::SetCollisionSwich(bool ONorOFF)
 	{
 	}
 
 
-	void GameStage3::OnCreate() {
+	void GameStage10::OnCreate() {
 		try {
 			App::GetApp()->GetScene<Scene>()->SetGameStage(1);
 			//テクスチャ、モデルの設定データ
@@ -457,7 +457,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage3::OnUpdate()
+	void GameStage10::OnUpdate()
 	{
 		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
