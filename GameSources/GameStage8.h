@@ -7,7 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class GameStage2 :public Stage
+	class GameStage8 :public Stage
 	{
 		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
 		shared_ptr<SoundItem> m_BGM;
@@ -30,8 +30,8 @@ namespace basecross {
 
 	public:
 		//構築と破棄
-		GameStage2() :Stage() {}
-		virtual ~GameStage2() {}
+		GameStage8() :Stage() {}
+		virtual ~GameStage8() {}
 
 		virtual void OnCreate()override; //初期化
 		void OnUpdate()override;//更新

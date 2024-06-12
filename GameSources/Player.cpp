@@ -260,7 +260,7 @@ namespace basecross {
 
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
-		ptrDraw->SetMultiMeshResource(m_meshResName);
+		ptrDraw->SetMeshResource(m_meshResName);
 		ptrDraw->SetSamplerState(SamplerState::LinearWrap);
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
@@ -270,7 +270,7 @@ namespace basecross {
 
 		//影をつける
 		auto ptrShadow = AddComponent<Shadowmap>();
-		ptrShadow->SetMultiMeshResource(m_meshResName);
+		ptrShadow->SetMeshResource(m_meshResName);
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto colPtr = AddComponent<CollisionObb>();

@@ -13,7 +13,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 
 	//ビューとライトの作成
-	void GameStage::CreateViewLight() {
+	void GameStage4::CreateViewLight() {
 
 
 		// カメラの設定
@@ -31,7 +31,7 @@ namespace basecross {
 
 	}
 
-	void GameStage::CreateEffect()//エフェクト生成
+	void GameStage4::CreateEffect()//エフェクト生成
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
@@ -47,7 +47,7 @@ namespace basecross {
 
 
 	//Playerを追加する関数
-	void GameStage::CreatePlayer()//改善すべき点
+	void GameStage4::CreatePlayer()//改善すべき点
 	{
 		//Playerの出現場所を決める
 		float deg = -180;
@@ -57,7 +57,7 @@ namespace basecross {
 
 	}
 	//レーダーを追加する関数
-	void GameStage::CreateRadar()
+	void GameStage4::CreateRadar()
 	{
 		auto ptrPlayer = GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
 		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//そのオブジェクトのTransformを取得
@@ -70,7 +70,7 @@ namespace basecross {
 	}
 
 	//敵を作成
-	void GameStage::CreateEnemy()
+	void GameStage4::CreateEnemy()
 	{
 		int randamEnemy = 3;
 		randamEnemy = rand() % 4;
@@ -96,7 +96,7 @@ namespace basecross {
 	}
 
 	//固定の敵の欠片を作成
-	void GameStage::CreateEnemyPiece() {
+	void GameStage4::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
 			{//8				
@@ -153,7 +153,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる 消去予定
+	void GameStage4::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる 消去予定
 	{
 		int randamCount = 0;
 		randamCount = rand() % 9 + 1;
@@ -185,7 +185,7 @@ namespace basecross {
 
 	}
 
-	void GameStage::CreateEnemyPiece2()//ランダムな場所にかけらを生成する
+	void GameStage4::CreateEnemyPiece2()//ランダムな場所にかけらを生成する
 	{
 
 		auto& app = App::GetApp();
@@ -240,7 +240,7 @@ namespace basecross {
 
 	}
 
-	void GameStage::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
+	void GameStage4::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 		Vec3 Pos[] = { Vec3(52.0f,0.3f,70.0f),Vec3(-10.0f,0.3f,10.0f),Vec3(52.0f,0.3f,-44.0f),Vec3(-43.0f,0.3f,-6.0f) };//BigPieceのPos一覧
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
@@ -256,13 +256,13 @@ namespace basecross {
 	}
 
 
-	void GameStage::CreateMap()
+	void GameStage4::CreateMap()
 	{
 		auto path = App::GetApp()->GetDataDirWString();
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level.csv");
+		ifstream ifs(levelPath += L"Level_4.csv");
 		if (ifs)
 		{
 			string line;
@@ -342,7 +342,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage::CreateMiniMap()
+	void GameStage4::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 5);//ミニマップ生成
@@ -369,22 +369,22 @@ namespace basecross {
 	}
 
 	//BGMの再生
-	void GameStage::BaseBGM()
+	void GameStage4::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
-	void GameStage::BossBGM() {
+	void GameStage4::BossBGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
-	void GameStage::OnDestroy() 
+	void GameStage4::OnDestroy() 
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
 
-	void GameStage::OnCreate() {
+	void GameStage4::OnCreate() {
 		try {
 			App::GetApp()->GetScene<Scene>()->SetGameStage(1);
 			//テクスチャ、モデルの設定データ
@@ -426,7 +426,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage::OnUpdate()
+	void GameStage4::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//CollisionActive(true);

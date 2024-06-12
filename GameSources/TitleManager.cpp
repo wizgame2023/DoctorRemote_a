@@ -37,7 +37,7 @@ namespace basecross {
 
 
 		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
-		ptrDraw->SetMultiMeshResource(L"Sensuikan_Mesh");
+		ptrDraw->SetMeshResource(L"Sensuikan_Mesh");
 		//ptrDraw->SetSamplerState(SamplerState::LinearWrap);
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
@@ -47,7 +47,7 @@ namespace basecross {
 
 		//‰e‚ð‚Â‚¯‚é
 		auto ptrShadow = AddComponent<Shadowmap>();
-		ptrShadow->SetMultiMeshResource(L"Sensuikan_Mesh");
+		ptrShadow->SetMeshResource(L"Sensuikan_Mesh");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		m_selectSprite = GetStage()->GetSharedGameObject<SelectSprite>(L"SelectSprite");
