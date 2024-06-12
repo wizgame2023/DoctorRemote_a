@@ -1,6 +1,7 @@
 /*!
-@file GameStage.h
-@brief ゲームステージ
+@file EffectMove.h
+@brief エフェクト
+担当：逸見
 */
 
 #pragma once
