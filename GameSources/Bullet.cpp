@@ -62,6 +62,9 @@ namespace basecross {
 
 		AddTag(L"Bullet");//Bulletタグを追加
 
+		m_effect = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.3f, 0.3f, 30, Vec2(1.0f, 3.0f),
+			Col4(0.0f, 0.0f, 1.0f, 0.8f), Col4(0.0f, 0.0f, 1.0f, 0.8f), L"EffectPiece", Vec2(0.0f, 1.0f),m_Position);
+
 		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetBulletStatus();
 		switch (m_statusFlag)
 		{
@@ -80,6 +83,9 @@ namespace basecross {
 	}
 	void Bullet::OnUpdate()
 	{		
+		m_effect->GetComponent<Transform>()->SetPosition(Vec3(m_Position.x, m_Position.y, m_Position.z));
+		m_effect->GetComponent<Transform>()->SetRotation(Vec3(XMConvertToRadians(90), XMConvertToRadians(90), XMConvertToRadians(90)));
+
 		//wstringstream wss;//デバック用文字列
 
 		auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得

@@ -6,6 +6,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include "EffectPiece.h"
 
 namespace basecross {
 	class Bullet : public GameObject
@@ -23,6 +24,7 @@ namespace basecross {
 		float m_shotRange;
 
 		wstring m_meshResName;
+		shared_ptr<EffectPiece> m_effect;
 
 	public:
 		static int STATUSBULLET;
