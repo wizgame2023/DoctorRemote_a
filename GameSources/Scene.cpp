@@ -236,10 +236,7 @@ namespace basecross {
 
 
 		//ボーンマルチモデル(マルチメッシュ)の通常リソース
-		auto boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewSensuikan.bmf");
-		app->RegisterResource(L"Sensuikan_Mesh", boneMultiModelMesh);
-
-		boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewBaikin.bmf");
+		auto boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewBaikin.bmf");
 		app->RegisterResource(L"Baikin_Mesh", boneMultiModelMesh);
 
 		//スタティックマルチモデル
@@ -253,6 +250,7 @@ namespace basecross {
 		auto boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera.bmf");
 		app->RegisterResource(L"Kakera_Mesh", boneModelMesh);
 
+
 		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2.bmf");
 		app->RegisterResource(L"Kakera_Mesh3", boneModelMesh);
 
@@ -260,7 +258,10 @@ namespace basecross {
 		app->RegisterResource(L"Kakera_Mesh4", boneModelMesh);
 
 		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2-2.bmf");
-		app->RegisterResource(L"Kakera_Mesh5", boneModelMesh);
+		app->RegisterResource(L"Kakera_Mesh5", boneModelMesh);	
+		
+		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"NewSensuikan.bmf");
+		app->RegisterResource(L"Sensuikan_Mesh", boneModelMesh);
 
 		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Wall.bmf");
 		app->RegisterResource(L"Wall", boneModelMesh);
@@ -328,15 +329,15 @@ namespace basecross {
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
 		if (event->m_MsgStr == L"ToGameStage") {
 			//ゲームステージの設定
-			ResetActiveStage<GameStage>();
+			ResetActiveStage<GameStage4>();
 		}
 		else if (event->m_MsgStr == L"ToGameStage2") {
 			//ゲームステージの設定
-			ResetActiveStage<GameStage2>();
+			ResetActiveStage<GameStage8>();
 		}
 		else if (event->m_MsgStr == L"ToGameStage3") {
 			//ゲームステージの設定
-			ResetActiveStage<GameStage3>();
+			ResetActiveStage<GameStage10>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
 			ResetActiveStage<TitleStage>();
