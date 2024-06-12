@@ -52,7 +52,7 @@ namespace basecross {
 	{
 		float deg = 90.0f;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),2.0f);//Player生成
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),200.0f);//Player生成
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 
@@ -363,7 +363,7 @@ namespace basecross {
 			//敵のかけらを表示
 			//CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels.csv", 75, 7);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels.csv", 75, 10);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
 			AddGameObject<Ground>();//地面を生成
@@ -398,6 +398,7 @@ namespace basecross {
 		{
 			//敵を生成
 			CreateEnemy();
+			GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用コリジョンをオフにする
 			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//レーダーを生成
 			CreateRadar();

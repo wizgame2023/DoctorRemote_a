@@ -48,7 +48,7 @@ namespace basecross {
 
 
 		//描画コンポーネント
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		auto ptrDraw = AddComponent<PNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 		ptrDraw->SetTextureResource(L"WallBreak");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);

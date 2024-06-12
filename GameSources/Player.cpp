@@ -132,7 +132,7 @@ namespace basecross {
 		{	
 			if (m_maxSpeed >= m_speed)
 			{
-				m_speed += (input.y * 6.5f) * elapsedTime;//ステックを縦に傾けば傾くほど加速する
+				m_speed += (input.y * 9.0f) * elapsedTime;//ステックを縦に傾けば傾くほど加速する
 			}
 
 			if (!m_dashCheck)//ダッシュ効果適応外
@@ -141,9 +141,9 @@ namespace basecross {
 				{
 					m_speed = m_maxSpeed;//限界のスピードまでに制限
 				}
-				if (-m_maxSpeed/2 >= m_speed)//バックの限界のスピードを超えたとき
+				if (-m_maxSpeed+2 >= m_speed)//バックの限界のスピードを超えたとき
 				{
-					m_speed = -m_maxSpeed/2;//バックの限界のスピードまでに制限
+					m_speed = -m_maxSpeed+2;//バックの限界のスピードまでに制限
 				}
 
 			}
@@ -165,7 +165,7 @@ namespace basecross {
 		{
 			if (m_speed < 0)//現在のスピードが０より小さかった時
 			{	
-				m_speed += elapsedTime * 5.0f;//スピードがどんどん落ちてくる
+				m_speed += elapsedTime * 6.8f;//スピードがどんどん落ちてくる
 				if (m_speed >= -0.5f)//スピードが０に近くなったら
 				{
 					m_speed = 0;//スピードを０とみなす
@@ -306,7 +306,7 @@ namespace basecross {
 			//Ｂボタンで弾を発射
 			if (cntlVec[0].bConnected) {
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x,ptrPos.y-0.3f,ptrPos.z),Vec3(0.2f), 30.0f, frontAngle, 1);
+					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x,ptrPos.y-0.5f,ptrPos.z),Vec3(0.2f), 30.0f, frontAngle, 1);
 					//stage->SetSharedGameObject(L"Bullet", bullet);
 
 					auto soundE = App::GetApp()->GetXAudio2Manager();

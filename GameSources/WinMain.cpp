@@ -15,7 +15,7 @@ const wchar_t* pWndTitle = L"DoctorRemote";
 int g_ClientWidth = 1280;
 int g_ClientHeight = 800;
 //ウィンドウモード
-bool g_IsFullscreen = false;
+bool g_IsFullscreen = true;
 
 
 //--------------------------------------------------------------------------------------
