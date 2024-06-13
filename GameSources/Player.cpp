@@ -81,6 +81,13 @@ namespace basecross {
 
 		return frontAngle;
 	}
+	//‰¼
+	Vec3 Player::FrontVec() {
+		auto ptrCamera = OnGetDrawCamera();
+		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
+		front.y = 0;
+		return front;
+	}
 
 	Vec3 Player::GetMoveVector() {
 		Vec3 angle(0, 0, 0);
@@ -306,7 +313,7 @@ namespace basecross {
 			//‚aƒ{ƒ^ƒ“‚Å’e‚ð”­ŽË
 			if (cntlVec[0].bConnected) {
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x,ptrPos.y-0.3f,ptrPos.z),Vec3(0.2f), 30.0f, frontAngle, 1);
+					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x,ptrPos.y-0.3f,ptrPos.z),Vec3(0.2f), 3.0f, frontAngle, 1);
 					//stage->SetSharedGameObject(L"Bullet", bullet);
 
 					auto soundE = App::GetApp()->GetXAudio2Manager();

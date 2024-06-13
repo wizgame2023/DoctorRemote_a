@@ -18,7 +18,8 @@ namespace basecross {
 		m_Attack(Attack),
 		m_statusFlag(0),
 		m_shotRange(20.0f),
-		m_meshResName(L"Bullet")
+		m_meshResName(L"Bullet"),
+		m_velocity(0)
 	{
 	}
 	//デストラクタ
@@ -64,6 +65,16 @@ namespace basecross {
 
 		m_effect = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.3f, 0.3f, 30, Vec2(1.0f, 3.0f),
 			Col4(0.0f, 0.0f, 1.0f, 0.8f), Col4(0.0f, 0.0f, 1.0f, 0.8f), L"EffectPiece", Vec2(0.0f, 1.0f),m_Position);
+		//m_effect.lock()->GetComponent<Transform>()->SetRotation(Vec3(0.0f, 0.0f, XMConvertToRadians(90)));
+		//m_effect.lock()->GetComponent<Transform>()->SetQuaternion(Quat(Vec3(1, 0, 0), XM_PIDIV2));
+		//auto player = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
+		//auto playerAngle = player->FrontVec();
+
+		//Quat SpanQt = Quat(Vec3(1, 0, 1), XM_PIDIV2);
+		//Quat Y = (Quat)playerAngle;
+		//SpanQt *= Y;
+		//m_effect.lock()->GetComponent<Transform>()->SetQuaternion(SpanQt);
+
 
 		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetBulletStatus();
 		switch (m_statusFlag)
@@ -83,22 +94,64 @@ namespace basecross {
 	}
 	void Bullet::OnUpdate()
 	{		
-		m_effect->GetComponent<Transform>()->SetPosition(Vec3(m_Position.x, m_Position.y, m_Position.z));
-		m_effect->GetComponent<Transform>()->SetRotation(Vec3(XMConvertToRadians(90), XMConvertToRadians(90), XMConvertToRadians(90)));
+		//auto rot = GetComponent<Transform>()->GetRotation();
 
-		//wstringstream wss;//デバック用文字列
-
+		auto player = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
+		auto playerAngle = player->FrontVec();
 		auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
-
+		
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();//デルタタイムを取得
+		delta = floor(delta * 100) / 100;
+	//	float delta = 0.016f;//デルタタイムを取得
 		//float speed = 1.0f;//速さ
-		m_Position.x += m_Speed * cos(m_angle) * delta;//移動
-		m_Position.z += m_Speed * sin(m_angle) * delta;//移動
+//		m_velocity.x = m_Speed * cos(m_angle) * delta;
+//		m_velocity.z = m_Speed * sin(m_angle) * delta;
+		m_velocity.x = m_Speed * cos(m_angle);
+		m_velocity.y = 0;
+		m_velocity.z = m_Speed * sin(m_angle);
+		m_velocity.normalize();
+
+		m_Position.x += m_velocity.x * delta;//移動
+		m_Position.z += m_velocity.z * delta;//移動
 		ptrTransform->SetPosition(m_Position);//移動を反映させる
 		Vec3 UpdatePosition = ptrTransform->GetPosition();//移動を反映させたpositionを取得
+
+		//m_effectPos.x = m_Position.x;
+		//m_effectPos.y = m_Position.y;
+		//m_effectPos.z = m_Position.z;
+		m_effectPos = m_Position;
+		m_effectPos.x -= m_velocity.x * 1.5f;
+		m_effectPos.z -= m_velocity.z * 1.5f;
+		auto shEffect = m_effect.lock();
+		if (shEffect) {
+			Quat qt = shEffect->GetComponent<Transform>()->GetQuaternion();
+			//奥に倒す
+			auto z = m_velocity.cross(Vec3(0.0f,1.0f,0.0f));
+			//Quat SpanQt = Quat(m_velocity,XMConvertToRadians(90));
+			Quat SpanQt = Quat(z, XMConvertToRadians(90));
+			Quat Y = (Quat)playerAngle;
+			//SpanQt *= Y;
+			Y *= SpanQt;
+			shEffect->GetComponent<Transform>()->SetQuaternion(Y);
+			// 
+			//Quat SpanQtY = Quat(Vec3(0, 1, 0),0);
+			//Quat SpanQt2 = Quat(Vec3(0, 0, 1), XMConvertToRadians(120));
+			//Quat SetQt = Quat(m_velocity, 0);
+			//Quat Y = Quat(0, 1, 0,m_angle);
+
+
+			//SetQt *= Quat(z, 90);
+			//shEffect->GetComponent<Transform>()->SetRotation(z);
+
+//			m_velocity *= 60.0f;
+
+
+			shEffect->GetComponent<Transform>()->SetPosition(m_effectPos);
+		}
+
 
 		//auto& Vec = GetStage()->GetGameObjectVec();//ゲームオブジェクトの配列を取得
 		//for (auto V : Vec)
@@ -120,13 +173,17 @@ namespace basecross {
 			// ステージから自身を破棄する
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 		}
-		//wss << L"AllPosition :" << AllPosition << endl;
-		//wss << L"AllStartPosition :" << 20.0f << endl;
+		wstringstream wss;//デバック用文字列
+		wss << L"m_effectPos.x :" << m_effectPos.x << endl;
+		wss << L"m_effectPos.y :" << m_effectPos.y << endl;
+		wss << L"m_effectPos.z :" << m_effectPos.z << endl;
+		wss << L"m_bulletPos.y :" << m_Position.y << endl;
+		wss << L"angle:" << XMConvertToDegrees(m_angle) << endl;
 
 
-		//デバック用文字列を生成
-		//auto scene = app->GetScene<Scene>();//シーン取得
-		//scene->SetDebugString(L"a\n" + wss.str());
+
+		auto scene = app->GetScene<Scene>();//シーン取得
+		scene->SetDebugString(L"a\n" + wss.str());
 
 
 	}

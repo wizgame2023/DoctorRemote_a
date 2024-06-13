@@ -40,6 +40,7 @@ namespace basecross {
 		Vec3 m_rot;
 		Vec3 m_lastAngle;//Playerの進む角度を保存する
 		Vec2 m_PadLastAngle;//最後に傾けたpadの傾きを保存する
+		Vec3 m_frontAngle;
 
 		wstring m_meshResName;
 
@@ -79,6 +80,7 @@ namespace basecross {
 		void EffectFlag(int Flag);
 		void SpeedCalculation();//スピードを計算する
 		bool GetDashFlag();
+		Vec3 FrontVec();
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
