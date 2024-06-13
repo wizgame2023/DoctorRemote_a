@@ -129,6 +129,8 @@ namespace basecross {
 		app->RegisterTexture(L"ResultWaku", strTexture);
 		strTexture = texPath + L"CheckMark.png";
 		app->RegisterTexture(L"CheckMark", strTexture);
+		strTexture = texPath + L"Sensuikan.png";
+		app->RegisterTexture(L"Sensuikan", strTexture);
 
 		//エフェクト関連
 		strTexture = texPath + L"kaihuku.png";
@@ -201,6 +203,8 @@ namespace basecross {
 		app->RegisterTexture(L"LoadMoji", strTexture);
 		strTexture = texPath + L"LoadMoji1.png";
 		app->RegisterTexture(L"LoadMoji1", strTexture);
+		strTexture = texPath + L"LoadMoji2.png";
+		app->RegisterTexture(L"LoadMoji2", strTexture);
 
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";
@@ -340,7 +344,7 @@ namespace basecross {
 			ResetActiveStage<GameStage10>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<TitleStage>();
+			ResetActiveStage<LoadStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
