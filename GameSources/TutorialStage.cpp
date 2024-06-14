@@ -76,7 +76,7 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
-		ptrEnemy = AddGameObject<Enemy>(Vec3(15.5f, 0.5f, -7.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+		ptrEnemy = AddGameObject<Enemy>(Vec3(11.0f, 0.5f, -8.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -239,6 +239,10 @@ namespace basecross {
 		float stageW = static_cast<float>(stageMap[0].size());
 		float stageD = static_cast<float>(stageMap.size());
 
+		//ミニマップ表示のために使用
+		float Lenght = 225.0f;
+		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
+
 		for (int r = 0; r < stageMap.size(); r++)
 		{
 			for (int c = 0; c < stageMap[0].size(); c++)
@@ -257,13 +261,13 @@ namespace basecross {
 					break;
 
 				case 3:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3),75.0f, Lenght, StartPos);
 					break;
 				case 4:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25), 75.0f, Lenght, StartPos);
 					break;
 				case 5:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25), 75.0f, Lenght, StartPos);
 					break;
 				case 6:
 					AddGameObject<Block>(startPos + pos, Vec3(0, 0, 0));
@@ -298,7 +302,7 @@ namespace basecross {
 			wstring miniMapBigPieceName = L"MiniMapBigPiece";//参照元の名前
 			miniMapBigPieceName += to_wstring(i + 1);//番号振り分け
 			auto PiecePos = GetSharedGameObject<BigPiece>(BigPieceName)->GetComponent<Transform>()->GetPosition();//ビックピースの場所を取得
-			auto miniMapBigPiece = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, BigPieceName);
+			auto miniMapBigPiece = AddGameObject<MiniMapBigPiece>(6.0f, 6.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, BigPieceName);
 			SetSharedGameObject(miniMapBigPieceName, miniMapBigPiece);//ミニマップに表示されるビックピースの名前を決める
 			GetSharedGameObject<BigPiece>(BigPieceName)->MyMiniMapName(miniMapBigPieceName);//ビックピースにミニマップのビックピースの名前を教える
 		}
@@ -383,6 +387,7 @@ namespace basecross {
 			BaseBGM();
 			auto tutorialManager = AddGameObject<TutorialManager>();
 			SetSharedGameObject(L"TutorialManager", tutorialManager);
+
 		}
 		catch (...) {
 			throw;
@@ -398,11 +403,14 @@ namespace basecross {
 		{
 			//敵を生成
 			CreateEnemy();
-			GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用コリジョンをオフにする
+			//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用コリジョンをオフにする
 			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//レーダーを生成
 			CreateRadar();
 			m_CareerFlag = 1;
+
+			//Enemyのムービーシーン
+			AddGameObject<EnemyMovieManager>(Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 
 			OnDestroy();
 			BossBGM();
