@@ -46,7 +46,7 @@ namespace basecross {
 		strTexture = texPath + L"GargeLight.png";
 		app->RegisterTexture(L"GargeLight", strTexture);
 
-		//背景など1280x800
+		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"Clear.png";
 		app->RegisterTexture(L"Clear", strTexture);
 		strTexture = texPath + L"GameOver.jpg";
@@ -77,8 +77,9 @@ namespace basecross {
 		app->RegisterTexture(L"Bbutton", strTexture);
 		strTexture = texPath + L"LoadScene.png";
 		app->RegisterTexture(L"LoadScene", strTexture);
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+		//ミニマップ関連///////////////////////////////////////////////////////////////////////////////////////////////
 		strTexture = texPath + L"MiniMapDataVer4.0.png";//ミニマップStage1
 		app->RegisterTexture(L"MiniMap", strTexture);
 		strTexture = texPath + L"MiniMapData2.png";//ミニマップStage2
@@ -92,6 +93,11 @@ namespace basecross {
 		app->RegisterTexture(L"MiniMapPlayer", strTexture);
 		strTexture = texPath + L"Red.png";
 		app->RegisterTexture(L"MiniMapBigPiece", strTexture);
+		strTexture = texPath + L"Red.png";
+		app->RegisterTexture(L"MiniMapBigPiece", strTexture);
+		strTexture = texPath + L"MiniMapBrearkWall.png";
+		app->RegisterTexture(L"MiniMapBrearkWall", strTexture);
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -129,6 +135,10 @@ namespace basecross {
 		app->RegisterTexture(L"ResultWaku", strTexture);
 		strTexture = texPath + L"CheckMark.png";
 		app->RegisterTexture(L"CheckMark", strTexture);
+
+		//ムービーの枠組み
+		strTexture = texPath + L"MovieBand.png";
+		app->RegisterTexture(L"MovieBand", strTexture);
 
 		//エフェクト関連
 		strTexture = texPath + L"kaihuku.png";
@@ -328,7 +338,7 @@ namespace basecross {
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
 		if (event->m_MsgStr == L"ToGameStage") {
 			//ゲームステージの設定
-			ResetActiveStage<GameStage>();
+			ResetActiveStage<SanpeiStage>();
 		}
 		else if (event->m_MsgStr == L"ToGameStage2") {
 			//ゲームステージの設定
