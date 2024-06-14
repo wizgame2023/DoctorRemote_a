@@ -32,7 +32,9 @@ namespace basecross {
 		Sprite(const shared_ptr<Stage>& stagePtr,float width, float heigth,
 			wstring meshResName, Vec3 pos);
 		Sprite(const shared_ptr<Stage>& stagePtr, float width, float heigth,
-			wstring meshResName, Vec3 pos,int layer);
+			wstring meshResName, Vec3 pos, int layer);
+		Sprite(const shared_ptr<Stage>& stagePtr, float width, float heigth,
+			wstring meshResName, Vec3 pos,Vec3 rot, int layer = 1);
 		virtual ~Sprite(){}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
