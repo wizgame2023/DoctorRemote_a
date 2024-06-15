@@ -6,13 +6,15 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Bullet.h"
 
 namespace basecross {
 	class EnemyPiece :public GameObject {
 	private:
-		bool m_enemyDeletFlag;
 		float m_pieceDeleteTime;
 		float m_deg;
+		int m_hp;
+		int m_enemyDeletFlag;
 		bool m_pieceDeleteFlag;
 		bool m_ground;
 		bool m_littlePieceFlag;
@@ -24,6 +26,7 @@ namespace basecross {
 
 		shared_ptr<Transform> m_trans;
 		shared_ptr<GameObject> m_boss;
+		shared_ptr<Bullet> m_bullet;
 
 	public:
 		EnemyPiece(const shared_ptr<Stage>& StagePtr,
