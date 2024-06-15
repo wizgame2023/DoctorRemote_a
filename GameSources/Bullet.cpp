@@ -71,8 +71,8 @@ namespace basecross {
 		//auto playerAngle = player->FrontVec();
 
 		//Quat SpanQt = Quat(Vec3(1, 0, 1), XM_PIDIV2);
-		//Quat Y = (Quat)playerAngle;
-		//SpanQt *= Y;
+		//Quat bulletAngle = (Quat)playerAngle;
+		//SpanQt *= bulletAngle;
 		//m_effect.lock()->GetComponent<Transform>()->SetQuaternion(SpanQt);
 
 
@@ -94,8 +94,6 @@ namespace basecross {
 	}
 	void Bullet::OnUpdate()
 	{		
-		//auto rot = GetComponent<Transform>()->GetRotation();
-
 		auto player = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 		auto playerAngle = player->FrontVec();
 		auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
@@ -104,54 +102,31 @@ namespace basecross {
 
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();//デルタタイムを取得
-		delta = floor(delta * 100) / 100;
-	//	float delta = 0.016f;//デルタタイムを取得
-		//float speed = 1.0f;//速さ
-//		m_velocity.x = m_Speed * cos(m_angle) * delta;
-//		m_velocity.z = m_Speed * sin(m_angle) * delta;
-		m_velocity.x = m_Speed * cos(m_angle);
+		//delta = floor(delta * 100) / 100;
+		m_velocity.x = cos(m_angle);
 		m_velocity.y = 0;
-		m_velocity.z = m_Speed * sin(m_angle);
+		m_velocity.z = sin(m_angle);
 		m_velocity.normalize();
 
-		m_Position.x += m_velocity.x * delta;//移動
-		m_Position.z += m_velocity.z * delta;//移動
+		m_Position.x += m_velocity.x * m_Speed * delta;//移動
+		m_Position.z += m_velocity.z * m_Speed * delta;//移動
 		ptrTransform->SetPosition(m_Position);//移動を反映させる
 		Vec3 UpdatePosition = ptrTransform->GetPosition();//移動を反映させたpositionを取得
 
-		//m_effectPos.x = m_Position.x;
-		//m_effectPos.y = m_Position.y;
-		//m_effectPos.z = m_Position.z;
+		//弾の後ろにエフェクト
 		m_effectPos = m_Position;
 		m_effectPos.x -= m_velocity.x * 1.5f;
 		m_effectPos.z -= m_velocity.z * 1.5f;
-		auto shEffect = m_effect.lock();
-		if (shEffect) {
-			Quat qt = shEffect->GetComponent<Transform>()->GetQuaternion();
-			//奥に倒す
-			auto z = m_velocity.cross(Vec3(0.0f,1.0f,0.0f));
-			//Quat SpanQt = Quat(m_velocity,XMConvertToRadians(90));
-			Quat SpanQt = Quat(z, XMConvertToRadians(90));
-			Quat Y = (Quat)playerAngle;
-			//SpanQt *= Y;
-			Y *= SpanQt;
-			shEffect->GetComponent<Transform>()->SetQuaternion(Y);
-			// 
-			//Quat SpanQtY = Quat(Vec3(0, 1, 0),0);
-			//Quat SpanQt2 = Quat(Vec3(0, 0, 1), XMConvertToRadians(120));
-			//Quat SetQt = Quat(m_velocity, 0);
-			//Quat Y = Quat(0, 1, 0,m_angle);
-
-
-			//SetQt *= Quat(z, 90);
-			//shEffect->GetComponent<Transform>()->SetRotation(z);
-
-//			m_velocity *= 60.0f;
-
-
-			shEffect->GetComponent<Transform>()->SetPosition(m_effectPos);
+		auto effect = m_effect.lock();
+		if (effect) {
+			//エフェクトの向き
+			auto effectShaft = m_velocity.cross(Vec3(0.0f,1.0f,0.0f));
+			Quat SpanQt = Quat(effectShaft, XMConvertToRadians(90));
+			Quat bulletAngle = (Quat)playerAngle;
+			bulletAngle *= SpanQt;
+			effect->GetComponent<Transform>()->SetQuaternion(bulletAngle);
+			effect->GetComponent<Transform>()->SetPosition(m_effectPos);
 		}
-
 
 		//auto& Vec = GetStage()->GetGameObjectVec();//ゲームオブジェクトの配列を取得
 		//for (auto V : Vec)
@@ -172,6 +147,7 @@ namespace basecross {
 		{
 			// ステージから自身を破棄する
 			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+			effect->ThihDestroy();
 		}
 		wstringstream wss;//デバック用文字列
 		wss << L"m_effectPos.x :" << m_effectPos.x << endl;
