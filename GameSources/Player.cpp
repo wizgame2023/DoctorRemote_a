@@ -8,6 +8,13 @@
 #include "Project.h"
 
 namespace basecross {
+
+	enum BULLETLEVEL {
+		NORMAL,
+		LEVEL1,
+		LEVEL2,
+		LEVEL3,
+	};
 	//--------------------------------------------------------------------------------------
 	//	class Player : public GameObject;
 	//	用途: プレイヤー
@@ -40,12 +47,15 @@ namespace basecross {
 		m_dashCoolTime(8.0f),
 		m_lastAngle(0.0f,0.0f,0.0f),
 		m_dashCool(m_dashCoolTime),
+		m_bulletTime(1.0f),
 		m_dashCheck(false),
 		m_dashCooldown(false),
 		m_startFlag(false),
 		m_radarFlag(false),
 		m_statusFlag(2),
 		m_enemyPieceFlag(false),
+		m_bulletFlag(false),
+		m_bulletLevel(NORMAL),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
@@ -81,7 +91,7 @@ namespace basecross {
 
 		return frontAngle;
 	}
-	//仮
+	//飛ばす方向ベクトル
 	Vec3 Player::FrontVec() {
 		auto ptrCamera = OnGetDrawCamera();
 		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
@@ -313,11 +323,57 @@ namespace basecross {
 			//Ｂボタンで弾を発射
 			if (cntlVec[0].bConnected) {
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x,ptrPos.y-0.3f,ptrPos.z),Vec3(0.2f), 3.0f, frontAngle, 1);
+					//auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x,ptrPos.y-0.3f,ptrPos.z),Vec3(0.2f), 30.0f, frontAngle, 1);
 					//stage->SetSharedGameObject(L"Bullet", bullet);
+					//m_bulletTime = 0.0f;
+					//auto soundE = App::GetApp()->GetXAudio2Manager();
+					//soundE->Start(L"ShotSE",0,0.5f);
+				}
+				else {
+					//m_bulletTime = 0.0f;
+				}
 
-					auto soundE = App::GetApp()->GetXAudio2Manager();
-					soundE->Start(L"ShotSE",0,0.5f);
+				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+					m_bulletTime += elapsedTime;
+					//if (m_bulletTime < 0) {
+					//	if (!m_bulletFlag) {
+					//		auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 1);
+					//		m_bulletFlag = true;
+					//	}
+
+					//}
+				}
+				else {
+					m_bulletFlag = false;
+					//m_bulletTime = 0.0f;
+				}
+
+				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B) {
+					if (m_bulletTime > 3.0f) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(1.0f), 30.0f, frontAngle, 3);
+						m_bulletLevel = LEVEL3;
+						m_bulletTime = 0.0f;
+					}
+					else if (m_bulletTime > 2.0f) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 30.0f, frontAngle, 2);
+						m_bulletLevel = LEVEL2;
+						m_bulletTime = 0.0f;
+					}
+					else if (m_bulletTime > 1.0f) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 30.0f, frontAngle, 1);
+						m_bulletLevel = LEVEL1;
+						m_bulletTime = 0.0f;
+					}
+					else {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 1);
+						m_bulletTime = 0.0f;
+						m_bulletLevel = NORMAL;
+						auto soundE = App::GetApp()->GetXAudio2Manager();
+						soundE->Start(L"ShotSE", 0, 0.5f);
+					}
+				}
+				else {
+					//m_bulletTime = 0.0f;
 				}
 			}
 
@@ -552,6 +608,12 @@ namespace basecross {
 	bool Player::GetDashFlag() {
 		return m_dashCooldown;
 	}
+
+	int Player::GetBulletLevel() {
+		return m_bulletLevel;
+	}
+
+
 	//--------------------------------------------------------------------------------------
 	//	class ChildSphere : public GameObject;
 	//　当たり判定用のクラス
