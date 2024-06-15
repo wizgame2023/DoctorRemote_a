@@ -18,10 +18,11 @@ namespace basecross {
 		m_topCol(0.0f),
 		m_underCol(Col4(0.0f,1.0f,0.0f,1.0f)),
 		m_meshResName(L"EffectPiece"),
-		m_scrollVelocity(0.0f,0.0f),
+		m_scrollVelocity(0.0f,-1.0f),
 		m_isUpdate(false),
-		m_effectLoop(0.0f),
-		m_effectLoopFlag(false)
+		m_effectLoop(1.0f),
+		m_effectLoopFlag(false),
+		m_colFlag(true)
 	{}
 	EffectPiece::EffectPiece(const shared_ptr<Stage>& stage,
 		const float height,      //高さ
@@ -49,7 +50,8 @@ namespace basecross {
 		m_pos(pos),
 		m_isUpdate(false),
 		m_effectLoop(effectLoop),
-		m_effectLoopFlag(false)
+		m_effectLoopFlag(false),
+		m_colFlag(false)
 
 	{}
 
@@ -100,13 +102,33 @@ namespace basecross {
 		}
 		InitializeVertices();
 
+		m_trans = GetComponent<Transform>();
+		m_trans->SetPosition(m_pos);
+		m_trans->SetScale(Vec3(3.0f));
+
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(0.3f, 0.3f, 0.3f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+
 		//頂点データとインディックスを元にポリゴンを生成する
 		m_draw = AddComponent<BcPCTStaticDraw>();
 		m_draw->SetOriginalMeshUse(true);
+		m_draw->SetMeshToTransformMatrix(spanMat);
 		m_draw->CreateOriginalMesh(m_vertices, m_indices);
 		m_draw->SetSamplerState(SamplerState::LinearWrap);
 		m_draw->SetDepthStencilState(DepthStencilState::Read);
 		m_draw->SetBlendState(BlendState::Additive);
+
+		if (m_colFlag) {
+			auto colPtr = AddComponent<CollisionCapsule>();
+			colPtr->SetDrawActive(true);
+			colPtr->SetAfterCollision(AfterCollision::None);
+		}
+
 		if (m_meshResName.length() > 0) {
 			m_draw->SetTextureResource(m_meshResName);
 		}
@@ -125,7 +147,6 @@ namespace basecross {
 			for (auto& vertex : m_vertices) {
 				//UVの移動
 				vertex.textureCoordinate += m_scrollVelocity * elapsed;
-				//vertex.position = m_pos;
 			}
 		}
 		if (m_isUpdate) {

@@ -17,16 +17,20 @@ namespace basecross {
 		float m_effectLoop;
 		bool m_isUpdate;
 		bool m_effectLoopFlag;
+		bool m_colFlag;
 
 		Vec2 m_loops;
 		Vec2 m_scrollVelocity;
 		Vec3 m_pos;
+		Vec3 m_rot;
+		Vec3 m_velocity;
 		Col4 m_topCol;
 		Col4 m_underCol;
 
 		vector<VertexPositionColorTexture> m_vertices;
 		vector<uint16_t> m_indices;
 		shared_ptr<BcPCTStaticDraw> m_draw;
+		shared_ptr<Transform> m_trans;
 		wstring m_meshResName;
 
 		void InitializeVertices();
