@@ -8,6 +8,33 @@
 #include "Project.h"
 
 namespace basecross {
+	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr,
+		const Vec3 pos,
+		const float sizeX,
+		const float sizeY,
+		const float widthUnit,
+		const float heightUnit,
+		const float widthNum,
+		const float heightNum,
+		const bool display
+
+	) :
+		GameObject(stagePtr),
+		m_pos(pos),//位置
+		m_sizeX(sizeX),
+		m_sizeY(sizeY),
+		m_widthUnit(widthUnit),
+		m_heightUnit(heightUnit),
+		m_widthNum(widthNum),
+		m_heightNum(heightNum),
+		m_stageNum(1),
+		m_checkU(false),
+		m_checkD(false),
+		m_checkR(false),
+		m_checkL(false),
+		m_moveCheck(false),
+		m_display(display)
+	{}
 	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
 		m_pos(Vec3(-200.0f,0.0f,0.0f)),//位置
@@ -22,8 +49,10 @@ namespace basecross {
 		m_checkD(false),
 		m_checkR(false),
 		m_checkL(false),
-		m_moveCheck(false)
+		m_moveCheck(false),
+		m_display(true)
 	{}
+
 
 	void StageSelectSprite::OnCreate() {
 		m_trans = GetComponent<Transform>();
@@ -38,12 +67,18 @@ namespace basecross {
 		m_height = m_pos.y;
 
 		auto stage = GetStage();
+		//同じスプライトを表示
 		for (int j = 0; j < m_heightNum; j++) {
 			for (int i = 0; i < m_widthNum; i++) {
-					stage->AddGameObject<Sprite>(m_sizeX,m_sizeY, L"White", Vec3(m_pos.x + i * m_widthUnit, m_pos.y + j * -m_heightUnit, m_pos.z),1);
+				if (m_display) {
+					//枠組みの表示
+					stage->AddGameObject<Sprite>(m_sizeX,m_sizeY, 
+						L"White", Vec3(m_pos.x + i * m_widthUnit, m_pos.y + j * -m_heightUnit, m_pos.z),1);
+					//10までの数字を表示
 					stage->AddGameObject<UITime>((i + j * m_widthNum) + 1,
 						Vec3((m_pos.x - m_sizeX / 2) + i * m_widthUnit,
-							(m_pos.y + m_sizeY / 2) + j * -m_heightUnit, 0.0f), m_sizeX, m_sizeY);
+							(m_pos.y + m_sizeY / 2) + j * -m_heightUnit, 0.0f), m_sizeX, m_sizeY,L"Numbers10");
+				}
 			}
 		}
 
@@ -132,5 +167,9 @@ namespace basecross {
 		scene->SetDebugString(wss.str());
 
 
+	}
+	
+	Vec3 StageSelectSprite::GetSpritePostion() {
+		return m_pos;
 	}
 }

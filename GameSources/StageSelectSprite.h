@@ -32,6 +32,7 @@ namespace basecross {
 		bool m_checkR;
 		bool m_checkL;
 		bool m_moveCheck;
+		bool m_display;
 
 		Vec3 m_pos;
 
@@ -42,9 +43,21 @@ namespace basecross {
 
 	public:
 		StageSelectSprite(const shared_ptr<Stage>& stagePtr);
+		StageSelectSprite(const shared_ptr<Stage>& stagePtr,
+			const Vec3 pos,
+			const float sizeX,
+			const float sizeY,
+			const float widthUnit,
+			const float heightUnit,
+			const float widthNum,
+			const float heightNum,
+			const bool display = true
+		);
 		virtual ~StageSelectSprite(){}
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		Vec3 GetSpritePostion();
 	};
 }
