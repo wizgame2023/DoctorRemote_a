@@ -34,7 +34,7 @@ namespace basecross {
 		m_moveH = 75.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
 		//m_moveH = 100.0f/128.0f;
-		int number = 9;
+		int number = m_number;
 
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 
