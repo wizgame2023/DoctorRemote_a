@@ -26,6 +26,15 @@ namespace basecross {
 		m_width(width),
 		m_heigth(heigth)
 	{}
+	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth , wstring meshResName) :
+		GameObject(stagePtr),
+		m_number(number),
+		m_pos(pos),
+		m_width(width),
+		m_heigth(heigth),
+		m_meshResName(meshResName)
+	{}
+
 
 
 	void UITime::OnCreate() {
