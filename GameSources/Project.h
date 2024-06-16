@@ -51,6 +51,7 @@
 #include "UITime.h"
 #include "Comment.h"
 #include "SelectSprite.h"
+#include "StageSelectSprite.h"
 #include "MiniMapBigPiece.h"
 #include "TimeManager.h"
 #include "EnemyPiece.h"
