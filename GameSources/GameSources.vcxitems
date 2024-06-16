@@ -74,6 +74,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageSelectSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusStage.h" />
@@ -147,6 +148,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageSelectSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusStage.cpp" />
