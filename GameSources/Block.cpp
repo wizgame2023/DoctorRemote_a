@@ -17,6 +17,7 @@ namespace basecross {
 		ptr->SetPosition(m_pos);
 		ptr->SetRotation(m_rot);
 		ptr->SetScale(6.0f, 6.0f, 6.0f);//初期が2.5f,2.5f,2.5f
+		
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
@@ -30,12 +31,15 @@ namespace basecross {
 		auto ptrDraw = AddComponent<PNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"Obstacle_Mesh1");
 		ptrDraw->SetTextureResource(L"WallSkin2");
+
 		//ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
 
 		auto ptrColl = AddComponent<CollisionCapsule>();
-		ptrColl->SetFixed(true);
+		ptrColl->SetFixed(true);	
+		ptrColl->SetSleepActive(true);//ぶつからない限りスリープ状態になる
+
 		//ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
 
 

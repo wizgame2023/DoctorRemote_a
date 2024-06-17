@@ -46,7 +46,7 @@ namespace basecross {
 		strTexture = texPath + L"GargeLight.png";
 		app->RegisterTexture(L"GargeLight", strTexture);
 
-		//背景など1280x800
+		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"Clear.png";
 		app->RegisterTexture(L"Clear", strTexture);
 		strTexture = texPath + L"GameOver.jpg";
@@ -77,21 +77,27 @@ namespace basecross {
 		app->RegisterTexture(L"Bbutton", strTexture);
 		strTexture = texPath + L"LoadScene.png";
 		app->RegisterTexture(L"LoadScene", strTexture);
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-		strTexture = texPath + L"MiniMapDataVer4.0.png";//ミニマップStage1
+		//ミニマップ関連///////////////////////////////////////////////////////////////////////////////////////////////
+		strTexture = texPath + L"MiniMapDataVer5.0.png";//ミニマップStage1
 		app->RegisterTexture(L"MiniMap", strTexture);
-		strTexture = texPath + L"MiniMapData2.png";//ミニマップStage2
+		strTexture = texPath + L"MiniMapData2Ver2.0.png";//ミニマップStage2
 		app->RegisterTexture(L"MiniMapStage2", strTexture);
-		strTexture = texPath + L"MiniMapData3.png";//ミニマップStage3
+		strTexture = texPath + L"MiniMapData3Ver2.0.png";//ミニマップStage3
 		app->RegisterTexture(L"MiniMapStage3", strTexture);
-		strTexture = texPath + L"MiniMapDataTutorial.png";//ミニマップチュートリアル
+		strTexture = texPath + L"MiniMapDataTutorialVer2.0.png";//ミニマップチュートリアル
 		app->RegisterTexture(L"MiniMapTutorial", strTexture);
 
 		strTexture = texPath + L"Triangle.png";
 		app->RegisterTexture(L"MiniMapPlayer", strTexture);
 		strTexture = texPath + L"Red.png";
 		app->RegisterTexture(L"MiniMapBigPiece", strTexture);
+		strTexture = texPath + L"Red.png";
+		app->RegisterTexture(L"MiniMapBigPiece", strTexture);
+		strTexture = texPath + L"MiniMapBrearkWall.png";
+		app->RegisterTexture(L"MiniMapBrearkWall", strTexture);
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		strTexture = texPath + L"RadarBar.png";
 		app->RegisterTexture(L"RadarBar", strTexture);
@@ -132,6 +138,10 @@ namespace basecross {
 		strTexture = texPath + L"Sensuikan.png";
 		app->RegisterTexture(L"Sensuikan", strTexture);
 
+		//ムービーの枠組み
+		strTexture = texPath + L"MovieBand.png";
+		app->RegisterTexture(L"MovieBand", strTexture);
+
 		//エフェクト関連
 		strTexture = texPath + L"kaihuku.png";
 		app->RegisterTexture(L"PlayerEffectGreen", strTexture);
@@ -163,6 +173,11 @@ namespace basecross {
 		app->RegisterTexture(L"SelectGameStage3", strTexture);
 		strTexture = texPath + L"SelectWhite.png";
 		app->RegisterTexture(L"SelectWhite", strTexture);
+		strTexture = texPath + L"EffectPiece.png";
+		app->RegisterTexture(L"EffectPiece", strTexture);
+		strTexture = texPath + L"BulletEffect.png";
+		app->RegisterTexture(L"BulletEffect", strTexture);
+
 
 		//文字の表示等
 		strTexture = texPath + L"Rank.png";

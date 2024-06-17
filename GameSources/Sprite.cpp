@@ -20,16 +20,27 @@ namespace basecross {
 		m_layer(0)
 	{}
 	Sprite::Sprite(const shared_ptr<Stage>& stagePtr, float width, float heigth,
-		wstring meshResName, Vec3 pos, int layer):
+		wstring meshResName, Vec3 pos, int layer) :
 		GameObject(stagePtr),
-			m_width(width),
-			m_heigth(heigth),
-			m_meshResName(meshResName),
-			m_pos(pos),
-			m_rot(Vec3()),
-			m_color(1, 1, 1, 1),
-			m_layer(layer)
-		{}
+		m_width(width),
+		m_heigth(heigth),
+		m_meshResName(meshResName),
+		m_pos(pos),
+		m_rot(Vec3()),
+		m_color(1, 1, 1, 1),
+		m_layer(layer)
+	{}
+	Sprite::Sprite(const shared_ptr<Stage>& stagePtr, float width, float heigth,
+		wstring meshResName, Vec3 pos,Vec3 rot, int layer) :
+		GameObject(stagePtr),
+		m_width(width),
+		m_heigth(heigth),
+		m_meshResName(meshResName),
+		m_pos(pos),
+		m_rot(rot),
+		m_color(1, 1, 1, 1),
+		m_layer(layer)
+	{}
 
 
 	void Sprite::OnCreate() {

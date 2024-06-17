@@ -47,6 +47,8 @@ namespace basecross {
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
 
+		void UiCreate();//Play‚·‚éÛ‚Ég‚¤UI‚ğ¶¬‚³‚¹‚é
+
 		float GetHp();
 		float GetHpRatio();
 		void SetHp(float hp);
