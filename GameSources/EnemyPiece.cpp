@@ -22,6 +22,7 @@ namespace basecross {
 		m_pieceDeleteFlag(false),
 		m_pieceDeleteTime(scale.x * 0.15f),
 		m_littlePieceFlag(littlePieceFlag),
+		m_hp(3),
 		m_meshResName(L"Kakera_Mesh")
 
 	{}
@@ -64,7 +65,6 @@ namespace basecross {
 
 		//auto grav = AddComponent<Gravity>();
 
-
 		AddTag(L"EnemyPiece");
 	}
 
@@ -78,14 +78,16 @@ namespace basecross {
 
 		//éûä‘ç∑Ç≈è¡Ç∑ÇΩÇﬂÇ…FlagÇ≈å©ÇƒÇ¢ÇÈ
 		if (m_enemyDeletFlag) {
+		}
+
+		if (m_hp <= 0) {
 			m_pieceDeleteTime -= elapsedTime;
 			m_scale -= 2.0f * elapsedTime * 3.0f;
 			if (m_pieceDeleteTime < 0) {
 				//é©ï™é©êgÇîpä¸Ç∑ÇÈ
 				stage->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
-				m_enemyDeletFlag = false;
+				m_enemyDeletFlag = 0;
 			}
-
 		}
 	}
 
@@ -94,16 +96,28 @@ namespace basecross {
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 		auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 		if (other->FindTag(L"Bullet")){
-			//åáï–ÇÇŒÇÁÇ‹Ç≠
-			if (m_enemyDeletFlag) return;
-			if (m_littlePieceFlag) {
-				stage->AddGameObject<PieceLittle>(other,player, 0.0f);
-				stage->AddGameObject<PieceLittle>(other,player, 120.0f);
-				stage->AddGameObject<PieceLittle>(other,player, 120.0f * 2);
-				//stage->AddGameObject<PieceLittle>(other,player, 72.0f * 3);
-				//stage->AddGameObject<PieceLittle>(other,player, 72.0f * 4);	
+			m_bullet = dynamic_pointer_cast<Bullet>(other);
+			//åáï–ÇÃëÃóÕ
+			if (m_hp > 0) {
+				m_hp -= m_bullet->GetAttack();
 			}
-			m_enemyDeletFlag = true;
+			if (m_hp <= 0) {
+				m_enemyDeletFlag ++;
+			}
+			//åáï–ÇÇŒÇÁÇ‹Ç≠
+			if (m_enemyDeletFlag == 1) {
+				if (m_littlePieceFlag) {
+					for (int i = 0; i < 3; i++) {
+						stage->AddGameObject<PieceLittle>(other, player, (360 / 3) * i);
+
+						auto effect = stage->AddGameObject<EffectPiece>();
+						auto effectTrans = effect->GetComponent<Transform>();
+						effectTrans->SetPosition(m_position);
+					}
+
+				}
+			}
+			//m_enemyDeletFlag = true;
 			//m_enemyDeletFlag++;
 			
 			//å¯â âπ
@@ -153,6 +167,7 @@ namespace basecross {
 		}
 
 	}
+
 
 	Vec3 EnemyPiece::GetPos() {
 		return m_position;

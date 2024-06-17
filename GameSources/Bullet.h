@@ -6,6 +6,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include "EffectPiece.h"
 
 namespace basecross {
 	class Bullet : public GameObject
@@ -16,6 +17,8 @@ namespace basecross {
 		float m_Speed;//‘¬‚³
 		float m_angle;//Šp“x
 		Vec3 m_AllStartPosition;
+		Vec3 m_velocity;
+		Vec3 m_effectPos;
 		int m_Attack;//UŒ‚—Í
 		int m_hit;//“–‚½‚Á‚½‘Šè‚É‚æ‚Á‚Ä”’l‚ª•Ï‚í‚é
 		int m_statusFlag;
@@ -23,6 +26,7 @@ namespace basecross {
 		float m_shotRange;
 
 		wstring m_meshResName;
+		weak_ptr<EffectPiece> m_effect;
 
 	public:
 		static int STATUSBULLET;

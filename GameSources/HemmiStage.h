@@ -32,6 +32,7 @@ namespace basecross {
 		virtual ~HemmiStage() {}
 
 		virtual void OnCreate()override; //‰Šú‰»
+		virtual void OnUpdate() override;
 	};
 }
 //end namespace basecross

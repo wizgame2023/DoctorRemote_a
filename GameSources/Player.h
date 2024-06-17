@@ -25,8 +25,10 @@ namespace basecross {
 		float m_dashCool;
 		float m_dashCoolTime;
 		float m_onePiece;
+		float m_bulletTime;
 
 		int m_statusFlag;
+		int m_bulletLevel;
 
 		bool m_startFlag;
 		bool m_dashCheck;
@@ -34,6 +36,7 @@ namespace basecross {
 		bool m_radarFlag;
 		bool m_enemyFlag;
 		bool m_enemyPieceFlag;
+		bool m_bulletFlag;
 
 		Vec3 m_pos;
 		Vec3 m_position;
@@ -63,6 +66,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		Vec3 GetMoveVector();
+		Vec3 FrontVec();
 		void Dash();
 
 		Vec3 GetAngle();
@@ -79,6 +83,7 @@ namespace basecross {
 		void EffectFlag(int Flag);
 		void SpeedCalculation();//スピードを計算する
 		bool GetDashFlag();
+		int GetBulletLevel();
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};

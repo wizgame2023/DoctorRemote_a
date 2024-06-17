@@ -26,6 +26,15 @@ namespace basecross {
 		m_width(width),
 		m_heigth(heigth)
 	{}
+	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth , wstring meshResName) :
+		GameObject(stagePtr),
+		m_number(number),
+		m_pos(pos),
+		m_width(width),
+		m_heigth(heigth),
+		m_meshResName(meshResName)
+	{}
+
 
 
 	void UITime::OnCreate() {
@@ -34,7 +43,7 @@ namespace basecross {
 		m_moveH = 75.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
 		//m_moveH = 100.0f/128.0f;
-		int number = 9;
+		int number = m_number;
 
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 

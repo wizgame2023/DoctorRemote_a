@@ -261,6 +261,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectPiece.h">
       <Filter>Headers\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageSelectSprite.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIManager.h">
+      <Filter>Headers\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -478,6 +484,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectPiece.cpp">
       <Filter>Sources\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageSelectSprite.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIManager.cpp">
+      <Filter>Sources\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

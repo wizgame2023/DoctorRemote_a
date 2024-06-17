@@ -74,6 +74,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageSelectSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusStage.h" />
@@ -84,6 +85,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
   </ItemGroup>
@@ -147,6 +149,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageSelectSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusStage.cpp" />
@@ -157,6 +160,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
