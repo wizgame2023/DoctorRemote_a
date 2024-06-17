@@ -220,6 +220,8 @@ namespace basecross {
 		app->RegisterTexture(L"LoadMoji1", strTexture);
 		strTexture = texPath + L"LoadMoji2.png";
 		app->RegisterTexture(L"LoadMoji2", strTexture);
+		strTexture = texPath + L"LoadMoji3.png";
+		app->RegisterTexture(L"LoadMoji3", strTexture);
 
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";
@@ -359,7 +361,7 @@ namespace basecross {
 			ResetActiveStage<GameStage10>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<LoadStage>();
+			ResetActiveStage<TitleStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
