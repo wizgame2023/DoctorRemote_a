@@ -8,13 +8,25 @@
 #include "Project.h"
 
 namespace basecross {
-	BreakWall::BreakWall(const shared_ptr<Stage>& StagePtr, Vec3 Position,  Vec3 Rotate,Vec3 Scale):
+	BreakWall::BreakWall(const shared_ptr<Stage>& StagePtr, Vec3 Position, Vec3 Rotate, Vec3 Scale) :
 		GameObject(StagePtr),
 		m_Position(Position),
 		m_StartPosition(Position),
 		m_Rotate(Rotate),
 		m_Scale(Scale),
 		m_Hp(1)
+	{
+
+	}
+	BreakWall::BreakWall(const shared_ptr<Stage>& StagePtr, Vec3 Position, Vec3 Rotate, Vec3 Scale,float mapSize,float miniMapSize,Vec3 miniMapStratPos) :
+		GameObject(StagePtr),
+		m_Position(Position),
+		m_StartPosition(Position),
+		m_Rotate(Rotate),
+		m_Scale(Scale),
+		m_Hp(1),
+		m_MapMagnification(miniMapSize/mapSize),
+		m_MiniMapStartPos(miniMapStratPos)
 	{
 
 	}
@@ -53,6 +65,14 @@ namespace basecross {
 		ptrDraw->SetTextureResource(L"WallBreak");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
+
+		auto miniMapPos = m_Position;//ミニマップの座標を入れる
+		miniMapPos.y = miniMapPos.z;//座標を調整する
+		miniMapPos.z = 5;
+		auto a = 0;
+		//ミニマップに自分自身を出現させる
+		m_MyMiniMap = GetStage()->AddGameObject<Sprite>(1.5f*m_MapMagnification, 4.5f*m_MapMagnification, L"MiniMapBrearkWall", m_MiniMapStartPos + (miniMapPos * m_MapMagnification), Vec3(0.0f, 0.0f, -m_Rotate.y), 5);
+
 		AddTag(L"BreakWall");//BreakWallタグを追加
 
 	};
@@ -72,7 +92,7 @@ namespace basecross {
 			auto soundSE = App::GetApp()->GetXAudio2Manager();
 			soundSE->Start(L"BreakWallSE", 0, 0.5f);
 
-
+			GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);
 			GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 		}
 
@@ -107,6 +127,10 @@ namespace basecross {
 
 				auto PtrEffect = GetStage()->GetSharedGameObject<EffectBreakWall>(L"RedEffect", false);
 				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+
+				GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);
+				GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
+
 
 			}
 

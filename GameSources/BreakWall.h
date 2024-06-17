@@ -23,6 +23,7 @@ namespace basecross
 		weak_ptr<Bullet> m_bullet;
 		shared_ptr<CollisionObb> m_ptrCollider;
 		shared_ptr<Transform> m_Trans;
+		shared_ptr<Sprite> m_MyMiniMap;//自分を映す(BreakWallの)ミニマップのスプライト
 
 		Vec3 m_StartPosition;
 
