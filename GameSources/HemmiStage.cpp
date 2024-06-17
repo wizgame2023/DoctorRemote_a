@@ -53,7 +53,7 @@ namespace basecross {
 		//shared_ptr<GameObject> nanasiObject;
 		//ランダムにPlayerの出現場所が決まる
 
-		float deg =-90;
+		float deg =90;
 		float rad = XMConvertToRadians(deg);
 		switch (randamPlayer)
 		{
@@ -577,7 +577,6 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			CreateEnemy();
-			auto enemy = AddGameObject<Enemy>(Vec3(5,0,0),Vec3(0,0,0),Vec3(0,0,0));
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
 			CreateRadar();
@@ -606,10 +605,29 @@ namespace basecross {
 			//auto comment = AddGameObject<CommentManager>(50);
 			//auto comment2 = AddGameObject<CommentManager>(10,2);
 
+			auto effect = AddGameObject<EffectPiece>(1.0f,0.3f,0.3f,30,Vec2(1.0f,3.0f),
+				Col4(0.0f,0.0f,1.0f,0.8f),Col4(0.0f,0.0f,1.0f,0.8f),L"EffectPiece",Vec2(0.0f,1.0f),Vec3(1.0f));
+			//effect->SetScrollSpeed(0.0f, 1.0f);
+			SetSharedGameObject(L"effect", effect);
+			auto effectTrans = effect->GetComponent<Transform>();
+			effectTrans->SetPosition(Vec3(0.5f));
+			effectTrans->SetRotation(Vec3(XMConvertToRadians(90),0.0f, 0.0f));
+
 		}
 		catch (...) {
 			throw;
 		}
+	}
+	void HemmiStage::OnUpdate() {
+		auto player = GetSharedGameObject<Player>(L"GamePlayer");
+		auto playerPos = player->GetComponent<Transform>()->GetPosition();
+		auto elapsed = App::GetApp()->GetElapsedTime();
+		auto effect = GetSharedGameObject<EffectPiece>(L"effect");
+		if (effect) {
+			effect->GetComponent<Transform>()->SetPosition(Vec3(playerPos.x, playerPos.y + 2.0f, playerPos.z+2.0f));
+			//effect->GetComponent<Transform>()->SetRotation(Vec3(0.0f, XMConvertToRadians(90), 0.0f));
+		}
+		//effect->SetUnderRadius(4.0f);
 	}
 
 }
