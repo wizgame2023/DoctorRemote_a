@@ -139,7 +139,7 @@ namespace basecross {
 		auto levelPath = path + L"Levels/"; 
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_3.csv");
+		ifstream ifs(levelPath += L"Level_9.csv");
 			if (ifs)
 			{
 				string line;
@@ -171,47 +171,45 @@ namespace basecross {
 					switch (stageMap[r][c])
 					{
 					case 1:
+						AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(140.0, 10, 1.0));
+						break;
+					case 2:
+						AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 140.0));
+						break;
+					case 3:
 						AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(3.0, 10, 1.0));
 						break;
-
-					case 2:
+					case 4:
 						AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 3.0));
 						break;
-
-					case 3:
-
+					case 5:
 						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
-
-					case 4:
+					case 6:
 						AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
-					case 5:
+					case 7:
 						AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(3, 10, 1));
 						break;
-					case 6:
+					case 8:
 						AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3));
 						break;
-					case 7:
+					case 9:
 						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
-					case 8:
+					case 10:
 						AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 						break;
-					case 9:
+					case 11:
 						AddGameObject<Block>(blockStartPos + pos, Vec3(0, 0, 0));
 						break;
-					case 10:
+					case 12:
 						AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(20.0f, 10.0f, 20.0f));
 						break;
-					case 11:
+					case 13:
 						AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 						break;
-					case 14:
-						AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(2.0, 10, 1.0));
-						break;
 					}
-
 				}
 			}
 	}
@@ -536,6 +534,9 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
 
+			auto timeManager = AddGameObject<TimeManager>();//ステージマネージャーを生成
+			SetSharedGameObject(L"TimeManager", timeManager);
+
 			//auto data = AddGameObject<Data>();
 
 			//ビューとライトの作成
@@ -546,22 +547,29 @@ namespace basecross {
 			CreatePlayer();
 			//敵のかけらを表示
 			//CreateEnemyPiece();
-			CreateEnemy();
+			//CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
-			CreateRadar();
+			//CreateRadar();
 			//地面を生成
 			AddGameObject<Ground>();
 			//ゲージを追加
-			auto garge = AddGameObject<PieceGarge>(GetSharedGameObject<Player>(L"GamePlayer"));
+			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"Garge", garge);
-			CreateMap();
+			auto PGarge = AddGameObject<PlayerGarge>();
+			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
+			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
+			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//導入を追加
 			CreateEffect();
+			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//ステージ開始時の演出
 			//CreateWall();
 			//CreateBreakWall();
 			//CreateRecoveryWall();
 			//CreateBlock();
 			//CreateBlockSecond();
+			CreateMap();
+			auto scene=App::GetApp()->GetScene<Scene>();
+			scene->SetGameStage(1);
 		}
 		catch (...) {
 			throw;

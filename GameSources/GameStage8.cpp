@@ -12,7 +12,7 @@ namespace basecross {
 //--------------------------------------------------------------------------------------
 
 //ビューとライトの作成
-	void GameStage2::CreateViewLight() {
+	void GameStage8::CreateViewLight() {
 
 
 		// カメラの設定
@@ -31,7 +31,7 @@ namespace basecross {
 
 	}
 
-	void GameStage2::CreateEffect()//エフェクト生成
+	void GameStage8::CreateEffect()//エフェクト生成
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
@@ -47,7 +47,7 @@ namespace basecross {
 
 
 	//Playerを追加する関数
-	void GameStage2::CreatePlayer()//改善すべき点
+	void GameStage8::CreatePlayer()//改善すべき点
 	{
 		//Playerの出現場所を決める
 		float deg = -180;
@@ -57,7 +57,7 @@ namespace basecross {
 
 	}
 	//レーダーを追加する関数
-	void GameStage2::CreateRadar()
+	void GameStage8::CreateRadar()
 	{
 		auto ptrPlayer = GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
 		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//そのオブジェクトのTransformを取得
@@ -70,7 +70,7 @@ namespace basecross {
 	}
 
 	//敵を作成
-	void GameStage2::CreateEnemy()
+	void GameStage8::CreateEnemy()
 	{
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;
@@ -96,7 +96,7 @@ namespace basecross {
 	}
 
 	//敵の欠片を作成
-	void GameStage2::CreateEnemyPiece() {
+	void GameStage8::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
 			{//1			
@@ -184,7 +184,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage2::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
+	void GameStage8::RandamPiecePosition(Vec3 originPosition)//引数を中心にランダムにかけらが置かれる
 	{
 		int randamCount = 0;
 		randamCount = rand() % 9 + 1;
@@ -216,7 +216,7 @@ namespace basecross {
 
 	}
 
-	void GameStage2::CreateEnemyPiece2()
+	void GameStage8::CreateEnemyPiece2()
 	{
 		Vec3 lowerLeft = Vec3(-27.6f, 0.0f, -18.4f);//左下
 		Vec3 lowerRight = Vec3(20.0f, 0.0f, -43.0f);//右下
@@ -230,7 +230,7 @@ namespace basecross {
 
 	}
 
-	void GameStage2::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
+	void GameStage8::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 
 		Vec3 Pos[] = { Vec3(35.2f,0.3f,50.0f),Vec3(-35.0f,0.3f,-37.0f),Vec3(-55.0f,0.3f,50.0f),Vec3(37.0f,0.3f,13.0f),Vec3(6.0f,0.3f,-50.0f),Vec3(13.0f,0.3f,-38.0f) };//BigPieceのPosision一覧
@@ -248,13 +248,13 @@ namespace basecross {
 	}
 
 
-	void GameStage2::CreateMap()
+	void GameStage8::CreateMap()
 	{
 		auto path = App::GetApp()->GetDataDirWString();
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_2.csv");
+		ifstream ifs(levelPath += L"Level_8.csv");
 		if (ifs)
 		{
 			string line;
@@ -335,7 +335,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage2::CreateMiniMap()
+	void GameStage8::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage2", Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
@@ -364,22 +364,22 @@ namespace basecross {
 
 
 	//BGMの再生
-	void GameStage2::BaseBGM()
+	void GameStage8::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
-	void GameStage2::BossBGM() {
+	void GameStage8::BossBGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
-	void GameStage2::OnDestroy()
+	void GameStage8::OnDestroy()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
 
-	void GameStage2::CollisionActive(bool On)
+	void GameStage8::CollisionActive(bool On)
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		auto PlayerPos = ptrPlayer->GetComponent<Transform>()->GetPosition();
@@ -397,12 +397,12 @@ namespace basecross {
 
 	}
 
-	void GameStage2::SetCollisionSwich(bool ONorOFF)
+	void GameStage8::SetCollisionSwich(bool ONorOFF)
 	{
 	}
 
 
-	void GameStage2::OnCreate() {
+	void GameStage8::OnCreate() {
 		try {
 			App::GetApp()->GetScene<Scene>()->SetGameStage(2);
 
@@ -447,7 +447,7 @@ namespace basecross {
 		}
 	}
 
-	void GameStage2::OnUpdate()
+	void GameStage8::OnUpdate()
 	{
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//CollisionActive(true);
