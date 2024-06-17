@@ -171,6 +171,11 @@ namespace basecross {
 		app->RegisterTexture(L"SelectGameStage3", strTexture);
 		strTexture = texPath + L"SelectWhite.png";
 		app->RegisterTexture(L"SelectWhite", strTexture);
+		strTexture = texPath + L"EffectPiece.png";
+		app->RegisterTexture(L"EffectPiece", strTexture);
+		strTexture = texPath + L"BulletEffect.png";
+		app->RegisterTexture(L"BulletEffect", strTexture);
+
 
 		//文字の表示等
 		strTexture = texPath + L"Rank.png";
