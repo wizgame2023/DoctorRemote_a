@@ -19,9 +19,8 @@ namespace basecross {
 		//デフォルトのライティングを指定
 		ptrMultiLight->SetDefaultLighting();
 
-		m_skip = false;
 		m_mojispeed = 0.05f;
-		m_mojispeed1 = 0.2f;
+		m_mojispeed1 = 0.1f;
 	}
 	void ScoreStage::OnCreate() {
 		try {
@@ -100,28 +99,28 @@ namespace basecross {
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが50秒以上だったら表示
 			else if (m_time >= 50 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
-				auto moji3 = AddGameObject<CommentManager>(16, 0, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを4つ表示
+				auto moji3 = AddGameObject<CommentManager>(16, 0, m_mojispeed1, 512, 512, 512, 512, 5, 5, //チェックを4つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが40秒以上だったら表示
 			else if (m_time >= 40 && m_time < 50 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
-				auto moji3 = AddGameObject<CommentManager>(16, 1, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを3つ表示
+				auto moji3 = AddGameObject<CommentManager>(16, 1, m_mojispeed1, 512, 512, 512, 512, 5, 5, //チェックを3つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが25秒以上だったら表示
 			else if (m_time >= 25 && m_time < 40 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
-				auto moji3 = AddGameObject<CommentManager>(16, 2, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを2つ表示
+				auto moji3 = AddGameObject<CommentManager>(16, 2, m_mojispeed1, 512, 512, 512, 512, 5, 5, //チェックを2つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアしたら表示
 			else if (m_time < 25 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
-				auto moji3 = AddGameObject<Comment>(16, 3, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを1つ表示
+				auto moji3 = AddGameObject<Comment>(16, 3, m_mojispeed1, 512, 512, 512, 512, 5, 5, //チェックを1つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}

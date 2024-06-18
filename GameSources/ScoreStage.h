@@ -18,7 +18,6 @@ namespace basecross {
 		int m_achievementPoint;
 		int m_apReceive;
 
-		bool m_skip;
 		float m_mojispeed;
 		float m_mojispeed1;
 
