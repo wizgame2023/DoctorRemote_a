@@ -59,6 +59,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceGarge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceGarge2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceLittle.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PieceManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerGarge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -135,6 +136,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceGarge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceGarge2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceLittle.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PieceManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerGarge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />

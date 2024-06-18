@@ -44,6 +44,7 @@
 #include "EnemyMovieManager.h"
 #include "TimeManager.h"
 #include "UIManager.h"
+#include "PieceManager.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
