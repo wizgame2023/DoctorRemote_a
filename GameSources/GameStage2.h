@@ -7,7 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class GameStage2:Stage
+	class GameStage2: public Stage
 	{
 		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
 		shared_ptr<SoundItem> m_BGM;
