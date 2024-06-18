@@ -18,6 +18,10 @@ namespace basecross {
 		int m_achievementPoint;
 		int m_apReceive;
 
+		bool m_skip;
+		float m_mojispeed;
+		float m_mojispeed1;
+
 		float m_mojiCount = 4.0;
 		void CreateViewLight();
 	public:
