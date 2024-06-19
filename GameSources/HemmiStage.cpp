@@ -116,64 +116,137 @@ namespace basecross {
 	//敵の欠片を作成
 	void HemmiStage::CreateEnemyPiece() {
 
-		vector<vector<Vec3>> vec = {
-			{//8				
-				Vec3(-6.25f,0.0f,24.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
+		//vector<vector<Vec3>> vec = {
+		//	//{//8				
+		//	//	Vec3(-6.25f,0.0f,24.0f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
 
-			},
-			{//9
-				Vec3(-4.56f,0.0f,40.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
+		//	//},
+		//	//{//9
+		//	//	Vec3(-4.56f,0.0f,40.0f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
 
-			},
-			{//10
-				Vec3(-7.25f,0.0f,-45.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
+		//	//},
+		//	//{//10
+		//	//	Vec3(-7.25f,0.0f,-45.0f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
 
-			},
-			{//11
-				Vec3(28.9f,0.0f,-14.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-			},
-			{//12
-				Vec3(45.0f,0.0f,-7.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
+		//	//},
+		//	//{//11
+		//	//	Vec3(28.9f,0.0f,-14.0f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
+		//	//},
+		//	//{//12
+		//	//	Vec3(45.0f,0.0f,-7.0f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
 
-			},
-			{//13
-				Vec3(16.0f,0.0f,10.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-			},
-			{//14
-				Vec3(12.0f,0.0f,41.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
+		//	//},
+		//	//{//13
+		//	//	Vec3(16.0f,0.0f,10.0f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
+		//	//},
+		//	//{//14
+		//	//	Vec3(12.0f,0.0f,41.0f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
 
-			},
-			{//15
-				Vec3(0.6f,0.0f,34.3f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
+		//	//},
+		//	//{//15
+		//	//	Vec3(0.6f,0.0f,34.3f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
 
-			},
-			{//16
-				Vec3(10.0f,0.0f,20.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
+		//	//},
+		//	//{//16
+		//	//	Vec3(10.0f,0.0f,20.0f),
+		//	//	Vec3(0.0f,0.0f,0.0f),
+		//	//	Vec3(2.0f,2.0f,2.0f)
 
+		//	//},
+		//	{//
+		//		Vec3(10.0f,0.0f,20.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//
+		//		Vec3(20.0f,0.0f,20.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//
+		//		Vec3(30.0f,0.0f,20.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//
+		//		Vec3(40.0f,0.0f,20.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//
+		//		Vec3(50.0f,0.0f,20.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//
+		//		Vec3(10.0f,0.0f,30.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//
+		//		Vec3(20.0f,0.0f,30.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//2列目
+		//		Vec3(30.0f,0.0f,30.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//
+		//		Vec3(40.0f,0.0f,30.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+		//	{//
+		//		Vec3(50.0f,0.0f,30.0f),
+		//		Vec3(0.0f,0.0f,0.0f),
+		//		Vec3(2.0f,2.0f,2.0f)
+
+		//	},
+
+		//};
+	vector<vector<Vec3>> vec;
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				vector<Vec3> v = {
+					Vec3(5.0f * i, 0.0f, 5.0f * j),
+					Vec3(0.0f, 0.0f, 0.0f),
+					Vec3(2.0f, 2.0f, 2.0f)
+				};
+				vec.push_back(v);
 			}
 
-		};
+		}
 		//オブジェクトの作成
 		for (auto v : vec) {
-			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
+			auto& piece = AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
+			PieceManager::enemyPieces.push_back(piece);
 		}
 
 	}
@@ -601,13 +674,13 @@ namespace basecross {
 			//auto sprite = AddGameObject<Sprite>(200, 20, L"NumbersWhite", Vec3(0, 0, 0));
 			//auto com = AddGameObject<Sprite>(350, 350, L"comment", Vec3(-200, -200, 0));
 			//auto com3 = AddGameObject<Comment>(13, 0);
-			//auto com2 = AddGameObject<Comment>(14, 0,0.2f,512,256,700,350,26,8,Vec3(-200,200.0f,0.0f),L"StatusMoji",true);
+			auto com2 = AddGameObject<Comment>(6, 0,0.2f,512,256,700,350,26,8,Vec3(-200,200.0f,0.0f),L"StatusMoji",true);
 			//auto comment = AddGameObject<CommentManager>(50);
 			//auto comment2 = AddGameObject<CommentManager>(10,2);
 
 			auto effect = AddGameObject<EffectPiece>(1.0f,0.3f,0.3f,30,Vec2(1.0f,3.0f),
 				Col4(0.0f,0.0f,1.0f,0.8f),Col4(0.0f,0.0f,1.0f,0.8f),L"EffectPiece",Vec2(0.0f,1.0f),Vec3(1.0f));
-			//effect->SetScrollSpeed(0.0f, 1.0f);
+			effect->SetScrollSpeed(0.0f, 1.0f);
 			SetSharedGameObject(L"effect", effect);
 			auto effectTrans = effect->GetComponent<Transform>();
 			effectTrans->SetPosition(Vec3(0.5f));
