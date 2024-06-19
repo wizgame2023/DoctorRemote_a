@@ -9,15 +9,18 @@
 #include "Bullet.h"
 
 namespace basecross {
+
 	class EnemyPiece :public GameObject {
+
 	private:
 		float m_pieceDeleteTime;
 		float m_deg;
+		float m_breakCount;
 		int m_hp;
-		int m_enemyDeletFlag;
-		bool m_pieceDeleteFlag;
+		int m_pieceDeletFlag;
 		bool m_ground;
 		bool m_littlePieceFlag;
+		bool m_otherPieceFlag;
 		Vec3 m_scale;
 		Vec3 m_rotate;
 		Vec3 m_position;
@@ -26,9 +29,11 @@ namespace basecross {
 
 		shared_ptr<Transform> m_trans;
 		shared_ptr<GameObject> m_boss;
-		shared_ptr<Bullet> m_bullet;
+		weak_ptr<Bullet> m_bullet;
+		shared_ptr<EnemyPiece> m_otherPiece;
 
 	public:
+
 		EnemyPiece(const shared_ptr<Stage>& StagePtr,
 			const Vec3& position,
 			const Vec3& rotate,
@@ -45,8 +50,12 @@ namespace basecross {
 		void UpdateEvent();
 		Vec3 GetPos();
 		Vec3 GetRot();
+		void ScatterLittlePiece(int littleNum);
 
 		int GetDeletFlag();
 	};
 }
+
+
+
 //end namespace basecross

@@ -13,21 +13,23 @@ namespace basecross {
 		const Vec3& rotate,
 		const Vec3& scale,
 		const bool littlePieceFlag
-		) :
+	) :
 		GameObject(StagePtr),
 		m_position(position),
 		m_rotate(rotate),
 		m_scale(scale),
-		m_enemyDeletFlag(0),
-		m_pieceDeleteFlag(false),
+		m_pieceDeletFlag(0),
+		m_otherPieceFlag(false),
 		m_pieceDeleteTime(scale.x * 0.15f),
 		m_littlePieceFlag(littlePieceFlag),
 		m_hp(3),
+		m_breakCount(1.0f),
 		m_meshResName(L"Kakera_Mesh")
 
 	{}
 
 	void EnemyPiece::OnCreate() {
+		auto stage = GetStage();
 		auto ptrTrans = GetComponent<Transform>();
 		ptrTrans->SetScale(m_scale);
 		ptrTrans->SetRotation(m_rotate);
@@ -63,9 +65,12 @@ namespace basecross {
 		colPtr->SetAfterCollision(AfterCollision::None);
 		colPtr->SetFixed(false);
 
-		//auto grav = AddComponent<Gravity>();
 
 		AddTag(L"EnemyPiece");
+		vector<shared_ptr<EnemyPiece>> breakedObject;
+		//中心破壊
+
+		//しゅとくしたvector配列の中身を破壊
 	}
 
 	void EnemyPiece::OnUpdate() {
@@ -76,19 +81,70 @@ namespace basecross {
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(m_scale);
 
-		//時間差で消すためにFlagで見ている
-		if (m_enemyDeletFlag) {
-		}
+		if (m_otherPieceFlag) {
+			
 
-		if (m_hp <= 0) {
-			m_pieceDeleteTime -= elapsedTime;
-			m_scale -= 2.0f * elapsedTime * 3.0f;
-			if (m_pieceDeleteTime < 0) {
-				//自分自身を廃棄する
+			auto& piece = PieceManager::enemyPieces;
+			auto& breakPiece = PieceManager::breakPieces;
+			bool isBreaked = true;
+			m_breakCount -= elapsedTime;
+			if (m_breakCount < 0) {
+				isBreaked = false;
+				for (int i = 0; i < PieceManager::breakPieces.size(); i++) {
+					if (breakPiece[i].size() > 0)
+					{
+						for (auto& bp : breakPiece[i]) {
+							GetStage()->RemoveGameObject<EnemyPiece>(bp);
+							bp->ScatterLittlePiece(3);
+							m_breakCount = 1.0f;
+						}
+						PieceManager::breakPieces.erase(i);
+						isBreaked = true;
+						break;
+					}
+				}
+			}
+
+
+			if (/*PieceManager::breakPieces.empty()*/!isBreaked) {
+				m_otherPieceFlag = false;
 				stage->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
-				m_enemyDeletFlag = 0;
+
+				m_pieceDeletFlag = 0;
 			}
 		}
+		////時間差で自分自身を消す
+		//if (m_hp <= 0) {
+		//	m_pieceDeleteTime -= elapsedTime;
+		//	m_scale -= 2.0f * elapsedTime * 3.0f;
+		//	if (m_pieceDeleteTime < 0) {
+
+		//		//自分自身を廃棄する
+		//		stage->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
+
+		//		m_pieceDeletFlag = 0;
+
+		//	}
+		//}
+
+		wstringstream wss;//デバック用文字列
+		wss << L"brekPiece[0] :" << PieceManager::breakPieces[0].size() << endl;
+		wss << L"brekPiece[1] :" << PieceManager::breakPieces[1].size() << endl;
+		wss << L"brekPiece[2] :" << PieceManager::breakPieces[2].size() << endl;
+		wss << L"brekPiece :" << PieceManager::breakPieces.size() << endl;
+		wss << L"Piece :" << PieceManager::enemyPieces.size() << endl;
+		wss << L"Count :" << m_breakCount << endl;
+
+
+
+
+
+
+
+		auto scene = App::GetApp()->GetScene<Scene>();//シーン取得
+		scene->SetDebugString(L"a\n" + wss.str());
+
+
 	}
 
 	void EnemyPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
@@ -99,26 +155,23 @@ namespace basecross {
 			m_bullet = dynamic_pointer_cast<Bullet>(other);
 			//欠片の体力
 			if (m_hp > 0) {
-				m_hp -= m_bullet->GetAttack();
+				m_hp -= m_bullet.lock()->GetAttack();
 			}
 			if (m_hp <= 0) {
-				m_enemyDeletFlag ++;
+				m_pieceDeletFlag ++;
 			}
 			//欠片をばらまく
-			if (m_enemyDeletFlag == 1) {
+			if (m_pieceDeletFlag == 1) {
 				if (m_littlePieceFlag) {
-					for (int i = 0; i < 3; i++) {
-						stage->AddGameObject<PieceLittle>(other, player, (360 / 3) * i);
-
-						auto effect = stage->AddGameObject<EffectPiece>();
-						auto effectTrans = effect->GetComponent<Transform>();
-						effectTrans->SetPosition(m_position);
-					}
-
+					ScatterLittlePiece(3);
+					m_otherPieceFlag = true;
+					PieceManager::PieceDistance(GetThis<EnemyPiece>(), m_otherPiece);
+					
+					
 				}
 			}
-			//m_enemyDeletFlag = true;
-			//m_enemyDeletFlag++;
+			//m_pieceDeletFlag = true;
+			//m_pieceDeletFlag++;
 			
 			//効果音
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
@@ -132,6 +185,22 @@ namespace basecross {
 		}
 	}
 
+	//小さい欠片を散らばせる
+	void EnemyPiece::ScatterLittlePiece(int little) {
+		auto stage = GetStage();
+		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+
+		for (int i = 0; i < little; i++) {
+			stage->AddGameObject<PieceLittle>(GetThis<EnemyPiece>(), player, (360 / little) * i);
+
+			auto effect = stage->AddGameObject<EffectPiece>();
+			auto effectTrans = effect->GetComponent<Transform>();
+			effectTrans->SetPosition(m_position);
+		}
+
+	}
+
+	//ボスのイベント
 	void EnemyPiece::Event(float deg) {
 		auto grav = AddComponent<Gravity>();
 		auto ptrTrans = GetComponent<Transform>();
@@ -152,6 +221,8 @@ namespace basecross {
 		ptrTrans->SetPosition(pos);
 
 	}
+
+	//ボスのイベントの更新処理
 	void EnemyPiece::UpdateEvent() {
 		//auto grav = GetComponent<Gravity>();
 		auto elapsed = App::GetApp()->GetElapsedTime();
@@ -168,7 +239,6 @@ namespace basecross {
 
 	}
 
-
 	Vec3 EnemyPiece::GetPos() {
 		return m_position;
 	}
@@ -176,8 +246,9 @@ namespace basecross {
 		return m_rotate;
 	}
 	int EnemyPiece::GetDeletFlag() {
-		return m_enemyDeletFlag;
+		return m_pieceDeletFlag;
 	}
 	
 }
+
 //end basecross
