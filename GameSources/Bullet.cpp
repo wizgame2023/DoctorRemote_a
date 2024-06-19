@@ -150,16 +150,14 @@ namespace basecross {
 			effect->ThihDestroy();
 		}
 		wstringstream wss;//デバック用文字列
-		wss << L"m_effectPos.x :" << m_effectPos.x << endl;
-		wss << L"m_effectPos.y :" << m_effectPos.y << endl;
-		wss << L"m_effectPos.z :" << m_effectPos.z << endl;
-		wss << L"m_bulletPos.y :" << m_Position.y << endl;
-		wss << L"angle:" << XMConvertToDegrees(m_angle) << endl;
+		//wss << L"m_effectPos.x :" << m_effectPos.x << endl;
+		//wss << L"m_effectPos.y :" << m_effectPos.y << endl;
+		//wss << L"m_effectPos.z :" << m_effectPos.z << endl;
+		//wss << L"m_bulletPos.y :" << m_Position.y << endl;
+		//wss << L"angle:" << XMConvertToDegrees(m_angle) << endl;
 
-
-
-		auto scene = app->GetScene<Scene>();//シーン取得
-		scene->SetDebugString(L"a\n" + wss.str());
+		//auto scene = app->GetScene<Scene>();//シーン取得
+		//scene->SetDebugString(L"a\n" + wss.str());
 
 
 	}
