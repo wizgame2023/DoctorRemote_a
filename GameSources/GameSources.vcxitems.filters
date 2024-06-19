@@ -267,6 +267,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UIManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PieceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -491,5 +492,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UIManager.cpp">
       <Filter>Sources\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PieceManager.cpp" />
   </ItemGroup>
 </Project>
