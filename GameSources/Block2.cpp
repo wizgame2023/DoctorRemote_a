@@ -28,13 +28,13 @@ namespace basecross {
 			Vec3(0.85f, 0.85f, 0.85f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, -0.5f, 0.0f)
 		);
 
 
 		auto ptrColl = AddComponent<CollisionCapsule>();
 		ptrColl->SetFixed(true);
-		//ptrColl->SetDrawActive(true);//コリジョンを見えるようにする	
+		ptrColl->SetDrawActive(true);//コリジョンを見えるようにする	
 		ptrColl->SetSleepActive(true);//ぶつからない限りスリープ状態になる
 
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
