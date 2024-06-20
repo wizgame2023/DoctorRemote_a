@@ -57,7 +57,7 @@ namespace basecross {
 			else if (m_countUp >= 2.0f && m_timeCount == 1) //
 			{
 				auto moji2 = AddGameObject<CommentManager>(13, 0, 0.2f, 400, 128, 250, 80, 8, 2,
-					Vec3(-555.0f, -50.0f, 0.0f), L"LoadMoji1"); // 「体内に住みつき徐々に蝕んでいく」
+					Vec3(-555.0f, -95.0f, 0.0f), L"LoadMoji1"); // 「体内に住みつき徐々に蝕んでいく」
 				m_timeCount++;
 			}
 			m_moveCount = -400;
