@@ -32,6 +32,9 @@ namespace basecross {
 			m_comment = AddGameObject<Comment>(6, 0, 0.2f, 400, 100, 200, 50, 6, 1,
 				Vec3(400.0f, -335.0f, 0.0f), L"LoadMoji2", true); // Åuà⁄ìÆíÜ...Åv
 
+			m_blackBoard = AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0), 4);
+			m_blackBoard->SetColor(Col4(1, 1, 1, 0));
+
 		}
 		catch (...) {
 			throw;
@@ -78,6 +81,13 @@ namespace basecross {
 					m_flag = true;
 			}
 		}
+		if (m_onFade)
+		{
+			float fadeSpeed = 1.0f;
+			m_anCollar += fadeSpeed* delta;
+			m_blackBoard->SetColor(Col4(1, 1, 1, m_anCollar));
+		}
+
 		//wstringstream wss(L"");
 		//auto scene = App::GetApp()->GetScene<Scene>();
 		//wss << m_countUp << endl;
@@ -89,8 +99,13 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (m_countUp >= 7.5f && cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+				m_onFade = true;
 			}
+		}
+		if (m_anCollar>=1)
+		{
+			m_onFade = false;
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 		}
 	}
 
