@@ -19,9 +19,12 @@ namespace basecross {
 		float m_comX;
 		bool m_flag;
 		int m_stageCount;
+		float m_anCollar;
+		bool m_onFade;
 
 		shared_ptr<Sprite>m_sprite;
 		shared_ptr<Comment>m_comment;
+		shared_ptr<Sprite> m_blackBoard;
 
 		void CreateViewLight();
 
