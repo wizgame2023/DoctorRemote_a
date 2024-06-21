@@ -18,9 +18,18 @@ namespace basecross {
 		ptr->SetRotation(m_rot);
 		ptr->SetScale(m_scale);
 
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, -0.5f, 0.0f)
+		);
+
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 		ptrDraw->SetTextureResource(L"WallSkin");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		//ptrDraw->SetFogEnabled(true);
 
 		auto ptrColl = AddComponent<CollisionObb>();
