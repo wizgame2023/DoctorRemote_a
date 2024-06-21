@@ -56,6 +56,16 @@ namespace basecross {
 
 		m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerStartPos);
 		m_Player.lock()->GetComponent<Transform>()->SetRotation(0.0f, 0.0f, 0.0f);
+		m_Player.lock()->GetComponent<Transform>()->SetScale(1.0f, 1.0f, 1.0f);
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, XM_PI, 0.0f),
+			Vec3(0.0f, -0.5f, -0.05f)
+		);
+
+		m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(spanMat);
 		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//PlayerのPositionを取得
 
 		auto stageManager = stage->GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager");//コリジョンマネージャー取得
@@ -90,12 +100,16 @@ namespace basecross {
 			wss << L"エスケープマネージャー：" << endl;
 
 
-			float speed = 5.0f;//速さ
+			float speed = 1.0f;//速さ
 			float VecX = m_TargetPos.x - m_PlayerPos.x;//目標位置とPlayerとのX座標の距離を測っている
 			float VecZ = m_TargetPos.z - m_PlayerPos.z;//目標位置とPlayerとのZ座標の距離を測っている
 			float rad = atan2(VecZ, VecX);//角度を求める（ラジアン）
+			m_Player.lock()->GetComponent<Transform>()->SetRotation(0.0f, rad, 0.0f);
 
-			wss << "VecX:" << VecX << endl << "VecZ:" << VecZ << endl;//デバック文字列
+			float degConvert = 180.0f / XM_PI;//radからdegに変換するための変数
+			float deg = (rad * degConvert);//ラジアンをディグリーに変換
+
+			wss << "deg:" << deg << endl << "VecZ:" << VecZ << endl;//デバック文字列
 			wss << m_UpdateFlag<<endl;
 			auto& app = App::GetApp();
 			float delta = app->GetElapsedTime();//デルタタイムを取得
@@ -108,7 +122,7 @@ namespace basecross {
 			m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerPos);
 			if (m_Time >= 1.0f)
 			{		
-				m_SpriteCol.w += 0.2f * delta;//だんだんと画面が暗くなる
+				m_SpriteCol.w += 0.0002f * delta;//だんだんと画面が暗くなる
 				m_Sprite->SetColor(m_SpriteCol);
 				if (m_SpriteCol.w > 1.0f)
 				{
