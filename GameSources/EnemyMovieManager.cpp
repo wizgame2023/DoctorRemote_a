@@ -57,7 +57,7 @@ namespace basecross {
 
 	void EnemyMovieManager::OnUpdate()
 	{
-		if (m_Count == 1)
+		if (m_Count == 1)//動作①
 		{
 			//AtをEnemyに合わせる
 			auto EnemyPos = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetPosition();
@@ -65,12 +65,12 @@ namespace basecross {
 
 			if (cameraAt != EnemyPos)
 			{
-				cameraAt.y = 1.5f;
+				cameraAt.y = 2.5f;
 				cameraAt += MoveVec(5.0f, cameraAt, Vec3(11.3f, 0.5f, -8.3f));
 
 				m_MovieCamera->SetAt(cameraAt);//数値をセットする
 
-				 if (abs(cameraAt.x - EnemyPos.x) <= 0.5f && abs(cameraAt.z - EnemyPos.z) <= 0.5f)//ほぼ注視点がEnemyのPosと一緒なら
+				 if (abs(cameraAt.x - EnemyPos.x) <= 1.5f && abs(cameraAt.z - EnemyPos.z) <= 1.5f)//ほぼ注視点がEnemyのPosと一緒なら
 				 {
 					 EnemyPos.y = cameraAt.y;
 					 m_MovieCamera->SetAt(EnemyPos);//一緒とみなす
@@ -82,11 +82,11 @@ namespace basecross {
 
 		}
 
-		if (m_Count == 2)
+		if (m_Count == 2)//動作②
 		{
 			//Posを指定の場所に移動させる
 			Vec3 cameraEye = m_MovieCamera->GetEye();//カメラのPos
-			Vec3 MoviePos = Vec3(9.5f, 3.0f, -18.0f);
+			Vec3 MoviePos = Vec3(9.5f, 4.0f, -20.0f);
 			if (cameraEye != MoviePos)
 			{
 				cameraEye += MoveVec(8.0f, cameraEye, MoviePos);
@@ -103,7 +103,13 @@ namespace basecross {
 			}
 		}
 
-		if (m_Count == 3)
+		if (m_Count == 3)//動作③
+		{
+			m_BossMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"BossMoji", Vec3(-620.0f+100.0f, -390.0f+50.0f, 0.0f), 0);//文字生成
+			m_Count = 4;
+		}
+
+		if (m_Count == 4)//動作④
 		{
 			//待機時間
 			auto& app = App::GetApp();
@@ -112,11 +118,20 @@ namespace basecross {
 			m_Time -= delta;
 			if (m_Time < 0)
 			{
-				GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
-
 				auto View = GetStage()->CreateView<SingleView>();
 				View->SetCamera(m_StageCamera.lock());
 				GetStage()->SetView(View);
+				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")
+				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
+
+				int numPtr = m_BossMoji->GetNumPtr();//スプライトの配列番号を取得
+				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列に帯のポインタを消す
+				GetStage()->RemoveGameObject<Sprite>(m_BossMoji);//文字を消す
+
+				numPtr = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
+				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列に帯のポインタを消す
+				GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
+
 				GetStage()->RemoveGameObject<EnemyMovieManager>(GetThis<EnemyMovieManager>());//自分自身を消す
 
 			}
@@ -170,7 +185,11 @@ namespace basecross {
 
 			auto EnemyPos = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetPosition();
 
+			stage->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//Uiを透明にする
+			stage->GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+
 			m_MovieBand = stage->AddGameObject<Sprite>(1280, 800, L"MovieBand", Vec3(), 0);//帯を出す
+			m_MovieBand->AddTag(L"MovieSprite");//ムービー用のスプライトタグを追加
 
 			//デバック用
 			m_MovieCamera = ObjectFactory::Create<Camera>();

@@ -20,6 +20,7 @@ namespace basecross {
 		weak_ptr<MainCamera> m_StageCamera;//ステージのカメラ(ゲームプレイ用)
 		weak_ptr<ViewBase> m_StageView;//ステージのビュー(ゲームプレイ用)
 		shared_ptr<Sprite> m_MovieBand;//ムービー用の帯
+		shared_ptr<Sprite> m_BossMoji;//Bossを表すための文字
 
 		int m_Count;//フラグ管理
 		float m_Time;
