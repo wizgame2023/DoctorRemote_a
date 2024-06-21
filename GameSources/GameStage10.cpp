@@ -336,13 +336,25 @@ namespace basecross {
 					AddGameObject<Block3>(startPos + pos, Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
 				case 14:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(2.0, 10, 1.0));
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(4.0, 10, 1.0));
 					break;
 				case 15:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(140.0, 10, 1.0));
 					break;
 				case 16:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 140.0));
+					break;
+				case 17:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(1.0, 10, 59.4));
+					break;
+				case 18:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(1.0, 10, 56.7));
+					break;
+				case 19:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 37.0));
+					break;
+				case 20:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 40.0));
 					break;
 
 				}
