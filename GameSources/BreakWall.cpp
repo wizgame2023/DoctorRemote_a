@@ -47,7 +47,7 @@ namespace basecross {
 			Vec3(1.0f, 1.0f, 1.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, -0.1f, 0.0f)
 		);
 
 		m_ptrCollider = AddComponent<CollisionObb>();
@@ -55,7 +55,7 @@ namespace basecross {
 		m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
 		//m_ptrCollider->SetAfterCollision(AfterCollision::None);
 
-		//m_ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
+		m_ptrCollider->SetDrawActive(true);//コリジョンを見えるようにする
 
 
 
@@ -97,12 +97,12 @@ namespace basecross {
 		}
 
 		//デバック用
-		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-			float a = 1.0f;
-			m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
+		//auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		//if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
+		//	float a = 1.0f;
+		//	m_ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
 
-		}
+		//}
 		m_Trans->SetPosition(m_Position);//位置を設定
 
 
@@ -113,6 +113,7 @@ namespace basecross {
 	//コリジョンがぶつかったら
 	void BreakWall::OnCollisionEnter(shared_ptr<GameObject>& Other)
 	{
+		auto stage = GetStage();
 		m_bullet = dynamic_pointer_cast<Bullet>(Other);
 
 		if (!m_bullet.expired())
@@ -125,11 +126,12 @@ namespace basecross {
 				m_Hp -= Attack;//自分のHPが減る
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 
-				auto PtrEffect = GetStage()->GetSharedGameObject<EffectBreakWall>(L"RedEffect", false);
+				auto PtrEffect = stage->GetSharedGameObject<EffectBreakWall>(L"RedEffect", false);
 				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
-
-				GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);
-				GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
+				auto numPtr = m_MyMiniMap->GetNumPtr();//自分を表示したスプライトの配列番号を取得
+				stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列から自分のポインタを消去
+				stage->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分が消える
+				stage->RemoveGameObject<BreakWall>(GetThis<BreakWall>());//自分が消える
 
 
 			}
