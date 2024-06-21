@@ -15,7 +15,8 @@ namespace basecross {
 		m_Lenght(lenght),
 		m_MapSize(mapSize),
 		m_MiniMapSize(MiniMapSize),
-		m_MapMagnification(MiniMapSize/mapSize)
+		m_MapMagnification(MiniMapSize/mapSize),
+		m_color(1.0f,1.0f,1.0f,1.0f)
 	{
 
 	}
@@ -43,10 +44,10 @@ namespace basecross {
 		1, 3, 2,  // ←こっちもB
 		};
 
-		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices); // スプライト用のドローコンポーネント
-		drawComp->SetTextureResource(L"MiniMapPlayer");
-		drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
-		drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
+		m_DrawComp = AddComponent<PCTSpriteDraw>(vertices, indices); // スプライト用のドローコンポーネント
+		m_DrawComp->SetTextureResource(L"MiniMapPlayer");
+		m_DrawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
+		m_DrawComp->SetDiffuse(m_color); // ポリゴンを色を設定する
 
 		// アルファブレンド(透過処理)を有効にする
 		SetAlphaActive(true); // true:透過を有効、false:透過を無効
@@ -67,6 +68,20 @@ namespace basecross {
 		trans->SetPosition(Vec3((playerPos.x * m_MapMagnification) + m_StartPos.x, (playerPos.z * m_MapMagnification) + m_StartPos.y, 0.0f));//位置を更新
 		trans->SetRotation(Vec3(0.0f, 0.0f, playerRad));//回転をPlayerに合わせて更新
 		
+	}
+
+	void MiniMapPlayer::OnClear(bool OnOff)
+	{
+		if (OnOff == true)//オンなら
+		{
+			//m_color = Col4(1.0f, 1.0f, 1.0f, 0.0f);
+			m_DrawComp->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//透明にする
+		}
+		if (OnOff == false)//オフなら
+		{
+			m_DrawComp->SetDiffuse(m_color);//透明でなかった時の色に戻る
+		}
+
 	}
 }
 //end basecross
