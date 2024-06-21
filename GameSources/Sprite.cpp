@@ -71,6 +71,18 @@ namespace basecross {
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(m_pos);
 		m_trans->SetRotation(m_rot);
+
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetGameStage() >= 0)//stageがPlayするところなら
+		{
+			auto uiManager = GetStage()->GetSharedGameObject<UIManager>(L"UIManager");
+ 			m_numPtr = uiManager->SetUiPtr(GetThis<Sprite>());//UIマネージャーに自分のポインタを渡す
+
+		}
+		//auto a = dynamic_pointer_cast<Sprite>(this)
+		//auto test = GetThis<Sprite>();
+		//float a = (int)4;
+
 	}
 	void Sprite::OnUpdate() {
 
@@ -81,11 +93,20 @@ namespace basecross {
 	}
 
 	void Sprite::SetColor(Col4 color) {
+		m_color = color;
 		m_draw->SetDiffuse(color);
 	}
 	Col4 Sprite::GetColor() {
-		m_color = m_draw->GetDiffuse();
 		return m_color;
+	}
+
+	int Sprite::GetNumPtr(){
+		return m_numPtr;
+	}
+
+	void Sprite::SetNumPtr(int afterNum)
+	{
+		m_numPtr = afterNum;
 	}
 
 	void Sprite::Blinking(float count) {
@@ -112,6 +133,19 @@ namespace basecross {
 
 		m_draw->UpdateVertices(m_vertices);
 
+	}
+
+	void Sprite::OnClear(bool OnOff)
+	{
+		if (OnOff == true)//オンなら
+		{		
+			//m_color = Col4(1.0f, 1.0f, 1.0f, 0.0f);
+			m_draw->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//透明にする
+		}
+		if (OnOff == false)//オフなら
+		{
+			m_draw->SetDiffuse(m_color);//透明でなかった時の色に戻る
+		}
 	}
 
 }

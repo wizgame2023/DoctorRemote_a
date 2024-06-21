@@ -33,10 +33,13 @@ namespace basecross {
 		bool m_lineFlag;
 		bool m_loopFlag;
 
+		int m_numPtr;//何番目の配列にポインタを入れたかを表す変数
+
 		vector<VertexPositionColorTexture> m_vertices;
 		shared_ptr<PCTSpriteDraw> m_draw;
 		vector<uint16_t> m_indices;
 		wstring m_meshResName;
+		Col4 m_color;
 
 		shared_ptr<Transform> m_trans;
 		Vec3 m_pos;
@@ -71,7 +74,12 @@ namespace basecross {
 		void UpdateValue(int letter);
 		void UpdateLine(int letter,int line);
 
+		void OnClear(bool OnOff);//透明にする
+
 		void ThisDestroy();
+
+		int GetNumPtr();//自分の登録されている配列の番号を返す
+		void SetNumPtr(int num);//自分の配列の番号を入れる
 
 	};
 }
