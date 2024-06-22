@@ -18,9 +18,14 @@ namespace basecross {
 		auto ptrMultiLight = CreateLight<MultiLight>();
 		//デフォルトのライティングを指定
 		ptrMultiLight->SetDefaultLighting();
+
+		m_mojispeed = 0.05f;
+		m_mojispeed1 = 0.1f;
 	}
 	void ScoreStage::OnCreate() {
 		try {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(-1);
+
 			//何回クリアしたか
 			auto& scene = App::GetApp()->GetScene<Scene>();
 			m_stageCount = scene->GetGameStage();
@@ -29,6 +34,8 @@ namespace basecross {
 			CreateViewLight();
 
 			AddGameObject<Sprite>(1280, 800, L"Score", Vec3(), -1);
+			auto moji = AddGameObject<Comment>(9, 0, 0.1f, 270, 40, 270, 40, 9, 1,
+				Vec3(325.0f, 360.0f, 0.0f), L"ResultMoji4"); //「Aボタンでスキップ」を表示
 			m_time = App::GetApp()->GetScene<Scene>()->GetTime();
 		}
 		catch (...) {
@@ -46,15 +53,17 @@ namespace basecross {
 		if (m_control == 0)
 		{			
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-			//if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) //Aボタンが押されたらスキップ(カウントを10秒プラス)する
-			//{
-			//	m_countUp+= 10;
-			//}
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) //Aボタンが押されたらスキップ(カウントを10秒プラス)する
+			{
+				m_mojispeed = 0.0f;
+				m_mojispeed1 = 0.0f;
+				m_countUp+= 10;
+			}
 
 			//スコアステージが生成されてから1秒後に、「レコード」を表示
 			if (m_countUp >= 1.0f && m_timeCount == 0)
 			{
-				auto moji = AddGameObject<Comment>(4, 0, 0.2f, 400, 90, 400, 90, 4, 1,
+				auto moji = AddGameObject<Comment>(4, 0, m_mojispeed1, 400, 90, 400, 90, 4, 1,
 					Vec3(-550.0f, 350.0f, 0.0f), L"ResultMoji1"); //「レコード」を表示
 				m_timeCount++;
 			}
@@ -62,7 +71,7 @@ namespace basecross {
 			//スコアステージが生成されてから2秒後に、「タイム」を表示
 			else if (m_countUp >= 2.0f && m_timeCount == 1)
 			{
-				auto moji = AddGameObject<Comment>(4, 0, 0.2f, 512, 512, 450, 450, 7, 1,
+				auto moji = AddGameObject<Comment>(4, 0, m_mojispeed1, 512, 512, 450, 450, 7, 1,
 					Vec3(-570.0f, 215.0f, 0.0f), L"ScoreComment"); // 「タイム：」を表示
 				m_timeCount++;
 			}
@@ -84,7 +93,7 @@ namespace basecross {
 			//スコアステージが生成されてから5秒後で、評価の文字を表示
 			else if (m_countUp >= 5.0f && m_timeCount == 4)
 			{
-				auto moji2 = AddGameObject<CommentManager>(27, 0, 0.05f, 512, 512, 400, 512, 9, 5, //評価の文字を表示
+				auto moji2 = AddGameObject<CommentManager>(27, 0, m_mojispeed, 512, 512, 400, 512, 9, 5, //評価の文字を表示
 					Vec3(-570.0f, 140.0f, 0.0f), L"IfClear");
 				m_timeCount++;
 			}
@@ -92,28 +101,28 @@ namespace basecross {
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが50秒以上だったら表示
 			else if (m_time >= 50 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
-				auto moji3 = AddGameObject<CommentManager>(16, 0, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを4つ表示
+				auto moji3 = AddGameObject<CommentManager>(16, 0, m_mojispeed1, 512, 512, 512, 512, 5, 5, //チェックを4つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが40秒以上だったら表示
 			else if (m_time >= 40 && m_time < 50 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
-				auto moji3 = AddGameObject<CommentManager>(16, 1, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを3つ表示
+				auto moji3 = AddGameObject<CommentManager>(16, 1, m_mojispeed1, 512, 512, 512, 512, 5, 5, //チェックを3つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアした時の残りタイムが25秒以上だったら表示
 			else if (m_time >= 25 && m_time < 40 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
-				auto moji3 = AddGameObject<CommentManager>(16, 2, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを2つ表示
+				auto moji3 = AddGameObject<CommentManager>(16, 2, m_mojispeed1, 512, 512, 512, 512, 5, 5, //チェックを2つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから7秒後で、ステージクリアしたら表示
 			else if (m_time < 25 && m_countUp >= 7.0f && m_timeCount == 5)
 			{
-				auto moji3 = AddGameObject<Comment>(16, 3, 0.1f, 512, 512, 512, 512, 5, 5, //チェックを1つ表示
+				auto moji3 = AddGameObject<Comment>(16, 3, m_mojispeed1, 512, 512, 512, 512, 5, 5, //チェックを1つ表示
 					Vec3(-135.0f, 160.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
@@ -197,7 +206,7 @@ namespace basecross {
 		else if (m_control == 1 && m_countUp >= 11.0f)
 		{
 			auto moji3 = AddGameObject<Comment>(7, 0, 0.1f, 256, 64, 256, 64, 7, 1, // Bボタンで次へ
-			Vec3(345.0f, -300.0f, 0.0f), L"ResultMoji2");
+			Vec3(340.0f, -300.0f, 0.0f), L"ResultMoji2");
 			m_timeCount++;
 			m_control++;
 		}

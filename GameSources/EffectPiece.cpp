@@ -123,12 +123,6 @@ namespace basecross {
 		m_draw->SetDepthStencilState(DepthStencilState::Read);
 		m_draw->SetBlendState(BlendState::Additive);
 
-		if (m_colFlag) {
-			auto colPtr = AddComponent<CollisionCapsule>();
-			colPtr->SetDrawActive(true);
-			colPtr->SetAfterCollision(AfterCollision::None);
-		}
-
 		if (m_meshResName.length() > 0) {
 			m_draw->SetTextureResource(m_meshResName);
 		}

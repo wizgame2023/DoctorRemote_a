@@ -1,6 +1,6 @@
 /*!
 @file GameStage6.cpp
-@brief ゲームステージ実体
+@brief ゲームステージ6の実体
 */
 
 #include "stdafx.h"
@@ -262,6 +262,7 @@ namespace basecross {
 			{
 				vector<int> mapData;
 
+				line += ",";
 				string data;
 				istringstream ss(line);
 				while (getline(ss, data, ','))
@@ -322,7 +323,7 @@ namespace basecross {
 					AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(20.0f, 10.0f, 20.0f));
 					break;
 				case 13:
-					AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
+					AddGameObject<Block3>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
 				}
 

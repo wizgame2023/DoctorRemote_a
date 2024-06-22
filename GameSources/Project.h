@@ -44,6 +44,7 @@
 #include "EnemyMovieManager.h"
 #include "TimeManager.h"
 #include "UIManager.h"
+#include "PieceManager.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
@@ -75,6 +76,7 @@
 #include "BreakWall.h"
 #include "RecoveryWall.h"
 #include "Wall.h"
+#include "UITools.h"
 
 
 #include "AndoStage.h"

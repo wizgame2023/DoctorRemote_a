@@ -123,6 +123,8 @@ namespace basecross {
 		app->RegisterTexture(L"NumbersWhite", strTexture);
 		strTexture = texPath + L"numbernoten.png";
 		app->RegisterTexture(L"NumbersTen", strTexture);
+		strTexture = texPath + L"Numbers10.png";
+		app->RegisterTexture(L"Numbers10", strTexture);
 		strTexture = texPath + L"WallSkin1.png";
 		app->RegisterTexture(L"WallSkin", strTexture);
 		strTexture = texPath + L"WallSkin2.png";
@@ -200,6 +202,8 @@ namespace basecross {
 		app->RegisterTexture(L"ResultMoji2", strTexture);
 		strTexture = texPath + L"ResultMoji3.png";
 		app->RegisterTexture(L"ResultMoji3", strTexture);
+		strTexture = texPath + L"ResultMoji4.png";
+		app->RegisterTexture(L"ResultMoji4", strTexture);
 		strTexture = texPath + L"GameClear.jpg";
 		app->RegisterTexture(L"GameClear", strTexture);
 		strTexture = texPath + L"IfClear.png";
@@ -222,6 +226,8 @@ namespace basecross {
 		app->RegisterTexture(L"LoadMoji2", strTexture);
 		strTexture = texPath + L"BossMoji.png";
 		app->RegisterTexture(L"BossMoji", strTexture);
+		strTexture = texPath + L"LoadMoji3.png";
+		app->RegisterTexture(L"LoadMoji3", strTexture);
 
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";

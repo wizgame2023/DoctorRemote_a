@@ -1,6 +1,6 @@
 /*!
-@file GameStage.cpp
-@brief ゲームステージ実体
+@file GameStage4.cpp
+@brief ゲームステージ4の実体
 */
 
 #include "stdafx.h"
