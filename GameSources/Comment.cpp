@@ -120,7 +120,12 @@ namespace basecross {
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(m_pos);
 
-		m_numPtr = GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiCommentPtr(GetThis<Comment>());//自分のポインタを配列に入れる
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetPlayFlag())//stageがPlayするところなら
+		{
+			m_numPtr = GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiCommentPtr(GetThis<Comment>());//自分のポインタを配列に入れる
+		}
+
 
 	}
 	void Comment::OnUpdate() {

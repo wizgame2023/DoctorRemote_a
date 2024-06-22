@@ -41,7 +41,12 @@ namespace basecross {
 
 
 	void UITime::OnCreate() {
-		GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiTimePtr(GetThis<UITime>());//自分自身のポインタを渡す
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetPlayFlag())//stageがPlayするところなら
+		{
+			GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiTimePtr(GetThis<UITime>());//自分自身のポインタを渡す
+		}
+
 		m_moveW = (512.0f / 11) / 512.0f;
 		m_moveH = 75.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
