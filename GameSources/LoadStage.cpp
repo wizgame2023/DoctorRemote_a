@@ -24,6 +24,7 @@ namespace basecross {
 	}
 	void LoadStage::OnCreate() {
 		try {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(-1);
 
 			//ビューとライトの作成
 			CreateViewLight();
