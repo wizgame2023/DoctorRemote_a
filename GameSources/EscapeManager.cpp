@@ -17,7 +17,8 @@ namespace basecross {
 		m_MinRange(minRange),
 		m_MaxRange(maxRange),
 		m_PlayerStartPos(playerStartPos),
-		m_TargetPos(TagetPos)
+		m_TargetPos(TagetPos),
+		m_paint(1.0f)
 	{
 
 	}
@@ -36,12 +37,22 @@ namespace basecross {
 		m_Sprite->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
 		m_SpriteCol = m_Sprite->GetColor();
 
+		auto StartPos = stage->GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
+		float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
+
+		auto test = m_PlayerStartPos;
+
+		m_MyMiniMap = stage->AddGameObject<Sprite>(5.0f*Bairitu, 5.0f*Bairitu, L"White", StartPos + (test*Bairitu), 6);//生成
+		m_MyMiniMap->GetComponent<Transform>()->SetPosition(Vec3((test.x * Bairitu) + StartPos.x, (test.z * Bairitu) + StartPos.y, 0.0f));//位置を更新
+
 	}
 
 	void EscapeManager::Start()//開始
 	{
+		GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//ステージ進行度を進める
+
 		auto stage = GetStage();//ステージ取得
-		GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
+		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
 
 		stage->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerの操作を効かなくさせる
 
@@ -83,7 +94,24 @@ namespace basecross {
 
 	void EscapeManager::OnUpdate()
 	{	
+		auto& app = App::GetApp();
+		float delta = app->GetElapsedTime();//デルタタイムを取得
+
 		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//Positionを取得
+
+		if (m_UpdateFlag == 0)//Escapeエリアに入っていない場合
+		{
+			if (m_paint > 0.0f)
+			{
+				m_paint -= delta;
+			}
+			if (m_paint < 0.0f)
+			{
+				m_paint = 1.0f;
+			}
+			m_MyMiniMap->SetColor(Col4(1.0f, 1.0f, 1.0f, m_paint));//透明度が変化する
+
+		}
 
 		//この範囲にいたら脱出シーンが起きる
 		if (m_PlayerPos.x <= m_MaxRange.x && m_PlayerPos.x >= m_MinRange.x && m_UpdateFlag == 0)
@@ -94,8 +122,40 @@ namespace basecross {
 				m_UpdateFlag = 1;//脱出する動作にフラグを変更
 			}
 		}
-	
-		if (m_UpdateFlag == 1)
+
+		if (GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag() == 4)//脱出地点の範囲内に入ったら
+		{
+			if (m_UpdateFlag == 1)//Playerに当たったのが自分だった場合
+			{
+				int number = m_MyMiniMap->GetNumPtr();
+				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
+				GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
+				m_UpdateFlag = 2;
+			}
+			//if (m_UpdateFlag == 3)
+			//{
+			//	//int number = m_MyMiniMap->GetNumPtr();
+			//	//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
+			//	//GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
+			//	//GetStage()->RemoveGameObject<EscapeManager>(GetThis<EscapeManager>());//自分を消す
+			//	//m_UpdateFlag = 4;
+
+			//}
+			if (m_UpdateFlag == 0)//Playerに当たったのが自分でなかった場合
+			{
+				int number = m_MyMiniMap->GetNumPtr();
+				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
+				GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
+				//GetStage()->RemoveGameObject<EscapeManager>(GetThis<EscapeManager>());//自分を消す
+				//m_MyMiniMap->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.0f));//透明度が変化する
+
+				m_UpdateFlag = 3;
+			}
+			//GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(5);//進行度を進める
+
+		}
+
+		if (m_UpdateFlag == 2)
 		{
 			GetStage()->GetSharedGameObject<TimeManager>(L"TimeManager")->SetTimeFlag(false);//制限時間のカウントを終わらせる
 			
@@ -116,8 +176,6 @@ namespace basecross {
 
 			//wss << "90.0f:" << XMConvertToDegrees(DifferenceRad(playerrad)) << endl << "VecZ:" << VecZ << endl;//デバック文字列
 			//wss << m_UpdateFlag<<endl;
-			auto& app = App::GetApp();
-			float delta = app->GetElapsedTime();//デルタタイムを取得
 			m_Time += delta;//時間経過
 			m_PlayerPos.x += (speed * cos(rad)) * delta;//間接的に距離を足している
 			m_PlayerPos.z += (speed * sin(rad)) * delta;//間接的に距離を足している
