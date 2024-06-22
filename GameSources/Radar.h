@@ -14,6 +14,7 @@ namespace basecross {
 		vector<VertexPositionColorTexture> m_vertices;
 		vector<uint16_t> m_indices; // 頂点インデックス（頂点のつなげ順）
 		shared_ptr<PCTSpriteDraw> m_drawComp;
+		shared_ptr<Sprite> m_RaderWaku;//レーダーの枠
 
 		Vec3 m_PlayerPosition;//Playerのポジション
 		Vec3 m_EnemyPosition;//Enemyのポジション
