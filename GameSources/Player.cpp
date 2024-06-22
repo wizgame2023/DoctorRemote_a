@@ -1,7 +1,7 @@
 /*!
 @file Player.cpp
 @brief プレイヤー実体
-担当：逸見
+担当：逸見、（三瓶）
 */
 
 #include "stdafx.h"
@@ -9,12 +9,6 @@
 
 namespace basecross {
 
-	enum BULLETLEVEL {
-		NORMAL,
-		LEVEL1,
-		LEVEL2,
-		LEVEL3,
-	};
 	//--------------------------------------------------------------------------------------
 	//	class Player : public GameObject;
 	//	用途: プレイヤー
@@ -55,207 +49,10 @@ namespace basecross {
 		m_statusFlag(2),
 		m_enemyPieceFlag(false),
 		m_bulletFlag(false),
-		m_bulletLevel(NORMAL),
+		m_bulletLevel(0),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
-
-	Vec2 Player::GetInputState() {
-		Vec2 ret;
-		ret.x = 0.0f;
-		ret.y = 0.0f;
-		//コントローラの取得
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].bConnected)
-		{
-			ret.x = cntlVec[0].fThumbLX;
-			ret.y = cntlVec[0].fThumbLY;
-			if (ret.x != 0 || ret.y != 0) {//コントローラー(アナログステック)を動かしたら
-				m_PadLastAngle = ret;
-
-			}
-		}
-
-		return ret;
-	}
-
-	float Player::PlayerAngle() const{
-
-		//進行方向の向きを計算
-		auto ptrCamera = OnGetDrawCamera();
-		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
-		front.y = 0;
-		front.normalize();
-		//進行方向の向きからの角度を算出
-		float frontAngle = atan2(front.z, front.x);
-
-		return frontAngle;
-	}
-	//飛ばす方向ベクトル
-	Vec3 Player::FrontVec() {
-		auto ptrCamera = OnGetDrawCamera();
-		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
-		front.y = 0;
-		return front;
-	}
-
-	Vec3 Player::GetMoveVector() {
-		Vec3 angle(0, 0, 0);
-		//入力を取得
-		auto inPut = GetInputState();//コントローラーの入力の傾きを入れている
-		float moveX = inPut.x;
-		float moveZ = inPut.y;
-		if (moveX != 0 || moveZ != 0){//コントローラー(アナログステック)を動かしたら
-			float moveLength = 0;
-
-			float frontAngle = PlayerAngle();
-
-			//コントローラの向きを計算
-			Vec2 moveVec(moveX, moveZ);
-			//角度からベクトルを作成
-			angle = Vec3(cos(frontAngle), 0.0f, sin(frontAngle));
-			//正規化
-			angle.normalize();
-
-			//移動サイズ
-			//float moveSize = moveVec.length();
-			//angle *= moveSize;
-
-			//wstringstream wss(L"");
-			//auto scene = App::GetApp()->GetScene<Scene>();
-			//auto gameStage = scene->GetGameStage();
-			//wss << L"angle.x : " << moveVec.x << L"angle.z : " << moveVec.y
-			//	<< endl;
-			//scene->SetDebugString(wss.str());
-
-			//Y軸は変化させない
-			angle.y = 0.0f;
-			//最後に傾けた値を保存する
-			m_lastAngle = angle;
-
-		}
-			return angle;
-	}
-
-	void Player::SpeedCalculation()//Playerの進むスピードを計算する
-	{
-		Vec2 input = GetInputState();//入力を取得
-		input.length();
-		float elapsedTime = App::GetApp()->GetElapsedTime();
-
-
-
-		if (input.x != 0 || input.y != 0)//アナログステックが傾けられた場合
-		{	
-			if (m_maxSpeed >= m_speed)
-			{
-				m_speed += (input.y * 9.0f) * elapsedTime;//ステックを縦に傾けば傾くほど加速する
-			}
-
-			if (!m_dashCheck)//ダッシュ効果適応外
-			{
-				if(m_maxSpeed <= m_speed)//限界のスピードを超えたとき
-				{
-					m_speed = m_maxSpeed;//限界のスピードまでに制限
-				}
-				if (-m_maxSpeed+2 >= m_speed)//バックの限界のスピードを超えたとき
-				{
-					m_speed = -m_maxSpeed+2;//バックの限界のスピードまでに制限
-				}
-
-			}
-
-			//if (m_dashCheck)//ダッシュ効果適応中
-			//{
-			//	//if (m_maxSpeed >= m_speed)
-			//	//{
-			//	//	m_speed += (input.y * 2.0f) * elapsedTime;
-			//	//}
-			//	if(m_dashSpeed <= m_speed)
-			//	{
-			//		//m_speed = m_dashSpeed;
-			//	}
-			//}
-
-		}
-		if(input.x == 0 && input.y == 0)//アナログスティックを動かしていない場合
-		{
-			if (m_speed < 0)//現在のスピードが０より小さかった時
-			{	
-				m_speed += elapsedTime * 6.8f;//スピードがどんどん落ちてくる
-				if (m_speed >= -0.5f)//スピードが０に近くなったら
-				{
-					m_speed = 0;//スピードを０とみなす
-				}
-			}
-			if (m_speed > 0)//現在のスピードが０より大きかった時
-			{
-				m_speed -= elapsedTime*6.8f;//スピードがどんどん落ちてくる
-				if (m_speed <= 0.5)//スピードが０に近くなったら
-				{
-					m_speed = 0;//スピードを０とみなす
-				}
-
-			}
-
-		}
-
-
-
-	}
-
-	void Player::MovePlayer() {
-		float elapsedTime = App::GetApp()->GetElapsedTime();
-		//角度を計算している関数を代入	
-		auto angle = m_lastAngle;
-		if (GetMoveVector() != Vec3(0.0f, 0.0f, 0.0f))
-		{
-			angle = GetMoveVector();
-		}
-		//auto cntl = GetInputState();
-		SpeedCalculation();//スピードの計算
-		if (angle.length() >= 0.0f) {
-
-			Vec3 moveAngle = angle;
-			//if (m_PadLastAngle.y < 0.0f) {//yの数値がマイナスの場合バックする
-			//	auto subAngle = atan2(moveAngle.z, moveAngle.x);
-			//	subAngle += XM_PI;
-			//	moveAngle = Vec3(cos(subAngle), 0.0f, sin(subAngle));
-			//}
-
-			auto pos = GetComponent<Transform>()->GetPosition();
-			pos += moveAngle * elapsedTime * m_speed;//ここで進む距離を決めている
-			GetComponent<Transform>()->SetPosition(pos);
-
-		}
-
-		//回転の計算
-		if (angle.length() > 0.0f) {
-			auto unilPtr = GetBehavior<UtilBehavior>();
-			//補間処理を行う回転
-			unilPtr->RotToHead(angle, 0.7f);
-		}
-	}
-
-	void Player::Dash() {
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-
-		Vec2 input = GetInputState();//入力を取得
-		
-		if (cntlVec[0].bRightTrigger >= 0.8f) {//RTボタンを押したら
-			m_dashCheck = true;
-			m_dashCooldown = true;
-			if (m_dashCount > 0) {
-				if (input.x != 0 || input.y != 0)
-				{
-					m_speed = m_dashSpeed;//スピードをダッシュ用のスピードに変更する
-				}
-			}
-		}
-		else {
-			//m_speed = m_maxSpeed;
-		}
-	}
 
 
 	void Player::OnCreate(){
@@ -351,23 +148,23 @@ namespace basecross {
 				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B) {
 					if (m_bulletTime > 3.0f) {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(1.0f), 30.0f, frontAngle, 3);
-						m_bulletLevel = LEVEL3;
+						bullet->SetBulletLevel(3);
 						m_bulletTime = 0.0f;
 					}
 					else if (m_bulletTime > 2.0f) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 30.0f, frontAngle, 2);
-						m_bulletLevel = LEVEL2;
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 20.0f, frontAngle, 2);
+						bullet->SetBulletLevel(2);
 						m_bulletTime = 0.0f;
 					}
 					else if (m_bulletTime > 1.0f) {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 30.0f, frontAngle, 1);
-						m_bulletLevel = LEVEL1;
+						bullet->SetBulletLevel(1);
 						m_bulletTime = 0.0f;
 					}
 					else {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 1);
+						bullet->SetBulletLevel(0);
 						m_bulletTime = 0.0f;
-						m_bulletLevel = NORMAL;
 						auto soundE = App::GetApp()->GetXAudio2Manager();
 						soundE->Start(L"ShotSE", 0, 0.5f);
 					}
@@ -486,6 +283,205 @@ namespace basecross {
 		scene->SetDebugString(wss.str());
 
 	}
+
+	Vec2 Player::GetInputState() {
+		Vec2 ret;
+		ret.x = 0.0f;
+		ret.y = 0.0f;
+		//コントローラの取得
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cntlVec[0].bConnected)
+		{
+			ret.x = cntlVec[0].fThumbLX;
+			ret.y = cntlVec[0].fThumbLY;
+			if (ret.x != 0 || ret.y != 0) {//コントローラー(アナログステック)を動かしたら
+				m_PadLastAngle = ret;
+
+			}
+		}
+
+		return ret;
+	}
+
+	float Player::PlayerAngle() const {
+
+		//進行方向の向きを計算
+		auto ptrCamera = OnGetDrawCamera();
+		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
+		front.y = 0;
+		front.normalize();
+		//進行方向の向きからの角度を算出
+		float frontAngle = atan2(front.z, front.x);
+
+		return frontAngle;
+	}
+	//飛ばす方向ベクトル
+	Vec3 Player::FrontVec() {
+		auto ptrCamera = OnGetDrawCamera();
+		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
+		front.y = 0;
+		return front;
+	}
+
+	Vec3 Player::GetMoveVector() {
+		Vec3 angle(0, 0, 0);
+		//入力を取得
+		auto inPut = GetInputState();//コントローラーの入力の傾きを入れている
+		float moveX = inPut.x;
+		float moveZ = inPut.y;
+		if (moveX != 0 || moveZ != 0) {//コントローラー(アナログステック)を動かしたら
+			float moveLength = 0;
+
+			float frontAngle = PlayerAngle();
+
+			//コントローラの向きを計算
+			Vec2 moveVec(moveX, moveZ);
+			//角度からベクトルを作成
+			angle = Vec3(cos(frontAngle), 0.0f, sin(frontAngle));
+			//正規化
+			angle.normalize();
+
+			//移動サイズ
+			//float moveSize = moveVec.length();
+			//angle *= moveSize;
+
+			//wstringstream wss(L"");
+			//auto scene = App::GetApp()->GetScene<Scene>();
+			//auto gameStage = scene->GetGameStage();
+			//wss << L"angle.x : " << moveVec.x << L"angle.z : " << moveVec.y
+			//	<< endl;
+			//scene->SetDebugString(wss.str());
+
+			//Y軸は変化させない
+			angle.y = 0.0f;
+			//最後に傾けた値を保存する
+			m_lastAngle = angle;
+
+		}
+		return angle;
+	}
+
+	void Player::SpeedCalculation()//Playerの進むスピードを計算する
+	{
+		Vec2 input = GetInputState();//入力を取得
+		input.length();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+
+
+		if (input.x != 0 || input.y != 0)//アナログステックが傾けられた場合
+		{
+			if (m_maxSpeed >= m_speed)
+			{
+				m_speed += (input.y * 9.0f) * elapsedTime;//ステックを縦に傾けば傾くほど加速する
+			}
+
+			if (!m_dashCheck)//ダッシュ効果適応外
+			{
+				if (m_maxSpeed <= m_speed)//限界のスピードを超えたとき
+				{
+					m_speed = m_maxSpeed;//限界のスピードまでに制限
+				}
+				if (-m_maxSpeed + 2 >= m_speed)//バックの限界のスピードを超えたとき
+				{
+					m_speed = -m_maxSpeed + 2;//バックの限界のスピードまでに制限
+				}
+
+			}
+
+			//if (m_dashCheck)//ダッシュ効果適応中
+			//{
+			//	//if (m_maxSpeed >= m_speed)
+			//	//{
+			//	//	m_speed += (input.y * 2.0f) * elapsedTime;
+			//	//}
+			//	if(m_dashSpeed <= m_speed)
+			//	{
+			//		//m_speed = m_dashSpeed;
+			//	}
+			//}
+
+		}
+		if (input.x == 0 && input.y == 0)//アナログスティックを動かしていない場合
+		{
+			if (m_speed < 0)//現在のスピードが０より小さかった時
+			{
+				m_speed += elapsedTime * 6.8f;//スピードがどんどん落ちてくる
+				if (m_speed >= -0.5f)//スピードが０に近くなったら
+				{
+					m_speed = 0;//スピードを０とみなす
+				}
+			}
+			if (m_speed > 0)//現在のスピードが０より大きかった時
+			{
+				m_speed -= elapsedTime * 6.8f;//スピードがどんどん落ちてくる
+				if (m_speed <= 0.5)//スピードが０に近くなったら
+				{
+					m_speed = 0;//スピードを０とみなす
+				}
+
+			}
+
+		}
+
+
+
+	}
+
+	void Player::MovePlayer() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//角度を計算している関数を代入	
+		auto angle = m_lastAngle;
+		if (GetMoveVector() != Vec3(0.0f, 0.0f, 0.0f))
+		{
+			angle = GetMoveVector();
+		}
+		//auto cntl = GetInputState();
+		SpeedCalculation();//スピードの計算
+		if (angle.length() >= 0.0f) {
+
+			Vec3 moveAngle = angle;
+			//if (m_PadLastAngle.y < 0.0f) {//yの数値がマイナスの場合バックする
+			//	auto subAngle = atan2(moveAngle.z, moveAngle.x);
+			//	subAngle += XM_PI;
+			//	moveAngle = Vec3(cos(subAngle), 0.0f, sin(subAngle));
+			//}
+
+			auto pos = GetComponent<Transform>()->GetPosition();
+			pos += moveAngle * elapsedTime * m_speed;//ここで進む距離を決めている
+			GetComponent<Transform>()->SetPosition(pos);
+
+		}
+
+		//回転の計算
+		if (angle.length() > 0.0f) {
+			auto unilPtr = GetBehavior<UtilBehavior>();
+			//補間処理を行う回転
+			unilPtr->RotToHead(angle, 0.7f);
+		}
+	}
+
+	void Player::Dash() {
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
+		Vec2 input = GetInputState();//入力を取得
+
+		if (cntlVec[0].bRightTrigger >= 0.8f) {//RTボタンを押したら
+			m_dashCheck = true;
+			m_dashCooldown = true;
+			if (m_dashCount > 0) {
+				if (input.x != 0 || input.y != 0)
+				{
+					m_speed = m_dashSpeed;//スピードをダッシュ用のスピードに変更する
+				}
+			}
+		}
+		else {
+			//m_speed = m_maxSpeed;
+		}
+	}
+
+
 
 	//衝突判定
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
