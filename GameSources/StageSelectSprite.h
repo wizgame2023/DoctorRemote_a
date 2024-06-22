@@ -35,6 +35,8 @@ namespace basecross {
 		bool m_display;
 
 		Vec3 m_pos;
+		wstring m_spritesName;
+		wstring m_frameName;
 
 		shared_ptr<UITime> m_numberSprites[10];
 		shared_ptr<Sprite> m_selectSprite;
@@ -42,22 +44,27 @@ namespace basecross {
 
 
 	public:
-		StageSelectSprite(const shared_ptr<Stage>& stagePtr);
 		StageSelectSprite(const shared_ptr<Stage>& stagePtr,
-			const Vec3 pos,
-			const float sizeX,
-			const float sizeY,
-			const float widthUnit,
-			const float heightUnit,
-			const float widthNum,
-			const float heightNum,
-			const bool display = true
+			const wstring sprites = L"White",//選択する画像
+			const wstring frame = L"White" //フレームの画像
+			);
+		StageSelectSprite(const shared_ptr<Stage>& stagePtr,
+			const Vec3 pos,       //表示位置
+			const float sizeX,    //画像の縦サイズ
+			const float sizeY,    //画像の横サイズ
+			const float widthUnit,//次の画像までの幅（横）
+			const float heightUnit,//次の画像までの幅（縦）
+			const float widthNum,  //横に何個表示させるか
+			const float heightNum, //縦に何個表示させるか
+			const wstring sprites,//選択する画像
+			const wstring frame,  //フレームの画像
+			const bool display = true //ステージ数,選択する画像の表示をさせるか
 		);
 		virtual ~StageSelectSprite(){}
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
-		Vec3 GetSpritePostion();
+		Vec3 GetSpritePostion(const int w, const int h);
 	};
 }
