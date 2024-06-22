@@ -16,7 +16,7 @@ namespace basecross {
 		m_square(30),
 		m_loops(1.0f,2.0f),
 		m_topCol(0.0f),
-		m_underCol(Col4(0.0f,1.0f,0.0f,1.0f)),
+		m_underCol(Col4(0.0f,0.0f,1.0f,1.0f)),
 		m_meshResName(L"EffectPiece"),
 		m_scrollVelocity(0.0f,-1.0f),
 		m_isUpdate(false),
@@ -150,10 +150,6 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 	}
 
-	void EffectPiece::SetLocalPosition(Vec3 pos) {
-
-	}
-
 	void EffectPiece::SetScrollSpeed(float x, float y) {
 		m_scrollVelocity.x = x;
 		m_scrollVelocity.y = -y;
@@ -164,6 +160,9 @@ namespace basecross {
 	}
 	void EffectPiece::ThihDestroy() {
 		GetStage()->RemoveGameObject<EffectPiece>(GetThis<EffectPiece>());
+	}
+	void EffectPiece::SetBlendState(const BlendState state) {
+		m_draw->SetBlendState(state);
 	}
 }
 //end namespace basecross

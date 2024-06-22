@@ -58,7 +58,7 @@ namespace basecross {
 		void SetScrollSpeed(float x,float y);
 		void SetUnderRadius(float radius);
 		void ThihDestroy();
-		void SetLocalPosition(Vec3 pos);
+		void SetBlendState(const BlendState state);
 	};
 }
 //end namespace basecross
