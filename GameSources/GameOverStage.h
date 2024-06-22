@@ -9,6 +9,7 @@
 namespace basecross {
 	class GameOverStage :public Stage {
 		void CreateViewLight();
+		int m_count;
 
 	public:
 		GameOverStage() :Stage() {}
@@ -16,10 +17,9 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+		virtual void OnDestroy() override;
 
 		void StageChange();
-
-
 	};
 }
 //end namespace basecross

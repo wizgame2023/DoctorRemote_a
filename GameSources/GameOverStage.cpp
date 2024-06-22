@@ -34,6 +34,26 @@ namespace basecross {
 	void GameOverStage::OnUpdate() {
 		StageChange();
 	}
+
+	void GameOverStage::OnDestroy()
+	{
+		auto scene = App::GetApp()->GetScene<Scene>();
+		m_count = scene->GetBigPieceCount();
+		if (m_count == 1) // ‘å‚«‚¢Œ‡•Ð‚ð1ŒÂ‰ó‚µ‚Ä‚¢‚é
+		{
+			scene->SetBigPieceCount(-1);
+		}
+		if (m_count == 2)// ‘å‚«‚¢Œ‡•Ð‚ð2ŒÂ‰ó‚µ‚Ä‚¢‚é
+		{
+			scene->SetBigPieceCount(-2);
+		}
+		if (m_count == 3)// ‘å‚«‚¢Œ‡•Ð‚ð3ŒÂ‰ó‚µ‚Ä‚¢‚é
+		{
+			scene->SetBigPieceCount(-3);
+		}
+		scene->GetBigPieceCount();
+	}
+
 	void GameOverStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto& scene = App::GetApp()->GetScene<Scene>();
