@@ -24,6 +24,7 @@ namespace basecross {
 		m_littlePieceFlag(littlePieceFlag),
 		m_hp(3),
 		m_breakCount(1.0f),
+		m_chainTime(1.0f),
 		m_meshResName(L"Kakera_Mesh")
 
 	{}
@@ -67,10 +68,6 @@ namespace basecross {
 
 
 		AddTag(L"EnemyPiece");
-		vector<shared_ptr<EnemyPiece>> breakedObject;
-		//中心破壊
-
-		//しゅとくしたvector配列の中身を破壊
 	}
 
 	void EnemyPiece::OnUpdate() {
@@ -81,37 +78,54 @@ namespace basecross {
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(m_scale);
 
-		if (m_otherPieceFlag) {
-			
+		auto& pieces = PieceManager::enemyPieces;
+		auto& breakPieces = PieceManager::breakPieces;
 
-			auto& piece = PieceManager::enemyPieces;
-			auto& breakPiece = PieceManager::breakPieces;
-			bool isBreaked = true;
+		if (m_hp <= 0) {
 			m_breakCount -= elapsedTime;
-			if (m_breakCount < 0) {
-				isBreaked = false;
-				for (int i = 0; i < PieceManager::breakPieces.size(); i++) {
-					if (breakPiece[i].size() > 0)
-					{
-						for (auto& bp : breakPiece[i]) {
-							GetStage()->RemoveGameObject<EnemyPiece>(bp);
-							bp->ScatterLittlePiece(3);
-							m_breakCount = 1.0f;
-						}
-						PieceManager::breakPieces.erase(i);
-						isBreaked = true;
-						break;
-					}
-				}
+			if (m_breakCount <= 0) {
+				ScatterDestroy(3);
+
 			}
+		}
+		if (m_otherPieceFlag) {
+			//最初に見た目だけ見えなくする
+			//m_trans->SetScale(Vec3(0.0f));
 
+			//ScatterDestroy(3);
 
-			if (/*PieceManager::breakPieces.empty()*/!isBreaked) {
-				m_otherPieceFlag = false;
-				stage->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
+			//bool isBreaked = true;
+			//m_breakCount -= elapsedTime;
+			//static bool isWorkd = false;
+			//if (m_breakCount <= 0&&isWorkd==false) {
+			//	isWorkd = true;
+			//	isBreaked = false;
+			//	for (int i = 0; i < 3; i++) {
+			//		if (i == 2) {
+			//			int a = 1;
+			//		}
+			//		ChainEffect(5 * (i + 1));
+			//		if (breakPiece[i].size() > 0)
+			//		{
+			//			for (auto& bp : breakPiece[i]) {
+			//				bp->ScatterDestroy(3);
+			//				m_breakCount = m_chainTime;
+			//			}
+			//			PieceManager::breakPieces.erase(i);
+			//			isBreaked = true;
+			//			//break;
+			//		}
+			//	}
+			//	isWorkd = false;
+			//}
 
-				m_pieceDeletFlag = 0;
-			}
+			////最後に自分自身を消す
+			//if (!isBreaked) {
+			//	m_otherPieceFlag = false;
+			//	stage->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
+
+			//	m_pieceDeletFlag = 0;
+			//}
 		}
 		////時間差で自分自身を消す
 		//if (m_hp <= 0) {
@@ -127,6 +141,7 @@ namespace basecross {
 		//	}
 		//}
 
+
 		wstringstream wss;//デバック用文字列
 		wss << L"brekPiece[0] :" << PieceManager::breakPieces[0].size() << endl;
 		wss << L"brekPiece[1] :" << PieceManager::breakPieces[1].size() << endl;
@@ -134,17 +149,8 @@ namespace basecross {
 		wss << L"brekPiece :" << PieceManager::breakPieces.size() << endl;
 		wss << L"Piece :" << PieceManager::enemyPieces.size() << endl;
 		wss << L"Count :" << m_breakCount << endl;
-
-
-
-
-
-
-
 		auto scene = App::GetApp()->GetScene<Scene>();//シーン取得
 		scene->SetDebugString(L"a\n" + wss.str());
-
-
 	}
 
 	void EnemyPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
@@ -162,11 +168,12 @@ namespace basecross {
 			}
 			//欠片をばらまく
 			if (m_pieceDeletFlag == 1) {
+				m_bullet.lock()->GetBulletLevel();
 				if (m_littlePieceFlag) {
-					ScatterLittlePiece(3);
+					ScatterDestroy(3);
+					ChainEffect(1.0f);
 					m_otherPieceFlag = true;
-					PieceManager::PieceDistance(GetThis<EnemyPiece>(), m_otherPiece);
-					
+					PieceManager::PieceDistance(GetThis<EnemyPiece>());
 					
 				}
 			}
@@ -185,21 +192,38 @@ namespace basecross {
 		}
 	}
 
-	//小さい欠片を散らばせる
-	void EnemyPiece::ScatterLittlePiece(int little) {
+	//小さい欠片を散らばせ、自分自身を消す
+	void EnemyPiece::ScatterDestroy(int littleNum,bool des) {
 		auto stage = GetStage();
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
-
-		for (int i = 0; i < little; i++) {
-			stage->AddGameObject<PieceLittle>(GetThis<EnemyPiece>(), player, (360 / little) * i);
-
-			auto effect = stage->AddGameObject<EffectPiece>();
-			auto effectTrans = effect->GetComponent<Transform>();
-			effectTrans->SetPosition(m_position);
+		if (littleNum > 0) {
+			for (int i = 0; i < littleNum; i++) {
+				stage->AddGameObject<PieceLittle>(GetThis<EnemyPiece>(), player, (360 / littleNum) * i);
+			}
 		}
-
+		if (des) {
+			stage->RemoveGameObject<EnemyPiece>(GetThis<EnemyPiece>());
+		}
 	}
 
+	void EnemyPiece::DelDamage(int damage,float count,const shared_ptr<EnemyPiece>& origin) {
+		m_breakCount = count;
+		m_hp -= damage;
+
+		if (m_hp < 0) {
+			m_hp = 0;
+		}
+	}
+
+	void EnemyPiece::ChainEffect(float radius){
+		auto stage = GetStage();
+		auto effect = stage->AddGameObject<EffectPiece>();
+		effect->SetUnderRadius(radius);
+		effect->SetScrollSpeed(0.0f, m_chainTime);
+		auto effectTrans = effect->GetComponent<Transform>();
+		effectTrans->SetPosition(m_position);
+
+	}
 	//ボスのイベント
 	void EnemyPiece::Event(float deg) {
 		auto grav = AddComponent<Gravity>();

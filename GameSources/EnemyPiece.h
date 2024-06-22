@@ -16,6 +16,7 @@ namespace basecross {
 		float m_pieceDeleteTime;
 		float m_deg;
 		float m_breakCount;
+		float m_chainTime;
 		int m_hp;
 		int m_pieceDeletFlag;
 		bool m_ground;
@@ -48,9 +49,11 @@ namespace basecross {
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other);
 		void Event(float deg);
 		void UpdateEvent();
+		void ScatterDestroy(int littleNum = 0,bool des = true);
+		void ChainEffect(float radius);
 		Vec3 GetPos();
 		Vec3 GetRot();
-		void ScatterLittlePiece(int littleNum);
+		void DelDamage(int damage,float count, const shared_ptr<EnemyPiece>& origin);
 
 		int GetDeletFlag();
 	};
