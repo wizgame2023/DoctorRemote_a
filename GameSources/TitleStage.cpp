@@ -25,6 +25,8 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			auto& scene = App::GetApp()->GetScene<Scene>();
+			scene->SetPlayFlag(false);
+
 
 			scene->SetPlayerStatus(0);
 			scene->SetBulletStataus(0);
