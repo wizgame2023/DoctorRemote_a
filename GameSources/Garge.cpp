@@ -88,6 +88,8 @@ namespace basecross {
 		
 		m_trans->SetPosition(m_screen + m_distance);
 		//m_trans->SetPosition(-300, 300, 0);
+
+		GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiGargePtr(GetThis<Garge>());//配列にポインタを入れる
 		
 		SetAlphaActive(true);
 	}
@@ -139,6 +141,20 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 
 	}
+
+	void Garge::OnClear(bool OnOff)
+	{
+		if (OnOff == true)//オンなら
+		{
+			m_draw->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//透明にする
+		}
+		if (OnOff == false)//オフなら
+		{
+			m_draw->SetDiffuse(m_color);//透明でなかった時の色に戻る
+		}
+
+	}
+
 	void Garge::SetColor(Col4 color) {
 		m_draw->SetDiffuse(color);
 	}

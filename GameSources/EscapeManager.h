@@ -34,5 +34,7 @@ namespace basecross {
 		void OnUpdate() override;//更新
 
 		void Start();//動作を開始
+
+		float DifferenceRad(float rad);//Playerの傾きに合わせるためのradの差
 	};
 }

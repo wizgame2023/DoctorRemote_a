@@ -27,6 +27,7 @@ namespace basecross {
 		//表示させる位置の情報
 		shared_ptr<Transform> m_trans;
 		Vec3 m_pos;
+		Col4 m_color;
 
 	public:
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos);
@@ -37,6 +38,8 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		void OnClear(bool OnOff);
 
 		void UpdateValue(int number);
 		void ThisDestory();

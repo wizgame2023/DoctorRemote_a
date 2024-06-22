@@ -26,9 +26,12 @@ namespace basecross {
 
 	void MiniMapBigPiece::OnUpdate()
 	{	
+		
+		auto uiManager = GetStage()->GetSharedGameObject<UIManager>(L"UIManager");
 		if (m_Existence == false)
 		{
-			GetStage()->RemoveGameObject<MiniMapBigPiece>(GetThis<MiniMapBigPiece>());
+			GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(m_numPtr);//自分を消す前に配列に自分のポインタを消す
+			GetStage()->RemoveGameObject<MiniMapBigPiece>(GetThis<MiniMapBigPiece>());//自分を消す
 		}
 	}
 

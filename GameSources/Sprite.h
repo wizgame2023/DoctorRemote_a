@@ -28,6 +28,9 @@ namespace basecross {
 		Vec3 m_rot;
 		Col4 m_color;
 
+	protected:
+		int m_numPtr;//何番目の配列にポインタを入れたかを表す変数
+
 	public:
 		Sprite(const shared_ptr<Stage>& stagePtr,float width, float heigth,
 			wstring meshResName, Vec3 pos);
@@ -45,6 +48,9 @@ namespace basecross {
 
 		Col4 GetColor();
 		void SetColor(Col4 color);
+		int GetNumPtr();//自分の登録されている配列の番号を返す
+		void SetNumPtr(int afterNum);//自分の配列の番号を入れる
+		void OnClear(bool OnOff);//透明になる関数
 	};
 
 }

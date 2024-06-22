@@ -224,6 +224,8 @@ namespace basecross {
 		app->RegisterTexture(L"LoadMoji1", strTexture);
 		strTexture = texPath + L"LoadMoji2.png";
 		app->RegisterTexture(L"LoadMoji2", strTexture);
+		strTexture = texPath + L"BossMoji.png";
+		app->RegisterTexture(L"BossMoji", strTexture);
 		strTexture = texPath + L"LoadMoji3.png";
 		app->RegisterTexture(L"LoadMoji3", strTexture);
 
@@ -332,7 +334,7 @@ namespace basecross {
 
 	void Scene::OnCreate() {
 		try {
-
+			m_gameStage = -1;
 			// 背景色を設定
 			SetClearColor(Col4(0.0f, 0.11328125f, 0.2578125, 1.0f)); // ミッドナイトブルー
 

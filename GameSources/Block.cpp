@@ -24,7 +24,7 @@ namespace basecross {
 			Vec3(0.35f, 0.5f, 0.35f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, -0.5f, 0.0f)
 		);
 
 
@@ -40,7 +40,7 @@ namespace basecross {
 		ptrColl->SetFixed(true);	
 		ptrColl->SetSleepActive(true);//ぶつからない限りスリープ状態になる
 
-		//ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
+		ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
 
 
 		GetStage()->SetCollisionPerformanceActive(true);

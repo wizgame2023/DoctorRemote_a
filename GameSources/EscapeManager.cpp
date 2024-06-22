@@ -41,6 +41,9 @@ namespace basecross {
 	void EscapeManager::Start()//開始
 	{
 		auto stage = GetStage();//ステージ取得
+		GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
+
+		stage->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerの操作を効かなくさせる
 
 		m_Camera = ObjectFactory::Create<Camera>();//カメラの生成
 		m_Camera->SetEye(m_CameraEye);
@@ -56,6 +59,16 @@ namespace basecross {
 
 		m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerStartPos);
 		m_Player.lock()->GetComponent<Transform>()->SetRotation(0.0f, 0.0f, 0.0f);
+		m_Player.lock()->GetComponent<Transform>()->SetScale(1.0f, 1.0f, 1.0f);
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, XM_PI, 0.0f),
+			Vec3(0.0f, -0.5f, -0.05f)
+		);
+
+		m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(spanMat);
 		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//PlayerのPositionを取得
 
 		auto stageManager = stage->GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager");//コリジョンマネージャー取得
@@ -86,23 +99,30 @@ namespace basecross {
 		{
 			GetStage()->GetSharedGameObject<TimeManager>(L"TimeManager")->SetTimeFlag(false);//制限時間のカウントを終わらせる
 			
-			wstringstream wss;//デバック用文字列
-			wss << L"エスケープマネージャー：" << endl;
+			//wstringstream wss;//デバック用文字列
+			//wss << L"エスケープマネージャー：" << endl;
 
 
 			float speed = 5.0f;//速さ
 			float VecX = m_TargetPos.x - m_PlayerPos.x;//目標位置とPlayerとのX座標の距離を測っている
 			float VecZ = m_TargetPos.z - m_PlayerPos.z;//目標位置とPlayerとのZ座標の距離を測っている
 			float rad = atan2(VecZ, VecX);//角度を求める（ラジアン）
+			float playerrad = rad + XMConvertToRadians(180.0f);//Playerの向いている方向
+			
+			m_Player.lock()->GetComponent<Transform>()->SetRotation(0.0f, playerrad - DifferenceRad(playerrad), 0.0f);//進む方向に向く
 
-			wss << "VecX:" << VecX << endl << "VecZ:" << VecZ << endl;//デバック文字列
-			wss << m_UpdateFlag<<endl;
+			//float degConvert = 180.0f / XM_PI;//radからdegに変換するための変数
+			//float deg = (rad * degConvert);//ラジアンをディグリーに変換
+
+			//wss << "90.0f:" << XMConvertToDegrees(DifferenceRad(playerrad)) << endl << "VecZ:" << VecZ << endl;//デバック文字列
+			//wss << m_UpdateFlag<<endl;
 			auto& app = App::GetApp();
 			float delta = app->GetElapsedTime();//デルタタイムを取得
 			m_Time += delta;//時間経過
 			m_PlayerPos.x += (speed * cos(rad)) * delta;//間接的に距離を足している
 			m_PlayerPos.z += (speed * sin(rad)) * delta;//間接的に距離を足している
-			wss << "PosX:" << m_PlayerPos.x << endl << "PosZ:" << m_PlayerPos.z << endl;//デバック文字列
+			//auto PlayerRot = m_Player.lock()->GetComponent<Transform>()->GetRotation();
+			//wss << "RosX:" << PlayerRot.x << endl << "RosY:" << PlayerRot.y << endl << "RotZ" << PlayerRot.z << endl;//デバック文字列
 
 
 			m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerPos);
@@ -116,10 +136,58 @@ namespace basecross {
 				}
 			}
 			//デバック用文字列を生成
-			auto scene = app->GetScene<Scene>();
-			scene->SetDebugString(L"a\n" + wss.str());
+			//auto scene = app->GetScene<Scene>();
+			//scene->SetDebugString(L"a\n" + wss.str());
 
 		}
 	}
+
+	float EscapeManager::DifferenceRad(float rad)
+	{
+		float difference = 0.0f;//実際の方向とオブジェクトが向いている方向の差
+		float deg = XMConvertToDegrees(rad);//ラジアンをディグリーに
+
+		if (deg >= 180.0f)//degが１８０度よりも高かったら
+		{
+			while (deg > 180.0f)//180以下になるまで
+			{
+				deg -= 180.0f;//１８０度引く
+			}
+		}
+
+		bool Flag = false;
+		int count = 0;//何回90で割ったか数える
+		if (deg >= 90.0f)//90度より大きかったら
+		{
+			count++;
+			deg -= 90.0f;
+
+			if (count % 2 == 0)//偶数なら
+			{
+				Flag = true;
+			}
+			if (count % 2 == 1)//奇数なら
+			{
+				Flag = false;
+			}
+		}
+
+		if (Flag = false)//90度より小さいなら
+		{
+			difference = 90.0f;
+			difference -= deg * 2.0f;
+			auto test = difference;//デバック用
+		}
+		if (Flag = true)//90度より大きいなら
+		{
+			difference = -90.0f;
+			difference += deg * 2.0f;
+			auto test = difference;
+		}
+
+		return XMConvertToRadians(difference);
+
+	}
+
 
 }

@@ -53,6 +53,8 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
+		void OnClear(bool OnOff);
+
 		void UpdateValue(float ratio);
 		void SetColor(Col4 color);
 		void ThisDestroy();

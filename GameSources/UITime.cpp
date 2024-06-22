@@ -16,7 +16,8 @@ namespace basecross {
 		m_pos(pos),
 		m_meshResName(L"NumbersWhite"),
 		m_width(40.0f),
-		m_heigth(80.0f)
+		m_heigth(80.0f),
+		m_color(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f))
 	{}
 	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos,float width,float heigth) :
 		GameObject(stagePtr),
@@ -24,7 +25,8 @@ namespace basecross {
 		m_pos(pos),
 		m_meshResName(L"NumbersWhite"),
 		m_width(width),
-		m_heigth(heigth)
+		m_heigth(heigth),
+		m_color(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f))
 	{}
 	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth , wstring meshResName) :
 		GameObject(stagePtr),
@@ -32,13 +34,14 @@ namespace basecross {
 		m_pos(pos),
 		m_width(width),
 		m_heigth(heigth),
-		m_meshResName(meshResName)
+		m_meshResName(meshResName),
+		m_color(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f))
 	{}
 
 
 
 	void UITime::OnCreate() {
-
+		GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiTimePtr(GetThis<UITime>());//自分自身のポインタを渡す
 		m_moveW = (512.0f / 11) / 512.0f;
 		m_moveH = 75.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
@@ -62,7 +65,7 @@ namespace basecross {
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_meshResName);
 		m_draw->SetSamplerState(SamplerState::LinearWrap);
-		m_draw->SetDiffuse(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
+		m_draw->SetDiffuse(m_color);
 
 		SetAlphaActive(true);
 		SetDrawLayer(2);
@@ -73,6 +76,20 @@ namespace basecross {
 
 		//UpdateValue(m_number);
 	}
+
+	void UITime::OnClear(bool OnOff)
+	{
+		if (OnOff == true)//オンなら
+		{
+			//m_color = Col4(1.0f, 1.0f, 1.0f, 0.0f);
+			m_draw->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//透明にする
+		}
+		if (OnOff == false)//オフなら
+		{
+			m_draw->SetDiffuse(m_color);//透明でなかった時の色に戻る
+		}
+	}
+
 
 	void UITime::UpdateValue(int number) {
 		m_vertices[0].textureCoordinate.x = m_moveW * number;

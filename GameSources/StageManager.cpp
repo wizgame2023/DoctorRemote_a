@@ -49,8 +49,9 @@ namespace basecross {
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
 
-		UiCreate();//Playする際に使うUI関係を生成する
-
+		//UiCreate();//Playする際に使うUI関係を生成する
+		auto uiManager = stage->AddGameObject<UIManager>();//UIを管理するマネージャー
+		stage->SetSharedGameObject(L"UIManager", uiManager);
 		//画面上のライト
 		//stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
 
@@ -76,35 +77,35 @@ namespace basecross {
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		m_comTrans = m_comFrame->GetComponent<Transform>();
+		//m_comTrans = m_comFrame->GetComponent<Transform>();
 
-		if (!m_cfFlag) {
-			m_comX -= 500.0f * elapsedTime;
-			m_comTrans->SetPosition(m_comX, -265.0f, 0.0f);
-		}
-		if (m_comX < 430) {
-			m_cfFlag = true;
-		}
-		if (scene->GetGameStage() > 0) {
-			if (m_cfFlag) {
-				if (!m_comFlag) {
-					if (scene->GetGameStage() > 0) {
-						m_com[0] = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, Vec3(250, -180, 0.0f), L"SousaCom");
-					}
-					m_comFlag = true;
-				}
-			}
-			//敵を倒したらコメント
-			if (GetEnemyFlag()) {
-				if (!m_comFlag2) {
-					m_com[0]->ThisDestroy();//ここがエラーのもと
-					int a = 0;
-					m_com[1] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
-					m_comFlag2 = true;
-				}
-			}
+		//if (!m_cfFlag) {
+		//	m_comX -= 500.0f * elapsedTime;
+		//	m_comTrans->SetPosition(m_comX, -265.0f, 0.0f);
+		//}
+		//if (m_comX < 430) {
+		//	m_cfFlag = true;
+		//}
+		//if (scene->GetGameStage() > 0) {
+		//	if (m_cfFlag) {
+		//		if (!m_comFlag) {
+		//			if (scene->GetGameStage() > 0) {
+		//				m_com[0] = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, Vec3(250, -180, 0.0f), L"SousaCom");
+		//			}
+		//			m_comFlag = true;
+		//		}
+		//	}
+		//	//敵を倒したらコメント
+		//	if (GetEnemyFlag()) {
+		//		if (!m_comFlag2) {
+		//			m_com[0]->ThisDestroy();//ここがエラーのもと
+		//			int a = 0;
+		//			m_com[1] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
+		//			m_comFlag2 = true;
+		//		}
+		//	}
 
-		}
+		//}
 
 		if (m_countFlag)
 		{
@@ -186,6 +187,9 @@ namespace basecross {
 	}
 	bool StageManager::GetComFrameFlag() {
 		return m_cfFlag;
+	}
+	void StageManager::SetComFrameFlag(bool cfFlag){
+		m_cfFlag = cfFlag;
 	}
 	bool StageManager::GetEnemyFlag() {
 		return m_enemyFlag;

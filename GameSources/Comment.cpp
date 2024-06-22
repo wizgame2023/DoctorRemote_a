@@ -94,13 +94,13 @@ namespace basecross {
 		int mojiLine = moji % 13;
 		int mojiColumn = moji / 13;
 
-		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
+		m_color = Col4(1.0f, 1.0f, 1.0f, 1.0f);
 
 		m_vertices = {
-			{Vec3(0.0f,0.0f,0.0f),color,Vec2((m_uvWidth * moji),m_uvHeigth * mojiColumn)},
-			{Vec3(m_width,0.0f,0.0f),color,Vec2((m_uvWidth * (moji + 1)),m_uvHeigth * mojiColumn)},
-			{Vec3(0.0f,-m_heigth,0.0f),color,Vec2((m_uvWidth * moji),m_uvHeigth * (mojiColumn + 1))},
-			{Vec3(m_width,-m_heigth,0.0f),color,Vec2((m_uvWidth * (moji + 1)),m_uvHeigth * (mojiColumn + 1))},
+			{Vec3(0.0f,0.0f,0.0f),m_color,Vec2((m_uvWidth * moji),m_uvHeigth * mojiColumn)},
+			{Vec3(m_width,0.0f,0.0f),m_color,Vec2((m_uvWidth * (moji + 1)),m_uvHeigth * mojiColumn)},
+			{Vec3(0.0f,-m_heigth,0.0f),m_color,Vec2((m_uvWidth * moji),m_uvHeigth * (mojiColumn + 1))},
+			{Vec3(m_width,-m_heigth,0.0f),m_color,Vec2((m_uvWidth * (moji + 1)),m_uvHeigth * (mojiColumn + 1))},
 		};
 
 		m_indices = {
@@ -119,6 +119,8 @@ namespace basecross {
 
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(m_pos);
+
+		m_numPtr = GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiCommentPtr(GetThis<Comment>());//自分のポインタを配列に入れる
 
 	}
 	void Comment::OnUpdate() {
@@ -197,9 +199,26 @@ namespace basecross {
 
 	}
 
+	void Comment::OnClear(bool OnOff){
+		if (OnOff == true){//オンなら
+			m_draw->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//透明にする
+		}
+		if (OnOff == false){//オフなら
+			m_draw->SetDiffuse(m_color);//透明でなかった時の色に戻る
+		}
+
+	}
+
 	void Comment::ThisDestroy() {
 		GetStage()->RemoveGameObject<Comment>(GetThis<Comment>());
+	}
 
+	int Comment::GetNumPtr(){
+		return m_numPtr;
+	}
+
+	void Comment::SetNumPtr(int num) {
+		m_numPtr = num;
 	}
 
 }

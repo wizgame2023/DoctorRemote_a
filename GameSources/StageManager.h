@@ -59,6 +59,7 @@ namespace basecross {
 		bool GetStartFlag();
 		void SetStartFlag(bool start);
 		bool GetComFrameFlag();
+		void SetComFrameFlag(bool cfFlag);
 		bool GetEnemyFlag();
 		void SetEnemyFlag(bool enemy);
 	};

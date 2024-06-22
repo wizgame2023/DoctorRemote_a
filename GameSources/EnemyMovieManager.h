@@ -15,11 +15,16 @@ namespace basecross {
 		Vec3 m_Scale;
 		Vec3 m_Position;
 		Vec3 m_Rotate;
+		Vec3 m_AfterPlayerScale;//ムービー用にする前のPlayerの大きさ
+		Mat4x4 m_AfterPlayerMat;//ムービー用にする前のPlayerの差分行列の数値
 		shared_ptr<Transform> m_Trans;
 		shared_ptr<Camera> m_MovieCamera;//ムービー用のカメラ
 		weak_ptr<MainCamera> m_StageCamera;//ステージのカメラ(ゲームプレイ用)
 		weak_ptr<ViewBase> m_StageView;//ステージのビュー(ゲームプレイ用)
 		shared_ptr<Sprite> m_MovieBand;//ムービー用の帯
+		shared_ptr<Sprite> m_BossMoji;//Bossを表すための文字
+		weak_ptr<Player> m_Player;//プレイヤー
+		
 
 		int m_Count;//フラグ管理
 		float m_Time;

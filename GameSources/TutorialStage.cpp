@@ -253,30 +253,30 @@ namespace basecross {
 				switch (stageMap[r][c])
 				{
 				case 1:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(75.0, 10, 1.0));
+					AddGameObject<Wall>(startPos + pos+Vec3(0.0f,1.5f,0.0f), Vec3(0, 0, 0), Vec3(75.0, 10, 1.0));
 					break;
 
 				case 2:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 75.0));
+					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, 0, 0), Vec3(1.0, 10, 75.0));
 					break;
 
 				case 3:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3),75.0f, SpriteLenght, SpriteStartPos);
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, 0, 0), Vec3(1, 10, 3),75.0f, SpriteLenght, SpriteStartPos);
 					break;
 				case 4:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25), 75.0f, SpriteLenght, SpriteStartPos);
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25), 75.0f, SpriteLenght, SpriteStartPos);
 					break;
 				case 5:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25), 75.0f, SpriteLenght, SpriteStartPos);
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25), 75.0f, SpriteLenght, SpriteStartPos);
 					break;
 				case 6:
-					AddGameObject<Block>(startPos + pos, Vec3(0, 0, 0));
+					AddGameObject<Block>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, 0, 0));
 					break;
 				case 7:
-					AddGameObject<Block3>(blockStartPos + pos, Vec3(0, XMConvertToRadians(260.0f), 0), Vec3(20.0f, 10.0f, 20.0f));
+					AddGameObject<Block3>(blockStartPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(260.0f), 0), Vec3(20.0f, 10.0f, 20.0f));
 					break;
 				case 8:
-					AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
+					AddGameObject<BlockSecond>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
 				}
 			}
@@ -290,7 +290,8 @@ namespace basecross {
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapTutorial", Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
-		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 3.0f, 75.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 3.0f, 75.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+		SetSharedGameObject(L"MiniMapPlayer", miniMapPlayer);
 
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 75.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
@@ -353,7 +354,11 @@ namespace basecross {
 
 	void TutorialStage::OnCreate() {
 		try {
-			App::GetApp()->GetScene<Scene>()->SetGameStage(0);
+			App::GetApp()->GetScene<Scene>()->SetGameStage(0);	
+			
+			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
+			SetSharedGameObject(L"StageManager", stageManager);
+
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 			auto timeManager = AddGameObject<TimeManager>();//時間制限
@@ -377,8 +382,6 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"Garge", garge);
 			auto PGarge = AddGameObject<PlayerGarge>();
-			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
-			SetSharedGameObject(L"StageManager", stageManager);
 			stageManager->SetStartFlag(false);
 			auto collisionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー
 			SetSharedGameObject(L"StageCollisionManager",collisionManager);
@@ -425,9 +428,9 @@ namespace basecross {
 		}
 		if (m_CareerFlag == 2)//敵を倒したとき
 		{
-			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+			//GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
 
-			AddGameObject<EscapeManager>(Vec3(-6.2f, 3.0f, -14.8f), Vec3(-27.0f, 0.5f, -14.5f), Vec3(-21.0f, 0.5f, -26.0f), Vec3(-10.0f, 0.5f, 5.8f), Vec3(-12.0f, 0.5f, -13.0f), Vec3(-27.5f, 0.5f, -14.5f));
+			AddGameObject<EscapeManager>(Vec3(-6.2f, 3.0f, -14.8f), Vec3(-27.0f, 0.5f, -14.5f), Vec3(-21.0f, 0.5f, -26.0f), Vec3(-10.0f, 0.5f, 5.8f), Vec3(-12.0f, 0.5f, -14.5f), Vec3(-27.5f, 0.5f, -14.5f));
 
 			auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
 			float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)

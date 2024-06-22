@@ -12,16 +12,20 @@ namespace basecross {
 	{
 	private:
 		Vec3 m_StartPos;//初期位置
+		Col4 m_color;//色
 		float m_Lenght;//スプライトの一辺の長さ
 		float m_MapSize;//元々のマップのサイズ
 		float m_MiniMapSize;//ミニマップのサイズ
 		float m_MapMagnification;//マップの倍率
+
+		shared_ptr<PCTSpriteDraw> m_DrawComp;//描写コンポーネント
 	public:	
 		MiniMapPlayer(const shared_ptr<Stage>& stagePtr,Vec3 StartPos,float lenght,float m_MapSize,float m_MiniMapSize);
 		~MiniMapPlayer();
 
 	    void OnCreate() override;
 		void OnUpdate() override;
+		void OnClear(bool OnOff);
 
 	};
 }
