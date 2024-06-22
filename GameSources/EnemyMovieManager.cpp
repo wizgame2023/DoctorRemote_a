@@ -118,6 +118,9 @@ namespace basecross {
 			m_Time -= delta;
 			if (m_Time < 0)
 			{
+				m_Player.lock()->GetComponent<Transform>()->SetScale(m_AfterPlayerScale);//変更前のサイズに戻す
+				m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(m_AfterPlayerMat);//変更前の差分行列の数値に戻す
+
 				auto View = GetStage()->CreateView<SingleView>();
 				View->SetCamera(m_StageCamera.lock());
 				GetStage()->SetView(View);
@@ -176,8 +179,26 @@ namespace basecross {
 	void EnemyMovieManager::OnCollisionEnter(shared_ptr<GameObject>& obj)
 	{
 		auto stage = GetStage();
+
+
 		if (obj->FindTag(L"Player")&&m_Count==0)
 		{
+			m_Player = stage->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerを取得
+			m_AfterPlayerScale = m_Player.lock()->GetComponent<Transform>()->GetScale();//変更前のサイズを取得
+			m_AfterPlayerMat = m_Player.lock()->GetComponent<PNTBoneModelDraw>()->GetMeshToTransformMatrix();//変更前の差分行列を取得
+
+
+			m_Player.lock()->GetComponent<Transform>()->SetScale(1.0f, 1.0f, 1.0f);//ムービー用のサイズにする
+			Mat4x4 spanMat;
+			spanMat.affineTransformation(
+				Vec3(1.0f, 1.0f, 1.0f),
+				Vec3(0.0f, 0.0f, 0.0f),
+				Vec3(0.0f, XM_PI, 0.0f),
+				Vec3(0.0f, -0.5f, -0.05f)
+			);
+			m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(spanMat);//ムービー用のメッシュの大きさにする
+
+
 			m_Count = 1;
 			m_StageView = GetStage()->GetView();
 			m_StageCamera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
