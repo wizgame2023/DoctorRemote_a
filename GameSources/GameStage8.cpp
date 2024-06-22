@@ -478,15 +478,15 @@ namespace basecross {
 		}
 		if (m_CareerFlag == 2)//敵を倒したとき
 		{
-			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+			//GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
 
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f));
 					
-			auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
-			float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
-			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, 15.0f, 0.0f),6);
-			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, -15.0f, 0.0f),6);
+			//auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
+			//float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
+			//AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, 15.0f, 0.0f),6);
+			//AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, -15.0f, 0.0f),6);
 
 			m_CareerFlag = 3;
 
