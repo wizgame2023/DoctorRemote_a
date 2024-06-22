@@ -24,6 +24,8 @@ namespace basecross {
 	}
 	void ScoreStage::OnCreate() {
 		try {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(-1);
+
 			//‰½‰ñƒNƒŠƒA‚µ‚½‚©
 			auto& scene = App::GetApp()->GetScene<Scene>();
 			m_stageCount = scene->GetGameStage();
