@@ -22,6 +22,7 @@ namespace basecross{
 		int m_ligthStatus;
 		int m_gameStage;
 		int m_achievementPoint;
+		int m_count;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief ƒŠƒ\[ƒX‚Ìì¬
@@ -73,6 +74,8 @@ namespace basecross{
 		void SetGameStage(int gameStage);
 		void SetAchievementPoint(int achievementPoint);
 		int GetAchievementPoint();
+		int GetBigPieceCount();
+		void SetBigPieceCount(int count);
 	};
 
 }
