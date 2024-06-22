@@ -13,6 +13,8 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
 
+		bool m_PlayFlag;//プレイするステージか確認する
+
 		int m_playerStatus;
 		int m_bulletStatus;
 
@@ -53,7 +55,9 @@ namespace basecross{
 		@return	なし
 		*/
 		//--------------------------------------------------------------------------------------
-		virtual void OnEvent(const shared_ptr<Event>& event) override;
+		virtual void OnEvent(const shared_ptr<Event>& event) override;		
+		void SetPlayFlag(bool flag);//GameStageをプレイしているかどうか確認する
+		bool GetPlayFlag();
 		int GetPlayerStatus();
 		void SetPlayerStatus(int status);
 		void AddPlayerStatus(int status);

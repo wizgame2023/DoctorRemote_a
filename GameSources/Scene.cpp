@@ -392,6 +392,12 @@ namespace basecross {
 
 	}
 
+	void Scene::SetPlayFlag(bool flag){
+		m_PlayFlag = flag;
+	}
+	bool Scene::GetPlayFlag(){
+		return m_PlayFlag;
+	}
 	int Scene::GetPlayerStatus() {
 		return m_playerStatus;
 	}
