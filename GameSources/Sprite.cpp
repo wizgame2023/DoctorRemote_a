@@ -73,7 +73,7 @@ namespace basecross {
 		m_trans->SetRotation(m_rot);
 
 		auto scene = App::GetApp()->GetScene<Scene>();
-		if (scene->GetGameStage() >= 0)//stageがPlayするところなら
+		if (scene->GetPlayFlag())//stageがPlayするところなら
 		{
 			auto uiManager = GetStage()->GetSharedGameObject<UIManager>(L"UIManager");
  			m_numPtr = uiManager->SetUiPtr(GetThis<Sprite>());//UIマネージャーに自分のポインタを渡す
