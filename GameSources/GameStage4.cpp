@@ -388,8 +388,10 @@ namespace basecross {
 	}
 
 	void GameStage4::OnCreate() {
-		try {
-			App::GetApp()->GetScene<Scene>()->SetGameStage(1);		
+		try {	
+			auto scene = App::GetApp()->GetScene<Scene>();
+			scene->SetGameStage(1);
+			scene->SetPlayFlag(true);
 			
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
