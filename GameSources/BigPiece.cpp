@@ -19,7 +19,8 @@ namespace basecross {
 		m_scale(scale),
 		m_var(var),
 		m_status(0),
-		m_pieceDeleteTime(scale.x * 0.15f),
+		m_hp(12),
+		m_littlePieceNum(6),
 		m_littlePieceFlag(true),
 		m_enemyDeletFlag(false),
 		m_meshResName(L"Kakera_Mesh3")
@@ -37,8 +38,9 @@ namespace basecross {
 		m_scale(scale),
 		m_var(var),
 		m_status(0),
+		m_hp(12),
+		m_littlePieceNum(6),
 		m_littlePieceFlag(littlePieceFlag),
-		m_pieceDeleteTime(scale.x *0.15f),
 		m_enemyDeletFlag(false),
 		m_meshResName(L"Kakera_Mesh3")
 	{}
@@ -97,6 +99,24 @@ namespace basecross {
 
 		AddTag(L"BigPiece");
 
+		switch (m_status)
+		{
+		case 0:
+			m_littlePieceNum = 6;
+			break;
+		case 1:
+			m_littlePieceNum = 8;
+			break;
+		case 2:
+			m_littlePieceNum = 10;
+			break;
+		case 3:
+			m_littlePieceNum = 12;
+			break;
+		default:
+			break;
+		}
+
 	}
 	void BigPiece::OnUpdate() {
 		auto stage = GetStage();
@@ -107,16 +127,16 @@ namespace basecross {
 		m_trans->SetScale(m_scale);
 
 		//éûä‘ç∑Ç≈è¨Ç≥Ç≠ÇµÇƒè¡Ç∑
-		if (m_enemyDeletFlag) {
-			m_pieceDeleteTime -= elapsed;
-			m_scale -= 2.0f * elapsed * 3.0f;
-			if (m_pieceDeleteTime < 0) {
-				//é©ï™é©êgÇîpä¸Ç∑ÇÈ
-				stage->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
-				m_enemyDeletFlag = false;
-			}
+		//if (m_enemyDeletFlag) {
+		//	m_pieceDeleteTime -= elapsed;
+		//	m_scale -= 2.0f * elapsed * 3.0f;
+		//	if (m_pieceDeleteTime < 0) {
+		//		//é©ï™é©êgÇîpä¸Ç∑ÇÈ
+		//		stage->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
+		//		m_enemyDeletFlag = false;
+		//	}
 
-		}
+		//}
 
 		//if (m_trans->GetPosition().y < 0.1f) {
 		//	m_ground = true;
@@ -130,25 +150,28 @@ namespace basecross {
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 
 		if (other->FindTag(L"Bullet")) {
+			m_bullet = dynamic_pointer_cast<Bullet>(other);
 			if (m_enemyDeletFlag) return;
-			//åáï–ÇÇ‹Ç´éUÇÁÇ∑
-			if (m_littlePieceFlag) {
-				//é©ï™é©êg(BigPiece)Ç™Ç¢Ç»Ç≠Ç»ÇÈÇ±Ç∆Çì`Ç¶ÇÈ
-				GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);
-				//åáï–ÇÃê∂ê¨
-				auto pieceNum = 6;
-				if (m_status==1) {
-					pieceNum = 8;
+			if (m_hp > 0) {
+				m_hp -= m_bullet.lock()->GetAttack();
+			}
+			if (m_hp <= 0) {
+				//åáï–ÇÇ‹Ç´éUÇÁÇ∑
+				if (m_littlePieceFlag) {
+					//é©ï™é©êg(BigPiece)Ç™Ç¢Ç»Ç≠Ç»ÇÈÇ±Ç∆Çì`Ç¶ÇÈ
+					GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);
+					//åáï–ÇÃê∂ê¨
+					ScatterDestroy(m_littlePieceNum);
+
 				}
-				else if (m_status == 2) {
-					pieceNum = 10;
+				else {
+					ScatterDestroy(0);
 				}
 
-				for (int i = 0; i < pieceNum; i++) {
-					stage->AddGameObject<PieceLittle>(other, player, 360 / pieceNum * i,L"BigPieceLittle");
-				}
 			}
-			m_enemyDeletFlag = true;
+
+
+			//m_enemyDeletFlag = true;
 
 			//å¯â âπ
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
@@ -161,6 +184,19 @@ namespace basecross {
 		}
 		if (other->FindTag(L"Ground")) {
 			m_ground = true;
+		}
+	}
+
+	void BigPiece::ScatterDestroy(int littleNum, bool des) {
+		auto stage = GetStage();
+		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+		if (littleNum > 0) {
+			for (int i = 0; i < littleNum; i++) {
+				stage->AddGameObject<PieceLittle>(GetThis<BigPiece>(), player, (360 / littleNum) * i);
+			}
+		}
+		if (des) {
+			stage->RemoveGameObject<BigPiece>(GetThis < BigPiece>());
 		}
 	}
 
@@ -181,7 +217,6 @@ namespace basecross {
 
 	}
 	void BigPiece::UpdateEvent() {
-		//auto grav = GetComponent<Gravity>();
 		auto elapsed = App::GetApp()->GetElapsedTime();
 		auto ptrTrans = GetComponent<Transform>();
 		if (!m_ground) {
@@ -192,6 +227,9 @@ namespace basecross {
 		else if (m_ground) {
 			auto grav = GetComponent<Gravity>();
 			grav->SetGravityZero();
+			auto pos = ptrTrans->GetPosition();
+			ptrTrans->SetPosition(Vec3(pos.x, 0.0f, pos.z));
+
 		}
 
 	}
