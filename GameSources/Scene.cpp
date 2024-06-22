@@ -451,7 +451,14 @@ namespace basecross {
 		m_achievementPoint += achievementPoint;
 	}
 
-
+	int Scene::GetBigPieceCount()
+	{
+		return m_count;
+	}
+	void Scene::SetBigPieceCount(int count)
+	{
+		m_count += count;
+	}
 }
 //test
 //end basecross
