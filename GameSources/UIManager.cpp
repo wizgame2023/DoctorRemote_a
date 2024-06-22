@@ -171,23 +171,15 @@ namespace basecross {
 		auto stage = GetStage();
 
 		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);//枠
-		//m_AllUiPtr.push_back(frame);//ポインタをUIマネージャーに渡す(てすと)
-
-		auto raderWaku = stage->AddGameObject<Sprite>(450, 250, L"RaderFrame", Vec3(0.0f, -250, 0.0f));
-		raderWaku->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.5f));
-		//m_AllUiPtr.push_back(raderWaku);//ポインタをUIマネージャーに渡す(てすと)
 
 		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f), 2);//415,265
 		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
-		//m_AllUiPtr.push_back(m_comFrame);//ポインタをUIマネージャーに渡す(てすと)
 
 		auto mapFrame = stage->AddGameObject<Sprite>(235, 235, L"CommentFrame", Vec3(475, 238, 0.0f), 2);
 		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
-		//m_AllUiPtr.push_back(mapFrame);//ポインタをUIマネージャーに渡す(てすと)
 
 		//画面上のライト
 		auto light = stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
-		//m_AllUiPtr.push_back(light);//ポインタをUIマネージャーに渡す(てすと)
 
 	}
 
