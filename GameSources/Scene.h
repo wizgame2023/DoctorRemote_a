@@ -15,11 +15,14 @@ namespace basecross{
 
 		bool m_PlayFlag;//プレイするステージか確認する
 
-		int m_playerStatus;
-		int m_bulletStatus;
+		int m_dashStatus;
+		int m_bulletLengthStatus;
+		int m_PieceStatus;
+		int m_chainRangeStatus;
+		int m_bulletPowerStatus;
+		int m_bulletTimeStatus;
 
 		int m_time;
-		int m_ligthStatus;
 		int m_gameStage;
 		int m_achievementPoint;
 		int m_count;
@@ -59,15 +62,26 @@ namespace basecross{
 		virtual void OnEvent(const shared_ptr<Event>& event) override;		
 		void SetPlayFlag(bool flag);//GameStageをプレイしているかどうか確認する
 		bool GetPlayFlag();
-		int GetPlayerStatus();
-		void SetPlayerStatus(int status);
-		void AddPlayerStatus(int status);
-		int GetBulletStatus();
-		void SetBulletStataus(int status);
-		void AddBulletStatus(int status);
-		int GetPieceStatus();
+		//ステータス
+		int GetDash();
+		void SetDash(int status);
+		void AddDash(int status);
+		int GetBulletLength();
+		void SetBulletLength(int status);
+		void AddBulletLength(int status);
+		int GetBigPieceUp();
 		void SetPieceStatus(int status);
 		void AddPieceStatus(int status);
+		int GetChainRange();
+		void SetChainRargeStatus(int status);
+		void AddChainRargeStatus(int status);
+		int GetBulletPower();
+		void SetBulletPower(int status);
+		void AddBulletPower(int status);
+		int GetBulletTime();
+		void SetBulletTime(int status);
+		void AddBulletTime(int status);
+
 		int GetTime();
 		void SetTime(int time);
 		int GetGameStage();

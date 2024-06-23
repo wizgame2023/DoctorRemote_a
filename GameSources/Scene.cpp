@@ -343,7 +343,7 @@ namespace basecross {
 
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStatusStage");
 		}
 		catch (...) {
 			throw;
@@ -356,16 +356,45 @@ namespace basecross {
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
 		if (event->m_MsgStr == L"ToGameStage") {
 			//ゲームステージの設定
-			ResetActiveStage<GameStage4>();
+			ResetActiveStage<GameStage1>();
 		}
 		else if (event->m_MsgStr == L"ToGameStage2") {
 			//ゲームステージの設定
-			ResetActiveStage<GameStage8>();
+			ResetActiveStage<GameStage2>();
 		}
 		else if (event->m_MsgStr == L"ToGameStage3") {
 			//ゲームステージの設定
+			ResetActiveStage<GameStage3>();
+		}
+		else if (event->m_MsgStr == L"ToGameStage4") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage4>();
+		}
+		else if (event->m_MsgStr == L"ToGameStage5") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage5>();
+		}
+		else if (event->m_MsgStr == L"ToGameStage6") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage6>();
+		}
+		else if (event->m_MsgStr == L"ToGameStage7") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage7>();
+		}
+		else if (event->m_MsgStr == L"ToGameStage8") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage8>();
+		}
+		else if (event->m_MsgStr == L"ToGameStage9") {
+			//ゲームステージの設定
+			ResetActiveStage<GameStage9>();
+		}
+		else if (event->m_MsgStr == L"ToGameStage10") {
+			//ゲームステージの設定
 			ResetActiveStage<GameStage10>();
 		}
+
 		else if (event->m_MsgStr == L"ToStartStage") {
 			ResetActiveStage<TitleStage>();
 		}
@@ -398,35 +427,104 @@ namespace basecross {
 	bool Scene::GetPlayFlag(){
 		return m_PlayFlag;
 	}
-	int Scene::GetPlayerStatus() {
-		return m_playerStatus;
-	}
-	void Scene::SetPlayerStatus(int status) {
-		m_playerStatus = status;
-	}
-	void Scene::AddPlayerStatus(int status) {
-		m_playerStatus += status;
-	}
 
-	int Scene::GetBulletStatus() {
-		return m_bulletStatus;
+	//ステータス関連
+	//ダッシュのフラグ
+	int Scene::GetDash() {
+		return m_dashStatus;
 	}
-	void Scene::SetBulletStataus(int status) {
-		m_bulletStatus = status;
+	void Scene::SetDash(int status) {
+		m_dashStatus = status;
 	}
-	void Scene::AddBulletStatus(int status) {
-		m_bulletStatus += status;
+	void Scene::AddDash(int status) {
+		m_dashStatus += status;
 	}
+	//弾の射程
+	int Scene::GetBulletLength() {
+		return m_bulletLengthStatus;
+	}
+	void Scene::SetBulletLength(int status) {
+		m_bulletLengthStatus = status;
+	}
+	void Scene::AddBulletLength(int status) {
+		m_bulletLengthStatus += status;
+	}
+	//大きなウイルスの取得率
+	int Scene::GetBigPieceUp() {
+		auto littlePiecce = 6;
+		switch (m_PieceStatus)
+		{
+		case 0:
+			littlePiecce = 6;
+			break;
+		case 1:
+			littlePiecce = 8;
+			break;
+		case 2:
+			littlePiecce = 10;
+			break;
+		case 3:
+			littlePiecce = 12;
+			break;
+		default:
+			break;
+		}
 
-	int Scene::GetPieceStatus() {
-		return m_ligthStatus;
+		return littlePiecce;
 	}
 	void Scene::SetPieceStatus(int status) {
-		m_ligthStatus = status;
+		m_PieceStatus = status;
 	}
 	void Scene::AddPieceStatus(int status) {
-		m_ligthStatus += status;
+		m_PieceStatus += status;
 	}
+	//欠片の取得範囲
+	int Scene::GetChainRange() {
+		auto chainRange = 1.0f;
+		switch (2)
+		{
+		case 0:
+			chainRange = 1.0f;
+			break;
+		case 1:
+			chainRange = 1.25f;
+			break;
+		case 2:
+			chainRange = 1.5f;
+			break;
+		default:
+			break;
+		}
+		return chainRange;
+	}
+	void Scene::SetChainRargeStatus(int status) {
+		m_chainRangeStatus = status;
+	}
+	void Scene::AddChainRargeStatus(int status) {
+		m_chainRangeStatus += status;
+	}
+	//弾の火力
+	int Scene::GetBulletPower() {
+		return m_bulletPowerStatus;
+	}
+	void Scene::SetBulletPower(int status) {
+		m_bulletPowerStatus = status;
+	}
+	void Scene::AddBulletPower(int status) {
+		m_bulletPowerStatus += status;
+	}
+	//弾のチャージ時間
+	int Scene::GetBulletTime() {
+		return m_bulletTimeStatus;
+	}
+	void Scene::SetBulletTime(int status) {
+		m_bulletTimeStatus = status;
+	}
+	void Scene::AddBulletTime(int status) {
+		m_bulletTimeStatus += status;
+	}
+
+
 
 	int Scene::GetTime() {
 		return m_time;
