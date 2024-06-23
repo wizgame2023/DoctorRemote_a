@@ -90,7 +90,7 @@ namespace basecross {
 		//m_effect.lock()->GetComponent<Transform>()->SetQuaternion(SpanQt);
 
 
-		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetBulletStatus();
+		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetBulletLength();
 		switch (m_statusFlag)
 		{
 		case 0:

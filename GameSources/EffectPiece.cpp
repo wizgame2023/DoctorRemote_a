@@ -150,6 +150,7 @@ namespace basecross {
 			m_isUpdate = false;
 			InitializeVertices();
 		}
+
 		if (m_spreadFlag) {
 			SetUnderRadius(m_unberRadius + 5.0f * elapsed);
 		}

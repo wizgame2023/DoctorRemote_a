@@ -31,16 +31,18 @@ namespace basecross {
 
 	void StatusManager::OnCreate() {
 		auto stage = GetStage();
-		m_sprite = stage->AddGameObject<Sprite>(330, 330, L"White", Vec3());
-		m_trans = m_sprite->GetComponent<Transform>();
+		//m_sprite = stage->AddGameObject<Sprite>(330, 330, L"White", Vec3());
+		//m_trans = m_sprite->GetComponent<Transform>();
 
-		m_color = Col4(0.105, 0.75, 0, 1.0f);
-		m_sprite->SetColor(m_color);
+		//m_color = Col4(0.105, 0.75, 0, 1.0f);
+		//m_sprite->SetColor(m_color);
 		
 		//m_player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 
-
+		m_selectSprite = stage->AddGameObject<StageSelectSprite>(Vec3(-300, 150, 0.0f), 200, 200, 300, 250, 3, 2, 30, L"White", L"White");
+		m_selectSprite->SetLimitNum(6);
 		m_score = App::GetApp()->GetScene<Scene>()->GetAchievementPoint();
+
 	}
 
 	void StatusManager::OnUpdate() {
@@ -50,137 +52,160 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
 		//選択
-		if (cntlVec[0].fThumbLX > 0.9f) {
-			if (m_moveCheck) return;
-			if (m_maxX == 0 && !m_checkR) {
-				m_maxX = m_width;
-				m_trans->SetPosition(m_maxX, 0, 0);
-				m_checkR = true;
-				m_comFlag = false;
-				m_status = PIECE;
-			}
-			if (m_maxX < 0 && !m_checkR) {
-				m_maxX = 0.0f;
-				m_trans->SetPosition(m_maxX, 0, 0);
-				m_checkR = true;
-				m_comFlag = false;
-				m_status = BULLET;
-			}
-		}
-		if (cntlVec[0].fThumbLX < 0.9f && m_checkR == true)
-		{
-			if (m_moveCheck) return;
-			m_checkR = false;
-		}
+		//if (cntlVec[0].fThumbLX > 0.9f) {
+		//	if (m_moveCheck) return;
+		//	if (m_maxX == 0 && !m_checkR) {
+		//		m_maxX = m_width;
+		//		m_trans->SetPosition(m_maxX, 0, 0);
+		//		m_checkR = true;
+		//		m_comFlag = false;
+		//		m_status = PIECE;
+		//	}
+		//	if (m_maxX < 0 && !m_checkR) {
+		//		m_maxX = 0.0f;
+		//		m_trans->SetPosition(m_maxX, 0, 0);
+		//		m_checkR = true;
+		//		m_comFlag = false;
+		//		m_status = BULLET;
+		//	}
+		//}
+		//if (cntlVec[0].fThumbLX < 0.9f && m_checkR == true)
+		//{
+		//	if (m_moveCheck) return;
+		//	m_checkR = false;
+		//}
 
-		if (cntlVec[0].fThumbLX < -0.9f) {
-			if (m_moveCheck) return;
-			if (m_maxX == 0 && !m_checkL) {
-				m_maxX = -m_width;
-				m_trans->SetPosition(m_maxX, 0, 0);
-				m_checkL = true;
-				m_comFlag = false;
-				m_status = DASH;
-			}
-			if (m_maxX > 0 && !m_checkL) {
-				m_maxX = 0.0f;
-				m_trans->SetPosition(m_maxX, 0, 0);
-				m_checkL = true;
-				m_comFlag = false;
-				m_status = BULLET;
-			}
-		}
-		if (cntlVec[0].fThumbLX > -0.9f && m_checkL == true)
-		{
-			if (m_moveCheck) return;
-			m_checkL = false;
-		}
+		//if (cntlVec[0].fThumbLX < -0.9f) {
+		//	if (m_moveCheck) return;
+		//	if (m_maxX == 0 && !m_checkL) {
+		//		m_maxX = -m_width;
+		//		m_trans->SetPosition(m_maxX, 0, 0);
+		//		m_checkL = true;
+		//		m_comFlag = false;
+		//		m_status = DASH;
+		//	}
+		//	if (m_maxX > 0 && !m_checkL) {
+		//		m_maxX = 0.0f;
+		//		m_trans->SetPosition(m_maxX, 0, 0);
+		//		m_checkL = true;
+		//		m_comFlag = false;
+		//		m_status = BULLET;
+		//	}
+		//}
+		//if (cntlVec[0].fThumbLX > -0.9f && m_checkL == true)
+		//{
+		//	if (m_moveCheck) return;
+		//	m_checkL = false;
+		//}
 
-		//スコアによって選べるステートが異なる
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-			//m_moveCheck = true;
-			m_decision++;
+		////スコアによって選べるステートが異なる
+		//if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+		//	//m_moveCheck = true;
+		//	m_decision++;
 
-			if (m_score >= 80) {
-				m_colorCheck = true;
+		//	if (m_score >= 80) {
+		//		m_colorCheck = true;
 
-				if (m_status == 0 && m_control == 0) {
-					scene->SetAchievementPoint(-50);
-				}
-				else if(m_status==1 && m_control == 0){
-					scene->SetAchievementPoint(-25);
-				}
-				else if(m_control == 0){
-					scene->SetAchievementPoint(-75);
-				}
-				m_control++;
-			}
-			else if (m_score >= 50) {
-				if (m_status == 0) {
+		//		if (m_status == 0 && m_control == 0) {
+		//			scene->SetAchievementPoint(-50);
+		//		}
+		//		else if(m_status==1 && m_control == 0){
+		//			scene->SetAchievementPoint(-25);
+		//		}
+		//		else if(m_control == 0){
+		//			scene->SetAchievementPoint(-75);
+		//		}
+		//		m_control++;
+		//	}
+		//	else if (m_score >= 50) {
+		//		if (m_status == 0) {
 
-				}
-				else if(m_status==1 && m_control == 0){
-					m_colorCheck = true;
-					scene->SetAchievementPoint(-25);
-					m_control++;
-				}
-				else if(m_control == 0)
-				{
-					m_colorCheck = true;
-					scene->SetAchievementPoint(-75);
-					m_control++;
+		//		}
+		//		else if(m_status==1 && m_control == 0){
+		//			m_colorCheck = true;
+		//			scene->SetAchievementPoint(-25);
+		//			m_control++;
+		//		}
+		//		else if(m_control == 0)
+		//		{
+		//			m_colorCheck = true;
+		//			scene->SetAchievementPoint(-75);
+		//			m_control++;
 
-				}
-			}
-			else {
-				if (m_status == 0 || m_status == 1) {
+		//		}
+		//	}
+		//	else {
+		//		if (m_status == 0 || m_status == 1) {
 
-				}
-				else if(m_control == 0) {
-					m_colorCheck = true;
-					scene->SetAchievementPoint(-75);
-					m_control++;
-				}
-			}
+		//		}
+		//		else if(m_control == 0) {
+		//			m_colorCheck = true;
+		//			scene->SetAchievementPoint(-75);
+		//			m_control++;
+		//		}
+		//	}
 
-			//選択したステート
-			switch (m_status)
-			{
-			case 0:
-				App::GetApp()->GetScene<Scene>()->AddPlayerStatus(1);
-				break;
-			case 1:
-				App::GetApp()->GetScene<Scene>()->AddBulletStatus(1);
-				break;
-			case 2:
-				App::GetApp()->GetScene<Scene>()->AddPieceStatus(1);
-				break;
-			default:
-				break;
-			}
-			//auto sprite = GetStage()->GetSharedGameObject<Sprite>(L"Moji2");
-			//sprite->Blinking(20.0f, Col4(1, 1, 1, 1));
-		}
+		//	//選択したステート
+		//	switch (m_status)
+		//	{
+		//	case 0:
+		//		App::GetApp()->GetScene<Scene>()->AddDash(1);
+		//		break;
+		//	case 1:
+		//		App::GetApp()->GetScene<Scene>()->AddBulletLength(1);
+		//		break;
+		//	case 2:
+		//		App::GetApp()->GetScene<Scene>()->AddPieceStatus(1);
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//	//auto sprite = GetStage()->GetSharedGameObject<Sprite>(L"Moji2");
+		//	//sprite->Blinking(20.0f, Col4(1, 1, 1, 1));
+		//}
 
-		//決定を押したら点滅
-		if (m_colorCheck) {
-			if ((int)m_count % 2 == 0) {
-				m_sprite->SetColor(Col4(0, 0, 0, 0));
-			}
-			else if ((int)m_count % 2 == 1) {
-				m_sprite->SetColor(Col4(m_color));
-			}
-			m_count -= elapsedTime * 10.0f;
-		}
+		
+
+		////決定を押したら点滅
+		//if (m_colorCheck) {
+		//	if ((int)m_count % 2 == 0) {
+		//		m_sprite->SetColor(Col4(0, 0, 0, 0));
+		//	}
+		//	else if ((int)m_count % 2 == 1) {
+		//		m_sprite->SetColor(Col4(m_color));
+		//	}
+		//	m_count -= elapsedTime * 10.0f;
+		//}
 	
-		if (m_count < 0) {
+		//選択したステート
+		//switch (m_selectSprite->GetNum())
+		//{
+		//case 1:
+		//	scene->AddDash(1);
+		//	break;
+		//case 2:
+		//	scene->AddBulletLength(1);
+		//	break;
+		//case 3:
+		//	scene->AddPieceStatus(1);
+		//	break;
+		//case 4:
+		//	scene->AddChainRargeStatus(1);
+		//	break;
+		//case 5:
+		//	break;
+		//default:
+		//	break;
+		//}
+
+		if ( m_selectSprite->GetBlinkTime()<= 0) {
 			switch (scene->GetGameStage())
 			{
 			case 0:
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
 				break;
 			case 1:
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 				break;
 			case 2:
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");

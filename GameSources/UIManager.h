@@ -27,6 +27,8 @@ namespace basecross {
 		shared_ptr<Transform> m_comTrans;
 		shared_ptr<CommentManager> m_com[2];
 		shared_ptr<StageManager> m_StageManager;
+		shared_ptr<Garge> m_chargeGarge;
+		shared_ptr<Sprite> m_dashLight;
 		vector<weak_ptr<Sprite>> m_AllUiPtr;//ステージ上の全てのUiのポインタを取得
 		vector<weak_ptr<UITime>> m_UiTimePtr;//制限時間のポインタ取得
 		vector<weak_ptr<Garge>> m_UiGargePtr;//Gargeのポインタ取得

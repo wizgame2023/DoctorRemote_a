@@ -100,8 +100,11 @@ namespace basecross {
 			ptrCamera->SetTarget(GetThis<GameObject>());
 		}
 
+		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetDash();
+
 		//m_statusFlag = App::GetApp()->GetScene<Scene>()->GetPlayerStatus();
 		DashCoolManager(1);//これでダッシュの効果時間やクールタイムを決める
+
 	}
 
 	void Player::OnUpdate(){
