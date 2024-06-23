@@ -13,11 +13,10 @@ namespace basecross {
 	class EnemyPiece :public GameObject {
 
 	private:
-		float m_pieceDeleteTime;
 		float m_deg;
 		float m_breakCount;
 		float m_chainTime;
-		int m_hp;
+		float m_hp;
 		int m_pieceDeletFlag;
 		bool m_ground;
 		bool m_littlePieceFlag;

@@ -26,7 +26,9 @@ namespace basecross {
 		float m_dashCoolTime;
 		float m_onePiece;
 		float m_bulletTime;
+		float m_bulletChargeTime;
 		float m_bulletRatio;
+		float m_bulletPower;
 
 		int m_statusFlag;
 		int m_bulletLevel;

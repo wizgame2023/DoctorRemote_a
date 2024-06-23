@@ -19,9 +19,8 @@ namespace basecross {
 		m_rotate(rotate),
 		m_scale(scale),
 		m_pieceDeletFlag(0),
-		m_pieceDeleteTime(scale.x * 0.15f),
 		m_littlePieceFlag(littlePieceFlag),
-		m_hp(6),
+		m_hp(6.0f),
 		m_breakCount(0.0f),
 		m_chainTime(1.0f),
 		m_meshResName(L"Kakera_Mesh")
@@ -92,15 +91,15 @@ namespace basecross {
 			}
 		}
 
-		wstringstream wss;//デバック用文字列
-		wss << L"brekPiece[0] :" << PieceManager::breakPieces[0].size() << endl;
-		wss << L"brekPiece[1] :" << PieceManager::breakPieces[1].size() << endl;
-		wss << L"brekPiece[2] :" << PieceManager::breakPieces[2].size() << endl;
-		wss << L"brekPiece :" << PieceManager::breakPieces.size() << endl;
-		wss << L"Piece :" << PieceManager::enemyPieces.size() << endl;
-		wss << L"Count :" << m_breakCount << endl;
-		auto scene = App::GetApp()->GetScene<Scene>();//シーン取得
-		scene->SetDebugString(L"\n" + wss.str());
+		//wstringstream wss;//デバック用文字列
+		//wss << L"brekPiece[0] :" << PieceManager::breakPieces[0].size() << endl;
+		//wss << L"brekPiece[1] :" << PieceManager::breakPieces[1].size() << endl;
+		//wss << L"brekPiece[2] :" << PieceManager::breakPieces[2].size() << endl;
+		//wss << L"brekPiece :" << PieceManager::breakPieces.size() << endl;
+		//wss << L"Piece :" << PieceManager::enemyPieces.size() << endl;
+		//wss << L"Count :" << m_breakCount << endl;
+		//auto scene = App::GetApp()->GetScene<Scene>();//シーン取得
+		//scene->SetDebugString(L"\n" + wss.str());
 	}
 
 	void EnemyPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {

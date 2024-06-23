@@ -14,7 +14,7 @@ namespace basecross {
 	private:
 		float m_speed;//‘¬‚³
 		float m_angle;//Šp“x
-		int m_attack;//UŒ‚—Í
+		float m_attack;//UŒ‚—Í
 		int m_hit;//“–‚½‚Á‚½‘Šè‚É‚æ‚Á‚Ä”’l‚ª•Ï‚í‚é
 		int m_statusFlag;
 		int m_bulletLevel;
@@ -47,7 +47,7 @@ namespace basecross {
 		void OnCollisionEnter(shared_ptr<GameObject>& other) override;//ƒRƒŠƒWƒ‡ƒ“‚ª“ü‚Á‚½
 		void ThisDestroy();
 		float GetSpeed();
-		int GetAttack();
+		float GetAttack();
 		int GetBulletLevel();
 		void SetBulletLevel(int level);
 
