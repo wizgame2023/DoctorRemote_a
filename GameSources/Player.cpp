@@ -100,7 +100,7 @@ namespace basecross {
 			ptrCamera->SetTarget(GetThis<GameObject>());
 		}
 
-		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetPlayerStatus();
+		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetDash();
 
 	}
 

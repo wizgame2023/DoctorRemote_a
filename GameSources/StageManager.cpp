@@ -55,8 +55,8 @@ namespace basecross {
 		//画面上のライト
 		//stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
 
-		//m_ligthStatus = App::GetApp()->GetScene<Scene>()->GetPieceStatus();
-		//switch (m_ligthStatus)
+		//m_PieceStatus = App::GetApp()->GetScene<Scene>()->GetBigPieceUp();
+		//switch (m_PieceStatus)
 		//{
 		//case 0:
 		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);

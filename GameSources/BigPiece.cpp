@@ -95,27 +95,28 @@ namespace basecross {
 		
 		//ステータス
 		auto scene = App::GetApp()->GetScene<Scene>();
-		m_status = scene->GetPieceStatus();
+		m_status = scene->GetBigPieceUp();
 
 		AddTag(L"BigPiece");
 
-		switch (m_status)
-		{
-		case 0:
-			m_littlePieceNum = 6;
-			break;
-		case 1:
-			m_littlePieceNum = 8;
-			break;
-		case 2:
-			m_littlePieceNum = 10;
-			break;
-		case 3:
-			m_littlePieceNum = 12;
-			break;
-		default:
-			break;
-		}
+		//switch (m_status)
+		//{
+		//case 0:
+		//	m_littlePieceNum = 6;
+		//	break;
+		//case 1:
+		//	m_littlePieceNum = 8;
+		//	break;
+		//case 2:
+		//	m_littlePieceNum = 10;
+		//	break;
+		//case 3:
+		//	m_littlePieceNum = 12;
+		//	break;
+		//default:
+		//	break;
+		//}
+		m_littlePieceNum = App::GetApp()->GetScene<Scene>()->GetBigPieceUp();
 
 	}
 	void BigPiece::OnUpdate() {
