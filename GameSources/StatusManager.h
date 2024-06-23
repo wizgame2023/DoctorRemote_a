@@ -9,6 +9,7 @@
 #include "Sprite.h"
 #include "Player.h"
 #include "CommentManager.h"
+#include "StageSelectSprite.h"
 
 namespace basecross {
 	class StatusManager :public GameObject {
@@ -30,6 +31,7 @@ namespace basecross {
 		shared_ptr<Transform> m_trans;
 		shared_ptr<Player> m_player;
 		shared_ptr<CommentManager> m_com[3];
+		shared_ptr<StageSelectSprite> m_selectSprite;
 
 		shared_ptr<Sprite> m_sprite;
 		Col4 m_color;
