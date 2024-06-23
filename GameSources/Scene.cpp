@@ -45,6 +45,10 @@ namespace basecross {
 		app->RegisterTexture(L"HeartsFrame", strTexture);
 		strTexture = texPath + L"GargeLight.png";
 		app->RegisterTexture(L"GargeLight", strTexture);
+		strTexture = texPath + L"DashIcon_g.png";
+		app->RegisterTexture(L"DashIcon_g", strTexture);
+		strTexture = texPath + L"DashIcon_r.png";
+		app->RegisterTexture(L"DashIcon_r", strTexture);
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"Clear.png";
@@ -161,6 +165,12 @@ namespace basecross {
 		app->RegisterTexture(L"BulletButton", strTexture);
 		strTexture = texPath + L"GageMode.png";
 		app->RegisterTexture(L"GageButton", strTexture);
+		strTexture = texPath + L"ScopeMode.png";
+		app->RegisterTexture(L"ScopeButton", strTexture);
+		strTexture = texPath + L"ChargeMode.png";
+		app->RegisterTexture(L"ChargeButton", strTexture);
+		strTexture = texPath + L"PowerMode.png";
+		app->RegisterTexture(L"PowerButton", strTexture);
 		strTexture = texPath + L"PieceButton.png";
 		app->RegisterTexture(L"PieceButton", strTexture);
 		strTexture = texPath + L"LightMode.png";
@@ -401,7 +411,7 @@ namespace basecross {
 		}
 
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<StatusStage>();
+			ResetActiveStage<TitleStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
