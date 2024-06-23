@@ -204,6 +204,8 @@ namespace basecross {
 		app->RegisterTexture(L"ResultMoji3", strTexture);
 		strTexture = texPath + L"ResultMoji4.png";
 		app->RegisterTexture(L"ResultMoji4", strTexture);
+		strTexture = texPath + L"ResultMoji5.png";
+		app->RegisterTexture(L"ResultMoji5", strTexture);
 		strTexture = texPath + L"GameClear.jpg";
 		app->RegisterTexture(L"GameClear", strTexture);
 		strTexture = texPath + L"IfClear.png";
@@ -228,6 +230,9 @@ namespace basecross {
 		app->RegisterTexture(L"BossMoji", strTexture);
 		strTexture = texPath + L"LoadMoji3.png";
 		app->RegisterTexture(L"LoadMoji3", strTexture);
+		strTexture = texPath + L"CountMoji.png";
+		app->RegisterTexture(L"CountMoji", strTexture);
+
 
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";
@@ -396,7 +401,7 @@ namespace basecross {
 		}
 
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<TitleStage>();
+			ResetActiveStage<StatusStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
