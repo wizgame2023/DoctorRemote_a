@@ -22,10 +22,13 @@ namespace basecross {
 		float m_heightMin;
 		float m_sizeX;
 		float m_sizeY;
+		float m_frameSize;
+		float m_blinkTime;
 
 		int m_widthNum;
 		int m_heightNum;
 		int m_stageNum;
+		int m_limitNum;
 
 		bool m_checkU;
 		bool m_checkD;
@@ -56,6 +59,7 @@ namespace basecross {
 			const float heightUnit,//次の画像までの幅（縦）
 			const float widthNum,  //横に何個表示させるか
 			const float heightNum, //縦に何個表示させるか
+			const float frameSize, //フレーム部分の大きさ
 			const wstring sprites,//選択する画像
 			const wstring frame,  //フレームの画像
 			const bool display = true //ステージ数,選択する画像の表示をさせるか
@@ -65,6 +69,10 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
+
 		Vec3 GetSpritePostion(const int w, const int h);
+		int GetNum();
+		float GetBlinkTime();
+		void SetLimitNum(int num);
 	};
 }

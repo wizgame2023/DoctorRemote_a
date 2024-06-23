@@ -16,6 +16,7 @@ namespace basecross {
 		const float heightUnit,
 		const float widthNum,
 		const float heightNum,
+		const float frameSize, //フレーム部分の大きさ
 		const wstring sprites,//選択する画像
 		const wstring frame,  //フレームの画像
 		const bool display
@@ -31,7 +32,10 @@ namespace basecross {
 		m_heightNum(heightNum),
 		m_spritesName(sprites),
 		m_frameName(frame),
+		m_frameSize(frameSize),
+		m_blinkTime(10.0f),
 		m_stageNum(1),
+		m_limitNum(0),
 		m_checkU(false),
 		m_checkD(false),
 		m_checkR(false),
@@ -51,9 +55,12 @@ namespace basecross {
 		m_heightUnit(80.0f),
 		m_widthNum(5),
 		m_heightNum(2),
+		m_frameSize(15.0f),
+		m_blinkTime(10.0f),
 		m_spritesName(sprites),
 		m_frameName(frame),
 		m_stageNum(1),
+		m_limitNum(0),
 		m_checkU(false),
 		m_checkD(false),
 		m_checkR(false),
@@ -91,7 +98,7 @@ namespace basecross {
 			}
 		}
 
-		m_selectSprite = stage->AddGameObject<Sprite>(m_sizeX + 15.0f, m_sizeY + 15.0f, m_frameName, m_pos, 0);
+		m_selectSprite = stage->AddGameObject<Sprite>(m_sizeX + m_frameSize, m_sizeY + m_frameSize, m_frameName, m_pos, 0);
 		m_selectSprite->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 		//stage->AddGameObject<Sprite>(100.0f, 100.0f, L"White", GetSpritePostion(3,1), 0);
 	}
@@ -99,6 +106,18 @@ namespace basecross {
 		float elapsed = App::GetApp()->GetElapsedTime();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto selectTrans = m_selectSprite->GetComponent<Transform>();
+		
+		if (m_moveCheck && m_blinkTime >= 0) {
+			if ((int)m_blinkTime % 2 == 0) {
+				m_selectSprite->SetColor(Col4(0, 0, 0, 0));
+			}
+			else if ((int)m_blinkTime % 2 == 1) {
+				m_selectSprite->SetColor(Col4(0,1, 0, 1));
+			}
+
+			m_blinkTime -= elapsed * 10.0f;
+
+		}
 
 
 		if (m_moveCheck) return;
@@ -152,8 +171,11 @@ namespace basecross {
 
 		//Bボタンで確定
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-			m_moveCheck = true;
+			if (m_stageNum <= m_limitNum) {
+				m_moveCheck = true;
+			}
 		}
+		
 
 		wstringstream wss(L"");
 		auto scene = App::GetApp()->GetScene<Scene>();
@@ -172,7 +194,8 @@ namespace basecross {
 			<<m_height
 			<<L"\nstageNum"
 			<<m_stageNum
-			<<L"\n"
+			<<L"\nblinkTime : "
+			<<m_blinkTime
 			<< endl;
 		scene->SetDebugString(wss.str());
 
@@ -187,5 +210,14 @@ namespace basecross {
 		m_pos = Vec3(m_pos.x + w * m_widthUnit, m_pos.y + h * -m_heightUnit, m_pos.z);
 
 		return m_pos;
+	}
+	int StageSelectSprite::GetNum() {
+		return m_stageNum;
+	}
+	float StageSelectSprite::GetBlinkTime() {
+		return m_blinkTime;
+	}
+	void StageSelectSprite::SetLimitNum(int num) {
+		m_limitNum = num;
 	}
 }
