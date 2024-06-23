@@ -21,7 +21,7 @@ namespace basecross {
 		m_scale(Vec3(0.5f)),
 		m_ground(false),
 		m_collect(6.0f),//‰ñû‹——£
-		m_count(8.0f), //Á–Å‚Ü‚Å‚Ì•b”
+		m_count(15.0f), //Á–Å‚Ü‚Å‚Ì•b”
 		m_meshResName(L"LittleKakera"),
 		m_tag(tag)
 	{}
