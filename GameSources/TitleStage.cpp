@@ -22,14 +22,15 @@ namespace basecross {
 	}
 	void TitleStage::OnCreate() {
 		try {
+			App::GetApp()->GetScene<Scene>()->SetAchievementPoint(0);
 			//ビューとライトの作成
 			CreateViewLight();
 			auto& scene = App::GetApp()->GetScene<Scene>();
 			scene->SetPlayFlag(false);
 
 
-			scene->SetPlayerStatus(0);
-			scene->SetBulletStataus(0);
+			scene->SetDash(0);
+			scene->SetBulletLength(0);
 			scene->SetPieceStatus(0);
 
 			auto spriteManager = AddGameObject<SelectSprite>();
