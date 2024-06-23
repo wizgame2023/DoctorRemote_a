@@ -56,6 +56,8 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_comTrans = m_comFrame->GetComponent<Transform>();
 		m_StageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");//ステージマネージャーを取得
+		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
+		auto chargeRatio = player->GetBulletRatio();
 
 		if (!m_cfFlag) //ステージ開始時にAIメッセージボックスが流れる
 		{
@@ -94,6 +96,22 @@ namespace basecross {
 			}
 
 		}
+
+		//弾のチャージ力によって色を変える
+		m_chargeGarge->UpdateValue(chargeRatio);
+		if (chargeRatio >= 1.0) {
+			m_chargeGarge->SetColor(Col4(1.0f, 0.0f, 0.0f, 0.8f));
+		}
+		else if (chargeRatio >= 1.0 / 1.5) {
+			m_chargeGarge->SetColor(Col4(1.0f, 1.0f, 0.0f, 0.8f));
+		}
+		else if (chargeRatio >= 1.0 / 3.0) {
+			m_chargeGarge->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.8f));
+		}
+		else {
+			m_chargeGarge->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
+		}
+
 
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
@@ -189,6 +207,10 @@ namespace basecross {
 		auto light = stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
 		//m_AllUiPtr.push_back(light);//ポインタをUIマネージャーに渡す(てすと)
 
+		//弾のチャージを表すゲージ
+		auto chargeFrame = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 1.0f, 150, 15, Col4(1.0f), Col4(1.0f,1.0f,1.0f,0.5f), Vec3(-220.0f+150, -340.0f, 0.0f), Vec3(0.0f));
+		m_chargeGarge = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 0.5f, 150, 15, Col4(1.0f), Col4(1.0f), Vec3(-220.0f, -340.0f, 0.0f), Vec3(0.0f));
+		m_dashLight = stage->AddGameObject<Sprite>(30, 30, L"White", Vec3(-250.0f, -350.0f, 0.0f));
 	}
 
 	void UIManager::AllClear()//UIをすべて透明にする
