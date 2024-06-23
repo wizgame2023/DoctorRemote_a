@@ -45,7 +45,7 @@ namespace basecross {
 		m_event(false),
 		m_event2(false),
 		m_meshResName(L"Baikin_Mesh"),
-		m_Hp(7)
+		m_Hp(100)
 	{}
 
 	void Enemy::OnCreate()
@@ -137,7 +137,6 @@ namespace basecross {
 		m_trans->SetPosition(Vec3(m_posCur));
 		 
 		//まき散らすウイルスの更新
-
 		if (eventLenght < 30.0f) {
 			m_event = true;
 		}
@@ -168,7 +167,7 @@ namespace basecross {
 			
 
 		}
-		if (m_Hp < 4) {
+		if (m_Hp < 30) {
 			m_event2 = true;
 		}
 		if (m_event2) {
@@ -191,7 +190,11 @@ namespace basecross {
 		if (m_pieceFlag) {
 			for (int i = 0; i < m_pieceCount; i++) {
 				m_enemyPiece[i]->UpdateEvent();
+				if (m_enemyPiece[i]->GetGroundFlag()) {
+					PieceManager::enemyPieces.push_back(m_enemyPiece[i]);
+				}
 			}
+			
 		}
 		if (m_bigPieceFlag) {
 			for (int i = 0; i < m_bigPieceCount; i++) {
@@ -216,7 +219,7 @@ namespace basecross {
 
 			int attack = m_bullet.lock()->GetAttack();
 
-			if (Collision->FindTag(L"Bullet") && m_Hp > 0)
+			if (Collision->FindTag(L"Bullet") && m_Hp >= 0)
 			{
 				m_Hp -=attack;
 				m_scale -= m_scaleReduct;
