@@ -143,11 +143,11 @@ namespace basecross {
 			//}
 			if (m_UpdateFlag == 0)//Playerに当たったのが自分でなかった場合
 			{
-				int number = m_MyMiniMap->GetNumPtr();
-				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
-				GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
+				//int number = m_MyMiniMap->GetNumPtr();
+				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
+				//GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
 				//GetStage()->RemoveGameObject<EscapeManager>(GetThis<EscapeManager>());//自分を消す
-				//m_MyMiniMap->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.0f));//透明度が変化する
+				m_MyMiniMap->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.0f));//透明度が変化する
 
 				m_UpdateFlag = 3;
 			}
