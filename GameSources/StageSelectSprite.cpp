@@ -204,12 +204,13 @@ namespace basecross {
 	
 	//‰¡‰½”Ô–ÚAc‰½”Ô–Ú‚Ì‰æ‘œ‚ÌˆÊ’u‚ğæ“¾
 	Vec3 StageSelectSprite::GetSpritePostion(const int widthNum, const int HeightNum) {
+		auto pos = Vec3();
 		int w = widthNum - 1;
 		int h = HeightNum - 1;
 		auto stage = GetStage();
-		m_pos = Vec3(m_pos.x + w * m_widthUnit, m_pos.y + h * -m_heightUnit, m_pos.z);
+		pos = Vec3(m_pos.x + w * m_widthUnit, m_pos.y + h * -m_heightUnit, m_pos.z);
 
-		return m_pos;
+		return pos;
 	}
 	int StageSelectSprite::GetNum() {
 		return m_stageNum;
