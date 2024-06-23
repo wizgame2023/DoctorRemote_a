@@ -47,7 +47,7 @@ namespace basecross {
 		Garge(const shared_ptr<Stage>& stagePtr,
 			const float sizeX, const float sizeY, wstring meshResName, //画像のサイズ
 			float ratio, float width, float heigth, //ゲージの割合と表示するサイズ
-			Col4 color, Col4 color2, Vec3 screen, Vec3 distance);
+			Col4 color, Col4 color2, Vec3 screen, Vec3 distance = Vec3(0.0));
 		virtual ~Garge(){}
 
 		virtual void OnCreate() override;
