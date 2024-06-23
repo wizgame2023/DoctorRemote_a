@@ -16,7 +16,7 @@ namespace basecross {
 		static map<int, vector<shared_ptr<EnemyPiece>>> breakPieces;
 
 
-		static void PieceDistance(shared_ptr<EnemyPiece>& myPiece);
+		static void PieceDistance(const shared_ptr<EnemyPiece>& myPiece, const shared_ptr<Bullet>& bullet);
 		static void PieceDestroy();
 
 
