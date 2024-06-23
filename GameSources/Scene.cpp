@@ -431,22 +431,58 @@ namespace basecross {
 	//ステータス関連
 	//ダッシュのフラグ
 	int Scene::GetDash() {
-		return m_dashStatus;
+		auto dash = 1.0f;
+		switch (m_dashStatus)
+		{
+		case 0:
+			dash = 1.0f;
+			break;
+		case 1:
+			dash = 0.8f;
+			break;
+		case 2:
+			dash = 0.6f;
+			break;
+		default:
+			dash = 0.6f;
+			break;
+		}
+		return dash;
 	}
-	void Scene::SetDash(int status) {
+	void Scene::SetDashStatus(int status) {
 		m_dashStatus = status;
 	}
-	void Scene::AddDash(int status) {
+	void Scene::AddDashStatus(int status) {
 		m_dashStatus += status;
 	}
 	//弾の射程
-	int Scene::GetBulletLength() {
-		return m_bulletLengthStatus;
+	float Scene::GetBulletLength() {
+		auto bulletLength = 20.0f;
+		switch (m_bulletLengthStatus)
+		{
+		case 0:
+			bulletLength = 20.0f;
+			break;
+		case 1:
+			bulletLength = 25.0f;
+			break;
+		case 2:
+			bulletLength = 30.0f;
+			break;
+		case 3:
+			bulletLength = 40.0f;
+			break;
+		default:
+			bulletLength = 40.0f;
+			break;
+		}
+
+		return bulletLength;
 	}
-	void Scene::SetBulletLength(int status) {
+	void Scene::SetBulletLengthStatus(int status) {
 		m_bulletLengthStatus = status;
 	}
-	void Scene::AddBulletLength(int status) {
+	void Scene::AddBulletLengthStatus(int status) {
 		m_bulletLengthStatus += status;
 	}
 	//大きなウイルスの取得率
@@ -467,21 +503,22 @@ namespace basecross {
 			littlePiecce = 12;
 			break;
 		default:
+			littlePiecce = 12;
 			break;
 		}
 
 		return littlePiecce;
 	}
-	void Scene::SetPieceStatus(int status) {
+	void Scene::SetBigPieceUpStatus(int status) {
 		m_PieceStatus = status;
 	}
-	void Scene::AddPieceStatus(int status) {
+	void Scene::AddBigPieceUpStatus(int status) {
 		m_PieceStatus += status;
 	}
 	//欠片の取得範囲
-	int Scene::GetChainRange() {
-		auto chainRange = 1.0f;
-		switch (2)
+	float Scene::GetChainRange() {
+		float chainRange = 1.0f;
+		switch (m_chainRangeStatus)
 		{
 		case 0:
 			chainRange = 1.0f;
@@ -492,7 +529,11 @@ namespace basecross {
 		case 2:
 			chainRange = 1.5f;
 			break;
+		case 3:
+			chainRange = 2.0f;
+			break;
 		default:
+			chainRange = 2.0f;
 			break;
 		}
 		return chainRange;
@@ -504,23 +545,61 @@ namespace basecross {
 		m_chainRangeStatus += status;
 	}
 	//弾の火力
-	int Scene::GetBulletPower() {
-		return m_bulletPowerStatus;
+	float Scene::GetBulletPower() {
+		float bulletPower = 1.0f;
+		switch (m_bulletPowerStatus)
+		{
+		case 0:
+			bulletPower = 1.0f;
+			break;
+		case 1:
+			bulletPower = 1.5f;
+			break;
+		case 2:
+			bulletPower = 2.0f;
+			break;
+		case 3:
+			bulletPower = 3.0f;
+			break;
+		default:
+			bulletPower = 3.0f;
+			break;
+		}
+		return bulletPower;
 	}
-	void Scene::SetBulletPower(int status) {
+	void Scene::SetBulletPowerStatus(int status) {
 		m_bulletPowerStatus = status;
 	}
-	void Scene::AddBulletPower(int status) {
+	void Scene::AddBulletPowerStatus(int status) {
 		m_bulletPowerStatus += status;
 	}
 	//弾のチャージ時間
-	int Scene::GetBulletTime() {
-		return m_bulletTimeStatus;
+	float Scene::GetBulletTime() {
+		float bulletTime = 1.0f;
+		switch (m_bulletTimeStatus)
+		{
+		case 0:
+			bulletTime = 1.0f;
+			break;
+		case 1:
+			bulletTime = 0.8f;
+			break;
+		case 2:
+			bulletTime = 0.6f;
+			break;
+		case 3:
+			bulletTime = 0.4f;
+			break;
+		default:
+			bulletTime = 0.4f;
+			break;
+		}
+		return bulletTime;
 	}
-	void Scene::SetBulletTime(int status) {
+	void Scene::SetBulletTimeStatus(int status) {
 		m_bulletTimeStatus = status;
 	}
-	void Scene::AddBulletTime(int status) {
+	void Scene::AddBulletTimeStatus(int status) {
 		m_bulletTimeStatus += status;
 	}
 
@@ -547,6 +626,9 @@ namespace basecross {
 	void Scene::SetAchievementPoint(int achievementPoint)
 	{
 		m_achievementPoint += achievementPoint;
+	}
+	void Scene::MinusAchievementPoint(int achievementPoint) {
+		m_achievementPoint -= achievementPoint;
 	}
 
 	int Scene::GetBigPieceCount()
