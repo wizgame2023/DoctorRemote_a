@@ -435,7 +435,7 @@ namespace basecross {
 
 	void GameStage4::OnUpdate()
 	{
-		GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);
+		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)

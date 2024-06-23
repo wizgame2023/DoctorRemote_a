@@ -54,6 +54,7 @@ namespace basecross {
 	private:
 		Vec2 GetInputState();
 		void MovePlayer();
+		void DashCoolManager(int count);//ダッシュのクールタイムの管理をする
 
 	public:
 		static int STATUSPLAYER;
@@ -68,7 +69,7 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		Vec3 GetMoveVector();
 		Vec3 FrontVec();
-		void Dash();
+		void Dash();//この引数によってクールタイムなどが変わってくる
 
 		Vec3 GetAngle();
 		float GetPiece() const;
