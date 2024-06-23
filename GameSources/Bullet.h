@@ -19,9 +19,9 @@ namespace basecross {
 		int m_statusFlag;
 		int m_bulletLevel;
 
-		Vec3 m_Position;//場所
-		Vec3 m_Scale;//サイズ
-		Vec3 m_AllStartPosition;
+		Vec3 m_position;//場所
+		Vec3 m_scale;//サイズ
+		Vec3 m_allStartPosition;
 		Vec3 m_velocity;
 		Vec3 m_effectPos;
 
@@ -34,17 +34,17 @@ namespace basecross {
 	public:
 		static int STATUSBULLET;
 		Bullet(
-			const shared_ptr<Stage>& StagePtr,
-			const Vec3& Position,
-			const Vec3& Scale,
-			float Speed,
+			const shared_ptr<Stage>& stagePtr,
+			const Vec3& position,
+			const Vec3& scale,
+			float speed,
 			float angle,
-			int Attack
+			float attack
 		);
 		~Bullet();
 		void OnCreate()override;//初期化UnityでいうところのStart
 		void OnUpdate()override;//アップデート
-		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
+		void OnCollisionEnter(shared_ptr<GameObject>& other) override;//コリジョンが入った時
 		void ThisDestroy();
 		float GetSpeed();
 		int GetAttack();

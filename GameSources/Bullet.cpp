@@ -17,13 +17,13 @@ namespace basecross {
 	//};
 
 	//コンストラクタ
-	Bullet::Bullet(const shared_ptr<Stage>& StagePtr, const Vec3& Position, const Vec3& Scale, float Speed, float Rad, int Attack) :
-		GameObject(StagePtr),
-		m_Position(Position),
-		m_Scale(Scale),
-		m_speed(Speed),
-		m_angle(Rad),//角度はRad（弧度法）でお願いします
-		m_attack(Attack),
+	Bullet::Bullet(const shared_ptr<Stage>& stagePtr, const Vec3& position, const Vec3& scale, float speed, float angle, float attack) :
+		GameObject(stagePtr),
+		m_position(position),
+		m_scale(scale),
+		m_speed(speed),
+		m_angle(angle),//角度はRad（弧度法）
+		m_attack(attack),
 		m_statusFlag(0),
 		m_shotRange(20.0f),
 		m_meshResName(L"Bullet"),
@@ -42,10 +42,10 @@ namespace basecross {
 
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
-		ptrTransform->SetPosition(m_Position);//位置を設定
-		ptrTransform->SetScale(m_Scale);//大きさを設定
+		ptrTransform->SetPosition(m_position);//位置を設定
+		ptrTransform->SetScale(m_scale);//大きさを設定
 		ptrTransform->SetQuaternion(Quat());//クトーニアン（回転）を設定
-		m_AllStartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
+		m_allStartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
@@ -72,11 +72,11 @@ namespace basecross {
 
 		AddTag(L"Bullet");//Bulletタグを追加
 
-		m_effect = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.12f, 0.12f, 30, Vec2(1.0f, 1.0f),
-			Col4(0.0f, 1.0f, 1.0f, 0.5f), Col4(0.0f, 1.0f, 1.0f, 0.5f), L"BulletEffect", Vec2(1.0f, 0.0f),m_Position);
+		m_effect = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.25f * m_scale.length(), 0.25f * m_scale.length(), 150 * m_scale.length(), Vec2(1.0f, 1.0f),
+			Col4(0.0f, 1.0f, 1.0f, 0.5f), Col4(0.0f, 1.0f, 1.0f, 0.5f), L"BulletEffect", Vec2(1.0f, 0.0f), m_position);
 		m_effect.lock()->SetBlendState(BlendState::Opaque);
-		m_effect2 = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.09f, 0.09f, 30, Vec2(1.0f, 1.0f),
-			Col4(0.0f, 1.0f, 1.0f, 0.5f), Col4(0.0f, 1.0f, 1.0f, 0.5f), L"BulletEffect", Vec2(-1.0f, 0.0f), m_Position);
+		m_effect2 = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.18f*m_scale.length(), 0.18f * m_scale.length(), 150 * m_scale.length(), Vec2(1.0f, 1.0f),
+			Col4(0.0f, 1.0f, 1.0f, 0.5f), Col4(0.0f, 1.0f, 1.0f, 0.5f), L"BulletEffect", Vec2(-1.0f, 0.0f), m_position);
 
 
 		//m_effect.lock()->GetComponent<Transform>()->SetRotation(Vec3(0.0f, 0.0f, XMConvertToRadians(90)));
@@ -127,13 +127,13 @@ namespace basecross {
 		m_velocity.z = sin(m_angle);
 		m_velocity.normalize();
 
-		m_Position.x += m_velocity.x * m_speed * delta;//移動
-		m_Position.z += m_velocity.z * m_speed * delta;//移動
-		ptrTransform->SetPosition(m_Position);//移動を反映させる
+		m_position.x += m_velocity.x * m_speed * delta;//移動
+		m_position.z += m_velocity.z * m_speed * delta;//移動
+		ptrTransform->SetPosition(m_position);//移動を反映させる
 		Vec3 UpdatePosition = ptrTransform->GetPosition();//移動を反映させたpositionを取得
 
 		//弾の後ろにエフェクト
-		m_effectPos = m_Position;
+		m_effectPos = m_position;
 		m_effectPos.x -= m_velocity.x * 1.0f;
 		m_effectPos.z -= m_velocity.z * 1.0f;
 		if (effect) {
@@ -165,7 +165,7 @@ namespace basecross {
 		//}
 
 		
-		Vec3 PositionVec = Vec3(m_AllStartPosition.x - UpdatePosition.x,m_AllStartPosition.y - UpdatePosition.y,m_AllStartPosition.z - UpdatePosition.z);
+		Vec3 PositionVec = Vec3(m_allStartPosition.x - UpdatePosition.x,m_allStartPosition.y - UpdatePosition.y,m_allStartPosition.z - UpdatePosition.z);
 		float AllPosition = abs(PositionVec.x)+abs(PositionVec.y)+abs(PositionVec.z);
 
 		// 初期位置から20.0f離れた弾は破棄する
@@ -209,6 +209,9 @@ namespace basecross {
 		if (other->FindTag(L"Obj"))
 		{
 			DestroyGameObject();//自分は消える
+			ThisDestroy();
+		}
+		if (other->FindTag(L"EnemyPiece")) {
 			ThisDestroy();
 		}
 	}
