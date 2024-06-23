@@ -43,13 +43,6 @@ namespace basecross {
 		auto piece = player->GetPieceRatio();
 		auto trans = GetComponent<Transform>();
 
-		float sw = App::GetApp()->GetGameWidth();
-		float sh = App::GetApp()->GetGameHeight();
-
-		Vec3 screen(-sw * 0.5f, -sh * 0.5f, 0);
-		Vec3 dis(70, 300, 0);
-		Vec3 zero(0, 0, 0);
-
 
 		if (stage->GetSharedGameObject<Player>(L"GamePlayer")->GetRadarFlag()) {
 			if (!m_gargeMaxFlag) {

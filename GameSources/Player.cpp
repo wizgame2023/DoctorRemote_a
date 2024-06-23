@@ -41,7 +41,8 @@ namespace basecross {
 		m_dashCoolTime(8.0f),
 		m_lastAngle(0.0f,0.0f,0.0f),
 		m_dashCool(m_dashCoolTime),
-		m_bulletTime(1.0f),
+		m_bulletTime(0.0f),
+		m_bulletRatio(0.0f),
 		m_dashCheck(false),
 		m_dashCooldown(false),
 		m_startFlag(false),
@@ -131,40 +132,42 @@ namespace basecross {
 				}
 
 				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
-					m_bulletTime += elapsedTime;
-					//if (m_bulletTime < 0) {
-					//	if (!m_bulletFlag) {
-					//		auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 1);
-					//		m_bulletFlag = true;
-					//	}
-
-					//}
+					if (m_bulletTime <= 3.0f) {
+						m_bulletTime += elapsedTime;
+					}
+					else {
+						m_bulletTime = 3.0f;
+					}
+					m_bulletRatio = m_bulletTime / 3.0f;
 				}
 				else {
 					m_bulletFlag = false;
-					//m_bulletTime = 0.0f;
 				}
 
 				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B) {
-					if (m_bulletTime > 3.0f) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(1.0f), 30.0f, frontAngle, 3);
+					if (m_bulletTime >= 3.0f) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 12);
 						bullet->SetBulletLevel(3);
 						m_bulletTime = 0.0f;
+						m_bulletRatio = 0.0f;
 					}
-					else if (m_bulletTime > 2.0f) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 20.0f, frontAngle, 2);
+					else if (m_bulletTime >= 2.0f) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 45.0f, frontAngle, 12);
 						bullet->SetBulletLevel(2);
 						m_bulletTime = 0.0f;
+						m_bulletRatio = 0.0f;
 					}
-					else if (m_bulletTime > 1.0f) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 30.0f, frontAngle, 1);
+					else if (m_bulletTime >= 1.0f) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 40.0f, frontAngle, 6);
 						bullet->SetBulletLevel(1);
 						m_bulletTime = 0.0f;
+						m_bulletRatio = 0.0f;
 					}
 					else {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 1);
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 2);
 						bullet->SetBulletLevel(0);
 						m_bulletTime = 0.0f;
+						m_bulletRatio = 0.0f;
 						auto soundE = App::GetApp()->GetXAudio2Manager();
 						soundE->Start(L"ShotSE", 0, 0.5f);
 					}
@@ -200,7 +203,7 @@ namespace basecross {
 		drawComp->UpdateAnimation(elapsedTime);
 
 		//ダッシュ
-		switch (m_statusFlag)
+		switch (1)
 		{
 		case 0:
 			break;
@@ -210,7 +213,7 @@ namespace basecross {
 				m_dashCount -= elapsedTime;
 				//ダッシュの効果時間が過ぎたらダッシュを出来なくなる
 				if (m_dashCount <= 0) {
-					//m_speed = m_maxSpeed;
+					m_speed = m_maxSpeed;
 					m_dashCheck = false;
 				}
 				//ダッシュのクールタイムが過ぎたらダッシュを再使用できるようになる
@@ -608,7 +611,9 @@ namespace basecross {
 	int Player::GetBulletLevel() {
 		return m_bulletLevel;
 	}
-
+	float Player::GetBulletRatio() {
+		return m_bulletRatio;
+	}
 
 	//--------------------------------------------------------------------------------------
 	//	class ChildSphere : public GameObject;

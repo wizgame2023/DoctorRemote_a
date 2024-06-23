@@ -26,6 +26,7 @@ namespace basecross {
 		float m_dashCoolTime;
 		float m_onePiece;
 		float m_bulletTime;
+		float m_bulletRatio;
 
 		int m_statusFlag;
 		int m_bulletLevel;
@@ -84,6 +85,7 @@ namespace basecross {
 		void SpeedCalculation();//スピードを計算する
 		bool GetDashFlag();
 		int GetBulletLevel();
+		float GetBulletRatio();
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
