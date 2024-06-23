@@ -37,10 +37,10 @@ namespace basecross {
 		m_maxSpeed(7.0f),
 		m_dashSpeed(15.0f),
 		m_dashCountTime(1.0f),
-		m_dashCount(m_dashCoolTime),
+		m_dashCount(1.0f),
 		m_dashCoolTime(8.0f),
 		m_lastAngle(0.0f,0.0f,0.0f),
-		m_dashCool(m_dashCoolTime),
+		m_dashCool(8.0f),
 		m_bulletTime(0.0f),
 		m_bulletRatio(0.0f),
 		m_dashCheck(false),
@@ -100,8 +100,8 @@ namespace basecross {
 			ptrCamera->SetTarget(GetThis<GameObject>());
 		}
 
-		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetPlayerStatus();
-
+		//m_statusFlag = App::GetApp()->GetScene<Scene>()->GetPlayerStatus();
+		DashCoolManager(1);//これでダッシュの効果時間やクールタイムを決める
 	}
 
 	void Player::OnUpdate(){
@@ -202,49 +202,51 @@ namespace basecross {
 		auto drawComp = GetComponent<PNTBoneModelDraw>();
 		drawComp->UpdateAnimation(elapsedTime);
 
-		//ダッシュ
-		switch (1)
-		{
-		case 0:
-			break;
-		case 1:
-			Dash();
-			if (m_dashCooldown) {
-				m_dashCount -= elapsedTime;
-				//ダッシュの効果時間が過ぎたらダッシュを出来なくなる
-				if (m_dashCount <= 0) {
-					m_speed = m_maxSpeed;
-					m_dashCheck = false;
-				}
-				//ダッシュのクールタイムが過ぎたらダッシュを再使用できるようになる
-				m_dashCool -= elapsedTime;
-				if (m_dashCool <= 0) {
-					m_dashCooldown = false;
-					m_dashCount = m_dashCountTime;
-					m_dashCool = m_dashCoolTime;
-				}
-			}
-			break;
-		case 2:
-			Dash();
-			if (m_dashCooldown) {
-				m_dashCount -= elapsedTime * 0.7;
-				if (m_dashCount <= 0) {
-					m_speed = m_maxSpeed;
-					m_dashCheck = false;
-				}
-				m_dashCool -= elapsedTime * 1.5f;
-				if (m_dashCool <= 0) {
-					m_dashCooldown = false;
-					m_dashCount = m_dashCountTime;
-					m_dashCool = m_dashCoolTime;
-				}
-			}
-			break;
+		Dash();//これでダッシュの動きをする
 
-		default:
-			break;
-		}
+		//ダッシュ
+		//switch (1)
+		//{
+		//case 0:
+		//	break;
+		//case 1:
+		//	Dash();
+		//	if (m_dashCooldown) {
+		//		m_dashCount -= elapsedTime;//ダッシュできる制限時間を減らしている
+		//		//ダッシュの効果時間が過ぎたらダッシュを出来なくなる
+		//		if (m_dashCount <= 0) {
+		//			//m_speed = m_maxSpeed;
+		//			m_dashCheck = false;
+		//		}
+		//		//ダッシュのクールタイムが過ぎたらダッシュを再使用できるようになる
+		//		m_dashCool -= elapsedTime;
+		//		if (m_dashCool <= 0) {//クールタイムが₀になったらダッシュを再度使用できるようになる
+		//			m_dashCooldown = false;
+		//			m_dashCount = m_dashCountTime;
+		//			m_dashCool = m_dashCoolTime;
+		//		}
+		//	}
+		//	break;
+		//case 2:
+		//	Dash();
+		//	if (m_dashCooldown) {
+		//		m_dashCount -= elapsedTime * 0.7;
+		//		if (m_dashCount <= 0) {
+		//			m_speed = m_maxSpeed;
+		//			m_dashCheck = false;
+		//		}
+		//		m_dashCool -= elapsedTime * 1.5f;
+		//		if (m_dashCool <= 0) {
+		//			m_dashCooldown = false;
+		//			m_dashCount = m_dashCountTime;
+		//			m_dashCool = m_dashCoolTime;
+		//		}
+		//	}
+		//	break;
+
+		//default:
+		//	break;
+		//}
 
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();//デバック用です
 
@@ -392,17 +394,17 @@ namespace basecross {
 
 			}
 
-			//if (m_dashCheck)//ダッシュ効果適応中
-			//{
-			//	//if (m_maxSpeed >= m_speed)
-			//	//{
-			//	//	m_speed += (input.y * 2.0f) * elapsedTime;
-			//	//}
-			//	if(m_dashSpeed <= m_speed)
-			//	{
-			//		//m_speed = m_dashSpeed;
-			//	}
-			//}
+			if (m_dashCheck)//ダッシュ効果適応中
+			{
+				if (input.y > 0)//前に傾けたら
+				{
+					m_speed = m_dashSpeed;//ダッシュの速度になる
+				}
+				if (input.y < 0)//後ろに傾けたら
+				{
+					m_speed = -m_maxSpeed + 2;//ダッシュの速度になる
+				}
+			}
 
 		}
 		if (input.x == 0 && input.y == 0)//アナログスティックを動かしていない場合
@@ -415,9 +417,18 @@ namespace basecross {
 					m_speed = 0;//スピードを０とみなす
 				}
 			}
-			if (m_speed > 0)//現在のスピードが０より大きかった時
+			if (!m_dashCheck && m_speed > 0)//現在のスピードが０より大きかった時
 			{
 				m_speed -= elapsedTime * 6.8f;//スピードがどんどん落ちてくる
+				if (m_speed <= 0.5)//スピードが０に近くなったら
+				{
+					m_speed = 0;//スピードを０とみなす
+				}
+
+			}
+			if (m_dashCheck && m_speed > 0)//現在のスピードが０より大きかった時(ダッシュ時)
+			{
+				m_speed -= elapsedTime * 12.8f;//スピードがどんどん落ちてくる
 				if (m_speed <= 0.5)//スピードが０に近くなったら
 				{
 					m_speed = 0;//スピードを０とみなす
@@ -464,24 +475,79 @@ namespace basecross {
 		}
 	}
 
+	void Player::DashCoolManager(int count)
+	{
+		switch (count)
+		{
+		case 0:
+			//m_dashCooldown = true;//そもそもダッシュできないようにする
+			break;
+		case 1:
+			//ダッシュの効果時間
+			m_dashCount = 1.0f;
+			m_dashCountTime = 1.0f;
+			//クールタイム
+			m_dashCoolTime = 8.0f;
+			m_dashCool = 8.0f;
+			break;
+		case 2:
+			//ダッシュの効果時間
+			m_dashCount = 1.0f;
+			m_dashCountTime = 1.0f;
+			//クールタイム
+			m_dashCoolTime = 8.0f;
+			m_dashCool = 8.0f;
+			break;
+		case 3:
+			//ダッシュの効果時間
+			m_dashCount = 1.0f;
+			m_dashCountTime = 1.0f;
+			//クールタイム
+			m_dashCoolTime = 8.0f;
+			m_dashCool = 8.0f;
+			break;
+		default:
+			//m_dashCooldown = true;//そもそもダッシュできないようにする
+			break;
+		}
+
+	}
+
 	void Player::Dash() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-
 		Vec2 input = GetInputState();//入力を取得
+		float elapsedTime = App::GetApp()->GetElapsedTime();
 
-		if (cntlVec[0].bRightTrigger >= 0.8f) {//RTボタンを押したら
-			m_dashCheck = true;
-			m_dashCooldown = true;
-			if (m_dashCount > 0) {
-				if (input.x != 0 || input.y != 0)
-				{
-					m_speed = m_dashSpeed;//スピードをダッシュ用のスピードに変更する
-				}
+		if (cntlVec[0].bRightTrigger >= 0.8f && !m_dashCooldown) //RTボタンを押したら
+		{
+			m_dashCheck = true;//ダッシュできるようになる
+			m_dashCooldown = true;//クールタイムのフラグを入れる
+		}
+
+		if (m_dashCheck)//ダッシュのボタンが押されていたら
+		{
+			m_dashCountTime -= elapsedTime;
+			if (m_dashCountTime < 0.0f)//ダッシュの制限時間が過ぎたら
+			{
+				m_dashCheck = false;//走れなくなる
+				//m_dashCooldown = true;//クールダウンをカウントさせるフラグをONにする
+
 			}
 		}
-		else {
-			//m_speed = m_maxSpeed;
+		if (m_dashCountTime < 0.0f)//制限時間が過ぎたら
+		{
+			//クールタイムが発生する
+			m_dashCoolTime -= elapsedTime;
+			if (m_dashCoolTime <= 0.0f)//クールタイムが過ぎたら
+			{
+				m_dashCooldown = false;//再度走れるようになる
+				m_dashCoolTime = m_dashCool;//クールタイムを元に戻す
+				m_dashCountTime = m_dashCount;//ダッシュの制限時間を元に戻す
+			}
+
 		}
+
+
 	}
 
 
