@@ -44,18 +44,19 @@ namespace basecross {
 
 
 		m_score = scene->GetAchievementPoint();
-		int first = (m_score / 1000) % 10;
-		int second = (m_score / 1000) % 10;
-		int third = (m_score / 100) % 10;
-		int fourth = (m_score / 10) % 10;
+		//m_score = 1234;
+		int first = (m_score / 1000);
+		int second = (m_score / 100) % 10;
+		int third = (m_score / 10) % 10;
+		int fourth = (m_score) % 10;
 		auto pos = Vec3(430.0f, 350.0f, 0.0f);
 		Vec3 pos2(pos.x + 40, pos.y, pos.z);
 		Vec3 pos3(pos.x + 80, pos.y, pos.z);
 		Vec3 pos4(pos.x + 120,pos.y, pos.z);
-		m_pointNum[0] = stage->AddGameObject<UITime>(first, pos4);
-		m_pointNum[1] = stage->AddGameObject<UITime>(second, pos3);
-		m_pointNum[2] = stage->AddGameObject<UITime>(third, pos2);
-		m_pointNum[3] = stage->AddGameObject<UITime>(fourth, pos);
+		m_pointNum[0] = stage->AddGameObject<UITime>(first, pos);
+		m_pointNum[1] = stage->AddGameObject<UITime>(second, pos2);
+		m_pointNum[2] = stage->AddGameObject<UITime>(third, pos3);
+		m_pointNum[3] = stage->AddGameObject<UITime>(fourth, pos4);
 
 
 		if (m_score>=100) {
