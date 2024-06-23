@@ -16,6 +16,7 @@ namespace basecross {
 		auto& breakPiece = PieceManager::breakPieces;
 		//shared_ptr<EnemyPiece> p;
 		auto bulletLeve = bullet->GetBulletLevel();
+		auto chainRange = App::GetApp()->GetScene<Scene>()->GetChainRange();
 
 		for (auto& wp_piece : pieces) {
 			auto piece = wp_piece.lock();
@@ -28,14 +29,14 @@ namespace basecross {
 				Vec3 distance = otherPos - pos;
 				auto dis = distance.length();
 
-				if (0.0 <= dis && dis < 5.0f && bulletLeve >= 1) {
+				if (0.0 <= dis && dis < 5.0f* chainRange && bulletLeve >= 1) {
 					piece->DelDamage(6, 1.0f);
 				}
-				else if (dis < 10.0f && bulletLeve >= 2) {
+				else if (dis < 10.0f* chainRange && bulletLeve >= 2) {
 					piece->DelDamage(6, 2.0f);
 
 				}
-				else if (dis < 15.0f && bulletLeve >= 3) {
+				else if (dis < 15.0f* chainRange && bulletLeve >= 3) {
 					piece->DelDamage(6, 3.0f);
 
 				}
