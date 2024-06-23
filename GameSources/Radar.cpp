@@ -32,8 +32,10 @@ namespace basecross {
 		//ptrTransform->SetScale(m_Scale);//大きさを決める
 		//auto a = GetComponent<GameObject>();
 
-		// ポリゴンの自作
+		m_RaderWaku = GetStage()->AddGameObject<Sprite>(450, 250, L"RaderFrame", Vec3(0.0f, -250, 0.0f));//レーダーの枠生成
+		m_RaderWaku->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.5f));
 
+		// ポリゴンの自作
 		Col4 color(1, 1, 1, 1); // ポリゴンの色
 		const float w = 200.0f; // ポリゴンの幅
 		const float h = 100.0f; // ポリゴンの高さ
@@ -180,6 +182,10 @@ namespace basecross {
 
 	void Radar::MyRemove()
 	{
-		GetStage()->RemoveGameObject<Radar>(GetThis<Radar>());
+		auto stage = GetStage();
+		int number = m_RaderWaku->GetNumPtr();
+		stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);//配列からポインタ削除
+		stage->RemoveGameObject<Sprite>(m_RaderWaku);//レーダーの枠削除
+		GetStage()->RemoveGameObject<Radar>(GetThis<Radar>());//自分自身を削除
 	}
 }

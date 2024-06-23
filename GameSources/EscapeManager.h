@@ -17,6 +17,7 @@ namespace basecross {
 		Vec3 m_CameraEye;//脱出する際のカメラのポジション
 		Vec3 m_CameraAt;//脱出する際のカメラの注視点
 		shared_ptr<Sprite> m_Sprite;
+		shared_ptr<Sprite> m_MyMiniMap;//ミニマップの自分
 		weak_ptr<Player> m_Player;
 		Vec3 m_PlayerPos;//Playerのポジション
 		Vec3 m_PlayerStartPos;//Startした際のPlayerのポジション
@@ -26,6 +27,7 @@ namespace basecross {
 		Col4 m_SpriteCol;//暗転するためのスプライトの色
 		int m_UpdateFlag;
 		float m_Time;
+		float m_paint;
 	public:
 		EscapeManager(const shared_ptr<Stage>& stagePtr, Vec3 cameraEye, Vec3 cameraAt, Vec3 minRange, Vec3 maxRange,Vec3 playerStart,Vec3 m_TargetPos);//コンストラクタ
 		~EscapeManager();//デストラクタ

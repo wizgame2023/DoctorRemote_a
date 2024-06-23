@@ -28,28 +28,10 @@ namespace basecross {
 
 	{}
 
-	void StageManager::UiCreate()
-	{
-		auto stage = GetStage();
-
-		//auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);//枠
-		auto raderWaku = stage->AddGameObject<Sprite>(450, 250, L"RaderFrame", Vec3(0.0f, -250, 0.0f));
-		raderWaku->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.5f));
-
-		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f), 2);//415,265
-		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
-
-		auto mapFrame = stage->AddGameObject<Sprite>(235, 235, L"CommentFrame", Vec3(475, 238, 0.0f), 2);
-		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
-		//画面上のライト
-		//stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
-
-	}
 
 	void StageManager::OnCreate() {
 		auto stage = GetStage();
 
-		//UiCreate();//Playする際に使うUI関係を生成する
 		auto uiManager = stage->AddGameObject<UIManager>();//UIを管理するマネージャー
 		stage->SetSharedGameObject(L"UIManager", uiManager);
 		//画面上のライト
@@ -77,35 +59,6 @@ namespace basecross {
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		//m_comTrans = m_comFrame->GetComponent<Transform>();
-
-		//if (!m_cfFlag) {
-		//	m_comX -= 500.0f * elapsedTime;
-		//	m_comTrans->SetPosition(m_comX, -265.0f, 0.0f);
-		//}
-		//if (m_comX < 430) {
-		//	m_cfFlag = true;
-		//}
-		//if (scene->GetGameStage() > 0) {
-		//	if (m_cfFlag) {
-		//		if (!m_comFlag) {
-		//			if (scene->GetGameStage() > 0) {
-		//				m_com[0] = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, Vec3(250, -180, 0.0f), L"SousaCom");
-		//			}
-		//			m_comFlag = true;
-		//		}
-		//	}
-		//	//敵を倒したらコメント
-		//	if (GetEnemyFlag()) {
-		//		if (!m_comFlag2) {
-		//			m_com[0]->ThisDestroy();//ここがエラーのもと
-		//			int a = 0;
-		//			m_com[1] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
-		//			m_comFlag2 = true;
-		//		}
-		//	}
-
-		//}
 
 		if (m_countFlag)
 		{

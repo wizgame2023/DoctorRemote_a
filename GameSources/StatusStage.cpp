@@ -25,6 +25,8 @@ namespace basecross {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
+			App::GetApp()->GetScene<Scene>()->SetPlayFlag(false);
+
 
 			auto statusManager = AddGameObject<StatusManager>();
 			SetSharedGameObject(L"StatusManager", statusManager);
