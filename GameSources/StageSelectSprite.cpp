@@ -16,6 +16,8 @@ namespace basecross {
 		const float heightUnit,
 		const float widthNum,
 		const float heightNum,
+		const wstring sprites,//選択する画像
+		const wstring frame,  //フレームの画像
 		const bool display
 
 	) :
@@ -27,6 +29,8 @@ namespace basecross {
 		m_heightUnit(heightUnit),
 		m_widthNum(widthNum),
 		m_heightNum(heightNum),
+		m_spritesName(sprites),
+		m_frameName(frame),
 		m_stageNum(1),
 		m_checkU(false),
 		m_checkD(false),
@@ -35,7 +39,10 @@ namespace basecross {
 		m_moveCheck(false),
 		m_display(display)
 	{}
-	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr):
+	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr,
+		const wstring sprites,//選択する画像
+		const wstring frame  //フレームの画像
+	):
 		GameObject(stagePtr),
 		m_pos(Vec3(-200.0f,0.0f,0.0f)),//位置
 		m_sizeX(50.0f),
@@ -44,6 +51,8 @@ namespace basecross {
 		m_heightUnit(80.0f),
 		m_widthNum(5),
 		m_heightNum(2),
+		m_spritesName(sprites),
+		m_frameName(frame),
 		m_stageNum(1),
 		m_checkU(false),
 		m_checkD(false),
@@ -73,7 +82,7 @@ namespace basecross {
 				if (m_display) {
 					//枠組みの表示
 					stage->AddGameObject<Sprite>(m_sizeX,m_sizeY, 
-						L"White", Vec3(m_pos.x + i * m_widthUnit, m_pos.y + j * -m_heightUnit, m_pos.z),1);
+						m_spritesName, Vec3(m_pos.x + i * m_widthUnit, m_pos.y + j * -m_heightUnit, m_pos.z),1);
 					//10までの数字を表示
 					stage->AddGameObject<UITime>((i + j * m_widthNum) + 1,
 						Vec3((m_pos.x - m_sizeX / 2) + i * m_widthUnit,
@@ -82,8 +91,9 @@ namespace basecross {
 			}
 		}
 
-		m_selectSprite = stage->AddGameObject<Sprite>(m_sizeX + 15.0f, m_sizeY + 15.0f, L"White", m_pos, 0);
+		m_selectSprite = stage->AddGameObject<Sprite>(m_sizeX + 15.0f, m_sizeY + 15.0f, m_frameName, m_pos, 0);
 		m_selectSprite->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
+		//stage->AddGameObject<Sprite>(100.0f, 100.0f, L"White", GetSpritePostion(3,1), 0);
 	}
 	void StageSelectSprite::OnUpdate() {
 		float elapsed = App::GetApp()->GetElapsedTime();
@@ -169,7 +179,13 @@ namespace basecross {
 
 	}
 	
-	Vec3 StageSelectSprite::GetSpritePostion() {
+	//横何番目、縦何番目の画像の位置を取得
+	Vec3 StageSelectSprite::GetSpritePostion(const int widthNum, const int HeightNum) {
+		int w = widthNum - 1;
+		int h = HeightNum - 1;
+		auto stage = GetStage();
+		m_pos = Vec3(m_pos.x + w * m_widthUnit, m_pos.y + h * -m_heightUnit, m_pos.z);
+
 		return m_pos;
 	}
 }

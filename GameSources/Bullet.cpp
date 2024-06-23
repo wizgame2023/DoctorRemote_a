@@ -1,25 +1,34 @@
 /*!
 @file Bullet.cpp
 @brief 弾の実体
-担当　三瓶裕太
+担当　逸見、（三瓶）
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
+
+	//enum BULLETLEVEL {
+	//	NORMAL,
+	//	LEVEL1,
+	//	LEVEL2,
+	//	LEVEL3,
+	//};
+
 	//コンストラクタ
-	Bullet::Bullet(const shared_ptr<Stage>& StagePtr, const Vec3& Position, const Vec3& Scale, float Speed, float Rad, int Attack) :
-		GameObject(StagePtr),
-		m_Position(Position),
-		m_Scale(Scale),
-		m_Speed(Speed),
-		m_angle(Rad),//角度はRad（弧度法）でお願いします
-		m_Attack(Attack),
+	Bullet::Bullet(const shared_ptr<Stage>& stagePtr, const Vec3& position, const Vec3& scale, float speed, float angle, float attack) :
+		GameObject(stagePtr),
+		m_position(position),
+		m_scale(scale),
+		m_speed(speed),
+		m_angle(angle),//角度はRad（弧度法）
+		m_attack(attack),
 		m_statusFlag(0),
 		m_shotRange(20.0f),
 		m_meshResName(L"Bullet"),
-		m_velocity(0)
+		m_velocity(0),
+		m_bulletLevel(0)
 	{
 	}
 	//デストラクタ
@@ -33,10 +42,10 @@ namespace basecross {
 
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
-		ptrTransform->SetPosition(m_Position);//位置を設定
-		ptrTransform->SetScale(m_Scale);//大きさを設定
+		ptrTransform->SetPosition(m_position);//位置を設定
+		ptrTransform->SetScale(m_scale);//大きさを設定
 		ptrTransform->SetQuaternion(Quat());//クトーニアン（回転）を設定
-		m_AllStartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
+		m_allStartPosition = ptrTransform->GetPosition();//初期化時点の位置を取得
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
@@ -63,8 +72,13 @@ namespace basecross {
 
 		AddTag(L"Bullet");//Bulletタグを追加
 
-		m_effect = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.3f, 0.3f, 30, Vec2(1.0f, 3.0f),
-			Col4(0.0f, 0.0f, 1.0f, 0.8f), Col4(0.0f, 0.0f, 1.0f, 0.8f), L"EffectPiece", Vec2(0.0f, 1.0f),m_Position);
+		m_effect = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.25f * m_scale.length(), 0.25f * m_scale.length(), 150 * m_scale.length(), Vec2(1.0f, 1.0f),
+			Col4(0.0f, 1.0f, 1.0f, 0.5f), Col4(0.0f, 1.0f, 1.0f, 0.5f), L"BulletEffect", Vec2(1.0f, 0.0f), m_position);
+		m_effect.lock()->SetBlendState(BlendState::Opaque);
+		m_effect2 = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.18f*m_scale.length(), 0.18f * m_scale.length(), 150 * m_scale.length(), Vec2(1.0f, 1.0f),
+			Col4(0.0f, 1.0f, 1.0f, 0.5f), Col4(0.0f, 1.0f, 1.0f, 0.5f), L"BulletEffect", Vec2(-1.0f, 0.0f), m_position);
+
+
 		//m_effect.lock()->GetComponent<Transform>()->SetRotation(Vec3(0.0f, 0.0f, XMConvertToRadians(90)));
 		//m_effect.lock()->GetComponent<Transform>()->SetQuaternion(Quat(Vec3(1, 0, 0), XM_PIDIV2));
 		//auto player = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
@@ -94,39 +108,51 @@ namespace basecross {
 	}
 	void Bullet::OnUpdate()
 	{		
+		auto& app = App::GetApp();
+		float delta = app->GetElapsedTime();//デルタタイムを取得
+
 		auto player = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 		auto playerAngle = player->FrontVec();
 		auto& ptrPlayer = GetStage()->GetSharedObject(L"GamePlayer");//GamePlayerというオブジェクトを取得
-		
 		auto ptrTransform = GetComponent<Transform>();//toransformを取得
 
-		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();//デルタタイムを取得
+		auto effect = m_effect.lock();
+		auto effect2 = m_effect2.lock();
+		auto& effectTrans = effect->GetComponent<Transform>();
+		auto& effectTrans2 = effect2->GetComponent<Transform>();
+
 		//delta = floor(delta * 100) / 100;
 		m_velocity.x = cos(m_angle);
 		m_velocity.y = 0;
 		m_velocity.z = sin(m_angle);
 		m_velocity.normalize();
 
-		m_Position.x += m_velocity.x * m_Speed * delta;//移動
-		m_Position.z += m_velocity.z * m_Speed * delta;//移動
-		ptrTransform->SetPosition(m_Position);//移動を反映させる
+		m_position.x += m_velocity.x * m_speed * delta;//移動
+		m_position.z += m_velocity.z * m_speed * delta;//移動
+		ptrTransform->SetPosition(m_position);//移動を反映させる
 		Vec3 UpdatePosition = ptrTransform->GetPosition();//移動を反映させたpositionを取得
 
 		//弾の後ろにエフェクト
-		m_effectPos = m_Position;
-		m_effectPos.x -= m_velocity.x * 1.5f;
-		m_effectPos.z -= m_velocity.z * 1.5f;
-		auto effect = m_effect.lock();
+		m_effectPos = m_position;
+		m_effectPos.x -= m_velocity.x * 1.0f;
+		m_effectPos.z -= m_velocity.z * 1.0f;
 		if (effect) {
 			//エフェクトの向き
+			//エフェクトを回転させるための軸
 			auto effectShaft = m_velocity.cross(Vec3(0.0f,1.0f,0.0f));
 			Quat SpanQt = Quat(effectShaft, XMConvertToRadians(90));
 			Quat bulletAngle = (Quat)playerAngle;
 			bulletAngle *= SpanQt;
-			effect->GetComponent<Transform>()->SetQuaternion(bulletAngle);
-			effect->GetComponent<Transform>()->SetPosition(m_effectPos);
+			effectTrans->SetQuaternion(bulletAngle);
+			effectTrans->SetPosition(m_effectPos);
+
+			if (effect2) {
+				effectTrans2->SetQuaternion(bulletAngle);
+				effectTrans2->SetPosition(m_effectPos);
+
+			}
 		}
+
 
 		//auto& Vec = GetStage()->GetGameObjectVec();//ゲームオブジェクトの配列を取得
 		//for (auto V : Vec)
@@ -139,15 +165,14 @@ namespace basecross {
 		//}
 
 		
-		Vec3 PositionVec = Vec3(m_AllStartPosition.x - UpdatePosition.x,m_AllStartPosition.y - UpdatePosition.y,m_AllStartPosition.z - UpdatePosition.z);
+		Vec3 PositionVec = Vec3(m_allStartPosition.x - UpdatePosition.x,m_allStartPosition.y - UpdatePosition.y,m_allStartPosition.z - UpdatePosition.z);
 		float AllPosition = abs(PositionVec.x)+abs(PositionVec.y)+abs(PositionVec.z);
 
 		// 初期位置から20.0f離れた弾は破棄する
 		if (AllPosition >= m_shotRange)//ちょっと計算違うから直しておく
 		{
 			// ステージから自身を破棄する
-			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
-			effect->ThihDestroy();
+			ThisDestroy();
 		}
 		wstringstream wss;//デバック用文字列
 		//wss << L"m_effectPos.x :" << m_effectPos.x << endl;
@@ -162,49 +187,57 @@ namespace basecross {
 
 	}
 	//コリジョンがぶつかったら
-	void Bullet::OnCollisionEnter(shared_ptr<GameObject>& Other)
+	void Bullet::OnCollisionEnter(shared_ptr<GameObject>& other)
 	{
 		//もしぶつかったコリジョンがEnemyのものだったら
-		if (Other->FindTag(L"Enemy"))
+		if (other->FindTag(L"Enemy"))
 		{			
 			GetStage()->AddGameObject<EffectBullet>(L"DamageBullet", 3, 2, GetComponent<Transform>()->GetPosition(), 0.1f);
 			//DestroyGameObject();//自分は消える
-			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+			ThisDestroy();
 
 		}
-		if (Other->FindTag(L"BreakWall"))
+		if (other->FindTag(L"BreakWall"))
 		{
 			DestroyGameObject();//自分は消える
-			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+			ThisDestroy();
 			m_hit = 1;//壊れる壁に当たった
 			auto& ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
 			ptrPlayer->EffectFlag(2);//これでPlayerからエフェクトを出す
 
 		}
-		//if (Other->FindTag(L"RecoveryWall"))
-		//{
-		//	DestroyGameObject();//自分は消える
-		//	GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
-		//	auto& ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
-		//	ptrPlayer->EffectFlag(1);//これでPlayerからエフェクトを出す
-		//	
-
-		//}
-		if (Other->FindTag(L"Obj"))
+		if (other->FindTag(L"Obj"))
 		{
 			DestroyGameObject();//自分は消える
-			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+			ThisDestroy();
 		}
+		if (other->FindTag(L"EnemyPiece")) {
+			ThisDestroy();
+		}
+	}
+
+	//自分自身と自分についているエフェクトを消す関数
+	void Bullet::ThisDestroy() {
+		GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
+		m_effect.lock()->ThihDestroy();
+		m_effect2.lock()->ThihDestroy();
+		
 	}
 
 	float Bullet::GetSpeed()
 	{
-		return m_Speed;
+		return m_speed;
 	}
-
 	int Bullet::GetAttack()
 	{
-		return m_Attack;
+		return m_attack;
+	}
+
+	int Bullet::GetBulletLevel() {
+		return m_bulletLevel;
+	}
+	void Bullet::SetBulletLevel(int level) {
+		m_bulletLevel = level;
 	}
 }
 //end basecross

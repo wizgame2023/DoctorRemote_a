@@ -12,12 +12,11 @@ namespace basecross {
 	class PieceManager{
 		vector<EnemyPiece> m_otherPiece;
 	public:
-		static vector<shared_ptr<EnemyPiece>> enemyPieces;
+		static vector<weak_ptr<EnemyPiece>> enemyPieces;
 		static map<int, vector<shared_ptr<EnemyPiece>>> breakPieces;
 
 
-		static void PieceDistance(shared_ptr<EnemyPiece>& myPiece, 
-			shared_ptr<EnemyPiece>& otherPiece);
+		static void PieceDistance(const shared_ptr<EnemyPiece>& myPiece, const shared_ptr<Bullet>& bullet);
 		static void PieceDestroy();
 
 

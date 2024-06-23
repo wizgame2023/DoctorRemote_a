@@ -16,11 +16,11 @@ namespace basecross {
 		float m_pieceDeleteTime;
 		float m_deg;
 		float m_breakCount;
+		float m_chainTime;
 		int m_hp;
 		int m_pieceDeletFlag;
 		bool m_ground;
 		bool m_littlePieceFlag;
-		bool m_otherPieceFlag;
 		Vec3 m_scale;
 		Vec3 m_rotate;
 		Vec3 m_position;
@@ -31,6 +31,8 @@ namespace basecross {
 		shared_ptr<GameObject> m_boss;
 		weak_ptr<Bullet> m_bullet;
 		shared_ptr<EnemyPiece> m_otherPiece;
+		weak_ptr<EnemyPiece> m_originPiece;
+		weak_ptr<EffectPiece> m_effect;
 
 	public:
 
@@ -48,9 +50,12 @@ namespace basecross {
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other);
 		void Event(float deg);
 		void UpdateEvent();
+		void ScatterDestroy(int littleNum = 0,bool des = true);
+		void ChainEffect(float radius, float deleteTime);
 		Vec3 GetPos();
 		Vec3 GetRot();
-		void ScatterLittlePiece(int littleNum);
+		bool GetGroundFlag();
+		void DelDamage(int damage,float count);
 
 		int GetDeletFlag();
 	};

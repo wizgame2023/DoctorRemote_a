@@ -15,6 +15,8 @@ namespace basecross {
 		bool m_littlePieceFlag;
 		int m_var;//ビックピースのどの形態にするかを決める
 		int m_status;
+		int m_hp;
+		int m_littlePieceNum;
 		float m_pieceDeleteTime;
 
 		Vec3 m_scale;
@@ -24,6 +26,7 @@ namespace basecross {
 		wstring m_meshResName;
 		wstring m_myMiniMapName;
 		shared_ptr<Transform> m_trans;
+		weak_ptr<Bullet> m_bullet;
 
 	public:
 		BigPiece(const shared_ptr<Stage>& stagePtr,
@@ -47,6 +50,7 @@ namespace basecross {
 		void MyMiniMapName(wstring Name);//自分の位置がミニマップに表示するオブジェクトの名前
 		void Event(float deg, float power=6.0f);
 		void UpdateEvent();
+		void ScatterDestroy(int littleNum,bool des = true);
 
 	};
 }

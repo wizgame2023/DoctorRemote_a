@@ -13,11 +13,12 @@ namespace basecross {
 		float m_height;
 		float m_topRadius;
 		float m_unberRadius;
-		int m_square;
 		float m_effectLoop;
+		int m_square;
 		bool m_isUpdate;
 		bool m_effectLoopFlag;
 		bool m_colFlag;
+		bool m_spreadFlag;
 
 		Vec2 m_loops;
 		Vec2 m_scrollVelocity;
@@ -55,10 +56,13 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
-		void SetScrollSpeed(float x,float y);
-		void SetUnderRadius(float radius);
+		
 		void ThihDestroy();
-		void SetLocalPosition(Vec3 pos);
+		void SetScrollSpeed(float x,float y);
+		void SetTopRadius(float radius);
+		void SetUnderRadius(float radius);
+		void SetDeleteTime(float time);
+		void SetBlendState(const BlendState state);
 	};
 }
 //end namespace basecross
