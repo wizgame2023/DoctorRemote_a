@@ -14,15 +14,16 @@ namespace basecross {
 		m_topRadius(0.0f),
 		m_unberRadius(3.0f),
 		m_square(30),
-		m_loops(1.0f,2.0f),
+		m_loops(1.0f,5.0f),
 		m_topCol(0.0f),
 		m_underCol(Col4(0.0f,0.0f,1.0f,1.0f)),
 		m_meshResName(L"EffectPiece"),
 		m_scrollVelocity(0.0f,-1.0f),
 		m_isUpdate(false),
-		m_effectLoop(1.0f),
+		m_effectLoop(3.0f),
 		m_effectLoopFlag(false),
-		m_colFlag(true)
+		m_colFlag(true),
+		m_spreadFlag(true)
 	{}
 	EffectPiece::EffectPiece(const shared_ptr<Stage>& stage,
 		const float height,      //‚‚³
@@ -51,7 +52,8 @@ namespace basecross {
 		m_isUpdate(false),
 		m_effectLoop(effectLoop),
 		m_effectLoopFlag(false),
-		m_colFlag(false)
+		m_colFlag(false),
+		m_spreadFlag(false)
 
 	{}
 
@@ -96,6 +98,7 @@ namespace basecross {
 		}
 	}
 
+	
 	void EffectPiece::OnCreate() {
 		if (m_effectLoop > 0) {
 			m_effectLoopFlag = true;
@@ -147,12 +150,20 @@ namespace basecross {
 			m_isUpdate = false;
 			InitializeVertices();
 		}
+		if (m_spreadFlag) {
+			SetUnderRadius(m_unberRadius + 5.0f * elapsed);
+		}
+
 		m_draw->UpdateVertices(m_vertices);
 	}
 
 	void EffectPiece::SetScrollSpeed(float x, float y) {
 		m_scrollVelocity.x = x;
 		m_scrollVelocity.y = -y;
+	}
+	void EffectPiece::SetTopRadius(float radius) {
+		m_isUpdate = true;
+		m_topRadius = radius;
 	}
 	void EffectPiece::SetUnderRadius(float radius) {
 		m_isUpdate = true;
@@ -163,6 +174,9 @@ namespace basecross {
 	}
 	void EffectPiece::SetBlendState(const BlendState state) {
 		m_draw->SetBlendState(state);
+	}
+	void EffectPiece::SetDeleteTime(float time) {
+		m_effectLoop = time;
 	}
 }
 //end namespace basecross
