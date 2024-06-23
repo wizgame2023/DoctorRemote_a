@@ -17,6 +17,7 @@ namespace basecross {
 
 		int m_achievementPoint;
 		int m_apReceive;
+		int m_count;
 
 		float m_mojispeed;
 		float m_mojispeed1;
@@ -29,6 +30,7 @@ namespace basecross {
 		virtual ~ScoreStage() {}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+		virtual void OnDestroy() override;
 
 		void StageChange();
 	};
