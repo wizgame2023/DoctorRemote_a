@@ -130,6 +130,7 @@ namespace basecross {
 			m_draw->SetTextureResource(m_meshResName);
 		}
 		SetAlphaActive(true);
+		m_chainRarge = App::GetApp()->GetScene<Scene>()->GetChainRange();
 	}
 	void EffectPiece::OnUpdate() {
 		auto stage = GetStage();
@@ -152,7 +153,7 @@ namespace basecross {
 		}
 
 		if (m_spreadFlag) {
-			SetUnderRadius(m_unberRadius + 5.0f * elapsed);
+			SetUnderRadius(m_unberRadius + (5.0f * m_chainRarge) * elapsed);
 		}
 
 		m_draw->UpdateVertices(m_vertices);

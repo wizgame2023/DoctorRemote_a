@@ -14,6 +14,7 @@ namespace basecross {
 		float m_topRadius;
 		float m_unberRadius;
 		float m_effectLoop;
+		float m_chainRarge;
 		int m_square;
 		bool m_isUpdate;
 		bool m_effectLoopFlag;
