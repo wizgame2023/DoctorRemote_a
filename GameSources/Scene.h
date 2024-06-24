@@ -15,12 +15,12 @@ namespace basecross{
 
 		bool m_PlayFlag;//プレイするステージか確認する
 
-		int m_dashStatus;
-		int m_bulletLengthStatus;
-		int m_PieceStatus;
-		int m_chainRangeStatus;
-		int m_bulletPowerStatus;
-		int m_bulletTimeStatus;
+		int m_dashStatus = 0;
+		int m_bulletLengthStatus = 0;
+		int m_PieceStatus = 0;
+		int m_chainRangeStatus = 0;
+		int m_bulletPowerStatus = 0;
+		int m_bulletTimeStatus = 0;
 
 		int m_time;
 		int m_gameStage;
@@ -64,29 +64,30 @@ namespace basecross{
 		bool GetPlayFlag();
 		//ステータス
 		int GetDash();
-		void SetDash(int status);
-		void AddDash(int status);
-		int GetBulletLength();
-		void SetBulletLength(int status);
-		void AddBulletLength(int status);
+		void SetDashStatus(int status);
+		void AddDashStatus(int status);
+		float GetBulletLength();
+		void SetBulletLengthStatus(int status);
+		void AddBulletLengthStatus(int status);
 		int GetBigPieceUp();
-		void SetPieceStatus(int status);
-		void AddPieceStatus(int status);
-		int GetChainRange();
+		void SetBigPieceUpStatus(int status);
+		void AddBigPieceUpStatus(int status);
+		float GetChainRange();
 		void SetChainRargeStatus(int status);
 		void AddChainRargeStatus(int status);
-		int GetBulletPower();
-		void SetBulletPower(int status);
-		void AddBulletPower(int status);
-		int GetBulletTime();
-		void SetBulletTime(int status);
-		void AddBulletTime(int status);
+		float GetBulletPower();
+		void SetBulletPowerStatus(int status);
+		void AddBulletPowerStatus(int status);
+		float GetBulletTime();
+		void SetBulletTimeStatus(int status);
+		void AddBulletTimeStatus(int status);
 
 		int GetTime();
 		void SetTime(int time);
 		int GetGameStage();
 		void SetGameStage(int gameStage);
 		void SetAchievementPoint(int achievementPoint);
+		void MinusAchievementPoint(int achievementPoint);
 		int GetAchievementPoint();
 		int GetBigPieceCount();
 		void SetBigPieceCount(int count);

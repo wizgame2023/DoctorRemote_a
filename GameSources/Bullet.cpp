@@ -84,27 +84,7 @@ namespace basecross {
 		//auto player = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 		//auto playerAngle = player->FrontVec();
 
-		//Quat SpanQt = Quat(Vec3(1, 0, 1), XM_PIDIV2);
-		//Quat bulletAngle = (Quat)playerAngle;
-		//SpanQt *= bulletAngle;
-		//m_effect.lock()->GetComponent<Transform>()->SetQuaternion(SpanQt);
-
-
-		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetBulletLength();
-		switch (m_statusFlag)
-		{
-		case 0:
-			m_shotRange = 20.0f;
-			break;
-		case 1:
-			m_shotRange = 30.0f;
-			break;
-		case 2:
-			m_shotRange = 40.0f;
-			break;
-		default:
-			break;
-		}
+		m_shotRange = App::GetApp()->GetScene<Scene>()->GetBulletLength();
 	}
 	void Bullet::OnUpdate()
 	{		
@@ -228,7 +208,7 @@ namespace basecross {
 	{
 		return m_speed;
 	}
-	int Bullet::GetAttack()
+	float Bullet::GetAttack()
 	{
 		return m_attack;
 	}

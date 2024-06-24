@@ -42,7 +42,9 @@ namespace basecross {
 		m_lastAngle(0.0f,0.0f,0.0f),
 		m_dashCool(8.0f),
 		m_bulletTime(0.0f),
+		m_bulletChargeTime(1.0f),
 		m_bulletRatio(0.0f),
+		m_bulletPower(1.0f),
 		m_dashCheck(false),
 		m_dashCooldown(false),
 		m_startFlag(false),
@@ -99,12 +101,12 @@ namespace basecross {
 		if (ptrCamera) {
 			ptrCamera->SetTarget(GetThis<GameObject>());
 		}
-
-		m_statusFlag = App::GetApp()->GetScene<Scene>()->GetDash();
-
-		//m_statusFlag = App::GetApp()->GetScene<Scene>()->GetPlayerStatus();
-		DashCoolManager(1);//これでダッシュの効果時間やクールタイムを決める
-
+		
+		auto& scene = App::GetApp()->GetScene<Scene>();
+		m_statusFlag = scene->GetDash();
+		DashCoolManager(m_statusFlag);//これでダッシュの効果時間やクールタイムを決める
+		m_bulletPower = scene->GetBulletPower();
+		m_bulletChargeTime = scene->GetBulletTime();
 	}
 
 	void Player::OnUpdate(){
@@ -123,57 +125,41 @@ namespace basecross {
 
 			//Ｂボタンで弾を発射
 			if (cntlVec[0].bConnected) {
-				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-
-					//stage->SetSharedGameObject(L"Bullet", bullet);
-					//m_bulletTime = 0.0f;
-					//auto soundE = App::GetApp()->GetXAudio2Manager();
-					//soundE->Start(L"ShotSE",0,0.5f);
-				}
-				else {
-					//m_bulletTime = 0.0f;
-				}
 
 				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
-					if (m_bulletTime <= 3.0f) {
+					if (m_bulletTime <= m_bulletChargeTime*3) {
 						m_bulletTime += elapsedTime;
 					}
 					else {
-						m_bulletTime = 3.0f;
+						m_bulletTime = m_bulletChargeTime*3;
 					}
-					m_bulletRatio = m_bulletTime / 3.0f;
+					m_bulletRatio = m_bulletTime / (m_bulletChargeTime * 3);
 				}
 				else {
 					m_bulletFlag = false;
 				}
 
 				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B) {
-					if (m_bulletTime >= 3.0f) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 12);
+					if (m_bulletTime >= m_bulletChargeTime*3) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 20.0f);
 						bullet->SetBulletLevel(3);
-						m_bulletTime = 0.0f;
-						m_bulletRatio = 0.0f;
 					}
-					else if (m_bulletTime >= 2.0f) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 45.0f, frontAngle, 12);
+					else if (m_bulletTime >= m_bulletChargeTime*2) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 45.0f, frontAngle, 12.0f);
 						bullet->SetBulletLevel(2);
-						m_bulletTime = 0.0f;
-						m_bulletRatio = 0.0f;
 					}
-					else if (m_bulletTime >= 1.0f) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 40.0f, frontAngle, 6);
+					else if (m_bulletTime >= m_bulletChargeTime) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 40.0f, frontAngle, 6.0f);
 						bullet->SetBulletLevel(1);
-						m_bulletTime = 0.0f;
-						m_bulletRatio = 0.0f;
 					}
 					else {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 2);
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 2.0f * m_bulletPower);
 						bullet->SetBulletLevel(0);
-						m_bulletTime = 0.0f;
-						m_bulletRatio = 0.0f;
 						auto soundE = App::GetApp()->GetXAudio2Manager();
 						soundE->Start(L"ShotSE", 0, 0.5f);
 					}
+					m_bulletTime = 0.0f;
+					m_bulletRatio = 0.0f;
 				}
 				else {
 					//m_bulletTime = 0.0f;
@@ -287,7 +273,10 @@ namespace basecross {
 			<< (bool)m_dashCheck
 			<<"\nelapsedTime"
 			<< elapsedTime
+			<<"\nChain : "
+			<<scene->GetBulletPower()
 			<< endl;
+
 		scene->SetDebugString(wss.str());
 
 	}
@@ -495,19 +484,19 @@ namespace basecross {
 			break;
 		case 2:
 			//ダッシュの効果時間
-			m_dashCount = 1.0f;
-			m_dashCountTime = 1.0f;
+			m_dashCount = 1.5f;
+			m_dashCountTime = 1.5f;
 			//クールタイム
-			m_dashCoolTime = 8.0f;
-			m_dashCool = 8.0f;
+			m_dashCoolTime = 7.0f;
+			m_dashCool = 7.0f;
 			break;
 		case 3:
 			//ダッシュの効果時間
-			m_dashCount = 1.0f;
-			m_dashCountTime = 1.0f;
+			m_dashCount = 2.0f;
+			m_dashCountTime = 2.0f;
 			//クールタイム
-			m_dashCoolTime = 8.0f;
-			m_dashCool = 8.0f;
+			m_dashCoolTime = 6.0f;
+			m_dashCool = 6.0f;
 			break;
 		default:
 			//m_dashCooldown = true;//そもそもダッシュできないようにする

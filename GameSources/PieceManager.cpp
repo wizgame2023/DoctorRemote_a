@@ -16,7 +16,7 @@ namespace basecross {
 		auto& breakPiece = PieceManager::breakPieces;
 		//shared_ptr<EnemyPiece> p;
 		auto bulletLeve = bullet->GetBulletLevel();
-		auto chainRange = App::GetApp()->GetScene<Scene>()->GetChainRange();
+		float chainRange = App::GetApp()->GetScene<Scene>()->GetChainRange();
 
 		for (auto& wp_piece : pieces) {
 			auto piece = wp_piece.lock();
