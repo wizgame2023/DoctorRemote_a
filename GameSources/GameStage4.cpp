@@ -35,7 +35,7 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20);
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"SmokeEffect", 1.0f, 40);
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 		auto EffectPtr3 = AddGameObject<EffectMove>(L"GetEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
@@ -78,16 +78,16 @@ namespace basecross {
 		switch (randamEnemy)
 		{
 		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-22.0f, 0.5f, -42.0f), Vec3(-0.0f, 0.0f, 0.0f),Vec3(3.0f,3.0f,3.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-22.0f, 0.5f, -42.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 			break;
 		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-34.0f, 0.5f, 35.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-34.0f, 0.5f, 35.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 			break;
 		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(44.0f, 0.5f, 35.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(44.0f, 0.5f, 35.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 			break;
 		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(60.5f, 0.5f, -64.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));			
+			ptrEnemy = AddGameObject<Enemy>(Vec3(60.5f, 0.5f, -64.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 			break;
 		default:
 			break;
@@ -435,7 +435,7 @@ namespace basecross {
 
 	void GameStage4::OnUpdate()
 	{
-		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);
+		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
