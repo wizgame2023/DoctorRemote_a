@@ -36,7 +36,7 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f), Vec3(0.4f, 0.4f, 0.4f));
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"SmokeEffect", 1.0f, 40);
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 		auto EffectPtr3 = AddGameObject<EffectMove>(L"GetEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
@@ -76,7 +76,7 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
-		ptrEnemy = AddGameObject<Enemy>(Vec3(11.0f, 0.5f, -8.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+		ptrEnemy = AddGameObject<Enemy>(Vec3(11.0f, 0.5f, -8.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -402,6 +402,7 @@ namespace basecross {
 	void TutorialStage::OnUpdate()
 	{		
 		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
+		//auto EnemyPos = GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetPosition();
 
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
@@ -412,10 +413,10 @@ namespace basecross {
 			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//レーダーを生成
 			CreateRadar();
-			m_CareerFlag = 1;
-
+			m_CareerFlag = 1;	
 			//Enemyのムービーシーン
-			AddGameObject<EnemyMovieManager>(Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
+			AddGameObject<EnemyMovieManager>(Vec3(11.0f, -0.5f, -8.0f), Vec3(30.0f, 0.0f, 30.0f));
+
 
 			OnDestroy();
 			BossBGM();

@@ -21,6 +21,9 @@ namespace basecross {
 	}
 	void GameOverStage::OnCreate() {
 		try {
+			auto scene = App::GetApp()->GetScene<Scene>();
+			scene->SetPlayFlag(true);
+
 			//ビューとライトの作成
 			CreateViewLight();
 

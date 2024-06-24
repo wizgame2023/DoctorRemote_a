@@ -36,7 +36,7 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f), Vec3(0.4f, 0.4f, 0.4f));
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"SmokeEffect", 1.0f, 40);
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 		auto EffectPtr3 = AddGameObject<EffectMove>(L"GetEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
@@ -79,16 +79,16 @@ namespace basecross {
 		switch (randamEnemy)
 		{
 		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-54.0f, 0.5f, -22.4f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-54.0f, 0.5f, -22.4f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 			break;
 		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 			break;
 		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-42.8f, 0.5f, 54.6f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-42.8f, 0.5f, 54.6f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 			break;
 		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, 16.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, 16.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 			break;
 		default:
 			break;

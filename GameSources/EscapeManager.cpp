@@ -213,7 +213,7 @@ namespace basecross {
 			}
 		}
 
-		bool Flag = false;
+		bool Flag = false;//90度よりも大きいか小さいかを決めるフラグ
 		int count = 0;//何回90で割ったか数える
 		if (deg >= 90.0f)//90度より大きかったら
 		{
@@ -234,13 +234,11 @@ namespace basecross {
 		{
 			difference = 90.0f;
 			difference -= deg * 2.0f;
-			auto test = difference;//デバック用
 		}
 		if (Flag = true)//90度より大きいなら
 		{
 			difference = -90.0f;
 			difference += deg * 2.0f;
-			auto test = difference;
 		}
 
 		return XMConvertToRadians(difference);

@@ -53,14 +53,25 @@ namespace basecross {
 		int count = 0;//どれくらい生成したか数える
 		while (count < m_Num)
 		{
-			int kakeraPosX = (rand() % (m_MapSize * 10)) - (m_MapSize * 10) / 2;//ランダムにかけらの場所を決める
-			float fKakeraPosX = (float)kakeraPosX / 10;//floatに変更
-			int kakeraPosZ = (rand() % (m_MapSize * 10)) - (m_MapSize * 10) / 2;//ランダムにかけらの場所を決める
-			float fKakeraPosZ = (float)kakeraPosZ / 10;//floatに変更
+			int charkX = (rand() % m_MapSize+1)-1;
+			int charkZ = (rand() % m_MapSize+1)-1;
+			int a = 0;//デバック用
+
+			int kakeraPosX = charkX - (m_MapSize / 2);
+			float fKakeraPosX = (float)kakeraPosX;
+			int kakeraPosZ = (m_MapSize / 2) - charkZ;
+			float fKakeraPosZ = (float)kakeraPosZ;
+			//int kakeraPosX = (rand() % (m_MapSize * 10)) - (m_MapSize * 10) / 2;//ランダムにかけらの場所を決める
+			//float fKakeraPosX = (float)kakeraPosX / 10.0f;//floatに変更
+			//kakeraPosX /= 10;//小数点切り捨て
+			//int kakeraPosZ = (rand() % (m_MapSize * 10)) - (m_MapSize * 10) / 2;//ランダムにかけらの場所を決める
+			//float fKakeraPosZ = (float)kakeraPosZ / 10.0f;//floatに変更
+			//kakeraPosZ /= 10;//小数点切り捨て
+
 			Vec3 Pos(fKakeraPosX, 0.1f, fKakeraPosZ);//かけらの場所
 
-			int charkX = (int)fKakeraPosX + 75;//小数点切り捨て
-			int charkZ = (int)fKakeraPosZ + 75;//小数点切り捨て
+			//int charkX = (kakeraPosX + 75) - 1;//csvの座標に合わせる
+			//int charkZ = (kakeraPosZ + 75) - 1;//csvの座標に合わせる
 
 			switch (kakeraMap[charkZ][charkX])
 			{
@@ -72,6 +83,7 @@ namespace basecross {
 				break;
 			}
 			default:
+				int a = 0;
 				break;
 			}
 		}
