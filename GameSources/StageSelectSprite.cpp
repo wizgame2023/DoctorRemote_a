@@ -19,7 +19,8 @@ namespace basecross {
 		const float frameSize, //フレーム部分の大きさ
 		const wstring sprites,//選択する画像
 		const wstring frame,  //フレームの画像
-		const bool display
+		const bool display,
+		const bool displayNumber
 
 	) :
 		GameObject(stagePtr),
@@ -41,18 +42,19 @@ namespace basecross {
 		m_checkR(false),
 		m_checkL(false),
 		m_moveCheck(false),
-		m_display(display)
+		m_display(display),
+		m_displayNumber(displayNumber)
 	{}
 	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr,
 		const wstring sprites,//選択する画像
 		const wstring frame  //フレームの画像
 	):
 		GameObject(stagePtr),
-		m_pos(Vec3(-200.0f,0.0f,0.0f)),//位置
-		m_sizeX(50.0f),
-		m_sizeY(50.0f),
-		m_widthUnit(80.0f),
-		m_heightUnit(80.0f),
+		m_pos(Vec3(-200.0f,70.0f,0.0f)),//位置
+		m_sizeX(60.0f),
+		m_sizeY(60.0f),
+		m_widthUnit(100.0f),
+		m_heightUnit(100.0f),
 		m_widthNum(5),
 		m_heightNum(2),
 		m_frameSize(15.0f),
@@ -66,7 +68,8 @@ namespace basecross {
 		m_checkR(false),
 		m_checkL(false),
 		m_moveCheck(false),
-		m_display(true)
+		m_display(true),
+		m_displayNumber(true)
 	{}
 
 
@@ -88,10 +91,12 @@ namespace basecross {
 			for (int i = 0; i < m_widthNum; i++) {
 				if (m_display) {
 					//枠組みの表示
-					stage->AddGameObject<Sprite>(m_sizeX,m_sizeY, 
+					m_baseSprite[(i + j * m_widthNum)] = stage->AddGameObject<Sprite>(m_sizeX, m_sizeY,
 						m_spritesName, Vec3(m_pos.x + i * m_widthUnit, m_pos.y + j * -m_heightUnit, m_pos.z),1);
+				}
+				if (m_displayNumber) {
 					//10までの数字を表示
-					stage->AddGameObject<UITime>((i + j * m_widthNum) + 1,
+					m_numberSprites[(i + j * m_widthNum)]=stage->AddGameObject<UITime>((i + j * m_widthNum) + 1,
 						Vec3((m_pos.x - m_sizeX / 2) + i * m_widthUnit,
 							(m_pos.y + m_sizeY / 2) + j * -m_heightUnit, 0.0f), m_sizeX, m_sizeY,L"Numbers10");
 				}
@@ -170,7 +175,7 @@ namespace basecross {
 		selectTrans->SetPosition(Vec3(m_width, m_height, 0.0f));
 
 		//Bボタンで確定
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 			if (m_stageNum <= m_limitNum) {
 				m_moveCheck = true;
 			}
@@ -220,5 +225,15 @@ namespace basecross {
 	}
 	void StageSelectSprite::SetLimitNum(int num) {
 		m_limitNum = num;
+	}
+	void StageSelectSprite::ThisDestroy() {
+		GetStage()->RemoveGameObject<StageSelectSprite>(GetThis<StageSelectSprite>());
+		m_selectSprite->ThisDestory();
+		for (int j = 0; j < m_heightNum; j++) {
+			for (int i = 0; i < m_widthNum; i++) {
+				m_baseSprite[(i + j * m_widthNum)]->ThisDestory();
+				m_numberSprites[(i + j * m_widthNum)]->ThisDestory();
+			}
+		}
 	}
 }
