@@ -22,7 +22,7 @@ namespace basecross {
 	void GameOverStage::OnCreate() {
 		try {
 			auto scene = App::GetApp()->GetScene<Scene>();
-			scene->SetPlayFlag(true);
+			scene->SetPlayFlag(false);
 
 			//ビューとライトの作成
 			CreateViewLight();
@@ -42,18 +42,7 @@ namespace basecross {
 	{
 		auto scene = App::GetApp()->GetScene<Scene>();
 		m_count = scene->GetBigPieceCount();
-		if (m_count == 1) // 大きい欠片を1個壊している
-		{
-			scene->SetBigPieceCount(-1);
-		}
-		if (m_count == 2)// 大きい欠片を2個壊している
-		{
-			scene->SetBigPieceCount(-2);
-		}
-		if (m_count == 3)// 大きい欠片を3個壊している
-		{
-			scene->SetBigPieceCount(-3);
-		}
+		scene->SetBigPieceCount(-m_count);
 		scene->GetBigPieceCount();
 	}
 
