@@ -44,7 +44,7 @@ namespace basecross {
 		m_bigPieceFlag2(false),
 		m_event(false),
 		m_event2(false),
-		m_meshResName(L"Baikin_Mesh"),
+		m_meshResName(L"Boss_Mesh"),
 		m_Hp(100)
 	{}
 
@@ -67,14 +67,14 @@ namespace basecross {
 		);
 
 		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
-		ptrDraw->SetMultiMeshResource(m_meshResName);
+		ptrDraw->SetMeshResource(m_meshResName);
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetOwnShadowActive(true);
 		ptrDraw->AddAnimation(L"Default", 0, 90, true, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		auto shadowPtr = AddComponent<Shadowmap>();
-		shadowPtr->SetMultiMeshResource(m_meshResName);
+		shadowPtr->SetMeshResource(m_meshResName);
 		shadowPtr->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrColl = AddComponent<CollisionSphere>();
