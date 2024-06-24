@@ -392,6 +392,8 @@ namespace basecross {
 			auto scene = App::GetApp()->GetScene<Scene>();
 			scene->SetGameStage(4);
 			scene->SetPlayFlag(true);
+
+
 			
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
@@ -418,8 +420,6 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"PieceGarge", garge);
 			auto PGarge = AddGameObject<PlayerGarge>();
-			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
-			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
 			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//ステージ開始時の演出
 

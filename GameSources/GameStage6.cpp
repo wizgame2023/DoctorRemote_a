@@ -405,6 +405,10 @@ namespace basecross {
 			scene->SetGameStage(6);
 			scene->SetPlayFlag(true);
 
+			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
+			SetSharedGameObject(L"StageManager", stageManager);
+
+
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 			auto timeManager = AddGameObject<TimeManager>();//時間制限
@@ -429,8 +433,6 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"Garge", garge);
 			auto PGarge = AddGameObject<PlayerGarge>();
-			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
-			SetSharedGameObject(L"StageManager", stageManager);
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//導入を追加
