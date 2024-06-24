@@ -124,10 +124,15 @@ namespace basecross {
 			{
 				m_Position = m_StartPosition;
 				m_Hp -= Attack;//自分のHPが減る
-				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
-
+				GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 				auto PtrEffect = stage->GetSharedGameObject<EffectBreakWall>(L"RedEffect", false);
-				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+				auto effectPos = GetComponent<Transform>()->GetPosition();
+				effectPos.y = 0.0f;
+				PtrEffect->InsertEffect(effectPos);//エフェクトの生成位置を設定する
+
+				//auto PtrEffect = stage->GetSharedGameObject<EffectMove>(L"PlayerEffectWhite", false);
+				//PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+
 				auto numPtr = m_MyMiniMap->GetNumPtr();//自分を表示したスプライトの配列番号を取得
 				stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列から自分のポインタを消去
 				stage->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分が消える
