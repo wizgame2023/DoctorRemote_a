@@ -36,12 +36,14 @@ namespace basecross {
 		bool m_checkL;
 		bool m_moveCheck;
 		bool m_display;
+		bool m_displayNumber;
 
 		Vec3 m_pos;
 		wstring m_spritesName;
 		wstring m_frameName;
 
 		shared_ptr<UITime> m_numberSprites[10];
+		shared_ptr<Sprite> m_baseSprite[30];
 		shared_ptr<Sprite> m_selectSprite;
 		shared_ptr<Transform> m_trans;
 
@@ -62,7 +64,8 @@ namespace basecross {
 			const float frameSize, //フレーム部分の大きさ
 			const wstring sprites,//選択する画像
 			const wstring frame,  //フレームの画像
-			const bool display = true //ステージ数,選択する画像の表示をさせるか
+			const bool displayNumber = false,//ステージ数を表示させるか
+			const bool display = true //選択する画像の表示をさせるか
 		);
 		virtual ~StageSelectSprite(){}
 
@@ -74,5 +77,6 @@ namespace basecross {
 		int GetNum();
 		float GetBlinkTime();
 		void SetLimitNum(int num);
+		void ThisDestroy();
 	};
 }

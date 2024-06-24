@@ -38,9 +38,9 @@ namespace basecross {
 		auto dashButton = stage->AddGameObject<Sprite>(200, 200, L"DashButton", m_selectSprite->GetSpritePostion(1,1));
 		auto bulletLenght = stage->AddGameObject<Sprite>(200, 200, L"BulletButton", m_selectSprite->GetSpritePostion(2, 1));
 		auto pieceButton = stage->AddGameObject<Sprite>(200, 200, L"GageButton", m_selectSprite->GetSpritePostion(3, 1));
-		auto chainRarge = stage->AddGameObject<Sprite>(200, 200, L"DashButton", m_selectSprite->GetSpritePostion(1, 2));
-		auto bulletPower = stage->AddGameObject<Sprite>(200, 200, L"BulletButton", m_selectSprite->GetSpritePostion(2, 2));
-		auto bulletTime = stage->AddGameObject<Sprite>(200, 200, L"GageButton", m_selectSprite->GetSpritePostion(3, 2));
+		auto chainRarge = stage->AddGameObject<Sprite>(200, 200, L"ScopeButton", m_selectSprite->GetSpritePostion(1, 2));
+		auto bulletPower = stage->AddGameObject<Sprite>(200, 200, L"PowerButton", m_selectSprite->GetSpritePostion(2, 2));
+		auto bulletTime = stage->AddGameObject<Sprite>(200, 200, L"ChargeButton", m_selectSprite->GetSpritePostion(3, 2));
 
 
 		m_score = scene->GetAchievementPoint();
