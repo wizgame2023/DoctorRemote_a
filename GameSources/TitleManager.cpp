@@ -32,7 +32,7 @@ namespace basecross {
 			Vec3(0.0f, 0.0f, 0.0f)
 		);
 
-		m_blackBoard = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0), 1);
+		m_blackBoard = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0), 3);
 		m_blackBoard->SetColor(Col4( 1, 1, 1, 0));
 
 
@@ -58,11 +58,14 @@ namespace basecross {
 		auto drawComp = GetComponent<PNTBoneModelDraw>();
 		drawComp->UpdateAnimation(elapsedTime);
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (m_selectSprite->GetMoveCheck())
+		if (m_selectSprite->GetStageMove())
 		{
 				float fadeSpeed = 1.0f;
 				m_anCollar += fadeSpeed * elapsedTime;
 				m_blackBoard->SetColor(Col4(1, 1, 1, m_anCollar));
+				if (m_anCollar >= 0.9f) {
+					m_selectSprite->SetStageStart(true);
+				}
 		}
 	}
 }
