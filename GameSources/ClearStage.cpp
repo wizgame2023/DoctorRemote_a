@@ -23,6 +23,9 @@ namespace basecross {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
+			auto scene = App::GetApp()->GetScene<Scene>();
+			scene->SetPlayFlag(true);
+
 
 			AddGameObject<Sprite>(1280, 800, L"Clear", Vec3());
 		}
