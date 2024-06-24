@@ -49,6 +49,20 @@ namespace basecross {
 		app->RegisterTexture(L"DashIcon_g", strTexture);
 		strTexture = texPath + L"DashIcon_r.png";
 		app->RegisterTexture(L"DashIcon_r", strTexture);
+		strTexture = texPath + L"CommentWaku.png";
+		app->RegisterTexture(L"CommentWaku", strTexture);
+		strTexture = texPath + L"MapWaku.png";
+		app->RegisterTexture(L"MapWaku", strTexture);
+		strTexture = texPath + L"HPWaku.png";
+		app->RegisterTexture(L"HPWaku", strTexture);
+		strTexture = texPath + L"ChargeWaku.png";
+		app->RegisterTexture(L"ChargeWaku", strTexture);
+		strTexture = texPath + L"GageWaku.png";
+		app->RegisterTexture(L"GageWaku", strTexture);
+		strTexture = texPath + L"TimeWaku.png";
+		app->RegisterTexture(L"TimeWaku", strTexture);
+		strTexture = texPath + L"Map_sWaku.png";
+		app->RegisterTexture(L"Map_sWaku", strTexture);
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"Clear.png";
@@ -262,6 +276,8 @@ namespace basecross {
 		strTexture = comPath + L"Hp_s.png";
 		app->RegisterTexture(L"Hp_s", strTexture);
 		strTexture = comPath + L"Map_s.png";
+		app->RegisterTexture(L"Charge_s", strTexture);
+		strTexture = comPath + L"Charge_s.png";
 		app->RegisterTexture(L"Map_s", strTexture);
 		strTexture = comPath + L"Map_s2.png";
 		app->RegisterTexture(L"Map_s2", strTexture);
@@ -380,7 +396,7 @@ namespace basecross {
 	}
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
-		if (event->m_MsgStr == L"ToGameStage") {
+		if (event->m_MsgStr == L"ToGameStage1") {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage1>();
 		}
