@@ -179,6 +179,8 @@ namespace basecross {
 		app->RegisterTexture(L"EffectPiece", strTexture);
 		strTexture = texPath + L"BulletEffect.png";
 		app->RegisterTexture(L"BulletEffect", strTexture);
+		strTexture = texPath + L"Smoke.png";//煙
+		app->RegisterTexture(L"SmokeEffect", strTexture);
 
 
 		//文字の表示等
@@ -263,8 +265,8 @@ namespace basecross {
 
 
 		//ボーンマルチモデル(マルチメッシュ)の通常リソース
-		auto boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewBaikin.bmf");
-		app->RegisterResource(L"Baikin_Mesh", boneMultiModelMesh);
+		//auto boneMultiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(modPath, L"NewBaikin.bmf");
+		//app->RegisterResource(L"Baikin_Mesh", boneMultiModelMesh);
 
 		//スタティックマルチモデル
 		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-1.bmf");
@@ -276,6 +278,9 @@ namespace basecross {
 		//ボーンモデル
 		auto boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera.bmf");
 		app->RegisterResource(L"Kakera_Mesh", boneModelMesh);
+
+		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Boss.bmf");
+		app->RegisterResource(L"Boss_Mesh", boneModelMesh);
 
 
 		boneModelMesh = MeshResource::CreateBoneModelMesh(modPath, L"Newkakera2.bmf");
