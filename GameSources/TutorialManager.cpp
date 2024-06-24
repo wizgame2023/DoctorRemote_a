@@ -87,54 +87,58 @@ namespace basecross {
 			break;
 		case 2:
 			//コメントの説明
-			UIComment(13 * 4, L"Comment_s", Vec3(260, -150, 0.0f), 0,Vec2(100,200),L"White",Vec3(1.0f), true, false);
+			UIComment(13 * 4, L"Comment_s", Vec3(260, -135, 0.0f), 0,Vec2(1280,800),L"CommentWaku",Vec3(0.0f), true, false);
 			break;
 		case 3:
 			//体力の説明
-			UIComment(13 * 4, L"Hp_s", Vec3(-80,-280,0.0f),0,Vec2(100, 200), L"White", Vec3(1.0f));
+			UIComment(13 * 4, L"Hp_s", Vec3(-80,-272,0.0f),0,Vec2(1280, 800), L"HPWaku", Vec3(0.0f));
 			break;
 		case 4:
-			//ゲージの説明
-			UIComment(13 * 4, L"Garge_s", Vec3(-470, -50, 0.0f),-90, Vec2(100, 200), L"White", Vec3(1.0f));
+			//マップの説明
+			UIComment(13 * 4, L"Map_s", Vec3(-80, -280, 0.0f), 0, Vec2(1280, 800), L"ChargeWaku", Vec3(0.0f));
 			break;
 		case 5:
-			//時間の説明
-			UIComment(13 * 4, L"Time_s", Vec3(-105, 320, 0.0f), 90, Vec2(100, 200), L"White", Vec3(1.0f));
+			//ゲージの説明
+			UIComment(13 * 4, L"Garge_s", Vec3(-462, -50, 0.0f),-90, Vec2(1280, 800), L"GageWaku", Vec3(0.0f));
 			break;
 		case 6:
-			//マップの説明
-			UIComment(13 * 4, L"Map_s", Vec3(330,320,0.0f),90, Vec2(100, 200), L"White", Vec3(1.0f));
+			//時間の説明
+			UIComment(13 * 4, L"Time_s", Vec3(-111, 320, 0.0f), 90, Vec2(1280, 800), L"TimeWaku", Vec3(0.0f));
 			break;
 		case 7:
-			UIComment(13 * 4, L"Map_s2", Vec3(330, 100, 0.0f), 90, Vec2(100, 200), L"White", Vec3(1.0f));
+			//チャージゲージの説明
+			UIComment(13 * 4, L"Charge_s", Vec3(330, 320, 0.0f), 90, Vec2(1280, 800), L"MapWaku", Vec3(0.0f));
+			break;
+		case 8:
+			UIComment(13 * 4, L"Map_s2", Vec3(330, 100, 0.0f), 90, Vec2(1280, 800), L"Map_sWaku", Vec3(0.0f));
 			if (!m_mapSetumeiCheck) {
 				m_mapSetumei = stage->AddGameObject<Sprite>(256*0.8, 128*0.8,L"MapSetumei", Vec3(450, 80, 0.0f), 3);
 				m_mapSetumeiCheck = true;
 			}
 			break;
-		case 8:
+		case 9:
 			//UI説明終了
 			Comment(13 * 2, L"UISetumeiEnd", true,true);
 			break;
-		case 9:
+		case 10:
 			//操作説明
 			Comment(13 * 3, L"Sousa");
 			break;
-		case 10: 
+		case 11: 
 			//欠片の説明
 			Comment(13 * 3, L"Setumei1");
 			if (m_stageManager->GetCountFlag()) {
 				m_stageManager->SetStartFlag(true);
 			}
 			break;
-		case 11:
+		case 12:
 			//レーダーの説明（ゲージMax時）
 			if (!m_raderFlag) {
 				Comment(13 * 3, L"Setumei3");
 				m_raderFlag = true;
 			}
 			break;
-		case 12:
+		case 13:
 			//脱出の説明（敵を倒したら）
 			if (!m_enemyFlag2) {
 				Comment(13 * 3, L"Dassyutu");
@@ -150,7 +154,7 @@ namespace basecross {
 
 		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				if (m_count < 10) {
+				if (m_count < 11) {
 					m_count++;
 					m_textutreCheck = false;
 
@@ -160,12 +164,12 @@ namespace basecross {
 		}
 		if (m_player->GetRadarFlag()&&!m_raderFlag) {
 			m_textutreCheck = false;
-			m_count = 11;
+			m_count = 12;
 		}
 
 		if (m_stageManager->GetEnemyFlag()) {
 			m_textutreCheck = false;
-			m_count = 12;
+			m_count = 13;
 		}
 
 		//wstringstream wss(L"");
