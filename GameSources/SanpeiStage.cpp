@@ -69,8 +69,11 @@ namespace basecross {
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f),Vec3(0.1f,0.1f,0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
-		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f),Vec3(0.4f,0.4f,0.4f));//使わない
+		//auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20, Vec3(0.2f, 0.6f, 0.2f),Vec3(0.4f,0.4f,0.4f));//使わない
+		//SetSharedGameObject(L"RedEffect", EffectPtr2);
+		auto EffectPtr2 = AddGameObject<EffectBreakWall>(L"PlayerEffectRed", 1.0f, 20);
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
+
 		auto EffectPtr3 = AddGameObject<EffectMove>(L"PlayerEffectWhite", 1.5f, 15, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
 		auto EffectPtr4 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
@@ -195,13 +198,19 @@ namespace basecross {
 
 	void SanpeiStage::OnCreate() {
 		try {
+			auto scene = App::GetApp()->GetScene<Scene>();
+			scene->SetGameStage(1);
+			scene->SetPlayFlag(true);
+
+			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
+			SetSharedGameObject(L"StageManager", stageManager);
 
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 
-			auto& app = App::GetApp();
+			//auto& app = App::GetApp();
 
-			auto path = app->GetDataDirWString();
+			//auto path = app->GetDataDirWString();
 			//auto texPath = path + L"Textures/";
 
 
@@ -213,10 +222,10 @@ namespace basecross {
 			CreatePlayer();
 			//敵のかけらを表示
 			CreateEnemyPiece();
-			CreateEnemy();
+			//CreateEnemy();
 			//AddGameObject<Ground>();//地面を表示
 			//レーダーを追加
-			CreateRadar();	
+			//CreateRadar();	
 			//ミニマップを生成
 			SetMiniMap();
 
@@ -230,8 +239,8 @@ namespace basecross {
 			AddGameObject<TimeManager>();//時間制限
 
 			//壁を出現（テスト）
-			//AddGameObject<BreakWall>(Vec3(5.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
-			//AddGameObject<BreakWall>(Vec3(7.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(5.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
+			AddGameObject<BreakWall>(Vec3(7.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(2.0f, 2.0f, 2.0f));
 			AddGameObject<BreakWall>(Vec3(3.0f, -0.0f, 5.0f), Vec3(0.0f, 0.0f, XMConvertToRadians(45.0f)), Vec3(2.0f, 2.0f, 2.0f));
 			//AddGameObject<RecoveryWall>(Vec3(15.0f, 0.0f, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f));
 
@@ -239,8 +248,6 @@ namespace basecross {
 			//AddGameObject<Block3>(Vec3(0.5f, 0.0f, 0.0f), Vec3(0.0f, XMConvertToRadians(45.0f+90.0f), 0.0f), Vec3(23.0f, 10.0f, 18.0f));
 
 
-			auto stageManager = AddGameObject<StageManager>();//ステージマネージャー追加
-			SetSharedGameObject(L"StageManager", stageManager);
 
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
@@ -260,7 +267,7 @@ namespace basecross {
 	void SanpeiStage::OnUpdate()
 	{
 		Vec3 PlayerPos = GetSharedGameObject<Player>(L"GamePlayer")->GetComponent<Transform>()->GetPosition();
-		GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);
+		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
