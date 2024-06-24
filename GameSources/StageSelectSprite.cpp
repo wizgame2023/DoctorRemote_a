@@ -51,13 +51,13 @@ namespace basecross {
 	):
 		GameObject(stagePtr),
 		m_pos(Vec3(-200.0f,70.0f,0.0f)),//位置
-		m_sizeX(60.0f),
-		m_sizeY(60.0f),
+		m_sizeX(80.0f),
+		m_sizeY(80.0f),
 		m_widthUnit(100.0f),
 		m_heightUnit(100.0f),
 		m_widthNum(5),
 		m_heightNum(2),
-		m_frameSize(15.0f),
+		m_frameSize(40.0f),
 		m_blinkTime(10.0f),
 		m_spritesName(sprites),
 		m_frameName(frame),
@@ -93,12 +93,14 @@ namespace basecross {
 					//枠組みの表示
 					m_baseSprite[(i + j * m_widthNum)] = stage->AddGameObject<Sprite>(m_sizeX, m_sizeY,
 						m_spritesName, Vec3(m_pos.x + i * m_widthUnit, m_pos.y + j * -m_heightUnit, m_pos.z),1);
+					m_baseSprite[(i + j * m_widthNum)]->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 				}
 				if (m_displayNumber) {
 					//10までの数字を表示
-					m_numberSprites[(i + j * m_widthNum)]=stage->AddGameObject<UITime>((i + j * m_widthNum) + 1,
-						Vec3((m_pos.x - m_sizeX / 2) + i * m_widthUnit,
-							(m_pos.y + m_sizeY / 2) + j * -m_heightUnit, 0.0f), m_sizeX, m_sizeY,L"Numbers10");
+					m_numberSprites[(i + j * m_widthNum)] = stage->AddGameObject<UITime>((i + j * m_widthNum) + 1,
+						Vec3((m_pos.x - m_sizeX / 2) + i * m_widthUnit + m_widthUnit * 0.15,
+							(m_pos.y + m_sizeY / 2) + j * -m_heightUnit - m_heightUnit * 0.25, 0.0f), m_sizeX * 0.5, m_sizeY * 0.5, L"Numbers10");
+					m_numberSprites[(i + j * m_widthNum)]->SetColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
 				}
 			}
 		}
