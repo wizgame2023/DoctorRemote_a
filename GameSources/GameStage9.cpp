@@ -404,7 +404,9 @@ namespace basecross {
 
 	void GameStage9::OnCreate() {
 		try {
-			App::GetApp()->GetScene<Scene>()->SetGameStage(2);
+			auto scene = App::GetApp()->GetScene<Scene>();
+			scene->SetGameStage(9);
+			scene->SetPlayFlag(true);
 
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
