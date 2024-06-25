@@ -80,6 +80,7 @@ namespace basecross {
 
 		int GetNumPtr();//©•ª‚Ì“o˜^‚³‚ê‚Ä‚¢‚é”z—ñ‚Ì”Ô†‚ğ•Ô‚·
 		void SetNumPtr(int num);//©•ª‚Ì”z—ñ‚Ì”Ô†‚ğ“ü‚ê‚é
+		void SetColor(Col4 color);
 
 	};
 }

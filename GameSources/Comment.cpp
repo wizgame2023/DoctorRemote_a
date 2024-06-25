@@ -226,5 +226,8 @@ namespace basecross {
 		m_numPtr = num;
 	}
 
+	void Comment::SetColor(Col4 color) {
+		m_draw->SetDiffuse(color);
+	}
 }
 //end namespace basecross
