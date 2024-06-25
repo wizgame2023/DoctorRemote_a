@@ -11,6 +11,7 @@
 namespace basecross {
 	class StatusStage :public Stage {
 
+		float m_blinking;
 		void CreateViewLight(); //ƒrƒ…[‚Ìì¬
 
 		shared_ptr<Sprite> m_moji2;

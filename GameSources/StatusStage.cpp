@@ -31,8 +31,8 @@ namespace basecross {
 			auto statusManager = AddGameObject<StatusManager>();
 			SetSharedGameObject(L"StatusManager", statusManager);
 
-			auto moji = AddGameObject<Comment>(14, 0, 0.2f, 512, 256, 700 * 2, 350 * 2, 26, 8, Vec3(-400, 350.0f, 0.0f), L"StatusMoji");
-			m_moji2 = AddGameObject<Sprite>(300,300, L"StatusMoji2",Vec3(500, -300.0f, 0.0f));
+			auto moji = AddGameObject<Comment>(16, 0, 0.2f, 512, 256, 700 * 1.2, 350 * 1.2, 26, 8, Vec3(-250, 350.0f, 0.0f), L"StatusMoji");
+			m_moji2 = AddGameObject<Sprite>(150,75, L"DecisionButton",Vec3(500, -300.0f, 0.0f));
 			SetSharedGameObject(L"Moji2", m_moji2);
 			auto back = AddGameObject<Sprite>(1280,800,L"Back",Vec3(),-1);
 		}
@@ -44,6 +44,15 @@ namespace basecross {
 	void StatusStage::OnUpdate() {
 		auto statusManager = GetSharedGameObject<StatusManager>(L"StatusManager");
 		auto status = statusManager->GetStatus();
+		auto elapsed = App::GetApp()->GetElapsedTime();
+
+		if (m_blinking > 0) {
+			m_blinking -= elapsed;
+		}
+		else {
+			m_blinking = 1.5f;
+		}
+		m_moji2->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
 
 		//デバック用
 		//wstringstream wss(L"");
