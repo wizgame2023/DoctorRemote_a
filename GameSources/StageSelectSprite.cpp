@@ -51,13 +51,13 @@ namespace basecross {
 	):
 		GameObject(stagePtr),
 		m_pos(Vec3(-200.0f,70.0f,0.0f)),//ˆÊ’u
-		m_sizeX(80.0f),
-		m_sizeY(80.0f),
+		m_sizeX(70.0f),
+		m_sizeY(70.0f),
 		m_widthUnit(100.0f),
 		m_heightUnit(100.0f),
 		m_widthNum(5),
 		m_heightNum(2),
-		m_frameSize(40.0f),
+		m_frameSize(50.0f),
 		m_blinkTime(10.0f),
 		m_spritesName(sprites),
 		m_frameName(frame),

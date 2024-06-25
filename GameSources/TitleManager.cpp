@@ -26,10 +26,10 @@ namespace basecross {
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
-			Vec3(0.5f, 0.5f, 0.5f),
+			Vec3(0.4f, 0.4f, 0.4f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, -0.3f, 0.0f)
 		);
 
 		m_blackBoard = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0), 3);
