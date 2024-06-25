@@ -213,7 +213,7 @@ namespace basecross {
 			m_triDot[m_count - 2] = stage->AddGameObject<Sprite>(30, 30, L"TriDot",triPos);
 			m_triDot[m_count - 2]->AddComponent<Transform>()->SetRotation(Vec3(0.0f, 0.0f, rad));
 			m_textutreCheck = true;
-			m_frame[m_count - 2] = stage->AddGameObject<Sprite>(size.x, size.y, texture, spPos);
+			m_frame[m_count - 2] = stage->AddGameObject<Sprite>(size.x, size.y, texture, spPos, 3);
 		}
 		m_triDot[m_count - 2]->SetColor(Col4(1.0f, 0.0f, 0.0f, m_blinking));
 		m_frame[m_count - 2]->SetColor(Col4(1.0f, 0.0f, 0.0f, m_blinking));
