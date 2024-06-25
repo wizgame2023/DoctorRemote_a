@@ -84,12 +84,26 @@ namespace basecross {
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//ミニマップ関連///////////////////////////////////////////////////////////////////////////////////////////////
-		strTexture = texPath + L"MiniMapDataVer5.0.png";//ミニマップStage1
-		app->RegisterTexture(L"MiniMap", strTexture);
-		strTexture = texPath + L"MiniMapData2Ver2.0.png";//ミニマップStage2
+		strTexture = texPath + L"MiniMapStage1.png";//ミニマップStage1
+		app->RegisterTexture(L"MiniMapStage1", strTexture);
+		strTexture = texPath + L"MiniMapStage2.png";//ミニマップStage2
 		app->RegisterTexture(L"MiniMapStage2", strTexture);
-		strTexture = texPath + L"MiniMapData3Ver2.0.png";//ミニマップStage3
+		strTexture = texPath + L"MiniMapStage3.png";//ミニマップStage3
 		app->RegisterTexture(L"MiniMapStage3", strTexture);
+		strTexture = texPath + L"MiniMapStage4Ver5.0.png";//ミニマップStage4
+		app->RegisterTexture(L"MiniMapStage4", strTexture);
+		strTexture = texPath + L"MiniMapStage5.png";//ミニマップStage5
+		app->RegisterTexture(L"MiniMapStage5", strTexture);
+		strTexture = texPath + L"MiniMapStage6.png";//ミニマップStage6
+		app->RegisterTexture(L"MiniMapStage6", strTexture);
+		strTexture = texPath + L"MiniMapStage7.png";//ミニマップStage7
+		app->RegisterTexture(L"MiniMapStage7", strTexture);
+		strTexture = texPath + L"MiniMapStage8Ver2.0.png";//ミニマップStage8
+		app->RegisterTexture(L"MiniMapStage8", strTexture);
+		strTexture = texPath + L"MiniMapStage9.png";//ミニマップStage9
+		app->RegisterTexture(L"MiniMapStage9", strTexture);
+		strTexture = texPath + L"MiniMapStage10Ver2.0.png";//ミニマップStage10
+		app->RegisterTexture(L"MiniMapStage10", strTexture);
 		strTexture = texPath + L"MiniMapDataTutorialVer2.0.png";//ミニマップチュートリアル
 		app->RegisterTexture(L"MiniMapTutorial", strTexture);
 
