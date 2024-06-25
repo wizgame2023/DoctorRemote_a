@@ -36,7 +36,7 @@ namespace basecross {
 
 			CreateViewLight();
 
-			AddGameObject<Sprite>(1280, 800, L"Score", Vec3(), -1);
+			AddGameObject<Sprite>(1280, 800, L"ScoreWaku", Vec3(), -1);
 			auto moji = AddGameObject<Comment>(9, 0, 0.1f, 270, 40, 270, 40, 9, 1,
 				Vec3(325.0f, 360.0f, 0.0f), L"ResultMoji4"); //「Aボタンでスキップ」を表示
 			m_time = App::GetApp()->GetScene<Scene>()->GetTime();
