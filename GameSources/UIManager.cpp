@@ -200,8 +200,8 @@ namespace basecross {
 		auto light = stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
 
 		//弾のチャージを表すゲージ
-		auto chargeFrame = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 1.0f, 150, 15, Col4(1.0f), Col4(1.0f,1.0f,1.0f,0.5f), Vec3(-220.0f+150, -340.0f, 0.0f), Vec3(0.0f));
-		m_chargeGarge = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 0.5f, 150, 15, Col4(1.0f), Col4(1.0f), Vec3(-220.0f, -340.0f, 0.0f), Vec3(0.0f));
+		auto chargeFrame = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 1.0f, 150, 15, Col4(1.0f), Col4(1.0f,1.0f,1.0f,0.5f), Vec3(-220.0f+150, -290.0f, 0.0f), Vec3(0.0f));
+		m_chargeGarge = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 0.5f, 150, 15, Col4(1.0f), Col4(1.0f), Vec3(-220.0f, -290.0f, 0.0f), Vec3(0.0f));
 		m_dashLight = stage->AddGameObject<Sprite>(30, 30, L"White", Vec3(-250.0f, -350.0f, 0.0f));
 
 		auto garge = stage->AddGameObject<PieceGarge2>();
