@@ -52,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f));
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),100);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -81,7 +81,7 @@ namespace basecross {
 			ptrEnemy = AddGameObject<Enemy>(Vec3(-34.5f, 0.5f, -43.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(54.0f, 0.5f, 50.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+		ptrEnemy = AddGameObject<Enemy>(Vec3(54.0f, 0.5f, 50.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 			break;
 		case 2:
 			ptrEnemy = AddGameObject<Enemy>(Vec3(-26.0f, 0.5f, -1.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
@@ -444,6 +444,10 @@ namespace basecross {
 			OnDestroy();
 			BossBGM();
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
+
+			//デバック用
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
 
 
 
