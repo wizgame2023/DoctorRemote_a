@@ -15,6 +15,8 @@ namespace basecross {
 		Vec3 m_Scale;
 		Vec3 m_Position;
 		Vec3 m_Rotate;
+		Vec3 m_MoviePos;//カメラの目標の地点
+		Vec3 m_MovieAt;//カメラの目標の視点
 		Vec3 m_AfterPlayerScale;//ムービー用にする前のPlayerの大きさ
 		Mat4x4 m_AfterPlayerMat;//ムービー用にする前のPlayerの差分行列の数値
 		shared_ptr<Transform> m_Trans;
@@ -29,7 +31,7 @@ namespace basecross {
 		int m_Count;//フラグ管理
 		float m_Time;
 	public:
-		EnemyMovieManager(shared_ptr<Stage>& stage,Vec3 Pos, Vec3 scale);
+		EnemyMovieManager(shared_ptr<Stage>& stage,Vec3 Pos, Vec3 scale,Vec3 moviePos,Vec3 m_MovieAt);
 		~EnemyMovieManager();
 
 		void OnCreate()override;
