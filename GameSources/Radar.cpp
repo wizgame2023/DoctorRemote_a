@@ -32,7 +32,7 @@ namespace basecross {
 		//ptrTransform->SetScale(m_Scale);//大きさを決める
 		//auto a = GetComponent<GameObject>();
 
-		m_RaderWaku = GetStage()->AddGameObject<Sprite>(450, 250, L"RaderFrame", Vec3(0.0f, -250, 0.0f));//レーダーの枠生成
+		m_RaderWaku = GetStage()->AddGameObject<Sprite>(450, 250, L"RaderFrame", Vec3(0.0f, -230, 0.0f));//レーダーの枠生成
 		m_RaderWaku->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.5f));
 
 		// ポリゴンの自作
@@ -93,7 +93,7 @@ namespace basecross {
 
 		RadarComvertAngle();//レーダー用の角度計算
 		transform->SetRotation(0.0f, 0.0f, m_angle);//回転を初期化
-		transform->SetPosition(0.0f, -300.0f, 0.0f);
+		transform->SetPosition(0.0f, -270.0f, 0.0f);
 
 		auto flag = ptrPlayer->GetRadarFlag();
 		int test=0;
