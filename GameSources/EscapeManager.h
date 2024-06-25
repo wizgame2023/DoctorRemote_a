@@ -26,10 +26,11 @@ namespace basecross {
 		Vec3 m_TargetPos;//到着地点
 		Col4 m_SpriteCol;//暗転するためのスプライトの色
 		int m_UpdateFlag;
+		int m_MapSize;//マップのサイズ
 		float m_Time;
 		float m_paint;
 	public:
-		EscapeManager(const shared_ptr<Stage>& stagePtr, Vec3 cameraEye, Vec3 cameraAt, Vec3 minRange, Vec3 maxRange,Vec3 playerStart,Vec3 m_TargetPos);//コンストラクタ
+		EscapeManager(const shared_ptr<Stage>& stagePtr, Vec3 cameraEye, Vec3 cameraAt, Vec3 minRange, Vec3 maxRange,Vec3 playerStart,Vec3 m_TargetPos,int mapSize = 150);//コンストラクタ
 		~EscapeManager();//デストラクタ
 
 		void OnCreate() override;//生成

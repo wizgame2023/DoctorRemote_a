@@ -347,7 +347,7 @@ namespace basecross {
 	void GameStage4::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMap", Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 5);//ミニマップ生成
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage4", Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
 		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f)-50.0f, 400.0f - (Lenght / 2.0f)-50.0f, 0.0f), 4.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
@@ -392,8 +392,6 @@ namespace basecross {
 			auto scene = App::GetApp()->GetScene<Scene>();
 			scene->SetGameStage(4);
 			scene->SetPlayFlag(true);
-
-
 			
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
@@ -420,6 +418,9 @@ namespace basecross {
 			auto garge = AddGameObject<PieceGarge2>();
 			SetSharedGameObject(L"PieceGarge", garge);
 			auto PGarge = AddGameObject<PlayerGarge>();
+
+			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
+			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
 			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//ステージ開始時の演出
 
@@ -454,13 +455,13 @@ namespace basecross {
 
 
 		}
-		if (m_CareerFlag == 1)
+		if (m_CareerFlag == 1 || m_CareerFlag == 2)
 		{
 			m_CareerFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
 		}
-		if (m_CareerFlag == 2)//敵を倒したとき
-		{			
-			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+		if (m_CareerFlag == 3)//敵を倒したとき
+		{
+			//GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
 
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-5.0f, 0.5f, 10.0f), Vec3(5.0f, 0.5f, 15.0f), Vec3(0.0f, 0.5f, 13.0f), Vec3(0.0f, 0.5f, 0.0f));
@@ -470,7 +471,9 @@ namespace basecross {
 			//AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, 15.0f, 0.0f), 6);
 			//AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, -15.0f, 0.0f), 6);
 
-			m_CareerFlag = 3;
+			m_CareerFlag = 4;
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
+
 			OnDestroy();
 			BaseBGM();
 

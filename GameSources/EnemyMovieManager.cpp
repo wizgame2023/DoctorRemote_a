@@ -135,6 +135,8 @@ namespace basecross {
 				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列に帯のポインタを消す
 				GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
 
+				GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//進行度を進める(Bossが攻撃するようになる予定)
+
 				GetStage()->RemoveGameObject<EnemyMovieManager>(GetThis<EnemyMovieManager>());//自分自身を消す
 
 			}
