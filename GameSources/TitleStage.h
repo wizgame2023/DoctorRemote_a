@@ -9,6 +9,7 @@
 namespace basecross {
 	class TitleStage :public Stage
 	{
+		float m_blinking = 0;
 		void CreateViewLight();
 	public:
 		TitleStage() :Stage(){}
