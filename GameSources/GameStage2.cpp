@@ -256,6 +256,10 @@ namespace basecross {
 		float stageW = static_cast<float>(stageMap[0].size());
 		float stageD = static_cast<float>(stageMap.size());
 
+		//ミニマップ表示のために使用
+		float SpriteLenght = 225.0f;
+		Vec3 SpriteStartPos = Vec3(640.0f - (SpriteLenght / 2.0f) - 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.0f, 0.0f);
+
 		for (int r = 0; r < stageMap.size(); r++)
 		{
 			for (int c = 0; c < stageMap[0].size(); c++)
@@ -284,16 +288,16 @@ namespace basecross {
 					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 					break;
 				case 7:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(3, 10, 1));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(1, 10, 3), 100, SpriteLenght, SpriteStartPos);
 					break;
 				case 8:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3), 100, SpriteLenght, SpriteStartPos);
 					break;
 				case 9:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25), 100, SpriteLenght, SpriteStartPos);
 					break;
 				case 10:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25), 100, SpriteLenght, SpriteStartPos);
 					break;
 				case 11:
 					AddGameObject<Block>(blockStartPos + pos, Vec3(0, 0, 0));

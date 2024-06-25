@@ -8,10 +8,12 @@
 #include "Project.h"
 
 namespace basecross {
-	EnemyMovieManager::EnemyMovieManager(shared_ptr<Stage>& stage,Vec3 pos,Vec3 scale) :
+	EnemyMovieManager::EnemyMovieManager(shared_ptr<Stage>& stage,Vec3 pos,Vec3 scale,Vec3 moviePos,Vec3 movieAt) :
 		GameObject(stage),
 		m_Position(pos),
 		m_Scale(scale),
+		m_MoviePos(moviePos),
+		m_MovieAt(movieAt),
 		m_Count(0),
 		m_Time(3.0f)
 	{
@@ -66,11 +68,11 @@ namespace basecross {
 			if (cameraAt != EnemyPos)
 			{
 				cameraAt.y = 2.5f;
-				cameraAt += MoveVec(5.0f, cameraAt, Vec3(11.3f, 0.5f, -8.3f));
+				cameraAt += MoveVec(5.0f, cameraAt, m_MovieAt);
 
 				m_MovieCamera->SetAt(cameraAt);//数値をセットする
 
-				 if (abs(cameraAt.x - EnemyPos.x) <= 1.5f && abs(cameraAt.z - EnemyPos.z) <= 1.5f)//ほぼ注視点がEnemyのPosと一緒なら
+				 if (abs(cameraAt.x - m_MovieAt.x) <= 1.5f && abs(cameraAt.z - m_MovieAt.z) <= 1.5f)//ほぼ注視点がEnemyのPosと一緒なら
 				 {
 					 EnemyPos.y = cameraAt.y;
 					 m_MovieCamera->SetAt(EnemyPos);//一緒とみなす
@@ -86,16 +88,16 @@ namespace basecross {
 		{
 			//Posを指定の場所に移動させる
 			Vec3 cameraEye = m_MovieCamera->GetEye();//カメラのPos
-			Vec3 MoviePos = Vec3(9.5f, 4.0f, -20.0f);
-			if (cameraEye != MoviePos)
+			//m_MoviePos = Vec3(9.5f, 4.0f, -20.0f);//指定の場所
+			if (cameraEye != m_MoviePos)
 			{
-				cameraEye += MoveVec(8.0f, cameraEye, MoviePos);
+				cameraEye += MoveVec(8.0f, cameraEye, m_MoviePos);
 				m_MovieCamera->SetEye(cameraEye);
 
-				if (abs(cameraEye.x - MoviePos.x) <= 0.1f && abs(cameraEye.z - MoviePos.z) <= 0.1f)//ほぼPosがターゲットののPosと一緒なら
+				if (abs(cameraEye.x - m_MoviePos.x) <= 0.3f && abs(cameraEye.z - m_MoviePos.z) <= 0.3f)//ほぼPosがターゲットののPosと一緒なら
 				{
-					MoviePos.y = cameraEye.y;
-					m_MovieCamera->SetEye(MoviePos);//一緒とみなす
+					m_MoviePos.y = cameraEye.y;
+					m_MovieCamera->SetEye(m_MoviePos);//一緒とみなす
 					//GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
 					m_Count = 3;
 				}

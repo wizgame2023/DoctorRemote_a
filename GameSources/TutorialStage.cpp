@@ -374,7 +374,7 @@ namespace basecross {
 			//敵のかけらを表示
 			//CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels.csv", 75, 10);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevelTutorial.csv", 75, 10);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
 			AddGameObject<Ground>();//地面を生成
@@ -411,7 +411,7 @@ namespace basecross {
 			CreateRadar();
 			m_CareerFlag = 1;	
 			//Enemyのムービーシーン
-			AddGameObject<EnemyMovieManager>(Vec3(11.0f, -0.5f, -8.0f), Vec3(30.0f, 0.0f, 30.0f));
+			AddGameObject<EnemyMovieManager>(Vec3(11.0f, -0.5f, -8.0f), Vec3(30.0f, 0.0f, 30.0f),Vec3(9.5f, 4.0f, -20.0f), Vec3(11.3f, 0.5f, -8.3f));
 
 
 			OnDestroy();
