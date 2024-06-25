@@ -52,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 1.7f));
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f));
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -100,83 +100,74 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//1			
-				Vec3(-19.0f,0.1f,22.0f),
+				Vec3(-24.0f,0.1f,-24.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//2
-				Vec3(-12.0f,0.1f,24.0f),
+				Vec3(-21.0f,0.1f,-37.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//3
-				Vec3(-45.0f,0.1f,9.5f),
+				Vec3(-2.0f,0.1f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//4
-				Vec3(-23.0f,0.1f,-3.0f),
+				Vec3(-3.0f,0.1f,-71.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//5
-				Vec3(-25.0f,0.1f,-3.8f),
+				Vec3(45.0f,0.1f,45.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//6
-				Vec3(-39.0f,0.1f,-12.8f),
+				Vec3(48.0f,0.1f,70.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//7
-				Vec3(-64.0f,0.1f,-13.0f),
+				Vec3(-3.0f,0.1f,52.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//8
-				Vec3(-55.6f,0.1f,-65.0f),
+				Vec3(8.0f,0.1f,61.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
-				Vec3(-6.0f,0.1f,-64.0f),
+				Vec3(-35.0f,0.1f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
-				Vec3(16.5f,0.1f,6.7f),
+				Vec3(-46.0f,0.1f,-11.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
-				Vec3(25.5f,0.1f,29.5f),
+				Vec3(-70.0f,0.1f,-32.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//12
-				Vec3(20.0f,0.1f,-4.0f),
+				Vec3(-20.0f,0.1f,-0.5f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
-
-			},
-			{//13
-				Vec3(22.0f,0.1f,26.5f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-
 			}
-
-
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
@@ -325,8 +316,19 @@ namespace basecross {
 				case 13:
 					AddGameObject<Block3>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
+				case 14:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 105.0));
+					break;
+				case 15:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 85.0));
+					break;
+				case 16:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(39.0, 10, 1.0));
+					break;
+				case 17:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(60.0, 10, 1.0));
+					break;
 				}
-
 			}
 
 		}
@@ -421,7 +423,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels2.csv", 150, 30);//ランダムにかけらが出るようになる
+			//AddGameObject<RandCreateManager>(L"kakeraMapDateLevels2.csv", 150, 30);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化

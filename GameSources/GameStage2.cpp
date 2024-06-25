@@ -52,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 1.7f));
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f));
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -100,83 +100,62 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//1			
-				Vec3(-19.0f,0.1f,22.0f),
+				Vec3(4.0f,0.1f,-27.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//2
-				Vec3(-12.0f,0.1f,24.0f),
+				Vec3(-2.0f,0.1f,-18.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//3
-				Vec3(-45.0f,0.1f,9.5f),
+				Vec3(4.0f,0.1f,16.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//4
-				Vec3(-23.0f,0.1f,-3.0f),
+				Vec3(-3.0f,0.1f,28.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//5
-				Vec3(-25.0f,0.1f,-3.8f),
+				Vec3(-23.0f,0.1f,-3.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//6
-				Vec3(-39.0f,0.1f,-12.8f),
+				Vec3(-30.0f,0.1f,5.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//7
-				Vec3(-64.0f,0.1f,-13.0f),
+				Vec3(24.0f,0.1f,-5.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//8
-				Vec3(-55.6f,0.1f,-65.0f),
+				Vec3(28.0f,0.1f,6.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
-				Vec3(-6.0f,0.1f,-64.0f),
+				Vec3(-44.0f,0.1f,-21.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
-				Vec3(16.5f,0.1f,6.7f),
+				Vec3(36.0f,0.1f,32.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
-
-			},
-			{//11
-				Vec3(25.5f,0.1f,29.5f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-
-			},
-			{//12
-				Vec3(20.0f,0.1f,-4.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-
-			},
-			{//13
-				Vec3(22.0f,0.1f,26.5f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-
 			}
-
-
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
