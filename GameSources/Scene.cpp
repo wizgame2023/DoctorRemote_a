@@ -45,10 +45,8 @@ namespace basecross {
 		app->RegisterTexture(L"HeartsFrame", strTexture);
 		strTexture = texPath + L"GargeLight.png";
 		app->RegisterTexture(L"GargeLight", strTexture);
-		strTexture = texPath + L"DashIcon_g.png";
-		app->RegisterTexture(L"DashIcon_g", strTexture);
-		strTexture = texPath + L"DashIcon_r.png";
-		app->RegisterTexture(L"DashIcon_r", strTexture);
+		strTexture = texPath + L"DashIcon.png";
+		app->RegisterTexture(L"DashIcon", strTexture);
 		strTexture = texPath + L"CommentWaku.png";
 		app->RegisterTexture(L"CommentWaku", strTexture);
 		strTexture = texPath + L"MapWaku.png";
@@ -63,6 +61,12 @@ namespace basecross {
 		app->RegisterTexture(L"TimeWaku", strTexture);
 		strTexture = texPath + L"Map_sWaku.png";
 		app->RegisterTexture(L"Map_sWaku", strTexture);
+		strTexture = texPath + L"kakera.png";
+		app->RegisterTexture(L"Kakera", strTexture);
+		strTexture = texPath + L"DecisionButton.png";
+		app->RegisterTexture(L"DecisionButton", strTexture);
+		strTexture = texPath + L"RetrunButton.png";
+		app->RegisterTexture(L"RetrunButton", strTexture);
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"Clear.png";
@@ -77,6 +81,8 @@ namespace basecross {
 		app->RegisterTexture(L"Title", strTexture);
 		strTexture = texPath + L"Score.jpg";
 		app->RegisterTexture(L"Score", strTexture);
+		strTexture = texPath + L"ScoreWaku.jpg";
+		app->RegisterTexture(L"ScoreWaku", strTexture);
 		strTexture = texPath + L"Ligth.png";
 		app->RegisterTexture(L"Ligth", strTexture);
 		strTexture = texPath + L"Ligth2.png";
