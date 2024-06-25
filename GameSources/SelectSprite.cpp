@@ -83,7 +83,7 @@ namespace basecross {
 			}
 			m_blinkCheck = true;
 		}
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A&&m_stage==STAGESELECT) {
 			if (m_selectStageFlag) {
 				m_selectStage->ThisDestroy();
 				m_RetrunCom->ThisDestory();
@@ -147,6 +147,7 @@ namespace basecross {
 
 			if (m_selectStageFlag) {
 				if (m_selectStage->GetBlinkTime() <= 0) {
+					m_stage = 4;
 					int stage = m_selectStage->GetNum();
 					wstring stageNum = to_wstring(stage);
 					m_stageMove = true;

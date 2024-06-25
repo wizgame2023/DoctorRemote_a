@@ -78,5 +78,6 @@ namespace basecross {
 		float GetBlinkTime();
 		void SetLimitNum(int num);
 		void ThisDestroy();
+		bool StickFlag();
 	};
 }

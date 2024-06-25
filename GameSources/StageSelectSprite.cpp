@@ -184,27 +184,27 @@ namespace basecross {
 		}
 		
 
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		auto gameStage = scene->GetGameStage();
-		wss << L"widthMax : "
-			<<m_widthMax
-			<< L"\nwidthMin : "
-			<<m_widthMin
-			<<L"\nwidth"
-			<<m_width
-			<<L"\nheightMax : "
-			<<m_heightMax
-			<< L"\nheightMin : "
-			<<m_heightMin
-			<<L"\nheight"
-			<<m_height
-			<<L"\nstageNum"
-			<<m_stageNum
-			<<L"\nblinkTime : "
-			<<m_blinkTime
-			<< endl;
-		scene->SetDebugString(wss.str());
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//auto gameStage = scene->GetGameStage();
+		//wss << L"widthMax : "
+		//	<<m_widthMax
+		//	<< L"\nwidthMin : "
+		//	<<m_widthMin
+		//	<<L"\nwidth"
+		//	<<m_width
+		//	<<L"\nheightMax : "
+		//	<<m_heightMax
+		//	<< L"\nheightMin : "
+		//	<<m_heightMin
+		//	<<L"\nheight"
+		//	<<m_height
+		//	<<L"\nstageNum"
+		//	<<m_stageNum
+		//	<<L"\nblinkTime : "
+		//	<<m_blinkTime
+		//	<< endl;
+		//scene->SetDebugString(wss.str());
 
 
 	}
@@ -219,15 +219,6 @@ namespace basecross {
 
 		return pos;
 	}
-	int StageSelectSprite::GetNum() {
-		return m_stageNum;
-	}
-	float StageSelectSprite::GetBlinkTime() {
-		return m_blinkTime;
-	}
-	void StageSelectSprite::SetLimitNum(int num) {
-		m_limitNum = num;
-	}
 	void StageSelectSprite::ThisDestroy() {
 		GetStage()->RemoveGameObject<StageSelectSprite>(GetThis<StageSelectSprite>());
 		m_selectSprite->ThisDestory();
@@ -237,5 +228,24 @@ namespace basecross {
 				m_numberSprites[(i + j * m_widthNum)]->ThisDestory();
 			}
 		}
+	}
+	int StageSelectSprite::GetNum() {
+		return m_stageNum;
+	}
+	float StageSelectSprite::GetBlinkTime() {
+		return m_blinkTime;
+	}
+	void StageSelectSprite::SetLimitNum(int num) {
+		m_limitNum = num;
+	}
+	bool StageSelectSprite::StickFlag() {
+		auto stick = false;
+		if (m_checkD || m_checkU || m_checkL || m_checkR) {
+			stick = true;
+		}
+		else {
+			stick = false;
+		}
+		return stick;
 	}
 }
