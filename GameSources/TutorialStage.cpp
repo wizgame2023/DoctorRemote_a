@@ -433,9 +433,6 @@ namespace basecross {
 		{
 			AddGameObject<EscapeManager>(Vec3(-6.2f, 3.0f, -14.8f), Vec3(-27.0f, 0.5f, -14.5f), Vec3(-21.0f, 0.5f, -26.0f), Vec3(-10.0f, 0.5f, 5.8f), Vec3(-12.0f, 0.5f, -14.5f), Vec3(-27.5f, 0.5f, -14.5f),75);
 
-			//auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
-			//float Bairitu = 225.0f / 75.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
-			//AddGameObject<Sprite>(15.0f, 15.0f, L"White", StartPos + Vec3(-39.0f, -41.0f, 0.0f), 6);
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
 			m_CareerFlag = 4;
 
