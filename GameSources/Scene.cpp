@@ -45,10 +45,8 @@ namespace basecross {
 		app->RegisterTexture(L"HeartsFrame", strTexture);
 		strTexture = texPath + L"GargeLight.png";
 		app->RegisterTexture(L"GargeLight", strTexture);
-		strTexture = texPath + L"DashIcon_g.png";
-		app->RegisterTexture(L"DashIcon_g", strTexture);
-		strTexture = texPath + L"DashIcon_r.png";
-		app->RegisterTexture(L"DashIcon_r", strTexture);
+		strTexture = texPath + L"DashIcon.png";
+		app->RegisterTexture(L"DashIcon", strTexture);
 		strTexture = texPath + L"CommentWaku.png";
 		app->RegisterTexture(L"CommentWaku", strTexture);
 		strTexture = texPath + L"MapWaku.png";
