@@ -98,8 +98,8 @@ namespace basecross {
 			else if (m_countUp >= 6.0f && m_timeCount == 4)
 			{
 				int count = scene->GetBigPieceCount();
-				auto moji = AddGameObject<Comment>(1, count, m_mojispeed1, 40, 420, 55, 600, 1, 9,
-					Vec3(-150.0f, 160.0f, 0.0f), L"CountMoji");
+				auto rank = AddGameObject<Sprite>(55, 60, L"CountMoji", Vec3(-130.0f, 130.0f, 0.0f));
+				rank->UpdateCount(count);
 				m_timeCount++;
 			}
 
@@ -156,7 +156,7 @@ namespace basecross {
 			}
 
 			//スコアステージが生成されてから11秒後で、ステージクリアした時の残りタイムが50秒以上だったらポイント「100」を表示
-			else if (m_countUp >= 11.0f && m_timeCount == 9) //m_time >= 50 && 
+			else if (m_time >= 50 && m_countUp >= 11.0f && m_timeCount == 9)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-160.0f, -297.0f, 0.0f));//「100」を表示
 				rank->UpdateIfClear(0);
