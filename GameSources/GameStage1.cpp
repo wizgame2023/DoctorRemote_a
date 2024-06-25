@@ -160,7 +160,8 @@ namespace basecross {
 			};
 		//オブジェクトの作成
 		for (auto v : vec) {
-			AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
+			auto& piece = AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
+			PieceManager::enemyPieces.push_back(piece);
 		}
 	}
 
@@ -405,7 +406,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels2.csv", 150, 30);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevel1.csv", 150, 30);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
