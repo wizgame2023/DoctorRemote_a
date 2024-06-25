@@ -76,7 +76,7 @@ namespace basecross {
 		int randamEnemy = 0;
 		randamEnemy = rand() % 4;
 		shared_ptr<Enemy> ptrEnemy;
-		ptrEnemy = AddGameObject<Enemy>(Vec3(11.0f, 0.5f, -8.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
+		ptrEnemy = AddGameObject<Enemy>(Vec3(11.0f, 0.5f, -8.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 	}
 
@@ -425,19 +425,19 @@ namespace basecross {
 
 
 		}
-		if (m_CareerFlag == 1)
+		if (m_CareerFlag == 1 || m_CareerFlag == 2)
 		{
 			m_CareerFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
 		}
-		if (m_CareerFlag == 2)//敵を倒したとき
+		if (m_CareerFlag == 3)//敵を倒したとき
 		{
-			AddGameObject<EscapeManager>(Vec3(-6.2f, 3.0f, -14.8f), Vec3(-27.0f, 0.5f, -14.5f), Vec3(-21.0f, 0.5f, -26.0f), Vec3(-10.0f, 0.5f, 5.8f), Vec3(-12.0f, 0.5f, -14.5f), Vec3(-27.5f, 0.5f, -14.5f));
+			AddGameObject<EscapeManager>(Vec3(-6.2f, 3.0f, -14.8f), Vec3(-27.0f, 0.5f, -14.5f), Vec3(-21.0f, 0.5f, -26.0f), Vec3(-10.0f, 0.5f, 5.8f), Vec3(-12.0f, 0.5f, -14.5f), Vec3(-27.5f, 0.5f, -14.5f),75);
 
 			//auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
 			//float Bairitu = 225.0f / 75.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 			//AddGameObject<Sprite>(15.0f, 15.0f, L"White", StartPos + Vec3(-39.0f, -41.0f, 0.0f), 6);
-			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(3);//進行度を更新
-			m_CareerFlag = 3;
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
+			m_CareerFlag = 4;
 
 			OnDestroy();
 			BaseBGM();
