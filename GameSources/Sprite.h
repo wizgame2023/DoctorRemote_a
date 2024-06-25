@@ -43,6 +43,7 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		void UpdateRank(int value);
 		void UpdateIfClear(int value);
+		void UpdateCount(int value);
 		void ThisDestory();
 		void Blinking(float count);
 
