@@ -76,7 +76,7 @@ namespace basecross {
 				}
 				if (m_count < 1) {
 					m_num->ThisDestory();
-					if (!m_start) {		
+					if (!m_start && m_stageFlag <= 1) {
 						m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());					
 					}
 					m_start = true;

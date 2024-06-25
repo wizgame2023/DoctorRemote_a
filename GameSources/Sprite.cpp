@@ -152,10 +152,14 @@ namespace basecross {
 		{		
 			//m_color = Col4(1.0f, 1.0f, 1.0f, 0.0f);
 			m_draw->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//“§–¾‚É‚·‚é
+			auto test = m_color;
+			auto a = 0;
 		}
 		if (OnOff == false)//ƒIƒt‚È‚ç
 		{
 			m_draw->SetDiffuse(m_color);//“§–¾‚Å‚È‚©‚Á‚½‚ÌF‚É–ß‚é
+			auto test = m_color;
+			auto a = 0;
 		}
 	}
 
