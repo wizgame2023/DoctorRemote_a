@@ -52,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),100);
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),1.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -323,7 +323,8 @@ namespace basecross {
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage1", Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
-		AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 4.0f, 100.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 4.0f, 100.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+		SetSharedGameObject(L"MiniMapPlayer", miniMapPlayer);
 
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 100.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
@@ -445,11 +446,6 @@ namespace basecross {
 			BossBGM();
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
 
-			//デバック用
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
-
-
 
 		}
 		if (m_CareerFlag == 1 || m_CareerFlag == 2)
@@ -459,8 +455,9 @@ namespace basecross {
 		if (m_CareerFlag == 3)//敵を倒したとき
 		{
 
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f),100);
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f),100);
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
+
 
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
 			m_CareerFlag = 4;

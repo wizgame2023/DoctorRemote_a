@@ -430,7 +430,7 @@ namespace basecross {
 		try {
 			m_gameStage = -1;
 			// 背景色を設定
-			SetClearColor(Col4(0.0f, 0.11328125f, 0.2578125, 1.0f)); // ミッドナイトブルー
+			SetClearColor(Col4(1.0f, 0.5625f, 0.582031f, 1.0f)); // ミッドナイトブルー
 
 			//リソース作成
 			CreateResourses();

@@ -150,7 +150,7 @@ namespace basecross {
 		}
 		if (OnOff == false)//オフなら
 		{
-			m_draw->SetDiffuse(m_color);//透明でなかった時の色に戻る
+			m_draw->SetDiffuse(m_color2);//透明でなかった時の色に戻る
 		}
 
 	}
