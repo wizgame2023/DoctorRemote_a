@@ -52,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 1.7f));
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 1.7f),100);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -277,6 +277,10 @@ namespace basecross {
 		float stageW = static_cast<float>(stageMap[0].size());
 		float stageD = static_cast<float>(stageMap.size());
 
+		//ミニマップ表示のために使用
+		float SpriteLenght = 225.0f;
+		Vec3 SpriteStartPos = Vec3(640.0f - (SpriteLenght / 2.0f) - 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.0f, 0.0f);
+
 		for (int r = 0; r < stageMap.size(); r++)
 		{
 			for (int c = 0; c < stageMap[0].size(); c++)
@@ -305,16 +309,16 @@ namespace basecross {
 					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 					break;
 				case 7:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(3, 10, 1));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(3, 10, 1),100, SpriteLenght, SpriteStartPos);
 					break;
 				case 8:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3),100, SpriteLenght, SpriteStartPos);
 					break;
 				case 9:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25),100, SpriteLenght, SpriteStartPos);
 					break;
 				case 10:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25),100, SpriteLenght, SpriteStartPos);
 					break;
 				case 11:
 					AddGameObject<Block>(blockStartPos + pos, Vec3(0, 0, 0));
@@ -428,10 +432,6 @@ namespace basecross {
 			AddGameObject<Ground>();//地面を生成
 			CreateMap();//マップを生成
 			CreateMiniMap();//ミニマップ生成
-			//ゲージを追加
-			auto garge = AddGameObject<PieceGarge2>();
-			SetSharedGameObject(L"Garge", garge);
-			auto PGarge = AddGameObject<PlayerGarge>();
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//導入を追加
@@ -467,23 +467,18 @@ namespace basecross {
 
 
 		}
-		if (m_CareerFlag == 1)
+		if (m_CareerFlag == 1 || m_CareerFlag == 2)
 		{
 			m_CareerFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
 		}
-		if (m_CareerFlag == 2)//敵を倒したとき
+		if (m_CareerFlag == 3)//敵を倒したとき
 		{
-			GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
 
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -16.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f),100);
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f),100);
 
-			auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
-			float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
-			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, 15.0f, 0.0f), 6);
-			AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(0.0f, -15.0f, 0.0f), 6);
-
-			m_CareerFlag = 3;
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
+			m_CareerFlag = 4;
 
 			OnDestroy();
 			BaseBGM();
