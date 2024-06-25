@@ -81,6 +81,8 @@ namespace basecross {
 		app->RegisterTexture(L"Title", strTexture);
 		strTexture = texPath + L"Score.jpg";
 		app->RegisterTexture(L"Score", strTexture);
+		strTexture = texPath + L"ScoreWaku.jpg";
+		app->RegisterTexture(L"ScoreWaku", strTexture);
 		strTexture = texPath + L"Ligth.png";
 		app->RegisterTexture(L"Ligth", strTexture);
 		strTexture = texPath + L"Ligth2.png";
@@ -456,7 +458,7 @@ namespace basecross {
 		}
 
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<TitleStage>();
+			ResetActiveStage<ScoreStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
