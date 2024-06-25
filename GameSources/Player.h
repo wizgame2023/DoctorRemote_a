@@ -89,6 +89,7 @@ namespace basecross {
 		bool GetDashFlag();
 		int GetBulletLevel();
 		float GetBulletRatio();
+		void SetSpeed(float speed);
 
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};

@@ -672,6 +672,9 @@ namespace basecross {
 	float Player::GetBulletRatio() {
 		return m_bulletRatio;
 	}
+	void Player::SetSpeed(float speed){
+		m_speed = speed;
+	}
 
 	//--------------------------------------------------------------------------------------
 	//	class ChildSphere : public GameObject;
