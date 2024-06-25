@@ -52,7 +52,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 1.7f));
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 1.7f),100);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -72,27 +72,17 @@ namespace basecross {
 	//敵を作成
 	void GameStage8::CreateEnemy()
 	{
-		int randamEnemy = 0;
-		randamEnemy = rand() % 4;
-		shared_ptr<Enemy> ptrEnemy;
-		switch (randamEnemy)
-		{
-		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-34.5f, 0.5f, -43.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-			break;
-		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(54.0f, 0.5f, 50.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-			break;
-		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-26.0f, 0.5f, -1.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-			break;
-		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(56.0f, 0.5f, -63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-			break;
-		default:
-			break;
-		}
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(-34.5f, 0.5f, -43.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));//Enemyを生成
+		//ptrEnemy = AddGameObject<Enemy>(Vec3(54.0f, 0.5f, 50.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
+		//ptrEnemy = AddGameObject<Enemy>(Vec3(-26.0f, 0.5f, -1.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
+		//ptrEnemy = AddGameObject<Enemy>(Vec3(56.0f, 0.5f, -63.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
+
+		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
+		EnemyPos.y = 0.5;
+		//Enemyのムービーシーン
+		AddGameObject<EnemyMovieManager>(EnemyPos, Vec3(40.0f, 0.1f, 40.0f), Vec3(-34.1f, 4.0f, -52.82f), EnemyPos);
+
 	}
 
 	//敵の欠片を作成
@@ -426,7 +416,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels2.csv", 150, 30);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevel8.csv", 150, 30);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
@@ -450,6 +440,7 @@ namespace basecross {
 
 	void GameStage8::OnUpdate()
 	{
+		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)

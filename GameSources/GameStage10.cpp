@@ -73,27 +73,13 @@ namespace basecross {
 	//敵を作成
 	void GameStage10::CreateEnemy()
 	{
-		int randamEnemy = 1;
-		//randamEnemy = rand() % 4;
-		shared_ptr<Enemy> ptrEnemy;
-		switch (randamEnemy)
-		{
-		case 0:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-54.0f, 0.5f, -22.4f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-			break;
-		case 1:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-			break;
-		case 2:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-42.8f, 0.5f, 54.6f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-			break;
-		case 3:
-			ptrEnemy = AddGameObject<Enemy>(Vec3(-40.0f, 0.5f, 16.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-			break;
-		default:
-			break;
-		}
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));//Enemy生成
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
+		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
+		EnemyPos.y = 0.5;
+		//Enemyのムービーシーン
+		AddGameObject<EnemyMovieManager>(EnemyPos, Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f),EnemyPos);
+
 	}
 
 	//敵の欠片を作成
@@ -453,7 +439,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapDateLevels3.csv", 150, 40);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevel10.csv", 150, 40);//ランダムにかけらが出るようになる
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
@@ -481,11 +467,9 @@ namespace basecross {
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
-			//敵を生成
+			//敵を生成	
 			CreateEnemy();
 			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
-			//Enemyのムービーシーン
-			AddGameObject<EnemyMovieManager>(Vec3(11.0f, -0.5f, -8.0f), Vec3(30.0f, 0.0f, 30.0f));
 			//レーダーを生成
 			CreateRadar();
 			m_CareerFlag = 1;
