@@ -126,6 +126,7 @@ namespace basecross {
 
 		if (GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag() == 5)//脱出地点の範囲内に入ったら
 		{
+			GetStage()->GetSharedGameObject<Player>(L"GamePlayer")->SetSpeed(0.0f);
 			if (m_UpdateFlag == 1)//Playerに当たったのが自分だった場合
 			{
 				int number = m_MyMiniMap->GetNumPtr();
@@ -160,13 +161,13 @@ namespace basecross {
 		{
 			GetStage()->GetSharedGameObject<TimeManager>(L"TimeManager")->SetTimeFlag(false);//制限時間のカウントを終わらせる
 			
-			//wstringstream wss;//デバック用文字列
-			//wss << L"エスケープマネージャー：" << endl;
+			wstringstream wss;//デバック用文字列
+			wss << L"エスケープマネージャー：" << endl;
 
 
-			float speed = 5.0f;//速さ
-			float VecX = m_TargetPos.x - m_PlayerPos.x;//目標位置とPlayerとのX座標の距離を測っている
-			float VecZ = m_TargetPos.z - m_PlayerPos.z;//目標位置とPlayerとのZ座標の距離を測っている
+			float speed = 1.0f;//速さ
+			float VecX = m_TargetPos.x - m_PlayerStartPos.x;//目標位置とPlayerとのX座標の距離を測っている
+			float VecZ = m_TargetPos.z - m_PlayerStartPos.z;//目標位置とPlayerとのZ座標の距離を測っている
 			float rad = atan2(VecZ, VecX);//角度を求める（ラジアン）
 			float playerrad = rad + XMConvertToRadians(180.0f);//Playerの向いている方向
 			
@@ -175,8 +176,8 @@ namespace basecross {
 			//float degConvert = 180.0f / XM_PI;//radからdegに変換するための変数
 			//float deg = (rad * degConvert);//ラジアンをディグリーに変換
 
-			//wss << "90.0f:" << XMConvertToDegrees(DifferenceRad(playerrad)) << endl << "VecZ:" << VecZ << endl;//デバック文字列
-			//wss << m_UpdateFlag<<endl;
+			wss << "90.0f:" << XMConvertToDegrees(-DifferenceRad(playerrad)) << endl << "playerrad:" << XMConvertToDegrees(playerrad) << endl;//デバック文字列
+			wss << m_UpdateFlag<<endl;
 			m_Time += delta;//時間経過
 			m_PlayerPos.x += (speed * cos(rad)) * delta;//間接的に距離を足している
 			m_PlayerPos.z += (speed * sin(rad)) * delta;//間接的に距離を足している
@@ -187,7 +188,7 @@ namespace basecross {
 			m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerPos);
 			if (m_Time >= 1.0f)
 			{		
-				m_SpriteCol.w += 0.2f * delta;//だんだんと画面が暗くなる
+				m_SpriteCol.w += 0.002f * delta;//だんだんと画面が暗くなる
 				m_Sprite->SetColor(m_SpriteCol);
 				if (m_SpriteCol.w > 1.0f)
 				{
@@ -195,8 +196,8 @@ namespace basecross {
 				}
 			}
 			//デバック用文字列を生成
-			//auto scene = app->GetScene<Scene>();
-			//scene->SetDebugString(L"a\n" + wss.str());
+			auto scene = app->GetScene<Scene>();
+			scene->SetDebugString(L"a\n" + wss.str());
 
 		}
 	}
