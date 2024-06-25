@@ -366,7 +366,7 @@ namespace basecross {
 	void GameStage10::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage3", Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage10", Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
 		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 4.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
@@ -459,10 +459,6 @@ namespace basecross {
 			AddGameObject<Ground>();//地面を生成
 			CreateMap();//マップを生成
 			CreateMiniMap();//ミニマップ生成
-			//ゲージを追加
-			auto garge = AddGameObject<PieceGarge2>();
-			SetSharedGameObject(L"PieceGarge", garge);
-			auto PGarge = AddGameObject<PlayerGarge>();
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
@@ -488,6 +484,8 @@ namespace basecross {
 			//敵を生成
 			CreateEnemy();
 			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
+			//Enemyのムービーシーン
+			AddGameObject<EnemyMovieManager>(Vec3(11.0f, -0.5f, -8.0f), Vec3(30.0f, 0.0f, 30.0f));
 			//レーダーを生成
 			CreateRadar();
 			m_CareerFlag = 1;
@@ -495,30 +493,20 @@ namespace basecross {
 			OnDestroy();
 			BossBGM();
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
-			AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//右方向
-			AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//左方向
-
-
-
-
+			//AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//右方向
+			//AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//左方向
 		}
-		if (m_CareerFlag == 1)
+		if (m_CareerFlag == 1 || m_CareerFlag == 2)
 		{
 			m_CareerFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//進行度を更新
 		}
-		if (m_CareerFlag == 2)//敵を倒したとき
+		if (m_CareerFlag == 3)//敵を倒したとき
 		{
-			//GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+			AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//右方向
+			AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//左方向
 
-			//AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//右方向
-			//AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//左方向
-
-			//auto StartPos = GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
-			//float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
-			//AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(19.0f, 0.0f, 0.0f), 6);
-			//AddGameObject<Sprite>(5.0f, 5.0f, L"White", StartPos + Vec3(-17.0f, 0.0f, 0.0f), 6);
-
-			m_CareerFlag = 3;
+			m_CareerFlag = 4;
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
 
 			OnDestroy();
 			BaseBGM();

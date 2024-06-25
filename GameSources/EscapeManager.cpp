@@ -8,7 +8,7 @@
 #include "Project.h"
 
 namespace basecross {
-	EscapeManager::EscapeManager(const shared_ptr<Stage>& stagePtr,Vec3 cameraEye,Vec3 cameraAt,Vec3 minRange,Vec3 maxRange,Vec3 playerStartPos,Vec3 TagetPos):
+	EscapeManager::EscapeManager(const shared_ptr<Stage>& stagePtr,Vec3 cameraEye,Vec3 cameraAt,Vec3 minRange,Vec3 maxRange,Vec3 playerStartPos,Vec3 TagetPos,int mapSize):
 		GameObject(stagePtr),
 		m_Time(0.0f),
 		m_UpdateFlag(0),
@@ -18,6 +18,7 @@ namespace basecross {
 		m_MaxRange(maxRange),
 		m_PlayerStartPos(playerStartPos),
 		m_TargetPos(TagetPos),
+		m_MapSize(mapSize),
 		m_paint(1.0f)
 	{
 
@@ -38,7 +39,7 @@ namespace basecross {
 		m_SpriteCol = m_Sprite->GetColor();
 
 		auto StartPos = stage->GetSharedGameObject<Sprite>(L"MiniMap")->GetComponent<Transform>()->GetPosition();
-		float Bairitu = 225.0f / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
+		float Bairitu = 225.0f / m_MapSize;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
 		auto test = m_PlayerStartPos;
 
@@ -49,7 +50,7 @@ namespace basecross {
 
 	void EscapeManager::Start()//開始
 	{
-		GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//ステージ進行度を進める
+		GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(5);//ステージ進行度を進める
 
 		auto stage = GetStage();//ステージ取得
 		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
@@ -123,7 +124,7 @@ namespace basecross {
 			}
 		}
 
-		if (GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag() == 4)//脱出地点の範囲内に入ったら
+		if (GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag() == 5)//脱出地点の範囲内に入ったら
 		{
 			if (m_UpdateFlag == 1)//Playerに当たったのが自分だった場合
 			{

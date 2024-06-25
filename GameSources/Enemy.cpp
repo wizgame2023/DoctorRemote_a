@@ -45,7 +45,7 @@ namespace basecross {
 		m_event(false),
 		m_event2(false),
 		m_meshResName(L"Boss_Mesh"),
-		m_Hp(100)
+		m_Hp(1)
 	{}
 
 	void Enemy::OnCreate()
@@ -60,7 +60,7 @@ namespace basecross {
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.2f, 0.2f, 0.2f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.3f, 0.0f)
@@ -73,6 +73,8 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"Default", 0, 90, true, 30.0f);
 		ptrDraw->ChangeCurrentAnimation(L"Default");
 
+
+
 		auto shadowPtr = AddComponent<Shadowmap>();
 		shadowPtr->SetMeshResource(m_meshResName);
 		shadowPtr->SetMeshToTransformMatrix(spanMat);
@@ -80,6 +82,7 @@ namespace basecross {
 		auto ptrColl = AddComponent<CollisionSphere>();
 		ptrColl->SetAfterCollision(AfterCollision::None);
 		ptrColl->SetDrawActive(true);
+		//ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
 
 
 		GetStage()->SetCollisionPerformanceActive(true);
@@ -95,6 +98,11 @@ namespace basecross {
 		auto stage = GetStage();
 		//auto ptrDraw = GetComponent<PNTBoneModelDraw>();
 		//ptrDraw->UpdateAnimation(elapsed);
+
+		//アニメーションの更新
+		auto drawComp = GetComponent<PNTBoneModelDraw>();
+		drawComp->UpdateAnimation(elapsed);
+
 		
 		m_trans = GetComponent<Transform>();
 		m_posCur = m_trans->GetPosition();
@@ -137,7 +145,7 @@ namespace basecross {
 		m_trans->SetPosition(Vec3(m_posCur));
 		 
 		//まき散らすウイルスの更新
-		if (eventLenght < 30.0f) {
+		if (eventLenght < 30.0f && stage->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag() == 2) {
 			m_event = true;
 		}
 		if (m_event) {
@@ -229,7 +237,7 @@ namespace basecross {
 		}	
 		if (m_Hp <= 0)
 		{
-			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//ステージの全体フラグ進行
+			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(3);//ステージの全体フラグ進行
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
 			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
 			m_enemyflag = GetEnemy();

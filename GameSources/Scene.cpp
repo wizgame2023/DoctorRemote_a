@@ -49,6 +49,26 @@ namespace basecross {
 		app->RegisterTexture(L"DashIcon_g", strTexture);
 		strTexture = texPath + L"DashIcon_r.png";
 		app->RegisterTexture(L"DashIcon_r", strTexture);
+		strTexture = texPath + L"CommentWaku.png";
+		app->RegisterTexture(L"CommentWaku", strTexture);
+		strTexture = texPath + L"MapWaku.png";
+		app->RegisterTexture(L"MapWaku", strTexture);
+		strTexture = texPath + L"HPWaku.png";
+		app->RegisterTexture(L"HPWaku", strTexture);
+		strTexture = texPath + L"ChargeWaku.png";
+		app->RegisterTexture(L"ChargeWaku", strTexture);
+		strTexture = texPath + L"GageWaku.png";
+		app->RegisterTexture(L"GageWaku", strTexture);
+		strTexture = texPath + L"TimeWaku.png";
+		app->RegisterTexture(L"TimeWaku", strTexture);
+		strTexture = texPath + L"Map_sWaku.png";
+		app->RegisterTexture(L"Map_sWaku", strTexture);
+		strTexture = texPath + L"kakera.png";
+		app->RegisterTexture(L"kakera", strTexture);
+		strTexture = texPath + L"DecisionButton.png";
+		app->RegisterTexture(L"DecisionButton", strTexture);
+		strTexture = texPath + L"RetrunButton.png";
+		app->RegisterTexture(L"RetrunButton", strTexture);
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"Clear.png";
@@ -84,12 +104,26 @@ namespace basecross {
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//ミニマップ関連///////////////////////////////////////////////////////////////////////////////////////////////
-		strTexture = texPath + L"MiniMapDataVer5.0.png";//ミニマップStage1
-		app->RegisterTexture(L"MiniMap", strTexture);
-		strTexture = texPath + L"MiniMapData2Ver2.0.png";//ミニマップStage2
+		strTexture = texPath + L"MiniMapStage1.png";//ミニマップStage1
+		app->RegisterTexture(L"MiniMapStage1", strTexture);
+		strTexture = texPath + L"MiniMapStage2.png";//ミニマップStage2
 		app->RegisterTexture(L"MiniMapStage2", strTexture);
-		strTexture = texPath + L"MiniMapData3Ver2.0.png";//ミニマップStage3
+		strTexture = texPath + L"MiniMapStage3.png";//ミニマップStage3
 		app->RegisterTexture(L"MiniMapStage3", strTexture);
+		strTexture = texPath + L"MiniMapStage4Ver5.0.png";//ミニマップStage4
+		app->RegisterTexture(L"MiniMapStage4", strTexture);
+		strTexture = texPath + L"MiniMapStage5.png";//ミニマップStage5
+		app->RegisterTexture(L"MiniMapStage5", strTexture);
+		strTexture = texPath + L"MiniMapStage6.png";//ミニマップStage6
+		app->RegisterTexture(L"MiniMapStage6", strTexture);
+		strTexture = texPath + L"MiniMapStage7.png";//ミニマップStage7
+		app->RegisterTexture(L"MiniMapStage7", strTexture);
+		strTexture = texPath + L"MiniMapStage8Ver2.0.png";//ミニマップStage8
+		app->RegisterTexture(L"MiniMapStage8", strTexture);
+		strTexture = texPath + L"MiniMapStage9.png";//ミニマップStage9
+		app->RegisterTexture(L"MiniMapStage9", strTexture);
+		strTexture = texPath + L"MiniMapStage10Ver2.0.png";//ミニマップStage10
+		app->RegisterTexture(L"MiniMapStage10", strTexture);
 		strTexture = texPath + L"MiniMapDataTutorialVer2.0.png";//ミニマップチュートリアル
 		app->RegisterTexture(L"MiniMapTutorial", strTexture);
 
@@ -262,6 +296,8 @@ namespace basecross {
 		strTexture = comPath + L"Hp_s.png";
 		app->RegisterTexture(L"Hp_s", strTexture);
 		strTexture = comPath + L"Map_s.png";
+		app->RegisterTexture(L"Charge_s", strTexture);
+		strTexture = comPath + L"Charge_s.png";
 		app->RegisterTexture(L"Map_s", strTexture);
 		strTexture = comPath + L"Map_s2.png";
 		app->RegisterTexture(L"Map_s2", strTexture);
@@ -380,7 +416,7 @@ namespace basecross {
 	}
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
-		if (event->m_MsgStr == L"ToGameStage") {
+		if (event->m_MsgStr == L"ToGameStage1") {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage1>();
 		}

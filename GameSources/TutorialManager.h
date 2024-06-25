@@ -36,6 +36,7 @@ namespace basecross {
 		shared_ptr<Sprite> m_bButton;
 		shared_ptr<CommentManager> m_com[20];
 		shared_ptr<Sprite> m_mapSetumei;
+		shared_ptr<Sprite> m_frame[10];
 
 
 	public:
@@ -45,7 +46,8 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
-		void Comment(int moji, wstring mesh,bool delet,bool delet2);
-		void UIComment(int moji, wstring mesh, Vec3 triPos, float deg,bool delet,bool delte2);
+		void Comment(int moji, wstring mesh, bool delet = true, bool delet2 = false);
+		void UIComment(int moji, wstring mesh, Vec3 triPos, float deg, Vec2 size, wstring texture, Vec3 spPos,
+			bool delet = true, bool delte2 = true);
 	};
 }
