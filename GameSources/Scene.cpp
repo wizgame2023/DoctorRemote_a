@@ -63,6 +63,8 @@ namespace basecross {
 		app->RegisterTexture(L"TimeWaku", strTexture);
 		strTexture = texPath + L"Map_sWaku.png";
 		app->RegisterTexture(L"Map_sWaku", strTexture);
+		strTexture = texPath + L"kakera.png";
+		app->RegisterTexture(L"kakera", strTexture);
 		strTexture = texPath + L"DecisionButton.png";
 		app->RegisterTexture(L"DecisionButton", strTexture);
 		strTexture = texPath + L"RetrunButton.png";
