@@ -221,7 +221,7 @@ namespace basecross {
 	void GameStage7::CerateBreakEnemyPiece()//‰ó‚ê‚é•Ç‚Ìæ‚É‚ ‚é‚©‚¯‚ç
 	{
 
-		Vec3 Pos[] = { Vec3(35.2f,0.3f,50.0f),Vec3(-35.0f,0.3f,-37.0f),Vec3(-55.0f,0.3f,50.0f),Vec3(37.0f,0.3f,13.0f),Vec3(6.0f,0.3f,-50.0f),Vec3(13.0f,0.3f,-38.0f) };//BigPiece‚ÌPosisionˆê——
+		Vec3 Pos[] = { Vec3(10.0f,0.3f,50.0f),Vec3(-55.0f,0.3f,-40.0f),Vec3(-8.0f,0.3f,41.0f),Vec3(53.0f,0.3f,-7.0f),Vec3(6.0f,0.3f,-50.0f),Vec3(-37.0f,0.3f,15.0f) };//BigPiece‚ÌPosisionˆê——
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPiece‚Ì‡Œv‚Ì”
 
 		for (int i = 0; i < m_BigPieceLength; i++)
