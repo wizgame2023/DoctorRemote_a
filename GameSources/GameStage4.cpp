@@ -414,11 +414,6 @@ namespace basecross {
 			AddGameObject<Ground>();//地面を生成
 			CreateMap();//マップを生成
 			CreateMiniMap();//ミニマップ生成
-			//ゲージを追加
-			auto garge = AddGameObject<PieceGarge2>();
-			SetSharedGameObject(L"PieceGarge", garge);
-			auto PGarge = AddGameObject<PlayerGarge>();
-
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
