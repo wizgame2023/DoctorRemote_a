@@ -52,6 +52,8 @@ namespace basecross {
 	{
 		GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(5);//ステージ進行度を進める
 
+		GetStage()->GetSharedGameObject<Player>(L"GamePlayer")->SetSpeed(0.0f);//Playerの慣性を消す
+
 		auto stage = GetStage();//ステージ取得
 		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
 
@@ -126,7 +128,6 @@ namespace basecross {
 
 		if (GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag() == 5)//脱出地点の範囲内に入ったら
 		{
-			GetStage()->GetSharedGameObject<Player>(L"GamePlayer")->SetSpeed(0.0f);
 			if (m_UpdateFlag == 1)//Playerに当たったのが自分だった場合
 			{
 				int number = m_MyMiniMap->GetNumPtr();
@@ -165,7 +166,7 @@ namespace basecross {
 			wss << L"エスケープマネージャー：" << endl;
 
 
-			float speed = 1.0f;//速さ
+			float speed = 5.0f;//速さ
 			float VecX = m_TargetPos.x - m_PlayerStartPos.x;//目標位置とPlayerとのX座標の距離を測っている
 			float VecZ = m_TargetPos.z - m_PlayerStartPos.z;//目標位置とPlayerとのZ座標の距離を測っている
 			float rad = atan2(VecZ, VecX);//角度を求める（ラジアン）
@@ -188,7 +189,7 @@ namespace basecross {
 			m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerPos);
 			if (m_Time >= 1.0f)
 			{		
-				m_SpriteCol.w += 0.002f * delta;//だんだんと画面が暗くなる
+				m_SpriteCol.w += 0.2f * delta;//だんだんと画面が暗くなる
 				m_Sprite->SetColor(m_SpriteCol);
 				if (m_SpriteCol.w > 1.0f)
 				{

@@ -123,6 +123,8 @@ namespace basecross {
 				m_Player.lock()->GetComponent<Transform>()->SetScale(m_AfterPlayerScale);//変更前のサイズに戻す
 				m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(m_AfterPlayerMat);//変更前の差分行列の数値に戻す
 
+				GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(true);//Playerの操作を効かせる
+
 				auto View = GetStage()->CreateView<SingleView>();
 				View->SetCamera(m_StageCamera.lock());
 				GetStage()->SetView(View);
@@ -190,6 +192,8 @@ namespace basecross {
 			m_Player = stage->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerを取得
 			m_AfterPlayerScale = m_Player.lock()->GetComponent<Transform>()->GetScale();//変更前のサイズを取得
 			m_AfterPlayerMat = m_Player.lock()->GetComponent<PNTBoneModelDraw>()->GetMeshToTransformMatrix();//変更前の差分行列を取得
+
+			stage->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerの操作を効かなくさせる
 
 
 			m_Player.lock()->GetComponent<Transform>()->SetScale(1.0f, 1.0f, 1.0f);//ムービー用のサイズにする
