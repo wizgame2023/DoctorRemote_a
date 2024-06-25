@@ -9,7 +9,8 @@
 
 namespace basecross {
 	//文字数だけ
-	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr,const int moji):
+	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr,const int moji
+	):
 		GameObject(stagePtr),
 		m_mojiNum(moji),//文字数
 		m_addLine(0),//何行目から
@@ -20,14 +21,15 @@ namespace basecross {
 		m_heigthSize(256),//画像サイズ縦
 		m_sizeW(350),//大きさ横
 		m_sizeH(350),//大きさ縦
-		m_count(m_mtime* m_column),//次の行までの時間
+		m_count(0),//次の行までの時間
 		m_moji{ 13,13,13,13,13,13,13,13,13,13 },
 		m_cnt(0),
 		m_pos(Vec3()),
 		m_meshResName(L"comment")
 	{}
 	//
-	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr, const int moji,const int line) :
+	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr, const int moji,const int line, const Col4 color
+	) :
 		GameObject(stagePtr),
 		m_mojiNum(moji),//文字数
 		m_addLine(line),//何行目から
@@ -38,14 +40,21 @@ namespace basecross {
 		m_heigthSize(256),//画像サイズ縦
 		m_sizeW(350),//大きさ横
 		m_sizeH(350),//大きさ縦
-		m_count(m_mtime* m_column),//次の行までの時間
+		m_count(0),//次の行までの時間
 		m_moji{ 13,13,13,13,13,13,13,13,13,13 },
 		m_cnt(0),
 		m_pos(Vec3()),
-		m_meshResName(L"comment")
+		m_meshResName(L"comment"),
+		m_color(color)
 
 	{}
-	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr, const int moji, const int line,Vec3 pos,const wstring mesh) :
+	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr, 
+		const int moji, 
+		const int line,
+		const Vec3 pos,
+		const wstring mesh,
+		const Col4 color
+	) :
 		GameObject(stagePtr),
 		m_mojiNum(moji),//文字数
 		m_addLine(line),//何行目から
@@ -56,11 +65,12 @@ namespace basecross {
 		m_heigthSize(256),//画像サイズ縦
 		m_sizeW(300),//大きさ横
 		m_sizeH(300),//大きさ縦
-		m_count(m_mtime* m_column),//次の行までの時間
+		m_count(0),//次の行までの時間
 		m_moji{ 13,13,13,13,13,13,13,13,13,13 },
 		m_cnt(0),
 		m_pos(pos),
-		m_meshResName(mesh)
+		m_meshResName(mesh),
+		m_color(color)
 
 	{}
 
@@ -75,7 +85,8 @@ namespace basecross {
 		const int bes,
 		const int ver,
 		const Vec3 pos,
-		const wstring mesh
+		const wstring mesh,
+		const Col4 color
 	):
 		GameObject(stagePtr),
 		m_mojiNum(mojiNum),//文字数
@@ -91,7 +102,8 @@ namespace basecross {
 		m_moji{ bes,bes,bes,bes,bes,bes,bes,bes,bes,bes, },
 		m_cnt(0),
 		m_pos(pos),
-		m_meshResName(mesh)
+		m_meshResName(mesh),
+		m_color(color)
 	{}
 
 
@@ -119,7 +131,7 @@ namespace basecross {
 				m_com[m_cnt] = stage->AddGameObject<Comment>(m_moji[m_cnt], m_cnt + m_addLine, m_mtime,
 					m_widthSize, m_heigthSize, m_sizeW, m_sizeH,
 					m_column,m_line, m_pos, m_meshResName);
-
+				m_com[m_cnt]->SetColor(Col4(m_color));
 				m_count = m_mtime * m_column;
 				m_cnt++;
 				int a = 0;
@@ -133,5 +145,13 @@ namespace basecross {
 		for (int i = 0; i < m_cnt; i++) {
 			m_com[i]->ThisDestroy();
 		}
+	}
+	
+	void CommentManager::SetColor(Col4 color) {
+		m_color=color;
+	}
+	
+	void CommentManager::SetIntervalTime(float time) {
+		m_mtime = time;
 	}
 }

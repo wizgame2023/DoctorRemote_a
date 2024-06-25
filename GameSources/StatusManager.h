@@ -22,6 +22,7 @@ namespace basecross {
 		bool m_colorCheck;
 		bool m_moveCheck;
 		bool m_comFlag;
+		bool m_moveStick;
 		float m_count;
 
 		int m_decision;
@@ -31,11 +32,11 @@ namespace basecross {
 		int m_control;
 		shared_ptr<Transform> m_trans;
 		shared_ptr<Player> m_player;
-		shared_ptr<CommentManager> m_com[3];
+		shared_ptr<CommentManager> m_com[6];
 		shared_ptr<StageSelectSprite> m_selectSprite;
 		shared_ptr<UITime> m_pointNum[4];
-
 		shared_ptr<Sprite> m_sprite;
+
 		Col4 m_color;
 
 	public:
@@ -44,6 +45,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
+		void NumDisplay(int digit, int num,Vec3 pos);
 		int GetStatus();
 		int GetDecision();
 	};

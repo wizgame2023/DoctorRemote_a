@@ -15,30 +15,37 @@ namespace basecross {
 		float m_heigthSize;
 		float m_sizeW;
 		float m_sizeH;
-		Vec3 m_pos;
-		wstring m_meshResName;
+		float m_count;
+		float m_mtime;
 
 		int m_moji[10];
 		int m_mojiNum;
 		int m_addLine;
 		int m_mojiLine;
 		int m_mojiColumn;
-
 		int m_line;
 		int m_column;
 		int m_cnt;
 		int m_lineNum;
-		float m_count;
-		float m_mtime;
 
 		bool m_lineFlag;
+
+		Vec3 m_pos;
+		wstring m_meshResName;
+		Col4 m_color;
+
 
 		shared_ptr<Comment> m_com[10];
 		shared_ptr<Transform> m_trans;
 	public:
 		CommentManager(const shared_ptr<Stage>& stagePtr,const int moji);
-		CommentManager(const shared_ptr<Stage>& stagePtr, const int moji,const int line);
-		CommentManager(const shared_ptr<Stage>& stagePtr, const int moji, const int line,Vec3 pos,const wstring mesh);
+		CommentManager(const shared_ptr<Stage>& stagePtr, const int moji, const int line, const Col4 color = Col4(1.0f));
+		CommentManager(const shared_ptr<Stage>& stagePtr, const int moji,
+			const int line,
+			const Vec3 pos,
+			const wstring mesh,
+			const Col4 color = Col4(1.0f)
+		);
 		CommentManager(const shared_ptr<Stage>& stagePtr,
 			const int mojiNum,
 			const int line,
@@ -50,7 +57,8 @@ namespace basecross {
 			const int ber,
 			const int ver,
 			const Vec3 pos,
-			const wstring mesh
+			const wstring mesh,
+			const Col4 color = Col4(1.0f)
 		);
 
 
@@ -59,6 +67,8 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
+		void SetColor(Col4 color);
 		void ThisDestroy();
+		void SetIntervalTime(float time);
 	};
 }
