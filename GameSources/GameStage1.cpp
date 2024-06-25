@@ -309,7 +309,7 @@ namespace basecross {
 					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
 					break;
 				case 7:
-					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(3, 10, 1),100, SpriteLenght, SpriteStartPos);
+					AddGameObject<BreakWall>(startPos + pos, Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(1, 10, 3),100, SpriteLenght, SpriteStartPos);
 					break;
 				case 8:
 					AddGameObject<BreakWall>(startPos + pos, Vec3(0, 0, 0), Vec3(1, 10, 3),100, SpriteLenght, SpriteStartPos);
