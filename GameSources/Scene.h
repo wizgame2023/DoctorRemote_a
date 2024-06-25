@@ -63,22 +63,28 @@ namespace basecross{
 		void SetPlayFlag(bool flag);//GameStageをプレイしているかどうか確認する
 		bool GetPlayFlag();
 		//ステータス
-		int GetDash();
+		float GetDash();
+		int GetDashStatus();
 		void SetDashStatus(int status);
 		void AddDashStatus(int status);
 		float GetBulletLength();
+		int GetBulletLengthStatus();
 		void SetBulletLengthStatus(int status);
 		void AddBulletLengthStatus(int status);
 		int GetBigPieceUp();
+		int GetBigPieceUpStatus();
 		void SetBigPieceUpStatus(int status);
 		void AddBigPieceUpStatus(int status);
 		float GetChainRange();
+		int GetChainRangeStatus();
 		void SetChainRargeStatus(int status);
 		void AddChainRargeStatus(int status);
 		float GetBulletPower();
+		int GetBulletPowerStatus();
 		void SetBulletPowerStatus(int status);
 		void AddBulletPowerStatus(int status);
 		float GetBulletTime();
+		int GetBulletTimeStatus();
 		void SetBulletTimeStatus(int status);
 		void AddBulletTimeStatus(int status);
 

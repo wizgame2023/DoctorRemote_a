@@ -410,18 +410,18 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"ScaryBGM", soundWav);
 		soundWav = SoundPath + L"BossBGM.wav";
 		App::GetApp()->RegisterWav(L"BossBGM", soundWav);
-		soundWav = SoundPath + L"Clear.wav";
-		App::GetApp()->RegisterWav(L"Clear", soundWav);
-		soundWav = SoundPath + L"GameClear.wav";
-		App::GetApp()->RegisterWav(L"GameClear", soundWav);
-		soundWav = SoundPath + L"GameOver.wav";
-		App::GetApp()->RegisterWav(L"GameOver", soundWav);
-		soundWav = SoundPath + L"Score.wav";
-		App::GetApp()->RegisterWav(L"Score", soundWav);
-		soundWav = SoundPath + L"Title.wav";
-		App::GetApp()->RegisterWav(L"Title", soundWav);
-		soundWav = SoundPath + L"Tutorial.wav";
-		App::GetApp()->RegisterWav(L"Tutorial", soundWav);
+		//soundWav = SoundPath + L"Clear.wav";
+		//App::GetApp()->RegisterWav(L"Clear", soundWav);
+		//soundWav = SoundPath + L"GameClear.wav";
+		//App::GetApp()->RegisterWav(L"GameClear", soundWav);
+		//soundWav = SoundPath + L"GameOver.wav";
+		//App::GetApp()->RegisterWav(L"GameOver", soundWav);
+		//soundWav = SoundPath + L"Score.wav";
+		//App::GetApp()->RegisterWav(L"Score", soundWav);
+		//soundWav = SoundPath + L"Title.wav";
+		//App::GetApp()->RegisterWav(L"Title", soundWav);
+		//soundWav = SoundPath + L"Tutorial.wav";
+		//App::GetApp()->RegisterWav(L"Tutorial", soundWav);
 
 
 	}
@@ -524,7 +524,7 @@ namespace basecross {
 
 	//ステータス関連
 	//ダッシュのフラグ
-	int Scene::GetDash() {
+	float Scene::GetDash() {
 		auto dash = 1.0f;
 		switch (m_dashStatus)
 		{
@@ -542,6 +542,9 @@ namespace basecross {
 			break;
 		}
 		return dash;
+	}
+	int Scene::GetDashStatus() {
+		return m_dashStatus;
 	}
 	void Scene::SetDashStatus(int status) {
 		m_dashStatus = status;
@@ -573,6 +576,9 @@ namespace basecross {
 
 		return bulletLength;
 	}
+	int Scene::GetBulletLengthStatus() {
+		return m_bulletLengthStatus;
+	}
 	void Scene::SetBulletLengthStatus(int status) {
 		m_bulletLengthStatus = status;
 	}
@@ -603,6 +609,9 @@ namespace basecross {
 
 		return littlePiecce;
 	}
+	int Scene::GetBigPieceUpStatus() {
+		return m_PieceStatus;
+	}
 	void Scene::SetBigPieceUpStatus(int status) {
 		m_PieceStatus = status;
 	}
@@ -631,6 +640,9 @@ namespace basecross {
 			break;
 		}
 		return chainRange;
+	}
+	int Scene::GetChainRangeStatus() {
+		return m_chainRangeStatus;
 	}
 	void Scene::SetChainRargeStatus(int status) {
 		m_chainRangeStatus = status;
@@ -661,6 +673,9 @@ namespace basecross {
 		}
 		return bulletPower;
 	}
+	int Scene::GetBulletPowerStatus() {
+		return m_bulletPowerStatus;
+	}
 	void Scene::SetBulletPowerStatus(int status) {
 		m_bulletPowerStatus = status;
 	}
@@ -689,6 +704,9 @@ namespace basecross {
 			break;
 		}
 		return bulletTime;
+	}
+	int Scene::GetBulletTimeStatus() {
+		return m_bulletTimeStatus;
 	}
 	void Scene::SetBulletTimeStatus(int status) {
 		m_bulletTimeStatus = status;
