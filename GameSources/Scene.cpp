@@ -703,6 +703,13 @@ namespace basecross {
 		m_gameStage = gameStage;
 	}
 
+	int Scene::GetNextStage() {
+		return m_nextStage;
+	}
+	void Scene::SetNextStage(int stage) {
+		m_nextStage = stage;
+	}
+
 	int  Scene::GetAchievementPoint()
 	{
 		return m_achievementPoint;
