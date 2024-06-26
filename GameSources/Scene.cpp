@@ -105,6 +105,8 @@ namespace basecross {
 		app->RegisterTexture(L"Bbutton", strTexture);
 		strTexture = texPath + L"LoadScene.png";
 		app->RegisterTexture(L"LoadScene", strTexture);
+		strTexture = texPath + L"LoadStageWaku.png";
+		app->RegisterTexture(L"LoadStageWaku", strTexture);
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//ミニマップ関連///////////////////////////////////////////////////////////////////////////////////////////////
@@ -282,10 +284,12 @@ namespace basecross {
 		app->RegisterTexture(L"LoadMoji1", strTexture);
 		strTexture = texPath + L"LoadMoji2.png";
 		app->RegisterTexture(L"LoadMoji2", strTexture);
-		strTexture = texPath + L"BossMoji.png";
-		app->RegisterTexture(L"BossMoji", strTexture);
 		strTexture = texPath + L"LoadMoji3.png";
 		app->RegisterTexture(L"LoadMoji3", strTexture);
+		strTexture = texPath + L"LoadMoji4.png";
+		app->RegisterTexture(L"LoadMoji4", strTexture);
+		strTexture = texPath + L"BossMoji.png";
+		app->RegisterTexture(L"BossMoji", strTexture);
 		strTexture = texPath + L"CountMoji.png";
 		app->RegisterTexture(L"CountMoji", strTexture);
 		strTexture = texPath + L"StatusSetumei2.png";
@@ -468,7 +472,7 @@ namespace basecross {
 		}
 
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<TitleStage>();
+			ResetActiveStage<LoadStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();

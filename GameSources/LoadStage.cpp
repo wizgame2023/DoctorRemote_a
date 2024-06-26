@@ -29,9 +29,13 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			AddGameObject<Sprite>(1280, 800, L"LoadScene", Vec3(0, 0, 0), -1);
+			AddGameObject<Sprite>(1280, 800, L"LoadStageWaku", Vec3(0, 0, 0), 1);
 			m_sprite = AddGameObject<Sprite>(70, 50, L"Sensuikan", Vec3(m_comX, -300, 0));
 			m_comment = AddGameObject<Comment>(6, 0, 0.2f, 400, 100, 200, 50, 6, 1,
-				Vec3(400.0f, -335.0f, 0.0f), L"LoadMoji2", true); // 「移動中...」
+				Vec3(400.0f, -220.0f, 0.0f), L"LoadMoji2", true); // 「移動中...」
+			auto moji = AddGameObject<Comment>(7, 0, 0.2f, 256, 64, 200, 50, 7, 1, // Bボタンで次へ
+				Vec3(400.0f, -335.0f, 0.0f), L"LoadMoji3");
+
 
 			m_blackBoard = AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0), 4);
 			m_blackBoard->SetColor(Col4(1, 1, 1, 0));
@@ -53,15 +57,21 @@ namespace basecross {
 			//スコアステージが生成されてから1秒後に、コメントを表示
 			if (m_countUp >= 1.0f && m_timeCount == 0)
 			{
-				auto moji1 = AddGameObject<Comment>(4, 0, 0.2f, 512, 128, 220, 60, 4, 1,
-					Vec3(340.0f, 200.0f, 0.0f), L"LoadMoji"); // 「正体不明」
+				auto moji1 = AddGameObject<Comment>(4, 0, 0.1f, 512, 128, 220, 60, 4, 1,
+					Vec3(340.0f, 270.0f, 0.0f), L"LoadMoji"); // 「正体不明」
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから2秒後に、コメントを表示
-			else if (m_countUp >= 2.0f && m_timeCount == 1) //
+			else if (m_countUp >= 1.50f && m_timeCount == 1) //
 			{
-				auto moji2 = AddGameObject<CommentManager>(13, 0, 0.2f, 400, 128, 250, 80, 8, 2,
-					Vec3(-555.0f, -95.0f, 0.0f), L"LoadMoji1"); // 「体内に住みつき徐々に蝕んでいく」
+				auto moji2 = AddGameObject<CommentManager>(15, 0, 0.1f, 400, 170, 230, 110, 8, 2,
+					Vec3(-555.0f, 160.0f, 0.0f), L"LoadMoji1"); // 「体内に住みつき徐々に蝕んでいく」
+				m_timeCount++;
+			}
+			else if (m_countUp >= 3.0f && m_timeCount == 2) //
+			{
+				auto moji2 = AddGameObject<CommentManager>(15, 0, 0.1f, 400, 170, 230, 110, 7, 3,
+					Vec3(294.0f, 0.0f, 0.0f), L"LoadMoji4"); // 「近づくと周りにウイルスをまき散らす」
 				m_timeCount++;
 			}
 			m_moveCount = -400;
@@ -69,22 +79,29 @@ namespace basecross {
 			// 潜水艦を右に動かす
 			auto spritetrans = m_sprite->GetComponent<Transform>();
 			Vec3 spritepos = spritetrans->GetPosition();
+			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 			if (!m_flag)
 			{
-				m_comX += 3.0f;
+				m_comX += 1.0f;
+				spritetrans->SetPosition(m_comX, -300.0f, 0.0f);
+			}
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
+			{
+				m_flag = true;
+			}
+			if (m_flag == true)
+			{
+				m_comX += 10.0f;
 				spritetrans->SetPosition(m_comX, -300.0f, 0.0f);
 			}
 			if (m_comX >= 700)
 			{
-				m_comment->ThisDestroy();
-				auto moji = AddGameObject<Comment>(7, 0, 0.2f, 256, 64, 200, 50, 7, 1, // Bボタンで次へ
-					Vec3(400.0f, -335.0f, 0.0f), L"LoadMoji3");
-					m_flag = true;
+				m_onFade = true;
 			}
 		}
 		if (m_onFade)
 		{
-			float fadeSpeed = 1.0f;
+			float fadeSpeed = 0.5f;
 			m_anCollar += fadeSpeed* delta;
 			m_blackBoard->SetColor(Col4(1, 1, 1, m_anCollar));
 		}
@@ -99,7 +116,7 @@ namespace basecross {
 	void LoadStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto& scene = App::GetApp()->GetScene<Scene>();
-		if (m_countUp >= 7.5f && cntlVec[0].bConnected) {
+		if (cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 				m_onFade = true;
 			}
