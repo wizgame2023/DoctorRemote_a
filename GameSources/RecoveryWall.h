@@ -14,7 +14,7 @@ namespace basecross {
 		Vec3 m_Position;
 		Vec3 m_Rotate;
 		Vec3 m_StratPosition;
-		int m_Hp;
+		int m_hp;
 		weak_ptr<Bullet> m_bullet;
 		shared_ptr<Transform> m_Transform;
 

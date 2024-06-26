@@ -1,7 +1,7 @@
 /*!
-@file GameStage.h
-@brief ゲームステージ
-担当　大河原
+@file Enemy.h
+@brief 敵
+担当　逸見
 */
 
 #pragma once
@@ -21,7 +21,8 @@ namespace basecross {
 		bool m_pieceFlag;
 		bool m_bigPieceFlag;
 		bool m_bigPieceFlag2;
-		float m_Hp;
+		float m_hp;
+		float m_maxHp;
 		float m_width;
 		float m_widthSpeed;
 		float m_hegiht;
@@ -41,9 +42,11 @@ namespace basecross {
 		int m_event2;
 		
 		Vec3 m_pos;   //初期値
+		Vec3 m_originPos;
 		Vec3 m_posCur;//動かすpos
 		Vec3 m_rot;
 		Vec3 m_scale;
+		Vec3 m_maxScale;
 
 		wstring m_meshResName;
 

@@ -71,48 +71,62 @@ namespace basecross {
 				m_blinkCheck = false;
 			}
 		}
-		if (m_exitFlag) return;
 
+		//決定したら点滅
+		if (m_blinkCheck) {
+			m_count -= elapsed * 10.0f;
+			if ((int)m_count % 2 == 0) {
+				m_sprite->SetColor(Col4(0, 0, 0, 0));
+			}
+			else if ((int)m_count % 2 == 1) {
+				m_sprite->SetColor(m_color);
+			}
+		}
+
+		if (m_exitFlag) return;
+		if (m_selectStageFlag) return;
 
 		//ステージを選ぶ
-		if (cntlVec[0].fThumbLY < -0.9f) {
-			if (m_moveCheck) return;
-			if (m_heightMin < m_height && !m_checkD) {
-				m_height -= m_spaces;
-				m_trans->SetPosition(0.0f,m_height, 0.0f);
-				m_checkD = true;
+		if (cntlVec[0].bConnected) {
+			if (cntlVec[0].fThumbLY < -0.9f) {
+				if (m_moveCheck) return;
+				if (m_heightMin < m_height && !m_checkD) {
+					m_height -= m_spaces;
+					m_trans->SetPosition(0.0f, m_height, 0.0f);
+					m_checkD = true;
+				}
 			}
-		}
-		if (cntlVec[0].fThumbLY > -0.9f && m_checkD == true) {
-			if (m_moveCheck) return;
-			m_checkD = false;
-		}
+			if (cntlVec[0].fThumbLY > -0.9f && m_checkD == true) {
+				if (m_moveCheck) return;
+				m_checkD = false;
+			}
 
-		if (cntlVec[0].fThumbLY > 0.9) {
-			if (m_moveCheck) return;
-			if (m_heightMax > m_height && !m_checkU) {
-				m_height += m_spaces;
-				m_trans->SetPosition(0.0f, m_height, 0.0f);
-				m_checkU = true;
+			if (cntlVec[0].fThumbLY > 0.9) {
+				if (m_moveCheck) return;
+				if (m_heightMax > m_height && !m_checkU) {
+					m_height += m_spaces;
+					m_trans->SetPosition(0.0f, m_height, 0.0f);
+					m_checkU = true;
+				}
 			}
-		}
-		if (cntlVec[0].fThumbLY < 0.9 && m_checkU == true) {
-			if (m_moveCheck) return;
-			m_checkU = false;
-		}
+			if (cntlVec[0].fThumbLY < 0.9 && m_checkU == true) {
+				if (m_moveCheck) return;
+				m_checkU = false;
+			}
 
-		//Bボタンで決定
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-			if (m_stage == TUTORIAL) {
-				m_moveCheck = true;
+			//Bボタンで決定
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B && !m_checkU && !m_checkD) {
+				if (m_stage == TUTORIAL) {
+					m_moveCheck = true;
+				}
+				else if (m_stage == STAGESELECT) {
+					m_count = 0;
+				}
+				else if (m_stage == EXIT && !m_exitFlag) {
+					m_count = 0;
+				}
+				m_blinkCheck = true;
 			}
-			if (m_stage == STAGESELECT) {
-				m_count = 0;
-			}
-			if (m_stage == EXIT && !m_exitFlag) {
-				m_count = 0;
-			}
-			m_blinkCheck = true;
 		}
 
 
@@ -127,16 +141,6 @@ namespace basecross {
 			m_stage = EXIT;
 		}
 
-		//決定したら点滅
-		if (m_blinkCheck) {
-			if ((int)m_count % 2 == 0) {
-				m_sprite->SetColor(Col4(0, 0, 0, 0));
-			}
-			else if ((int)m_count % 2 == 1) {
-				m_sprite->SetColor(m_color);
-			}
-			m_count -= elapsed * 10.0f;
-		}
 
 		//点滅が終わったら
 		if (m_count <= 0) {
@@ -152,11 +156,11 @@ namespace basecross {
 				break;
 			case 1:
 				if (!m_selectStageFlag && !m_exitFlag) {
+					m_selectStageFlag = true;
 					m_stageFrame = stage->AddGameObject<Sprite>(600, 300, L"Score", Vec3(0.0f));
 					m_RetrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
 					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
 					m_selectStage->SetLimitNum(10);
-					m_selectStageFlag = true;
 				}
 				break;
 			case 2:

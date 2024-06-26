@@ -30,7 +30,8 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 
-			AddGameObject<Sprite>(1280, 800, L"GameOver", Vec3());
+			AddGameObject<Sprite>(1280, 800, L"Back", Vec3(),-3);
+			AddGameObject<Comment>(9, 0, 0.3, 1350, 229, 900, 200, 9, 1, Vec3(-450.0f,300.0f,0.0f), L"GameOverRogo");
 		}
 		catch (...) {
 			throw;

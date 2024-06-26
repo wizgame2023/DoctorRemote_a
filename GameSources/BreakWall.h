@@ -16,7 +16,7 @@ namespace basecross
 		Vec3 m_Position;
 		Vec3 m_Rotate;
 
-		int m_Hp;
+		int m_hp;
 		float m_MapMagnification;
 		Vec3 m_MiniMapStartPos;
 
