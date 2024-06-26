@@ -50,8 +50,8 @@ namespace basecross {
 		auto frame = stage->AddGameObject<Sprite>(350, 300, L"CommentFrame", Vec3(450.0f, 100.0f, 0.0f));
 		m_score = scene->GetAchievementPoint();
 		//m_score = 1234;
-		auto levelSetumei = stage->AddGameObject<Sprite>(256, 256, L"StatusSetumei2", Vec3(450.0f, -200.0f, 0.0f));
-		levelSetumei->SetColor(green);
+		//auto levelSetumei = stage->AddGameObject<Sprite>(256, 256, L"StatusSetumei2", Vec3(450.0f, -200.0f, 0.0f));
+		//levelSetumei->SetColor(green);
 		//ポイントの表示
 		auto pos = Vec3(430.0f, 350.0f, 0.0f);
 		for (int i = 0; i < 4; i++) {
