@@ -30,14 +30,14 @@ namespace basecross {
 				auto dis = distance.length();
 
 				if (0.0 <= dis && dis < 5.0f* chainRange && bulletLeve >= 1) {
-					piece->DelDamage(6, 1.0f);
+					piece->DelDamage(6, 0.5f);
 				}
 				else if (dis < 10.0f* chainRange && bulletLeve >= 2) {
-					piece->DelDamage(6, 2.0f);
+					piece->DelDamage(6, 1.0f);
 
 				}
 				else if (dis < 15.0f* chainRange && bulletLeve >= 3) {
-					piece->DelDamage(6, 3.0f);
+					piece->DelDamage(6, 1.5f);
 
 				}
 			}
