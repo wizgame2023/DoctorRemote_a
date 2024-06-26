@@ -569,13 +569,13 @@ namespace basecross {
 			//		PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"PlayerEffectRecovery", false);
 			//		PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
 			//	}
-			//	break;
+				break;
 		case 2:
-			//ブレイクウォールの場合
-			if (PtrEffect) {
-				PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"EffectChase", false);
-				PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
-			}
+			////ブレイクウォールの場合
+			//if (PtrEffect) {
+			//	PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"EffectChase", false);
+			//	PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
+			//}
 			break;
 		case 3:
 			//かけらを拾った場合
