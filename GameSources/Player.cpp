@@ -210,37 +210,37 @@ namespace basecross {
 		wstringstream wss(L"");
 		auto scene = App::GetApp()->GetScene<Scene>();
 		auto gameStage = scene->GetGameStage();
-		wss << L"transform : "
-			<< L"\n"
-			<< L"postion : ("
-			<< L"\nx."
-			<< trans->GetPosition().x
-			<< L","
-			<< "\ny."
-			<< trans->GetPosition().y
-			<< L","
-			<< "\nz."
-			<< trans->GetPosition().z
-			<< L")"
-			<< "\ngameStage"
-			<< gameStage
-			<< "\nVectorX"
-			<< m_lastAngle.x
-			<< "\nVectorY"
-			<< m_lastAngle.y
-			<< "\nVectorZ"
-			<< m_lastAngle.z
-			<< "\nSpeed"
-			<< m_speed
-			<< "\ncntlVec[0].bRightTrigger"
-			<< cntlVec[0].bRightTrigger
-			<<"\nm_dashCheck"
-			<< (bool)m_dashCheck
-			<<"\nelapsedTime"
-			<< elapsedTime
-			<<"\nChain : "
-			<<scene->GetBulletPower()
-			<< endl;
+		//wss << L"transform : "
+		//	<< L"\n"
+		//	<< L"postion : ("
+		//	<< L"\nx."
+		//	<< trans->GetPosition().x
+		//	<< L","
+		//	<< "\ny."
+		//	<< trans->GetPosition().y
+		//	<< L","
+		//	<< "\nz."
+		//	<< trans->GetPosition().z
+		//	<< L")"
+		//	<< "\ngameStage"
+		//	<< gameStage
+		//	<< "\nVectorX"
+		//	<< m_lastAngle.x
+		//	<< "\nVectorY"
+		//	<< m_lastAngle.y
+		//	<< "\nVectorZ"
+		//	<< m_lastAngle.z
+		//	<< "\nSpeed"
+		//	<< m_speed
+		//	<< "\ncntlVec[0].bRightTrigger"
+		//	<< cntlVec[0].bRightTrigger
+		//	<<"\nm_dashCheck"
+		//	<< (bool)m_dashCheck
+		//	<<"\nelapsedTime"
+		//	<< elapsedTime
+		//	<<"\nChain : "
+		//	<<scene->GetBulletPower()
+		//	<< endl;
 
 		scene->SetDebugString(wss.str());
 

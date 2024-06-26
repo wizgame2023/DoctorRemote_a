@@ -73,8 +73,8 @@ namespace basecross {
 		App::GetApp()->GetScene<Scene>()->SetTime(m_time);
 
 		//デバック用
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
 
 		//wss <<L"time : "
 		//	<<m_time
@@ -96,8 +96,8 @@ namespace basecross {
 
 		//wss << m_time << endl;
 
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 
 	}
 
