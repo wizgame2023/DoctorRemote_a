@@ -92,6 +92,9 @@ namespace basecross {
 
 		m_Sprite = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0));
 		m_Sprite->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
+		auto MovieBand = stage->AddGameObject<Sprite>(1280, 800, L"MovieBand", Vec3(), 0);//帯を出す
+		MovieBand->AddTag(L"MovieSprite");//ムービー用のスプライトタグを追加
+
 
 	}
 
@@ -99,6 +102,7 @@ namespace basecross {
 	{	
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();//デルタタイムを取得
+		auto uiManager = GetStage()->GetSharedGameObject<UIManager>(L"UIManager");//Uiを透明にする
 
 		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//Positionを取得
 
@@ -122,6 +126,7 @@ namespace basecross {
 			if (m_PlayerPos.z <= m_MaxRange.z && m_PlayerPos.z >= m_MinRange.z)
 			{
 				Start();
+				uiManager->AllClear();//UI全てを透明化
 				m_UpdateFlag = 1;//脱出する動作にフラグを変更
 			}
 		}
@@ -163,7 +168,7 @@ namespace basecross {
 			GetStage()->GetSharedGameObject<TimeManager>(L"TimeManager")->SetTimeFlag(false);//制限時間のカウントを終わらせる
 			
 			wstringstream wss;//デバック用文字列
-			wss << L"エスケープマネージャー：" << endl;
+			//wss << L"エスケープマネージャー：" << endl;
 
 
 			float speed = 5.0f;//速さ
@@ -197,8 +202,8 @@ namespace basecross {
 				}
 			}
 			//デバック用文字列を生成
-			auto scene = app->GetScene<Scene>();
-			scene->SetDebugString(L"a\n" + wss.str());
+			//auto scene = app->GetScene<Scene>();
+			//scene->SetDebugString(L"a\n" + wss.str());
 
 		}
 	}
