@@ -13,7 +13,6 @@ namespace basecross {
 		m_comX(800.0f),
 		m_ClearFlag(false),
 		m_CreateFlag(true),
-		m_EraseUiPtrNum(-1),
 		m_EraseUiCommentPtrNum(-1)
 	{
 
@@ -37,16 +36,16 @@ namespace basecross {
 			m_CreateFlag = false;
 		}
 
-		if (m_EraseUiPtrNum > -1)//Uiが消えたとき
+		if (m_EraseUiPtrNum.size() >= 1)//Uiが消えたとき
 		{
 			PushUiPtr();//配列の更新
-			m_EraseUiPtrNum = -1;//フラグリセット
+			//m_EraseUiPtrNum = -1;//フラグリセット
 		}
 
 		if (m_EraseUiCommentPtrNum > -1)//コメントUiが消えたとき
 		{
 			PushUiCommentPtr();//配列の更新
-			m_EraseUiPtrNum = -1;//フラグリセット
+			m_EraseUiCommentPtrNum = -1;//フラグリセット
 		}
 
 
@@ -159,8 +158,9 @@ namespace basecross {
 
 	void UIManager::EraseUiPtr(int num)//配列にあるUiのポインタの要素を削除する
 	{
-		m_AllUiPtr.erase(m_AllUiPtr.begin() + (num - 1));//配列にあるUiのポインタを削除する
-		m_EraseUiPtrNum = num;//削除したポインタの配列番号を取得
+		m_AllUiPtr.erase(m_AllUiPtr.begin() + ((num - 1) - m_EraseUiPtrNum.size()));//配列にあるUiのポインタを削除する
+		m_EraseUiPtrNum.push_back(num);//削除したポインタの配列番号を取得
+		//m_EraseUiPtrNum = num;//削除したポインタの配列番号を取得
 		m_AllUiPtr.size();//デバック用
 		auto a = 0;//デバック用
 	}
@@ -178,11 +178,21 @@ namespace basecross {
 		for (auto ui : m_AllUiPtr)
 		{
 			auto afterNum = ui.lock()->GetNumPtr();//今の配列番号を取得
-			if (afterNum > m_EraseUiPtrNum)//今の配列番号が消えた配列番号より後に生成されているなら
+			auto test = afterNum;
+			for (int i = 0; i < m_EraseUiPtrNum.size(); i++)
 			{
-				ui.lock()->SetNumPtr(afterNum - 1);//配列番号を前にさせる
+				auto a = 0;
+				if (test > m_EraseUiPtrNum[i])//今の配列番号が消えた配列番号より後に生成されているなら
+				{
+					ui.lock()->SetNumPtr(afterNum - 1);//配列番号を前にさせる
+					afterNum -= 1;
+					auto a = 0;
+				}
 			}
 		}
+		m_EraseUiPtrNum.erase(m_EraseUiPtrNum.begin(), m_EraseUiPtrNum.end());//削除した要素番号を詰めたのでいったん中身を消す
+		auto a = m_EraseUiPtrNum.size();
+		auto b = 0;
 	}
 
 	void UIManager::PushUiCommentPtr()//配列番号を前に詰めさせる
@@ -190,7 +200,7 @@ namespace basecross {
 		for (auto uiComment : m_UiCommentPtr)
 		{
 			auto afterNum = uiComment.lock()->GetNumPtr();//今の配列番号を取得
-			if (afterNum > m_EraseUiPtrNum)//今の配列番号が消えた配列番号より後に生成されているなら
+			if (afterNum > m_EraseUiCommentPtrNum)//今の配列番号が消えた配列番号より後に生成されているなら
 			{
 				uiComment.lock()->SetNumPtr(afterNum - 1);//配列番号を前にさせる
 			}
