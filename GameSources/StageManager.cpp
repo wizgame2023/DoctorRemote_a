@@ -24,7 +24,8 @@ namespace basecross {
 		m_comFlag(false),
 		m_comFlag2(false),
 		m_countFlag(false),
-		m_enemyFlag(false)
+		m_enemyFlag(false),
+		m_StartDestoryFlag(false)
 
 	{}
 
@@ -60,41 +61,54 @@ namespace basecross {
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
+		m_currentHp;//デバック用
+		int a = 0;//デバック用のコード
+		//体力が0になったらGameOver
+		if (m_currentHp <= 0.0f) {
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			int test = m_currentHp;
+			int s = 0;
+		}
+
 		if (m_countFlag)
 		{
 			if (scene->GetGameStage() > 0) {
 				//カウントダウンの表示
-				m_count -= elapsedTime;
+				if (!m_StartDestoryFlag)
+				{
+					m_count -= elapsedTime;
+				}
+				else
+				{
+					m_count = 4.0f;
+				}
 				if (m_count > 1) {
 					if (!m_countNumFlag) {
 						m_num = stage->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
 						m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
-						m_countNumFlag = true;
+						m_countNumFlag = true;//１回しか通らないようにする
 					}
-					m_num->UpdateValue(m_count);
+					m_num->UpdateValue((int)m_count);
 
 				}
 				if (m_count < 1) {
 					m_num->ThisDestory();
 					if (!m_start && m_stageFlag <= 1) {
-						m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());					
+						m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());		
+						m_StartDestoryFlag = false;
 					}
 					m_start = true;
 
-					if (m_count <= 0) return;//カウントが０秒より少なかった場合リターンする
-					if (m_count < 0.1f) {			
+					if (m_count < 0.1f && !m_StartDestoryFlag) {
+						auto number = m_startSprite->GetNumPtr();
+						GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
 						m_startSprite->ThisDestory();
+						m_StartDestoryFlag = true;
 					}
 				}
 
 			}
 
-		}
-
-
-		//体力が0になったらGameOver
-		if (m_currentHp <= 0.0f) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 		}
 
 		//デバック用
