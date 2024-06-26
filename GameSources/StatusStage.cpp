@@ -31,10 +31,15 @@ namespace basecross {
 			auto statusManager = AddGameObject<StatusManager>();
 			SetSharedGameObject(L"StatusManager", statusManager);
 
-			auto moji = AddGameObject<Comment>(16, 0, 0.2f, 512, 256, 700 * 1.2, 350 * 1.2, 26, 8, Vec3(-250, 350.0f, 0.0f), L"StatusMoji");
-			m_moji2 = AddGameObject<Sprite>(150,75, L"DecisionButton",Vec3(500, -300.0f, 0.0f));
+			auto moji = AddGameObject<Comment>(16, 0, 0.2f, 512, 256, 700 * 1.2, 350 * 1.2, 26, 8, Vec3(-250, 350.0f, 0.0f), L"StatusMoji",true);
+			m_moji2 = AddGameObject<Sprite>(150,75, L"DecisionButton",Vec3(500, -350.0f, 0.0f));
 			SetSharedGameObject(L"Moji2", m_moji2);
+
+			auto aButton = AddGameObject<CommentManager>(11, 1, 0.0f, 512, 256, 512*1.5, 256*1.5, 13 * 2, 8, Vec3(-500, -300.0f, 0.0f), L"StatusMoji");
+
+			auto black = AddGameObject<Sprite>(1280, 800, L"Black", Vec3(), -3);
 			auto back = AddGameObject<Sprite>(1280,800,L"Back",Vec3(),-1);
+			back->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
 		}
 		catch (...) {
 			throw;
@@ -50,7 +55,7 @@ namespace basecross {
 			m_blinking -= elapsed;
 		}
 		else {
-			m_blinking = 1.5f;
+			m_blinking = 2.0f;
 		}
 		m_moji2->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
 
