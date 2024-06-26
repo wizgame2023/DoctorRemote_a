@@ -58,23 +58,9 @@ namespace basecross {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
 				auto stage = scene->GetGameStage();
-				switch (stage)
-				{
-				case 0:
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTutorialStage");
-					break;
-				case 1:
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
-					break;
-				case 2:
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage2");
-					break;
-				case 3:
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage3");
-					break;
-				default:
-					break;
-				}
+
+				wstring stageString = to_wstring(stage);
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + stageString);
 			}
 		}
 	}
