@@ -43,6 +43,7 @@ namespace basecross {
 	}
 	void SelectSprite::OnUpdate() {
 		auto stage = GetStage();
+		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsed = App::GetApp()->GetElapsedTime();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
@@ -122,7 +123,8 @@ namespace basecross {
 				if (!m_selectStageFlag) {
 					m_stageMove = true;
 					if (!m_stageStart) return;
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTutorialStage");
+					scene->SetNextStage(0);
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToLoadStage");
 				}
 				break;
 			case 1:
@@ -138,7 +140,7 @@ namespace basecross {
 				if (!m_selectStageFlag) {
 					m_stageMove = true;
 					if (!m_stageStart) return;
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage10");
+					//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage10");
 				}
 				break;
 			default:
@@ -148,11 +150,11 @@ namespace basecross {
 			if (m_selectStageFlag) {
 				if (m_selectStage->GetBlinkTime() <= 0) {
 					m_stage = 4;
-					int stage = m_selectStage->GetNum();
-					wstring stageNum = to_wstring(stage);
 					m_stageMove = true;
 					if (!m_stageStart) return;
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + stageNum);
+					int stage = m_selectStage->GetNum();
+					scene->SetNextStage(stage);
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToLoadStage");
 				}
 
 			}
@@ -183,4 +185,5 @@ namespace basecross {
 	void SelectSprite::StageMove(wstring stage) {
 		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage"+stage);
 	}
+
 }
