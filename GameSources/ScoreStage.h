@@ -32,6 +32,9 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		virtual void OnDestroy() override;
 
+		shared_ptr<SoundItem> m_BGM;
+
+		void BaseBGM();
 		void StageChange();
 	};
 }

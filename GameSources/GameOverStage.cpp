@@ -21,6 +21,9 @@ namespace basecross {
 	}
 	void GameOverStage::OnCreate() {
 		try {
+			//BGM
+			BaseBGM();
+
 			auto scene = App::GetApp()->GetScene<Scene>();
 			scene->SetPlayFlag(false);
 
@@ -34,6 +37,12 @@ namespace basecross {
 		}
 	}
 
+	void GameOverStage::BaseBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"GameOverBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
+	}
+
 	void GameOverStage::OnUpdate() {
 		StageChange();
 	}
@@ -44,6 +53,8 @@ namespace basecross {
 		m_count = scene->GetBigPieceCount();
 		scene->SetBigPieceCount(-m_count);
 		scene->GetBigPieceCount();
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
 	}
 
 	void GameOverStage::StageChange() {
