@@ -115,7 +115,6 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto stage = GetStage();
 		m_startFlag = stage->GetSharedGameObject<StageManager>(L"StageManager")->GetStartFlag();
-
 		//導入などが終わりフラグが踏まれたら操作できるようにする
 		if (m_startFlag) {
 			MovePlayer();
@@ -185,6 +184,9 @@ namespace basecross {
 				}
 			}
 
+		}
+		if (!m_startFlag) {//プレイヤーが動けないとき
+				m_bulletRatio = 0.0f;//弾のチャージをリセットする
 		}
 
 		//アニメーションの更新
