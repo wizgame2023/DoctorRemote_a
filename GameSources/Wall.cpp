@@ -14,7 +14,7 @@ namespace basecross {
 	void Wall::OnCreate()
 	{
 		auto ptr = GetComponent<Transform>();
-		ptr->SetPosition(m_pos);
+		ptr->SetPosition(m_pos + Vec3(0.0f, 1.5f, 0.0f));
 		ptr->SetRotation(m_rot);
 		ptr->SetScale(m_scale);
 
@@ -34,7 +34,7 @@ namespace basecross {
 
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
-		//ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
+		ptrColl->SetDrawActive(true);//コリジョンを見えるようにする
 
 
 		GetStage()->SetCollisionPerformanceActive(true);
