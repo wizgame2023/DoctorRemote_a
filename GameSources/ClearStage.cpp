@@ -21,6 +21,9 @@ namespace basecross {
 	}
 	void ClearStage::OnCreate() {
 		try {
+			//BGM
+			BaseBGM();
+
 			//ビューとライトの作成
 			CreateViewLight();
 			auto scene = App::GetApp()->GetScene<Scene>();
@@ -32,6 +35,12 @@ namespace basecross {
 		catch (...) {
 			throw;
 		}
+	}
+
+	void ClearStage::BaseBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"GameClearBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
 	}
 
 	void ClearStage::OnUpdate() {
@@ -46,6 +55,10 @@ namespace basecross {
 		}
 	}
 
-
+	void ClearStage::OnDestroy()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
+	}
 }
 //end basecross
