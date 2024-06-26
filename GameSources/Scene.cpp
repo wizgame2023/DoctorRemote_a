@@ -83,7 +83,7 @@ namespace basecross {
 		app->RegisterTexture(L"Load", strTexture);
 		strTexture = texPath + L"Title_3.jpg";
 		app->RegisterTexture(L"Title", strTexture);
-		strTexture = texPath + L"Score.jpg";
+		strTexture = texPath + L"Score.png";
 		app->RegisterTexture(L"Score", strTexture);
 		strTexture = texPath + L"ScoreWaku.jpg";
 		app->RegisterTexture(L"ScoreWaku", strTexture);
