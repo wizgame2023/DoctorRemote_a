@@ -252,8 +252,8 @@ namespace basecross {
 				pointTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
 			}
 			if (levelFlag) {
-				auto levelTex = stage->AddGameObject<Sprite>(40, 40, L"LevelTexture", Vec3(pos.x - 10, pos.y - 25, pos.z));
-				levelTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
+				//auto levelTex = stage->AddGameObject<Sprite>(40, 40, L"LevelTexture", Vec3(pos.x - 10, pos.y - 25, pos.z));
+				//levelTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
 			}
 
 		}
