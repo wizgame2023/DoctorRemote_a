@@ -71,6 +71,10 @@ namespace basecross {
 		app->RegisterTexture(L"White_2", strTexture);
 		strTexture = texPath + L"PointTexture.png";
 		app->RegisterTexture(L"PointTexture", strTexture);
+		strTexture = texPath + L"GameCleraRogo.png";
+		app->RegisterTexture(L"GameCleraRogo", strTexture);
+		strTexture = texPath + L"GameOverRogo.png";
+		app->RegisterTexture(L"GameOverRogo", strTexture);
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"Clear.png";
@@ -294,7 +298,8 @@ namespace basecross {
 		app->RegisterTexture(L"CountMoji", strTexture);
 		strTexture = texPath + L"StatusSetumei2.png";
 		app->RegisterTexture(L"StatusSetumei2", strTexture);
-
+		strTexture = texPath + L"LevelTexture.png";
+		app->RegisterTexture(L"LevelTexture", strTexture);
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";
 		app->RegisterTexture(L"AIaisatu", strTexture);
@@ -394,6 +399,28 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"BreakWallSE", soundWav);
 		soundWav = SoundPath + L"PieceDown.wav";
 		App::GetApp()->RegisterWav(L"PieceDownSE", soundWav);
+
+		soundWav = SoundPath + L"TitleSE.wav";
+		App::GetApp()->RegisterWav(L"TitleSE", soundWav);
+		soundWav = SoundPath + L"ScoreSE.wav";
+		App::GetApp()->RegisterWav(L"ScoreSE", soundWav);
+		soundWav = SoundPath + L"LampSE.wav";
+		App::GetApp()->RegisterWav(L"LampSE", soundWav);
+		soundWav = SoundPath + L"DeadSE.wav";
+		App::GetApp()->RegisterWav(L"DeadSE", soundWav);
+		soundWav = SoundPath + L"DamageSE.wav";
+		App::GetApp()->RegisterWav(L"DamageSE", soundWav);
+		soundWav = SoundPath + L"CountDownSE.wav";
+		App::GetApp()->RegisterWav(L"CountDownSE", soundWav);
+		soundWav = SoundPath + L"CommentSE.wav";
+		App::GetApp()->RegisterWav(L"CommentSE", soundWav);
+		soundWav = SoundPath + L"ChoiceSE.wav";
+		App::GetApp()->RegisterWav(L"ChoiceSE", soundWav);
+		soundWav = SoundPath + L"BreakSE.wav";
+		App::GetApp()->RegisterWav(L"BreakSE", soundWav);
+		soundWav = SoundPath + L"AttackSE.wav";
+		App::GetApp()->RegisterWav(L"AttackSE", soundWav);
+
 		//BGM
 		soundWav = SoundPath + L"ScaryBGM.wav";
 		App::GetApp()->RegisterWav(L"ScaryBGM", soundWav);
@@ -405,6 +432,10 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"ScoreBGM", soundWav);
 		soundWav = SoundPath + L"GameClearBGM.wav";
 		App::GetApp()->RegisterWav(L"GameClearBGM", soundWav);
+		soundWav = SoundPath + L"TutorialBGM.wav";
+		App::GetApp()->RegisterWav(L"TutorialBGM", soundWav);
+		soundWav = SoundPath + L"TitleBGM.wav";
+		App::GetApp()->RegisterWav(L"TitleBGM", soundWav);
 
 	}
 
