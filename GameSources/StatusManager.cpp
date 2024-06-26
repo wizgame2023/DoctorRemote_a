@@ -49,7 +49,6 @@ namespace basecross {
 
 		auto frame = stage->AddGameObject<Sprite>(350, 300, L"CommentFrame", Vec3(450.0f, 100.0f, 0.0f));
 		m_score = scene->GetAchievementPoint();
-		//m_score = 1234;
 		auto levelSetumei = stage->AddGameObject<Sprite>(256, 256, L"StatusSetumei2", Vec3(450.0f, -200.0f, 0.0f));
 		levelSetumei->SetColor(green);
 		//ポイントの表示
@@ -63,20 +62,48 @@ namespace basecross {
 		pointTex->SetColor(green);
 
 		//ポイントとレベル
-		NumDisplay(2, 25, Vec3(-500.0f, 45.0f, 0.0f));
-		NumDisplay(1, scene->GetDashStatus(), Vec3(-380.0f, 45.0f, 0.0f));
-		NumDisplay(2, 25, Vec3(-200.0f, 45.0f, 0.0f));
-		NumDisplay(1, scene->GetBulletLengthStatus(), Vec3(-80.0f, 45.0f, 0.0f));
-		NumDisplay(2, 25, Vec3(100.0f, 45.0f, 0.0f));
-		NumDisplay(1, scene->GetBigPieceUpStatus(), Vec3(220.0f, 45.0f, 0.0f));
-		NumDisplay(2, 50, Vec3(-500.0f, -250.0f, 0.0f));
-		NumDisplay(1, scene->GetChainRangeStatus(), Vec3(-380.0f, -250.0f, 0.0f));
-		NumDisplay(2, 75, Vec3(-200.0f, -250.0f, 0.0f));
-		NumDisplay(1, scene->GetBulletPowerStatus(), Vec3(-80.0f, -250.0f, 0.0f));
-		NumDisplay(3, 100, Vec3(100.0f, -250.0f, 0.0f));
-		NumDisplay(1, scene->GetBulletTimeStatus(), Vec3(220.0f, -250.0f, 0.0f));
+		Vec3 pointPos(-530.0f, 50.0f, 0.0f);
+		Vec3 levelPos(-380.0f, 50.0f, 0.0f);
+		int dash = scene->GetDashStatus();
+		int bullet_l = scene->GetBulletLengthStatus();
+		int bigPiece = scene->GetBigPieceUpStatus();
+		int chain = scene->GetChainRangeStatus();
+		int bullet_p = scene->GetBulletPowerStatus();
+		int bullet_t = scene->GetBulletTimeStatus();
 
+		NumDisplay(2, 25, Vec3(pointPos.x, pointPos.y, 0.0f));
+		NumDisplay(1, dash, Vec3(levelPos.x, levelPos.y, 0.0f), false, true);
+		NumDisplay(2, 25, Vec3(pointPos.x + 300, pointPos.y, 0.0f));
+		NumDisplay(1, bullet_l, Vec3(levelPos.x + 300, levelPos.y, 0.0f), false, true);
+		NumDisplay(2, 25, Vec3(pointPos.x + 300 * 2, pointPos.y, 0.0f));
+		NumDisplay(1, bigPiece, Vec3(levelPos.x + 300 * 2, levelPos.y, 0.0f), false, true);
+		NumDisplay(2, 50, Vec3(pointPos.x, pointPos.y - 300, 0.0f));
+		NumDisplay(1, chain, Vec3(levelPos.x, levelPos.y - 300, 0.0f), false, true);
+		NumDisplay(2, 75, Vec3(pointPos.x + 300, pointPos.y - 300.0f, 0.0f));
+		NumDisplay(1, bullet_p, Vec3(levelPos.x + 300, levelPos.y - 300, 0.0f), false, true);
+		NumDisplay(3, 100, Vec3(pointPos.x + 300 * 2, pointPos.y - 300.0f, 0.0f));
+		NumDisplay(1, bullet_t, Vec3(levelPos.x + 300 * 2, levelPos.y - 300, 0.0f), false, true);
 
+		if (dash >= 3) {
+			m_selectSprite->SetCloseNum(0);
+		}
+		if (bullet_l >= 3) {
+			m_selectSprite->SetCloseNum(1);
+		}
+		if (bigPiece >= 3) {
+			m_selectSprite->SetCloseNum(2);
+		}
+		if (chain >= 3) {
+			m_selectSprite->SetCloseNum(3);
+		}
+		if (bullet_p >= 3) {
+			m_selectSprite->SetCloseNum(4);
+		}
+		if (bullet_t >= 3) {
+			m_selectSprite->SetCloseNum(5);
+		}
+
+		
 		//ポイントで制限
 		if (m_score>=100) {
 			m_selectSprite->SetLimitNum(6);
@@ -93,6 +120,7 @@ namespace basecross {
 		else {
 			m_selectSprite->SetLimitNum(0);
 		}
+
 	}
 
 	void StatusManager::OnUpdate() {
@@ -119,7 +147,7 @@ namespace basecross {
 
 		}
 
-
+		//スティックを動かすとコメントが変わる
 		if (!m_moveStick&& !m_selectSprite->StickFlag()) {
 			switch (m_selectSprite->GetNum())
 			{
@@ -161,6 +189,7 @@ namespace basecross {
 			}
 		}
 
+		//ステータスを確定
 		if (m_selectSprite->GetBlinkTime() <= 0) {
 
 			//選択したステート
@@ -212,14 +241,20 @@ namespace basecross {
 
 	}
 
-	void StatusManager::NumDisplay(int digit, int num,Vec3 pos) {
+	void StatusManager::NumDisplay(int digit, int num,Vec3 pos,bool pointFlag,bool levelFlag) {
 		auto stage = GetStage();
 		for (int i = 0; i < digit; i++) {
 			float p = pow(10, digit - (i + 1));
 			int n = (num / (int)p) % 10;
 			auto numSprite = stage->AddGameObject<UITime>(n, Vec3(pos.x + i * 30, pos.y, pos.z),40,60,L"NumbersWhite");
-			//auto pointTex = stage->AddGameObject<Sprite>(40, 40, L"PointTexture", Vec3(pos.x - 20, pos.y - 25, pos.z));
-			//pointTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
+			if (pointFlag) {
+				auto pointTex = stage->AddGameObject<Sprite>(50, 50, L"PointTexture", Vec3(pos.x - 10, pos.y - 25, pos.z));
+				pointTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
+			}
+			if (levelFlag) {
+				auto levelTex = stage->AddGameObject<Sprite>(40, 40, L"LevelTexture", Vec3(pos.x - 10, pos.y - 25, pos.z));
+				levelTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
+			}
 
 		}
 
