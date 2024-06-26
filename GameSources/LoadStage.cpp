@@ -74,7 +74,7 @@ namespace basecross {
 				m_comX += 3.0f;
 				spritetrans->SetPosition(m_comX, -300.0f, 0.0f);
 			}
-			if (m_comX >= 570)
+			if (m_comX >= 700)
 			{
 				m_comment->ThisDestroy();
 				auto moji = AddGameObject<Comment>(7, 0, 0.2f, 256, 64, 200, 50, 7, 1, // Bƒ{ƒ^ƒ“‚ÅŽŸ‚Ö
@@ -98,6 +98,7 @@ namespace basecross {
 	}
 	void LoadStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto& scene = App::GetApp()->GetScene<Scene>();
 		if (m_countUp >= 7.5f && cntlVec[0].bConnected) {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 				m_onFade = true;
@@ -106,7 +107,15 @@ namespace basecross {
 		if (m_anCollar>=1)
 		{
 			m_onFade = false;
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+			if (scene->GetNextStage() == 0) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTutorialStage");
+			}
+			else {
+				auto stage = scene->GetNextStage();
+				wstring stageNum = to_wstring(stage);
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + stageNum);
+
+			}
 		}
 	}
 
