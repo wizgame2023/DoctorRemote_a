@@ -230,10 +230,6 @@ namespace basecross {
 
 		}
 
-
-
-
-		
 		//int test = scene->GetAchievementPoint();//デバック用変数
 		//wstringstream wss(L"");
 		//wss << test <<"\n" << m_score << endl;

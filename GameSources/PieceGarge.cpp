@@ -69,21 +69,20 @@ namespace basecross {
 		//m_transform->SetScale(1, 1, 1);
 		
 
+		auto garge = m_player->GetPieceRatio();
+		UpdateValue(garge);
 
 		//デバック用ストリーム
-		wstringstream wss(L"");
+		//wstringstream wss(L"");
 		//デバック用
-		auto garge = m_player->GetPieceRatio();
-		auto scene = App::GetApp()->GetScene<Scene>();
-		wss <<L"piece:"<<
-			garge <<"\n"<<
-			L"position.y:"<<
-			m_vertices[0].position.y <<
-			endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
-
-		UpdateValue(garge);
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//wss <<L"piece:"<<
+		//	garge <<"\n"<<
+		//	L"position.y:"<<
+		//	m_vertices[0].position.y <<
+		//	endl;
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 
 	}
 

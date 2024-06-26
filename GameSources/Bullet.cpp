@@ -133,17 +133,6 @@ namespace basecross {
 			}
 		}
 
-
-		//auto& Vec = GetStage()->GetGameObjectVec();//ゲームオブジェクトの配列を取得
-		//for (auto V : Vec)
-		//{
-		//	bool chack = V->FindTag(L"Bullet");
-		//	if (chack)
-		//	{
-
-		//	}
-		//}
-
 		
 		Vec3 PositionVec = Vec3(m_allStartPosition.x - UpdatePosition.x,m_allStartPosition.y - UpdatePosition.y,m_allStartPosition.z - UpdatePosition.z);
 		float AllPosition = abs(PositionVec.x)+abs(PositionVec.y)+abs(PositionVec.z);
@@ -154,7 +143,8 @@ namespace basecross {
 			// ステージから自身を破棄する
 			ThisDestroy();
 		}
-		wstringstream wss;//デバック用文字列
+
+		//wstringstream wss;//デバック用文字列
 		//wss << L"m_effectPos.x :" << m_effectPos.x << endl;
 		//wss << L"m_effectPos.y :" << m_effectPos.y << endl;
 		//wss << L"m_effectPos.z :" << m_effectPos.z << endl;

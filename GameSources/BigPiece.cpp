@@ -89,7 +89,7 @@ namespace basecross {
 
 		//コライダー
 		auto colPtr = AddComponent<CollisionSphere>();
-		colPtr->SetDrawActive(true);
+		colPtr->SetDrawActive(false);
 		colPtr->SetAfterCollision(AfterCollision::None);
 		colPtr->SetFixed(false);
 		
@@ -99,23 +99,6 @@ namespace basecross {
 
 		AddTag(L"BigPiece");
 
-		//switch (m_status)
-		//{
-		//case 0:
-		//	m_littlePieceNum = 6;
-		//	break;
-		//case 1:
-		//	m_littlePieceNum = 8;
-		//	break;
-		//case 2:
-		//	m_littlePieceNum = 10;
-		//	break;
-		//case 3:
-		//	m_littlePieceNum = 12;
-		//	break;
-		//default:
-		//	break;
-		//}
 		m_littlePieceNum = App::GetApp()->GetScene<Scene>()->GetBigPieceUp();
 
 	}
@@ -126,23 +109,6 @@ namespace basecross {
 		ptrDraw->UpdateAnimation(elapsed);
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(m_scale);
-
-		//時間差で小さくして消す
-		//if (m_enemyDeletFlag) {
-		//	m_pieceDeleteTime -= elapsed;
-		//	m_scale -= 2.0f * elapsed * 3.0f;
-		//	if (m_pieceDeleteTime < 0) {
-		//		//自分自身を廃棄する
-		//		stage->RemoveGameObject<BigPiece>(GetThis<BigPiece>());
-		//		m_enemyDeletFlag = false;
-		//	}
-
-		//}
-
-		//if (m_trans->GetPosition().y < 0.1f) {
-		//	m_ground = true;
-
-		//}
 
 	}
 
