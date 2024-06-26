@@ -45,7 +45,7 @@ namespace basecross {
 		m_event(false),
 		m_event2(false),
 		m_meshResName(L"Boss_Mesh"),
-		m_Hp(1)
+		m_Hp(60)
 	{}
 
 	void Enemy::OnCreate()
@@ -175,7 +175,7 @@ namespace basecross {
 			
 
 		}
-		if (m_Hp < 30) {
+		if (m_Hp < 20) {
 			m_event2 = true;
 		}
 		if (m_event2) {
