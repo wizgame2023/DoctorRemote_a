@@ -142,14 +142,20 @@ namespace basecross {
 					if (m_bulletTime >= m_bulletChargeTime*3) {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 20.0f);
 						bullet->SetBulletLevel(3);
+						auto soundE = App::GetApp()->GetXAudio2Manager();
+						soundE->Start(L"ShotSE", 0, 0.5f);
 					}
 					else if (m_bulletTime >= m_bulletChargeTime*2) {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 45.0f, frontAngle, 12.0f);
 						bullet->SetBulletLevel(2);
+						auto soundE = App::GetApp()->GetXAudio2Manager();
+						soundE->Start(L"ShotSE", 0, 0.5f);
 					}
 					else if (m_bulletTime >= m_bulletChargeTime) {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 40.0f, frontAngle, 6.0f);
 						bullet->SetBulletLevel(1);
+						auto soundE = App::GetApp()->GetXAudio2Manager();
+						soundE->Start(L"ShotSE", 0, 0.5f);
 					}
 					else {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 2.0f * m_bulletPower);
@@ -195,49 +201,6 @@ namespace basecross {
 
 		Dash();//これでダッシュの動きをする
 
-		//ダッシュ
-		//switch (1)
-		//{
-		//case 0:
-		//	break;
-		//case 1:
-		//	Dash();
-		//	if (m_dashCooldown) {
-		//		m_dashCount -= elapsedTime;//ダッシュできる制限時間を減らしている
-		//		//ダッシュの効果時間が過ぎたらダッシュを出来なくなる
-		//		if (m_dashCount <= 0) {
-		//			//m_speed = m_maxSpeed;
-		//			m_dashCheck = false;
-		//		}
-		//		//ダッシュのクールタイムが過ぎたらダッシュを再使用できるようになる
-		//		m_dashCool -= elapsedTime;
-		//		if (m_dashCool <= 0) {//クールタイムが₀になったらダッシュを再度使用できるようになる
-		//			m_dashCooldown = false;
-		//			m_dashCount = m_dashCountTime;
-		//			m_dashCool = m_dashCoolTime;
-		//		}
-		//	}
-		//	break;
-		//case 2:
-		//	Dash();
-		//	if (m_dashCooldown) {
-		//		m_dashCount -= elapsedTime * 0.7;
-		//		if (m_dashCount <= 0) {
-		//			m_speed = m_maxSpeed;
-		//			m_dashCheck = false;
-		//		}
-		//		m_dashCool -= elapsedTime * 1.5f;
-		//		if (m_dashCool <= 0) {
-		//			m_dashCooldown = false;
-		//			m_dashCount = m_dashCountTime;
-		//			m_dashCool = m_dashCoolTime;
-		//		}
-		//	}
-		//	break;
-
-		//default:
-		//	break;
-		//}
 
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();//デバック用です
 
