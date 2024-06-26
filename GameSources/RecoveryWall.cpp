@@ -12,7 +12,7 @@ namespace basecross {
 		m_Position(Position),
 		m_StratPosition(Position),
 		m_Scale(Scale),
-		m_Hp(1)
+		m_hp(1)
 	{
 
 	}
@@ -45,7 +45,7 @@ namespace basecross {
 	};
 	void RecoveryWall::OnUpdate()
 	{
-		if (m_Hp <= 0)
+		if (m_hp <= 0)
 		{
 			int Recovery = 25;
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp((float)Recovery);//‰ñ•œ‚·‚é
@@ -74,7 +74,7 @@ namespace basecross {
 			//‚à‚µ‚Ô‚Â‚©‚Á‚½ƒRƒŠƒWƒ‡ƒ“‚ªBullet‚Ì‚à‚Ì‚¾‚Á‚½‚ç
 			if (Other->FindTag(L"Bullet"))
 			{
-				m_Hp -= Attack;
+				m_hp -= Attack;
 				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 
 			}

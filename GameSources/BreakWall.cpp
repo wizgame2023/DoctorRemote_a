@@ -14,7 +14,7 @@ namespace basecross {
 		m_StartPosition(Position),
 		m_Rotate(Rotate),
 		m_Scale(Scale),
-		m_Hp(1)
+		m_hp(1)
 	{
 
 	}
@@ -24,7 +24,7 @@ namespace basecross {
 		m_StartPosition(Position),
 		m_Rotate(Rotate),
 		m_Scale(Scale),
-		m_Hp(1),
+		m_hp(1),
 		m_MapMagnification(miniMapSize/mapSize),
 		m_MiniMapStartPos(miniMapStratPos)
 	{
@@ -82,7 +82,7 @@ namespace basecross {
 
 		auto ptrStage = GetStage();
 		//もし体力がなくなったら削除される
-		if (m_Hp <= 0)
+		if (m_hp <= 0)
 		{	
 			//int damage = -20;//これを壊したときの患者へのダメージ量
 			//GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp((float)damage);//ダメージを与える
@@ -123,7 +123,7 @@ namespace basecross {
 			if (Other->FindTag(L"Bullet"))
 			{
 				m_Position = m_StartPosition;
-				m_Hp -= Attack;//自分のHPが減る
+				m_hp -= Attack;//自分のHPが減る
 				GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
 				auto PtrEffect = stage->GetSharedGameObject<EffectBreakWall>(L"RedEffect", false);
 				auto effectPos = GetComponent<Transform>()->GetPosition();
