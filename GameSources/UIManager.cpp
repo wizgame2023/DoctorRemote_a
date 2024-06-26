@@ -78,7 +78,11 @@ namespace basecross {
 				{
 					if (scene->GetGameStage() > 0) 
 					{
-						m_com[0] = GetStage()->AddGameObject<CommentManager>(13 * 2 + 1, 0, Vec3(250, -180, 0.0f), L"SousaCom");
+						auto mojiNum = 13 * 1;
+						if(scene->GetDashStatus()>0){
+							mojiNum = 13 * 2;
+						}
+						m_com[0] = GetStage()->AddGameObject<CommentManager>(mojiNum, 0, Vec3(250, -180, 0.0f), L"SousaCom");
 					}
 					m_comFlag = true;
 				}
@@ -112,6 +116,15 @@ namespace basecross {
 			m_chargeGarge->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
 		}
 
+		if (m_dashLight) {
+			if (player->GetDashFlag()) {
+				m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
+			}
+			else {
+				m_dashLight->SetColor(Col4(1.0f, 0.0f, 0.0f, 0.8f));
+			}
+
+		}
 
 		//デバック用
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
@@ -187,6 +200,7 @@ namespace basecross {
 	void UIManager::CreateUi()//UIを生成する
 	{
 		auto stage = GetStage();
+		auto& scene = App::GetApp()->GetScene<Scene>();
 
 		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);//枠
 
@@ -202,8 +216,11 @@ namespace basecross {
 		//弾のチャージを表すゲージ
 		auto chargeFrame = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 1.0f, 150, 15, Col4(1.0f), Col4(1.0f,1.0f,1.0f,0.5f), Vec3(-220.0f+150, -290.0f, 0.0f), Vec3(0.0f));//こいつのカラーを何とかする
 		m_chargeGarge = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 0.5f, 150, 15, Col4(1.0f), Col4(1.0f), Vec3(-220.0f, -290.0f, 0.0f), Vec3(0.0f));
-		m_dashLight = stage->AddGameObject<Sprite>(30, 30, L"White", Vec3(-250.0f, -350.0f, 0.0f));
-		m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+		if (scene->GetDashStatus() > 0) {
+			m_dashLight = stage->AddGameObject<Sprite>(70, 70, L"DashIcon", Vec3(-150.0f, -320.0f, 0.0f));
+			m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
+
+		}
 
 		auto garge = stage->AddGameObject<PieceGarge2>();
 		stage->SetSharedGameObject(L"Garge", garge);
