@@ -43,7 +43,8 @@ namespace basecross {
 		m_checkL(false),
 		m_moveCheck(false),
 		m_display(display),
-		m_displayNumber(displayNumber)
+		m_displayNumber(displayNumber),
+		m_closeNum{(false)}
 	{}
 	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr,
 		const wstring sprites,//選択する画像
@@ -69,7 +70,8 @@ namespace basecross {
 		m_checkL(false),
 		m_moveCheck(false),
 		m_display(true),
-		m_displayNumber(true)
+		m_displayNumber(true),
+		m_closeNum{ (false) }
 	{}
 
 
@@ -179,7 +181,9 @@ namespace basecross {
 		//Bボタンで確定
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 			if (m_stageNum <= m_limitNum) {
-				m_moveCheck = true;
+				if (!m_closeNum[m_stageNum-1]) {
+					m_moveCheck = true;
+				}
 			}
 		}
 		
@@ -237,6 +241,9 @@ namespace basecross {
 	}
 	void StageSelectSprite::SetLimitNum(int num) {
 		m_limitNum = num;
+	}
+	void StageSelectSprite::SetCloseNum(int num) {
+		m_closeNum[num] = true;
 	}
 	bool StageSelectSprite::StickFlag() {
 		auto stick = false;
