@@ -27,10 +27,11 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			auto scene = App::GetApp()->GetScene<Scene>();
-			scene->SetPlayFlag(true);
+			scene->SetPlayFlag(false);
 
 
-			AddGameObject<Sprite>(1280, 800, L"Clear", Vec3());
+			AddGameObject<Sprite>(1280, 800, L"Back", Vec3());
+			AddGameObject<Comment>(10, 0, 0.1, 1350, 229, 900, 200, 10, 1, Vec3(-450.0f, 300.0f, 0.0f), L"GameCleraRogo");
 		}
 		catch (...) {
 			throw;
