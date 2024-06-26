@@ -10,7 +10,7 @@
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr),
-		m_Hp(10),
+		m_hp(10),
 		m_posXFlag(1.0f),
 		m_enemyflag(false),
 		m_meshResName(L"Baikin_Mesh")
@@ -24,6 +24,8 @@ namespace basecross {
 		m_pos(pos),
 		m_rot(rot),
 		m_scale(scale),
+		m_originPos(pos),
+		m_maxScale(scale),
 		m_width(3.0f),
 		m_widthSpeed(2.0f),
 		m_hegiht(2.0f),
@@ -45,7 +47,8 @@ namespace basecross {
 		m_event(false),
 		m_event2(false),
 		m_meshResName(L"Boss_Mesh"),
-		m_Hp(60)
+		m_hp(60),
+		m_maxHp(60)
 	{}
 
 	void Enemy::OnCreate()
@@ -175,7 +178,7 @@ namespace basecross {
 			
 
 		}
-		if (m_Hp < 20) {
+		if (m_hp < 20) {
 			m_event2 = true;
 		}
 		if (m_event2) {
@@ -215,6 +218,30 @@ namespace basecross {
 			}
 		}
 
+		if (m_maxHp * 0.80 > m_hp) {
+			
+			m_scale = m_maxScale - m_scaleReduct;
+			m_pos.y = m_originPos.y-m_posYRedect;
+		}
+		if (m_maxHp * 0.60 > m_hp) {
+			m_scale = m_maxScale - m_scaleReduct * 2;
+			m_pos.y = m_originPos.y - m_posYRedect * 2;
+		}
+		if (m_maxHp * 0.40 > m_hp) {
+			m_scale = m_maxScale - m_scaleReduct * 3;
+			m_pos.y = m_originPos.y - m_posYRedect * 3;
+
+		}
+		if (m_maxHp * 0.30 > m_hp) {
+			m_scale = m_maxScale - m_scaleReduct * 4;
+			m_pos.y = m_originPos.y - m_posYRedect * 4;
+		}
+		if (m_maxHp * 0.20 > m_hp) {
+			m_scale = m_maxScale - m_scaleReduct * 5;
+			m_pos.y = m_originPos.y - m_posYRedect * 5;
+		}
+		
+
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Collision)
@@ -227,15 +254,15 @@ namespace basecross {
 
 			int attack = m_bullet.lock()->GetAttack();
 
-			if (Collision->FindTag(L"Bullet") && m_Hp >= 0)
+			if (Collision->FindTag(L"Bullet") && m_hp >= 0)
 			{
-				m_Hp -=attack;
-				m_scale -= m_scaleReduct;
-				m_pos.y -= m_posYRedect;
+				m_hp -=attack;
+				//m_scale -= m_scaleReduct;
+				//m_pos.y -= m_posYRedect;
 
 			}
 		}	
-		if (m_Hp <= 0)
+		if (m_hp <= 0)
 		{
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(3);//ステージの全体フラグ進行
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
