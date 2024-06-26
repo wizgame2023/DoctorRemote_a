@@ -24,6 +24,7 @@ namespace basecross{
 
 		int m_time;
 		int m_gameStage;
+		int m_nextStage;
 		int m_achievementPoint;
 		int m_count;
 		//--------------------------------------------------------------------------------------
@@ -92,6 +93,8 @@ namespace basecross{
 		void SetTime(int time);
 		int GetGameStage();
 		void SetGameStage(int gameStage);
+		int GetNextStage();
+		void SetNextStage(int stage);
 		void SetAchievementPoint(int achievementPoint);
 		void MinusAchievementPoint(int achievementPoint);
 		int GetAchievementPoint();
