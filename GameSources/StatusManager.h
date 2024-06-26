@@ -45,7 +45,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
-		void NumDisplay(int digit, int num,Vec3 pos);
+		void NumDisplay(int digit, int num, Vec3 pos, bool pointFlag = true, bool levelFlag = false);
 		int GetStatus();
 		int GetDecision();
 	};

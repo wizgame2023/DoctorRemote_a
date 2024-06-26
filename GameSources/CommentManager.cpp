@@ -98,7 +98,7 @@ namespace basecross {
 		m_heigthSize(heigthSize),//画像サイズ縦
 		m_sizeW(sizeW),//大きさ横
 		m_sizeH(sizeH),//大きさ縦
-		m_count(m_mtime* m_column),//次の行までの時間
+		m_count(mtime*bes),//次の行までの時間
 		m_moji{ bes,bes,bes,bes,bes,bes,bes,bes,bes,bes, },
 		m_cnt(0),
 		m_pos(pos),

@@ -29,6 +29,7 @@ namespace basecross {
 		int m_heightNum;
 		int m_stageNum;
 		int m_limitNum;
+		
 
 		bool m_checkU;
 		bool m_checkD;
@@ -37,6 +38,7 @@ namespace basecross {
 		bool m_moveCheck;
 		bool m_display;
 		bool m_displayNumber;
+		bool m_closeNum[6];
 
 		Vec3 m_pos;
 		wstring m_spritesName;
@@ -77,6 +79,7 @@ namespace basecross {
 		int GetNum();
 		float GetBlinkTime();
 		void SetLimitNum(int num);
+		void SetCloseNum(int num);
 		void ThisDestroy();
 		bool StickFlag();
 	};

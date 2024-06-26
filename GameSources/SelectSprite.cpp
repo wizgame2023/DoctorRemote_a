@@ -27,6 +27,7 @@ namespace basecross {
 		m_moveCheck(false),
 		m_blinkCheck(false),
 		m_selectStageFlag(false),
+		m_exitFlag(false),
 		m_stageMove(false),
 		m_stageStart(false),
 		m_color(1.0f,1.0f,1.0f,1.0f)
@@ -46,6 +47,32 @@ namespace basecross {
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsed = App::GetApp()->GetElapsedTime();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
+		//Aボタンが押されたらステージセレクト画面を消す
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == STAGESELECT) {
+			if (m_selectStageFlag) {
+				m_selectStage->ThisDestroy();
+				m_RetrunCom->ThisDestory();
+				m_stageFrame->ThisDestory();
+				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
+				m_count = 10.0f;
+				m_selectStageFlag = false;
+				m_blinkCheck = false;
+			}
+		}
+
+		//Aボタンが押されたらExit画面を消す
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == EXIT) {
+			if (m_exitFlag) {
+				m_ExitTex->ThisDestory();
+				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
+				m_count = 10.0f;
+				m_exitFlag = false;
+				m_blinkCheck = false;
+			}
+		}
+		if (m_exitFlag) return;
+
 
 		//ステージを選ぶ
 		if (cntlVec[0].fThumbLY < -0.9f) {
@@ -76,26 +103,20 @@ namespace basecross {
 
 		//Bボタンで決定
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-			if (m_stage == TUTORIAL && m_stage == EXIT) {
+			if (m_stage == TUTORIAL) {
 				m_moveCheck = true;
 			}
 			if (m_stage == STAGESELECT) {
 				m_count = 0;
 			}
+			if (m_stage == EXIT && !m_exitFlag) {
+				m_count = 0;
+			}
 			m_blinkCheck = true;
 		}
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A&&m_stage==STAGESELECT) {
-			if (m_selectStageFlag) {
-				m_selectStage->ThisDestroy();
-				m_RetrunCom->ThisDestory();
-				m_stageFrame->ThisDestory();
-				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
-				m_count = 10.0f;
-				m_selectStageFlag = false;
-				m_blinkCheck = false;
-			}
-		}
 
+
+		//選択しているモード
 		if (m_height == m_heightMax) {
 			m_stage = TUTORIAL;
 		}
@@ -116,7 +137,9 @@ namespace basecross {
 			}
 			m_count -= elapsed * 10.0f;
 		}
-		if (m_count < 0) {
+
+		//点滅が終わったら
+		if (m_count <= 0) {
 			switch (m_stage)
 			{
 			case 0:
@@ -128,19 +151,18 @@ namespace basecross {
 				}
 				break;
 			case 1:
-				if (!m_selectStageFlag) {
+				if (!m_selectStageFlag && !m_exitFlag) {
 					m_stageFrame = stage->AddGameObject<Sprite>(600, 300, L"Score", Vec3(0.0f));
-					m_RetrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f,-100.0f,0.0f));
-					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera",L"Kakera");
+					m_RetrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
+					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
 					m_selectStage->SetLimitNum(10);
 					m_selectStageFlag = true;
 				}
 				break;
 			case 2:
-				if (!m_selectStageFlag) {
-					m_stageMove = true;
-					if (!m_stageStart) return;
-					//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage10");
+				if (!m_exitFlag && !m_selectStageFlag) {
+					m_ExitTex = stage->AddGameObject<Sprite>(1280 * 0.85, 800 * 0.85, L"White", Vec3(1.0f));
+					m_exitFlag = true;
 				}
 				break;
 			default:
@@ -151,6 +173,7 @@ namespace basecross {
 				if (m_selectStage->GetBlinkTime() <= 0) {
 					m_stage = 4;
 					m_stageMove = true;
+					//フェードインが終わったらtrue
 					if (!m_stageStart) return;
 					int stage = m_selectStage->GetNum();
 					scene->SetNextStage(stage);
@@ -175,6 +198,7 @@ namespace basecross {
 		//scene->SetDebugString(wss.str());
 
 	}
+	//フェードアウト
 	bool SelectSprite::GetStageMove()
 	{
 		return m_stageMove;

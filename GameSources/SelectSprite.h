@@ -30,11 +30,13 @@ namespace basecross {
 		bool m_stageStart;
 		bool m_blinkCheck;
 		bool m_selectStageFlag;
+		bool m_exitFlag;
 
 		shared_ptr<Transform> m_trans;
 		shared_ptr<Sprite> m_sprite;
 		shared_ptr<Sprite> m_stageFrame;
 		shared_ptr<Sprite> m_RetrunCom;
+		shared_ptr<Sprite> m_ExitTex;
 		shared_ptr<StageSelectSprite> m_selectStage;
 		Col4 m_color;
 
