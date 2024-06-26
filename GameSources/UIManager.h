@@ -20,7 +20,7 @@ namespace basecross {
 		bool m_comFlag;
 		bool m_comFlag2;
 		bool m_ClearFlag;//透明にするかしないかのフラグ
-		int m_EraseUiPtrNum;//消したポインタの番号を覚える変数
+		vector<int> m_EraseUiPtrNum;//消したポインタの番号を覚える変数
 		int m_EraseUiCommentPtrNum;//消したポインタの番号を覚える変数(コメント版)
 		float m_comX;
 		shared_ptr<Sprite> m_comFrame;
