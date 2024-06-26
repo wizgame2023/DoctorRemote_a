@@ -44,7 +44,7 @@ namespace basecross {
 		auto collider = AddComponent<CollisionObb>();
 		//collider->SetFixed(true);//これでぶつかっても動かないようにする
 		collider->SetAfterCollision(AfterCollision::None);
-		collider->SetDrawActive(true);//コリジョンを見えるようにする
+		collider->SetDrawActive(false);//コリジョンを見えるようにする
 
 
 

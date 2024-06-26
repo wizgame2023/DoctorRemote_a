@@ -81,7 +81,7 @@ namespace basecross {
 
 		auto ptrColl = AddComponent<CollisionSphere>();
 		ptrColl->SetAfterCollision(AfterCollision::None);
-		ptrColl->SetDrawActive(true);
+		ptrColl->SetDrawActive(false);
 		//ptrColl->SetDrawActive(true);//ƒRƒŠƒWƒ‡ƒ“‚ğŒ©‚¦‚é‚æ‚¤‚É‚·‚é
 
 

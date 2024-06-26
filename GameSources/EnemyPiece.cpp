@@ -60,7 +60,7 @@ namespace basecross {
 
 		//コライダー
 		auto colPtr = AddComponent<CollisionSphere>();
-		colPtr->SetDrawActive(true);
+		colPtr->SetDrawActive(false);
 		colPtr->SetAfterCollision(AfterCollision::None);
 		colPtr->SetFixed(false);
 
