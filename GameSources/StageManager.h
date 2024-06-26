@@ -30,6 +30,7 @@ namespace basecross {
 		bool m_comFlag2;
 		bool m_countFlag;
 		bool m_enemyFlag;
+		bool m_StartDestoryFlag;
 
 
 		shared_ptr<Sprite> m_ligth;
