@@ -16,7 +16,11 @@ namespace basecross {
 			virtual ~TitleStage() {}
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+		virtual void OnDestroy() override;
 
+		shared_ptr<SoundItem> m_BGM;
+
+		void BaseBGM();
 		void StageChange();
 	};
 }

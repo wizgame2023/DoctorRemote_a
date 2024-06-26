@@ -22,6 +22,9 @@ namespace basecross {
 	}
 	void TitleStage::OnCreate() {
 		try {
+			//BGM
+			BaseBGM();
+
 			auto& scene = App::GetApp()->GetScene<Scene>();
 			scene->SetAchievementPoint(0);
 			scene->SetDashStatus(0);
@@ -57,6 +60,19 @@ namespace basecross {
 			throw;
 		}
 	}
+
+	void TitleStage::BaseBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+	}
+	    
+	void TitleStage::OnDestroy()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
+	}
+
 	void TitleStage::OnUpdate()
 	{
 		auto elapsed = App::GetApp()->GetElapsedTime();
