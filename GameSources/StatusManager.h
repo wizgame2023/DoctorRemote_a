@@ -17,13 +17,14 @@ namespace basecross {
 	private:
 		float m_maxX;
 		float m_width;
+		float m_count;
 		bool m_checkR;
 		bool m_checkL;
 		bool m_colorCheck;
 		bool m_moveCheck;
 		bool m_comFlag;
 		bool m_moveStick;
-		float m_count;
+		bool m_aButtonSEFlag;
 
 		int m_decision;
 
@@ -45,6 +46,8 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
+		void Displays();
+		void PointLevelDis();
 		void NumDisplay(int digit, int num, Vec3 pos, bool pointFlag = true, bool levelFlag = false);
 		int GetStatus();
 		int GetDecision();

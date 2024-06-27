@@ -30,6 +30,8 @@ namespace basecross {
 		m_exitFlag(false),
 		m_stageMove(false),
 		m_stageStart(false),
+		m_aButtonSEFlag(true),
+		m_bButtonSEFlag(false),
 		m_color(1.0f,1.0f,1.0f,1.0f)
 	{}
 
@@ -59,8 +61,11 @@ namespace basecross {
 				m_selectStageFlag = false;
 				m_blinkCheck = false;
 			}
-			auto choiceSE = App::GetApp()->GetXAudio2Manager();
-			choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+			//SE
+			if (!m_aButtonSEFlag) {
+				ChoiceSE();
+				m_aButtonSEFlag = true;
+			}
 
 		}
 
@@ -73,8 +78,11 @@ namespace basecross {
 				m_exitFlag = false;
 				m_blinkCheck = false;
 			}
-			auto choiceSE = App::GetApp()->GetXAudio2Manager();
-			choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+			//SE
+			if (!m_aButtonSEFlag) {
+				ChoiceSE();
+				m_aButtonSEFlag = true;
+			}
 
 		}
 
@@ -131,8 +139,11 @@ namespace basecross {
 					m_count = 0;
 				}
 				m_blinkCheck = true;
-				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+				//SE
+				if (!m_bButtonSEFlag) {
+					ChoiceSE();
+					m_bButtonSEFlag = true;
+				}
 			}
 		}
 
@@ -164,6 +175,8 @@ namespace basecross {
 			case 1:
 				if (!m_selectStageFlag && !m_exitFlag) {
 					m_selectStageFlag = true;
+					m_bButtonSEFlag = false;
+					m_aButtonSEFlag = false;
 					m_stageFrame = stage->AddGameObject<Sprite>(600, 300, L"Score", Vec3(0.0f));
 					m_RetrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
 					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
@@ -172,8 +185,10 @@ namespace basecross {
 				break;
 			case 2:
 				if (!m_exitFlag && !m_selectStageFlag) {
-					m_ExitTex = stage->AddGameObject<Sprite>(1280 * 0.85, 800 * 0.85, L"White", Vec3(1.0f));
 					m_exitFlag = true;
+					m_bButtonSEFlag = false;
+					m_aButtonSEFlag = false;
+					m_ExitTex = stage->AddGameObject<Sprite>(1280 * 0.85, 800 * 0.85, L"White", Vec3(1.0f));
 				}
 				break;
 			default:
@@ -209,6 +224,12 @@ namespace basecross {
 		//	<< endl;
 		//scene->SetDebugString(wss.str());
 
+	}
+
+	//SE
+	void SelectSprite::ChoiceSE() {
+		auto choiceSE = App::GetApp()->GetXAudio2Manager();
+		choiceSE->Start(L"ChoiceSE", 0, 0.3f);
 	}
 	//フェードアウト
 	bool SelectSprite::GetStageMove()
