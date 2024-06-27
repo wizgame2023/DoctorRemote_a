@@ -149,6 +149,14 @@ namespace basecross {
 				m_lineFlag = false;
 			}
 		}
+
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetPlayFlag())//stage‚ªPlay‚·‚é‚Æ‚±‚ë‚È‚ç
+		{	
+			bool ClearFlag = GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->GetClearFlag();//“§–¾‚É‚·‚é‚©‚Ç‚¤‚©Œˆ‚ß‚é
+			OnClear(ClearFlag);
+
+		}
 		
 	}
 

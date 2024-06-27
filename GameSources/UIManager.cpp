@@ -135,6 +135,11 @@ namespace basecross {
 
 	}
 
+	bool UIManager::GetClearFlag()
+	{
+		return m_ClearFlag;
+	}
+
 	int UIManager::SetUiPtr(shared_ptr<Sprite> Ui)
 	{
 		m_AllUiPtr.push_back(Ui);//Uiのポインタを取得する
@@ -158,41 +163,59 @@ namespace basecross {
 
 	void UIManager::EraseUiPtr(int num)//配列にあるUiのポインタの要素を削除する
 	{
-		m_AllUiPtr.erase(m_AllUiPtr.begin() + ((num - 1) - m_EraseUiPtrNum.size()));//配列にあるUiのポインタを削除する
-		m_EraseUiPtrNum.push_back(num);//削除したポインタの配列番号を取得
-		//m_EraseUiPtrNum = num;//削除したポインタの配列番号を取得
-		m_AllUiPtr.size();//デバック用
-		auto a = 0;//デバック用
+		//m_AllUiPtr.erase(m_AllUiPtr.begin() + ((num - 1) - m_EraseUiPtrNum.size()));//配列にあるUiのポインタを削除する
+		////m_EraseUiPtrNum.push_back(num);//削除したポインタの配列番号を取得
+		////m_EraseUiPtrNum = num;//削除したポインタの配列番号を取得
+		//m_AllUiPtr.size();//デバック用
+		//auto a = 0;//デバック用
 	}
 
 	void UIManager::EraseUiCommentPtr(int num)//配列にあるUiのポインタの要素を削除する
 	{
-		m_UiCommentPtr.erase(m_UiCommentPtr.begin() + (num - 1));//配列にあるUiのポインタを削除する
-		m_EraseUiCommentPtrNum = num;//削除したポインタの配列番号を取得
-		m_UiCommentPtr.size();//デバック用
-		auto a = 0;//デバック用
+		//m_UiCommentPtr.erase(m_UiCommentPtr.begin() + (num - 1));//配列にあるUiのポインタを削除する
+		////m_EraseUiCommentPtrNum = num;//削除したポインタの配列番号を取得
+		//m_UiCommentPtr.size();//デバック用
+		//auto a = 0;//デバック用
 	}
 
 	void UIManager::PushUiPtr()//配列番号を前に詰めさせる
 	{
-		for (auto ui : m_AllUiPtr)
-		{
-			auto afterNum = ui.lock()->GetNumPtr();//今の配列番号を取得
-			auto test = afterNum;
-			for (int i = 0; i < m_EraseUiPtrNum.size(); i++)
-			{
-				auto a = 0;
-				if (test > m_EraseUiPtrNum[i])//今の配列番号が消えた配列番号より後に生成されているなら
-				{
-					ui.lock()->SetNumPtr(afterNum - 1);//配列番号を前にさせる
-					afterNum -= 1;
-					auto a = 0;
-				}
-			}
-		}
-		m_EraseUiPtrNum.erase(m_EraseUiPtrNum.begin(), m_EraseUiPtrNum.end());//削除した要素番号を詰めたのでいったん中身を消す
-		auto a = m_EraseUiPtrNum.size();
-		auto b = 0;
+		//for (auto ui : m_AllUiPtr)
+		//{
+		//	auto shUI = ui.lock();
+		//	if (shUI) {
+
+		//		auto afterNum = shUI->GetNumPtr();//今の配列番号を取得
+		//		auto test = afterNum;
+		//		for (int i = 0; i < m_EraseUiPtrNum.size(); i++)
+		//		{
+		//			auto a = 0;
+		//			if (test > m_EraseUiPtrNum[i])//今の配列番号が消えた配列番号より後に生成されているなら
+		//			{
+		//				ui.lock()->SetNumPtr(afterNum - 1);//配列番号を前にさせる
+		//				afterNum -= 1;
+		//				auto a = 0;
+		//			}
+		//		}
+
+
+		//	}
+		//	//auto afterNum = ui.lock()->GetNumPtr();//今の配列番号を取得
+		//	//auto test = afterNum;
+		//	//for (int i = 0; i < m_EraseUiPtrNum.size(); i++)
+		//	//{
+		//	//	auto a = 0;
+		//	//	if (test > m_EraseUiPtrNum[i])//今の配列番号が消えた配列番号より後に生成されているなら
+		//	//	{
+		//	//		ui.lock()->SetNumPtr(afterNum - 1);//配列番号を前にさせる
+		//	//		afterNum -= 1;
+		//	//		auto a = 0;
+		//	//	}
+		//	//}
+		//}
+		//m_EraseUiPtrNum.erase(m_EraseUiPtrNum.begin(), m_EraseUiPtrNum.end());//削除した要素番号を詰めたのでいったん中身を消す
+		//auto a = m_EraseUiPtrNum.size();
+		//auto b = 0;
 	}
 
 	void UIManager::PushUiCommentPtr()//配列番号を前に詰めさせる
@@ -254,48 +277,92 @@ namespace basecross {
 		{
 			for (auto ui : m_AllUiPtr)
 			{
-				if (!ui.lock()->FindTag(L"MovieSprite"))
+				auto uiPtr = ui.lock();//shart_ptrにする
+				if (uiPtr)
 				{
-					auto a = 0;
-					ui.lock()->OnClear(true);//透明にする
-					miniMapPlayer->OnClear(true);
+					if (!uiPtr->FindTag(L"MovieSprite"))
+					{
+						auto a = 0;
+						uiPtr->OnClear(true);//透明にする
+						miniMapPlayer->OnClear(true);
+					}
+
 				}
+
 			}
-			for (auto uiTime : m_UiTimePtr)
-			{
-				uiTime.lock()->OnClear(true);
-			}
+			//for (auto uiTime : m_UiTimePtr)
+			//{
+			//	auto TimePtr = uiTime.lock();
+			//	if (TimePtr)
+			//	{
+			//		TimePtr->OnClear(true);
+			//	}
+			//}
 			for (auto uiGarge : m_UiGargePtr)
 			{
-				uiGarge.lock()->OnClear(true);
+				auto GargePtr = uiGarge.lock();
+				if (GargePtr)
+				{
+					GargePtr->OnClear(true);
+
+				}
 			}
-			for (auto uiComment : m_UiCommentPtr)
-			{
-				uiComment.lock()->OnClear(true);
-			}
+			//for (auto uiComment : m_UiCommentPtr)
+			//{
+			//	auto CommentPtr = uiComment.lock();
+			//	if (CommentPtr)
+			//	{
+			//		CommentPtr->OnClear(true);
+			//	}
+			//}
 		}
 		else
 		{
+
 			for (auto ui : m_AllUiPtr)
 			{
-				if (!ui.lock()->FindTag(L"MovieSprite"))
+				auto uiPtr = ui.lock();
+				if (uiPtr)
 				{
-					ui.lock()->OnClear(false);//透明から戻す
-					miniMapPlayer->OnClear(false);
+					if (!uiPtr->FindTag(L"MovieSprite"))
+					{
+						auto a = 0;
+						uiPtr->OnClear(false);//透明にする
+						miniMapPlayer->OnClear(false);
+					}
+
 				}
+
+				//if (!ui.lock()->FindTag(L"MovieSprite"))
+				//{
+				//	ui.lock()->OnClear(false);//透明から戻す
+				//	miniMapPlayer->OnClear(false);
+				//}
 			}
-			for (auto uiTime : m_UiTimePtr)
-			{
-				uiTime.lock()->OnClear(false);//透明から戻す
-			}
+			//for (auto uiTime : m_UiTimePtr)
+			//{
+			//	auto timePtr = uiTime.lock();
+			//	if (timePtr)
+			//	{
+			//		timePtr->OnClear(false);//透明から戻す
+			//	}
+			//}
 			for (auto uiGarge : m_UiGargePtr)
 			{
-				uiGarge.lock()->OnClear(false);
+				auto GargePtr = uiGarge.lock();
+				if (GargePtr)
+				{
+					GargePtr->OnClear(false);
+				}
 			}
-			for (auto uiComment : m_UiCommentPtr)
-			{
-				uiComment.lock()->OnClear(false);
-			}
+			//for (auto uiComment : m_UiCommentPtr)
+			//{
+			//	auto CommentPtr = uiComment.lock();
+			//	if (CommentPtr)
+			//	{
+			//		CommentPtr->OnClear(false);
+			//	}
+			//}
 
 
 		}

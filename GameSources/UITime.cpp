@@ -80,6 +80,14 @@ namespace basecross {
 	void UITime::OnUpdate() {
 
 		//UpdateValue(m_number);
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetPlayFlag())//stageがPlayするところなら
+		{
+			bool ClearFlag = GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->GetClearFlag();//透明にするかどうか決める
+			OnClear(ClearFlag);
+
+		}
+
 	}
 
 	void UITime::OnClear(bool OnOff)

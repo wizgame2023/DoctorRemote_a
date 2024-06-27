@@ -44,6 +44,7 @@ namespace basecross {
 		void EraseUiCommentPtr(int num);//配列にあるUiのポインタを消す
 		void PushUiPtr();//配列が小さくなった際、使わない番号を詰める
 		void PushUiCommentPtr();//配列が小さくなった際、使わない番号を詰める(コメント版)
+		bool GetClearFlag();//透明にするかしないかのフラグを取得する
 		int SetUiPtr(shared_ptr<Sprite> Ui);//UIのポインタを配列に入れる
 		int SetUiTimePtr(shared_ptr<UITime> UiTime);//UiTimeのポインタを入れる
 		int SetUiGargePtr(shared_ptr<Garge> UiGarge);//Gargeのポインタを入れる
