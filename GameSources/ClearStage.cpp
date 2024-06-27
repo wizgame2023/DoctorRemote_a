@@ -30,21 +30,31 @@ namespace basecross {
 			scene->SetPlayFlag(false);
 
 
-			AddGameObject<Sprite>(1280, 800, L"Back", Vec3());
+			AddGameObject<Sprite>(1280, 800, L"Back", Vec3(),-3);
 			AddGameObject<Comment>(10, 0, 0.1, 1350, 229, 900, 200, 10, 1, Vec3(-450.0f, 300.0f, 0.0f), L"GameCleraRogo");
+			auto messege = AddGameObject<Sprite>(500, 200, L"Thank", Vec3(0.0f,-100.0f,0.0f));
+			messege->SetColor(Col4(1.0f,1.0f,1.0f,0.0f));
+			SetSharedGameObject(L"Messege", messege);
+			auto button = AddGameObject<Sprite>(200, 75, L"ClearButton", Vec3(450, -350, 0.0f));
+			button->SetColor(Col4(0.0f));
+			SetSharedGameObject(L"Button", button);
+
 		}
 		catch (...) {
 			throw;
 		}
 	}
 
-	void ClearStage::BaseBGM()
-	{
-		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"GameClearBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
-	}
-
 	void ClearStage::OnUpdate() {
+		auto elapsed = App::GetApp()->GetElapsedTime();
+		auto messege = GetSharedGameObject<Sprite>(L"Messege");
+		auto button = GetSharedGameObject<Sprite>(L"Button");
+		m_time += elapsed * 0.5;
+		if (m_time >= 1.0f) {
+			m_time = 1.0f;
+			button->SetColor(Col4(1.0f));
+		}
+		messege->SetColor(Col4(1.0f, 1.0f, 1.0f, m_time));
 		StageChange();
 	}
 	void ClearStage::StageChange() {
@@ -54,6 +64,12 @@ namespace basecross {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
 			}
 		}
+	}
+
+	void ClearStage::BaseBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"GameClearBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
 	}
 
 	void ClearStage::OnDestroy()

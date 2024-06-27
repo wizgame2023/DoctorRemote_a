@@ -8,6 +8,10 @@
 
 namespace basecross {
 	class ClearStage :public Stage {
+
+		float m_time = 0.0f;
+		bool m_messegeFlag = false;
+
 		void CreateViewLight();
 
 	public:
