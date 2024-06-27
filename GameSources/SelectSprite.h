@@ -38,8 +38,9 @@ namespace basecross {
 		shared_ptr<Transform> m_trans;
 		shared_ptr<Sprite> m_sprite;
 		shared_ptr<Sprite> m_stageFrame;
-		shared_ptr<Sprite> m_RetrunCom;
-		shared_ptr<Sprite> m_ExitTex;
+		shared_ptr<Sprite> m_retrunCom;
+		shared_ptr<Sprite> m_creditTex;
+		shared_ptr<Sprite> m_back;
 		shared_ptr<StageSelectSprite> m_selectStage;
 		Col4 m_color;
 
