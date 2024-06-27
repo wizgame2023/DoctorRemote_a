@@ -19,8 +19,12 @@ namespace basecross {
 		int m_apReceive;
 		int m_count;
 
+		bool m_SEFlag = false;
+
 		float m_mojispeed;
 		float m_mojispeed1;
+
+		float GetKekeraPoint();
 
 		float m_mojiCount = 4.0;
 		void CreateViewLight();
@@ -36,5 +40,6 @@ namespace basecross {
 
 		void BaseBGM();
 		void StageChange();
+		void ScoreSE();
 	};
 }

@@ -64,13 +64,13 @@ namespace basecross {
 		StageChange();
 
 		if (m_control == 0)
-		{			
+		{
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) //Aボタンが押されたらスキップ(カウントを10秒プラス)する
 			{
 				m_mojispeed = 0.0f;
 				m_mojispeed1 = 0.0f;
-				m_countUp+= 10;
+				m_countUp += 12;
 				auto choiceSE = App::GetApp()->GetXAudio2Manager();
 				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
 
@@ -111,155 +111,182 @@ namespace basecross {
 			else if (m_countUp >= 6.0f && m_timeCount == 4)
 			{
 				int count = scene->GetBigPieceCount();
-				auto rank = AddGameObject<Sprite>(55, 60, L"CountMoji", Vec3(-130.0f, 130.0f, 0.0f));
+				auto rank = AddGameObject<Sprite>(55, 65, L"CountMoji", Vec3(-130.0f, 130.0f, 0.0f));
 				rank->UpdateCount(count);
 				m_timeCount++;
 			}
 
-			//スコアステージが生成されてから7秒後で、枠を表示
+			//スコアステージが生成されてから7秒後で、壊したウイルスの数に応じてポイントを表示
 			else if (m_countUp >= 7.0f && m_timeCount == 5)
+			{
+				int kakeracount = scene->GetBigPieceCount();
+				auto rank = AddGameObject<Sprite>(55, 65, L"KakeraPoint", Vec3(-40.0f, 128.0f, 0.0f));
+				auto plus = AddGameObject<Sprite>(60, 100, L"Plus", Vec3(-75.0f, 128.0f, 0.0f));
+				rank->UpdatePoint(3);
+
+				if (kakeracount == 0) {
+					m_achievementPoint += 0;
+				}
+				if (kakeracount == 1) {
+					m_achievementPoint += 5;
+				}
+				if (kakeracount == 2) {
+					m_achievementPoint += 10;
+				}
+				if (kakeracount == 3) {
+					m_achievementPoint += 15;
+				}
+				if (kakeracount >= 4) {
+					m_achievementPoint += 20;
+				}
+				scene->SetAchievementPoint(m_achievementPoint);
+				m_timeCount++;
+
+			}
+
+			//スコアステージが生成されてから8秒後で、枠を表示
+			else if (m_countUp >= 8.0f && m_timeCount == 6)
 			{
 				AddGameObject<Sprite>(500, 430, L"ResultWaku", Vec3(-345, -135.0f, 0.0f)); // 枠を表示
 				m_timeCount++;
 			}			
 
 			//スコアステージが生成されてから8秒後で、評価の文字を表示
-			else if (m_countUp >= 8.0f && m_timeCount == 6)
+			else if (m_countUp >= 8.0f && m_timeCount == 7)
 			{
-				auto moji2 = AddGameObject<CommentManager>(27, 0, m_mojispeed, 512, 512, 340, 370, 9, 5, //評価の文字を表示
+				auto moji2 = AddGameObject<CommentManager>(29, 0, m_mojispeed, 512, 512, 340, 370, 9, 5, //評価の文字を表示
 					Vec3(-576.0f, 59.0f, 0.0f), L"IfClear");
 				m_timeCount++;
 			}
 
-			//スコアステージが生成されてから9秒後で、ステージクリアした時の残りタイムが50秒以上だったら表示
-			else if (m_time >= 50 && m_countUp >= 10.0f && m_timeCount == 7)
+			//スコアステージが生成されてから10秒後で、ステージクリアした時の残りタイムが50秒以上だったら表示
+			else if (m_time >= 50 && m_countUp >= 10.0f && m_timeCount == 8)
 			{
 				auto moji3 = AddGameObject<CommentManager>(16, 0, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを4つ表示
 					Vec3(-208.0f, 80.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
-			//スコアステージが生成されてから9秒後で、ステージクリアした時の残りタイムが40秒以上だったら表示
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 10.0f && m_timeCount == 7)
+			//スコアステージが生成されてから11秒後で、ステージクリアした時の残りタイムが40秒以上だったら表示
+			else if (m_time >= 40 && m_time < 50 && m_countUp >= 11.0f && m_timeCount == 8)
 			{
 				auto moji3 = AddGameObject<CommentManager>(16, 1, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを3つ表示
 					Vec3(-208.0f, 82.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
-			//スコアステージが生成されてから9秒後で、ステージクリアした時の残りタイムが25秒以上だったら表示
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 10.0f && m_timeCount == 7)
+			//スコアステージが生成されてから11秒後で、ステージクリアした時の残りタイムが25秒以上だったら表示
+			else if (m_time >= 25 && m_time < 40 && m_countUp >= 11.0f && m_timeCount == 8)
 			{
 				auto moji3 = AddGameObject<CommentManager>(14, 2, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを2つ表示
 					Vec3(-208.0f, 82.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
-			//スコアステージが生成されてから9秒後で、ステージクリアしたら表示
-			else if (m_time < 25 && m_countUp >= 10.0f && m_timeCount == 7)
+			//スコアステージが生成されてから11秒後で、ステージクリアしたら表示
+			else if (m_time < 25 && m_countUp >= 11.0f && m_timeCount == 8)
 			{
 				auto moji3 = AddGameObject<Comment>(16, 3, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを1つ表示
 					Vec3(-208.0f, 80.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 
-			//スコアステージが生成されてから10秒後で、合計を表示
-			else if (m_countUp >= 11.0f && m_timeCount == 8)
+			//スコアステージが生成されてから12秒後で、合計を表示
+			else if (m_countUp >= 13.0f && m_timeCount == 9)
 			{
 				auto moji3 = AddGameObject<Comment>(2, 0, 0.1f, 256, 64, 200, 55, 4, 1, //合計を表示
 					Vec3(-450.0f, -278.0f, 0.0f), L"ResultMoji3");
 				m_timeCount++;
 			}
 
-			//スコアステージが生成されてから11秒後で、ステージクリアした時の残りタイムが50秒以上だったらポイント「100」を表示
-			else if (m_time >= 50 && m_countUp >= 12.0f && m_timeCount == 9)
+			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが50秒以上だったらポイント「100」を表示
+			else if (m_time >= 50 && m_countUp >= 14.0f && m_timeCount == 10)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-160.0f, -297.0f, 0.0f));//「100」を表示
 				rank->UpdateIfClear(0);
 				m_timeCount++;
 			}
-			//スコアステージが生成されてから11秒後で、ステージクリアした時の残りタイムが40秒以上だったらポイント「75」を表示
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 12.0f && m_timeCount == 9)
+			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが40秒以上だったらポイント「75」を表示
+			else if (m_time >= 40 && m_time < 50 && m_countUp >= 14.0f && m_timeCount == 10)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-162.0f, -304.0f, 0.0f));//「75」を表示
 				rank->UpdateIfClear(1);
 				m_timeCount++;
 			}
-			//スコアステージが生成されてから11秒後で、ステージクリアした時の残りタイムが25秒以上だったらポイント「50」を表示
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 12.0f && m_timeCount == 9)
+			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが25秒以上だったらポイント「50」を表示
+			else if (m_time >= 25 && m_time < 40 && m_countUp >= 14.0f && m_timeCount == 10)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-160.0f, -304.0f, 0.0f));//「50」を表示 
 				rank->UpdateIfClear(2);
 				m_timeCount++;
 			}
-			//スコアステージが生成されてから11秒後で、ステージクリアしたらポイント「25」を表示
-			else if (m_time < 25 && m_countUp >= 12.0f && m_timeCount == 9)
+			//スコアステージが生成されてから14秒後で、ステージクリアしたらポイント「25」を表示
+			else if (m_time < 25 && m_countUp >= 14.0f && m_timeCount == 10)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-160.0f, -301.0f, 0.0f));//「25」を表示
 				rank->UpdateIfClear(3);
 				m_timeCount++;
 			}
 
-			//スコアステージが生成されてから12秒後で、ステージクリアした時の残り時間が50秒以上だったら「S」を表示
-			else if (m_time >= 50 && m_countUp >= 13.0f && m_timeCount == 10)
+			//スコアステージが生成されてから15秒後で、ステージクリアした時の残り時間が50秒以上だったら「S」を表示
+			else if (m_time >= 50 && m_countUp >= 15.0f && m_timeCount == 11)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(270, 0, 0));
 				rank->UpdateRank(0);
 				m_timeCount++;
-				m_achievementPoint += 100;//100成果(achievement)ポイント獲得
+				m_achievementPoint += 80 - m_achievementPoint;//100成果(achievement)ポイント獲得
 				m_control++;
+				scene->SetAchievementPoint(m_achievementPoint);
 
-				auto scoreSE = App::GetApp()->GetXAudio2Manager();
-				scoreSE->Start(L"ScoreSE", 0, 0.3f);
+				ScoreSE();
 			}
-			//スコアステージが生成されてから12秒後で、ステージクリアした時の残り時間が40秒以上だったら「A」を表示
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 13.0f && m_timeCount == 10)
+			//スコアステージが生成されてから15秒後で、ステージクリアした時の残り時間が40秒以上だったら「A」を表示
+			else if (m_time >= 40 && m_time < 50 && m_countUp >= 15.0f && m_timeCount == 11)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0));
 				rank->UpdateRank(1);
 				m_timeCount++;
-				m_achievementPoint += 75;//75成果(achievement)ポイント獲得
+				m_achievementPoint += 60 - m_achievementPoint;//75成果(achievement)ポイント獲得
 				m_control++;
+				scene->SetAchievementPoint(m_achievementPoint);
 
-				auto scoreSE = App::GetApp()->GetXAudio2Manager();
-				scoreSE->Start(L"ScoreSE", 0, 0.3f);
-			}
-			//スコアステージが生成されてから12秒後で、ステージクリアした時の残り時間が25秒以上だったら「B」を表示
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 13.0f && m_timeCount == 10)
+				ScoreSE();
+				}
+			//スコアステージが生成されてから15秒後で、ステージクリアした時の残り時間が25秒以上だったら「B」を表示
+			else if (m_time >= 25 && m_time < 40 && m_countUp >= 15.0f && m_timeCount == 11)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0));
 				rank->UpdateRank(2);
 				m_timeCount++;
-				m_achievementPoint += 50;;//50成果(achievement)ポイント獲得
+				m_achievementPoint += 40 - m_achievementPoint;;//50成果(achievement)ポイント獲得
 				m_control++;
+				scene->SetAchievementPoint(m_achievementPoint);
 
-				auto scoreSE = App::GetApp()->GetXAudio2Manager();
-				scoreSE->Start(L"ScoreSE", 0, 0.3f);
+				ScoreSE();
 			}
-			//スコアステージが生成されてから12秒後で、ステージクリアしたら「C」を表示
-			else if (m_time < 25 && m_countUp >= 13.0f && m_timeCount == 10)
+			//スコアステージが生成されてから15秒後で、ステージクリアしたら「C」を表示
+			else if (m_time < 25 && m_countUp >= 15.0f && m_timeCount == 11)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0));
 				rank->UpdateRank(3);
 				m_timeCount++;
-				m_achievementPoint += 25;;//25成果(achievement)ポイント獲得
+				m_achievementPoint += 20 - m_achievementPoint;;//25成果(achievement)ポイント獲得
 				m_control++;
+				scene->SetAchievementPoint(m_achievementPoint);
 
-				auto scoreSE = App::GetApp()->GetXAudio2Manager();
-				scoreSE->Start(L"ScoreSE", 0, 0.3f);
+				ScoreSE();
 			}
-			scene->SetAchievementPoint(m_achievementPoint);
 		}
-		//スコアステージが生成されてから6秒後に「Bボタンで次へ」を表示
-		else if (m_control == 1 && m_countUp >= 14.0f)
+		//スコアステージが生成されてから16秒後に「Bボタンで次へ」を表示
+		else if (m_control == 1 && m_countUp >= 16.0f)
 		{
 			auto moji3 = AddGameObject<Comment>(7, 0, 0.1f, 256, 64, 256, 64, 7, 1, // Bボタンで次へ
 			Vec3(340.0f, -300.0f, 0.0f), L"ResultMoji2");
 			m_timeCount++;
 			m_control++;
 		}
-		//int test = scene->GetAchievementPoint();//デバック用変数
-		//wstringstream wss(L"");
-		//wss << m_countUp << "\n" << test << endl;
+		int test = scene->GetAchievementPoint();//デバック用変数
+		wstringstream wss(L"");
+		wss << test << "\n" << test << endl;
 
-		//scene->SetDebugString(wss.str());
+		scene->SetDebugString(wss.str());
 	}
 
 	void ScoreStage::OnDestroy()
@@ -276,20 +303,30 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].bConnected)
 		{
-			if (m_countUp >= 15.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
+			if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
-				if (m_stageCount <= 9) {
+				if (m_stageCount == 0) {
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStarStage");
+				}
+				else if (m_stageCount <= 9) {
 					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
 
 				}
 				else if (m_stageCount == 10) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 
 				}
-				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+				if (!m_SEFlag) {
+					auto choiceSE = App::GetApp()->GetXAudio2Manager();
+					choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+					m_SEFlag = true;
+				}
 
 			}
 		}
+	}
+	void ScoreStage::ScoreSE() {
+		auto scoreSE = App::GetApp()->GetXAudio2Manager();
+		scoreSE->Start(L"ScoreSE", 0, 0.3f);
 	}
 }

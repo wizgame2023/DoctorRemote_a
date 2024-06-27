@@ -253,6 +253,10 @@ namespace basecross {
 		app->RegisterTexture(L"Rank", strTexture);
 		strTexture = texPath + L"Point.png";
 		app->RegisterTexture(L"Point", strTexture);
+		strTexture = texPath + L"KakeraPoint.png";
+		app->RegisterTexture(L"KakeraPoint", strTexture);
+		strTexture = texPath + L"Plus.png";
+		app->RegisterTexture(L"Plus", strTexture);
 		strTexture = texPath + L"StatusMoji.png";
 		app->RegisterTexture(L"StatusMoji", strTexture);
 		strTexture = texPath + L"StatusMoji2.png";
