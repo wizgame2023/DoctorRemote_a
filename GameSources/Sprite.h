@@ -44,6 +44,7 @@ namespace basecross {
 		void UpdateRank(int value);
 		void UpdateIfClear(int value);
 		void UpdateCount(int value);
+		void UpdatePoint(int value);
 		void ThisDestory();
 		void Blinking(float count);
 
