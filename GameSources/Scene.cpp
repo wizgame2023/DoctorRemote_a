@@ -548,25 +548,25 @@ namespace basecross {
 
 	//ステータス関連
 	//ダッシュのフラグ
-	float Scene::GetDash() {
-		auto dash = 1.0f;
-		switch (m_dashStatus)
-		{
-		case 0:
-			dash = 1.0f;
-			break;
-		case 1:
-			dash = 0.8f;
-			break;
-		case 2:
-			dash = 0.6f;
-			break;
-		default:
-			dash = 0.6f;
-			break;
-		}
-		return dash;
-	}
+	//float Scene::GetDash() {
+	//	auto dash = 1.0f;
+	//	switch (m_dashStatus)
+	//	{
+	//	case 0:
+	//		dash = 1.0f;
+	//		break;
+	//	case 1:
+	//		dash = 0.8f;
+	//		break;
+	//	case 2:
+	//		dash = 0.6f;
+	//		break;
+	//	default:
+	//		dash = 0.6f;
+	//		break;
+	//	}
+	//	return dash;
+	//}
 	int Scene::GetDashStatus() {
 		return m_dashStatus;
 	}

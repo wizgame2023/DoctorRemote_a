@@ -46,6 +46,7 @@ namespace basecross {
 		m_bigPieceFlag2(false),
 		m_event(false),
 		m_event2(false),
+		m_SEflag(false),
 		m_meshResName(L"Boss_Mesh"),
 		m_hp(60),
 		m_maxHp(60)
@@ -241,6 +242,14 @@ namespace basecross {
 			m_pos.y = m_originPos.y - m_posYRedect * 5;
 		}
 		
+		if (m_hp <= 0) {
+			if (!m_SEflag) {
+				auto deadSE = App::GetApp()->GetXAudio2Manager();
+				deadSE->Start(L"DeadSE", 0, 0.9f);
+				m_SEflag = true;
+			}
+
+		}
 
 	}
 
@@ -259,11 +268,14 @@ namespace basecross {
 				m_hp -=attack;
 				//m_scale -= m_scaleReduct;
 				//m_pos.y -= m_posYRedect;
+				auto damegeSE = App::GetApp()->GetXAudio2Manager();
+				damegeSE->Start(L"AttackSE", 0, 0.3f);
 
 			}
 		}	
 		if (m_hp <= 0)
-		{
+		{		
+
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(3);//ステージの全体フラグ進行
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
 			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
@@ -272,7 +284,6 @@ namespace basecross {
 			if (m_enemyflag) {
 				GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetEnemyFlag(true);
 			}
-			int a = 0;
 		}
 		if (Collision->FindTag(L"Player")) {
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetHp(-10.0f);

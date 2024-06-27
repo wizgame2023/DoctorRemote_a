@@ -38,6 +38,7 @@ namespace basecross {
 		shared_ptr<Sprite> m_mapSetumei;
 		shared_ptr<Sprite> m_frame[10];
 
+		shared_ptr<SoundItem> m_baseBGM;
 
 	public:
 		TutorialManager(const shared_ptr<Stage>& stagePtr);
@@ -49,5 +50,7 @@ namespace basecross {
 		void Comment(int moji, wstring mesh, bool delet = true, bool delet2 = false);
 		void UIComment(int moji, wstring mesh, Vec3 triPos, float deg, Vec2 size, wstring texture, Vec3 spPos,
 			bool delet = true, bool delte2 = true);
+
+		int GetCount();
 	};
 }

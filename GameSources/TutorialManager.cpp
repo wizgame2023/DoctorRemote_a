@@ -27,6 +27,9 @@ namespace basecross {
 	void TutorialManager::OnCreate() {
 		auto stage = GetStage();
 
+		//auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		//m_baseBGM = XAPtr->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
+
 		m_bButton = stage->AddGameObject<Sprite>(40, 40, L"Bbutton", Vec3(560.0f,-330.0f,0.0f),3);
 	}
 	void TutorialManager::OnUpdate() {
@@ -158,6 +161,9 @@ namespace basecross {
 					m_count++;
 					m_textutreCheck = false;
 
+					auto choiceSE = App::GetApp()->GetXAudio2Manager();
+					choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+
 				}
 
 			}
@@ -217,6 +223,10 @@ namespace basecross {
 		}
 		m_triDot[m_count - 2]->SetColor(Col4(1.0f, 0.0f, 0.0f, m_blinking));
 		m_frame[m_count - 2]->SetColor(Col4(1.0f, 0.0f, 0.0f, m_blinking));
+	}
+
+	int TutorialManager::GetCount() {
+		return m_count;
 	}
 
 }

@@ -59,8 +59,8 @@ namespace basecross {
 				m_selectStageFlag = false;
 				m_blinkCheck = false;
 			}
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+			auto choiceSE = App::GetApp()->GetXAudio2Manager();
+			choiceSE->Start(L"ChoiceSE", 0, 0.3f);
 
 		}
 
@@ -73,8 +73,8 @@ namespace basecross {
 				m_exitFlag = false;
 				m_blinkCheck = false;
 			}
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+			auto choiceSE = App::GetApp()->GetXAudio2Manager();
+			choiceSE->Start(L"ChoiceSE", 0, 0.3f);
 
 		}
 
@@ -131,8 +131,8 @@ namespace basecross {
 					m_count = 0;
 				}
 				m_blinkCheck = true;
-				auto pieceSE = App::GetApp()->GetXAudio2Manager();
-				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+				auto choiceSE = App::GetApp()->GetXAudio2Manager();
+				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
 			}
 		}
 

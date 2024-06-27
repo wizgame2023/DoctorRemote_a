@@ -14,6 +14,7 @@ namespace basecross {
 		int m_stageCount;
 		int m_BigPieceLength;//ビックピースの合計の数
 		int m_CareerFlag;//ステージ全体のフラグ
+		bool m_BGMFlag = false;
 		shared_ptr<SoundItem> m_BGM;
 
 		void CreateViewLight(); //ビューの作成
@@ -41,6 +42,7 @@ namespace basecross {
 
 		void BaseBGM();
 		void BossBGM();
+		void FirstBGM();
 		virtual void OnDestroy() override;
 
 		void SetCollisionSwich(bool ONorOFF);

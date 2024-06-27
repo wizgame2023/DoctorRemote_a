@@ -316,6 +316,11 @@ namespace basecross {
 
 
 	//BGM‚ÌÄ¶
+	void TutorialStage::FirstBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"TutorialBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
 	void TutorialStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
@@ -323,7 +328,7 @@ namespace basecross {
 	}
 	void TutorialStage::BossBGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
 	}
 	void TutorialStage::OnDestroy()
 	{
@@ -387,7 +392,7 @@ namespace basecross {
 			SetSharedGameObject(L"StageCollisionManager",collisionManager);
 			AddGameObject<JoinManager>(Vec3(-12.0f, 0.5f, -13.0f));//N“ü‚Ìƒ€[ƒr[
 			//BGM
-			BaseBGM();
+			FirstBGM();
 			auto tutorialManager = AddGameObject<TutorialManager>();
 			SetSharedGameObject(L"TutorialManager", tutorialManager);
 
@@ -403,6 +408,15 @@ namespace basecross {
 		//auto EnemyPos = GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetPosition();
 
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		auto tutorialManager = GetSharedGameObject<TutorialManager>(L"TutorialManager");
+		auto countCheck = tutorialManager->GetCount();
+		if (countCheck >= 11) {
+			if (!m_BGMFlag) {
+				OnDestroy();
+				BaseBGM();
+				m_BGMFlag = true;
+			}
+		}
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
 			//“G‚ğ¶¬
