@@ -34,7 +34,7 @@ namespace basecross {
 
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
-		ptrColl->SetDrawActive(true);//ƒRƒŠƒWƒ‡ƒ“‚ðŒ©‚¦‚é‚æ‚¤‚É‚·‚é
+		ptrColl->SetDrawActive(false);
 
 
 		GetStage()->SetCollisionPerformanceActive(true);
