@@ -42,6 +42,8 @@ namespace basecross {
 		m_trans->SetPosition(Vec3(0, -100, 0));
 		m_color = Col4(1.0f, 1.0f, 1.0f, 0.5f);
 		m_sprite->SetColor(m_color);
+		m_back = stage->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0.0f),-2);
+		m_back->SetColor(Col4(0.0f));
 
 	}
 	void SelectSprite::OnUpdate() {
@@ -54,9 +56,10 @@ namespace basecross {
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == STAGESELECT) {
 			if (m_selectStageFlag) {
 				m_selectStage->ThisDestroy();
-				m_RetrunCom->ThisDestory();
+				m_retrunCom->ThisDestory();
 				m_stageFrame->ThisDestory();
 				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
+				m_back->SetColor(Col4(0.0f));
 				m_count = 10.0f;
 				m_selectStageFlag = false;
 				m_blinkCheck = false;
@@ -72,8 +75,9 @@ namespace basecross {
 		//Aƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚çExit‰æ–Ê‚ðÁ‚·
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == EXIT) {
 			if (m_exitFlag) {
-				m_ExitTex->ThisDestory();
+				m_creditTex->ThisDestory();
 				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
+				m_back->SetColor(Col4(0.0f));
 				m_count = 10.0f;
 				m_exitFlag = false;
 				m_blinkCheck = false;
@@ -177,8 +181,9 @@ namespace basecross {
 					m_selectStageFlag = true;
 					m_bButtonSEFlag = false;
 					m_aButtonSEFlag = false;
+					m_back->SetColor(Col4(1.0f,1.0f,1.0f,0.7));
 					m_stageFrame = stage->AddGameObject<Sprite>(600, 300, L"Score", Vec3(0.0f));
-					m_RetrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
+					m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
 					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
 					m_selectStage->SetLimitNum(10);
 				}
@@ -188,7 +193,8 @@ namespace basecross {
 					m_exitFlag = true;
 					m_bButtonSEFlag = false;
 					m_aButtonSEFlag = false;
-					m_ExitTex = stage->AddGameObject<Sprite>(1280 * 0.85, 800 * 0.85, L"White", Vec3(1.0f));
+					m_back->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.7));
+					m_creditTex = stage->AddGameObject<Sprite>(1280 * 0.85, 800 * 0.85, L"Credit", Vec3(1.0f),2);
 				}
 				break;
 			default:

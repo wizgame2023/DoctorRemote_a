@@ -513,7 +513,7 @@ namespace basecross {
 		switch (count)
 		{
 		case 0:
-			//m_dashCooldown = true;//そもそもダッシュできないようにする
+			m_dashCooldown = true;//そもそもダッシュできないようにする
 			break;
 		case 1:
 			//ダッシュの効果時間

@@ -53,7 +53,7 @@ namespace basecross {
 			decisionButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 			SetSharedGameObject(L"decisionButton",decisionButton);
 			//AddGameObject<Player>(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
-			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-3);
+			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-5);
 
 		}
 		catch (...) {
