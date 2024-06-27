@@ -44,7 +44,8 @@ namespace basecross {
 		m_moveCheck(false),
 		m_display(display),
 		m_displayNumber(displayNumber),
-		m_closeNum{(false)}
+		m_closeNum{(false)},
+		m_bButtonSEFlag(false)
 	{}
 	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr,
 		const wstring sprites,//‘I‘ð‚·‚é‰æ‘œ
@@ -71,7 +72,8 @@ namespace basecross {
 		m_moveCheck(false),
 		m_display(true),
 		m_displayNumber(true),
-		m_closeNum{ (false) }
+		m_closeNum{ (false) },
+		m_bButtonSEFlag(false)
 	{}
 
 
@@ -187,8 +189,11 @@ namespace basecross {
 					m_moveCheck = true;
 				}
 			}
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+			if (!m_bButtonSEFlag) {
+				auto pieceSE = App::GetApp()->GetXAudio2Manager();
+				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+				m_bButtonSEFlag = true;
+			}
 
 		}
 		

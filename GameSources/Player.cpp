@@ -132,19 +132,19 @@ namespace basecross {
 						m_bulletTime += elapsedTime;
 						if (m_bulletTime >= 1) {
 							if (!m_chargeBulletSE[0]) {
-								soundE->Start(L"TitleSE", 0, 0.5f);
+								soundE->Start(L"Charge1", 0, 0.5f);
 								m_chargeBulletSE[0] = true;
 							}
 						}
 						if (m_bulletTime >= 2) {
 							if (!m_chargeBulletSE[1]) {
-								soundE->Start(L"TitleSE", 0, 0.5f);
+								soundE->Start(L"Charge2", 0, 0.5f);
 								m_chargeBulletSE[1] = true;
 							}
 						}
 						if (m_bulletTime >= 3) {
 							if (!m_chargeBulletSE[2]) {
-								soundE->Start(L"TitleSE", 0, 0.5f);
+								soundE->Start(L"Charge3", 0, 0.5f);
 								m_chargeBulletSE[2] = true;
 							}
 						}
@@ -162,6 +162,8 @@ namespace basecross {
 
 				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B) {
 					if (m_bulletTime >= m_bulletChargeTime*3) {
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 20.0f);
+						bullet->SetBulletLevel(3);
 						BulletSE();
 					}
 					else if (m_bulletTime >= m_bulletChargeTime*2) {
@@ -177,8 +179,7 @@ namespace basecross {
 					else {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 2.0f * m_bulletPower);
 						bullet->SetBulletLevel(0);
-						auto soundE = App::GetApp()->GetXAudio2Manager();
-						soundE->Start(L"ShotSE", 0, 0.5f);
+						BulletSE();
 					}
 					m_bulletTime = 0.0f;
 					m_bulletRatio = 0.0f;

@@ -21,6 +21,5 @@ namespace basecross {
 		shared_ptr<SoundItem> m_BGM;
 
 		void BaseBGM();
-		void StageChange();
 	};
 }

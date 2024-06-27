@@ -88,8 +88,11 @@ namespace basecross {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
 				m_flag = true;
-				auto loadSE = App::GetApp()->GetXAudio2Manager();
-				loadSE->Start(L"TitleSE", 0, 0.3f);
+				if (!m_loadSEFlag) {
+					auto loadSE = App::GetApp()->GetXAudio2Manager();
+					loadSE->Start(L"TitleSE", 0, 0.3f);
+					m_loadSEFlag = true;
+				}
 
 			}
 			if (m_flag == true)

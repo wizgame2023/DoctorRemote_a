@@ -15,11 +15,12 @@ namespace basecross {
 		int m_timeCount = 0;
 		int m_count = 0;
 		int m_moveCount = -400;
+		int m_stageCount;
 		float m_countUp = 0.0f;
 		float m_comX;
-		bool m_flag;
-		int m_stageCount;
 		float m_anCollar;
+		bool m_loadSEFlag = false;
+		bool m_flag;
 		bool m_onFade;
 
 		shared_ptr<Sprite>m_sprite;

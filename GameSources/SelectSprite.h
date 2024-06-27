@@ -31,6 +31,9 @@ namespace basecross {
 		bool m_blinkCheck;
 		bool m_selectStageFlag;
 		bool m_exitFlag;
+		bool m_aButtonSEFlag;
+		bool m_bButtonSEFlag;
+
 
 		shared_ptr<Transform> m_trans;
 		shared_ptr<Sprite> m_sprite;
@@ -49,6 +52,7 @@ namespace basecross {
 		bool GetStageMove();
 		void SetStageStart(bool start);
 		void StageMove(wstring stage);
+		void ChoiceSE();
 
 	};
 }

@@ -24,6 +24,7 @@ namespace basecross {
 		m_colorCheck(false),
 		m_moveCheck(false),
 		m_moveStick(false),
+		m_aButtonSEFlag(false),
 		m_count(10.0f),
 		m_status(1),
 		m_score(100),
@@ -31,78 +32,9 @@ namespace basecross {
 	{}
 
 	void StatusManager::OnCreate() {
-		float sizeX = 200;
-		float sizeY = 200;
-		Col4 green = Col4(0.1640f, 0.8632f, 0.2109f, 1.0f);
-		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
-
-		m_selectSprite = stage->AddGameObject<StageSelectSprite>(Vec3(-450, 170, 0.0f),
-			sizeX, sizeY, 300, 300, 3, 2, 40, L"White_2", L"White", false, false);
-
-		auto dashButton = stage->AddGameObject<Sprite>(sizeX, sizeY, L"DashButton", m_selectSprite->GetSpritePostion(1,1));
-		auto bulletLenght = stage->AddGameObject<Sprite>(sizeX, sizeY, L"BulletButton", m_selectSprite->GetSpritePostion(2, 1));
-		auto pieceButton = stage->AddGameObject<Sprite>(sizeX, sizeY, L"GageButton", m_selectSprite->GetSpritePostion(3, 1));
-		auto chainRarge = stage->AddGameObject<Sprite>(sizeX, sizeY, L"ScopeButton", m_selectSprite->GetSpritePostion(1, 2));
-		auto bulletPower = stage->AddGameObject<Sprite>(sizeX, sizeY, L"PowerButton", m_selectSprite->GetSpritePostion(2, 2));
-		auto bulletTime = stage->AddGameObject<Sprite>(sizeX, sizeY, L"ChargeButton", m_selectSprite->GetSpritePostion(3, 2));
-
-		auto frame = stage->AddGameObject<Sprite>(350, 300, L"CommentFrame", Vec3(450.0f, 100.0f, 0.0f));
-		m_score = scene->GetAchievementPoint();
-		auto levelSetumei = stage->AddGameObject<Sprite>(256, 256, L"StatusSetumei2", Vec3(450.0f, -200.0f, 0.0f));
-		levelSetumei->SetColor(green);
-		//ポイントの表示
-		auto pos = Vec3(430.0f, 350.0f, 0.0f);
-		for (int i = 0; i < 4; i++) {
-			float p = pow(10, 4 - (i + 1));
-			int num = (m_score / (int)p) % 10;
-			m_pointNum[i] = stage->AddGameObject<UITime>(num, Vec3(pos.x + i * 40, pos.y, pos.z));
-		}
-		auto pointTex = stage->AddGameObject<Sprite>(50, 50, L"PointTexture", Vec3(pos.x-30,pos.y-30,pos.z));
-		pointTex->SetColor(green);
-
-		//ポイントとレベル
-		Vec3 pointPos(-530.0f, 50.0f, 0.0f);
-		Vec3 levelPos(-380.0f, 50.0f, 0.0f);
-		int dash = scene->GetDashStatus();
-		int bullet_l = scene->GetBulletLengthStatus();
-		int bigPiece = scene->GetBigPieceUpStatus();
-		int chain = scene->GetChainRangeStatus();
-		int bullet_p = scene->GetBulletPowerStatus();
-		int bullet_t = scene->GetBulletTimeStatus();
-
-		NumDisplay(2, 25, Vec3(pointPos.x, pointPos.y, 0.0f));
-		NumDisplay(1, dash, Vec3(levelPos.x, levelPos.y, 0.0f), false, true);
-		NumDisplay(2, 25, Vec3(pointPos.x + 300, pointPos.y, 0.0f));
-		NumDisplay(1, bullet_l, Vec3(levelPos.x + 300, levelPos.y, 0.0f), false, true);
-		NumDisplay(2, 25, Vec3(pointPos.x + 300 * 2, pointPos.y, 0.0f));
-		NumDisplay(1, bigPiece, Vec3(levelPos.x + 300 * 2, levelPos.y, 0.0f), false, true);
-		NumDisplay(2, 50, Vec3(pointPos.x, pointPos.y - 300, 0.0f));
-		NumDisplay(1, chain, Vec3(levelPos.x, levelPos.y - 300, 0.0f), false, true);
-		NumDisplay(2, 75, Vec3(pointPos.x + 300, pointPos.y - 300.0f, 0.0f));
-		NumDisplay(1, bullet_p, Vec3(levelPos.x + 300, levelPos.y - 300, 0.0f), false, true);
-		NumDisplay(3, 100, Vec3(pointPos.x + 300 * 2, pointPos.y - 300.0f, 0.0f));
-		NumDisplay(1, bullet_t, Vec3(levelPos.x + 300 * 2, levelPos.y - 300, 0.0f), false, true);
-
-		if (dash >= 3) {
-			m_selectSprite->SetCloseNum(0);
-		}
-		if (bullet_l >= 3) {
-			m_selectSprite->SetCloseNum(1);
-		}
-		if (bigPiece >= 3) {
-			m_selectSprite->SetCloseNum(2);
-		}
-		if (chain >= 3) {
-			m_selectSprite->SetCloseNum(3);
-		}
-		if (bullet_p >= 3) {
-			m_selectSprite->SetCloseNum(4);
-		}
-		if (bullet_t >= 3) {
-			m_selectSprite->SetCloseNum(5);
-		}
-
+		Displays();
+		PointLevelDis();
 		
 		//ポイントで制限
 		if (m_score>=100) {
@@ -144,9 +76,11 @@ namespace basecross {
 			//stage = 1;
 			wstring nextStage = to_wstring(stage + 1);
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + nextStage);
-
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+			if (!m_aButtonSEFlag) {
+				auto pieceSE = App::GetApp()->GetXAudio2Manager();
+				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+				m_aButtonSEFlag = true;
+			}
 
 		}
 
@@ -240,6 +174,86 @@ namespace basecross {
 
 	}
 
+	//画面上に映るSpriteなど
+	void StatusManager::Displays() {
+		float sizeX = 200;
+		float sizeY = 200;
+		Col4 green = Col4(0.1640f, 0.8632f, 0.2109f, 1.0f);
+		auto stage = GetStage();
+		auto& scene = App::GetApp()->GetScene<Scene>();
+
+		m_selectSprite = stage->AddGameObject<StageSelectSprite>(Vec3(-450, 170, 0.0f),
+			sizeX, sizeY, 300, 300, 3, 2, 40, L"White_2", L"White", false, false);
+
+		auto dashButton = stage->AddGameObject<Sprite>(sizeX, sizeY, L"DashButton", m_selectSprite->GetSpritePostion(1, 1));
+		auto bulletLenght = stage->AddGameObject<Sprite>(sizeX, sizeY, L"BulletButton", m_selectSprite->GetSpritePostion(2, 1));
+		auto pieceButton = stage->AddGameObject<Sprite>(sizeX, sizeY, L"GageButton", m_selectSprite->GetSpritePostion(3, 1));
+		auto chainRarge = stage->AddGameObject<Sprite>(sizeX, sizeY, L"ScopeButton", m_selectSprite->GetSpritePostion(1, 2));
+		auto bulletPower = stage->AddGameObject<Sprite>(sizeX, sizeY, L"PowerButton", m_selectSprite->GetSpritePostion(2, 2));
+		auto bulletTime = stage->AddGameObject<Sprite>(sizeX, sizeY, L"ChargeButton", m_selectSprite->GetSpritePostion(3, 2));
+
+		auto frame = stage->AddGameObject<Sprite>(350, 300, L"CommentFrame", Vec3(450.0f, 100.0f, 0.0f));
+		m_score = scene->GetAchievementPoint();
+		auto levelSetumei = stage->AddGameObject<Sprite>(256, 256, L"StatusSetumei2", Vec3(450.0f, -200.0f, 0.0f));
+		levelSetumei->SetColor(green);
+		//ポイントの表示
+		auto pos = Vec3(430.0f, 350.0f, 0.0f);
+		for (int i = 0; i < 4; i++) {
+			float p = pow(10, 4 - (i + 1));
+			int num = (m_score / (int)p) % 10;
+			m_pointNum[i] = stage->AddGameObject<UITime>(num, Vec3(pos.x + i * 40, pos.y, pos.z));
+		}
+		auto pointTex = stage->AddGameObject<Sprite>(50, 50, L"PointTexture", Vec3(pos.x - 30, pos.y - 30, pos.z));
+		pointTex->SetColor(green);
+
+	}
+	//ポイントの表示　レベルの表示等
+	void StatusManager::PointLevelDis() {
+		auto& scene = App::GetApp()->GetScene<Scene>();
+		//ポイントとレベル
+		Vec3 pointPos(-530.0f, 50.0f, 0.0f);
+		Vec3 levelPos(-380.0f, 50.0f, 0.0f);
+		int dash = scene->GetDashStatus();
+		int bullet_l = scene->GetBulletLengthStatus();
+		int bigPiece = scene->GetBigPieceUpStatus();
+		int chain = scene->GetChainRangeStatus();
+		int bullet_p = scene->GetBulletPowerStatus();
+		int bullet_t = scene->GetBulletTimeStatus();
+
+		NumDisplay(2, 25, Vec3(pointPos.x, pointPos.y, 0.0f));
+		NumDisplay(1, dash, Vec3(levelPos.x, levelPos.y, 0.0f), false, true);
+		NumDisplay(2, 25, Vec3(pointPos.x + 300, pointPos.y, 0.0f));
+		NumDisplay(1, bullet_l, Vec3(levelPos.x + 300, levelPos.y, 0.0f), false, true);
+		NumDisplay(2, 25, Vec3(pointPos.x + 300 * 2, pointPos.y, 0.0f));
+		NumDisplay(1, bigPiece, Vec3(levelPos.x + 300 * 2, levelPos.y, 0.0f), false, true);
+		NumDisplay(2, 50, Vec3(pointPos.x, pointPos.y - 300, 0.0f));
+		NumDisplay(1, chain, Vec3(levelPos.x, levelPos.y - 300, 0.0f), false, true);
+		NumDisplay(2, 75, Vec3(pointPos.x + 300, pointPos.y - 300.0f, 0.0f));
+		NumDisplay(1, bullet_p, Vec3(levelPos.x + 300, levelPos.y - 300, 0.0f), false, true);
+		NumDisplay(3, 100, Vec3(pointPos.x + 300 * 2, pointPos.y - 300.0f, 0.0f));
+		NumDisplay(1, bullet_t, Vec3(levelPos.x + 300 * 2, levelPos.y - 300, 0.0f), false, true);
+
+		if (dash >= 3) {
+			m_selectSprite->SetCloseNum(0);
+		}
+		if (bullet_l >= 3) {
+			m_selectSprite->SetCloseNum(1);
+		}
+		if (bigPiece >= 3) {
+			m_selectSprite->SetCloseNum(2);
+		}
+		if (chain >= 3) {
+			m_selectSprite->SetCloseNum(3);
+		}
+		if (bullet_p >= 3) {
+			m_selectSprite->SetCloseNum(4);
+		}
+		if (bullet_t >= 3) {
+			m_selectSprite->SetCloseNum(5);
+		}
+
+	}
+
 	void StatusManager::NumDisplay(int digit, int num,Vec3 pos,bool pointFlag,bool levelFlag) {
 		auto stage = GetStage();
 		for (int i = 0; i < digit; i++) {
@@ -264,5 +278,6 @@ namespace basecross {
 	int StatusManager::GetDecision() {
 		return m_decision;
 	}
+
 }
 //end namespace basecross
