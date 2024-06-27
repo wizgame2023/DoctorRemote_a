@@ -129,7 +129,7 @@ namespace basecross {
 					m_ligthSEFlag = true;
 				}
 				
-				m_dashLight->SetColor(Col4(1.0f, 0.0f, 0.0f, 0.8f));
+				m_dashLight->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.8f));
 			}
 
 		}
