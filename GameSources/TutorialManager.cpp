@@ -94,11 +94,11 @@ namespace basecross {
 			break;
 		case 3:
 			//体力の説明
-			UIComment(13 * 4, L"Hp_s", Vec3(-80,-272,0.0f),0,Vec2(1280, 800), L"HPWaku", Vec3(0.0f));
+			UIComment(13 * 4, L"Hp_s", Vec3(-80,-280,0.0f),0,Vec2(1280, 800), L"HPWaku", Vec3(0.0f,-10.0f,0.0f));
 			break;
 		case 4:
-			//マップの説明
-			UIComment(13 * 4, L"Map_s", Vec3(-80, -280, 0.0f), 0, Vec2(1280, 800), L"ChargeWaku", Vec3(0.0f));
+			//チャージゲージの説明
+			UIComment(13 * 4, L"Map_s", Vec3(-60, -260, 0.0f), 0, Vec2(1280, 800), L"ChargeWaku", Vec3(0.0f, 50.0f, 0.0f));
 			break;
 		case 5:
 			//ゲージの説明
@@ -109,7 +109,7 @@ namespace basecross {
 			UIComment(13 * 4, L"Time_s", Vec3(-111, 320, 0.0f), 90, Vec2(1280, 800), L"TimeWaku", Vec3(0.0f));
 			break;
 		case 7:
-			//チャージゲージの説明
+			//マップの説明
 			UIComment(13 * 4, L"Charge_s", Vec3(330, 320, 0.0f), 90, Vec2(1280, 800), L"MapWaku", Vec3(0.0f));
 			break;
 		case 8:

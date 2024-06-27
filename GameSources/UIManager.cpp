@@ -80,7 +80,7 @@ namespace basecross {
 					{
 						auto mojiNum = 13 * 1;
 						if(scene->GetDashStatus()>0){
-							mojiNum = 13 * 2;
+							mojiNum = 13 * 4;
 						}
 						m_com[0] = GetStage()->AddGameObject<CommentManager>(mojiNum, 0, Vec3(250, -180, 0.0f), L"SousaCom");
 					}
