@@ -81,9 +81,14 @@ namespace basecross {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
 				auto stage = scene->GetGameStage();
+				if (stage > 0) {
+					wstring stageString = to_wstring(stage);
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + stageString);
+				}
+				else if (stage == 0) {
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTutorialStage");
 
-				wstring stageString = to_wstring(stage);
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + stageString);
+				}
 				
 				auto choiceSE = App::GetApp()->GetXAudio2Manager();
 				choiceSE->Start(L"ChoiceSE", 0, 0.3f);

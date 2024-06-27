@@ -53,6 +53,7 @@ namespace basecross {
 		m_enemyPieceFlag(false),
 		m_bulletFlag(false),
 		m_bulletLevel(0),
+		m_chargeBulletSE{ false },
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
@@ -124,10 +125,31 @@ namespace basecross {
 
 			//Ｂボタンで弾を発射
 			if (cntlVec[0].bConnected) {
+				auto soundE = App::GetApp()->GetXAudio2Manager();
 
 				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
 					if (m_bulletTime <= m_bulletChargeTime*3) {
 						m_bulletTime += elapsedTime;
+						if (m_bulletTime >= 1) {
+							if (!m_chargeBulletSE[0]) {
+								soundE->Start(L"TitleSE", 0, 0.5f);
+								m_chargeBulletSE[0] = true;
+							}
+						}
+						if (m_bulletTime >= 2) {
+							if (!m_chargeBulletSE[1]) {
+								soundE->Start(L"TitleSE", 0, 0.5f);
+								m_chargeBulletSE[1] = true;
+							}
+						}
+						if (m_bulletTime >= 3) {
+							if (!m_chargeBulletSE[2]) {
+								soundE->Start(L"TitleSE", 0, 0.5f);
+								m_chargeBulletSE[2] = true;
+							}
+						}
+
+
 					}
 					else {
 						m_bulletTime = m_bulletChargeTime*3;
@@ -140,22 +162,17 @@ namespace basecross {
 
 				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B) {
 					if (m_bulletTime >= m_bulletChargeTime*3) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 20.0f);
-						bullet->SetBulletLevel(3);
-						auto soundE = App::GetApp()->GetXAudio2Manager();
-						soundE->Start(L"ShotSE", 0, 0.5f);
+						BulletSE();
 					}
 					else if (m_bulletTime >= m_bulletChargeTime*2) {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 45.0f, frontAngle, 12.0f);
 						bullet->SetBulletLevel(2);
-						auto soundE = App::GetApp()->GetXAudio2Manager();
-						soundE->Start(L"ShotSE", 0, 0.5f);
+						BulletSE();
 					}
 					else if (m_bulletTime >= m_bulletChargeTime) {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 40.0f, frontAngle, 6.0f);
 						bullet->SetBulletLevel(1);
-						auto soundE = App::GetApp()->GetXAudio2Manager();
-						soundE->Start(L"ShotSE", 0, 0.5f);
+						BulletSE();
 					}
 					else {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 2.0f * m_bulletPower);
@@ -165,6 +182,12 @@ namespace basecross {
 					}
 					m_bulletTime = 0.0f;
 					m_bulletRatio = 0.0f;
+
+					for (int i = 0; i < 3; i++) {
+						if (m_chargeBulletSE[i]) {
+							m_chargeBulletSE[i] = false;
+						}
+					}
 				}
 				else {
 					//m_bulletTime = 0.0f;
@@ -244,6 +267,58 @@ namespace basecross {
 
 		scene->SetDebugString(wss.str());
 
+	}
+
+	//衝突判定
+	void Player::OnCollisionEnter(shared_ptr<GameObject>& other) {
+		auto ptrTrans = GetComponent<Transform>();
+
+		if (other->FindTag(L"PieceLittle")) {
+			if (!m_radarFlag) {
+				AddPiece(m_onePiece);
+
+			}
+			if (m_maxPiece < m_piece) {
+				m_radarFlag = true;
+			}
+
+			EffectFlag(3);
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
+
+		}
+		if (other->FindTag(L"BigPieceLittle")) {
+			if (!m_radarFlag) {
+				AddPiece(m_onePiece * 3);
+
+			}
+			if (m_maxPiece < m_piece) {
+				m_radarFlag = true;
+			}
+
+			EffectFlag(3);
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
+
+		}
+		if (other->FindTag(L"BigPiece")) {
+
+			m_enemyPieceFlag = true;
+			SetObj(other);
+
+			EffectFlag(2);
+			auto damegeSE = App::GetApp()->GetXAudio2Manager();
+			damegeSE->Start(L"DamageSE", 0, 0.5f);
+
+		}
+		if (other->FindTag(L"EnemyPiece")) {
+			EffectFlag(2);
+			m_enemyPieceFlag = true;
+			SetObj(other);
+
+			auto damegeSE = App::GetApp()->GetXAudio2Manager();
+			damegeSE->Start(L"DamageSE", 0, 0.5f);
+		}
 	}
 
 	Vec2 Player::GetInputState() {
@@ -508,57 +583,9 @@ namespace basecross {
 	}
 
 
-
-	//衝突判定
-	void Player::OnCollisionEnter(shared_ptr<GameObject>& other){
-		auto ptrTrans = GetComponent<Transform>();
-
-		if (other->FindTag(L"PieceLittle")) {
-			if(!m_radarFlag){
-				AddPiece(m_onePiece);
-
-			}
-			if (m_maxPiece < m_piece) {
-				m_radarFlag = true;
-			}
-
-			EffectFlag(3);
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
-
-		}
-		if (other->FindTag(L"BigPieceLittle")) {
-			if (!m_radarFlag) {
-				AddPiece(m_onePiece*3);
-
-			}
-			if (m_maxPiece < m_piece) {
-				m_radarFlag = true;
-			}
-
-			EffectFlag(3);
-			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
-
-		}
-		if (other->FindTag(L"BigPiece")) {
-
-			m_enemyPieceFlag = true;
-			SetObj(other);
-
-			EffectFlag(2);
-			auto damegeSE = App::GetApp()->GetXAudio2Manager();
-			damegeSE->Start(L"DamageSE", 0, 0.5f);
-
-		}
-		if (other->FindTag(L"EnemyPiece")) {
-			EffectFlag(2);
-			m_enemyPieceFlag = true;
-			SetObj(other);
-
-			auto damegeSE = App::GetApp()->GetXAudio2Manager();
-			damegeSE->Start(L"DamageSE", 0, 0.5f);
-		}
+	void Player::BulletSE() {
+		auto soundE = App::GetApp()->GetXAudio2Manager();
+		soundE->Start(L"ShotSE", 0, 0.5f);
 	}
 
 	void Player::EffectFlag(int Flag)
