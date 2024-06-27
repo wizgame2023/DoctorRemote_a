@@ -410,7 +410,6 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"BreakWallSE", soundWav);
 		soundWav = SoundPath + L"PieceDown.wav";
 		App::GetApp()->RegisterWav(L"PieceDownSE", soundWav);
-
 		soundWav = SoundPath + L"TitleSE.wav";
 		App::GetApp()->RegisterWav(L"TitleSE", soundWav);
 		soundWav = SoundPath + L"ScoreSE.wav";
@@ -431,6 +430,12 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"BreakSE", soundWav);
 		soundWav = SoundPath + L"AttackSE.wav";
 		App::GetApp()->RegisterWav(L"AttackSE", soundWav);
+		soundWav = SoundPath + L"Charge1.wav";
+		App::GetApp()->RegisterWav(L"Charge1", soundWav);
+		soundWav = SoundPath + L"Charge2.wav";
+		App::GetApp()->RegisterWav(L"Charge2", soundWav);
+		soundWav = SoundPath + L"Charge3.wav";
+		App::GetApp()->RegisterWav(L"Charge3", soundWav);
 
 		//BGM
 		soundWav = SoundPath + L"ScaryBGM.wav";
