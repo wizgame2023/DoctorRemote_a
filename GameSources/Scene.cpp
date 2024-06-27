@@ -63,6 +63,10 @@ namespace basecross {
 		app->RegisterTexture(L"Map_sWaku", strTexture);
 		strTexture = texPath + L"kakera.png";
 		app->RegisterTexture(L"Kakera", strTexture);
+		strTexture = texPath + L"triDot.png";
+		app->RegisterTexture(L"TriDot", strTexture);
+		strTexture = texPath + L"Button.png";
+		app->RegisterTexture(L"Bbutton", strTexture);
 		strTexture = texPath + L"DecisionButton.png";
 		app->RegisterTexture(L"DecisionButton", strTexture);
 		strTexture = texPath + L"RetrunButton.png";
@@ -75,6 +79,9 @@ namespace basecross {
 		app->RegisterTexture(L"GameCleraRogo", strTexture);
 		strTexture = texPath + L"GameOverRogo.png";
 		app->RegisterTexture(L"GameOverRogo", strTexture);
+		strTexture = texPath + L"OverButton.png";
+		app->RegisterTexture(L"OverButton", strTexture);
+		
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"Clear.png";
@@ -103,14 +110,18 @@ namespace basecross {
 		app->RegisterTexture(L"GameScreen", strTexture);
 		strTexture = texPath + L"Frame.png";
 		app->RegisterTexture(L"Frame", strTexture);
-		strTexture = texPath + L"triDot.png";
-		app->RegisterTexture(L"TriDot", strTexture);
-		strTexture = texPath + L"Button.png";
-		app->RegisterTexture(L"Bbutton", strTexture);
 		strTexture = texPath + L"LoadScene.png";
 		app->RegisterTexture(L"LoadScene", strTexture);
 		strTexture = texPath + L"LoadStageWaku.png";
 		app->RegisterTexture(L"LoadStageWaku", strTexture);
+		strTexture = texPath + L"GameOver BackBoard.jpg";
+		app->RegisterTexture(L"GameOverBackBoard", strTexture);
+		strTexture = texPath + L"Thank.png";
+		app->RegisterTexture(L"Thank", strTexture);
+		strTexture = texPath + L"ClearButton.png";
+		app->RegisterTexture(L"ClearButton", strTexture);
+		
+		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//ミニマップ関連///////////////////////////////////////////////////////////////////////////////////////////////
