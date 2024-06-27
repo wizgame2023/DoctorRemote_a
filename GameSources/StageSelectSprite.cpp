@@ -125,7 +125,9 @@ namespace basecross {
 			}
 
 			m_blinkTime -= elapsed * 10.0f;
-
+			if (m_blinkTime <= 0) {
+				m_blinkTime = 0.0f;
+			}
 		}
 
 
@@ -185,6 +187,9 @@ namespace basecross {
 					m_moveCheck = true;
 				}
 			}
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+
 		}
 		
 

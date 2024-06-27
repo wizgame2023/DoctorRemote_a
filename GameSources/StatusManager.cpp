@@ -145,6 +145,9 @@ namespace basecross {
 			wstring nextStage = to_wstring(stage + 1);
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + nextStage);
 
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+
 		}
 
 		//スティックを動かすとコメントが変わる
