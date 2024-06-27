@@ -131,12 +131,12 @@ namespace basecross {
 				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")
 				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
 
-				int numPtr = m_BossMoji->GetNumPtr();//スプライトの配列番号を取得
-				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列に帯のポインタを消す
+				int numPtr1 = m_BossMoji->GetNumPtr();//スプライトの配列番号を取得
+				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
 				GetStage()->RemoveGameObject<Sprite>(m_BossMoji);//文字を消す
 
-				numPtr = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
-				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列に帯のポインタを消す
+				//int numPtr2 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
+				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
 				GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
 
 				GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//進行度を進める(Bossが攻撃するようになる予定)

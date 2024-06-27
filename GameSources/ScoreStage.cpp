@@ -142,7 +142,7 @@ namespace basecross {
 			else if (m_time >= 40 && m_time < 50 && m_countUp >= 10.0f && m_timeCount == 7)
 			{
 				auto moji3 = AddGameObject<CommentManager>(16, 1, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを3つ表示
-					Vec3(-208.0f, 162.0f, 0.0f), L"CheckMark");
+					Vec3(-208.0f, 82.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから9秒後で、ステージクリアした時の残りタイムが25秒以上だったら表示

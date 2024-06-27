@@ -1,6 +1,6 @@
 /*!
 @file TitleStage.cpp
-@brief ƒ^ƒCƒgƒ‹ƒXƒe[ƒWÀ‘Ì
+@brief ã‚¿ã‚¤ãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸å®Ÿä½“
 */
 
 #include "stdafx.h"
@@ -9,14 +9,14 @@
 namespace basecross {
 	void TitleStage::CreateViewLight() {
 		auto ptrView = CreateView<SingleView>();
-		//ƒrƒ…[‚ÌƒJƒƒ‰‚Ìİ’è
+		//ãƒ“ãƒ¥ãƒ¼ã®ã‚«ãƒ¡ãƒ©ã®è¨­å®š
 		auto ptrMyCamera = ObjectFactory::Create<Camera>();
 		ptrView->SetCamera(ptrMyCamera);
 		ptrMyCamera->SetEye(Vec3(0.0f, 5.0f, -5.0f));
 		ptrMyCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
-		//ƒ}ƒ‹ƒ`ƒ‰ƒCƒg‚Ìì¬
+		//ãƒãƒ«ãƒãƒ©ã‚¤ãƒˆã®ä½œæˆ
 		auto ptrMultiLight = CreateLight<MultiLight>();
-		//ƒfƒtƒHƒ‹ƒg‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğw’è
+		//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’æŒ‡å®š
 		ptrMultiLight->SetDefaultLighting();
 
 	}
@@ -33,7 +33,7 @@ namespace basecross {
 			scene->SetChainRargeStatus(0);
 			scene->SetBulletPowerStatus(0);
 			scene->SetBulletTimeStatus(0);
-			//ƒrƒ…[‚Æƒ‰ƒCƒg‚Ìì¬
+			//ãƒ“ãƒ¥ãƒ¼ã¨ãƒ©ã‚¤ãƒˆã®ä½œæˆ
 			CreateViewLight();
 			scene->SetPlayFlag(false);
 
@@ -65,6 +65,7 @@ namespace basecross {
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
+
 	}
 	    
 	void TitleStage::OnDestroy()
