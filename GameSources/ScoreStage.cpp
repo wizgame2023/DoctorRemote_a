@@ -306,7 +306,7 @@ namespace basecross {
 			if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
 				if (m_stageCount == 0) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStarStage");
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
 				}
 				else if (m_stageCount <= 9) {
 					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
