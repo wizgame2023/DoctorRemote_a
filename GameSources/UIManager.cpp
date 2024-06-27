@@ -13,6 +13,7 @@ namespace basecross {
 		m_comX(800.0f),
 		m_ClearFlag(false),
 		m_CreateFlag(true),
+		m_ligthSEFlag(false),
 		m_EraseUiCommentPtrNum(-1)
 	{
 
@@ -117,9 +118,17 @@ namespace basecross {
 
 		if (m_dashLight) {
 			if (player->GetDashFlag()) {
-				m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
+				m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
+				m_ligthSEFlag = false;
+
 			}
 			else {
+				if (!m_ligthSEFlag) {
+					auto lampSE = App::GetApp()->GetXAudio2Manager();
+					lampSE->Start(L"LampSE", 0, 0.9f);
+					m_ligthSEFlag = true;
+				}
+				
 				m_dashLight->SetColor(Col4(1.0f, 0.0f, 0.0f, 0.8f));
 			}
 

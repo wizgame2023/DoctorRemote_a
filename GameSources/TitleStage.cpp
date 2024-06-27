@@ -64,7 +64,7 @@ namespace basecross {
 	void TitleStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+		m_BGM = XAPtr->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
 	}
 	    
 	void TitleStage::OnDestroy()
