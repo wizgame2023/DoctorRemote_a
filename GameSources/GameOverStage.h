@@ -8,8 +8,11 @@
 
 namespace basecross {
 	class GameOverStage :public Stage {
-		void CreateViewLight();
 		int m_count;
+		float m_buttonTime = 2.0f;
+		bool m_buttonFlag = false;
+		void CreateViewLight();
+
 
 	public:
 		GameOverStage() :Stage() {}
