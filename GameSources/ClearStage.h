@@ -11,6 +11,7 @@ namespace basecross {
 
 		float m_time = 0.0f;
 		bool m_messegeFlag = false;
+		bool m_buttonSEFlag = false;
 
 		void CreateViewLight();
 

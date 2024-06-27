@@ -74,9 +74,11 @@ namespace basecross {
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)
 			{
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
-
-				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+				if (!m_buttonSEFlag) {
+					auto choiceSE = App::GetApp()->GetXAudio2Manager();
+					choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+					m_buttonSEFlag = true;
+				}
 			}
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
@@ -90,8 +92,11 @@ namespace basecross {
 
 				}
 				
-				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+				if (!m_buttonSEFlag) {
+					auto choiceSE = App::GetApp()->GetXAudio2Manager();
+					choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+					m_buttonSEFlag = false;
+				}
 
 			}
 		}
