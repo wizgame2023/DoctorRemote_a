@@ -54,7 +54,7 @@ namespace basecross {
 		//ptrDraw->SetTextureResource(L"WallBreak");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
-
+		AddTag(L"Ground");
 	}
 
 	void EnemyMovieManager::OnUpdate()
@@ -136,6 +136,7 @@ namespace basecross {
 				GetStage()->RemoveGameObject<Sprite>(m_BossMoji);//文字を消す
 
 				//int numPtr2 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
+				numPtr1 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
 				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
 				GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
 
