@@ -103,7 +103,7 @@ namespace basecross {
 		}
 		
 		auto& scene = App::GetApp()->GetScene<Scene>();
-		m_statusFlag = scene->GetDash();
+		m_statusFlag = scene->GetDashStatus();
 		DashCoolManager(m_statusFlag);//これでダッシュの効果時間やクールタイムを決める
 		m_bulletPower = scene->GetBulletPower();
 		m_bulletChargeTime = scene->GetBulletTime();
@@ -547,14 +547,17 @@ namespace basecross {
 			SetObj(other);
 
 			EffectFlag(2);
-			auto bigPieceSE = App::GetApp()->GetXAudio2Manager();
-			bigPieceSE->Start(L"GetPieceSE", 0, 0.5f);
+			auto damegeSE = App::GetApp()->GetXAudio2Manager();
+			damegeSE->Start(L"DamageSE", 0, 0.5f);
 
 		}
 		if (other->FindTag(L"EnemyPiece")) {
 			EffectFlag(2);
 			m_enemyPieceFlag = true;
 			SetObj(other);
+
+			auto damegeSE = App::GetApp()->GetXAudio2Manager();
+			damegeSE->Start(L"DamageSE", 0, 0.5f);
 		}
 	}
 

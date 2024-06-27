@@ -25,7 +25,8 @@ namespace basecross {
 		m_comFlag2(false),
 		m_countFlag(false),
 		m_enemyFlag(false),
-		m_StartDestoryFlag(false)
+		m_StartDestoryFlag(false),
+		m_startSEFlag(false)
 
 	{}
 
@@ -77,8 +78,6 @@ namespace basecross {
 				if (!m_StartDestoryFlag)
 				{
 					m_count -= elapsedTime;
-					//auto soundE = App::GetApp()->GetXAudio2Manager();
-					//soundE->Start(L"CountDownSE", 0, 0.3f);
 
 				}
 				else
@@ -92,6 +91,12 @@ namespace basecross {
 						m_countNumFlag = true;//１回しか通らないようにする
 					}
 					m_num->UpdateValue((int)m_count);
+
+					if (!m_startSEFlag) {
+						auto soundE = App::GetApp()->GetXAudio2Manager();
+						soundE->Start(L"CountDownSE", 0, 0.7f);
+						m_startSEFlag = true;
+					}
 
 				}
 				if (m_count < 1) {

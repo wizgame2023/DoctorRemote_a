@@ -71,6 +71,9 @@ namespace basecross {
 				m_mojispeed = 0.0f;
 				m_mojispeed1 = 0.0f;
 				m_countUp+= 10;
+				auto choiceSE = App::GetApp()->GetXAudio2Manager();
+				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+
 			}
 
 			//スコアステージが生成されてから1秒後に、「レコード」を表示
@@ -202,6 +205,9 @@ namespace basecross {
 				m_timeCount++;
 				m_achievementPoint += 100;//100成果(achievement)ポイント獲得
 				m_control++;
+
+				auto scoreSE = App::GetApp()->GetXAudio2Manager();
+				scoreSE->Start(L"ScoreSE", 0, 0.3f);
 			}
 			//スコアステージが生成されてから12秒後で、ステージクリアした時の残り時間が40秒以上だったら「A」を表示
 			else if (m_time >= 40 && m_time < 50 && m_countUp >= 13.0f && m_timeCount == 10)
@@ -211,6 +217,9 @@ namespace basecross {
 				m_timeCount++;
 				m_achievementPoint += 75;//75成果(achievement)ポイント獲得
 				m_control++;
+
+				auto scoreSE = App::GetApp()->GetXAudio2Manager();
+				scoreSE->Start(L"ScoreSE", 0, 0.3f);
 			}
 			//スコアステージが生成されてから12秒後で、ステージクリアした時の残り時間が25秒以上だったら「B」を表示
 			else if (m_time >= 25 && m_time < 40 && m_countUp >= 13.0f && m_timeCount == 10)
@@ -220,6 +229,9 @@ namespace basecross {
 				m_timeCount++;
 				m_achievementPoint += 50;;//50成果(achievement)ポイント獲得
 				m_control++;
+
+				auto scoreSE = App::GetApp()->GetXAudio2Manager();
+				scoreSE->Start(L"ScoreSE", 0, 0.3f);
 			}
 			//スコアステージが生成されてから12秒後で、ステージクリアしたら「C」を表示
 			else if (m_time < 25 && m_countUp >= 13.0f && m_timeCount == 10)
@@ -229,6 +241,9 @@ namespace basecross {
 				m_timeCount++;
 				m_achievementPoint += 25;;//25成果(achievement)ポイント獲得
 				m_control++;
+
+				auto scoreSE = App::GetApp()->GetXAudio2Manager();
+				scoreSE->Start(L"ScoreSE", 0, 0.3f);
 			}
 			scene->SetAchievementPoint(m_achievementPoint);
 		}
@@ -271,8 +286,8 @@ namespace basecross {
 					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
 
 				}
-				auto pieceSE = App::GetApp()->GetXAudio2Manager();
-				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+				auto choiceSE = App::GetApp()->GetXAudio2Manager();
+				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
 
 			}
 		}

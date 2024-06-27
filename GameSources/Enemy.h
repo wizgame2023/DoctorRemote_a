@@ -21,6 +21,8 @@ namespace basecross {
 		bool m_pieceFlag;
 		bool m_bigPieceFlag;
 		bool m_bigPieceFlag2;
+		bool m_SEflag;
+
 		float m_hp;
 		float m_maxHp;
 		float m_width;
