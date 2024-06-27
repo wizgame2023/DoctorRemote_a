@@ -40,6 +40,7 @@ namespace basecross {
 		bool m_enemyFlag;
 		bool m_enemyPieceFlag;
 		bool m_bulletFlag;
+		bool m_chargeBulletSE[3];
 
 		Vec3 m_pos;
 		Vec3 m_position;
@@ -72,6 +73,7 @@ namespace basecross {
 		Vec3 GetMoveVector();
 		Vec3 FrontVec();
 		void Dash();//この引数によってクールタイムなどが変わってくる
+		void BulletSE();
 
 		Vec3 GetAngle();
 		float GetPiece() const;
