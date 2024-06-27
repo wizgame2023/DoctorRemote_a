@@ -179,8 +179,7 @@ namespace basecross {
 					else {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 2.0f * m_bulletPower);
 						bullet->SetBulletLevel(0);
-						auto soundE = App::GetApp()->GetXAudio2Manager();
-						soundE->Start(L"ShotSE", 0, 0.5f);
+						BulletSE();
 					}
 					m_bulletTime = 0.0f;
 					m_bulletRatio = 0.0f;
