@@ -59,6 +59,9 @@ namespace basecross {
 				m_selectStageFlag = false;
 				m_blinkCheck = false;
 			}
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+
 		}
 
 		//Aボタンが押されたらExit画面を消す
@@ -70,6 +73,9 @@ namespace basecross {
 				m_exitFlag = false;
 				m_blinkCheck = false;
 			}
+			auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+
 		}
 
 		//決定したら点滅
@@ -84,7 +90,6 @@ namespace basecross {
 		}
 
 		if (m_exitFlag) return;
-		if (m_selectStageFlag) return;
 
 		//ステージを選ぶ
 		if (cntlVec[0].bConnected) {
@@ -126,6 +131,8 @@ namespace basecross {
 					m_count = 0;
 				}
 				m_blinkCheck = true;
+				auto pieceSE = App::GetApp()->GetXAudio2Manager();
+				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
 			}
 		}
 
@@ -185,6 +192,7 @@ namespace basecross {
 				}
 
 			}
+
 		}
 
 		//wstringstream wss(L"");

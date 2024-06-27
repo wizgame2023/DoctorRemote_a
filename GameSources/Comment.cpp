@@ -37,7 +37,7 @@ namespace basecross {
 		m_mojiNum(mojiNum),//何文字目か
 		m_line(line),    //何行目か
 		m_countTime(0.2f),//次の文字までも間隔
-		m_count(m_countTime),
+		m_count(0.2f),
 		m_bes(13),//横の分割数
 		m_ver(8), //縦の分割数
 		m_widthSize(256.0f),//画像サイズ(横)
@@ -69,7 +69,7 @@ namespace basecross {
 		m_mojiNum(mojiNum),//何文字目か
 		m_line(line),    //何行目か
 		m_countTime(countTime),//次の文字までも間隔
-		m_count(m_countTime),
+		m_count(countTime),
 		m_bes(ber),//横の分割数
 		m_ver(ver), //縦の分割数
 		m_widthSize(widthSize),//画像サイズ(横)
@@ -138,6 +138,8 @@ namespace basecross {
 		if (m_moji < m_mojiNum) {
 			if (!m_lineFlag) {
 				UpdateLine(m_moji, m_line);
+				//auto soundE = App::GetApp()->GetXAudio2Manager();
+				//soundE->Start(L"CommentSE", 0, 0.3f);
 			}
 		}
 		if(m_moji > m_mojiNum) {

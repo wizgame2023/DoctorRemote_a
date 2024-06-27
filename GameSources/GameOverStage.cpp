@@ -30,7 +30,7 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 
-			AddGameObject<Sprite>(1280, 800, L"Back", Vec3(),-3);
+			AddGameObject<Sprite>(1280, 800, L"GameOverBackBoard", Vec3(),-3);
 			AddGameObject<Comment>(9, 0, 0.3, 1350, 229, 900, 200, 9, 1, Vec3(-450.0f,300.0f,0.0f), L"GameOverRogo");
 		}
 		catch (...) {
@@ -38,14 +38,22 @@ namespace basecross {
 		}
 	}
 
+	void GameOverStage::OnUpdate() {
+		auto elapsed = App::GetApp()->GetElapsedTime();
+		StageChange();
+		if (!m_buttonFlag) {
+			m_buttonTime -= elapsed;
+			if (m_buttonTime <= 0) {
+				AddGameObject<Sprite>(250, 150, L"OverButton", Vec3(0.0f, -290.0f, 0.0f));
+				m_buttonFlag = true;
+			}
+		}
+	}
+
 	void GameOverStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"GameOverBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
-	}
-
-	void GameOverStage::OnUpdate() {
-		StageChange();
 	}
 
 	void GameOverStage::OnDestroy()

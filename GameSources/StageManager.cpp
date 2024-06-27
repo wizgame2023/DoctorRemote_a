@@ -77,6 +77,9 @@ namespace basecross {
 				if (!m_StartDestoryFlag)
 				{
 					m_count -= elapsedTime;
+					//auto soundE = App::GetApp()->GetXAudio2Manager();
+					//soundE->Start(L"CountDownSE", 0, 0.3f);
+
 				}
 				else
 				{

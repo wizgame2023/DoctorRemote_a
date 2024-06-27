@@ -263,23 +263,17 @@ namespace basecross {
 		{
 			if (m_countUp >= 15.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
 			{
-				switch (m_stageCount)
-				{
-				case 0:
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
-					break;
-				case 1:
+				if (m_stageCount <= 9) {
 					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
-					break;
-				case 2:
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
-					break;
-				case 3:
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
-					break;
-				default:
-					break;
+
 				}
+				else if (m_stageCount == 10) {
+					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+
+				}
+				auto pieceSE = App::GetApp()->GetXAudio2Manager();
+				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+
 			}
 		}
 	}
