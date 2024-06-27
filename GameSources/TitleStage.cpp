@@ -86,12 +86,4 @@ namespace basecross {
 		auto decButton = GetSharedGameObject<Sprite>(L"decisionButton");
 		decButton->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
 	}
-	void TitleStage::StageChange() {
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
-			}
-		}
-	}
 }
