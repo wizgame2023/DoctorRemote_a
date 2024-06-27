@@ -85,53 +85,53 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//8				
-				Vec3(-6.25f,1.0f,24.0f),
+				Vec3(-6.25f,0.1f,24.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
-				Vec3(-4.56f,1.0f,40.0f),
+				Vec3(-4.56f,0.1f,40.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
-				Vec3(-7.25f,1.0f,-45.0f),
+				Vec3(-7.25f,0.1f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
-				Vec3(28.9f,1.0f,-14.0f),
+				Vec3(28.9f,0.1f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//12
-				Vec3(45.0f,1.0f,-7.0f),
+				Vec3(45.0f,0.1f,-7.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//13
-				Vec3(16.0f,1.0f,10.0f),
+				Vec3(16.0f,0.1f,10.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//14
-				Vec3(12.0f,1.0f,41.0f),
+				Vec3(12.0f,0.1f,41.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//15
-				Vec3(0.6f,1.0f,34.3f),
+				Vec3(0.6f,0.1f,34.3f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//16
-				Vec3(10.0f,1.0f,20.0f),
+				Vec3(10.0f,0.1f,20.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
@@ -255,7 +255,7 @@ namespace basecross {
 				switch (stageMap[r][c])
 				{
 				case 1:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(75.0, 10, 1.0));
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(75.0, 12, 1.0));
 					break;
 
 				case 2:
