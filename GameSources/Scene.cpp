@@ -120,6 +120,8 @@ namespace basecross {
 		app->RegisterTexture(L"Thank", strTexture);
 		strTexture = texPath + L"ClearButton.png";
 		app->RegisterTexture(L"ClearButton", strTexture);
+		strTexture = texPath + L"Credit.jpg";
+		app->RegisterTexture(L"Credit", strTexture);
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
