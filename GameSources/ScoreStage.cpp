@@ -72,7 +72,7 @@ namespace basecross {
 				m_mojispeed1 = 0.0f;
 				m_countUp += 12;
 				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
 
 			}
 
@@ -324,7 +324,7 @@ namespace basecross {
 				}
 				if (!m_SEFlag) {
 					auto choiceSE = App::GetApp()->GetXAudio2Manager();
-					choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+					choiceSE->Start(L"ChoiceSE", 0, 0.4f);
 					m_SEFlag = true;
 				}
 
