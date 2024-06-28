@@ -53,7 +53,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = 90;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),1.7f);
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),100.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -78,7 +78,7 @@ namespace basecross {
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		AddGameObject<EnemyMovieManager>(EnemyPos, Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f),EnemyPos);
+		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,0.0f,-13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
 
 	}
 
@@ -459,7 +459,15 @@ namespace basecross {
 
 			//BGM
 			BaseBGM();
-			m_CareerFlag = 0;//初期化
+			m_CareerFlag = 0;//初期化	
+			
+			//敵を生成	
+			CreateEnemy();
+			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
+			//レーダーを生成
+			CreateRadar();
+			m_CareerFlag = 1;
+
 		}
 		catch (...) {
 			throw;
@@ -468,17 +476,11 @@ namespace basecross {
 
 	void GameStage10::OnUpdate()
 	{
-		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
+		GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
-			//敵を生成	
-			CreateEnemy();
-			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
-			//レーダーを生成
-			CreateRadar();
-			m_CareerFlag = 1;
 
 			OnDestroy();
 			BossBGM();
@@ -494,9 +496,9 @@ namespace basecross {
 		{
 			AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//右方向
 			AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//左方向
-
-			m_CareerFlag = 4;
+			
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
+			m_CareerFlag = 4;
 
 			OnDestroy();
 			BaseBGM();
