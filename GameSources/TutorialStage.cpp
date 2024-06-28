@@ -243,7 +243,7 @@ namespace basecross {
 
 		//ミニマップ表示のために使用
 		float SpriteLenght = 225.0f;
-		Vec3 SpriteStartPos = Vec3(640.0f - (SpriteLenght / 2.0f) - 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.0f, 0.0f);
+		Vec3 SpriteStartPos = Vec3(640.0f - (SpriteLenght / 2.0f) - 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.5f, 0.0f);
 
 		for (int r = 0; r < stageMap.size(); r++)
 		{
@@ -292,13 +292,13 @@ namespace basecross {
 	void TutorialStage::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapTutorial", Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapTutorial", Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
-		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 3.0f, 75.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 3.0f, 75.0f, Lenght);//ミニマップ上でPlayerの位置を表示
 		SetSharedGameObject(L"MiniMapPlayer", miniMapPlayer);
 
-		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
+		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.5f, 0.0f);
 		float Bairitu = Lenght / 75.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
 		for (int i = 0; i < m_BigPieceLength; i++)
