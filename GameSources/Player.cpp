@@ -290,7 +290,7 @@ namespace basecross {
 		}
 		if (other->FindTag(L"BigPieceLittle")) {
 			if (!m_radarFlag) {
-				AddPiece(m_onePiece * 3);
+				AddPiece(m_onePiece * 1.5);
 
 			}
 			if (m_maxPiece < m_piece) {

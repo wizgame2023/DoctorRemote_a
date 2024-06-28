@@ -26,7 +26,7 @@ namespace basecross {
 		wstring m_tag;
 	public:
 		PieceLittle(const shared_ptr<Stage>& stagePtr, const shared_ptr<GameObject>& obj,
-			const shared_ptr<GameObject>& target, const float deg,const wstring tag=L"PieceLittle");
+			const shared_ptr<GameObject>& target, const float deg,const wstring tag = L"PieceLittle");
 		virtual ~PieceLittle(){}
 
 		virtual void OnCreate() override;

@@ -159,7 +159,7 @@ namespace basecross {
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
 		if (littleNum > 0) {
 			for (int i = 0; i < littleNum; i++) {
-				stage->AddGameObject<PieceLittle>(GetThis<BigPiece>(), player, (360 / littleNum) * i);
+				stage->AddGameObject<PieceLittle>(GetThis<BigPiece>(), player, (360 / littleNum) * i, L"BigPieceLittle");
 			}
 		}
 		if (des) {
