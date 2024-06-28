@@ -88,8 +88,8 @@ namespace basecross {
 				m_stageCollionManager->SetCollisionSwhich(true);//ステージ上のコリジョン判定を復活させる
 				auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 				stageManager->SetCountFlag(true);//ステージのカウントを開始する
-				int numPtr = m_Sprite->GetNumPtr();
-				stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);
+				//int numPtr = m_Sprite->GetNumPtr();
+				//stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);
 				stage->RemoveGameObject<Sprite>(m_Sprite);//スプライトを削除
 				stage->RemoveGameObject<JoinManager>(GetThis<JoinManager>());//自分自身を削除
 			}

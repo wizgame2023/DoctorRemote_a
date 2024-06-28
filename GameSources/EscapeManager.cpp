@@ -135,8 +135,8 @@ namespace basecross {
 		{
 			if (m_UpdateFlag == 1)//Playerに当たったのが自分だった場合
 			{
-				int number = m_MyMiniMap->GetNumPtr();
-				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
+				//int number = m_MyMiniMap->GetNumPtr();
+				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
 				GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
 				m_UpdateFlag = 2;
 			}
