@@ -540,7 +540,7 @@ namespace basecross {
 			m_dashCool = 6.0f;
 			break;
 		default:
-			//m_dashCooldown = true;//そもそもダッシュできないようにする
+			m_dashCooldown = true;//そもそもダッシュできないようにする
 			break;
 		}
 

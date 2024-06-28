@@ -157,16 +157,12 @@ namespace basecross {
 	{
 		if (OnOff == true)//オンなら
 		{		
-			//m_color = Col4(1.0f, 1.0f, 1.0f, 0.0f);
+			m_color = m_draw->GetDiffuse();
 			m_draw->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//透明にする
-			auto test = m_color;
-			auto a = 0;
 		}
 		if (OnOff == false)//オフなら
 		{
 			m_draw->SetDiffuse(m_color);//透明でなかった時の色に戻る
-			auto test = m_color;
-			auto a = 0;
 		}
 	}
 

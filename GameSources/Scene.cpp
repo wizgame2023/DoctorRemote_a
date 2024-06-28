@@ -145,7 +145,7 @@ namespace basecross {
 		app->RegisterTexture(L"MiniMapStage7", strTexture);
 		strTexture = texPath + L"MiniMapStage8Ver2.0.png";//ミニマップStage8
 		app->RegisterTexture(L"MiniMapStage8", strTexture);
-		strTexture = texPath + L"MiniMapStage9.png";//ミニマップStage9
+		strTexture = texPath + L"MiniMapStage9Ver2.0.png";//ミニマップStage9
 		app->RegisterTexture(L"MiniMapStage9", strTexture);
 		strTexture = texPath + L"MiniMapStage10Ver3.0.png";//ミニマップStage10
 		app->RegisterTexture(L"MiniMapStage10", strTexture);
