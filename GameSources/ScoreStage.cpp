@@ -111,7 +111,7 @@ namespace basecross {
 			else if (m_countUp >= 6.0f && m_timeCount == 4)
 			{
 				int count = scene->GetBigPieceCount();
-				auto rank = AddGameObject<Sprite>(65, 75, L"CountMoji", Vec3(-130.0f, 124.0f, 0.0f));
+				auto rank = AddGameObject<Sprite>(65, 70, L"CountMoji", Vec3(-130.0f, 131.0f, 0.0f));
 				rank->UpdateCount(count);
 				m_timeCount++;
 			}
@@ -160,28 +160,28 @@ namespace basecross {
 			}
 
 			//スコアステージが生成されてから10秒後で、ステージクリアした時の残りタイムが50秒以上だったら表示
-			else if (m_time >= 50 && m_countUp >= 10.0f && m_timeCount == 8)
+			else if (m_time >= 180 && m_countUp >= 10.0f && m_timeCount == 8)
 			{
 				auto moji3 = AddGameObject<CommentManager>(16, 0, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを4つ表示
 					Vec3(-208.0f, 80.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから11秒後で、ステージクリアした時の残りタイムが40秒以上だったら表示
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 11.0f && m_timeCount == 8)
+			else if (m_time >= 120 && m_time < 180 && m_countUp >= 11.0f && m_timeCount == 8)
 			{
 				auto moji3 = AddGameObject<CommentManager>(16, 1, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを3つ表示
 					Vec3(-208.0f, 82.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから11秒後で、ステージクリアした時の残りタイムが25秒以上だったら表示
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 11.0f && m_timeCount == 8)
+			else if (m_time >= 90 && m_time < 120 && m_countUp >= 11.0f && m_timeCount == 8)
 			{
 				auto moji3 = AddGameObject<CommentManager>(14, 2, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを2つ表示
 					Vec3(-208.0f, 82.0f, 0.0f), L"CheckMark");
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから11秒後で、ステージクリアしたら表示
-			else if (m_time < 25 && m_countUp >= 11.0f && m_timeCount == 8)
+			else if (m_time < 90 && m_countUp >= 11.0f && m_timeCount == 8)
 			{
 				auto moji3 = AddGameObject<Comment>(16, 3, m_mojispeed1, 512, 512, 450, 450, 5, 5, //チェックを1つ表示
 					Vec3(-208.0f, 80.0f, 0.0f), L"CheckMark");
@@ -196,29 +196,29 @@ namespace basecross {
 				m_timeCount++;
 			}
 
-			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが50秒以上だったらポイント「100」を表示
-			else if (m_time >= 50 && m_countUp >= 14.0f && m_timeCount == 10)
+			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが3分以上だったらポイント「100」を表示
+			else if (m_time >= 180 && m_countUp >= 14.0f && m_timeCount == 10)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-160.0f, -297.0f, 0.0f));//「100」を表示
 				rank->UpdateIfClear(0);
 				m_timeCount++;
 			}
-			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが40秒以上だったらポイント「75」を表示
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 14.0f && m_timeCount == 10)
+			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが2分秒以上だったらポイント「75」を表示
+			else if (m_time >= 120 && m_time < 180 && m_countUp >= 14.0f && m_timeCount == 10)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-162.0f, -304.0f, 0.0f));//「75」を表示
 				rank->UpdateIfClear(1);
 				m_timeCount++;
 			}
-			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが25秒以上だったらポイント「50」を表示
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 14.0f && m_timeCount == 10)
+			//スコアステージが生成されてから14秒後で、ステージクリアした時の残りタイムが1分30秒以上だったらポイント「50」を表示
+			else if (m_time >= 90 && m_time < 120 && m_countUp >= 14.0f && m_timeCount == 10)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-160.0f, -304.0f, 0.0f));//「50」を表示 
 				rank->UpdateIfClear(2);
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから14秒後で、ステージクリアしたらポイント「25」を表示
-			else if (m_time < 25 && m_countUp >= 14.0f && m_timeCount == 10)
+			else if (m_time < 90 && m_countUp >= 14.0f && m_timeCount == 10)
 			{
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-160.0f, -301.0f, 0.0f));//「25」を表示
 				rank->UpdateIfClear(3);
@@ -226,7 +226,7 @@ namespace basecross {
 			}
 
 			//スコアステージが生成されてから15秒後で、ステージクリアした時の残り時間が50秒以上だったら「S」を表示
-			else if (m_time >= 50 && m_countUp >= 15.0f && m_timeCount == 11)
+			else if (m_time >= 180 && m_countUp >= 15.0f && m_timeCount == 11)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(270, 0, 0));
 				rank->UpdateRank(0);
@@ -238,7 +238,7 @@ namespace basecross {
 				ScoreSE();
 			}
 			//スコアステージが生成されてから15秒後で、ステージクリアした時の残り時間が40秒以上だったら「A」を表示
-			else if (m_time >= 40 && m_time < 50 && m_countUp >= 15.0f && m_timeCount == 11)
+			else if (m_time >= 120 && m_time < 180 && m_countUp >= 15.0f && m_timeCount == 11)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0));
 				rank->UpdateRank(1);
@@ -250,7 +250,7 @@ namespace basecross {
 				ScoreSE();
 				}
 			//スコアステージが生成されてから15秒後で、ステージクリアした時の残り時間が25秒以上だったら「B」を表示
-			else if (m_time >= 25 && m_time < 40 && m_countUp >= 15.0f && m_timeCount == 11)
+			else if (m_time >= 90 && m_time < 120 && m_countUp >= 15.0f && m_timeCount == 11)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0));
 				rank->UpdateRank(2);
@@ -262,7 +262,7 @@ namespace basecross {
 				ScoreSE();
 			}
 			//スコアステージが生成されてから15秒後で、ステージクリアしたら「C」を表示
-			else if (m_time < 25 && m_countUp >= 15.0f && m_timeCount == 11)
+			else if (m_time < 90 && m_countUp >= 15.0f && m_timeCount == 11)
 			{
 				auto rank = AddGameObject<Sprite>(400, 400, L"Rank", Vec3(350, 0, 0));
 				rank->UpdateRank(3);
@@ -282,11 +282,11 @@ namespace basecross {
 			m_timeCount++;
 			m_control++;
 		}
-		int test = scene->GetAchievementPoint();//デバック用変数
-		wstringstream wss(L"");
-		wss << test << "\n" << test << endl;
+		//int test = scene->GetAchievementPoint();//デバック用変数
+		//wstringstream wss(L"");
+		//wss << test << "\n" << test << endl;
 
-		scene->SetDebugString(wss.str());
+		//scene->SetDebugString(wss.str());
 	}
 
 	void ScoreStage::OnDestroy()
