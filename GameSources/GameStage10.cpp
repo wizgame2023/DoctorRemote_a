@@ -78,7 +78,7 @@ namespace basecross {
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,0.0f,-13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
+		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,-1.0f,-13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
 
 	}
 
@@ -461,13 +461,6 @@ namespace basecross {
 			BaseBGM();
 			m_CareerFlag = 0;//初期化	
 			
-			//敵を生成	
-			CreateEnemy();
-			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
-			//レーダーを生成
-			CreateRadar();
-			m_CareerFlag = 1;
-
 		}
 		catch (...) {
 			throw;
@@ -476,11 +469,17 @@ namespace basecross {
 
 	void GameStage10::OnUpdate()
 	{
-		GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
+		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
+			//敵を生成	
+			CreateEnemy();
+			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
+			//レーダーを生成
+			CreateRadar();
+			m_CareerFlag = 1;
 
 			OnDestroy();
 			BossBGM();
