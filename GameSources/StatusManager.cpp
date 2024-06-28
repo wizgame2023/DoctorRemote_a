@@ -183,7 +183,7 @@ namespace basecross {
 		auto& scene = App::GetApp()->GetScene<Scene>();
 
 		m_selectSprite = stage->AddGameObject<StageSelectSprite>(Vec3(-450, 170, 0.0f),
-			sizeX, sizeY, 300, 300, 3, 2, 40, L"White_2", L"White", false, false);
+			sizeX, sizeY, 300, 300, 3, 2, 40, L"White_2", L"White_2", false, false);
 
 		auto dashButton = stage->AddGameObject<Sprite>(sizeX, sizeY, L"DashButton", m_selectSprite->GetSpritePostion(1, 1));
 		auto bulletLenght = stage->AddGameObject<Sprite>(sizeX, sizeY, L"BulletButton", m_selectSprite->GetSpritePostion(2, 1));
@@ -265,8 +265,8 @@ namespace basecross {
 				pointTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
 			}
 			if (levelFlag) {
-				//auto levelTex = stage->AddGameObject<Sprite>(40, 40, L"LevelTexture", Vec3(pos.x - 10, pos.y - 25, pos.z));
-				//levelTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
+				auto levelTex = stage->AddGameObject<Sprite>(40, 40, L"LevelTexture", Vec3(pos.x - 10, pos.y - 25, pos.z));
+				levelTex->SetColor(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
 			}
 
 		}

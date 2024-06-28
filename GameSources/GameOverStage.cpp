@@ -32,6 +32,7 @@ namespace basecross {
 
 			AddGameObject<Sprite>(1280, 800, L"GameOverBackBoard", Vec3(),-3);
 			AddGameObject<Comment>(9, 0, 0.3, 1350, 229, 900, 200, 9, 1, Vec3(-450.0f,300.0f,0.0f), L"GameOverRogo");
+
 		}
 		catch (...) {
 			throw;
@@ -40,11 +41,12 @@ namespace basecross {
 
 	void GameOverStage::OnUpdate() {
 		auto elapsed = App::GetApp()->GetElapsedTime();
+		auto& scene = App::GetApp()->GetScene<Scene>();
 		StageChange();
 		if (!m_buttonFlag) {
 			m_buttonTime -= elapsed;
 			if (m_buttonTime <= 0) {
-				AddGameObject<Sprite>(250, 150, L"OverButton", Vec3(0.0f, -290.0f, 0.0f));
+				AddGameObject<Sprite>(250, 150, L"OverButton", Vec3(0.0f, -100.0f, 0.0f));
 				m_buttonFlag = true;
 			}
 		}
