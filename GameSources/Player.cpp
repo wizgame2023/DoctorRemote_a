@@ -177,7 +177,7 @@ namespace basecross {
 						BulletSE();
 					}
 					else {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 2.0f * m_bulletPower);
+						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 1.2f * m_bulletPower);
 						bullet->SetBulletLevel(0);
 						BulletSE();
 					}
