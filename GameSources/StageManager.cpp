@@ -96,7 +96,7 @@ namespace basecross {
 
 					if (!m_startSEFlag) {
 						auto soundE = App::GetApp()->GetXAudio2Manager();
-						soundE->Start(L"CountDownSE", 0, 0.7f);
+						soundE->Start(L"CountDownSE", 0, 0.8f);
 						m_startSEFlag = true;
 					}
 

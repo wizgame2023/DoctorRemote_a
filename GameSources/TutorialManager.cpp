@@ -59,7 +59,7 @@ namespace basecross {
 				m_blinkFlag = false;
 			}
 		}
-		if (m_count < 10) {
+		if (m_count < 11) {
 			m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking2));
 		}
 		else {
