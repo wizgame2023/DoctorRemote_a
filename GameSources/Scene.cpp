@@ -781,6 +781,11 @@ namespace basecross {
 
 	void Scene::SetAchievementPoint(int achievementPoint)
 	{
+		m_achievementPoint = achievementPoint;
+	}
+
+	void Scene::AddAchievementPoint(int achievementPoint)
+	{
 		m_achievementPoint += achievementPoint;
 	}
 	void Scene::MinusAchievementPoint(int achievementPoint) {
