@@ -146,6 +146,7 @@ namespace basecross {
 	{
 		if (OnOff == true)//ƒIƒ“‚È‚ç
 		{
+			m_color2 = m_draw->GetDiffuse();
 			m_draw->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//“§–¾‚É‚·‚é
 		}
 		if (OnOff == false)//ƒIƒt‚È‚ç
