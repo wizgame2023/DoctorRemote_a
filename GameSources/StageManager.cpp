@@ -90,7 +90,7 @@ namespace basecross {
 						m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 						m_countNumFlag = true;//１回しか通らないようにする
 						m_stageSprite = stage->AddGameObject<Sprite>(300, 300, L"Stage", Vec3(0.0f,200.0f,0.0f));
-						m_stageNum = stage->AddGameObject<UITime>(scene->GetGameStage(), Vec3(120.0f, 250.0f, 0.0f), 60, 120,Col4(1.0f));
+						m_stageNum = stage->AddGameObject<UITime>(scene->GetGameStage(), Vec3(120.0f, 250.0f, 0.0f), 60, 120, L"Numbers10", Col4(1.0f));
 					}
 					m_num->UpdateValue((int)m_count);
 
