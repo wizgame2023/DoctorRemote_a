@@ -142,7 +142,7 @@ namespace basecross {
 
 			//Œø‰Ê‰¹
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"BreakSE", 0, 0.8f);
+			pieceSE->Start(L"BreakSE", 0, 1.5f);
 
 		}
 		if (other->FindTag(L"Player")) {

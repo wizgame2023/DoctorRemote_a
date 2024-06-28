@@ -285,7 +285,7 @@ namespace basecross {
 
 			EffectFlag(3);
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
+			pieceSE->Start(L"GetPieceSE", 0, 0.2f);
 
 		}
 		if (other->FindTag(L"BigPieceLittle")) {
@@ -309,7 +309,7 @@ namespace basecross {
 
 			EffectFlag(2);
 			auto damegeSE = App::GetApp()->GetXAudio2Manager();
-			damegeSE->Start(L"DamageSE", 0, 0.5f);
+			damegeSE->Start(L"DamageSE", 0, 1.5f);
 
 		}
 		if (other->FindTag(L"EnemyPiece")) {
@@ -318,7 +318,7 @@ namespace basecross {
 			SetObj(other);
 
 			auto damegeSE = App::GetApp()->GetXAudio2Manager();
-			damegeSE->Start(L"DamageSE", 0, 0.5f);
+			damegeSE->Start(L"DamageSE", 0, 1.5f);
 		}
 	}
 
