@@ -245,7 +245,7 @@ namespace basecross {
 		if (m_hp <= 0) {
 			if (!m_SEflag) {
 				auto deadSE = App::GetApp()->GetXAudio2Manager();
-				deadSE->Start(L"DeadSE", 0, 0.9f);
+				deadSE->Start(L"DeadSE", 0, 1.9f);
 				m_SEflag = true;
 			}
 
@@ -265,17 +265,21 @@ namespace basecross {
 
 			if (Collision->FindTag(L"Bullet") && m_hp >= 0)
 			{
-				m_hp -=attack;
-				//m_scale -= m_scaleReduct;
-				//m_pos.y -= m_posYRedect;
-				auto damegeSE = App::GetApp()->GetXAudio2Manager();
-				damegeSE->Start(L"AttackSE", 0, 0.3f);
+				if (stage->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag() == 2)
+				{
+					m_hp -=attack;
+					//m_scale -= m_scaleReduct;
+					//m_pos.y -= m_posYRedect;
+					auto damegeSE = App::GetApp()->GetXAudio2Manager();
+					damegeSE->Start(L"AttackSE", 0, 0.8f);
+
+				}
+
 
 			}
 		}	
 		if (m_hp <= 0)
 		{		
-
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(3);//ステージの全体フラグ進行
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
 			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
