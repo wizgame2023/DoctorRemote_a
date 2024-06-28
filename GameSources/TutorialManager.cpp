@@ -162,7 +162,7 @@ namespace basecross {
 					m_textutreCheck = false;
 
 					auto choiceSE = App::GetApp()->GetXAudio2Manager();
-					choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+					choiceSE->Start(L"ChoiceSE", 0, 0.4f);
 
 				}
 

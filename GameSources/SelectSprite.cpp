@@ -235,7 +235,7 @@ namespace basecross {
 	//SE
 	void SelectSprite::ChoiceSE() {
 		auto choiceSE = App::GetApp()->GetXAudio2Manager();
-		choiceSE->Start(L"ChoiceSE", 0, 0.3f);
+		choiceSE->Start(L"ChoiceSE", 0, 0.4f);
 	}
 	//フェードアウト
 	bool SelectSprite::GetStageMove()

@@ -78,7 +78,7 @@ namespace basecross {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + nextStage);
 			if (!m_aButtonSEFlag) {
 				auto pieceSE = App::GetApp()->GetXAudio2Manager();
-				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+				pieceSE->Start(L"ChoiceSE", 0, 0.4f);
 				m_aButtonSEFlag = true;
 			}
 
