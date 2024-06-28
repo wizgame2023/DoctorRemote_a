@@ -384,7 +384,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapLevelTutorial.csv", 75, 18);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevelTutorial.csv", 75, 20);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
 			AddGameObject<Ground>();//地面を生成
