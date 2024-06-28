@@ -36,8 +36,10 @@ namespace basecross {
 
 		shared_ptr<Sprite> m_ligth;
 		shared_ptr<Sprite> m_startSprite;
-		shared_ptr<UITime> m_num;
 		shared_ptr<Sprite> m_comFrame;
+		shared_ptr<Sprite> m_stageSprite;
+		shared_ptr<UITime> m_num;
+		shared_ptr<UITime> m_stageNum;
 		shared_ptr<Transform> m_comTrans;
 		shared_ptr<CommentManager> m_com[2];
 
