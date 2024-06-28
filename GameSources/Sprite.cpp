@@ -134,7 +134,7 @@ namespace basecross {
 	}
 	void Sprite::UpdateCount(int value)
 	{
-		const float numberH = 46.0f / 420.0f;
+		const float numberH = 100.0f / 800.0f;
 		m_vertices[0].textureCoordinate.y = numberH * value;
 		m_vertices[1].textureCoordinate.y = numberH * value;
 		m_vertices[2].textureCoordinate.y = numberH * (value + 1);
