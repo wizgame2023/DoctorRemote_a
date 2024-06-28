@@ -145,7 +145,7 @@ namespace basecross {
 				if (kakeracount == 6) {
 					m_achievementPoint += 30;
 				}
-				scene->SetAchievementPoint(m_achievementPoint);
+				scene->AddAchievementPoint(m_achievementPoint);
 				m_timeCount++;
 
 			}
@@ -239,7 +239,7 @@ namespace basecross {
 				m_timeCount++;
 				m_achievementPoint += 80 - m_achievementPoint;//100成果(achievement)ポイント獲得
 				m_control++;
-				scene->SetAchievementPoint(m_achievementPoint);
+				scene->AddAchievementPoint(m_achievementPoint);
 
 				ScoreSE();
 			}
@@ -251,7 +251,7 @@ namespace basecross {
 				m_timeCount++;
 				m_achievementPoint += 60 - m_achievementPoint;//75成果(achievement)ポイント獲得
 				m_control++;
-				scene->SetAchievementPoint(m_achievementPoint);
+				scene->AddAchievementPoint(m_achievementPoint);
 
 				ScoreSE();
 				}
@@ -263,7 +263,7 @@ namespace basecross {
 				m_timeCount++;
 				m_achievementPoint += 40 - m_achievementPoint;;//50成果(achievement)ポイント獲得
 				m_control++;
-				scene->SetAchievementPoint(m_achievementPoint);
+				scene->AddAchievementPoint(m_achievementPoint);
 
 				ScoreSE();
 			}
@@ -275,7 +275,7 @@ namespace basecross {
 				m_timeCount++;
 				m_achievementPoint += 20 - m_achievementPoint;;//25成果(achievement)ポイント獲得
 				m_control++;
-				scene->SetAchievementPoint(m_achievementPoint);
+				scene->AddAchievementPoint(m_achievementPoint);
 
 				ScoreSE();
 			}
@@ -288,11 +288,11 @@ namespace basecross {
 			m_timeCount++;
 			m_control++;
 		}
-		//int test = scene->GetAchievementPoint();//デバック用変数
-		//wstringstream wss(L"");
-		//wss << test << "\n" << test << endl;
+		int test = scene->GetAchievementPoint();//デバック用変数
+		wstringstream wss(L"");
+		wss << test << "\n" << test << endl;
 
-		//scene->SetDebugString(wss.str());
+		scene->SetDebugString(wss.str());
 	}
 
 	void ScoreStage::OnDestroy()

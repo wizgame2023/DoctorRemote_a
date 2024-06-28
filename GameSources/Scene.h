@@ -95,6 +95,7 @@ namespace basecross{
 		void SetGameStage(int gameStage);
 		int GetNextStage();
 		void SetNextStage(int stage);
+		void AddAchievementPoint(int achievementPoint);
 		void SetAchievementPoint(int achievementPoint);
 		void MinusAchievementPoint(int achievementPoint);
 		int GetAchievementPoint();
