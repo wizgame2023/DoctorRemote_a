@@ -135,11 +135,11 @@ namespace basecross {
 		}
 
 		//デバック用
-		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-			float a = 1.0f;
-			AllClear();
-		}
+		//auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		//if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
+		//	float a = 1.0f;
+		//	AllClear();
+		//}
 
 
 	}

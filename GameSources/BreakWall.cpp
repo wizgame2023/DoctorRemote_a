@@ -129,8 +129,8 @@ namespace basecross {
 				effectPos.y = 0.0f;
 				PtrEffect->InsertEffect(effectPos);//エフェクトの生成位置を設定する
 
-				auto numPtr = m_MyMiniMap->GetNumPtr();//自分を表示したスプライトの配列番号を取得
-				stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列から自分のポインタを消去
+				//auto numPtr = m_MyMiniMap->GetNumPtr();//自分を表示したスプライトの配列番号を取得
+				//stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);//配列から自分のポインタを消去
 
 
 			}

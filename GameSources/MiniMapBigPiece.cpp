@@ -30,7 +30,7 @@ namespace basecross {
 		auto uiManager = GetStage()->GetSharedGameObject<UIManager>(L"UIManager");
 		if (m_Existence == false)
 		{
-			GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(m_numPtr);//自分を消す前に配列に自分のポインタを消す
+			//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(m_numPtr);//自分を消す前に配列に自分のポインタを消す
 			GetStage()->RemoveGameObject<MiniMapBigPiece>(GetThis<MiniMapBigPiece>());//自分を消す
 			auto scene = App::GetApp()->GetScene<Scene>();
 			scene->SetBigPieceCount(1);
