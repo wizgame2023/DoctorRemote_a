@@ -28,6 +28,7 @@ namespace basecross {
 		int m_UpdateFlag;
 		int m_MapSize;//マップのサイズ
 		float m_Time;
+		float m_endTime;
 		float m_paint;
 	public:
 		EscapeManager(const shared_ptr<Stage>& stagePtr, Vec3 cameraEye, Vec3 cameraAt, Vec3 minRange, Vec3 maxRange,Vec3 playerStart,Vec3 m_TargetPos,int mapSize = 150);//コンストラクタ

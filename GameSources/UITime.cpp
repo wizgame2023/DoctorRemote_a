@@ -94,7 +94,7 @@ namespace basecross {
 	{
 		if (OnOff == true)//オンなら
 		{
-			m_color = m_draw->GetDiffuse();
+			//m_color = m_draw->GetDiffuse();
 			m_draw->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.0f));//透明にする
 		}
 		if (OnOff == false)//オフなら
