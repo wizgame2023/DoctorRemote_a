@@ -136,8 +136,14 @@ namespace basecross {
 				if (kakeracount == 3) {
 					m_achievementPoint += 15;
 				}
-				if (kakeracount >= 4) {
+				if (kakeracount == 4) {
 					m_achievementPoint += 20;
+				}
+				if (kakeracount == 5) {
+					m_achievementPoint += 25;
+				}
+				if (kakeracount == 6) {
+					m_achievementPoint += 30;
 				}
 				scene->SetAchievementPoint(m_achievementPoint);
 				m_timeCount++;
