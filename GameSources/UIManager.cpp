@@ -253,7 +253,7 @@ namespace basecross {
 		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
 
 		//画面上のライト
-		//auto light = stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
+		auto light = stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
 
 		//弾のチャージを表すゲージ
 		auto chargeFrame = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 1.0f, 150, 15, Col4(1.0f), Col4(1.0f,1.0f,1.0f,0.5f), Vec3(-220.0f+150, -290.0f, 0.0f), Vec3(0.0f));//こいつのカラーを何とかする
