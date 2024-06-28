@@ -19,14 +19,14 @@ namespace basecross {
 		m_heigth(80.0f),
 		m_color(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f))
 	{}
-	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos,float width,float heigth) :
+	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos,float width,float heigth,Col4 color) :
 		GameObject(stagePtr),
 		m_number(number),
 		m_pos(pos),
 		m_meshResName(L"NumbersWhite"),
 		m_width(width),
 		m_heigth(heigth),
-		m_color(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f))
+		m_color(color)
 	{}
 	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth , wstring meshResName) :
 		GameObject(stagePtr),

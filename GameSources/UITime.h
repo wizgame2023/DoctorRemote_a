@@ -31,7 +31,7 @@ namespace basecross {
 
 	public:
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos);
-		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth);
+		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth,Col4 color= Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth, wstring meshResName);
 
 		virtual ~UITime(){}
