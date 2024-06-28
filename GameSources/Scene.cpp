@@ -81,11 +81,13 @@ namespace basecross {
 		app->RegisterTexture(L"GameOverRogo", strTexture);
 		strTexture = texPath + L"OverButton.png";
 		app->RegisterTexture(L"OverButton", strTexture);
+		strTexture = texPath + L"Clear.png";
+		app->RegisterTexture(L"Clear", strTexture);
+		strTexture = texPath + L"Stage.png";
+		app->RegisterTexture(L"Stage", strTexture);
 		
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
-		strTexture = texPath + L"Clear.png";
-		app->RegisterTexture(L"Clear", strTexture);
 		strTexture = texPath + L"GameOver.jpg";
 		app->RegisterTexture(L"GameOver", strTexture);
 		strTexture = texPath + L"Start.png";

@@ -86,9 +86,11 @@ namespace basecross {
 				}
 				if (m_count > 1) {
 					if (!m_countNumFlag) {
-						m_num = stage->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f);
+						m_num = stage->AddGameObject<UITime>((int)m_count, Vec3(-120.0f, 120.0f, 0.0f), 240.0f, 480.0f, Col4(1.0f));
 						m_num->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 						m_countNumFlag = true;//１回しか通らないようにする
+						m_stageSprite = stage->AddGameObject<Sprite>(300, 300, L"Stage", Vec3(0.0f,200.0f,0.0f));
+						m_stageNum = stage->AddGameObject<UITime>(scene->GetGameStage(), Vec3(120.0f, 250.0f, 0.0f), 60, 120,Col4(1.0f));
 					}
 					m_num->UpdateValue((int)m_count);
 
@@ -101,6 +103,8 @@ namespace basecross {
 				}
 				if (m_count < 1) {
 					m_num->ThisDestory();
+					m_stageSprite->ThisDestory();
+					m_stageNum->ThisDestory();
 					if (!m_start && m_stageFlag <= 1) {
 						m_startSprite = GetStage()->AddGameObject<Sprite>(500, 500, L"Start", Vec3());		
 						m_StartDestoryFlag = false;
@@ -109,7 +113,9 @@ namespace basecross {
 
 					if (m_count < 0.1f && !m_StartDestoryFlag) {
 						auto number = m_startSprite->GetNumPtr();
+						auto number2 = m_stageSprite->GetNumPtr();
 						GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
+						GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number2);
 						m_startSprite->ThisDestory();
 						m_StartDestoryFlag = true;
 					}
