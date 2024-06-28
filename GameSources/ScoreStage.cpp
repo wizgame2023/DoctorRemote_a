@@ -111,7 +111,7 @@ namespace basecross {
 			else if (m_countUp >= 6.0f && m_timeCount == 4)
 			{
 				int count = scene->GetBigPieceCount();
-				auto rank = AddGameObject<Sprite>(55, 65, L"CountMoji", Vec3(-130.0f, 130.0f, 0.0f));
+				auto rank = AddGameObject<Sprite>(65, 75, L"CountMoji", Vec3(-130.0f, 124.0f, 0.0f));
 				rank->UpdateCount(count);
 				m_timeCount++;
 			}
@@ -122,7 +122,7 @@ namespace basecross {
 				int kakeracount = scene->GetBigPieceCount();
 				auto rank = AddGameObject<Sprite>(55, 65, L"KakeraPoint", Vec3(-40.0f, 128.0f, 0.0f));
 				auto plus = AddGameObject<Sprite>(60, 100, L"Plus", Vec3(-75.0f, 128.0f, 0.0f));
-				rank->UpdatePoint(3);
+				rank->UpdatePoint(kakeracount);
 
 				if (kakeracount == 0) {
 					m_achievementPoint += 0;
@@ -154,7 +154,7 @@ namespace basecross {
 			//スコアステージが生成されてから8秒後で、評価の文字を表示
 			else if (m_countUp >= 8.0f && m_timeCount == 7)
 			{
-				auto moji2 = AddGameObject<CommentManager>(29, 0, m_mojispeed, 512, 512, 340, 370, 9, 5, //評価の文字を表示
+				auto moji2 = AddGameObject<CommentManager>(35, 0, m_mojispeed, 512, 512, 340, 370, 11, 5, //評価の文字を表示
 					Vec3(-576.0f, 59.0f, 0.0f), L"IfClear");
 				m_timeCount++;
 			}
@@ -191,8 +191,8 @@ namespace basecross {
 			//スコアステージが生成されてから12秒後で、合計を表示
 			else if (m_countUp >= 13.0f && m_timeCount == 9)
 			{
-				auto moji3 = AddGameObject<Comment>(2, 0, 0.1f, 256, 64, 200, 55, 4, 1, //合計を表示
-					Vec3(-450.0f, -278.0f, 0.0f), L"ResultMoji3");
+				auto moji3 = AddGameObject<Comment>(2, 0, 0.1f, 120, 50, 120, 55, 2, 1, //合計を表示
+					Vec3(-470.0f, -276.0f, 0.0f), L"ResultMoji3");
 				m_timeCount++;
 			}
 
