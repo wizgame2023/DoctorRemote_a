@@ -7,6 +7,7 @@
 #pragma once
 #include "stdafx.h"
 #include"Player.h"
+#include "Sprite.h"
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
@@ -29,6 +30,7 @@ namespace basecross {
 		float m_bulletChargeTime;
 		float m_bulletRatio;
 		float m_bulletPower;
+		float m_blinkCnt;
 
 		int m_statusFlag;
 		int m_bulletLevel;
@@ -53,6 +55,7 @@ namespace basecross {
 		shared_ptr<Transform> m_trans;
 		weak_ptr<MainCamera> m_camera;
 		shared_ptr<GameObject> m_obj;
+		shared_ptr<Sprite> m_damegeScreen;
 
 	private:
 		Vec2 GetInputState();
@@ -96,19 +99,6 @@ namespace basecross {
 		void OnCollisionEnter(shared_ptr<GameObject>& other);
 	};
 
-	class ChildPlayer :public GameObject{
-	private:
-		weak_ptr<GameObject> m_parent;
-		Vec3 m_vecParent;
-
-	public:
-
-		ChildPlayer(const shared_ptr<Stage>& stagePtr, 
-			const shared_ptr<GameObject>& parent, const Vec3& vecParent);
-		virtual ~ChildPlayer() {}
-		virtual void OnCreate() override;
-		virtual void OnUpdate() override;
-	};
 }
 //end namespace basecross
 

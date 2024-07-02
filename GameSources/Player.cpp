@@ -54,13 +54,13 @@ namespace basecross {
 		m_bulletFlag(false),
 		m_bulletLevel(0),
 		m_chargeBulletSE{ false },
+		m_blinkCnt(7.0f),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
 
 
 	void Player::OnCreate(){
-		//STATUSPLAYER = 0;
 		//初期位置などの設定
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(1.5f, 2.0f, 8.5f);
@@ -96,6 +96,10 @@ namespace basecross {
 		colPtr->SetAfterCollision(AfterCollision::Auto);
 
 		AddTag(L"Player");
+
+		//ダメージを受けたとき用のスプライト
+		m_damegeScreen = GetStage()->AddGameObject<Sprite>(1280,800,L"White",Vec3(0.0f));
+		m_damegeScreen->SetColor(Col4(1.0f,0.0f,0.0f,0.0f));
 
 		//カメラオブジェクトを取得する
 		auto ptrCamera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
@@ -195,8 +199,11 @@ namespace basecross {
 				}
 			}
 
+
 			//EnemyPieceに触れたら押し出し
 			if (m_enemyPieceFlag) {
+
+
 				auto obj = GetObj();
 				auto objTrans = obj->GetComponent<Transform>();
 				auto pullTrans = objTrans->GetPosition() - ptrPos;
@@ -212,6 +219,23 @@ namespace basecross {
 					m_enemyPieceFlag = false;
 					m_startFlag = true;
 				}
+			}
+
+			if (m_enemyPieceFlag || m_blinkCnt < 7.0) {
+				m_blinkCnt -= elapsedTime*7.0;
+
+				if ((int)m_blinkCnt % 2 == 0) {
+					m_damegeScreen->SetColor(Col4(1.0f, 0.0f, 0.0f, 0.0f));
+				}
+				if ((int)m_blinkCnt % 2 == 1) {
+					m_damegeScreen->SetColor(Col4(1.0f, 0.0f, 0.0f, 0.25f));
+				}
+				if (m_blinkCnt <= 0.0f) {
+					m_blinkCnt = 0.0f;
+				}
+			}
+			if (m_blinkCnt <= 0.0f) {
+				m_blinkCnt = 7.0f;
 			}
 
 		}
@@ -378,17 +402,6 @@ namespace basecross {
 			angle = Vec3(cos(frontAngle), 0.0f, sin(frontAngle));
 			//正規化
 			angle.normalize();
-
-			//移動サイズ
-			//float moveSize = moveVec.length();
-			//angle *= moveSize;
-
-			//wstringstream wss(L"");
-			//auto scene = App::GetApp()->GetScene<Scene>();
-			//auto gameStage = scene->GetGameStage();
-			//wss << L"angle.x : " << moveVec.x << L"angle.z : " << moveVec.y
-			//	<< endl;
-			//scene->SetDebugString(wss.str());
 
 			//Y軸は変化させない
 			angle.y = 0.0f;
@@ -672,40 +685,6 @@ namespace basecross {
 		m_speed = speed;
 	}
 
-	//--------------------------------------------------------------------------------------
-	//	class ChildSphere : public GameObject;
-	//　当たり判定用のクラス
-	//--------------------------------------------------------------------------------------
-	ChildPlayer::ChildPlayer(const shared_ptr<Stage>& stagePtr,
-		const shared_ptr<GameObject>& parent, 
-		const Vec3& vecParent
-	):
-		GameObject(stagePtr),
-		m_parent(parent),
-		m_vecParent(vecParent)
-	{}
-
-	void ChildPlayer::OnCreate() {
-		auto childTrans = GetComponent<Transform>();
-		childTrans->SetScale(Vec3(1.0f));
-
-		auto ptrDraw = AddComponent<BcPNStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetDrawActive(true);
-		//コリジョン
-		auto ptrCol = AddComponent<CollisionObb>();
-		ptrCol->SetAfterCollision(AfterCollision::None);
-		SetDrawActive(true);
-
-		AddTag(L"Player");
-
-	}
-	void ChildPlayer::OnUpdate() {
-		auto ptrTrans = GetComponent<Transform>();
-		auto parentTrans = m_parent.lock()->GetComponent<Transform>();
-		ptrTrans->SetPosition(parentTrans->GetPosition()+Vec3(3.0f,0.0f,0.0f));
-
-	}
 }
 
 //end basecross
