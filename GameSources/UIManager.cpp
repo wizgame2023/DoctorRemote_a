@@ -37,17 +37,18 @@ namespace basecross {
 			m_CreateFlag = false;
 		}
 
-		if (m_EraseUiPtrNum.size() >= 1)//Uiが消えたとき
-		{
-			PushUiPtr();//配列の更新
-			//m_EraseUiPtrNum = -1;//フラグリセット
-		}
+		EraseUiPtr();
+		//if (m_EraseUiPtrNum.size() >= 1)//Uiが消えたとき
+		//{
+		//	PushUiPtr();//配列の更新
+		//	//m_EraseUiPtrNum = -1;//フラグリセット
+		//}
 
-		if (m_EraseUiCommentPtrNum > -1)//コメントUiが消えたとき
-		{
-			PushUiCommentPtr();//配列の更新
-			m_EraseUiCommentPtrNum = -1;//フラグリセット
-		}
+		//if (m_EraseUiCommentPtrNum > -1)//コメントUiが消えたとき
+		//{
+		//	PushUiCommentPtr();//配列の更新
+		//	m_EraseUiCommentPtrNum = -1;//フラグリセット
+		//}
 
 
 
@@ -170,11 +171,28 @@ namespace basecross {
 		return m_UiCommentPtr.size();//戻り値にどの番号にポインタを入れたかを返す
 	}
 
-	void UIManager::EraseUiPtr(int num)//配列にあるUiのポインタの要素を削除する
-	{
+	void UIManager::EraseUiPtr()//空き部屋になった配列を詰める関数
+	{	
+		list<weak_ptr<Sprite>> afterList;
+		for (auto List : m_AllUiPtr)
+		{		
+			auto uiPtr = List.lock();//sharedを取得する
+			if (uiPtr)
+			{
+				afterList.push_back(uiPtr);
+			}
+		}
+		for (auto List : m_AllUiPtr)
+		{
+			auto uiPtr = List.lock();
+			if (!uiPtr)
+			{
+				m_AllUiPtr.swap(afterList);
+			}
+		}
 		//m_AllUiPtr.erase(m_AllUiPtr.begin() + ((num - 1) - m_EraseUiPtrNum.size()));//配列にあるUiのポインタを削除する
-		////m_EraseUiPtrNum.push_back(num);//削除したポインタの配列番号を取得
-		////m_EraseUiPtrNum = num;//削除したポインタの配列番号を取得
+		//m_EraseUiPtrNum.push_back(num);//削除したポインタの配列番号を取得
+		//m_EraseUiPtrNum = num;//削除したポインタの配列番号を取得
 		//m_AllUiPtr.size();//デバック用
 		//auto a = 0;//デバック用
 	}
@@ -293,7 +311,7 @@ namespace basecross {
 				{
 					if (!uiPtr->FindTag(L"MovieSprite"))
 					{
-						auto a = 0;
+						//auto a = 0;
 						uiPtr->OnClear(true);//透明にする
 						miniMapPlayer->OnClear(true);
 					}

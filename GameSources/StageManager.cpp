@@ -58,6 +58,7 @@ namespace basecross {
 
 	}
 	void StageManager::OnUpdate() {
+		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -112,10 +113,10 @@ namespace basecross {
 					m_start = true;
 
 					if (m_count < 0.1f && !m_StartDestoryFlag) {
-						auto number = m_startSprite->GetNumPtr();
-						auto number2 = m_stageSprite->GetNumPtr();
-						GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
-						GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number2);
+						//auto number = m_startSprite->GetNumPtr();
+						//auto number2 = m_stageSprite->GetNumPtr();
+						//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
+						//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number2);
 						m_startSprite->ThisDestory();
 						m_StartDestoryFlag = true;
 					}

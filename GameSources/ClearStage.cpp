@@ -21,6 +21,7 @@ namespace basecross {
 	}
 	void ClearStage::OnCreate() {
 		try {
+			App::GetApp()->GetScene<Scene>()->ResetButton();
 			//BGM
 			BaseBGM();
 
