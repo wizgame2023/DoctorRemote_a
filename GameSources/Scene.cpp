@@ -796,10 +796,15 @@ namespace basecross {
 	{
 		return m_count;
 	}
-	void Scene::SetBigPieceCount(int count)
+	void Scene::AddBigPieceCount(int count)
 	{
 		m_count += count;
 	}
+
+	void Scene::SetBigPieceCount(int count)
+	{
+		m_count = count;
+  }
 
 	void Scene::ResetButton() {
 		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
@@ -807,7 +812,6 @@ namespace basecross {
 		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_START && 
 			cntlVec[0].wButtons & XINPUT_GAMEPAD_BACK) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
-
 		}
 	}
 }
