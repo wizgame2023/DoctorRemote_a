@@ -30,7 +30,7 @@ namespace basecross {
 		shared_ptr<StageManager> m_StageManager;
 		shared_ptr<Garge> m_chargeGarge;
 		shared_ptr<Sprite> m_dashLight;
-		vector<weak_ptr<Sprite>> m_AllUiPtr;//ステージ上の全てのUiのポインタを取得
+		list<weak_ptr<Sprite>> m_AllUiPtr;//ステージ上の全てのUiのポインタを取得
 		vector<weak_ptr<UITime>> m_UiTimePtr;//制限時間のポインタ取得
 		vector<weak_ptr<Garge>> m_UiGargePtr;//Gargeのポインタ取得
 		vector<weak_ptr<Comment>> m_UiCommentPtr;//Commentのポインタ取得
@@ -41,7 +41,7 @@ namespace basecross {
 		void OnCreate()override;
 		void OnUpdate()override;
 		void AllClear();//UIが見えなくなる	
-		void EraseUiPtr(int num);//配列にあるUiのポインタを消す
+		void EraseUiPtr();//配列にあるUiのポインタを消す
 		void EraseUiCommentPtr(int num);//配列にあるUiのポインタを消す
 		void PushUiPtr();//配列が小さくなった際、使わない番号を詰める
 		void PushUiCommentPtr();//配列が小さくなった際、使わない番号を詰める(コメント版)
