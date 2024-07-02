@@ -69,8 +69,10 @@ namespace basecross {
 	    
 	void TitleStage::OnDestroy()
 	{
+		auto scene = App::GetApp()->GetScene<Scene>();
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
+		scene->SetBigPieceCount(0);
 	}
 
 	void TitleStage::OnUpdate()

@@ -804,7 +804,7 @@ namespace basecross {
 	void Scene::SetBigPieceCount(int count)
 	{
 		m_count = count;
-  }
+    }
 
 	void Scene::ResetButton() {
 		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
