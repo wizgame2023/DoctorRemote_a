@@ -10,7 +10,8 @@
 namespace basecross {
 	TitleManager::TitleManager(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
-		m_anCollar(0.0f)
+		m_anCollar(0.0f),
+		m_NextStandMovie(0.0f)
 	{}
 
 	void TitleManager::OnCreate() {
@@ -67,6 +68,45 @@ namespace basecross {
 					m_selectSprite->SetStageStart(true);
 				}
 		}
+
+		m_NextStandMovie += elapsedTime;
+		StandTimeReset();
+		if (m_NextStandMovie >= 30.0f)
+		{
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
+		}
+		if (m_StandTimeReset)
+		{
+			m_NextStandMovie = 0.0f;
+			m_StandTimeReset = false;
+		}
+		wstringstream wss(L"");
+		auto scene = App::GetApp()->GetScene<Scene>();
+		auto gameStage = scene->GetGameStage();
+		wss << L"m_NextStandMovie : "
+			<<m_NextStandMovie
+			<< endl;
+
+		scene->SetDebugString(wss.str());
+
+	}
+
+	void TitleManager::StandTimeReset()
+	{
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		Vec2 AStick;//アナログスティック
+		AStick.x = cntlVec[0].fThumbLX;
+		AStick.y = cntlVec[0].fThumbLY;
+		if (!AStick.x == 0 || !AStick.y == 0)
+		{
+			m_StandTimeReset = true;
+		}
+		if (cntlVec[0].wPressedButtons)//コントローラーのボタンが押されたとき
+		{
+			m_StandTimeReset = true;
+		}
+		//if(cntlVec)
+		//m_NextStandMovie = 0.0f;//待機時間をリセットする
 	}
 }
 //end namespace basecross
