@@ -127,7 +127,7 @@ namespace basecross {
 			if (cntlVec[0].bConnected) {
 				auto soundE = App::GetApp()->GetXAudio2Manager();
 
-				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B|| VK_LBUTTON) {
 					if (m_bulletTime <= m_bulletChargeTime * 3) {
 						m_bulletTime += elapsedTime;
 						if (m_bulletTime >= m_bulletChargeTime) {
@@ -378,17 +378,6 @@ namespace basecross {
 			angle = Vec3(cos(frontAngle), 0.0f, sin(frontAngle));
 			//正規化
 			angle.normalize();
-
-			//移動サイズ
-			//float moveSize = moveVec.length();
-			//angle *= moveSize;
-
-			//wstringstream wss(L"");
-			//auto scene = App::GetApp()->GetScene<Scene>();
-			//auto gameStage = scene->GetGameStage();
-			//wss << L"angle.x : " << moveVec.x << L"angle.z : " << moveVec.y
-			//	<< endl;
-			//scene->SetDebugString(wss.str());
 
 			//Y軸は変化させない
 			angle.y = 0.0f;
@@ -672,40 +661,6 @@ namespace basecross {
 		m_speed = speed;
 	}
 
-	//--------------------------------------------------------------------------------------
-	//	class ChildSphere : public GameObject;
-	//　当たり判定用のクラス
-	//--------------------------------------------------------------------------------------
-	ChildPlayer::ChildPlayer(const shared_ptr<Stage>& stagePtr,
-		const shared_ptr<GameObject>& parent, 
-		const Vec3& vecParent
-	):
-		GameObject(stagePtr),
-		m_parent(parent),
-		m_vecParent(vecParent)
-	{}
-
-	void ChildPlayer::OnCreate() {
-		auto childTrans = GetComponent<Transform>();
-		childTrans->SetScale(Vec3(1.0f));
-
-		auto ptrDraw = AddComponent<BcPNStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetDrawActive(true);
-		//コリジョン
-		auto ptrCol = AddComponent<CollisionObb>();
-		ptrCol->SetAfterCollision(AfterCollision::None);
-		SetDrawActive(true);
-
-		AddTag(L"Player");
-
-	}
-	void ChildPlayer::OnUpdate() {
-		auto ptrTrans = GetComponent<Transform>();
-		auto parentTrans = m_parent.lock()->GetComponent<Transform>();
-		ptrTrans->SetPosition(parentTrans->GetPosition()+Vec3(3.0f,0.0f,0.0f));
-
-	}
 }
 
 //end basecross

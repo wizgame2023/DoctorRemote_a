@@ -36,25 +36,6 @@ namespace basecross {
 
 		auto uiManager = stage->AddGameObject<UIManager>();//UIを管理するマネージャー
 		stage->SetSharedGameObject(L"UIManager", uiManager);
-		//画面上のライト
-		//stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
-
-		//m_PieceStatus = App::GetApp()->GetScene<Scene>()->GetBigPieceUp();
-		//switch (m_PieceStatus)
-		//{
-		//case 0:
-		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth", Vec3(),0);
-		//	break;
-		//case 1:
-		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(),0);
-		//	break;
-		//case 2:
-		//	stage->AddGameObject<Sprite>(1280, 800, L"Ligth3", Vec3(),0);
-		//	break;
-		//default:
-		//	break;
-		//}
-
 
 	}
 	void StageManager::OnUpdate() {
@@ -113,10 +94,6 @@ namespace basecross {
 					m_start = true;
 
 					if (m_count < 0.1f && !m_StartDestoryFlag) {
-						//auto number = m_startSprite->GetNumPtr();
-						//auto number2 = m_stageSprite->GetNumPtr();
-						//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
-						//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number2);
 						m_startSprite->ThisDestory();
 						m_StartDestoryFlag = true;
 					}
