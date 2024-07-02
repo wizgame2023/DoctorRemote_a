@@ -183,8 +183,8 @@ namespace basecross {
 	void Radar::MyRemove()
 	{
 		auto stage = GetStage();
-		int number = m_RaderWaku->GetNumPtr();
-		stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);//配列からポインタ削除
+		//int number = m_RaderWaku->GetNumPtr();
+		//stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);//配列からポインタ削除
 		stage->RemoveGameObject<Sprite>(m_RaderWaku);//レーダーの枠削除
 		GetStage()->RemoveGameObject<Radar>(GetThis<Radar>());//自分自身を削除
 	}
