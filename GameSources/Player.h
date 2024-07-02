@@ -7,6 +7,7 @@
 #pragma once
 #include "stdafx.h"
 #include"Player.h"
+#include "Sprite.h"
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
@@ -29,6 +30,7 @@ namespace basecross {
 		float m_bulletChargeTime;
 		float m_bulletRatio;
 		float m_bulletPower;
+		float m_blinkCnt;
 
 		int m_statusFlag;
 		int m_bulletLevel;
@@ -53,6 +55,7 @@ namespace basecross {
 		shared_ptr<Transform> m_trans;
 		weak_ptr<MainCamera> m_camera;
 		shared_ptr<GameObject> m_obj;
+		shared_ptr<Sprite> m_damegeScreen;
 
 	private:
 		Vec2 GetInputState();

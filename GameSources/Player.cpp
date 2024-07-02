@@ -54,13 +54,13 @@ namespace basecross {
 		m_bulletFlag(false),
 		m_bulletLevel(0),
 		m_chargeBulletSE{ false },
+		m_blinkCnt(7.0f),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
 
 
 	void Player::OnCreate(){
-		//STATUSPLAYER = 0;
 		//初期位置などの設定
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(1.5f, 2.0f, 8.5f);
@@ -97,6 +97,10 @@ namespace basecross {
 
 		AddTag(L"Player");
 
+		//ダメージを受けたとき用のスプライト
+		m_damegeScreen = GetStage()->AddGameObject<Sprite>(1280,800,L"White",Vec3(0.0f));
+		m_damegeScreen->SetColor(Col4(1.0f,0.0f,0.0f,0.0f));
+
 		//カメラオブジェクトを取得する
 		auto ptrCamera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		if (ptrCamera) {
@@ -127,7 +131,7 @@ namespace basecross {
 			if (cntlVec[0].bConnected) {
 				auto soundE = App::GetApp()->GetXAudio2Manager();
 
-				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B|| VK_LBUTTON) {
+				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
 					if (m_bulletTime <= m_bulletChargeTime * 3) {
 						m_bulletTime += elapsedTime;
 						if (m_bulletTime >= m_bulletChargeTime) {
@@ -195,8 +199,11 @@ namespace basecross {
 				}
 			}
 
+
 			//EnemyPieceに触れたら押し出し
 			if (m_enemyPieceFlag) {
+
+
 				auto obj = GetObj();
 				auto objTrans = obj->GetComponent<Transform>();
 				auto pullTrans = objTrans->GetPosition() - ptrPos;
@@ -212,6 +219,23 @@ namespace basecross {
 					m_enemyPieceFlag = false;
 					m_startFlag = true;
 				}
+			}
+
+			if (m_enemyPieceFlag || m_blinkCnt < 7.0) {
+				m_blinkCnt -= elapsedTime*7.0;
+
+				if ((int)m_blinkCnt % 2 == 0) {
+					m_damegeScreen->SetColor(Col4(1.0f, 0.0f, 0.0f, 0.0f));
+				}
+				if ((int)m_blinkCnt % 2 == 1) {
+					m_damegeScreen->SetColor(Col4(1.0f, 0.0f, 0.0f, 0.25f));
+				}
+				if (m_blinkCnt <= 0.0f) {
+					m_blinkCnt = 0.0f;
+				}
+			}
+			if (m_blinkCnt <= 0.0f) {
+				m_blinkCnt = 7.0f;
 			}
 
 		}
