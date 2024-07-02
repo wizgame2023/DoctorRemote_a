@@ -46,6 +46,7 @@ namespace basecross {
 		}
 	}
 	void LoadStage::OnUpdate() {
+		App::GetApp()->GetScene<Scene>()->ResetButton();
 		StageChange();
 
 		float delta = App::GetApp()->GetElapsedTime();

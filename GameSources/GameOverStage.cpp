@@ -40,6 +40,7 @@ namespace basecross {
 	}
 
 	void GameOverStage::OnUpdate() {
+		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto elapsed = App::GetApp()->GetElapsedTime();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		StageChange();
