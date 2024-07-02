@@ -62,7 +62,7 @@ namespace basecross {
 	{
 		auto scene = App::GetApp()->GetScene<Scene>();
 		m_count = scene->GetBigPieceCount();
-		scene->SetBigPieceCount(-m_count);
+		scene->SetBigPieceCount(0);
 		scene->GetBigPieceCount();
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);

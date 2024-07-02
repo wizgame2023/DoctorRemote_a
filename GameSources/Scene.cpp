@@ -796,9 +796,13 @@ namespace basecross {
 	{
 		return m_count;
 	}
-	void Scene::SetBigPieceCount(int count)
+	void Scene::AddBigPieceCount(int count)
 	{
 		m_count += count;
+	}
+	void Scene::SetBigPieceCount(int count)
+	{
+		m_count = count;
 	}
 }
 //test
