@@ -55,6 +55,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)JoinManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OkawaraStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceGarge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceGarge2.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)JoinManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OkawaraStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceGarge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceGarge2.cpp" />
