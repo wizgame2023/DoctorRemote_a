@@ -58,6 +58,7 @@ namespace basecross {
 
 	}
 	void StageManager::OnUpdate() {
+		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();

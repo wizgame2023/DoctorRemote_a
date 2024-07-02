@@ -24,7 +24,6 @@ namespace basecross {
 		try {
 			//BGM
 			BaseBGM();
-
 			auto& scene = App::GetApp()->GetScene<Scene>();
 			scene->SetAchievementPoint(0);
 			scene->SetDashStatus(0);

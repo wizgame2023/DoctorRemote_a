@@ -58,6 +58,7 @@ namespace basecross {
 
 	void ScoreStage::OnUpdate()
 	{
+		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto scene = App::GetApp()->GetScene<Scene>();
 		float delta = App::GetApp()->GetElapsedTime();//デルタタイムを取得
 		m_countUp += 1 * delta;

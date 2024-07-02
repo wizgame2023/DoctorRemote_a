@@ -101,6 +101,7 @@ namespace basecross{
 		int GetAchievementPoint();
 		int GetBigPieceCount();
 		void SetBigPieceCount(int count);
+		void ResetButton();
 	};
 
 }

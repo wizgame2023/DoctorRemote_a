@@ -47,6 +47,7 @@ namespace basecross {
 
 	}
 	void StatusStage::OnUpdate() {
+		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto statusManager = GetSharedGameObject<StatusManager>(L"StatusManager");
 		auto status = statusManager->GetStatus();
 		auto elapsed = App::GetApp()->GetElapsedTime();
