@@ -248,9 +248,10 @@ namespace basecross {
 		app->RegisterTexture(L"EffectPiece", strTexture);
 		strTexture = texPath + L"BulletEffect.png";
 		app->RegisterTexture(L"BulletEffect", strTexture);
-		strTexture = texPath + L"Smoke.png";//煙
+		strTexture = texPath + L"Smoke.png";//煙	
 		app->RegisterTexture(L"SmokeEffect", strTexture);
-
+		strTexture = texPath + L"EnemyDamage.png";
+		app->RegisterTexture(L"EnemyDamageEffect", strTexture);
 
 		//文字の表示等
 		strTexture = texPath + L"Rank.png";
