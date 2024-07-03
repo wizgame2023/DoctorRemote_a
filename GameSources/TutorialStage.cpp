@@ -40,7 +40,7 @@ namespace basecross {
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 		auto EffectPtr3 = AddGameObject<EffectMove>(L"GetEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
-		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 2.5f, 0.0f), Vec3(0.7f, 0.7f, 0.7f));
+		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 15, 1.0f, Vec3(0.0f, 3.0f, 0.0f), Vec3(0.7f, 0.7f, 0.7f));
 		SetSharedGameObject(L"EnemyEffectRed", EffectPtr4);
 		auto EffectPtr5 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr5);
@@ -54,7 +54,7 @@ namespace basecross {
 	{
 		float deg = 90.0f;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),100.0f);//Player生成
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),2.5f);//Player生成
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 
