@@ -116,14 +116,15 @@ namespace basecross {
 	void StageSelectSprite::OnUpdate() {
 		float elapsed = App::GetApp()->GetElapsedTime();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto selectTrans = m_selectSprite->GetComponent<Transform>();
-		
+
 		if (m_moveCheck && m_blinkTime >= 0) {
 			if ((int)m_blinkTime % 2 == 0) {
 				m_selectSprite->SetColor(Col4(0, 0, 0, 0));
 			}
 			else if ((int)m_blinkTime % 2 == 1) {
-				m_selectSprite->SetColor(Col4(0,1, 0, 1));
+				m_selectSprite->SetColor(Col4(0, 1, 0, 1));
 			}
 
 			m_blinkTime -= elapsed * 10.0f;
@@ -135,57 +136,57 @@ namespace basecross {
 
 		if (m_moveCheck) return;
 		//左スティック
-		if (cntlVec[0].fThumbLX < -0.9f) {
+		if (cntlVec[0].fThumbLX < -0.9f || keyState.m_bPressedKeyTbl[0x41]) {
 			if (m_widthMin < m_width && !m_checkL) {
 				m_width -= m_widthUnit;
 				m_checkL = true;
 				m_stageNum--;
 			}
 		}
-		if (cntlVec[0].fThumbLX > -0.9f && m_checkL) {
+		if (cntlVec[0].fThumbLX > -0.9f || keyState.m_bLastKeyTbl[0x41] && m_checkL) {
 			m_checkL = false;
 		}
 		//右スティック
-		if (cntlVec[0].fThumbLX > 0.9f) {
+		if (cntlVec[0].fThumbLX > 0.9f || keyState.m_bPressedKeyTbl[0x44]) {
 			if (m_widthMax > m_width && !m_checkR) {
 				m_width += m_widthUnit;
 				m_checkR = true;
 				m_stageNum++;
 			}
 		}
-		if (cntlVec[0].fThumbLX < 0.9f && m_checkR) {
+		if (cntlVec[0].fThumbLX < 0.9f || keyState.m_bLastKeyTbl[0x44] && m_checkR) {
 			m_checkR = false;
 		}
 
 		//上スティック
-		if (cntlVec[0].fThumbLY > 0.9f) {
+		if (cntlVec[0].fThumbLY > 0.9f || keyState.m_bPressedKeyTbl[0x57]) {
 			if (m_heightMax > m_height && !m_checkU) {
 				m_height += m_heightUnit;
 				m_checkU = true;
 				m_stageNum -= m_widthNum;
 			}
 		}
-		if (cntlVec[0].fThumbLY < 0.9f && m_checkU) {
+		if (cntlVec[0].fThumbLY < 0.9f || keyState.m_bLastKeyTbl[0x57] && m_checkU) {
 			m_checkU = false;
 		}
 		//下スティック
-		if (cntlVec[0].fThumbLY < -0.9f) {
+		if (cntlVec[0].fThumbLY < -0.9f || keyState.m_bPressedKeyTbl[0x53]) {
 			if (m_heightMin < m_height && !m_checkD) {
 				m_height -= m_heightUnit;
 				m_checkD = true;
 				m_stageNum += m_widthNum;
 			}
 		}
-		if (cntlVec[0].fThumbLY > -0.9f && m_checkD) {
+		if (cntlVec[0].fThumbLY > -0.9f || keyState.m_bLastKeyTbl[0x53] && m_checkD) {
 			m_checkD = false;
 		}
 
 		selectTrans->SetPosition(Vec3(m_width, m_height, 0.0f));
 
 		//Bボタンで確定
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE]) {
 			if (m_stageNum <= m_limitNum) {
-				if (!m_closeNum[m_stageNum-1]) {
+				if (!m_closeNum[m_stageNum - 1]) {
 					m_moveCheck = true;
 				}
 			}
@@ -196,7 +197,7 @@ namespace basecross {
 			}
 
 		}
-		
+
 
 		//wstringstream wss(L"");
 		//auto scene = App::GetApp()->GetScene<Scene>();

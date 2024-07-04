@@ -59,6 +59,7 @@ namespace basecross {
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		Col4 white = Col4(1.0f);
 
@@ -71,7 +72,7 @@ namespace basecross {
 				m_moveStick = false;
 		}
 
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A|| keyState.m_bPressedKeyTbl[VK_BACK]) {
 			auto stage = App::GetApp()->GetScene<Scene>()->GetGameStage();
 			//stage = 1;
 			wstring nextStage = to_wstring(stage + 1);

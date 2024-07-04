@@ -31,6 +31,7 @@ namespace basecross {
 		float m_bulletRatio;
 		float m_bulletPower;
 		float m_blinkCnt;
+		float m_rotY;
 
 		int m_statusFlag;
 		int m_bulletLevel;
