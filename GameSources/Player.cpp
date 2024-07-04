@@ -389,12 +389,6 @@ namespace basecross {
 			}
 		}
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
-		//if (keyState.m_bPushKeyTbl[0x44]) {
-		//	ret -= 10.0f * elapsed;
-		//}
-		//if (keyState.m_bPushKeyTbl[0x41]) {
-		//	ret += 10.0f * elapsed;
-		//}
 		if (keyState.m_bPushKeyTbl[0x57]) {
 			ret += 10.0f * elapsed;
 		}

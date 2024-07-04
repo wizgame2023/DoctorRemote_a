@@ -55,6 +55,13 @@ namespace basecross {
 			m_angleY -= speed * delta * ret.x;
 		}
 
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
+		if (keyState.m_bPushKeyTbl[0x44]) {
+			m_angleY -= 30.0 * delta;
+		}
+		if (keyState.m_bPushKeyTbl[0x41]) {
+			m_angleY += 30.0 * delta;
+		}
 
 		//ディグリー角からラジアン角に直す
 		auto rad = XMConvertToRadians(m_angleY);
