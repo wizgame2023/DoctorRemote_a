@@ -72,7 +72,7 @@ namespace basecross {
 		spanMat.affineTransformation(
 			Vec3(0.75f, 0.5f, 0.25f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, XM_PI, 0.0f),
 			Vec3(0.0f, -0.5f, -0.05f)
 		);
 
@@ -430,41 +430,46 @@ namespace basecross {
 	Vec3 Player::GetMoveVector() {
 		auto elapsed = App::GetApp()->GetElapsedTime();
 		Vec3 angle(0, 0, 0);
-		//入力を取得
-		auto inPut = GetInputState();//コントローラーの入力の傾きを入れている
-		float moveX = inPut.x;
-		float moveZ = inPut.y;
-		if (moveX != 0 || moveZ != 0) {//コントローラー(アナログステック)を動かしたら
-			float moveLength = 0;
+		m_rotY = PlayerAngle();
 
-			float frontAngle = PlayerAngle();
-
-			//コントローラの向きを計算
-			//Vec2 moveVec(moveX, moveZ);
-			//角度からベクトルを作成
-			angle = Vec3(cos(frontAngle), 0.0f, sin(frontAngle));
-			//正規化
-			angle.normalize();
-
-			//Y軸は変化させない
-			angle.y = 0.0f;
-			//最後に傾けた値を保存する
-			m_lastAngle = angle;
-
-		}
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto rad = XMConvertToRadians(3.0f);
-		float frontAngle = PlayerAngle();
+		//float frontAngle = PlayerAngle();
 		////Dキーを押したとき
 		if (keyState.m_bPushKeyTbl[0x44]) {
-			m_rotY = frontAngle+rad;
-			angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
+			m_rotY = m_rotY + rad;
 
 		}
 		if (keyState.m_bPushKeyTbl[0x41]) {
-			m_rotY = frontAngle - rad;			
-			angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
+			m_rotY = m_rotY - rad;
 		}
+
+		angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
+		//正規化
+		//angle.normalize();
+
+		//Y軸は変化させない
+		angle.y = 0.0f;
+		//最後に傾けた値を保存する
+		m_lastAngle = angle;
+
+
+		//if (moveX != 0 || moveZ != 0) {//コントローラー(アナログステック)を動かしたら
+
+
+		//	//コントローラの向きを計算
+		//	//Vec2 moveVec(moveX, moveZ);
+		//	//角度からベクトルを作成
+		//	angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
+		//	//正規化
+		//	angle.normalize();
+
+		//	//Y軸は変化させない
+		//	angle.y = 0.0f;
+		//	//最後に傾けた値を保存する
+		//	m_lastAngle = angle;
+
+		//}
 		
 
 
