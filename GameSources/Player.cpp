@@ -55,6 +55,7 @@ namespace basecross {
 		m_bulletLevel(0),
 		m_chargeBulletSE{ false },
 		m_blinkCnt(7.0f),
+		m_rotY(0.0f),
 		m_meshResName(L"Sensuikan_Mesh")
 	{}
 
@@ -71,7 +72,7 @@ namespace basecross {
 		spanMat.affineTransformation(
 			Vec3(0.75f, 0.5f, 0.25f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, XM_PI, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, -0.5f, -0.05f)
 		);
 
@@ -92,7 +93,7 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(false);
+		colPtr->SetDrawActive(true);
 		colPtr->SetAfterCollision(AfterCollision::Auto);
 
 		AddTag(L"Player");
@@ -126,12 +127,14 @@ namespace basecross {
 			auto frontAngle = PlayerAngle();
 			auto ptrPos = m_trans->GetPosition();
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+			auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 
-			//Ｂボタンで弾を発射
+			//弾の処理
 			if (cntlVec[0].bConnected) {
 				auto soundE = App::GetApp()->GetXAudio2Manager();
 
-				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+				//弾のチャージ
+				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B || keyState.m_bPushKeyTbl[VK_LBUTTON]) {
 					if (m_bulletTime <= m_bulletChargeTime * 3) {
 						m_bulletTime += elapsedTime;
 						if (m_bulletTime >= m_bulletChargeTime) {
@@ -164,7 +167,8 @@ namespace basecross {
 					m_bulletFlag = false;
 				}
 
-				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B) {
+				//弾の発射時
+				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B||keyState.m_bUpKeyTbl[VK_LBUTTON]) {
 					if (m_bulletTime >= m_bulletChargeTime * 3) {
 						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 20.0f);
 						bullet->SetBulletLevel(3);
@@ -221,6 +225,7 @@ namespace basecross {
 				}
 			}
 
+
 			if (m_enemyPieceFlag || m_blinkCnt < 7.0) {
 				m_blinkCnt -= elapsedTime*7.0;
 
@@ -249,6 +254,21 @@ namespace basecross {
 
 		Dash();//これでダッシュの動きをする
 
+
+
+		//auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
+
+		//auto rad = XMConvertToRadians(30.0f);
+		////Dキーを押したとき
+		//if (keyState.m_bPushKeyTbl[0x44]) {
+		//	//auto rot = m_trans->GetRotation();
+		//	
+		//	m_rotY += rad * elapsedTime;
+		//}
+		//if (keyState.m_bPushKeyTbl[0x41]) {
+		//	m_rotY -= rad * elapsedTime;
+		//}
+		//m_trans->SetRotation(Vec3(0,m_rotY,0));
 
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();//デバック用です
 
@@ -289,6 +309,12 @@ namespace basecross {
 		//	<<"\nChain : "
 		//	<<scene->GetBulletPower()
 		//	<< endl;
+
+		wss << L"Rot:"
+			<< L"\nx." << m_trans->GetRotation().x
+			<< L"\ny." << m_trans->GetRotation().y
+			<< L"\nz." << m_trans->GetRotation().z
+			<< endl;
 
 		scene->SetDebugString(wss.str());
 
@@ -347,6 +373,7 @@ namespace basecross {
 	}
 
 	Vec2 Player::GetInputState() {
+		auto elapsed = App::GetApp()->GetElapsedTime();
 		Vec2 ret;
 		ret.x = 0.0f;
 		ret.y = 0.0f;
@@ -361,6 +388,20 @@ namespace basecross {
 
 			}
 		}
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
+		//if (keyState.m_bPushKeyTbl[0x44]) {
+		//	ret -= 10.0f * elapsed;
+		//}
+		//if (keyState.m_bPushKeyTbl[0x41]) {
+		//	ret += 10.0f * elapsed;
+		//}
+		if (keyState.m_bPushKeyTbl[0x57]) {
+			ret += 10.0f * elapsed;
+		}
+		if (keyState.m_bPushKeyTbl[0x53]) {
+			ret -= 10.0f * elapsed;
+		}
+
 
 		return ret;
 	}
@@ -370,6 +411,7 @@ namespace basecross {
 		//進行方向の向きを計算
 		auto ptrCamera = OnGetDrawCamera();
 		auto front = m_trans->GetPosition() - ptrCamera->GetEye();
+		auto elapsed = App::GetApp()->GetElapsedTime();
 		front.y = 0;
 		front.normalize();
 		//進行方向の向きからの角度を算出
@@ -386,6 +428,7 @@ namespace basecross {
 	}
 
 	Vec3 Player::GetMoveVector() {
+		auto elapsed = App::GetApp()->GetElapsedTime();
 		Vec3 angle(0, 0, 0);
 		//入力を取得
 		auto inPut = GetInputState();//コントローラーの入力の傾きを入れている
@@ -397,7 +440,7 @@ namespace basecross {
 			float frontAngle = PlayerAngle();
 
 			//コントローラの向きを計算
-			Vec2 moveVec(moveX, moveZ);
+			//Vec2 moveVec(moveX, moveZ);
 			//角度からベクトルを作成
 			angle = Vec3(cos(frontAngle), 0.0f, sin(frontAngle));
 			//正規化
@@ -409,8 +452,77 @@ namespace basecross {
 			m_lastAngle = angle;
 
 		}
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
+		auto rad = XMConvertToRadians(3.0f);
+		float frontAngle = PlayerAngle();
+		////Dキーを押したとき
+		if (keyState.m_bPushKeyTbl[0x44]) {
+			m_rotY = frontAngle+rad;
+			angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
+
+		}
+		if (keyState.m_bPushKeyTbl[0x41]) {
+			m_rotY = frontAngle - rad;			
+			angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
+		}
+		
+
+
 		return angle;
 	}
+
+	void Player::MovePlayer() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//角度を計算している関数を代入	
+		auto angle = m_lastAngle;
+		if (GetMoveVector() != Vec3(0.0f, 0.0f, 0.0f))
+		{
+			angle = GetMoveVector();
+		}
+		//auto cntl = GetInputState();
+		SpeedCalculation();//スピードの計算
+		if (angle.length() >= 0.0f) {
+
+			Vec3 moveAngle = angle;
+			//if (m_PadLastAngle.y < 0.0f) {//yの数値がマイナスの場合バックする
+			//	auto subAngle = atan2(moveAngle.z, moveAngle.x);
+			//	subAngle += XM_PI;
+			//	moveAngle = Vec3(cos(subAngle), 0.0f, sin(subAngle));
+			//}
+
+			auto pos = GetComponent<Transform>()->GetPosition();
+			pos += moveAngle * elapsedTime * m_speed;//ここで進む距離を決めている
+			GetComponent<Transform>()->SetPosition(pos);
+
+		}
+
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
+		auto rad = XMConvertToRadians(30.0f);
+
+		//回転の計算
+		if (angle.length() > 0.0f) {
+			auto unilPtr = GetBehavior<UtilBehavior>();
+			//補間処理を行う回転
+			unilPtr->RotToHead(angle, 0.7f);
+		}
+
+		////Dキーを押したとき
+		//if (keyState.m_bPushKeyTbl[0x44]) {
+		//	m_rotY += rad * elapsedTime;
+		//	m_trans->SetRotation(Vec3(0, m_rotY, 0));
+
+		//}
+		//if (keyState.m_bPushKeyTbl[0x41]) {
+		//	m_rotY -= rad * elapsedTime;
+		//	m_trans->SetRotation(Vec3(0, m_rotY, 0));
+
+		//}
+		////m_trans->SetRotation(Vec3(0, m_rotY, 0));
+
+
+
+	}
+
 
 	void Player::SpeedCalculation()//Playerの進むスピードを計算する
 	{
@@ -488,39 +600,6 @@ namespace basecross {
 
 	}
 
-	void Player::MovePlayer() {
-		float elapsedTime = App::GetApp()->GetElapsedTime();
-		//角度を計算している関数を代入	
-		auto angle = m_lastAngle;
-		if (GetMoveVector() != Vec3(0.0f, 0.0f, 0.0f))
-		{
-			angle = GetMoveVector();
-		}
-		//auto cntl = GetInputState();
-		SpeedCalculation();//スピードの計算
-		if (angle.length() >= 0.0f) {
-
-			Vec3 moveAngle = angle;
-			//if (m_PadLastAngle.y < 0.0f) {//yの数値がマイナスの場合バックする
-			//	auto subAngle = atan2(moveAngle.z, moveAngle.x);
-			//	subAngle += XM_PI;
-			//	moveAngle = Vec3(cos(subAngle), 0.0f, sin(subAngle));
-			//}
-
-			auto pos = GetComponent<Transform>()->GetPosition();
-			pos += moveAngle * elapsedTime * m_speed;//ここで進む距離を決めている
-			GetComponent<Transform>()->SetPosition(pos);
-
-		}
-
-		//回転の計算
-		if (angle.length() > 0.0f) {
-			auto unilPtr = GetBehavior<UtilBehavior>();
-			//補間処理を行う回転
-			unilPtr->RotToHead(angle, 0.7f);
-		}
-	}
-
 	void Player::DashCoolManager(int count)
 	{
 		switch (count)
@@ -561,10 +640,11 @@ namespace basecross {
 
 	void Player::Dash() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		Vec2 input = GetInputState();//入力を取得
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
-		if (cntlVec[0].bRightTrigger >= 0.8f && !m_dashCooldown) //RTボタンを押したら
+		if (cntlVec[0].bRightTrigger >= 0.8f || keyState.m_bPressedKeyTbl[VK_SHIFT] && !m_dashCooldown) //RTボタンを押したら
 		{
 			m_dashCheck = true;//ダッシュできるようになる
 			m_dashCooldown = true;//クールタイムのフラグを入れる
