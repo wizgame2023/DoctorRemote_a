@@ -134,7 +134,7 @@ namespace basecross {
 			auto soundE = App::GetApp()->GetXAudio2Manager();
 
 			//弾のチャージ
-			if (cntlVec[0].bConnected&&cntlVec[0].wButtons & XINPUT_GAMEPAD_B || keyState.m_bPushKeyTbl[VK_LBUTTON]) {
+			if (cntlVec[0].bConnected&&cntlVec[0].wButtons & XINPUT_GAMEPAD_B || keyState.m_bPushKeyTbl[VK_SPACE]) {
 				if (m_bulletTime <= m_bulletChargeTime * 3) {
 					m_bulletTime += elapsedTime;
 					if (m_bulletTime >= m_bulletChargeTime) {
@@ -168,7 +168,7 @@ namespace basecross {
 			}
 
 			//弾の発射時
-			if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B||keyState.m_bUpKeyTbl[VK_LBUTTON]) {
+			if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B||keyState.m_bUpKeyTbl[VK_SPACE]) {
 				if (m_bulletTime >= m_bulletChargeTime * 3) {
 					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 20.0f);
 					bullet->SetBulletLevel(3);
