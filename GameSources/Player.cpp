@@ -51,6 +51,7 @@ namespace basecross {
 		m_radarFlag(false),
 		m_statusFlag(2),
 		m_enemyPieceFlag(false),
+		m_enemyFlag(false),
 		m_bulletFlag(false),
 		m_bulletLevel(0),
 		m_chargeBulletSE{ false },
@@ -130,79 +131,76 @@ namespace basecross {
 			auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 
 			//弾の処理
-			if (cntlVec[0].bConnected) {
-				auto soundE = App::GetApp()->GetXAudio2Manager();
+			auto soundE = App::GetApp()->GetXAudio2Manager();
 
-				//弾のチャージ
-				if (cntlVec[0].wButtons & XINPUT_GAMEPAD_B || keyState.m_bPushKeyTbl[VK_LBUTTON]) {
-					if (m_bulletTime <= m_bulletChargeTime * 3) {
-						m_bulletTime += elapsedTime;
-						if (m_bulletTime >= m_bulletChargeTime) {
-							if (!m_chargeBulletSE[0]) {
-								soundE->Start(L"Charge1", 0, 0.5f);
-								m_chargeBulletSE[0] = true;
-							}
+			//弾のチャージ
+			if (cntlVec[0].bConnected&&cntlVec[0].wButtons & XINPUT_GAMEPAD_B || keyState.m_bPushKeyTbl[VK_LBUTTON]) {
+				if (m_bulletTime <= m_bulletChargeTime * 3) {
+					m_bulletTime += elapsedTime;
+					if (m_bulletTime >= m_bulletChargeTime) {
+						if (!m_chargeBulletSE[0]) {
+							soundE->Start(L"Charge1", 0, 0.5f);
+							m_chargeBulletSE[0] = true;
 						}
-						if (m_bulletTime >= m_bulletChargeTime * 2) {
-							if (!m_chargeBulletSE[1]) {
-								soundE->Start(L"Charge2", 0, 0.5f);
-								m_chargeBulletSE[1] = true;
-							}
-						}
-						if (m_bulletTime >= m_bulletChargeTime * 3) {
-							if (!m_chargeBulletSE[2]) {
-								soundE->Start(L"Charge3", 0, 0.5f);
-								m_chargeBulletSE[2] = true;
-							}
-						}
-
-
 					}
-					else {
-						m_bulletTime = m_bulletChargeTime * 3;
+					if (m_bulletTime >= m_bulletChargeTime * 2) {
+						if (!m_chargeBulletSE[1]) {
+							soundE->Start(L"Charge2", 0, 0.5f);
+							m_chargeBulletSE[1] = true;
+						}
 					}
-					m_bulletRatio = m_bulletTime / (m_bulletChargeTime * 3);
-				}
-				else {
-					m_bulletFlag = false;
-				}
-
-				//弾の発射時
-				if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B||keyState.m_bUpKeyTbl[VK_LBUTTON]) {
 					if (m_bulletTime >= m_bulletChargeTime * 3) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 20.0f);
-						bullet->SetBulletLevel(3);
-						BulletSE();
-					}
-					else if (m_bulletTime >= m_bulletChargeTime * 2) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 45.0f, frontAngle, 12.0f);
-						bullet->SetBulletLevel(2);
-						BulletSE();
-					}
-					else if (m_bulletTime >= m_bulletChargeTime) {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 40.0f, frontAngle, 6.0f);
-						bullet->SetBulletLevel(1);
-						BulletSE();
-					}
-					else {
-						auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 1.2f * m_bulletPower);
-						bullet->SetBulletLevel(0);
-						BulletSE();
-					}
-					m_bulletTime = 0.0f;
-					m_bulletRatio = 0.0f;
-
-					for (int i = 0; i < 3; i++) {
-						if (m_chargeBulletSE[i]) {
-							m_chargeBulletSE[i] = false;
+						if (!m_chargeBulletSE[2]) {
+							soundE->Start(L"Charge3", 0, 0.5f);
+							m_chargeBulletSE[2] = true;
 						}
 					}
+
+
 				}
 				else {
-					//m_bulletTime = 0.0f;
+					m_bulletTime = m_bulletChargeTime * 3;
 				}
+				m_bulletRatio = m_bulletTime / (m_bulletChargeTime * 3);
+			}
+			else {
+				m_bulletFlag = false;
 			}
 
+			//弾の発射時
+			if (cntlVec[0].wReleasedButtons & XINPUT_GAMEPAD_B||keyState.m_bUpKeyTbl[VK_LBUTTON]) {
+				if (m_bulletTime >= m_bulletChargeTime * 3) {
+					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.7f), 50.0f, frontAngle, 20.0f);
+					bullet->SetBulletLevel(3);
+					BulletSE();
+				}
+				else if (m_bulletTime >= m_bulletChargeTime * 2) {
+					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.5f), 45.0f, frontAngle, 12.0f);
+					bullet->SetBulletLevel(2);
+					BulletSE();
+				}
+				else if (m_bulletTime >= m_bulletChargeTime) {
+					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.3f), 40.0f, frontAngle, 6.0f);
+					bullet->SetBulletLevel(1);
+					BulletSE();
+				}
+				else {
+					auto bullet = stage->AddGameObject<Bullet>(Vec3(ptrPos.x, ptrPos.y - 0.3f, ptrPos.z), Vec3(0.2f), 30.0f, frontAngle, 1.2f * m_bulletPower);
+					bullet->SetBulletLevel(0);
+					BulletSE();
+				}
+				m_bulletTime = 0.0f;
+				m_bulletRatio = 0.0f;
+
+				for (int i = 0; i < 3; i++) {
+					if (m_chargeBulletSE[i]) {
+						m_chargeBulletSE[i] = false;
+					}
+				}
+			}
+			else {
+				//m_bulletTime = 0.0f;
+			}
 
 			//EnemyPieceに触れたら押し出し
 			if (m_enemyPieceFlag) {
@@ -389,11 +387,11 @@ namespace basecross {
 			}
 		}
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (keyState.m_bPushKeyTbl[0x57]) {
-			ret += 10.0f * elapsed;
+		if (keyState.m_bPushKeyTbl['W']) {
+			ret += 30.0f * elapsed;
 		}
-		if (keyState.m_bPushKeyTbl[0x53]) {
-			ret -= 10.0f * elapsed;
+		if (keyState.m_bPushKeyTbl['S']) {
+			ret -= 30.0f * elapsed;
 		}
 
 
@@ -426,17 +424,21 @@ namespace basecross {
 		Vec3 angle(0, 0, 0);
 		m_rotY = PlayerAngle();
 
+		auto input = GetInputState();
+		auto moveX = input.x;
+		auto moveZ = input.y;
+
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto rad = XMConvertToRadians(3.0f);
 		//float frontAngle = PlayerAngle();
 		////Dキーを押したとき
-		if (keyState.m_bPushKeyTbl[0x44]) {
-			m_rotY = m_rotY + rad;
+		//if (keyState.m_bPushKeyTbl[0x44]) {
+		//	m_rotY = m_rotY + rad;
 
-		}
-		if (keyState.m_bPushKeyTbl[0x41]) {
-			m_rotY = m_rotY - rad;
-		}
+		//}
+		//if (keyState.m_bPushKeyTbl[0x41]) {
+		//	m_rotY = m_rotY - rad;
+		//}
 
 		angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
 		//正規化
