@@ -71,7 +71,7 @@ namespace basecross {
 
 		m_NextStandMovie += elapsedTime;
 		StandTimeReset();
-		if (m_NextStandMovie >= 30.0f)
+		if (m_NextStandMovie >= 45.0f)
 		{
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMovieStage");
 		}
