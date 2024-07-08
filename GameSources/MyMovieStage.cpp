@@ -25,7 +25,7 @@ namespace basecross
 		//wstring data;
 		auto path = App::GetApp()->GetDataDirWString();
 		wstring MoviePass = path + L"Movies/";
-		wstring strMovie = MoviePass + L"test.mp4";
+		wstring strMovie = MoviePass + L"TitleMovie.mp4";
 		SetMovieFileName(strMovie);
 		Play();
 	}
