@@ -31,6 +31,7 @@
 #include "GameOverStage.h"
 #include "ScoreStage.h"
 #include "TutorialStage.h"
+#include "MyMovieStage.h"
 #include "Character.h"
 #include "StageManager.h"
 #include "StatusManager.h"
