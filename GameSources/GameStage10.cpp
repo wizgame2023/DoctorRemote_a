@@ -40,8 +40,8 @@ namespace basecross {
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 		auto EffectPtr3 = AddGameObject<EffectMove>(L"GetEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
-		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-		SetSharedGameObject(L"EnemyEffectRed", EffectPtr4);
+		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 30, 1.0f, Vec3(0.0f, 3.0f, 0.0f), Vec3(0.7f, 0.7f, 0.7f));
+		SetSharedGameObject(L"EnemyEffectPurple", EffectPtr4);
 		auto EffectPtr5 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr5);
 		EffectPtr5 = AddGameObject<EffectChase>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
@@ -55,7 +55,7 @@ namespace basecross {
 		//Playerの出現場所を決める
 		float deg = 90;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),100.7f);
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),1.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -80,14 +80,7 @@ namespace basecross {
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		auto Movie = AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,-1.0f,-13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
-		SetSharedGameObject(L"EnemyMovieManager", Movie);
-		AddGameObject<EnemyMovieLittle>(Vec3(62.19f, 0.0f, 42.7f), Vec3(18.0f, 0.1f, 13.3f));
-		AddGameObject<EnemyMovieLittle>(Vec3(68.57f, 0.0f, 56.13f), Vec3(8.0f, 0.1f, 11.3f));
-		AddGameObject<EnemyMovieLittle>(Vec3(60.8f, 0.0f, 52.36f), Vec3(5.0f, 0.1f, 5.0f));
-		AddGameObject<EnemyMovieLittle>(Vec3(49.6f, 0.0f, 40.48f), Vec3(9.0f, 0.1f, 4.3f));
-		AddGameObject<EnemyMovieLittle>(Vec3(35.86f, 0.0f, 14.0f), Vec3(9.0f, 0.1f, 24.3f));
-
+		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,-1.0f,-13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
 
 	}
 
@@ -470,6 +463,7 @@ namespace basecross {
 			//BGM
 			BaseBGM();
 			m_CareerFlag = 0;//初期化	
+			
 		}
 		catch (...) {
 			throw;
