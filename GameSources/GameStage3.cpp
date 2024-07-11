@@ -79,7 +79,10 @@ namespace basecross {
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,0.0f,11.0f), Vec3(25.0f, 0.1f, 30.0f), Vec3(-41.0f, 4.0f, 47.1f), EnemyPos);
+		auto Movie = AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,0.0f,11.0f), Vec3(25.0f, 0.1f, 30.0f), Vec3(-41.0f, 4.0f, 47.1f), EnemyPos);
+		SetSharedGameObject(L"EnemyMovieManager", Movie);
+		AddGameObject<EnemyMovieLittle>(Vec3(-18.6f, 0.0f, 44.4f), Vec3(7.0f, 1.0f, 10.0f));
+		AddGameObject<EnemyMovieLittle>(Vec3(-40.1f, 0.0f, 34.4f), Vec3(18.0f, 1.0f, 8.3f));
 
 	}
 
@@ -421,6 +424,18 @@ namespace basecross {
 
 			//BGM
 			BaseBGM();
+
+			////敵を生成
+			//CreateEnemy();
+			//GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
+			////レーダーを生成
+			//CreateRadar();
+			//m_CareerFlag = 1;
+
+			//OnDestroy();
+			//BossBGM();
+			//GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
+
 
 		}
 		catch (...) {
