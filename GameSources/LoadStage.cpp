@@ -46,6 +46,7 @@ namespace basecross {
 		}
 	}
 	void LoadStage::OnUpdate() {
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		App::GetApp()->GetScene<Scene>()->ResetButton();
 		StageChange();
 
@@ -86,7 +87,7 @@ namespace basecross {
 				m_comX += 1.0f;
 				spritetrans->SetPosition(m_comX, -300.0f, 0.0f);
 			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B||keyState.m_bPressedKeyTbl[VK_SPACE])
 			{
 				m_flag = true;
 				if (!m_loadSEFlag) {
