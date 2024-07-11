@@ -45,7 +45,7 @@ namespace basecross {
 		void UpdateIfClear(int value);
 		void UpdateCount(int value);
 		void UpdatePoint(int value);
-		void ThisDestory();
+		void ThisDestroy();
 		void Blinking(float count);
 
 		Col4 GetColor();

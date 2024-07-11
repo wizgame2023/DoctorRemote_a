@@ -27,7 +27,7 @@ namespace basecross {
 		m_aButtonSEFlag(false),
 		m_count(10.0f),
 		m_status(1),
-		m_score(100),
+		m_score(0),
 		m_control(0)
 	{}
 
@@ -65,8 +65,8 @@ namespace basecross {
 
 		if (m_moveStick && m_selectSprite->StickFlag()) {
 			for (int i = 0; i < 6; i++) {
-				if (m_com[i]) {
-					m_com[i]->ThisDestroy();
+				if (m_coms[i]) {
+					m_coms[i]->ThisDestroy();
 				}
 			}
 				m_moveStick = false;
@@ -90,35 +90,29 @@ namespace basecross {
 			switch (m_selectSprite->GetNum())
 			{
 			case 1:
-				m_com[0] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(300.0f, 230.0f, 0.0f), L"StatusMoji1-3");
-				m_com[0]->SetIntervalTime(0.025);
+				m_coms[0] = stage->AddGameObject<Sprite>(300, 300, L"StatusMoji1-3", Vec3(450.0f, 70.0f, 0.0f));
 				m_moveStick = true;
 				if (!m_moveCheck) {
 				}
 				break;
 			case 2:
-				m_com[1] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(300.0f, 230.0f, 0.0f), L"StatusMoji1-2");
-				m_com[1]->SetIntervalTime(0.025);
+				m_coms[1] = stage->AddGameObject<Sprite>(300, 300, L"StatusMoji1-2", Vec3(450.0f, 70.0f, 0.0f));
 				m_moveStick = true;
 				break;
 			case 3:
-				m_com[2] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(300.0f, 230.0f, 0.0f), L"StatusMoji1-1");
-				m_com[2]->SetIntervalTime(0.025);
+				m_coms[2] = stage->AddGameObject<Sprite>(300, 300, L"StatusMoji1-1", Vec3(450.0f, 70.0f, 0.0f));
 				m_moveStick = true;
 				break;
 			case 4:
-				m_com[3] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(300.0f, 230.0f, 0.0f), L"StatusMoji1-6");
-				m_com[3]->SetIntervalTime(0.025);
+				m_coms[3] = stage->AddGameObject<Sprite>(300, 300, L"StatusMoji1-6", Vec3(450.0f, 70.0f, 0.0f));
 				m_moveStick = true;
 				break;
 			case 5:
-				m_com[4] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(300.0f, 230.0f, 0.0f), L"StatusMoji1-4");
-				m_com[4]->SetIntervalTime(0.025);
+				m_coms[4] = stage->AddGameObject<Sprite>(300, 300, L"StatusMoji1-4", Vec3(450.0f, 70.0f, 0.0f));
 				m_moveStick = true;
 				break;
 			case 6:
-				m_com[5] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(300.0f, 230.0f, 0.0f), L"StatusMoji1-5");
-				m_com[5]->SetIntervalTime(0.025);
+				m_coms[5] = stage->AddGameObject<Sprite>(300, 300, L"StatusMoji1-5", Vec3(450.0f, 70.0f, 0.0f));
 				m_moveStick = true;
 				break;
 			default:

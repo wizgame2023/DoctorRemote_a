@@ -136,48 +136,48 @@ namespace basecross {
 
 		if (m_moveCheck) return;
 		//左スティック
-		if (cntlVec[0].fThumbLX < -0.9f || keyState.m_bPressedKeyTbl[0x41]) {
+		if (cntlVec[0].fThumbLX < -0.9f || keyState.m_bPressedKeyTbl['A']) {
 			if (m_widthMin < m_width && !m_checkL) {
 				m_width -= m_widthUnit;
 				m_checkL = true;
 				m_stageNum--;
 			}
 		}
-		if (cntlVec[0].fThumbLX > -0.9f || keyState.m_bLastKeyTbl[0x41] && m_checkL) {
+		else if (cntlVec[0].fThumbLX > -0.9f || keyState.m_bLastKeyTbl['A'] && m_checkL) {
 			m_checkL = false;
 		}
 		//右スティック
-		if (cntlVec[0].fThumbLX > 0.9f || keyState.m_bPressedKeyTbl[0x44]) {
+		if (cntlVec[0].fThumbLX > 0.9f || keyState.m_bPressedKeyTbl['D']) {
 			if (m_widthMax > m_width && !m_checkR) {
 				m_width += m_widthUnit;
 				m_checkR = true;
 				m_stageNum++;
 			}
 		}
-		if (cntlVec[0].fThumbLX < 0.9f || keyState.m_bLastKeyTbl[0x44] && m_checkR) {
+		else if (cntlVec[0].fThumbLX < 0.9f || keyState.m_bLastKeyTbl['D'] && m_checkR) {
 			m_checkR = false;
 		}
 
 		//上スティック
-		if (cntlVec[0].fThumbLY > 0.9f || keyState.m_bPressedKeyTbl[0x57]) {
+		if (cntlVec[0].fThumbLY > 0.9f || keyState.m_bPressedKeyTbl['W']) {
 			if (m_heightMax > m_height && !m_checkU) {
 				m_height += m_heightUnit;
 				m_checkU = true;
 				m_stageNum -= m_widthNum;
 			}
 		}
-		if (cntlVec[0].fThumbLY < 0.9f || keyState.m_bLastKeyTbl[0x57] && m_checkU) {
+		else if (cntlVec[0].fThumbLY < 0.9f || keyState.m_bLastKeyTbl['W'] && m_checkU) {
 			m_checkU = false;
 		}
 		//下スティック
-		if (cntlVec[0].fThumbLY < -0.9f || keyState.m_bPressedKeyTbl[0x53]) {
+		if (cntlVec[0].fThumbLY < -0.9f || keyState.m_bPressedKeyTbl['S']) {
 			if (m_heightMin < m_height && !m_checkD) {
 				m_height -= m_heightUnit;
 				m_checkD = true;
 				m_stageNum += m_widthNum;
 			}
 		}
-		if (cntlVec[0].fThumbLY > -0.9f || keyState.m_bLastKeyTbl[0x53] && m_checkD) {
+		else if (cntlVec[0].fThumbLY > -0.9f || keyState.m_bLastKeyTbl['S'] && m_checkD) {
 			m_checkD = false;
 		}
 
@@ -236,11 +236,11 @@ namespace basecross {
 	}
 	void StageSelectSprite::ThisDestroy() {
 		GetStage()->RemoveGameObject<StageSelectSprite>(GetThis<StageSelectSprite>());
-		m_selectSprite->ThisDestory();
+		m_selectSprite->ThisDestroy();
 		for (int j = 0; j < m_heightNum; j++) {
 			for (int i = 0; i < m_widthNum; i++) {
-				m_baseSprite[(i + j * m_widthNum)]->ThisDestory();
-				m_numberSprites[(i + j * m_widthNum)]->ThisDestory();
+				m_baseSprite[(i + j * m_widthNum)]->ThisDestroy();
+				m_numberSprites[(i + j * m_widthNum)]->ThisDestroy();
 			}
 		}
 	}

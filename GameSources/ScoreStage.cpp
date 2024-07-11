@@ -61,13 +61,14 @@ namespace basecross {
 		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto scene = App::GetApp()->GetScene<Scene>();
 		float delta = App::GetApp()->GetElapsedTime();//デルタタイムを取得
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		m_countUp += 1 * delta;
 		StageChange();
 
 		if (m_control == 0)
 		{
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) //Aボタンが押されたらスキップ(カウントを10秒プラス)する
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A || keyState.m_bPressedKeyTbl['S']) //Aボタンが押されたらスキップ(カウントを10秒プラス)する
 			{
 				m_mojispeed = 0.0f;
 				m_mojispeed1 = 0.0f;
@@ -303,9 +304,10 @@ namespace basecross {
 
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (cntlVec[0].bConnected)
 		{
-			if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
+			if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE])
 			{
 				if (m_stageCount == 0) {
 					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");

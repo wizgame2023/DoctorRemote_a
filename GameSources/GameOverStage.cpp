@@ -43,13 +43,16 @@ namespace basecross {
 		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto elapsed = App::GetApp()->GetElapsedTime();
 		auto& scene = App::GetApp()->GetScene<Scene>();
-		StageChange();
 		if (!m_buttonFlag) {
 			m_buttonTime -= elapsed;
 			if (m_buttonTime <= 0) {
 				AddGameObject<Sprite>(250, 150, L"OverButton", Vec3(0.0f, -100.0f, 0.0f));
 				m_buttonFlag = true;
 			}
+		}
+		if (m_buttonFlag) {
+			StageChange();
+
 		}
 	}
 
@@ -71,10 +74,11 @@ namespace basecross {
 
 	void GameOverStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		if (cntlVec[0].bConnected)
 		{
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A||keyState.m_bPressedKeyTbl[VK_BACK])
 			{
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
 				if (!m_buttonSEFlag) {
@@ -83,7 +87,7 @@ namespace basecross {
 					m_buttonSEFlag = true;
 				}
 			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B)
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE])
 			{
 				auto stage = scene->GetGameStage();
 				if (stage > 0) {

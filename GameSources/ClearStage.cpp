@@ -52,16 +52,22 @@ namespace basecross {
 		auto button = GetSharedGameObject<Sprite>(L"Button");
 		m_time += elapsed * 0.5;
 		if (m_time >= 1.0f) {
-			m_time = 1.0f;
+			//m_time = 1.0f;
 			button->SetColor(Col4(1.0f));
 		}
-		messege->SetColor(Col4(1.0f, 1.0f, 1.0f, m_time));
-		StageChange();
+		else {
+			messege->SetColor(Col4(1.0f, 1.0f, 1.0f, m_time));
+		}
+		if (m_time >= 1.0) {
+			StageChange();
+
+		}
 	}
 	void ClearStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A || keyState.m_bPressedKeyTbl[VK_SPACE]) {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
 				if (!m_buttonSEFlag) {
 					auto choiceSE = App::GetApp()->GetXAudio2Manager();

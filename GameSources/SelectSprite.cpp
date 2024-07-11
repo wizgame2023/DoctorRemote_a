@@ -58,8 +58,8 @@ namespace basecross {
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == STAGESELECT||keyState.m_bPressedKeyTbl[VK_BACK]) {
 			if (m_selectStageFlag) {
 				m_selectStage->ThisDestroy();
-				m_retrunCom->ThisDestory();
-				m_stageFrame->ThisDestory();
+				m_retrunCom->ThisDestroy();
+				m_stageFrame->ThisDestroy();
 				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
 				m_back->SetColor(Col4(0.0f));
 				m_count = 10.0f;
@@ -77,7 +77,7 @@ namespace basecross {
 		//Aƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚çExit‰æ–Ê‚ðÁ‚·
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == EXIT|| keyState.m_bPressedKeyTbl[VK_BACK]) {
 			if (m_exitFlag) {
-				m_creditTex->ThisDestory();
+				m_creditTex->ThisDestroy();
 				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
 				m_back->SetColor(Col4(0.0f));
 				m_count = 10.0f;

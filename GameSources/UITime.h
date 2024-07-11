@@ -43,7 +43,7 @@ namespace basecross {
 		void OnClear(bool OnOff);
 
 		void UpdateValue(int number);
-		void ThisDestory();
+		void ThisDestroy();
 		Col4 GetColor();
 		void SetColor(Col4 color);
 	};

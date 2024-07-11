@@ -88,7 +88,7 @@ namespace basecross {
 
 	}
 
-	void Sprite::ThisDestory() {
+	void Sprite::ThisDestroy() {
 		GetStage()->RemoveGameObject<Sprite>(GetThis<Sprite>());
 	}
 

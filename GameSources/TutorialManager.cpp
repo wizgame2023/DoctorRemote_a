@@ -63,7 +63,7 @@ namespace basecross {
 			m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking2));
 		}
 		else {
-			m_bButton->ThisDestory();
+			m_bButton->ThisDestroy();
 		}
 		
 		//“_–Åˆ—@triDot
@@ -194,8 +194,8 @@ namespace basecross {
 			m_com[m_count - 1]->ThisDestroy();
 		}
 		if (delet2) {
-			m_triDot[m_count - 3]->ThisDestory();
-			m_frame[m_count - 3]->ThisDestory();
+			m_triDot[m_count - 3]->ThisDestroy();
+			m_frame[m_count - 3]->ThisDestroy();
 		}
 		if (!m_textutreCheck) {
 			m_com[m_count] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(250, -180, 0.0f), mesh);
@@ -211,8 +211,8 @@ namespace basecross {
 			m_com[m_count - 1]->ThisDestroy();
 		}
 		if (delet2) {
-			m_triDot[m_count - 3]->ThisDestory();
-			m_frame[m_count - 3]->ThisDestory();
+			m_triDot[m_count - 3]->ThisDestroy();
+			m_frame[m_count - 3]->ThisDestroy();
 		}
 		if (!m_textutreCheck) {
 			m_com[m_count] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(250, -180, 0.0f), mesh);

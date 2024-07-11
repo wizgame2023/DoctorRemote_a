@@ -31,7 +31,7 @@ namespace basecross {
 			auto statusManager = AddGameObject<StatusManager>();
 			SetSharedGameObject(L"StatusManager", statusManager);
 
-			auto moji = AddGameObject<Comment>(16, 0, 0.2f, 512, 256, 700 * 1.2, 350 * 1.2, 26, 8, Vec3(-250, 350.0f, 0.0f), L"StatusMoji",true);
+			auto moji = AddGameObject<Comment>(16, 0, 0.2f, 512, 256, 700 * 1.2, 350 * 1.2, 26, 8, Vec3(-250, 350.0f, 0.0f), L"StatusMoji");
 			m_moji2 = AddGameObject<Sprite>(150,75, L"DecisionButton",Vec3(500, -350.0f, 0.0f));
 			SetSharedGameObject(L"Moji2", m_moji2);
 
