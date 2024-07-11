@@ -142,7 +142,30 @@ namespace basecross {
 		//	AllClear();
 		//}
 
+		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 
+		if (ptrPlayer->GetRadarFlag())
+		{
+			float delta = App::GetApp()->GetElapsedTime();
+			m_countUp += 1 * delta;
+		}
+		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
+		{
+			//スクロールするスプライト作成
+			CreateScrollSprite();
+			m_CareerFlag = 1;
+		}
+		if (m_countUp >= 4.0f)
+		{
+			m_CareerFlag = 2;
+			GetStage()->RemoveGameObject<AndoStage>(m_scroll);
+		}
+	}
+
+	//スクロールするスプライト作成
+	void UIManager::CreateScrollSprite() {
+		m_scroll = GetStage()->AddGameObject<AndoStage>(L"CAUTION", true,
+			Vec2(1280, 100.0f), Vec3(0.0f, 0.0f, 0.0f));
 	}
 
 	bool UIManager::GetClearFlag()
