@@ -113,7 +113,7 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 	}
 
-	void UITime::ThisDestory() {
+	void UITime::ThisDestroy() {
 		GetStage()->RemoveGameObject<UITime>(GetThis<UITime>());
 
 	}

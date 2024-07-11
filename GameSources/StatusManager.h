@@ -33,10 +33,10 @@ namespace basecross {
 		int m_control;
 		shared_ptr<Transform> m_trans;
 		shared_ptr<Player> m_player;
-		shared_ptr<CommentManager> m_com[6];
 		shared_ptr<StageSelectSprite> m_selectSprite;
 		shared_ptr<UITime> m_pointNum[4];
 		shared_ptr<Sprite> m_sprite;
+		shared_ptr<Sprite> m_coms[6];
 
 		Col4 m_color;
 
