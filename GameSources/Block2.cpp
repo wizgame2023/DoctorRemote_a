@@ -14,7 +14,7 @@ namespace basecross {
 	void BlockSecond::OnCreate()
 	{
 		auto ptr = GetComponent<Transform>();
-		ptr->SetPosition(m_pos);
+		ptr->SetPosition(m_pos + Vec3(0.0f, 0.2f, 0.0f));
 		ptr->SetRotation(m_rot);
 		ptr->SetScale(m_scale);
 
@@ -25,16 +25,16 @@ namespace basecross {
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
-			Vec3(0.85f, 0.85f, 0.85f),
+			Vec3(0.8f, 0.8f, 0.8f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, -0.5f, 0.0f)
+			Vec3(0.0f, 0.4f, 0.0f)
 		);
 
 
 		auto ptrColl = AddComponent<CollisionCapsule>();
 		ptrColl->SetFixed(true);
-		ptrColl->SetDrawActive(false);//コリジョンを見えるようにする	
+		ptrColl->SetDrawActive(true);//コリジョンを見えるようにする	
 		ptrColl->SetSleepActive(true);//ぶつからない限りスリープ状態になる
 
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
