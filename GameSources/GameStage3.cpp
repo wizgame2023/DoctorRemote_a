@@ -39,8 +39,8 @@ namespace basecross {
 		SetSharedGameObject(L"RedEffect", EffectPtr2);
 		auto EffectPtr3 = AddGameObject<EffectMove>(L"GetEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.4f, 0.4f, 0.4f));
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
-		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 5, 1.0f, Vec3(0.0f, 1.3f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
-		SetSharedGameObject(L"EnemyEffectRed", EffectPtr4);
+		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 30, 1.0f, Vec3(0.0f, 3.0f, 0.0f), Vec3(0.7f, 0.7f, 0.7f));
+		SetSharedGameObject(L"EnemyEffectPurple", EffectPtr4);
 		auto EffectPtr5 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr5);
 		EffectPtr5 = AddGameObject<EffectChase>(L"PlayerEffectGreen", 1.5f, 15, 1.0f, Vec3(0.0f, 0.5f, 0.0f), Vec3(0.8f, 0.8f, 0.8f));
@@ -79,10 +79,7 @@ namespace basecross {
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		auto Movie = AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,0.0f,11.0f), Vec3(25.0f, 0.1f, 30.0f), Vec3(-41.0f, 4.0f, 47.1f), EnemyPos);
-		SetSharedGameObject(L"EnemyMovieManager", Movie);
-		AddGameObject<EnemyMovieLittle>(Vec3(-18.6f, 0.0f, 44.4f), Vec3(7.0f, 1.0f, 10.0f));
-		AddGameObject<EnemyMovieLittle>(Vec3(-40.1f, 0.0f, 34.4f), Vec3(18.0f, 1.0f, 8.3f));
+		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,0.0f,11.0f), Vec3(25.0f, 0.1f, 30.0f), Vec3(-41.0f, 4.0f, 47.1f), EnemyPos);
 
 	}
 
@@ -424,18 +421,6 @@ namespace basecross {
 
 			//BGM
 			BaseBGM();
-
-			////敵を生成
-			//CreateEnemy();
-			//GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
-			////レーダーを生成
-			//CreateRadar();
-			//m_CareerFlag = 1;
-
-			//OnDestroy();
-			//BossBGM();
-			//GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
-
 
 		}
 		catch (...) {

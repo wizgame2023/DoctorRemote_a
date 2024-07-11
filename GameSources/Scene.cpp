@@ -85,6 +85,8 @@ namespace basecross {
 		app->RegisterTexture(L"Clear", strTexture);
 		strTexture = texPath + L"Stage.png";
 		app->RegisterTexture(L"Stage", strTexture);
+		strTexture = texPath + L"CAUTION.png";
+		app->RegisterTexture(L"CAUTION", strTexture);
 		
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
@@ -135,7 +137,7 @@ namespace basecross {
 		app->RegisterTexture(L"MiniMapStage2", strTexture);
 		strTexture = texPath + L"MiniMapStage3.png";//ミニマップStage3
 		app->RegisterTexture(L"MiniMapStage3", strTexture);
-		strTexture = texPath + L"MiniMapStage4Ver6.0.png";//ミニマップStage4
+		strTexture = texPath + L"MiniMapStage4Ver5.0.png";//ミニマップStage4
 		app->RegisterTexture(L"MiniMapStage4", strTexture);
 		strTexture = texPath + L"MiniMapStage5.png";//ミニマップStage5
 		app->RegisterTexture(L"MiniMapStage5", strTexture);
@@ -360,7 +362,7 @@ namespace basecross {
 		//app->RegisterResource(L"Baikin_Mesh", boneMultiModelMesh);
 
 		//スタティックマルチモデル
-		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-1.bmf");
+		auto staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Obstacle3-2.bmf");
 		app->RegisterResource(L"Obstacle_Mesh3", staticMultiModelMesh);
 
 		staticMultiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(modPath, L"Pillar.bmf");
@@ -547,9 +549,6 @@ namespace basecross {
 		}
 		else if (event->m_MsgStr == L"ToLoadStage") {
 			ResetActiveStage<LoadStage>();
-		}
-		else if (event->m_MsgStr == L"ToMovieStage") {
-			ResetActiveStage<MyMovieStage>();
 		}
 
 
