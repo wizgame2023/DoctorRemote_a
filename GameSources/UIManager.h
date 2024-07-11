@@ -7,6 +7,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Garge.h"
+#include "AndoStage.h"
 
 //class Garge;//前方宣言（とりあえずこういうクラスがあると伝える）
 //class PlayerGarge;
@@ -22,7 +23,9 @@ namespace basecross {
 		bool m_ClearFlag;//透明にするかしないかのフラグ
 		bool m_ligthSEFlag = false;
 		int m_EraseUiCommentPtrNum;//消したポインタの番号を覚える変数(コメント版)
+		int m_CareerFlag;//ステージ全体のフラグ
 		float m_comX;
+		float m_countUp = 0.0f;
 		vector<int> m_EraseUiPtrNum;//消したポインタの番号を覚える変数
 		shared_ptr<Sprite> m_comFrame;
 		shared_ptr<Transform> m_comTrans;
@@ -34,6 +37,7 @@ namespace basecross {
 		vector<weak_ptr<UITime>> m_UiTimePtr;//制限時間のポインタ取得
 		vector<weak_ptr<Garge>> m_UiGargePtr;//Gargeのポインタ取得
 		vector<weak_ptr<Comment>> m_UiCommentPtr;//Commentのポインタ取得
+		shared_ptr<AndoStage> m_scroll;
 	public:
 		UIManager(shared_ptr<Stage>& stagePtr);
 		~UIManager();
@@ -51,6 +55,7 @@ namespace basecross {
 		int SetUiGargePtr(shared_ptr<Garge> UiGarge);//Gargeのポインタを入れる
 		int SetUiCommentPtr(shared_ptr<Comment> UiComment);//Commentのポインタを入れる
 		void CreateUi();//UIを生成
+		void CreateScrollSprite();//スクロールするスプライト作成
 		//bool GetEnemyFlag();
 	};
 }
