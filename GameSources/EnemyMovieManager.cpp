@@ -59,7 +59,53 @@ namespace basecross {
 
 	void EnemyMovieManager::OnUpdate()
 	{
-		if (m_Count == 1)//動作①
+		if (m_Count == 1)
+		{
+			auto stage = GetStage();
+
+			m_Player = stage->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerを取得
+			m_AfterPlayerScale = m_Player.lock()->GetComponent<Transform>()->GetScale();//変更前のサイズを取得
+			m_AfterPlayerMat = m_Player.lock()->GetComponent<PNTBoneModelDraw>()->GetMeshToTransformMatrix();//変更前の差分行列を取得
+
+			stage->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerの操作を効かなくさせる
+
+
+			m_Player.lock()->GetComponent<Transform>()->SetScale(1.0f, 1.0f, 1.0f);//ムービー用のサイズにする
+			Mat4x4 spanMat;
+			spanMat.affineTransformation(
+				Vec3(1.0f, 1.0f, 1.0f),
+				Vec3(0.0f, 0.0f, 0.0f),
+				Vec3(0.0f, XM_PI, 0.0f),
+				Vec3(0.0f, -0.5f, -0.05f)
+			);
+			m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(spanMat);//ムービー用のメッシュの大きさにする
+
+
+			m_Count = 2;
+			m_StageView = GetStage()->GetView();
+			m_StageCamera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+			//stageCamera->SetEye(Vec3(9.5f, 3.0f, 18.4f));
+
+			auto EnemyPos = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetPosition();
+
+			stage->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//Uiを透明にする
+			stage->GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+
+			m_MovieBand = stage->AddGameObject<Sprite>(1280, 800, L"MovieBand", Vec3(), 0);//帯を出す
+			m_MovieBand->AddTag(L"MovieSprite");//ムービー用のスプライトタグを追加
+
+			//デバック用
+			m_MovieCamera = ObjectFactory::Create<Camera>();
+			m_MovieCamera->SetEye(m_StageCamera.lock()->GetEye());
+			m_MovieCamera->SetAt(m_StageCamera.lock()->GetAt());
+			auto testView = GetStage()->CreateView<SingleView>();
+			testView->SetCamera(m_MovieCamera);
+			GetStage()->SetView(testView);
+
+		}
+
+
+		if (m_Count == 2)//動作①
 		{
 			//AtをEnemyに合わせる
 			auto EnemyPos = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetPosition();
@@ -77,14 +123,14 @@ namespace basecross {
 					 EnemyPos.y = cameraAt.y;
 					 m_MovieCamera->SetAt(EnemyPos);//一緒とみなす
 					 //GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
-					 m_Count = 2;
+					 m_Count = 3;
 				 }
 
 			}
 
 		}
 
-		if (m_Count == 2)//動作②
+		if (m_Count == 3)//動作②
 		{
 			//Posを指定の場所に移動させる
 			Vec3 cameraEye = m_MovieCamera->GetEye();//カメラのPos
@@ -99,19 +145,19 @@ namespace basecross {
 					m_MoviePos.y = cameraEye.y;
 					m_MovieCamera->SetEye(m_MoviePos);//一緒とみなす
 					//GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
-					m_Count = 3;
+					m_Count = 4;
 				}
 
 			}
 		}
 
-		if (m_Count == 3)//動作③
+		if (m_Count == 4)//動作③
 		{
 			m_BossMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"BossMoji", Vec3(-620.0f+100.0f, -390.0f+50.0f, 0.0f), 0);//文字生成
-			m_Count = 4;
+			m_Count = 5;
 		}
 
-		if (m_Count == 4)//動作④
+		if (m_Count == 5)//動作④
 		{
 			//待機時間
 			auto& app = App::GetApp();
@@ -185,50 +231,96 @@ namespace basecross {
 
 	void EnemyMovieManager::OnCollisionEnter(shared_ptr<GameObject>& obj)
 	{
-		auto stage = GetStage();
 
-
-		if (obj->FindTag(L"Player")&&m_Count==0)
+		if (obj->FindTag(L"Player") && m_Count == 0)
 		{
-			m_Player = stage->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerを取得
-			m_AfterPlayerScale = m_Player.lock()->GetComponent<Transform>()->GetScale();//変更前のサイズを取得
-			m_AfterPlayerMat = m_Player.lock()->GetComponent<PNTBoneModelDraw>()->GetMeshToTransformMatrix();//変更前の差分行列を取得
-
-			stage->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerの操作を効かなくさせる
-
-
-			m_Player.lock()->GetComponent<Transform>()->SetScale(1.0f, 1.0f, 1.0f);//ムービー用のサイズにする
-			Mat4x4 spanMat;
-			spanMat.affineTransformation(
-				Vec3(1.0f, 1.0f, 1.0f),
-				Vec3(0.0f, 0.0f, 0.0f),
-				Vec3(0.0f, XM_PI, 0.0f),
-				Vec3(0.0f, -0.5f, -0.05f)
-			);
-			m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(spanMat);//ムービー用のメッシュの大きさにする
-
-
 			m_Count = 1;
-			m_StageView = GetStage()->GetView();
-			m_StageCamera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
-			//stageCamera->SetEye(Vec3(9.5f, 3.0f, 18.4f));
+		}
 
-			auto EnemyPos = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetPosition();
+	}
 
-			stage->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//Uiを透明にする
-			stage->GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
+	void EnemyMovieManager::MovieStart()
+	{
+		m_Count = 1;
+	}
 
-			m_MovieBand = stage->AddGameObject<Sprite>(1280, 800, L"MovieBand", Vec3(), 0);//帯を出す
-			m_MovieBand->AddTag(L"MovieSprite");//ムービー用のスプライトタグを追加
+	int EnemyMovieManager::GetCount()
+	{
+		return m_Count;
+	}
 
-			//デバック用
-			m_MovieCamera = ObjectFactory::Create<Camera>();
-			m_MovieCamera->SetEye(m_StageCamera.lock()->GetEye());
-			m_MovieCamera->SetAt(m_StageCamera.lock()->GetAt());
-			auto testView = GetStage()->CreateView<SingleView>();
-			testView->SetCamera(m_MovieCamera);
-			GetStage()->SetView(testView);
+	
 
+
+
+	//EnemyMovieManagerの当たり判定の追加（２個目以降）
+	EnemyMovieLittle::EnemyMovieLittle(shared_ptr<Stage>& stage, Vec3 Pos,Vec3 Scale):
+		GameObject(stage),
+		m_Position(Pos),
+		m_Scale(Scale)
+	{
+
+	}
+
+	EnemyMovieLittle::~EnemyMovieLittle()
+	{
+
+	}
+
+	void EnemyMovieLittle::OnCreate()
+	{
+		auto m_Trans = GetComponent<Transform>();//toransformを取得
+
+		m_Trans->SetPosition(m_Position);//位置を設定	
+		m_Trans->SetRotation(0.0f, 0.0f, 0.0f);//ローテーション（回転）を設定
+		m_Trans->SetScale(m_Scale);//大きさを設定
+		//接触のコリジョンを追加
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+
+		auto collider = AddComponent<CollisionObb>();
+		//collider->SetFixed(true);//これでぶつかっても動かないようにする
+		collider->SetAfterCollision(AfterCollision::None);
+		collider->SetDrawActive(true);//コリジョンを見えるようにする
+
+
+
+		//描画コンポーネント
+		auto ptrDraw = AddComponent<PNTStaticDraw>();
+		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		//ptrDraw->SetTextureResource(L"WallBreak");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+
+		AddTag(L"Ground");
+	}
+
+	void EnemyMovieLittle::OnUpdate()
+	{
+		auto enemyMovie = GetStage()->GetSharedGameObject<EnemyMovieManager>(L"EnemyMovieManager");
+		int count = enemyMovie->GetCount();
+
+		if (count >= 1)//Movieが開始されていたら
+		{
+			GetStage()->RemoveGameObject<EnemyMovieLittle>(GetThis<EnemyMovieLittle>());
+		}
+
+	}
+
+	void EnemyMovieLittle::OnCollisionEnter(shared_ptr<GameObject>& Other)
+	{		
+		auto enemyMovie = GetStage()->GetSharedGameObject<EnemyMovieManager>(L"EnemyMovieManager");
+		int count = enemyMovie->GetCount();
+
+		if (Other->FindTag(L"Player")&& count == 0)//当たったコリジョンがPlayerなら
+		{
+			enemyMovie->MovieStart();
+			GetStage()->RemoveGameObject<EnemyMovieLittle>(GetThis<EnemyMovieLittle>());
 		}
 	}
+
 }

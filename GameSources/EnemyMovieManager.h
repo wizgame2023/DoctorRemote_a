@@ -41,6 +41,25 @@ namespace basecross {
 
 		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
 
+		void MovieStart();
+		int GetCount();
 
+	};
+
+	//EnemyMovieManagerのコリジョンを追加する(２つ目以降)
+	class EnemyMovieLittle :public GameObject
+	{
+	private:
+		Vec3 m_Scale;
+		Vec3 m_Position;
+		Vec3 m_Rotate;
+	public:
+		EnemyMovieLittle(shared_ptr<Stage>& stage,Vec3 Pos,Vec3 Scale);
+		~EnemyMovieLittle();
+
+		void OnCreate()override;
+		void OnUpdate()override;
+
+		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
 	};
 }
