@@ -61,6 +61,9 @@ namespace basecross {
 	{
 		if (m_Count == 1)
 		{
+			m_scroll = GetStage()->GetSharedGameObject<AndoStage>(L"Scroll");
+			GetStage()->RemoveGameObject<AndoStage>(m_scroll);
+
 			auto stage = GetStage();
 
 			m_Player = stage->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayer‚ðŽæ“¾

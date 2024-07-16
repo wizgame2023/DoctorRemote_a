@@ -7,6 +7,7 @@
 #pragma once
 #include "stdafx.h"
 #include"SelectSprite.h"
+#include"AndoStage.h"
 
 namespace basecross {
 	class EnemyMovieManager :public GameObject
@@ -27,7 +28,8 @@ namespace basecross {
 		shared_ptr<Sprite> m_BossMoji;//Bossを表すための文字
 		shared_ptr<Sprite> m_SkipMoji;//Bossを表すための文字
 		weak_ptr<Player> m_Player;//プレイヤー
-		
+		shared_ptr<AndoStage> m_scroll;
+		bool m_MovieCheck;
 
 		int m_Count;//フラグ管理
 		float m_Time;
