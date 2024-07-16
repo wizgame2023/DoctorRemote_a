@@ -163,7 +163,8 @@ namespace basecross {
 	//スクロールするスプライト作成
 	void UIManager::CreateScrollSprite() {
 		m_scroll = GetStage()->AddGameObject<AndoStage>(L"CAUTION", true,
-			Vec2(1280, 100.0f), Vec3(0.0f, 0.0f, 0.0f));
+			Vec2(600, 100.0f), Vec3(0.0f, 0.0f, 0.0f));
+		GetStage()->SetSharedGameObject(L"Scroll", m_scroll);
 	}
 
 	bool UIManager::GetClearFlag()
