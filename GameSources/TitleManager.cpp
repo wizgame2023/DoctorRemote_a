@@ -61,12 +61,12 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (m_selectSprite->GetStageMove())
 		{
-				float fadeSpeed = 1.0f;
-				m_anCollar += fadeSpeed * elapsedTime;
-				m_blackBoard->SetColor(Col4(1, 1, 1, m_anCollar));
-				if (m_anCollar >= 0.9f) {
-					m_selectSprite->SetStageStart(true);
-				}
+			float fadeSpeed = 1.0f;
+			m_anCollar += fadeSpeed * elapsedTime;
+			m_blackBoard->SetColor(Col4(1, 1, 1, m_anCollar));
+			if (m_anCollar >= 0.9f) {
+				m_selectSprite->SetStageStart(true);
+			}
 		}
 
 		m_NextStandMovie += elapsedTime;

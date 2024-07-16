@@ -556,9 +556,6 @@ namespace basecross {
 		else if (event->m_MsgStr == L"ToLoadStage") {
 			ResetActiveStage<LoadStage>();
 		}
-
-
-
 	}
 
 	void Scene::SetPlayFlag(bool flag){
@@ -568,27 +565,6 @@ namespace basecross {
 		return m_PlayFlag;
 	}
 
-	//ステータス関連
-	//ダッシュのフラグ
-	//float Scene::GetDash() {
-	//	auto dash = 1.0f;
-	//	switch (m_dashStatus)
-	//	{
-	//	case 0:
-	//		dash = 1.0f;
-	//		break;
-	//	case 1:
-	//		dash = 0.8f;
-	//		break;
-	//	case 2:
-	//		dash = 0.6f;
-	//		break;
-	//	default:
-	//		dash = 0.6f;
-	//		break;
-	//	}
-	//	return dash;
-	//}
 	int Scene::GetDashStatus() {
 		return m_dashStatus;
 	}
@@ -761,8 +737,6 @@ namespace basecross {
 		m_bulletTimeStatus += status;
 	}
 
-
-
 	int Scene::GetTime() {
 		return m_time;
 	}
@@ -815,11 +789,22 @@ namespace basecross {
 		m_count = count;
     }
 
+	bool Scene::GetFirstTimeStage(int num) {		
+		return m_firstTimeStage[num];
+	}
+	void Scene::SetFirstTimeStage(int num,bool firstTime) {
+		m_firstTimeStage[num] = firstTime;
+	}
+
 	void Scene::ResetButton() {
 		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto& keyState = App::GetApp()->GetInputDevice().GetKeyState();
 
 		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_START && 
 			cntlVec[0].wButtons & XINPUT_GAMEPAD_BACK) {
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
+		}
+		if (keyState.m_bPressedKeyTbl[VK_DELETE]) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
 		}
 	}
