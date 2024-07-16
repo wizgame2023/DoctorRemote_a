@@ -126,7 +126,7 @@ namespace basecross {
 			if (m_PlayerPos.z <= m_MaxRange.z && m_PlayerPos.z >= m_MinRange.z)
 			{
 				Start();
-				uiManager->AllClear();//UI全てを透明化
+				//uiManager->AllClear();//UI全てを透明化
 				m_UpdateFlag = 1;//脱出する動作にフラグを変更
 			}
 		}

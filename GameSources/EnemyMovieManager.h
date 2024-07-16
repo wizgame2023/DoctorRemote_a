@@ -25,6 +25,7 @@ namespace basecross {
 		weak_ptr<ViewBase> m_StageView;//ステージのビュー(ゲームプレイ用)
 		shared_ptr<Sprite> m_MovieBand;//ムービー用の帯
 		shared_ptr<Sprite> m_BossMoji;//Bossを表すための文字
+		shared_ptr<Sprite> m_SkipMoji;//Bossを表すための文字
 		weak_ptr<Player> m_Player;//プレイヤー
 		
 
@@ -38,6 +39,8 @@ namespace basecross {
 		void OnUpdate()override;
 
 		Vec3 MoveVec(float speed, Vec3 Pos, Vec3 tagetPos);//移動ベクトルを求める関数
+
+		void MyRemove();//自分自身を消去する
 
 		void OnCollisionEnter(shared_ptr<GameObject>& Other) override;//コリジョンが入った時
 
