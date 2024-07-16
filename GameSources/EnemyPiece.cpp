@@ -135,6 +135,11 @@ namespace basecross {
 			//効果音
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
 			pieceSE->Start(L"BreakSE", 0, 1.5f);//SEはじめ
+
+			//エフェクト
+			auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
+			PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"EnemyPieceEffectPurple", false);
+			PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition() - Vec3(0.0f, 1.0f, 0.0f));
 		}
 		if (other->FindTag(L"Player")) {
 			stageManager->SetHp(-10.0f);
