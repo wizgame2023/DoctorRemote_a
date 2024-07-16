@@ -152,7 +152,7 @@ int MainLoop(HINSTANCE hInstance, HWND hWnd, bool isFullScreen, int iClientWidth
 		//ここに設定したキーボード入力を得る
 		vector<DWORD> UseKeyVec = {
 			VK_PRIOR,VK_NEXT,VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT,VK_SPACE,
-			VK_LBUTTON, VK_RBUTTON, VK_MBUTTON,VK_SHIFT,VK_BACK,
+			VK_LBUTTON, VK_RBUTTON, VK_MBUTTON,VK_SHIFT,VK_BACK,VK_DELETE,
 			'W','A','S','D','X','B'
 		};
 		while (WM_QUIT != msg.message) {
