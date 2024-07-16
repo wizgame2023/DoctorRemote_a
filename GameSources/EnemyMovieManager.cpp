@@ -94,6 +94,9 @@ namespace basecross {
 			m_MovieBand = stage->AddGameObject<Sprite>(1280, 800, L"MovieBand", Vec3(), 0);//帯を出す
 			m_MovieBand->AddTag(L"MovieSprite");//ムービー用のスプライトタグを追加
 
+			m_SkipMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip_pad", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
+			m_SkipMoji->AddTag(L"MovieSprite");
+
 			//デバック用
 			m_MovieCamera = ObjectFactory::Create<Camera>();
 			m_MovieCamera->SetEye(m_StageCamera.lock()->GetEye());
@@ -166,50 +169,62 @@ namespace basecross {
 			m_Time -= delta;
 			if (m_Time < 0)
 			{
-				m_Player.lock()->GetComponent<Transform>()->SetScale(m_AfterPlayerScale);//変更前のサイズに戻す
-				m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(m_AfterPlayerMat);//変更前の差分行列の数値に戻す
+				//m_Player.lock()->GetComponent<Transform>()->SetScale(m_AfterPlayerScale);//変更前のサイズに戻す
+				//m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(m_AfterPlayerMat);//変更前の差分行列の数値に戻す
 
-				GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(true);//Playerの操作を効かせる
+				//GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(true);//Playerの操作を効かせる
 
-				auto View = GetStage()->CreateView<SingleView>();
-				View->SetCamera(m_StageCamera.lock());
-				GetStage()->SetView(View);
-				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")
-				GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
+				//auto View = GetStage()->CreateView<SingleView>();
+				//View->SetCamera(m_StageCamera.lock());
+				//GetStage()->SetView(View);
+				////GetStage()->GetSharedGameObject<UIManager>(L"UIManager")
+				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
 
-				//int numPtr1 = m_BossMoji->GetNumPtr();//スプライトの配列番号を取得
-				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
-				GetStage()->RemoveGameObject<Sprite>(m_BossMoji);//文字を消す
+				////int numPtr1 = m_BossMoji->GetNumPtr();//スプライトの配列番号を取得
+				////GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
+				//GetStage()->RemoveGameObject<Sprite>(m_BossMoji);//文字を消す
 
-				//int numPtr2 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
-				//numPtr1 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
-				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
-				GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
+				////int numPtr2 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
+				////numPtr1 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
+				////GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
+				//GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
 
-				GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//進行度を進める(Bossが攻撃するようになる予定)
+				//GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//進行度を進める(Bossが攻撃するようになる予定)
 
-				GetStage()->RemoveGameObject<EnemyMovieManager>(GetThis<EnemyMovieManager>());//自分自身を消す
+				//GetStage()->RemoveGameObject<EnemyMovieManager>(GetThis<EnemyMovieManager>());//自分自身を消す
 
+				MyRemove();//自分自身を消去
+			}
+
+		}
+
+		//スキップ機能
+		if (m_Count >= 1)
+		{
+			auto pad = App::GetApp()->GetInputDevice().GetControlerVec();
+			auto keyBoard = App::GetApp()->GetInputDevice().GetKeyState();
+			if (pad[0].wButtons & XINPUT_GAMEPAD_B||keyBoard.m_bPushKeyTbl[VK_SPACE])
+			{
+				MyRemove();//自分自身を消去
 			}
 
 		}
 	
-		if (m_Count > 0)
-		{
-			wstringstream wss(L"");
-			auto scene = App::GetApp()->GetScene<Scene>();
-			auto gameStage = scene->GetGameStage();
-			wss << L"At.X : "
-				<< L""
-				<< m_MovieCamera->GetAt().x
-				<< L"\nAt.Y"
-				<< m_MovieCamera->GetAt().y
-				<< L"\nAt.Z"
-				<< m_MovieCamera->GetAt().z
-				<< endl;
-			scene->SetDebugString(wss.str());
-
-		}
+		//if (m_Count > 0)
+		//{
+		//	wstringstream wss(L"");
+		//	auto scene = App::GetApp()->GetScene<Scene>();
+		//	auto gameStage = scene->GetGameStage();
+		//	wss << L"At.X : "
+		//		<< L""
+		//		<< m_MovieCamera->GetAt().x
+		//		<< L"\nAt.Y"
+		//		<< m_MovieCamera->GetAt().y
+		//		<< L"\nAt.Z"
+		//		<< m_MovieCamera->GetAt().z
+		//		<< endl;
+		//	scene->SetDebugString(wss.str());
+		//}
 
 	}
 
@@ -227,6 +242,36 @@ namespace basecross {
 		moveVec.z = (speed * sin(rad)) * delta;//間接的に距離を足している
 
 		return moveVec;
+	}
+
+	void EnemyMovieManager::MyRemove()//自分自身を消去
+	{
+		m_Player.lock()->GetComponent<Transform>()->SetScale(m_AfterPlayerScale);//変更前のサイズに戻す
+		m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(m_AfterPlayerMat);//変更前の差分行列の数値に戻す
+
+		GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(true);//Playerの操作を効かせる
+
+		auto View = GetStage()->CreateView<SingleView>();
+		View->SetCamera(m_StageCamera.lock());
+		GetStage()->SetView(View);
+		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")
+		GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
+
+		//int numPtr1 = m_BossMoji->GetNumPtr();//スプライトの配列番号を取得
+		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
+		GetStage()->RemoveGameObject<Sprite>(m_BossMoji);//文字を消す
+
+		//int numPtr2 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
+		//numPtr1 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
+		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
+		GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
+
+		GetStage()->RemoveGameObject<Sprite>(m_SkipMoji);//スキップの文字列を消す
+
+		GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//進行度を進める(Bossが攻撃するようになる予定)
+
+		GetStage()->RemoveGameObject<EnemyMovieManager>(GetThis<EnemyMovieManager>());//自分自身を消す
+
 	}
 
 	void EnemyMovieManager::OnCollisionEnter(shared_ptr<GameObject>& obj)
