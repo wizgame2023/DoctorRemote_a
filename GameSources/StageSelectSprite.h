@@ -80,7 +80,7 @@ namespace basecross {
 		int GetNum();
 		float GetBlinkTime();
 		void SetLimitNum(int num);
-		void SetCloseNum(int num);
+		void SetCloseNum(int num, bool close = true);
 		void ThisDestroy();
 		bool StickFlag();
 	};

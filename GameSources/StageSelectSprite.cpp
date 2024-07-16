@@ -253,8 +253,8 @@ namespace basecross {
 	void StageSelectSprite::SetLimitNum(int num) {
 		m_limitNum = num;
 	}
-	void StageSelectSprite::SetCloseNum(int num) {
-		m_closeNum[num] = true;
+	void StageSelectSprite::SetCloseNum(int num,bool close) {
+		m_closeNum[num] = close;
 	}
 	bool StageSelectSprite::StickFlag() {
 		auto stick = false;
