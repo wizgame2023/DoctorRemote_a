@@ -36,6 +36,7 @@ namespace basecross {
 		auto stage = GetStage();
 		auto elapsed = App::GetApp()->GetElapsedTime();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 		m_comFrameFlag = stageManager->GetComFrameFlag();
 		m_stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
@@ -155,19 +156,18 @@ namespace basecross {
 		//	//m_stageManager->SetStartFlag(true);
 		//}
 
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				if (m_count < 11) {
-					m_count++;
-					m_textutreCheck = false;
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B|| keyState.m_bPressedKeyTbl[VK_SPACE]) {
+			if (m_count < 11) {
+				m_count++;
+				m_textutreCheck = false;
 
-					auto choiceSE = App::GetApp()->GetXAudio2Manager();
-					choiceSE->Start(L"ChoiceSE", 0, 0.4f);
-
-				}
+				auto choiceSE = App::GetApp()->GetXAudio2Manager();
+				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
 
 			}
+
 		}
+
 		if (m_player->GetRadarFlag()&&!m_raderFlag) {
 			m_textutreCheck = false;
 			m_count = 12;
