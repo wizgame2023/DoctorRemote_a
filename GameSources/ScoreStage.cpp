@@ -39,6 +39,8 @@ namespace basecross {
 			scene->SetGameStage(m_stageCount);
 
 			CreateViewLight();
+			auto stage = scene->GetGameStage();
+			scene->SetFirstTimeStage(stage);
 
 			AddGameObject<Sprite>(1280, 800, L"ScoreWaku", Vec3(), -1);
 			auto moji = AddGameObject<Comment>(9, 0, 0.1f, 270, 40, 270, 40, 9, 1,
@@ -305,7 +307,7 @@ namespace basecross {
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE])
+		if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || m_countUp >= 17.0f && keyState.m_bPressedKeyTbl[VK_SPACE])
 		{
 			if (m_stageCount == 0) {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
