@@ -14,9 +14,9 @@ namespace basecross {
 		//表示するサイズの情報
 		float m_width;
 		float m_heigth;
-		float m_moveW;
 		float m_moveH;
 		int m_number;
+		float m_moveW;
 
 		//頂点の情報
 		vector<VertexPositionColorTexture> m_vertices;

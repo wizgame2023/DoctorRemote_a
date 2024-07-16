@@ -124,7 +124,12 @@ namespace basecross {
 					m_stageFrame = stage->AddGameObject<Sprite>(600, 300, L"Score", Vec3(0.0f));
 					m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
 					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
-					m_selectStage->SetLimitNum(10);
+					m_selectStage->SetLimitNum(12);
+					for (int i = 1; i < 12; i++) {
+						if (i % 4 != 0) {
+							m_selectStage->SetCloseNum(i);
+						}
+					}
 				}
 				break;
 			case 2:
@@ -159,53 +164,50 @@ namespace basecross {
 		if (m_exitFlag) return;
 
 		//ステージを選ぶ
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].fThumbLY < -0.9f||keyState.m_bPressedKeyTbl['S']) {
-				if (m_moveCheck) return;
-				if (m_heightMin < m_height && !m_checkD) {
-					m_height -= m_spaces;
-					m_trans->SetPosition(0.0f, m_height, 0.0f);
-					m_checkD = true;
-				}
-			}
-			if (cntlVec[0].fThumbLY > -0.9f || keyState.m_bLastKeyTbl['S']&& m_checkD == true ) {
-				if (m_moveCheck) return;
-				m_checkD = false;
-			}
-
-			if (cntlVec[0].fThumbLY > 0.9 || keyState.m_bPressedKeyTbl['W']) {
-				if (m_moveCheck) return;
-				if (m_heightMax > m_height && !m_checkU) {
-					m_height += m_spaces;
-					m_trans->SetPosition(0.0f, m_height, 0.0f);
-					m_checkU = true;
-				}
-			}
-			if (cntlVec[0].fThumbLY < 0.9 || keyState.m_bLastKeyTbl['W'] && m_checkU == true) {
-				if (m_moveCheck) return;
-				m_checkU = false;
-			}
-
-			//Bボタンで決定
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B ||keyState.m_bPressedKeyTbl[VK_SPACE] && !m_checkU && !m_checkD) {
-				if (m_stage == TUTORIAL) {
-					m_moveCheck = true;
-				}
-				else if (m_stage == STAGESELECT) {
-					m_count = 0;
-				}
-				else if (m_stage == EXIT && !m_exitFlag) {
-					m_count = 0;
-				}
-				m_blinkCheck = true;
-				//SE
-				if (!m_bButtonSEFlag) {
-					ChoiceSE();
-					m_bButtonSEFlag = true;
-				}
+		if (cntlVec[0].fThumbLY < -0.9f||keyState.m_bPressedKeyTbl['S']) {
+			if (m_moveCheck) return;
+			if (m_heightMin < m_height && !m_checkD) {
+				m_height -= m_spaces;
+				m_trans->SetPosition(0.0f, m_height, 0.0f);
+				m_checkD = true;
 			}
 		}
+		if (cntlVec[0].fThumbLY > -0.9f || keyState.m_bLastKeyTbl['S']&& m_checkD == true ) {
+			if (m_moveCheck) return;
+			m_checkD = false;
+		}
 
+		if (cntlVec[0].fThumbLY > 0.9 || keyState.m_bPressedKeyTbl['W']) {
+			if (m_moveCheck) return;
+			if (m_heightMax > m_height && !m_checkU) {
+				m_height += m_spaces;
+				m_trans->SetPosition(0.0f, m_height, 0.0f);
+				m_checkU = true;
+			}
+		}
+		if (cntlVec[0].fThumbLY < 0.9 || keyState.m_bLastKeyTbl['W'] && m_checkU == true) {
+			if (m_moveCheck) return;
+			m_checkU = false;
+		}
+
+		//Bボタンで決定
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B ||keyState.m_bPressedKeyTbl[VK_SPACE] && !m_checkU && !m_checkD) {
+			if (m_stage == TUTORIAL) {
+				m_moveCheck = true;
+			}
+			else if (m_stage == STAGESELECT) {
+				m_count = 0;
+			}
+			else if (m_stage == EXIT && !m_exitFlag) {
+				m_count = 0;
+			}
+			m_blinkCheck = true;
+			//SE
+			if (!m_bButtonSEFlag) {
+				ChoiceSE();
+				m_bButtonSEFlag = true;
+			}
+		}
 
 		//選択しているモード
 		if (m_height == m_heightMax) {

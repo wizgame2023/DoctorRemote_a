@@ -45,7 +45,7 @@ namespace basecross {
 		wstring m_spritesName;
 		wstring m_frameName;
 
-		shared_ptr<UITime> m_numberSprites[10];
+		shared_ptr<UITime> m_numberSprites[30];
 		shared_ptr<Sprite> m_baseSprite[30];
 		shared_ptr<Sprite> m_selectSprite;
 		shared_ptr<Transform> m_trans;

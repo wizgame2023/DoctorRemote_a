@@ -14,7 +14,6 @@ namespace basecross {
 	void PieceManager::PieceDistance(const shared_ptr<EnemyPiece>& myPiece,const shared_ptr<Bullet>& bullet) {
 		auto& pieces = PieceManager::enemyPieces;
 		auto& breakPiece = PieceManager::breakPieces;
-		//shared_ptr<EnemyPiece> p;
 		auto bulletLeve = bullet->GetBulletLevel();
 		float chainRange = App::GetApp()->GetScene<Scene>()->GetChainRange();
 
@@ -42,20 +41,22 @@ namespace basecross {
 				}
 			}
 
-
 		}
+
 	}
 
 
 	void PieceManager::PieceDestroy() {
-		auto& piece = PieceManager::enemyPieces;
-		auto& breakPiece = PieceManager::breakPieces;
+		auto& pieces = PieceManager::enemyPieces;
 
-		for (int i = 0; i < breakPiece.size(); i++) {
-			if (breakPiece.find(i)!=breakPiece.end()) {
-				breakPieces.erase(i);
+		for (auto& wp_piece : pieces) {
+			auto piece = wp_piece.lock();
+			if (piece) {
+				piece->ScatterDestroy(0);
+
 			}
 		}
+
 	}
 
 }

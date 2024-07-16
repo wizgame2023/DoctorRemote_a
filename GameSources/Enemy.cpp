@@ -283,6 +283,19 @@ namespace basecross {
 		}	
 		if (m_hp <= 0)
 		{		
+			PieceManager::PieceDestroy();
+			for (int i = 0; i < m_bigPieceCount; i++) {
+				if (m_bigEnemyPiece[i]) {
+					m_bigEnemyPiece[i]->ScatterDestroy(0);
+				}
+			}
+			for (int i = 0; i < m_bigPieceCount2; i++) {
+				if (m_bigEnemyPiece2[i]) {
+					m_bigEnemyPiece2[i]->ScatterDestroy(0);
+				}
+			}
+
+
 			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(3);//ステージの全体フラグ進行
 			GetStage()->RemoveGameObject<Enemy>(GetThis<Enemy>());
 			//PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");
