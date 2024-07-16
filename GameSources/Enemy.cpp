@@ -67,7 +67,7 @@ namespace basecross {
 			Vec3(0.2f, 0.2f, 0.2f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.3f, 0.0f)
+			Vec3(0.0f, 0.5f, 0.0f)
 		);
 
 		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
