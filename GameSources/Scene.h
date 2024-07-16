@@ -14,6 +14,7 @@ namespace basecross{
 	class Scene : public SceneBase{
 
 		bool m_PlayFlag;//プレイするステージか確認する
+		bool m_firstTimeStage[12] = { false };
 
 		int m_dashStatus = 0;
 		int m_bulletLengthStatus = 0;
@@ -27,6 +28,7 @@ namespace basecross{
 		int m_nextStage;
 		int m_achievementPoint;
 		int m_count;
+
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief リソースの作成
@@ -103,6 +105,9 @@ namespace basecross{
 		void SetBigPieceCount(int count);
 		void AddBigPieceCount(int count);
 		void ResetButton();
+		bool GetFirstTimeStage(int num);
+		void SetFirstTimeStage(int num, bool firstTime = true);
+
 
 	};
 
