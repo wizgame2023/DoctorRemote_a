@@ -8,7 +8,6 @@
 #include "Project.h"
 
 namespace basecross {
-
 	//--------------------------------------------------------------------------------------
 	//	class Player : public GameObject;
 	//	用途: プレイヤー
@@ -111,7 +110,9 @@ namespace basecross {
 		
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		m_statusFlag = scene->GetDashStatus();
-		DashCoolManager(m_statusFlag);//これでダッシュの効果時間やクールタイムを決める
+		Dash();
+		//DashCool(m_statusFlag);//これでダッシュの効果時間やクールタイムを決める
+		//nanntokakanntoka(m_statusFlag);//これでダッシュの効果時間やクールタイムを決める
 		m_bulletPower = scene->GetBulletPower();
 		m_bulletChargeTime = scene->GetBulletTime();
 	}
@@ -601,9 +602,10 @@ namespace basecross {
 
 	}
 
-	void Player::DashCoolManager(int count)
-	{
-		switch (count)
+	void Player::DashCool(int count) {
+		int a = 0;
+
+		switch (a)
 		{
 		case 0:
 			m_dashCooldown = true;//そもそもダッシュできないようにする
@@ -636,16 +638,54 @@ namespace basecross {
 			m_dashCooldown = true;//そもそもダッシュできないようにする
 			break;
 		}
-
 	}
 
-	void Player::Dash() {
+
+
+	void Player::Dash() {	
+
+		//int b = 0;
+
+		//switch (b)
+		//{
+		//case 0:
+		//	m_dashCooldown = true;//そもそもダッシュできないようにする
+		//	break;
+		//case 1:
+		//	//ダッシュの効果時間
+		//	m_dashCount = 1.0f;
+		//	m_dashCountTime = 1.0f;
+		//	//クールタイム
+		//	m_dashCoolTime = 8.0f;
+		//	m_dashCool = 8.0f;
+		//	break;
+		//case 2:
+		//	//ダッシュの効果時間
+		//	m_dashCount = 1.5f;
+		//	m_dashCountTime = 1.5f;
+		//	//クールタイム
+		//	m_dashCoolTime = 7.0f;
+		//	m_dashCool = 7.0f;
+		//	break;
+		//case 3:
+		//	//ダッシュの効果時間
+		//	m_dashCount = 2.0f;
+		//	m_dashCountTime = 2.0f;
+		//	//クールタイム
+		//	m_dashCoolTime = 6.0f;
+		//	m_dashCool = 6.0f;
+		//	break;
+		//default:
+		//	m_dashCooldown = true;//そもそもダッシュできないようにする
+		//	break;
+		//}
+
+
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		Vec2 input = GetInputState();//入力を取得
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-
-		if (cntlVec[0].bRightTrigger >= 0.8f || keyState.m_bPressedKeyTbl[VK_SHIFT] && !m_dashCooldown) //RTボタンを押したら
+		if ((cntlVec[0].bRightTrigger >= 0.8f || keyState.m_bPressedKeyTbl[VK_SHIFT]) && m_dashCooldown ==false) //RTボタンを押したら
 		{
 			m_dashCheck = true;//ダッシュできるようになる
 			m_dashCooldown = true;//クールタイムのフラグを入れる
@@ -657,7 +697,7 @@ namespace basecross {
 			if (m_dashCountTime < 0.0f)//ダッシュの制限時間が過ぎたら
 			{
 				m_dashCheck = false;//走れなくなる
-				//m_dashCooldown = true;//クールダウンをカウントさせるフラグをONにする
+				m_dashCooldown = true;//クールダウンをカウントさせるフラグをONにする
 
 			}
 		}

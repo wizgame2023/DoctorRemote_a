@@ -61,7 +61,7 @@ namespace basecross {
 	private:
 		Vec2 GetInputState();
 		void MovePlayer();
-		void DashCoolManager(int count);//ダッシュのクールタイムの管理をする
+		void DashCool(int count);//ダッシュのクールタイムの管理をする
 
 	public:
 		static int STATUSPLAYER;
