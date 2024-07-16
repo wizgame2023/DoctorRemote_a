@@ -273,6 +273,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage11.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage12.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -502,6 +509,13 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UITools.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage11.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage12.cpp">
+      <Filter>Sources\Stage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
