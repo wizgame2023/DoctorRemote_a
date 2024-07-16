@@ -305,24 +305,21 @@ namespace basecross {
 	void ScoreStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (cntlVec[0].bConnected)
+		if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE])
 		{
-			if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE])
-			{
-				if (m_stageCount == 0) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
-				}
-				else if (m_stageCount <= 9) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
-				}
-				else if (m_stageCount == 10) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-				}
-				if (!m_SEFlag) {
-					auto choiceSE = App::GetApp()->GetXAudio2Manager();
-					choiceSE->Start(L"ChoiceSE", 0, 0.4f);
-					m_SEFlag = true;
-				}
+			if (m_stageCount == 0) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+			}
+			else if (m_stageCount <= 9) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
+			}
+			else if (m_stageCount == 10) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			}
+			if (!m_SEFlag) {
+				auto choiceSE = App::GetApp()->GetXAudio2Manager();
+				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
+				m_SEFlag = true;
 			}
 		}
 	}

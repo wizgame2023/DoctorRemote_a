@@ -66,14 +66,12 @@ namespace basecross {
 	void ClearStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A || keyState.m_bPressedKeyTbl[VK_SPACE]) {
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
-				if (!m_buttonSEFlag) {
-					auto choiceSE = App::GetApp()->GetXAudio2Manager();
-					choiceSE->Start(L"ChoiceSE", 0, 0.4f);
-					m_buttonSEFlag = true;
-				}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A || keyState.m_bPressedKeyTbl[VK_SPACE]) {
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+			if (!m_buttonSEFlag) {
+				auto choiceSE = App::GetApp()->GetXAudio2Manager();
+				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
+				m_buttonSEFlag = true;
 			}
 		}
 	}

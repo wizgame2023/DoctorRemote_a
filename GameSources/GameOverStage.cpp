@@ -76,36 +76,33 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto& scene = App::GetApp()->GetScene<Scene>();
-		if (cntlVec[0].bConnected)
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A||keyState.m_bPressedKeyTbl[VK_BACK])
 		{
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A||keyState.m_bPressedKeyTbl[VK_BACK])
-			{
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
-				if (!m_buttonSEFlag) {
-					auto choiceSE = App::GetApp()->GetXAudio2Manager();
-					choiceSE->Start(L"ChoiceSE", 0, 0.4f);
-					m_buttonSEFlag = true;
-				}
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+			if (!m_buttonSEFlag) {
+				auto choiceSE = App::GetApp()->GetXAudio2Manager();
+				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
+				m_buttonSEFlag = true;
 			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE])
-			{
-				auto stage = scene->GetGameStage();
-				if (stage > 0) {
-					wstring stageString = to_wstring(stage);
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + stageString);
-				}
-				else if (stage == 0) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTutorialStage");
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE])
+		{
+			auto stage = scene->GetGameStage();
+			if (stage > 0) {
+				wstring stageString = to_wstring(stage);
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + stageString);
+			}
+			else if (stage == 0) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTutorialStage");
 
-				}
+			}
 				
-				if (!m_buttonSEFlag) {
-					auto choiceSE = App::GetApp()->GetXAudio2Manager();
-					choiceSE->Start(L"ChoiceSE", 0, 0.4f);
-					m_buttonSEFlag = false;
-				}
-
+			if (!m_buttonSEFlag) {
+				auto choiceSE = App::GetApp()->GetXAudio2Manager();
+				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
+				m_buttonSEFlag = false;
 			}
+
 		}
 	}
 
