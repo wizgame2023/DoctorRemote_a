@@ -55,7 +55,7 @@ namespace basecross {
 
 
 		//Aボタンが押されたらステージセレクト画面を消す
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == STAGESELECT||keyState.m_bPressedKeyTbl[VK_BACK]) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == STAGESELECT||keyState.m_bPressedKeyTbl[VK_BACK] && m_stage == STAGESELECT) {
 			if (m_selectStageFlag) {
 				m_selectStage->ThisDestroy();
 				m_retrunCom->ThisDestroy();
@@ -75,7 +75,7 @@ namespace basecross {
 		}
 
 		//Aボタンが押されたらExit画面を消す
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == EXIT|| keyState.m_bPressedKeyTbl[VK_BACK]) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == EXIT|| keyState.m_bPressedKeyTbl[VK_BACK] && m_stage == EXIT) {
 			if (m_exitFlag) {
 				m_creditTex->ThisDestroy();
 				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
@@ -125,8 +125,20 @@ namespace basecross {
 					m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
 					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
 					m_selectStage->SetLimitNum(12);
-					for (int i = 1; i < 12; i++) {
-						if (i % 4 != 0) {
+					//for (int i = 1; i < 12; i++) {
+					//	if (i % 4 != 0) {
+					//		m_selectStage->SetCloseNum(i);
+					//	}
+					//}
+					for (int i = 0; i < 12; i++) {
+						bool firstTime = App::GetApp()->GetScene<Scene>()->GetFirstTimeStage(i);
+						if (firstTime) {
+							m_selectStage->SetCloseNum(i, false);
+						}
+						else if (i == 0 || i == 4 || i == 8) {
+							m_selectStage->SetCloseNum(i, false);
+						}
+						else {
 							m_selectStage->SetCloseNum(i);
 						}
 					}
