@@ -144,6 +144,11 @@ namespace basecross {
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
 			pieceSE->Start(L"BreakSE", 0, 1.5f);
 
+			auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
+			PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"BigPieceEffectPurple", false);
+			PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition() - Vec3(0.0f, 0.0f, 0.0f));
+
+
 		}
 		if (other->FindTag(L"Player")) {
 			auto stageManager = GetStage()->GetSharedGameObject<StageManager>(L"StageManager");

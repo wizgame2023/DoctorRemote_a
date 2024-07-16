@@ -273,9 +273,9 @@ namespace basecross {
 					auto damegeSE = App::GetApp()->GetXAudio2Manager();
 					damegeSE->Start(L"AttackSE", 0, 0.8f);
 
-					auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
-					PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"EnemyEffectPurple", false);
-					PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition() - Vec3(0.0f, 3.0f, 0.0f));
+					//auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
+					//PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"EnemyEffectPurple", false);
+					//PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition() - Vec3(0.0f, 3.0f, 0.0f));
 				}
 
 
