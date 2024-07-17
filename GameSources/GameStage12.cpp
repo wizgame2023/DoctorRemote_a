@@ -16,7 +16,7 @@ namespace basecross {
 
 
 		// カメラの設定
-		auto camera = ObjectFactory::Create<MainCamera>(180.0f);
+		auto camera = ObjectFactory::Create<MainCamera>(90.0f);
 		//camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
 		//camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
@@ -27,7 +27,6 @@ namespace basecross {
 		//マルチライトの作成
 		auto light = CreateLight<MultiLight>();
 		light->SetDefaultLighting(); //デフォルトのライティングを指定	
-
 		//AddGameObject<MyLight>();//光の表現をこれでやる
 
 	}
@@ -57,9 +56,9 @@ namespace basecross {
 	void GameStage12::CreatePlayer()//改善すべき点
 	{
 		//Playerの出現場所を決める
-		float deg = 90;
+		float deg = -180;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f), 1.7f);
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),1.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -79,12 +78,12 @@ namespace basecross {
 	//敵を作成
 	void GameStage12::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));//Enemy生成
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(-60.0f, 0.5f, 13.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		AddGameObject<EnemyMovieManager>(EnemyPos + Vec3(0.0f, -1.0f, -13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
+		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,0.0f,5.0f), Vec3(30.0f, 0.1f, 30.0f), Vec3(-56.6f, 4.0f, 2.27f), EnemyPos);
 
 	}
 
@@ -92,94 +91,89 @@ namespace basecross {
 	void GameStage12::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{//1
-				Vec3(12.0f,0.1f,-19.0f),
+			{//1			
+				Vec3(7.0f,0.1f,-25.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//2
-				Vec3(28.2f,0.1f,-17.9f),
+				Vec3(-6.0f,0.1f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//3
-				Vec3(37.3f,0.1f,-21.0f),
+				Vec3(32.0f,0.1f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//4
-				Vec3(42.3f,0.1f,-7.0f),
+				Vec3(42.0f,0.1f,-27.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//5
-				Vec3(47.0f,0.1f,-15.9f),
+				Vec3(34.0f,0.1f,-22.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//6
-				Vec3(-15.0f,0.1f,0.5f),
+				Vec3(15.0f,0.1f,29.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//7
-				Vec3(-33.0f,0.1f,16.0f),
+				Vec3(19.0f,0.1f,38.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//8
-				Vec3(-49.0f,0.1f,9.4f),
+				Vec3(12.0f,0.1f,36.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
-				Vec3(-54.0f,0.1f,-5.0f),
+				Vec3(-25.0f,0.1f,4.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
-				Vec3(-57.0f,0.1f,22.0f),
+				Vec3(-23.0f,0.1f,18.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
-				Vec3(54.0f,0.1f,-4.6f),
+				Vec3(-21.0f,0.1f,31.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//12
-				Vec3(-10.0f,0.1f,-42.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-
-			},
-			{//12
-				Vec3(-21.0f,0.1f,-62.0f),
+				Vec3(-31.0f,0.1f,-34.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//13
-				Vec3(-29.5f,0.1f,-51.8f),
+				Vec3(-8.0f,0.1f,29.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
-			},
+			}
+
+
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
-			auto piece = AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
+			auto& piece = AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 			PieceManager::enemyPieces.push_back(piece);
-
 		}
 	}
 
@@ -231,19 +225,10 @@ namespace basecross {
 
 	void GameStage12::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
-		//BigPieceのPos一覧
-		Vec3 Pos[] =
-		{
-			Vec3(-29.2f,0.3f,35.6f),//1
-			Vec3(3.0f,0.3f,49.5f),//2
-			Vec3(54.7f,0.3f,65.0f),//3
-			Vec3(62.0f,0.3f,5.0f),//4
-			Vec3(53.7f,0.3f,-65.2f),//5
-			Vec3(-63.6f,0.3f,-71.0f),//6
-			Vec3(-53.2f,0.3f,-29.0f)//7
 
-		};
+		Vec3 Pos[] = { Vec3(30.0f,0.3f,30.0f),Vec3(-35.0f,0.3f, -15.0f),Vec3(-58.0f,0.3f,45.0f),Vec3(45.0f,0.3f,-9.0f),Vec3(-11.0f,0.3f,38.0f),Vec3(21.0f,0.3f,-37.0f) };//BigPieceのPosision一覧
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
+
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
 			int randMesh = rand() % 3 + 1;//ランダムにどのどのメッシュになるかが決まる
@@ -252,6 +237,7 @@ namespace basecross {
 			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
 			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける
 		}
+
 	}
 
 
@@ -261,7 +247,7 @@ namespace basecross {
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_12.csv");
+		ifstream ifs(levelPath += L"Level_9.csv");
 		if (ifs)
 		{
 			string line;
@@ -269,6 +255,7 @@ namespace basecross {
 			{
 				vector<int> mapData;
 
+				line += ",";
 				string data;
 				istringstream ss(line);
 				while (getline(ss, data, ','))
@@ -297,23 +284,38 @@ namespace basecross {
 				switch (stageMap[r][c])
 				{
 				case 1:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(3.0, 10, 1.0));
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(140.0, 10, 1.0));
 					break;
 				case 2:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 3.0));
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 140.0));
 					break;
 				case 3:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(3.0, 10, 1.0));
 					break;
 				case 4:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 3.0));
+					break;
 				case 5:
-					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(1, 10, 3), 150.0f, SpriteLenght, SpriteStartPos);
-					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(0.5f, 1.0f, 3.0f));
+					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
 					break;
 				case 6:
-					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, 0, 0), Vec3(1, 10, 3), 150.0f, SpriteLenght, SpriteStartPos);
+					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
+					break;
+				case 7:
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(1, 10, 3), 150, SpriteLenght, SpriteStartPos);
+					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(0.5f, 1.0f, 3.0f));
+					break;
+				case 8:
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, 0, 0), Vec3(1, 10, 3), 150, SpriteLenght, SpriteStartPos);
 					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, 0, 0), Vec3(1.0f, 1.0f, 3.0f));
+					break;
+				case 9:
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25), 150, SpriteLenght, SpriteStartPos);
+					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5f, 1.0f, 4.25f));
+					break;
+				case 10:
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25), 150, SpriteLenght, SpriteStartPos);
+					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5f, 1.0f, 4.25f));
 					break;
 				case 11:
 					AddGameObject<Block>(blockStartPos + pos, Vec3(0, 0, 0));
@@ -324,7 +326,11 @@ namespace basecross {
 				case 13:
 					AddGameObject<Block3>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
+				case 14:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(21.0, 10, 1.0));
+					break;
 				}
+
 			}
 
 		}
@@ -336,7 +342,7 @@ namespace basecross {
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage12", StartPos, 5);//ミニマップ生成
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage9", StartPos, 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
 		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(StartPos, 4.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
@@ -364,7 +370,7 @@ namespace basecross {
 	void GameStage12::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 	void GameStage12::BossBGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
@@ -402,7 +408,7 @@ namespace basecross {
 	void GameStage12::OnCreate() {
 		try {
 			auto scene = App::GetApp()->GetScene<Scene>();
-			scene->SetGameStage(10);
+			scene->SetGameStage(9);
 			scene->SetPlayFlag(true);
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
@@ -421,7 +427,8 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapLevel10.csv", 150, 70);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevel9.csv", 150, 70);//ランダムにかけらが出るようになる
+
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
@@ -429,13 +436,18 @@ namespace basecross {
 			CreateMiniMap();//ミニマップ生成
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
-
-			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(13.0f, 0.5f, 0.0f));//ステージ開始時の演出
-
+			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//導入を追加
 
 			//BGM
 			BaseBGM();
-			m_CareerFlag = 0;//初期化	
+
+			////敵を生成
+			//CreateEnemy();
+			//GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
+			////レーダーを生成
+			//CreateRadar();
+			//m_CareerFlag = 1;
+
 
 		}
 		catch (...) {
@@ -445,12 +457,12 @@ namespace basecross {
 
 	void GameStage12::OnUpdate()
 	{
-		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
-			//敵を生成	
+			//敵を生成
 			CreateEnemy();
 			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
 			//レーダーを生成
@@ -460,8 +472,9 @@ namespace basecross {
 			OnDestroy();
 			BossBGM();
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
-			//AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//右方向
-			//AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//左方向
+
+
+
 		}
 		if (m_CareerFlag == 1 || m_CareerFlag == 2)
 		{
@@ -469,8 +482,8 @@ namespace basecross {
 		}
 		if (m_CareerFlag == 3)//敵を倒したとき
 		{
-			AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//右方向
-			AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//左方向
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
 
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
 			m_CareerFlag = 4;
@@ -481,5 +494,6 @@ namespace basecross {
 		}
 
 	}
+
 
 }
