@@ -644,15 +644,20 @@ namespace basecross {
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		Vec2 input = GetInputState();//入力を取得
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+		//bool test = false;
 
-		if (cntlVec[0].bRightTrigger >= 0.8f || keyState.m_bPressedKeyTbl[VK_SHIFT] && !m_dashCooldown) //RTボタンを押したら
+		bool a = m_dashCooldown;
+
+		if ((cntlVec[0].bRightTrigger >= 0.8f || keyState.m_bPressedKeyTbl[VK_SHIFT]) && !m_dashCooldown) //RTボタンを押したら
 		{
 			m_dashCheck = true;//ダッシュできるようになる
 			m_dashCooldown = true;//クールタイムのフラグを入れる
+			//test = true;
 		}
 
 		if (m_dashCheck)//ダッシュのボタンが押されていたら
 		{
+			
 			m_dashCountTime -= elapsedTime;
 			if (m_dashCountTime < 0.0f)//ダッシュの制限時間が過ぎたら
 			{

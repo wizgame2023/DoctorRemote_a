@@ -38,6 +38,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage1.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage12.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage3.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage4.h" />
@@ -117,6 +119,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage1.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage12.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage3.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage4.cpp" />
