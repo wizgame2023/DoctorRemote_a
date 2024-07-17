@@ -33,8 +33,10 @@ namespace basecross {
 		bool m_StartDestoryFlag;
 		bool m_startSEFlag;
 
+		Col4 m_outCol;//スプライトの色を保存する
 
 		shared_ptr<Sprite> m_ligth;
+		shared_ptr<Sprite> m_blackout;//ゲームオーバー時の暗転用スプライト
 		shared_ptr<Sprite> m_startSprite;
 		shared_ptr<Sprite> m_comFrame;
 		shared_ptr<Sprite> m_stageSprite;

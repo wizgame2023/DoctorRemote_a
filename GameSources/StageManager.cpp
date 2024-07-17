@@ -35,7 +35,12 @@ namespace basecross {
 		auto stage = GetStage();
 
 		auto uiManager = stage->AddGameObject<UIManager>();//UIを管理するマネージャー
-		stage->SetSharedGameObject(L"UIManager", uiManager);
+		stage->SetSharedGameObject(L"UIManager", uiManager);	
+
+		m_blackout = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0));//暗転生成
+		m_blackout->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
+		m_outCol = m_blackout->GetColor();
+
 
 	}
 	void StageManager::OnUpdate() {
@@ -48,9 +53,18 @@ namespace basecross {
 		int a = 0;//デバック用のコード
 		//体力が0になったらGameOver
 		if (m_currentHp <= 0.0f) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-			int test = m_currentHp;
-			int s = 0;
+			dynamic_pointer_cast<MainCamera>(OnGetDrawCamera())->SetMove(false);//カメラを操作できるようになる
+			GetStage()->GetSharedGameObject<Player>(L"GamePlayer")->SetSpeed(0.0f);//Playerの慣性を消す
+			stage->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerの操作を効かなくさせる
+
+			m_outCol.w += elapsedTime * 0.4f;//暗転する
+			m_blackout->SetColor(m_outCol);
+			if (m_outCol.w >= 1)
+			{
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+				int test = m_currentHp;
+				int s = 0;
+			}
 		}
 
 		if (m_countFlag)

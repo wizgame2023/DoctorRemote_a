@@ -41,17 +41,38 @@ namespace basecross {
 		m_fourthNum = stage->AddGameObject<UITime>(m_fourth, m_pos);
 		m_ten = stage->AddGameObject<UITime>(m_fourth, posTen);
 
+				m_blackout = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0));//ˆÃ“]¶¬
+		m_blackout->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
+		m_outCol = m_blackout->GetColor();
+
+
 	}
 	void TimeManager::OnUpdate() {
 
 		if (m_move) {
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			bool start = GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStartFlag();
+			auto a = start;
 			if (start) {
 				m_time -= elapsedTime;
-				if (m_time <= 0.0f) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
-				}
+				//if (m_time <= 0.0f) {
+				//	PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+				//}
+			}
+		}
+
+		if (m_time <= 0.0f) {
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+
+			dynamic_pointer_cast<MainCamera>(OnGetDrawCamera())->SetMove(false);//ƒJƒƒ‰‚ð‘€ì‚Å‚«‚é‚æ‚¤‚É‚È‚é
+			GetStage()->GetSharedGameObject<Player>(L"GamePlayer")->SetSpeed(0.0f);//Player‚ÌŠµ«‚ðÁ‚·
+			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Player‚Ì‘€ì‚ðŒø‚©‚È‚­‚³‚¹‚é
+
+			m_outCol.w += elapsedTime * 0.4f;//ˆÃ“]‚·‚é
+			m_blackout->SetColor(m_outCol);
+			if (m_outCol.w >= 1)
+			{
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 			}
 		}
 
