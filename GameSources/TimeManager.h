@@ -23,6 +23,10 @@ namespace basecross {
 
 		Vec3 m_pos;
 
+		Col4 m_outCol;//スプライトの色を保存する
+
+		shared_ptr<Sprite> m_blackout;//ゲームオーバー時の暗転用スプライト
+
 		shared_ptr<UITime> m_firstNum;
 		shared_ptr<UITime> m_secondNum;
 		shared_ptr<UITime> m_thirdNum;
