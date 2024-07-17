@@ -1,15 +1,19 @@
 /*!
 @file GameStage3.h
-@brief ゲームステージ3
+@brief ゲームステージ4
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class GameStage3 :public Stage
-	{
-		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
+
+	//--------------------------------------------------------------------------------------
+	//	ゲームステージクラス
+	//--------------------------------------------------------------------------------------
+	class GameStage3 : public Stage {
+
+		bool m_PieceFlag;//ステージ全体のフラグ
 		shared_ptr<SoundItem> m_BGM;
 		int m_CareerFlag;//ステージ全体のフラグ
 		int m_BigPieceLength;//BigPieceの合計の数
@@ -25,9 +29,8 @@ namespace basecross {
 		void CreateMiniMap();//ミニマップの生成
 		void CreateEffect();//エフェクトの作成
 		void RandamPiecePosition(Vec3 originPosition);//ランダムに
-		void CollisionActive(bool On);//コリジョンの判定のきりかえ
 		shared_ptr<SingleView> m_View;//ビューの変数
-
+		
 	public:
 		//構築と破棄
 		GameStage3() :Stage() {}
@@ -38,10 +41,9 @@ namespace basecross {
 
 		void BaseBGM();
 		void BossBGM();
-		virtual void OnDestroy() override;
-
-		void SetCollisionSwich(bool ONorOFF);
-
-
+		virtual void OnDestroy() override;	
 	};
+
 }
+//end basecross
+
