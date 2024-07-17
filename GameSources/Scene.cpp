@@ -327,6 +327,10 @@ namespace basecross {
 		app->RegisterTexture(L"LevelTexture", strTexture);	
 		strTexture = texPath + L"Skip_pad.png";
 		app->RegisterTexture(L"Skip_pad", strTexture);
+		strTexture = texPath + L"Skip.png";
+		app->RegisterTexture(L"Skip", strTexture);
+		strTexture = texPath + L"Space.png";
+		app->RegisterTexture(L"Space", strTexture);
 
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";
