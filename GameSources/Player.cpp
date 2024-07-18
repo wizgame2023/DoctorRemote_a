@@ -65,16 +65,16 @@ namespace basecross {
 	void Player::OnCreate(){
 		//初期位置などの設定
 		m_trans = GetComponent<Transform>();
-		m_trans->SetScale(1.5f, 2.0f, 8.5f);
+		m_trans->SetScale(1.5f, 2.0f, 6.5f);
 		m_trans->SetRotation(m_rot);
 		m_trans->SetPosition(m_pos);
 
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
-			Vec3(0.75f, 0.5f, 0.25f),
+			Vec3(0.75f, 0.5f, 2.125f/m_trans->GetScale().z),//2.125
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI, 0.0f),
-			Vec3(0.0f, -0.5f, -0.05f)
+			Vec3(0.0f, -0.5f, -0.25f)
 		);
 
 

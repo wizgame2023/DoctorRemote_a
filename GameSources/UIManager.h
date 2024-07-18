@@ -29,7 +29,7 @@ namespace basecross {
 		vector<int> m_EraseUiPtrNum;//消したポインタの番号を覚える変数
 		shared_ptr<Sprite> m_comFrame;
 		shared_ptr<Transform> m_comTrans;
-		shared_ptr<CommentManager> m_com[2];
+		shared_ptr<CommentManager> m_com[3];
 		shared_ptr<StageManager> m_StageManager;
 		shared_ptr<Garge> m_chargeGarge;
 		shared_ptr<Sprite> m_dashLight;

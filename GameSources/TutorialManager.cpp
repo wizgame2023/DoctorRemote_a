@@ -30,7 +30,11 @@ namespace basecross {
 		//auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		//m_baseBGM = XAPtr->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
 
-		m_bButton = stage->AddGameObject<Sprite>(40, 40, L"Bbutton", Vec3(560.0f,-330.0f,0.0f),3);
+		m_bButton = stage->AddGameObject<Sprite>(35, 35, L"Bbutton", Vec3(560.0f,-330.0f,0.0f),3);
+		m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.0f));
+		m_spaceButton = stage->AddGameObject<Sprite>(100, 50, L"SpaceButton", Vec3(550.0f, -340.0f, 0.0f), 3);
+		m_spaceButton->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+
 	}
 	void TutorialManager::OnUpdate() {
 		auto stage = GetStage();
@@ -61,10 +65,19 @@ namespace basecross {
 			}
 		}
 		if (m_count < 11) {
-			m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking2));
+			if (cntlVec[0].bConnected) {
+				m_bButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking));
+				m_spaceButton->SetColor(Col4(0.0f));
+			}
+			else {
+				m_bButton->SetColor(Col4(0.0f));
+				m_spaceButton->SetColor(Col4(1.0f, 1.0f, 1.0f, m_blinking));
+			}
+
 		}
 		else {
 			m_bButton->ThisDestroy();
+			m_spaceButton->ThisDestroy();
 		}
 		
 		//“_–Åˆ—@triDot
@@ -126,7 +139,12 @@ namespace basecross {
 			break;
 		case 10:
 			//‘€ìà–¾
-			Comment(13 * 3, L"Sousa");
+			if (cntlVec[0].bConnected) {
+				Comment(13 * 3, L"Sousa");
+			}
+			else {
+				Comment(13 * 3, L"Sousa2");
+			}
 			break;
 		case 11: 
 			//Œ‡•Ð‚Ìà–¾
@@ -199,6 +217,7 @@ namespace basecross {
 		}
 		if (!m_textutreCheck) {
 			m_com[m_count] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(250, -180, 0.0f), mesh);
+			m_com[m_count]->SetIntervalTime(0.01f);
 			m_textutreCheck = true;
 		}
 
@@ -216,6 +235,7 @@ namespace basecross {
 		}
 		if (!m_textutreCheck) {
 			m_com[m_count] = stage->AddGameObject<CommentManager>(13 * 4, 0, Vec3(250, -180, 0.0f), mesh);
+			m_com[m_count]->SetIntervalTime(0.01f);
 			m_triDot[m_count - 2] = stage->AddGameObject<Sprite>(30, 30, L"TriDot",triPos);
 			m_triDot[m_count - 2]->AddComponent<Transform>()->SetRotation(Vec3(0.0f, 0.0f, rad));
 			m_textutreCheck = true;
