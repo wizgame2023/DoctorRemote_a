@@ -121,8 +121,8 @@ namespace basecross {
 					m_bButtonSEFlag = false;
 					m_aButtonSEFlag = false;
 					m_back->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.7));
-					m_stageFrame = stage->AddGameObject<Sprite>(600, 500, L"Score", Vec3(0.0f));
-					m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -150.0f, 0.0f));
+					m_stageFrame = stage->AddGameObject<Sprite>(600, 300, L"Score", Vec3(0.0f));
+					m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
 					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
 					m_selectStage->SetLimitNum(12);
 					//for (int i = 1; i < 12; i++) {

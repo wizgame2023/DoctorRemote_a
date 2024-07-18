@@ -1,6 +1,6 @@
 /*!
 @file GameStage9.cpp
-@brief ゲームステージ5の実体
+@brief ゲームステージ9の実体
 */
 
 #include "stdafx.h"
@@ -41,9 +41,9 @@ namespace basecross {
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
 		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 30, 1.0f, Vec3(0.0f, 3.0f, 0.0f), Vec3(0.7f, 0.7f, 0.7f));
 		SetSharedGameObject(L"EnemyEffectPurple", EffectPtr4);
-		auto EffectPtr5 = AddGameObject<EffectMove>(L"EnemyPieceEffect", 0.7f, 5, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.3f, 0.3f, 0.3f));
+		auto EffectPtr5 = AddGameObject<EffectMove>(L"EnemyPieceEffect", 0.7f, 10, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.3f, 0.3f, 0.3f));
 		SetSharedGameObject(L"EnemyPieceEffectPurple", EffectPtr5);
-		auto EffectPtr6 = AddGameObject<EffectMove>(L"BigPieceEffect", 1.5f, 7, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		auto EffectPtr6 = AddGameObject<EffectMove>(L"BigPieceEffect", 1.5f, 15, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
 		SetSharedGameObject(L"BigPieceEffectPurple", EffectPtr6);
 		auto EffectPtr7 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr7);
@@ -78,12 +78,13 @@ namespace basecross {
 	//敵を作成
 	void GameStage9::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>(Vec3(-31.0f, 0.5f, -18.5f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(-60.0f, 0.5f, 13.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(5.0f,0.0f,2.0f), Vec3(20.0f, 0.1f, 20.0f), Vec3(-29.6f, 4.0f, -26.5f), EnemyPos);
+		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(0.0f,0.0f,5.0f), Vec3(30.0f, 0.1f, 30.0f), Vec3(-56.6f, 4.0f, 2.27f), EnemyPos);
+
 	}
 
 	//敵の欠片を作成
@@ -91,74 +92,83 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//1			
-				Vec3(-24.0f,0.1f,-24.0f),
+				Vec3(7.0f,0.1f,-25.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//2
-				Vec3(-21.0f,0.1f,-37.0f),
+				Vec3(-6.0f,0.1f,-45.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//3
-				Vec3(-2.0f,0.1f,-45.0f),
+				Vec3(32.0f,0.1f,-14.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//4
-				Vec3(-3.0f,0.1f,-71.0f),
+				Vec3(42.0f,0.1f,-27.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//5
-				Vec3(45.0f,0.1f,45.0f),
+				Vec3(34.0f,0.1f,-22.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//6
-				Vec3(48.0f,0.1f,70.0f),
+				Vec3(15.0f,0.1f,29.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//7
-				Vec3(-3.0f,0.1f,52.0f),
+				Vec3(19.0f,0.1f,38.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//8
-				Vec3(8.0f,0.1f,61.0f),
+				Vec3(12.0f,0.1f,36.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
-				Vec3(-35.0f,0.1f,40.0f),
+				Vec3(-25.0f,0.1f,4.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
-				Vec3(-46.0f,0.1f,-11.0f),
+				Vec3(-23.0f,0.1f,18.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
-				Vec3(-70.0f,0.1f,-32.0f),
+				Vec3(-21.0f,0.1f,31.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//12
-				Vec3(-20.0f,0.1f,-0.5f),
+				Vec3(-31.0f,0.1f,-34.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
+
+			},
+			{//13
+				Vec3(-8.0f,0.1f,29.0f),
+				Vec3(0.0f,0.0f,0.0f),
+				Vec3(2.0f,2.0f,2.0f)
+
 			}
+
+
 		};
 		//オブジェクトの作成
 		for (auto v : vec) {
@@ -216,7 +226,7 @@ namespace basecross {
 	void GameStage9::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 
-		Vec3 Pos[] = { Vec3(-20.0f,0.3f,10.0f),Vec3(-63.0f,0.3f,-48.0f),Vec3(-55.0f,0.3f,50.0f),Vec3(42.0f,0.3f,13.0f),Vec3(-40.0f,0.3f,-50.0f),Vec3(0.0f,0.3f,23.0f) };//BigPieceのPosision一覧
+		Vec3 Pos[] = { Vec3(30.0f,0.3f,30.0f),Vec3(-35.0f,0.3f, -15.0f),Vec3(-58.0f,0.3f,45.0f),Vec3(45.0f,0.3f,-9.0f),Vec3(-11.0f,0.3f,38.0f),Vec3(21.0f,0.3f,-37.0f) };//BigPieceのPosision一覧
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 
 		for (int i = 0; i < m_BigPieceLength; i++)
@@ -237,7 +247,7 @@ namespace basecross {
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_5.csv");
+		ifstream ifs(levelPath += L"Level_9.csv");
 		if (ifs)
 		{
 			string line;
@@ -317,18 +327,10 @@ namespace basecross {
 					AddGameObject<Block3>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
 				case 14:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 105.0));
-					break;
-				case 15:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 85.0));
-					break;
-				case 16:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(39.0, 10, 1.0));
-					break;
-				case 17:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(60.0, 10, 1.0));
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(21.0, 10, 1.0));
 					break;
 				}
+
 			}
 
 		}
@@ -340,7 +342,7 @@ namespace basecross {
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage5", StartPos, 5);//ミニマップ生成
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage9", StartPos, 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
 		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(StartPos, 4.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
@@ -406,7 +408,7 @@ namespace basecross {
 	void GameStage9::OnCreate() {
 		try {
 			auto scene = App::GetApp()->GetScene<Scene>();
-			scene->SetGameStage(5);
+			scene->SetGameStage(9);
 			scene->SetPlayFlag(true);
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
@@ -425,7 +427,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapLevel5.csv", 150, 60);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevel9.csv", 150, 70);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
@@ -455,9 +457,8 @@ namespace basecross {
 
 	void GameStage9::OnUpdate()
 	{
-		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
-
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
@@ -481,9 +482,8 @@ namespace basecross {
 		}
 		if (m_CareerFlag == 3)//敵を倒したとき
 		{
-
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
-			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
 
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
 			m_CareerFlag = 4;
@@ -494,5 +494,6 @@ namespace basecross {
 		}
 
 	}
+
 
 }
