@@ -48,9 +48,12 @@ namespace basecross {
 			auto sprite3 = AddGameObject<Sprite>(300/2, 45/2, L"SelectGameStage2", Vec3(0.0f, -250.0f, 0.0f));
 			//auto sprite4 = AddGameObject<Sprite>(300/2, 45/2, L"SelectGameStage3", Vec3(0.0f, -325.0f, 0.0f));
 
-			auto decisionButton = AddGameObject<Sprite>(150, 75, L"DecisionButton", Vec3(0, -350, 0.0f));
-			decisionButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
+			auto decisionButton = AddGameObject<Sprite>(250, 125, L"Bbutton2", Vec3(0, -350, 0.0f));
+			decisionButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f));
 			SetSharedGameObject(L"decisionButton",decisionButton);
+			auto spaceButton = AddGameObject<Sprite>(150, 75, L"SpaceButton", Vec3(0.0f, -350.0f, 0.0f));
+			spaceButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f));
+			SetSharedGameObject(L"spaceButton", spaceButton);
 			//AddGameObject<Player>(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-5);
 
@@ -77,15 +80,26 @@ namespace basecross {
 
 	void TitleStage::OnUpdate()
 	{
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto elapsed = App::GetApp()->GetElapsedTime();
+		auto decButton = GetSharedGameObject<Sprite>(L"decisionButton");
+		auto spaceButton = GetSharedGameObject<Sprite>(L"spaceButton");
+
 		if (m_blinking > 0) {
 			m_blinking -= elapsed;
 		}
 		else {
 			m_blinking = 1.5f;
 		}
-		auto decButton = GetSharedGameObject<Sprite>(L"decisionButton");
-		decButton->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
+
+		if (cntlVec[0].bConnected) {
+			decButton->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking)); 
+			spaceButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f));
+		}
+		else {
+			decButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f));
+			spaceButton->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
+		}
 		//ResetButton();
 	}
 
