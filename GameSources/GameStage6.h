@@ -1,6 +1,6 @@
 /*!
 @file GameStage6.h
-@brief ゲームステージ11
+@brief ゲームステージ6
 */
 
 #pragma once
@@ -11,10 +11,8 @@ namespace basecross {
 	{
 		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
 		shared_ptr<SoundItem> m_BGM;
-
 		int m_CareerFlag;//ステージ全体のフラグ
 		int m_BigPieceLength;//BigPieceの合計の数
-
 
 		void CreateViewLight(); //ビューの作成
 		void CreatePlayer();//プレイヤーの作成

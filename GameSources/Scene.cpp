@@ -153,10 +153,6 @@ namespace basecross {
 		app->RegisterTexture(L"MiniMapStage9", strTexture);
 		strTexture = texPath + L"MiniMapStage10Ver3.0.png";//ミニマップStage10
 		app->RegisterTexture(L"MiniMapStage10", strTexture);
-		strTexture = texPath + L"MiniMapStage11.png";//ミニマップStage10
-		app->RegisterTexture(L"MiniMapStage11", strTexture);
-		strTexture = texPath + L"MiniMapStage12.png";//ミニマップStage10
-		app->RegisterTexture(L"MiniMapStage12", strTexture);
 		strTexture = texPath + L"MiniMapDataTutorialVer2.0.png";//ミニマップチュートリアル
 		app->RegisterTexture(L"MiniMapTutorial", strTexture);
 
@@ -340,10 +336,6 @@ namespace basecross {
 		app->RegisterTexture(L"LevelTexture", strTexture);	
 		strTexture = texPath + L"Skip_pad.png";
 		app->RegisterTexture(L"Skip_pad", strTexture);
-		strTexture = texPath + L"Skip.png";
-		app->RegisterTexture(L"Skip", strTexture);
-		strTexture = texPath + L"Space.png";
-		app->RegisterTexture(L"Space", strTexture);
 
 		//コメントファイルの文字テクスチャ
 		strTexture = comPath + L"AIaisatu.png";
@@ -553,14 +545,6 @@ namespace basecross {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage10>();
 		}
-		else if (event->m_MsgStr == L"ToGameStage11") {
-			//ゲームステージの設定
-			ResetActiveStage<GameStage11>();
-		}
-		else if (event->m_MsgStr == L"ToGameStage12") {
-			//ゲームステージの設定
-			ResetActiveStage<GameStage12>();
-		}
 
 		else if (event->m_MsgStr == L"ToStartStage") {
 			ResetActiveStage<TitleStage>();
@@ -582,9 +566,6 @@ namespace basecross {
 		}
 		else if (event->m_MsgStr == L"ToLoadStage") {
 			ResetActiveStage<LoadStage>();
-		}
-		else if (event->m_MsgStr == L"ToMovieStage") {
-			ResetActiveStage<MyMovieStage>();
 		}
 	}
 

@@ -56,18 +56,6 @@ namespace basecross {
 
 		}
 
-		for (auto ptrParticle : GetParticleVec())
-		{
-			for (auto& rParticleSprite : ptrParticle->GetParticleSpriteVec())
-			{
-				if (rParticleSprite.m_Active)
-				{
-					rParticleSprite.m_LocalScale = m_Scale;//エフェクトのサイズを決める
-				}
-			}
-		}
-
-
 	};
 
 

@@ -38,9 +38,8 @@ namespace basecross {
 		bool m_moveCheck;
 		bool m_display;
 		bool m_displayNumber;
-		bool m_closeNum[20];
+		bool m_closeNum[6];
 		bool m_bButtonSEFlag;
-		bool m_baseColorFlag;
 
 		Vec3 m_pos;
 		wstring m_spritesName;

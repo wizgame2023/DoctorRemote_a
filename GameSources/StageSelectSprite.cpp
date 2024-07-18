@@ -73,8 +73,7 @@ namespace basecross {
 		m_display(true),
 		m_displayNumber(true),
 		m_closeNum{ (false) },
-		m_bButtonSEFlag(false),
-		m_baseColorFlag(false)
+		m_bButtonSEFlag(false)
 	{}
 
 
@@ -110,7 +109,6 @@ namespace basecross {
 			}
 		}
 
-
 		m_selectSprite = stage->AddGameObject<Sprite>(m_sizeX + m_frameSize, m_sizeY + m_frameSize, m_frameName, m_pos, 0);
 		m_selectSprite->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 		//stage->AddGameObject<Sprite>(100.0f, 100.0f, L"White", GetSpritePostion(3,1), 0);
@@ -133,15 +131,6 @@ namespace basecross {
 			if (m_blinkTime <= 0) {
 				m_blinkTime = 0.0f;
 			}
-		}
-
-		if (!m_baseColorFlag) {
-			for (int i = 0; i < m_widthNum*m_heightNum; i++) {
-				if (m_closeNum[i]) {
-					m_baseSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.7f));
-				}
-			}
-			m_baseColorFlag = true;
 		}
 
 
@@ -201,7 +190,6 @@ namespace basecross {
 					m_moveCheck = true;
 				}
 			}
-			
 			if (!m_bButtonSEFlag) {
 				auto pieceSE = App::GetApp()->GetXAudio2Manager();
 				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
@@ -209,7 +197,7 @@ namespace basecross {
 			}
 
 		}
-		
+
 
 		//wstringstream wss(L"");
 		//auto scene = App::GetApp()->GetScene<Scene>();
