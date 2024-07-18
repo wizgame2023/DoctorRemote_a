@@ -41,9 +41,9 @@ namespace basecross {
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
 		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 30, 1.0f, Vec3(0.0f, 3.0f, 0.0f), Vec3(0.7f, 0.7f, 0.7f));
 		SetSharedGameObject(L"EnemyEffectPurple", EffectPtr4);
-		auto EffectPtr5 = AddGameObject<EffectMove>(L"EnemyPieceEffect", 0.7f, 10, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.3f, 0.3f, 0.3f));
+		auto EffectPtr5 = AddGameObject<EffectMove>(L"EnemyPieceEffect", 0.7f, 5, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.3f, 0.3f, 0.3f));
 		SetSharedGameObject(L"EnemyPieceEffectPurple", EffectPtr5);
-		auto EffectPtr6 = AddGameObject<EffectMove>(L"BigPieceEffect", 1.5f, 15, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		auto EffectPtr6 = AddGameObject<EffectMove>(L"BigPieceEffect", 1.5f, 7, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
 		SetSharedGameObject(L"BigPieceEffectPurple", EffectPtr6);
 		auto EffectPtr7 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr7);
