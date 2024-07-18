@@ -1,5 +1,5 @@
 /*!
-@file AndoStage.cpp
+@file UIScroll.cpp
 @brief ゲームステージ実体
 */
 
@@ -7,7 +7,7 @@
 #include "Project.h"
 
 namespace basecross {
-	AndoStage::AndoStage(const shared_ptr<Stage>& StagePtr,
+	UIScroll::UIScroll(const shared_ptr<Stage>& StagePtr,
 		const wstring& TextureKey, bool Trace,
 		const Vec2& StartScale, const Vec3& StartPos) :
 		GameObject(StagePtr),
@@ -18,8 +18,8 @@ namespace basecross {
 		m_TotalTime(0)
 	{}
 
-	AndoStage::~AndoStage() {}
-	void AndoStage::OnCreate() {
+	UIScroll::~UIScroll() {}
+	void UIScroll::OnCreate() {
 		float helfSize = 1.0f;
 		//頂点配列
 		m_BackupVertices = {
@@ -41,7 +41,7 @@ namespace basecross {
 		ptrDraw->SetTextureResource(m_TextureKey);
 	}
 
-	void AndoStage::OnUpdate() {
+	void UIScroll::OnUpdate() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		m_TotalTime -= elapsedTime * 0.5f;
 		if (m_TotalTime > 1.0f) {
