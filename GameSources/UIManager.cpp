@@ -27,6 +27,24 @@ namespace basecross {
 	void UIManager::OnCreate()
 	{
 		auto stage = GetStage();
+		auto& scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetGameStage() > 0)
+		{
+			auto mojiNum = 13 * 2;
+			auto firstmoji = 0;
+			Vec3 comPos = Vec3(250, -180, 0.0f);
+			if (scene->GetDashStatus() > 0) {
+				mojiNum = 13 * 4;
+				firstmoji = 3;
+				comPos = Vec3(250, -80, 0.0f);
+			}
+
+			m_com[0] = GetStage()->AddGameObject<CommentManager>(mojiNum, firstmoji, comPos, L"SousaCom");
+			m_com[0]->SetColor(Col4(0.0f));
+			m_com[1] = GetStage()->AddGameObject<CommentManager>(mojiNum, firstmoji, comPos, L"SousaCom2");
+			m_com[1]->SetColor(Col4(0.0f));
+
+		}
 	}
 
 	void UIManager::OnUpdate()
@@ -55,6 +73,7 @@ namespace basecross {
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		m_comTrans = m_comFrame->GetComponent<Transform>();
 		m_StageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");//ステージマネージャーを取得
 		auto player = stage->GetSharedGameObject<Player>(L"GamePlayer");
@@ -75,27 +94,50 @@ namespace basecross {
 		{
 			if (m_cfFlag) 
 			{
-				if (!m_comFlag) 
-				{
-					if (scene->GetGameStage() > 0) 
-					{
-						auto mojiNum = 13 * 1;
-						if(scene->GetDashStatus()>0){
-							mojiNum = 13 * 4;
-						}
-						m_com[0] = GetStage()->AddGameObject<CommentManager>(mojiNum, 0, Vec3(250, -180, 0.0f), L"SousaCom");
-					}
-					m_comFlag = true;
+				if (cntlVec[0].bConnected) {
+					m_com[0]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+					m_com[1]->SetColor(Col4(0.0f));
 				}
+				else {
+					m_com[0]->SetColor(Col4(0.0f));
+					m_com[1]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+				}
+
+				//if (!m_comFlag) 
+				//{
+				//	if (scene->GetGameStage() > 0) 
+				//	{
+				//		auto mojiNum = 13 * 2;
+				//		auto firstmoji = 0;
+				//		Vec3 comPos = Vec3(250, -180, 0.0f);
+				//		if(scene->GetDashStatus()>0){
+				//			mojiNum = 13 * 4;
+				//			firstmoji = 3;
+				//			comPos = Vec3(250, -80, 0.0f);
+				//		}
+
+				//		if (cntlVec[0].bConnected) {
+				//			m_com[0] = GetStage()->AddGameObject<CommentManager>(mojiNum, firstmoji, comPos, L"SousaCom");
+				//		}
+				//		else {
+				//			m_com[1] = GetStage()->AddGameObject<CommentManager>(mojiNum, firstmoji, comPos, L"SousaCom2");
+				//		}
+				//	}
+				//	m_comFlag = true;
+				//}
 			}
 			//敵を倒したらコメント
 			if (m_StageManager->GetEnemyFlag())
 			{
 				if (!m_comFlag2) 
 				{
-					m_com[0]->ThisDestroy();
-					int a = 0;
-					m_com[1] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
+					if (m_com[0]) {
+						m_com[0]->ThisDestroy();
+					}
+					if (m_com[1]) {
+						m_com[1]->ThisDestroy();
+					}
+					m_com[2] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
 					m_comFlag2 = true;
 				}
 			}

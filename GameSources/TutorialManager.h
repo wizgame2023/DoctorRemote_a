@@ -34,6 +34,7 @@ namespace basecross {
 
 		shared_ptr<Sprite> m_triDot[10];
 		shared_ptr<Sprite> m_bButton;
+		shared_ptr<Sprite> m_spaceButton;
 		shared_ptr<CommentManager> m_com[20];
 		shared_ptr<Sprite> m_mapSetumei;
 		shared_ptr<Sprite> m_frame[10];
