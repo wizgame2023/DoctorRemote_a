@@ -233,8 +233,6 @@ namespace basecross {
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_7.csv");
-
 		ifstream ifs(levelPath += L"Level_12ver2.0.csv");
 
 		if (ifs)
