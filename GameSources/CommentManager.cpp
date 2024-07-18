@@ -25,7 +25,8 @@ namespace basecross {
 		m_moji{ 13,13,13,13,13,13,13,13,13,13 },
 		m_cnt(0),
 		m_pos(Vec3()),
-		m_meshResName(L"comment")
+		m_meshResName(L"comment"),
+		m_color(1.0f)
 	{}
 	//
 	CommentManager::CommentManager(const shared_ptr<Stage>& stagePtr, const int moji,const int line, const Col4 color
@@ -125,19 +126,27 @@ namespace basecross {
 		//必要な行数文字列を生成
 		if (m_cnt <= m_mojiLine) {
 			if (m_count < 0) {
+				//途中の行からはじまるとき
 				if (m_addLine > 0) {
+					//最後の行の文字を揃える
 					m_moji[m_mojiLine] = m_mojiNum % (m_column * (m_cnt + 1));
 				}
+
+				//1文字ずつ生成
 				m_com[m_cnt] = stage->AddGameObject<Comment>(m_moji[m_cnt], m_cnt + m_addLine, m_mtime,
 					m_widthSize, m_heigthSize, m_sizeW, m_sizeH,
 					m_column,m_line, m_pos, m_meshResName);
-				m_com[m_cnt]->SetColor(Col4(m_color));
+				m_com[m_cnt]->SetColor(m_color);
 				m_count = m_mtime * m_column;
 				m_cnt++;
-				int a = 0;
 			}
 		}
+		for (int i = 0; i < m_cnt; i++) {
+			m_com[i]->SetColor(m_color);
+		}
+
 	}
+	
 
 	//現在の生成されている文字列を自分自身を削除
 	void CommentManager::ThisDestroy() {
@@ -148,7 +157,7 @@ namespace basecross {
 	}
 	
 	void CommentManager::SetColor(Col4 color) {
-		m_color=color;
+		m_color = color;
 	}
 	
 	void CommentManager::SetIntervalTime(float time) {
