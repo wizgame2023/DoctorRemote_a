@@ -146,7 +146,7 @@ namespace basecross {
 
 			auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
 			PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"BigPieceEffectPurple", false);
-			PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition() - Vec3(0.0f, 0.0f, 0.0f));
+			PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition() - Vec3(0.0f, 1.0f, 0.0f));
 
 
 		}
