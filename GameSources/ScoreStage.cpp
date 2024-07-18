@@ -43,8 +43,17 @@ namespace basecross {
 			scene->SetFirstTimeStage(stage);
 
 			AddGameObject<Sprite>(1280, 800, L"ScoreWaku", Vec3(), -1);
-			auto moji = AddGameObject<Comment>(9, 0, 0.1f, 270, 40, 270, 40, 9, 1,
-				Vec3(325.0f, 360.0f, 0.0f), L"ResultMoji4"); //「Aボタンでスキップ」を表示
+
+			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+			if (cntlVec[0].bConnected) {
+				auto moji = AddGameObject<Comment>(9, 0, 0.1f, 270, 40, 270, 40, 9, 1,
+					Vec3(325.0f, 360.0f, 0.0f), L"ResultMoji4"); //「Aボタンでスキップ」を表示
+			}
+			else {
+				auto moji = AddGameObject<Sprite>(100, 100, L"SButton", Vec3(325.0f, 360.0f, 0.0f)); //「Aボタンでスキップ」を表示
+
+			}
+
 			m_time = App::GetApp()->GetScene<Scene>()->GetTime();
 		}
 		catch (...) {
