@@ -156,13 +156,13 @@ namespace basecross {
 		}
 		if (m_countUp >= 4.0f)
 		{
-			GetStage()->RemoveGameObject<AndoStage>(m_scroll);
+			GetStage()->RemoveGameObject<UIScroll>(m_scroll);
 		}
 	}
 
 	//スクロールするスプライト作成
 	void UIManager::CreateScrollSprite() {
-		m_scroll = GetStage()->AddGameObject<AndoStage>(L"CAUTION", true,
+		m_scroll = GetStage()->AddGameObject<UIScroll>(L"CAUTION", true,
 			Vec2(600, 100.0f), Vec3(0.0f, 0.0f, 0.0f));
 		GetStage()->SetSharedGameObject(L"Scroll", m_scroll);
 	}
