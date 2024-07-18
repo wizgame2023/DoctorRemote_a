@@ -19,6 +19,7 @@ namespace basecross {
 		float m_countUp = 0.0f;
 		float m_comX;
 		float m_anCollar;
+		float m_blinking = 1.5;
 		bool m_loadSEFlag = false;
 		bool m_flag;
 		bool m_onFade;
