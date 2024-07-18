@@ -234,13 +234,13 @@ namespace basecross {
 		//BigPieceのPos一覧
 		Vec3 Pos[] = 
 		{
-			Vec3(-18.2f,0.3f,37.6f),//1
-			Vec3(15.0f,0.3f,60.5f),//2
+			Vec3(-29.2f,0.3f,35.6f),//1
+			Vec3(3.0f,0.3f,49.5f),//2
 			Vec3(54.7f,0.3f,65.0f),//3
 			Vec3(62.0f,0.3f,5.0f),//4
-			Vec3(10.0f,0.3f,-67.0f),//5
-			Vec3(-65.0f,0.3f,-65.0f),//6
-			Vec3(-65.0f,0.3f,65.0f)//7
+			Vec3(53.7f,0.3f,-65.2f),//5
+			Vec3(-63.6f,0.3f,-71.0f),//6
+			Vec3(-53.2f,0.3f,-29.0f)//7
 
 		};
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数

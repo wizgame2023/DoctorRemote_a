@@ -225,17 +225,6 @@ namespace basecross {
 
 	void GameStage12::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
-		//BigPieceのPos一覧
-		Vec3 Pos[] =
-		{
-			Vec3(-40.0f,0.3f,63.0f),//1
-			Vec3(35.0f,0.3f,35.0f),//2
-			Vec3(65.0f,0.3f,30.0f),//3
-			Vec3(65.0f,0.3f,5.0f),//4
-			Vec3(40.0f,0.3f,-63.0f),//5
-			Vec3(-63.0f,0.3f,-65.0f),//6
-			Vec3(-23.0f,0.3f,-55.0f)//7
-
 		Vec3 Pos[] = { Vec3(30.0f,0.3f,30.0f),Vec3(-35.0f,0.3f, -15.0f),Vec3(-58.0f,0.3f,45.0f),Vec3(45.0f,0.3f,-9.0f),Vec3(-11.0f,0.3f,38.0f),Vec3(21.0f,0.3f,-37.0f) };//BigPieceのPosision一覧
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 
