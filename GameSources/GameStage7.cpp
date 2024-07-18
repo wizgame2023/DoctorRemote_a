@@ -260,7 +260,7 @@ namespace basecross {
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_12.csv");
+		ifstream ifs(levelPath += L"Level_12ver2.0.csv");
 		if (ifs)
 		{
 			string line;
@@ -268,6 +268,7 @@ namespace basecross {
 			{
 				vector<int> mapData;
 
+				line += ",";
 				string data;
 				istringstream ss(line);
 				while (getline(ss, data, ','))

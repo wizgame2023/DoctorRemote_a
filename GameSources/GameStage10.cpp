@@ -258,7 +258,7 @@ namespace basecross {
 			while (getline(ifs, line))
 			{
 				vector<int> mapData;
-
+				line += ",";
 				string data;
 				istringstream ss(line);
 				while (getline(ss, data, ','))
