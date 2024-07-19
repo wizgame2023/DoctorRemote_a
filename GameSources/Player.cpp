@@ -645,7 +645,7 @@ namespace basecross {
 		Vec2 input = GetInputState();//入力を取得
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 
-		if (cntlVec[0].bRightTrigger >= 0.8f || keyState.m_bPressedKeyTbl[VK_SHIFT] && !m_dashCooldown) //RTボタンを押したら
+		if ((cntlVec[0].bRightTrigger >= 0.8f || keyState.m_bPressedKeyTbl[VK_SHIFT]) && !m_dashCooldown) //RTボタンを押したら		{
 		{
 			m_dashCheck = true;//ダッシュできるようになる
 			m_dashCooldown = true;//クールタイムのフラグを入れる

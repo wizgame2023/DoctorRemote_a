@@ -1,6 +1,6 @@
 /*!
 @file GameStage7.cpp
-@brief ゲームステージ7の実体
+@brief ゲームステージ12の実体
 */
 
 #include "stdafx.h"
@@ -16,7 +16,7 @@ namespace basecross {
 
 
 		// カメラの設定
-		auto camera = ObjectFactory::Create<MainCamera>(90.0f);
+		auto camera = ObjectFactory::Create<MainCamera>(180.0f);
 		//camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
 		//camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
@@ -56,9 +56,9 @@ namespace basecross {
 	void GameStage7::CreatePlayer()//改善すべき点
 	{
 		//Playerの出現場所を決める
-		float deg = -180;
+		float deg = 90;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f),1.7f);
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f), 1.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 	}
@@ -78,12 +78,13 @@ namespace basecross {
 	//敵を作成
 	void GameStage7::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>(Vec3(57.0f, 0.5f, 45.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));//Enemy����
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		AddGameObject<EnemyMovieManager>(EnemyPos, Vec3(35.0f, 0.1f, 40.0f), Vec3(58.0f, 4.0f, 33.5f), EnemyPos);
+		AddGameObject<EnemyMovieManager>(EnemyPos + Vec3(0.0f, -1.0f, -13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
+
 	}
 
 	//敵の欠片を作成
@@ -91,19 +92,19 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//1			
-				Vec3(7.0f,0.1f,-64.0f),
+				Vec3(12.0f,0.1f,-19.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//2
-				Vec3(-5.0f,0.1f,-60.0f),
+				Vec3(28.2f,0.1f,-17.9f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//3
-				Vec3(-14.0f,0.1f,-71.0f),
+				Vec3(37.3f,0.1f,-21.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 

@@ -97,8 +97,14 @@ namespace basecross {
 			m_MovieBand = stage->AddGameObject<Sprite>(1280, 800, L"MovieBand", Vec3(), 0);//帯を出す
 			m_MovieBand->AddTag(L"MovieSprite");//ムービー用のスプライトタグを追加
 
-			m_SkipMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip_pad", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
-			m_SkipMoji->AddTag(L"MovieSprite");
+			m_padSkip = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip_pad", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
+			m_padSkip->AddTag(L"MovieSprite");
+
+			m_speceMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Space", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
+			m_speceMoji->AddTag(L"MovieSprite");
+
+			m_skipMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
+			m_skipMoji->AddTag(L"MovieSprite");
 
 			//デバック用
 			m_MovieCamera = ObjectFactory::Create<Camera>();
@@ -201,18 +207,42 @@ namespace basecross {
 
 		}
 
-		//スキップ機能
 		if (m_Count >= 1)
 		{
-			auto pad = App::GetApp()->GetInputDevice().GetControlerVec();
-			auto keyBoard = App::GetApp()->GetInputDevice().GetKeyState();
-			if (pad[0].wButtons & XINPUT_GAMEPAD_B||keyBoard.m_bPushKeyTbl[VK_SPACE])
+			auto pad = App::GetApp()->GetInputDevice().GetControlerVec();//pad取得
+			auto keyBoard = App::GetApp()->GetInputDevice().GetKeyState();//キーボード取得
+
+			if (pad[0].bConnected)//キーボードが接続している場合
 			{
-				MyRemove();//自分自身を消去
+				m_padSkip->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+				m_skipMoji->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
+				m_speceMoji->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
+			}
+			else//キーボードが接続している場合
+			{
+				m_padSkip->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
+				m_skipMoji->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+				m_speceMoji->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+			}
+
+			//待機時間
+			auto& app = App::GetApp();
+			float delta = app->GetElapsedTime();//デルタタイムを取得
+
+			//スキップ機能
+			if (m_rockSkip > 0)
+			{
+				m_rockSkip -= delta;
+			}
+			if (m_rockSkip < 0)
+			{
+				if (pad[0].wPressedButtons & XINPUT_GAMEPAD_B || keyBoard.m_bPushKeyTbl[VK_SPACE])
+				{
+					MyRemove();//自分自身を消去
+				}
 			}
 
 		}
-	
 		//if (m_Count > 0)
 		//{
 		//	wstringstream wss(L"");
@@ -269,7 +299,7 @@ namespace basecross {
 		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
 		GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
 
-		GetStage()->RemoveGameObject<Sprite>(m_SkipMoji);//スキップの文字列を消す
+		GetStage()->RemoveGameObject<Sprite>(m_skipMoji);//スキップの文字列を消す
 
 		GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//進行度を進める(Bossが攻撃するようになる予定)
 

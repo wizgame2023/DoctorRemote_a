@@ -198,9 +198,9 @@ namespace basecross {
 				m_Sprite->SetColor(m_SpriteCol);
 				if (m_SpriteCol.w > 1.0f)
 				{
-					GetStage()->AddGameObject<Sprite>(1280, 800, L"Clear", Vec3(), 0);//帯を出す
+					GetStage()->AddGameObject<Sprite>(1067, 200, L"Clear", Vec3(), 0);//帯を出す
 					m_endTime += delta;
-					if (m_endTime > 1.0f)
+					if (m_endTime > 2.0f)
 					{
 						PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToScoreStage");//スコアステージに進む
 					}

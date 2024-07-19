@@ -78,12 +78,13 @@ namespace basecross {
 	//敵を作成
 	void GameStage5::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>(Vec3(-31.0f, 0.5f, -18.5f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(-62.6f, 0.5f, 40.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
 		//Enemyのムービーシーン
-		AddGameObject<EnemyMovieManager>(EnemyPos+Vec3(5.0f,0.0f,2.0f), Vec3(20.0f, 0.1f, 20.0f), Vec3(-29.6f, 4.0f, -26.5f), EnemyPos);
+		AddGameObject<EnemyMovieManager>(EnemyPos, Vec3(40.0f, 0.1f, 40.0f), Vec3(-62.6f, 4.0f, 29.75f), EnemyPos);
+
 	}
 
 	//敵の欠片を作成
@@ -91,71 +92,71 @@ namespace basecross {
 
 		vector<vector<Vec3>> vec = {
 			{//1			
-				Vec3(-24.0f,0.1f,-24.0f),
+				Vec3(23.0f,0.1f,-18.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//2
-				Vec3(-21.0f,0.1f,-37.0f),
+				Vec3(36.0f,0.1f,-32.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//3
-				Vec3(-2.0f,0.1f,-45.0f),
+				Vec3(9.0f,0.1f,-56.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//4
-				Vec3(-3.0f,0.1f,-71.0f),
+				Vec3(-5.0f,0.1f,-59.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//5
-				Vec3(45.0f,0.1f,45.0f),
+				Vec3(-60.0f,0.1f,-16.0f),		
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//6
-				Vec3(48.0f,0.1f,70.0f),
+				Vec3(-59.0f,0.1f,-0.7f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//7
-				Vec3(-3.0f,0.1f,52.0f),
+				Vec3(-60.0f,0.1f,17.0f),	
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//8
-				Vec3(8.0f,0.1f,61.0f),
+				Vec3(-1.0f,0.1f,60.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//9
-				Vec3(-35.0f,0.1f,40.0f),
+				Vec3(5.0f,0.1f,54.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//10
-				Vec3(-46.0f,0.1f,-11.0f),
+				Vec3(29.0f,0.1f,31.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//11
-				Vec3(-70.0f,0.1f,-32.0f),
+				Vec3(59.0f,0.1f,3.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
 			},
 			{//12
-				Vec3(-20.0f,0.1f,-0.5f),
+				Vec3(51.0f,0.1f,-6.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 			}
@@ -216,7 +217,7 @@ namespace basecross {
 	void GameStage5::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 
-		Vec3 Pos[] = { Vec3(-20.0f,0.3f,10.0f),Vec3(-63.0f,0.3f,-48.0f),Vec3(-55.0f,0.3f,50.0f),Vec3(42.0f,0.3f,13.0f),Vec3(-40.0f,0.3f,-50.0f),Vec3(0.0f,0.3f,23.0f) };//BigPieceのPosision一覧
+		Vec3 Pos[] = { Vec3(35.2f,0.3f,40.0f),Vec3(-40.0f,0.3f,-3.0f),Vec3(-60.0f,0.3f,5.0f),Vec3(37.0f,0.3f,0.0f),Vec3(-50.0f,0.3f,-5.0f),Vec3(33.0f,0.3f,-20.0f) };
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 
 		for (int i = 0; i < m_BigPieceLength; i++)
@@ -237,7 +238,7 @@ namespace basecross {
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_5.csv");
+		ifstream ifs(levelPath += L"Level_6.csv");
 		if (ifs)
 		{
 			string line;
@@ -340,7 +341,7 @@ namespace basecross {
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage5", StartPos, 5);//ミニマップ生成
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage6", StartPos, 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
 		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(StartPos, 4.0f, 150.0f, Lenght);//ミニマップ上でPlayerの位置を表示
@@ -406,7 +407,7 @@ namespace basecross {
 	void GameStage5::OnCreate() {
 		try {
 			auto scene = App::GetApp()->GetScene<Scene>();
-			scene->SetGameStage(5);
+			scene->SetGameStage(6);
 			scene->SetPlayFlag(true);
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
@@ -425,7 +426,7 @@ namespace basecross {
 			//敵のかけらを表示
 			CreateEnemyPiece();
 			//CreateEnemyPiece2();//ランダムにかけらが出るようになる
-			AddGameObject<RandCreateManager>(L"kakeraMapLevel5.csv", 150, 60);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevel6.csv", 150, 60);//ランダムにかけらが出るようになる
 
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
