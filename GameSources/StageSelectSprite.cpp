@@ -73,7 +73,8 @@ namespace basecross {
 		m_display(true),
 		m_displayNumber(true),
 		m_closeNum{ (false) },
-		m_bButtonSEFlag(false)
+		m_bButtonSEFlag(false),
+		m_baseColorFlag(false) 
 	{}
 
 
@@ -133,6 +134,14 @@ namespace basecross {
 			}
 		}
 
+		if (!m_baseColorFlag) {
+			for (int i = 0; i < m_widthNum * m_heightNum; i++) {
+				if (m_closeNum[i]) {
+					m_baseSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.7f));
+				}
+			}
+			m_baseColorFlag = true;
+		}
 
 		if (m_moveCheck) return;
 		//左スティック

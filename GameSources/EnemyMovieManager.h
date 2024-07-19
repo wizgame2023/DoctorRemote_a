@@ -26,13 +26,16 @@ namespace basecross {
 		weak_ptr<ViewBase> m_StageView;//ステージのビュー(ゲームプレイ用)
 		shared_ptr<Sprite> m_MovieBand;//ムービー用の帯
 		shared_ptr<Sprite> m_BossMoji;//Bossを表すための文字
-		shared_ptr<Sprite> m_SkipMoji;//Bossを表すための文字
+		shared_ptr<Sprite> m_padSkip;//Bossを表すための文字
+		shared_ptr<Sprite> m_skipMoji;//Bossを表すための文字
+		shared_ptr<Sprite> m_speceMoji;//Bossを表すための文字
 		weak_ptr<Player> m_Player;//プレイヤー
 		shared_ptr<UIScroll> m_scroll;
 		bool m_MovieCheck;
 
 		int m_Count;//フラグ管理
 		float m_Time;
+		float m_rockSkip;
 	public:
 		EnemyMovieManager(shared_ptr<Stage>& stage,Vec3 Pos, Vec3 scale,Vec3 moviePos,Vec3 m_MovieAt);
 		~EnemyMovieManager();
