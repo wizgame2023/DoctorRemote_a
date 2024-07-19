@@ -66,9 +66,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SanpeiStage.h">
       <Filter>Headers\SampleStage</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)AndoStage.h">
-      <Filter>Headers\SampleStage</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)OkawaraStage.h">
       <Filter>Headers\SampleStage</Filter>
     </ClInclude>
@@ -274,6 +271,9 @@
       <Filter>Headers\Manager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIScroll.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -295,9 +295,6 @@
       <Filter>Sources\SmapleStage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SanpeiStage.cpp">
-      <Filter>Sources\SmapleStage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)AndoStage.cpp">
       <Filter>Sources\SmapleStage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)OkawaraStage.cpp">
@@ -505,5 +502,8 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIScroll.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

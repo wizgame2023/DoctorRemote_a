@@ -67,6 +67,8 @@ namespace basecross {
 		app->RegisterTexture(L"TriDot", strTexture);
 		strTexture = texPath + L"Button.png";
 		app->RegisterTexture(L"Bbutton", strTexture);
+		strTexture = texPath + L"Bbutton2.png";
+		app->RegisterTexture(L"Bbutton2", strTexture);
 		strTexture = texPath + L"DecisionButton.png";
 		app->RegisterTexture(L"DecisionButton", strTexture);
 		strTexture = texPath + L"RetrunButton.png";
@@ -208,6 +210,11 @@ namespace basecross {
 		app->RegisterTexture(L"CheckMark", strTexture);
 		strTexture = texPath + L"Sensuikan.png";
 		app->RegisterTexture(L"Sensuikan", strTexture);
+		strTexture = texPath + L"SpaceButton.png";
+		app->RegisterTexture(L"SpaceButton", strTexture);
+		strTexture = texPath + L"SButton.png";
+		app->RegisterTexture(L"SButton", strTexture);
+
 
 		//ムービーの枠組み
 		strTexture = texPath + L"MovieBand.png";
@@ -279,6 +286,8 @@ namespace basecross {
 		app->RegisterTexture(L"comment", strTexture);
 		strTexture = texPath + L"SousaCom.png";
 		app->RegisterTexture(L"SousaCom", strTexture);
+		strTexture = texPath + L"SousaCom2.png";
+		app->RegisterTexture(L"SousaCom2", strTexture);
 		strTexture = texPath + L"CommentFrame.png";
 		app->RegisterTexture(L"CommentFrame", strTexture);
 		strTexture = texPath + L"ResultMoji1.png";
@@ -359,6 +368,8 @@ namespace basecross {
 		app->RegisterTexture(L"Dassyutu", strTexture);
 		strTexture = comPath + L"Sousa.png";
 		app->RegisterTexture(L"Sousa", strTexture);
+		strTexture = comPath + L"Sousa2.png";
+		app->RegisterTexture(L"Sousa2", strTexture);
 		strTexture = comPath + L"UISetumeiEnd.png";
 		app->RegisterTexture(L"UISetumeiEnd", strTexture);
 		strTexture = comPath + L"Setumei_1.png";
@@ -542,15 +553,14 @@ namespace basecross {
 			//ゲームステージの設定
 			ResetActiveStage<GameStage10>();
 		}
-		else if (event->m_MsgStr == L"ToGameStage11") {
-			//ゲームステージの設定
-			ResetActiveStage<GameStage11>();
-		}
-		else if (event->m_MsgStr == L"ToGameStage12") {
-			//ゲームステージの設定
-			ResetActiveStage<GameStage12>();
-		}
-
+		//else if (event->m_MsgStr == L"ToGameStage11") {
+		//	//ゲームステージの設定
+		//	ResetActiveStage<GameStage11>();
+		//}
+		//else if (event->m_MsgStr == L"ToGameStage12") {
+		//	//ゲームステージの設定
+		//	ResetActiveStage<GameStage12>();
+		//}
 		else if (event->m_MsgStr == L"ToStartStage") {
 			ResetActiveStage<TitleStage>();
 		}

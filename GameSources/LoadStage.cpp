@@ -33,9 +33,14 @@ namespace basecross {
 			m_sprite = AddGameObject<Sprite>(70, 50, L"Sensuikan", Vec3(m_comX, -300, 0));
 			m_comment = AddGameObject<Comment>(6, 0, 0.2f, 400, 100, 200, 50, 6, 1,
 				Vec3(400.0f, -220.0f, 0.0f), L"LoadMoji2", true); // 「移動中...」
-			auto moji = AddGameObject<Comment>(7, 0, 0.2f, 256, 64, 200, 50, 7, 1, // Bボタンで次へ
-				Vec3(400.0f, -335.0f, 0.0f), L"LoadMoji3");
 
+			
+			auto decisionButton = AddGameObject<Sprite>(150, 75, L"LoadMoji3", Vec3(500.0f, -365.0f, 0.0f),2);
+			decisionButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f)); // 「Bボタンで次へ」
+			SetSharedGameObject(L"decisionButton", decisionButton);
+			auto spaceButton = AddGameObject<Sprite>(150, 75, L"SpaceButton", Vec3(500.0f, -365.0f, 0.0f),2);
+			spaceButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f)); // 「Space」
+			SetSharedGameObject(L"spaceButton", spaceButton);
 
 			m_blackBoard = AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0), 4);
 			m_blackBoard->SetColor(Col4(1, 1, 1, 0));
@@ -49,10 +54,31 @@ namespace basecross {
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		App::GetApp()->GetScene<Scene>()->ResetButton();
 		StageChange();
-
 		float delta = App::GetApp()->GetElapsedTime();
 		m_countUp += 1 * delta;
 		StageChange();
+
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto decButton = GetSharedGameObject<Sprite>(L"decisionButton");
+		auto spaceButton = GetSharedGameObject<Sprite>(L"spaceButton");
+
+		if (m_blinking > 0) {
+			m_blinking -= delta;
+		}
+		else {
+			m_blinking = 1.5f;
+		}
+
+		if (cntlVec[0].bConnected) {
+			decButton->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
+			spaceButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f));
+		}
+		else {
+			decButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f));
+			spaceButton->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
+		}
+
+
 
 		if (m_count == 0)
 		{

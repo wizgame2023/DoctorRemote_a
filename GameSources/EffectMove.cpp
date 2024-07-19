@@ -62,7 +62,7 @@ namespace basecross {
 			{
 				if (rParticleSprite.m_Active)
 				{
-					rParticleSprite.m_LocalScale = m_Scale;//エフェクトのサイズを決める
+					rParticleSprite.m_LocalScale = m_Scale;
 				}
 			}
 		}

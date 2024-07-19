@@ -41,9 +41,9 @@ namespace basecross {
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
 		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 30, 1.0f, Vec3(0.0f, 3.0f, 0.0f), Vec3(0.7f, 0.7f, 0.7f));
 		SetSharedGameObject(L"EnemyEffectPurple", EffectPtr4);
-		auto EffectPtr5 = AddGameObject<EffectMove>(L"EnemyPieceEffect", 0.7f, 10, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.3f, 0.3f, 0.3f));
+		auto EffectPtr5 = AddGameObject<EffectMove>(L"EnemyPieceEffect", 0.7f, 5, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.3f, 0.3f, 0.3f));
 		SetSharedGameObject(L"EnemyPieceEffectPurple", EffectPtr5);
-		auto EffectPtr6 = AddGameObject<EffectMove>(L"BigPieceEffect", 1.5f, 15, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		auto EffectPtr6 = AddGameObject<EffectMove>(L"BigPieceEffect", 1.5f, 7, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
 		SetSharedGameObject(L"BigPieceEffectPurple", EffectPtr6);
 		auto EffectPtr7 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr7);
@@ -115,7 +115,7 @@ namespace basecross {
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//5
-				Vec3(-60.0f,0.1f,-16.0f),
+				Vec3(-60.0f,0.1f,-16.0f),		
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
@@ -126,7 +126,7 @@ namespace basecross {
 				Vec3(2.0f,2.0f,2.0f)
 			},
 			{//7
-				Vec3(-60.0f,0.1f,17.0f),
+				Vec3(-60.0f,0.1f,17.0f),	
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
 
@@ -217,7 +217,7 @@ namespace basecross {
 	void GameStage5::CerateBreakEnemyPiece()//壊れる壁の先にあるかけら
 	{
 
-		Vec3 Pos[] = { Vec3(35.2f,0.3f,40.0f),Vec3(-40.0f,0.3f,-3.0f),Vec3(-60.0f,0.3f,5.0f),Vec3(37.0f,0.3f,0.0f),Vec3(-50.0f,0.3f,-5.0f),Vec3(33.0f,0.3f,-20.0f) };//BigPieceのPosision一覧
+		Vec3 Pos[] = { Vec3(35.2f,0.3f,40.0f),Vec3(-40.0f,0.3f,-3.0f),Vec3(-60.0f,0.3f,5.0f),Vec3(37.0f,0.3f,0.0f),Vec3(-50.0f,0.3f,-5.0f),Vec3(33.0f,0.3f,-20.0f) };
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
 
 		for (int i = 0; i < m_BigPieceLength; i++)
@@ -264,7 +264,6 @@ namespace basecross {
 		//ミニマップ表示のために使用
 		float SpriteLenght = 225.0f;
 		Vec3 SpriteStartPos = Vec3(640.0f - (SpriteLenght / 2.0f) - 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.0f, 0.0f);
-
 
 		for (int r = 0; r < stageMap.size(); r++)
 		{
@@ -318,16 +317,27 @@ namespace basecross {
 				case 13:
 					AddGameObject<Block3>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
+				case 14:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 105.0));
+					break;
+				case 15:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 85.0));
+					break;
+				case 16:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(39.0, 10, 1.0));
+					break;
+				case 17:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(60.0, 10, 1.0));
+					break;
 				}
-
 			}
 
 		}
 	}
 
 	void GameStage5::CreateMiniMap()
-	{	
-		float Lenght = 225.0f;//ミニマップの直径
+	{
+		float Lenght = 225.0f;//ミニマップの直径	
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 150.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
@@ -403,7 +413,6 @@ namespace basecross {
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
 			SetSharedGameObject(L"StageManager", stageManager);
 
-
 			//テクスチャ、モデルの設定データ
 			//auto data = AddGameObject<Data>();
 			auto timeManager = AddGameObject<TimeManager>();//時間制限
@@ -431,6 +440,14 @@ namespace basecross {
 			//BGM
 			BaseBGM();
 
+			////敵を生成
+			//CreateEnemy();
+			//GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
+			////レーダーを生成
+			//CreateRadar();
+			//m_CareerFlag = 1;
+
+
 		}
 		catch (...) {
 			throw;
@@ -439,8 +456,9 @@ namespace basecross {
 
 	void GameStage5::OnUpdate()
 	{
-		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//デバック用
+
+		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{

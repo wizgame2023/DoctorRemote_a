@@ -1,6 +1,6 @@
 /*!
-@file GameStage8.h
-@brief ゲームステージ7
+@file GameStage2.h
+@brief ゲームステージ8
 */
 
 #pragma once
@@ -41,7 +41,5 @@ namespace basecross {
 		virtual void OnDestroy() override;
 
 		void SetCollisionSwich(bool ONorOFF);
-
-
 	};
 }

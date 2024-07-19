@@ -14,7 +14,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)AndoStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIScroll.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BigPiece.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block2.h" />
@@ -38,17 +38,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage1.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage3.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage4.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage5.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage6.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage7.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage4.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage3.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage9.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage5.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage8.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage10.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage11.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage9.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Garge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Ground.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HemmiStage.h" />
@@ -95,7 +93,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)AndoStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIScroll.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BigPiece.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block2.cpp" />
@@ -119,17 +117,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage1.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage3.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage4.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage5.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage6.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage7.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage4.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage3.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage9.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage5.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage8.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage10.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage11.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage12.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage9.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Garge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Ground.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HemmiStage.cpp" />

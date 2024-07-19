@@ -1,6 +1,6 @@
 /*!
 @file GameStage6.cpp
-@brief ƒQ[ƒ€ƒXƒe[ƒW11‚ÌÀ‘Ì
+@brief ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ã‚¸11ã®å®Ÿä½“
 */
 
 #include "stdafx.h"
@@ -8,31 +8,30 @@
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
-//	ƒQ[ƒ€ƒXƒe[ƒWƒNƒ‰ƒXÀ‘Ì
+//	ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒ©ã‚¹å®Ÿä½“
 //--------------------------------------------------------------------------------------
 
-//ƒrƒ…[‚Æƒ‰ƒCƒg‚Ìì¬
+//ãƒ“ãƒ¥ãƒ¼ã¨ãƒ©ã‚¤ãƒˆã®ä½œæˆ
 	void GameStage6::CreateViewLight() {
 
 
-		// ƒJƒƒ‰‚Ìİ’è
+		// ã‚«ãƒ¡ãƒ©ã®è¨­å®š
 		auto camera = ObjectFactory::Create<MainCamera>(180.0f);
 		//camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
 		//camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
-		// ƒrƒ…[‚ÉƒJƒƒ‰‚ğİ’è
+		// ãƒ“ãƒ¥ãƒ¼ã«ã‚«ãƒ¡ãƒ©ã‚’è¨­å®š
 		m_View = CreateView<SingleView>();
 		m_View->SetCamera(camera);
 
-		//ƒ}ƒ‹ƒ`ƒ‰ƒCƒg‚Ìì¬
+		//ãƒãƒ«ãƒãƒ©ã‚¤ãƒˆã®ä½œæˆ
 		auto light = CreateLight<MultiLight>();
-		light->SetDefaultLighting(); //ƒfƒtƒHƒ‹ƒg‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğw’è	
-
-		//AddGameObject<MyLight>();//Œõ‚Ì•\Œ»‚ğ‚±‚ê‚Å‚â‚é
+		light->SetDefaultLighting(); //ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’æŒ‡å®š	
+		//AddGameObject<MyLight>();//å…‰ã®è¡¨ç¾ã‚’ã“ã‚Œã§ã‚„ã‚‹
 
 	}
 
-	void GameStage6::CreateEffect()//ƒGƒtƒFƒNƒg¶¬
+	void GameStage6::CreateEffect()//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	{
 		auto EffectPtr = AddGameObject<Effect>(L"PlayerEffectGreen", 0.5f, 8, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.1f, 0.1f, 0.1f));
 		SetSharedGameObject(L"Effect", EffectPtr);
@@ -42,9 +41,9 @@ namespace basecross {
 		SetSharedGameObject(L"PlayerEffectWhite", EffectPtr3);
 		auto EffectPtr4 = AddGameObject<EffectMove>(L"EnemyDamageEffect", 1.5f, 30, 1.0f, Vec3(0.0f, 3.0f, 0.0f), Vec3(0.7f, 0.7f, 0.7f));
 		SetSharedGameObject(L"EnemyEffectPurple", EffectPtr4);
-		auto EffectPtr5 = AddGameObject<EffectMove>(L"EnemyPieceEffect", 0.7f, 10, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.3f, 0.3f, 0.3f));
+		auto EffectPtr5 = AddGameObject<EffectMove>(L"EnemyPieceEffect", 0.7f, 5, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.3f, 0.3f, 0.3f));
 		SetSharedGameObject(L"EnemyPieceEffectPurple", EffectPtr5);
-		auto EffectPtr6 = AddGameObject<EffectMove>(L"BigPieceEffect", 1.5f, 15, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
+		auto EffectPtr6 = AddGameObject<EffectMove>(L"BigPieceEffect", 1.5f, 7, 1.0f, Vec3(1.0f, 1.0f, 0.0f), Vec3(0.5f, 0.5f, 0.5f));
 		SetSharedGameObject(L"BigPieceEffectPurple", EffectPtr6);
 		auto EffectPtr7 = AddGameObject<EffectChase>(L"PlayerEffectRed", 1.0f, 15, 1.0f, Vec3(0.5f, 0.8f, 0.5f), Vec3(0.85f, 0.85f, 0.85f));
 		SetSharedGameObject(L"EffectChase", EffectPtr7);
@@ -53,46 +52,46 @@ namespace basecross {
 	}
 
 
-	//Player‚ğ’Ç‰Á‚·‚éŠÖ”
-	void GameStage6::CreatePlayer()//‰ü‘P‚·‚×‚«“_
+	//Playerã‚’è¿½åŠ ã™ã‚‹é–¢æ•°
+	void GameStage6::CreatePlayer()//æ”¹å–„ã™ã¹ãç‚¹
 	{
-		//Player‚ÌoŒ»êŠ‚ğŒˆ‚ß‚é
-		float deg = 90;
+		//Playerã®å‡ºç¾å ´æ‰€ã‚’æ±ºã‚ã‚‹
+		float deg = -90;
 		float rad = XMConvertToRadians(deg);
 		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f), 1.7f);
-		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğ¶¬
+		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
 
 	}
-	//ƒŒ[ƒ_[‚ğ’Ç‰Á‚·‚éŠÖ”
+	//ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’è¿½åŠ ã™ã‚‹é–¢æ•°
 	void GameStage6::CreateRadar()
 	{
-		auto ptrPlayer = GetSharedObject(L"GamePlayer");//GamePlayer‚Æ‚¢‚¤ƒIƒuƒWƒFƒNƒg‚ğæ“¾
-		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//‚»‚ÌƒIƒuƒWƒFƒNƒg‚ÌTransform‚ğæ“¾
-		auto PlayerPos = PlayerTrans->GetPosition();//Position‚ğæ“¾
-		auto ptrEnemy = GetSharedObject(L"Enemy");//Enemy‚Æ‚¢‚¤ƒIƒuƒWƒFƒNƒg‚ğæ“¾
-		auto EnemyTrans = ptrEnemy->GetComponent<Transform>();//‚»‚ÌƒIƒuƒWƒFƒNƒg‚ÌTransform‚ğæ“¾
-		auto EnemyPos = EnemyTrans->GetPosition();//Position‚ğæ“¾
-		auto ptrRadar = AddGameObject<Radar>(PlayerPos, EnemyPos);//ƒŒ[ƒ_[‚ğ¶¬
+		auto ptrPlayer = GetSharedObject(L"GamePlayer");//GamePlayerã¨ã„ã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
+		auto PlayerTrans = ptrPlayer->GetComponent<Transform>();//ãã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®Transformã‚’å–å¾—
+		auto PlayerPos = PlayerTrans->GetPosition();//Positionã‚’å–å¾—
+		auto ptrEnemy = GetSharedObject(L"Enemy");//Enemyã¨ã„ã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
+		auto EnemyTrans = ptrEnemy->GetComponent<Transform>();//ãã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®Transformã‚’å–å¾—
+		auto EnemyPos = EnemyTrans->GetPosition();//Positionã‚’å–å¾—
+		auto ptrRadar = AddGameObject<Radar>(PlayerPos, EnemyPos);//ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’ç”Ÿæˆ
 		SetSharedGameObject(L"Radar", ptrRadar);
 	}
 
-	//“G‚ğì¬
+	//æ•µã‚’ä½œæˆ
 	void GameStage6::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));//Enemy¶¬
-		SetSharedGameObject(L"Enemy", ptrEnemy);//ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğæ“¾
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
+		SetSharedGameObject(L"Enemy", ptrEnemy);//ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
-		//Enemy‚Ìƒ€[ƒr[ƒV[ƒ“
+		//Enemyã®ãƒ ãƒ¼ãƒ“ãƒ¼ã‚·ãƒ¼ãƒ³
 		AddGameObject<EnemyMovieManager>(EnemyPos + Vec3(0.0f, -1.0f, -13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
 
 	}
 
-	//“G‚ÌŒ‡•Ğ‚ğì¬
+	//æ•µã®æ¬ ç‰‡ã‚’ä½œæˆ
 	void GameStage6::CreateEnemyPiece() {
 
 		vector<vector<Vec3>> vec = {
-			{//1
+			{//1			
 				Vec3(12.0f,0.1f,-19.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
@@ -160,30 +159,16 @@ namespace basecross {
 				Vec3(-10.0f,0.1f,-42.0f),
 				Vec3(0.0f,0.0f,0.0f),
 				Vec3(2.0f,2.0f,2.0f)
-
-			},
-			{//12
-				Vec3(-21.0f,0.1f,-62.0f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-
-			},
-			{//13
-				Vec3(-29.5f,0.1f,-51.8f),
-				Vec3(0.0f,0.0f,0.0f),
-				Vec3(2.0f,2.0f,2.0f)
-
-			},
+			}
 		};
-		//ƒIƒuƒWƒFƒNƒg‚Ìì¬
+		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 		for (auto v : vec) {
 			auto piece = AddGameObject<EnemyPiece>(v[0], v[1], v[2]);
 			PieceManager::enemyPieces.push_back(piece);
-
 		}
 	}
 
-	void GameStage6::RandamPiecePosition(Vec3 originPosition)//ˆø”‚ğ’†S‚Éƒ‰ƒ“ƒ_ƒ€‚É‚©‚¯‚ç‚ª’u‚©‚ê‚é
+	void GameStage6::RandamPiecePosition(Vec3 originPosition)//å¼•æ•°ã‚’ä¸­å¿ƒã«ãƒ©ãƒ³ãƒ€ãƒ ã«ã‹ã‘ã‚‰ãŒç½®ã‹ã‚Œã‚‹
 	{
 		int randamCount = 0;
 		randamCount = rand() % 9 + 1;
@@ -192,19 +177,19 @@ namespace basecross {
 		Vec3 rotate = Vec3();
 		Vec3 size = Vec3(1.0f, 1.0f, 1.1f);
 		vector<Vec3> Trans;
-		srand(time(0));//ƒ‰ƒ“ƒ_ƒ€ƒŠƒZƒbƒg
+		srand(time(0));//ãƒ©ãƒ³ãƒ€ãƒ ãƒªã‚»ãƒƒãƒˆ
 
 		for (int i = 0; i < randamCount; i++)
 		{
 
-			int x = rand() % 19 + 1;//ƒ‰ƒ“ƒ_ƒ€‚É’†S“_‚©‚çxÀ•W‚ª‚Ç‚ê‚­‚ç‚¢—£‚ê‚Ä‚¢‚é‚©Œˆ‚ß‚é
+			int x = rand() % 19 + 1;//ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸­å¿ƒç‚¹ã‹ã‚‰xåº§æ¨™ãŒã©ã‚Œãã‚‰ã„é›¢ã‚Œã¦ã„ã‚‹ã‹æ±ºã‚ã‚‹
 
 			srand(rand() * rand() % 7);
 
-			int z = rand() % 19 + 1;//ƒ‰ƒ“ƒ_ƒ€‚É’†S“_‚©‚çyÀ•W‚ª‚Ç‚ê‚­‚ç‚¢—£‚ê‚Ä‚¢‚é‚©Œˆ‚ß‚é
-			x - 10; z - 10;//‚±‚ê‚Å—£‚ê‚Ä‚¢‚éÀ•W‚Ì·‚Éƒ}ƒCƒiƒX‚ğ“ü‚ê‚é ‚±‚±ŒvZ®ˆÓ–¡‚È‚¢‘‚«•û‚µ‚Ä‚¢‚é‰Â”\«‚ ‚è
+			int z = rand() % 19 + 1;//ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸­å¿ƒç‚¹ã‹ã‚‰yåº§æ¨™ãŒã©ã‚Œãã‚‰ã„é›¢ã‚Œã¦ã„ã‚‹ã‹æ±ºã‚ã‚‹
+			x - 10; z - 10;//ã“ã‚Œã§é›¢ã‚Œã¦ã„ã‚‹åº§æ¨™ã®å·®ã«ãƒã‚¤ãƒŠã‚¹ã‚’å…¥ã‚Œã‚‹ ã“ã“è¨ˆç®—å¼æ„å‘³ãªã„æ›¸ãæ–¹ã—ã¦ã„ã‚‹å¯èƒ½æ€§ã‚ã‚Š
 
-			Vec3 Pos = Vec3(originPosition.x + x, originPosition.y, originPosition.z + z);//‚±‚ê‚Åƒ‰ƒ“ƒ_ƒ€‚Éƒs[ƒX‚ğ’u‚­‚±‚Æ‚ª‚Å‚«‚é
+			Vec3 Pos = Vec3(originPosition.x + x, originPosition.y, originPosition.z + z);//ã“ã‚Œã§ãƒ©ãƒ³ãƒ€ãƒ ã«ãƒ”ãƒ¼ã‚¹ã‚’ç½®ãã“ã¨ãŒã§ãã‚‹
 			Trans.push_back(Pos);
 
 		}
@@ -217,10 +202,10 @@ namespace basecross {
 
 	void GameStage6::CreateEnemyPiece2()
 	{
-		Vec3 lowerLeft = Vec3(-27.6f, 0.0f, -18.4f);//¶‰º
-		Vec3 lowerRight = Vec3(20.0f, 0.0f, -43.0f);//‰E‰º
-		Vec3 upLeft = Vec3(-68.0f, 0.0f, 12.0f);//¶ã
-		Vec3 upRight = Vec3(9.0f, 0.0f, 68.0f);//‰Eã
+		Vec3 lowerLeft = Vec3(-27.6f, 0.0f, -18.4f);//å·¦ä¸‹
+		Vec3 lowerRight = Vec3(20.0f, 0.0f, -43.0f);//å³ä¸‹
+		Vec3 upLeft = Vec3(-68.0f, 0.0f, 12.0f);//å·¦ä¸Š
+		Vec3 upRight = Vec3(9.0f, 0.0f, 68.0f);//å³ä¸Š
 
 		RandamPiecePosition(lowerLeft);
 		RandamPiecePosition(lowerRight);
@@ -229,9 +214,9 @@ namespace basecross {
 
 	}
 
-	void GameStage6::CerateBreakEnemyPiece()//‰ó‚ê‚é•Ç‚Ìæ‚É‚ ‚é‚©‚¯‚ç
+	void GameStage6::CerateBreakEnemyPiece()//å£Šã‚Œã‚‹å£ã®å…ˆã«ã‚ã‚‹ã‹ã‘ã‚‰
 	{
-		//BigPiece‚ÌPosˆê——
+
 		Vec3 Pos[] =
 		{
 			Vec3(-18.2f,0.3f,37.6f),//1
@@ -243,15 +228,17 @@ namespace basecross {
 			Vec3(-65.0f,0.3f,65.0f)//7
 
 		};
-		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPiece‚Ì‡Œv‚Ì”
+		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceã®åˆè¨ˆã®æ•°
+
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
-			int randMesh = rand() % 3 + 1;//ƒ‰ƒ“ƒ_ƒ€‚É‚Ç‚Ì‚Ç‚ÌƒƒbƒVƒ…‚É‚È‚é‚©‚ªŒˆ‚Ü‚é
-			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f), randMesh);//ƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚é
-			wstring Name = L"BigPiece";//ƒIƒuƒWƒFƒNƒg‚Ì‹¤’Ê‚Ì–¼‘O‚ğŒˆ‚ß‚é
-			Name += to_wstring(i + 1);//ƒIƒuƒWƒFƒNƒg‚Ì‹¤’Ê‚Ì–¼‘O‚Éƒvƒ‰ƒX‚µ‚Ä”Ô†‚ğ‚Ó‚é@—áFBigPiece1,BigPiece2
-			SetSharedGameObject(Name, Piece);//¶¬‚µ‚½ƒIƒuƒWƒFƒNƒg‚É–¼‘O‚ğ•t‚¯‚é
+			int randMesh = rand() % 3 + 1;//ãƒ©ãƒ³ãƒ€ãƒ ã«ã©ã®ã©ã®ãƒ¡ãƒƒã‚·ãƒ¥ã«ãªã‚‹ã‹ãŒæ±ºã¾ã‚‹
+			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f), randMesh);//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹
+			wstring Name = L"BigPiece";//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å…±é€šã®åå‰ã‚’æ±ºã‚ã‚‹
+			Name += to_wstring(i + 1);//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å…±é€šã®åå‰ã«ãƒ—ãƒ©ã‚¹ã—ã¦ç•ªå·ã‚’ãµã‚‹ã€€ä¾‹ï¼šBigPiece1,BigPiece2
+			SetSharedGameObject(Name, Piece);//ç”Ÿæˆã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«åå‰ã‚’ä»˜ã‘ã‚‹
 		}
+
 	}
 
 
@@ -261,7 +248,8 @@ namespace basecross {
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_11ver2.0.csv");
+		ifstream ifs(levelPath += L"Level_11.csv");
+
 		if (ifs)
 		{
 			string line;
@@ -284,9 +272,10 @@ namespace basecross {
 		float stageW = static_cast<float>(stageMap[0].size());
 		float stageD = static_cast<float>(stageMap.size());
 
-		//ƒ~ƒjƒ}ƒbƒv•\¦‚Ì‚½‚ß‚Ég—p
+		//ãƒŸãƒ‹ãƒãƒƒãƒ—è¡¨ç¤ºã®ãŸã‚ã«ä½¿ç”¨
 		float SpriteLenght = 225.0f;
 		Vec3 SpriteStartPos = Vec3(640.0f - (SpriteLenght / 2.0f) - 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.0f, 0.0f);
+
 
 		for (int r = 0; r < stageMap.size(); r++)
 		{
@@ -309,6 +298,12 @@ namespace basecross {
 				case 4:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5f, 10.0f, 4.25f));
 					break;
+				case 5:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25));
+					break;
+				case 6:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25));
+					break;
 				case 7:
 					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(1, 10, 3), 150.0f, SpriteLenght, SpriteStartPos);
 					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(90.0f), 0), Vec3(0.5f, 1.0f, 3.0f));
@@ -316,6 +311,14 @@ namespace basecross {
 				case 8:
 					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, 0, 0), Vec3(1, 10, 3), 150.0f, SpriteLenght, SpriteStartPos);
 					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, 0, 0), Vec3(1.0f, 1.0f, 3.0f));
+					break;
+				case 9:
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5, 10, 4.25), 150, SpriteLenght, SpriteStartPos);
+					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5f, 1.0f, 4.25f));
+					break;
+				case 10:
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25), 150, SpriteLenght, SpriteStartPos);
+					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5f, 1.0f, 4.25f));
 					break;
 				case 11:
 					AddGameObject<Block>(blockStartPos + pos, Vec3(0, 0, 0));
@@ -326,53 +329,48 @@ namespace basecross {
 				case 13:
 					AddGameObject<Block3>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
-				case 15:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(140.0, 10, 1.0));
-					break;
-				case 16:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 140.0));
-					break;
 				}
+
 			}
 
 		}
 	}
 
 	void GameStage6::CreateMiniMap()
-	{
-		float Lenght = 225.0f;//ƒ~ƒjƒ}ƒbƒv‚Ì’¼Œa	
+	{	
+		float Lenght = 225.0f;//ãƒŸãƒ‹ãƒãƒƒãƒ—ã®ç›´å¾„
 		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
-		float Bairitu = Lenght / 150.0f;//Œ»İ‚Ìƒ~ƒjƒ}ƒbƒv‚Ì”{—¦(‚Ç‚ê‚­‚ç‚¢ˆø‚«‰„‚Î‚µ‚Ä‚¢‚é‚©‚ğ•\‚·)
+		float Bairitu = Lenght / 150.0f;//ç¾åœ¨ã®ãƒŸãƒ‹ãƒãƒƒãƒ—ã®å€ç‡(ã©ã‚Œãã‚‰ã„å¼•ãå»¶ã°ã—ã¦ã„ã‚‹ã‹ã‚’è¡¨ã™)
 
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage11", StartPos, 5);//ƒ~ƒjƒ}ƒbƒv¶¬
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage11", StartPos, 5);//ãƒŸãƒ‹ãƒãƒƒãƒ—ç”Ÿæˆ
 		SetSharedGameObject(L"MiniMap", miniMap);
 
-		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(StartPos, 4.0f, 150.0f, Lenght);//ƒ~ƒjƒ}ƒbƒvã‚ÅPlayer‚ÌˆÊ’u‚ğ•\¦
+		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(StartPos, 4.0f, 150.0f, Lenght);//ãƒŸãƒ‹ãƒãƒƒãƒ—ä¸Šã§Playerã®ä½ç½®ã‚’è¡¨ç¤º
 		SetSharedGameObject(L"MiniMapPlayer", miniMapPlayer);
 
 
-		//BigPiece‚ÌêŠ‚ğƒ~ƒjƒ}ƒbƒv‚É‰f‚·
+		//BigPieceã®å ´æ‰€ã‚’ãƒŸãƒ‹ãƒãƒƒãƒ—ã«æ˜ ã™
 		for (int i = 0; i < m_BigPieceLength; i++)
 		{
-			wstring BigPieceName = L"BigPiece";//QÆŒ³‚Ì–¼‘O
-			BigPieceName += to_wstring(i + 1);//”Ô†U‚è•ª‚¯
-			wstring miniMapBigPieceName = L"MiniMapBigPiece";//QÆŒ³‚Ì–¼‘O
-			miniMapBigPieceName += to_wstring(i + 1);//”Ô†U‚è•ª‚¯
-			auto PiecePos = GetSharedGameObject<BigPiece>(BigPieceName)->GetComponent<Transform>()->GetPosition();//ƒrƒbƒNƒs[ƒX‚ÌêŠ‚ğæ“¾
+			wstring BigPieceName = L"BigPiece";//å‚ç…§å…ƒã®åå‰
+			BigPieceName += to_wstring(i + 1);//ç•ªå·æŒ¯ã‚Šåˆ†ã‘
+			wstring miniMapBigPieceName = L"MiniMapBigPiece";//å‚ç…§å…ƒã®åå‰
+			miniMapBigPieceName += to_wstring(i + 1);//ç•ªå·æŒ¯ã‚Šåˆ†ã‘
+			auto PiecePos = GetSharedGameObject<BigPiece>(BigPieceName)->GetComponent<Transform>()->GetPosition();//ãƒ“ãƒƒã‚¯ãƒ”ãƒ¼ã‚¹ã®å ´æ‰€ã‚’å–å¾—
 			auto miniMapBigPiece = AddGameObject<MiniMapBigPiece>(3.0f, 3.0f, L"MiniMapBigPiece", Vec3(StartPos.x + (PiecePos.x * Bairitu), StartPos.y + (PiecePos.z * Bairitu), 0.0f), 6, BigPieceName);
-			SetSharedGameObject(miniMapBigPieceName, miniMapBigPiece);//ƒ~ƒjƒ}ƒbƒv‚É•\¦‚³‚ê‚éƒrƒbƒNƒs[ƒX‚Ì–¼‘O‚ğŒˆ‚ß‚é
-			GetSharedGameObject<BigPiece>(BigPieceName)->MyMiniMapName(miniMapBigPieceName);//ƒrƒbƒNƒs[ƒX‚Éƒ~ƒjƒ}ƒbƒv‚ÌƒrƒbƒNƒs[ƒX‚Ì–¼‘O‚ğ‹³‚¦‚é
+			SetSharedGameObject(miniMapBigPieceName, miniMapBigPiece);//ãƒŸãƒ‹ãƒãƒƒãƒ—ã«è¡¨ç¤ºã•ã‚Œã‚‹ãƒ“ãƒƒã‚¯ãƒ”ãƒ¼ã‚¹ã®åå‰ã‚’æ±ºã‚ã‚‹
+			GetSharedGameObject<BigPiece>(BigPieceName)->MyMiniMapName(miniMapBigPieceName);//ãƒ“ãƒƒã‚¯ãƒ”ãƒ¼ã‚¹ã«ãƒŸãƒ‹ãƒãƒƒãƒ—ã®ãƒ“ãƒƒã‚¯ãƒ”ãƒ¼ã‚¹ã®åå‰ã‚’æ•™ãˆã‚‹
 		}
 
 	}
 
 
 
-	//BGM‚ÌÄ¶
+	//BGMã®å†ç”Ÿ
 	void GameStage6::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 	void GameStage6::BossBGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
@@ -410,40 +408,39 @@ namespace basecross {
 	void GameStage6::OnCreate() {
 		try {
 			auto scene = App::GetApp()->GetScene<Scene>();
-			scene->SetGameStage(10);
+			scene->SetGameStage(11);
 			scene->SetPlayFlag(true);
 
-			auto stageManager = AddGameObject<StageManager>();//ƒXƒe[ƒWƒ}ƒl[ƒWƒƒ[‚ğ¶¬
+			auto stageManager = AddGameObject<StageManager>();//ã‚¹ãƒ†ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ç”Ÿæˆ
 			SetSharedGameObject(L"StageManager", stageManager);
 
-			//ƒeƒNƒXƒ`ƒƒAƒ‚ƒfƒ‹‚Ìİ’èƒf[ƒ^
+
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã€ãƒ¢ãƒ‡ãƒ«ã®è¨­å®šãƒ‡ãƒ¼ã‚¿
 			//auto data = AddGameObject<Data>();
-			auto timeManager = AddGameObject<TimeManager>();//ŠÔ§ŒÀ
+			auto timeManager = AddGameObject<TimeManager>();//æ™‚é–“åˆ¶é™
 			SetSharedGameObject(L"TimeManager", timeManager);
-			//ƒrƒ…[‚Æƒ‰ƒCƒg‚Ìì¬
+			//ãƒ“ãƒ¥ãƒ¼ã¨ãƒ©ã‚¤ãƒˆã®ä½œæˆ
 			CreateViewLight();
-			//Effect‚Ì’Ç‰Á
+			//Effectã®è¿½åŠ 
 			CreateEffect();
-			//Player‚ğ’Ç‰Á
+			//Playerã‚’è¿½åŠ 
 			CreatePlayer();
-			//“G‚Ì‚©‚¯‚ç‚ğ•\¦
+			//æ•µã®ã‹ã‘ã‚‰ã‚’è¡¨ç¤º
 			CreateEnemyPiece();
-			//CreateEnemyPiece2();//ƒ‰ƒ“ƒ_ƒ€‚É‚©‚¯‚ç‚ªo‚é‚æ‚¤‚É‚È‚é
-			AddGameObject<RandCreateManager>(L"kakeraMapLevel11.csv", 150, 70);//ƒ‰ƒ“ƒ_ƒ€‚É‚©‚¯‚ç‚ªo‚é‚æ‚¤‚É‚È‚é
+			//CreateEnemyPiece2();//ãƒ©ãƒ³ãƒ€ãƒ ã«ã‹ã‘ã‚‰ãŒå‡ºã‚‹ã‚ˆã†ã«ãªã‚‹
+			AddGameObject<RandCreateManager>(L"kakeraMapLevel11.csv", 150, 60);//ãƒ©ãƒ³ãƒ€ãƒ ã«ã‹ã‘ã‚‰ãŒå‡ºã‚‹ã‚ˆã†ã«ãªã‚‹
+
 			CerateBreakEnemyPiece();
-			//CreateRecoveryWall();//¡‚·•Ç‚ğ¶¬ Œ»İ–vƒf[ƒ^‰»
-			AddGameObject<Ground>();//’n–Ê‚ğ¶¬
-			CreateMap();//ƒ}ƒbƒv‚ğ¶¬
-			CreateMiniMap();//ƒ~ƒjƒ}ƒbƒv¶¬
-			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//ƒRƒŠƒWƒ‡ƒ“ƒ}ƒl[ƒWƒƒ[’Ç‰Á
+			//CreateRecoveryWall();//æ²»ã™å£ã‚’ç”Ÿæˆ ç¾åœ¨æ²¡ãƒ‡ãƒ¼ã‚¿åŒ–
+			AddGameObject<Ground>();//åœ°é¢ã‚’ç”Ÿæˆ
+			CreateMap();//ãƒãƒƒãƒ—ã‚’ç”Ÿæˆ
+			CreateMiniMap();//ãƒŸãƒ‹ãƒãƒƒãƒ—ç”Ÿæˆ
+			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼è¿½åŠ 
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
-
-			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(13.0f, 0.5f, 0.0f));//ƒXƒe[ƒWŠJn‚Ì‰‰o
-
+			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(13.0f, 0.5f, 0.0f));
 
 			//BGM
 			BaseBGM();
-			m_CareerFlag = 0;//‰Šú‰»	
 
 		}
 		catch (...) {
@@ -453,34 +450,35 @@ namespace basecross {
 
 	void GameStage6::OnUpdate()
 	{
-		GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//ƒfƒoƒbƒN—p
 		auto ptrPlayer = GetSharedGameObject<Player>(L"GamePlayer");
+		//GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager")->SetCollisionSwhich(false);//ãƒ‡ãƒãƒƒã‚¯ç”¨
 		//CollisionActive(true);
 		if (ptrPlayer->GetRadarFlag() && m_CareerFlag == 0)
 		{
-			//“G‚ğ¶¬	
+			//æ•µã‚’ç”Ÿæˆ
 			CreateEnemy();
 			GetSharedGameObject<Enemy>(L"Enemy")->SetEnemy(true);
-			//ƒŒ[ƒ_[‚ğ¶¬
+			//ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’ç”Ÿæˆ
 			CreateRadar();
 			m_CareerFlag = 1;
 
 			OnDestroy();
 			BossBGM();
-			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//is“x‚ği‚ß‚é
-			//AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//‰E•ûŒü
-			//AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//¶•ûŒü
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//é€²è¡Œåº¦ã‚’é€²ã‚ã‚‹
+
+
+
 		}
 		if (m_CareerFlag == 1 || m_CareerFlag == 2)
 		{
-			m_CareerFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//is“x‚ğXV
+			m_CareerFlag = GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();//é€²è¡Œåº¦ã‚’æ›´æ–°
 		}
-		if (m_CareerFlag == 3)//“G‚ğ“|‚µ‚½‚Æ‚«
+		if (m_CareerFlag == 3)//æ•µã‚’å€’ã—ãŸã¨ã
 		{
-			AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//‰E•ûŒü
-			AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));//¶•ûŒü
 
-			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//is“x‚ğXV
+			AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//é€²è¡Œåº¦ã‚’æ›´æ–°
 			m_CareerFlag = 4;
 
 			OnDestroy();

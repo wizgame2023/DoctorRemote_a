@@ -23,8 +23,6 @@
 #include "GameStage8.h"
 #include "GameStage9.h"
 #include "GameStage10.h"
-#include "GameStage11.h"
-#include "GameStage12.h"
 #include "TitleStage.h"
 #include "LoadStage.h"
 #include "StatusStage.h"
@@ -82,7 +80,7 @@
 #include "UITools.h"
 
 
-#include "AndoStage.h"
+#include "UIScroll.h"
 #include "SanpeiStage.h"
 #include "HemmiStage.h"
 #include "OkawaraStage.h"

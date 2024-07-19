@@ -7,7 +7,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Garge.h"
-#include "AndoStage.h"
+#include "UIScroll.h"
 
 //class Garge;//前方宣言（とりあえずこういうクラスがあると伝える）
 //class PlayerGarge;
@@ -29,7 +29,7 @@ namespace basecross {
 		vector<int> m_EraseUiPtrNum;//消したポインタの番号を覚える変数
 		shared_ptr<Sprite> m_comFrame;
 		shared_ptr<Transform> m_comTrans;
-		shared_ptr<CommentManager> m_com[2];
+		shared_ptr<CommentManager> m_com[3];
 		shared_ptr<StageManager> m_StageManager;
 		shared_ptr<Garge> m_chargeGarge;
 		shared_ptr<Sprite> m_dashLight;
@@ -37,7 +37,7 @@ namespace basecross {
 		vector<weak_ptr<UITime>> m_UiTimePtr;//制限時間のポインタ取得
 		vector<weak_ptr<Garge>> m_UiGargePtr;//Gargeのポインタ取得
 		vector<weak_ptr<Comment>> m_UiCommentPtr;//Commentのポインタ取得
-		shared_ptr<AndoStage> m_scroll;
+		shared_ptr<UIScroll> m_scroll;
 	public:
 		UIManager(shared_ptr<Stage>& stagePtr);
 		~UIManager();

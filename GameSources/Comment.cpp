@@ -239,6 +239,8 @@ namespace basecross {
 
 	void Comment::SetColor(Col4 color) {
 		m_draw->SetDiffuse(color);
+		m_color = m_draw->GetDiffuse();
+
 	}
 }
 //end namespace basecross
