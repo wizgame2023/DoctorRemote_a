@@ -15,7 +15,8 @@ namespace basecross {
 		m_MoviePos(moviePos),
 		m_MovieAt(movieAt),
 		m_Count(0),
-		m_Time(3.0f)
+		m_Time(3.0f),
+		m_rockSkip(0.5f)
 	{
 
 	}
@@ -100,10 +101,10 @@ namespace basecross {
 			m_padSkip = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip_pad", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
 			m_padSkip->AddTag(L"MovieSprite");
 
-			m_speceMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Space", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
+			m_speceMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Space", Vec3(620.0f - 290.0f, -390.0f + 42.0f, 0.0f), 0);//文字生成
 			m_speceMoji->AddTag(L"MovieSprite");
 
-			m_skipMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
+			m_skipMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip", Vec3(620.0f - 100.0f, -390.0f + 40.0f, 0.0f), 0);//文字生成
 			m_skipMoji->AddTag(L"MovieSprite");
 
 			//デバック用
