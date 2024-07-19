@@ -50,7 +50,7 @@ namespace basecross {
 					Vec3(325.0f, 360.0f, 0.0f), L"ResultMoji4"); //「Aボタンでスキップ」を表示
 			}
 			else {
-				auto moji = AddGameObject<Sprite>(100, 100, L"SButton", Vec3(325.0f, 360.0f, 0.0f)); //「Aボタンでスキップ」を表示
+				auto moji = AddGameObject<Sprite>(100, 100, L"SButton", Vec3(370.0f, 330.0f, 0.0f)); //S
 
 			}
 
@@ -291,8 +291,14 @@ namespace basecross {
 		//スコアステージが生成されてから16秒後に「Bボタンで次へ」を表示
 		else if (m_control == 1 && m_countUp >= 16.0f)
 		{
-			auto moji3 = AddGameObject<Comment>(7, 0, 0.1f, 280, 64, 256, 64, 7, 1, // Bボタンで次へ
-			Vec3(340.0f, -300.0f, 0.0f), L"ResultMoji2");
+			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+			if (cntlVec[0].bConnected) {
+				auto moji3 = AddGameObject<Comment>(7, 0, 0.1f, 280, 64, 256, 64, 7, 1, // Bボタンで次へ
+				Vec3(340.0f, -300.0f, 0.0f), L"ResultMoji2");
+			}
+			else {
+				auto spaceMoji = AddGameObject<Sprite>(150, 75, L"SpaceButton", Vec3(530.0f, -330.0f, 0.0f)); // Space
+			}
 			m_timeCount++;
 			m_control++;
 		}
