@@ -141,7 +141,7 @@ namespace basecross {
 		app->RegisterTexture(L"MiniMapStage3", strTexture);
 		strTexture = texPath + L"MiniMapStage4Ver5.0.png";//ミニマップStage4
 		app->RegisterTexture(L"MiniMapStage4", strTexture);
-		strTexture = texPath + L"MiniMapStage5.png";//ミニマップStage5
+		strTexture = texPath + L"MiniMapStage5ver2.0.png";//ミニマップStage5
 		app->RegisterTexture(L"MiniMapStage5", strTexture);
 		strTexture = texPath + L"MiniMapStage6.png";//ミニマップStage6
 		app->RegisterTexture(L"MiniMapStage6", strTexture);
@@ -153,10 +153,10 @@ namespace basecross {
 		app->RegisterTexture(L"MiniMapStage9", strTexture);
 		strTexture = texPath + L"MiniMapStage10Ver3.0.png";//ミニマップStage10
 		app->RegisterTexture(L"MiniMapStage10", strTexture);
-		strTexture = texPath + L"MiniMapStage11.png";//ミニマップStage11
+		strTexture = texPath + L"MiniMapStage11ver2.0.png";//ミニマップStage11
 		app->RegisterTexture(L"MiniMapStage11", strTexture);
 		strTexture = texPath + L"MiniMapStage12.png";//ミニマップStage12
-		app->RegisterTexture(L"MiniMapStage12", strTexture);		
+		app->RegisterTexture(L"MiniMapStage12", strTexture);
 		strTexture = texPath + L"MiniMapDataTutorialVer2.0.png";//ミニマップチュートリアル
 		app->RegisterTexture(L"MiniMapTutorial", strTexture);
 
@@ -515,7 +515,7 @@ namespace basecross {
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
 		if (event->m_MsgStr == L"ToGameStage1") {
 			//ゲームステージの設定
-			ResetActiveStage<GameStage1>();
+			ResetActiveStage<GameStage9>();
 		}
 		else if (event->m_MsgStr == L"ToGameStage2") {
 			//ゲームステージの設定

@@ -16,7 +16,7 @@ namespace basecross {
 		m_angleY(angleY),
 		m_distance(6.0f),//6.0
 		m_height(2.5f),  //2.5
-		m_camDis(5.0f),   //5.0
+		m_camDis(3.0f),   //5.0
 		m_MoveFlag(true)
 	{
 	}

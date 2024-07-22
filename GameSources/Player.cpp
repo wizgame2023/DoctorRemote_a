@@ -74,7 +74,7 @@ namespace basecross {
 			Vec3(0.75f, 0.5f, 2.125f/m_trans->GetScale().z),//2.125
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI, 0.0f),
-			Vec3(0.0f, -0.5f, -0.25f)
+			Vec3(0.0f, -0.5f, -0.3f)
 		);
 
 
