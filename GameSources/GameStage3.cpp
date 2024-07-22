@@ -55,7 +55,7 @@ namespace basecross {
 	void GameStage3::CreatePlayer()//改善すべき点
 	{
 		//Playerの出現場所を決める
-		float deg = -90;
+		float deg = -180;
 		float rad = XMConvertToRadians(deg);
 		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f), 1.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
@@ -293,22 +293,13 @@ namespace basecross {
 					AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(23.0f, 10.0f, 18.0f));
 					break;
 				case 10:
-					AddGameObject<Block3>(startPos + pos, Vec3(0, 0.0, 0), Vec3(23.0f, 10.0f, 18.0f));					break;
-				case 11:
-					AddGameObject<Block>(blockStartPos + pos, Vec3(0, 0, 0));
-					break;
-				case 12:
-					AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(20.0f, 10.0f, 20.0f));
+					AddGameObject<Block3>(startPos + pos, Vec3(0, 0.0, 0), Vec3(23.0f, 10.0f, 18.0f));
 					break;
 				case 13:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(140.0, 10, 1.0));
 					break;
-
 				case 14:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 140.0));
-					break;
-				case 15:
-					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(38.0, 10, 1.0));
 					break;
 				}
 

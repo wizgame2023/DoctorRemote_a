@@ -325,15 +325,25 @@ namespace basecross {
 					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(45.0f), 0), Vec3(0.5f, 1.0f, 4.25f));
 					break;
 				case 10:
-					AddGameObject<Block3>(startPos + pos, Vec3(0, 0.0, 0), Vec3(23.0f, 10.0f, 18.0f));
+					AddGameObject<BreakWall>(startPos + pos + Vec3(0.0f, 1.5f, 0.0f), Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5, 10, 4.25), 100, SpriteLenght, SpriteStartPos);
+					AddGameObject<Wall>(startPos + pos + Vec3(0.0f, 10.0f, 0.0f), Vec3(0, XMConvertToRadians(-45.0f), 0), Vec3(0.5f, 1.0f, 4.25f));
+					break;
+				case 11:
+					AddGameObject<Block>(blockStartPos + pos, Vec3(0, 0, 0));
+					break;
+				case 12:
+					AddGameObject<BlockSecond>(startPos + pos, Vec3(0, 0, 0), Vec3(20.0f, 10.0f, 20.0f));
 					break;
 				case 13:
 					AddGameObject<Block3>(startPos + pos, Vec3(0, 0, 0), Vec3(25.0f, 10.0f, 25.0f));
 					break;
+
 				case 14:
 					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(1.0, 10, 53.0));
 					break;
-
+				case 15:
+					AddGameObject<Wall>(startPos + pos, Vec3(0, 0, 0), Vec3(38.0, 10, 1.0));
+					break;
 				}
 
 			}
@@ -405,7 +415,7 @@ namespace basecross {
 			CreatePlayer();
 			//敵のかけらを表示
 			CreateEnemyPiece();
-			AddGameObject<RandCreateManager>(L"kakeraMapLevel3.csv", 150, 60);//ランダムにかけらが出るようになる
+			AddGameObject<RandCreateManager>(L"kakeraMapLevel3.csv", 100, 30);//ランダムにかけらが出るようになる
 			CerateBreakEnemyPiece();
 			//CreateRecoveryWall();//治す壁を生成 現在没データ化
 			AddGameObject<Ground>();//地面を生成
@@ -414,7 +424,7 @@ namespace basecross {
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
-			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));
+			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));
 
 			//BGM
 			BaseBGM();
@@ -443,8 +453,6 @@ namespace basecross {
 
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(1);//進行度を進める
 
-
-
 		}
 		if (m_CareerFlag == 1 || m_CareerFlag == 2)
 		{
@@ -452,13 +460,11 @@ namespace basecross {
 		}
 		if (m_CareerFlag == 3)//敵を倒したとき
 		{
-			//GetSharedGameObject<Radar>(L"Radar")->MyRemove();//レーダーを消去する
-
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
 			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f), 100);
 
+			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
 			m_CareerFlag = 4;
-			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);
 
 			OnDestroy();
 			BaseBGM();
