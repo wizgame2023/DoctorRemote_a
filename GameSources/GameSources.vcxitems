@@ -14,6 +14,8 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage12.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIScroll.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BigPiece.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block.h" />
@@ -93,6 +95,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage12.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIScroll.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BigPiece.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp" />

@@ -1,13 +1,13 @@
 /*!
-@file GameStage7.h
-@brief ゲームステージ12
+@file GameStage12.h
+@brief ゲームステージ9
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class GameStage7 :public Stage
+	class GameStage12 :public Stage
 	{
 		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
 		shared_ptr<SoundItem> m_BGM;
@@ -30,8 +30,8 @@ namespace basecross {
 
 	public:
 		//構築と破棄
-		GameStage7() :Stage() {}
-		virtual ~GameStage7() {}
+		GameStage12() :Stage() {}
+		virtual ~GameStage12() {}
 
 		virtual void OnCreate()override; //初期化
 		void OnUpdate()override;//更新
@@ -41,7 +41,6 @@ namespace basecross {
 		virtual void OnDestroy() override;
 
 		void SetCollisionSwich(bool ONorOFF);
-
 
 	};
 }

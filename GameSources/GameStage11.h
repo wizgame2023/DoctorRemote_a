@@ -1,18 +1,20 @@
 /*!
-@file GameStage7.h
-@brief ゲームステージ12
+@file GameStage11.h
+@brief ゲームステージ10
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class GameStage7 :public Stage
+	class GameStage11 :public Stage
 	{
 		bool m_PieceFlag;//ピースゲージがマックスになったら発動するフラグ
 		shared_ptr<SoundItem> m_BGM;
+
 		int m_CareerFlag;//ステージ全体のフラグ
 		int m_BigPieceLength;//BigPieceの合計の数
+
 
 		void CreateViewLight(); //ビューの作成
 		void CreatePlayer();//プレイヤーの作成
@@ -30,8 +32,8 @@ namespace basecross {
 
 	public:
 		//構築と破棄
-		GameStage7() :Stage() {}
-		virtual ~GameStage7() {}
+		GameStage11() :Stage() {}
+		virtual ~GameStage11() {}
 
 		virtual void OnCreate()override; //初期化
 		void OnUpdate()override;//更新
@@ -41,7 +43,6 @@ namespace basecross {
 		virtual void OnDestroy() override;
 
 		void SetCollisionSwich(bool ONorOFF);
-
 
 	};
 }
