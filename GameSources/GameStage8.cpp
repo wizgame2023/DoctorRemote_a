@@ -409,7 +409,7 @@ namespace basecross {
 	void GameStage8::OnCreate() {
 		try {
 			auto scene = App::GetApp()->GetScene<Scene>();
-			scene->SetGameStage(7);
+			scene->SetGameStage(8);
 			scene->SetPlayFlag(true);
 
 			auto stageManager = AddGameObject<StageManager>();//ステージマネージャーを生成
