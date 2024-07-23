@@ -10,7 +10,7 @@
 namespace basecross {
 	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr):
 		GameObject(stagePtr),
-		m_time(300.0f),
+		m_time(10.0f),
 		m_move(true),
 		m_pos(-90.0f,350.0f,0.0f)
 	{}
@@ -41,20 +41,47 @@ namespace basecross {
 		m_fourthNum = stage->AddGameObject<UITime>(m_fourth, m_pos);
 		m_ten = stage->AddGameObject<UITime>(m_fourth, posTen);
 
+		m_blackout = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0));//スプライトを表示
+		m_blackout->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
+		m_outCol = m_blackout->GetColor();
 	}
 	void TimeManager::OnUpdate() {
 
 		if (m_move) {
 			float elapsedTime = App::GetApp()->GetElapsedTime();
 			bool start = GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStartFlag();
+			auto a = start;
 			if (start) {
-				m_time -= elapsedTime;
-				if (m_time <= 0.0f) {
-					PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+				if (m_time >= 0)
+				{
+					m_time -= elapsedTime;
+
 				}
+				//if (m_time <= 0.0f) {
+				//	PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+				//}
 			}
 		}
 
+		if (m_time <= 0.0f) {
+			float elapsedTime = App::GetApp()->GetElapsedTime();
+
+			dynamic_pointer_cast<MainCamera>(OnGetDrawCamera())->SetMove(false);//カメラが動かないようにする
+			GetStage()->GetSharedGameObject<Player>(L"GamePlayer")->SetSpeed(0.0f);//Playerの速度を0にする
+			GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerを動かないようにする
+			if (m_outCol.w <= 0)//GameOver条件を達成した１回のみ発動させる(この条件式は１回しか使えないため使用)
+			{
+				auto pieceSE = App::GetApp()->GetXAudio2Manager();
+				pieceSE->Start(L"PlayerbreakSE", 0, 1.0f);
+			}
+
+			m_outCol.w += elapsedTime * 0.4f;//だんだんと暗転する
+			m_blackout->SetColor(m_outCol);
+			if (m_outCol.w >= 1)
+			{
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
+			}
+		}
 
 		int minutes = m_time / 60;
 		int seconds = (int)m_time % 60;
