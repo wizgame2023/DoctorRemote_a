@@ -25,13 +25,6 @@ namespace basecross {
 			//BGM
 			BaseBGM();
 			auto& scene = App::GetApp()->GetScene<Scene>();
-			scene->SetAchievementPoint(0);
-			scene->SetDashStatus(0);
-			scene->SetBulletLengthStatus(0);
-			scene->SetBigPieceUpStatus(0);
-			scene->SetChainRargeStatus(0);
-			scene->SetBulletPowerStatus(0);
-			scene->SetBulletTimeStatus(0);
 			//ビューとライトの作成
 			CreateViewLight();
 			scene->SetPlayFlag(false);
