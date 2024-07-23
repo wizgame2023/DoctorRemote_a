@@ -51,6 +51,8 @@ namespace basecross {
 				AddGameObject<Sprite>(150, 50, L"TitleMoji", Vec3(150.0f, -300.0f, 0.0f));//
 
 				if (cntlVec[0].bConnected) {
+					AddGameObject<Sprite>(50, 50, L"GameOverBButton", Vec3(-200, -300, 0.0f));//B
+					AddGameObject<Sprite>(50, 50, L"GameOverAButton", Vec3(250, -300, 0.0f));//A
 
 				}
 				else {
