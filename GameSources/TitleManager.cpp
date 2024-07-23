@@ -94,6 +94,7 @@ namespace basecross {
 	void TitleManager::StandTimeReset()
 	{
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyBoard = App::GetApp()->GetInputDevice().GetKeyState();//キーボード取得
 		Vec2 AStick;//アナログスティック
 		AStick.x = cntlVec[0].fThumbLX;
 		AStick.y = cntlVec[0].fThumbLY;
@@ -101,7 +102,7 @@ namespace basecross {
 		{
 			m_StandTimeReset = true;
 		}
-		if (cntlVec[0].wPressedButtons)//コントローラーのボタンが押されたとき
+		if (cntlVec[0].wPressedButtons||keyBoard.m_KeyMessageActive)//コントローラーのボタンが押されたとき
 		{
 			m_StandTimeReset = true;
 		}
