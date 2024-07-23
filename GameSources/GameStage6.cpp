@@ -56,7 +56,7 @@ namespace basecross {
 	void GameStage6::CreatePlayer()//改善すべき点
 	{
 		//Playerの出現場所を決める
-		float deg = -90;
+		float deg = 90;
 		float rad = XMConvertToRadians(deg);
 		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f), 1.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
@@ -248,7 +248,7 @@ namespace basecross {
 		auto levelPath = path + L"Levels/";
 		vector<vector<int>> stageMap;
 
-		ifstream ifs(levelPath += L"Level_11.csv");
+		ifstream ifs(levelPath += L"Level_11ver2.0.csv");
 
 		if (ifs)
 		{
