@@ -224,6 +224,11 @@ namespace basecross {
 		app->RegisterTexture(L"BackSpaceButton", strTexture);
 		strTexture = texPath + L"SButton.png";
 		app->RegisterTexture(L"SButton", strTexture);
+		strTexture = texPath + L"YButton.png";
+		app->RegisterTexture(L"YButton", strTexture);
+		strTexture = texPath + L"DeleteButton.png";
+		app->RegisterTexture(L"DeleteButton", strTexture);
+
 
 
 		//ムービーの枠組み
@@ -512,7 +517,7 @@ namespace basecross {
 
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStatusStage");
 		}
 		catch (...) {
 			throw;
@@ -835,6 +840,7 @@ namespace basecross {
 		m_firstTimeStage[num] = firstTime;
 	}
 
+	//リセットボタン
 	void Scene::ResetButton() {
 		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto& keyState = App::GetApp()->GetInputDevice().GetKeyState();
@@ -843,9 +849,17 @@ namespace basecross {
 			cntlVec[0].wButtons & XINPUT_GAMEPAD_BACK) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
 		}
-		if (keyState.m_bPressedKeyTbl[VK_DELETE]) {
+		if (keyState.m_bPressedKeyTbl[VK_DELETE] && keyState.m_bLastKeyTbl[VK_SHIFT]) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
 		}
+		//ポイント類のリセット
+		SetAchievementPoint(0);
+		SetDashStatus(0);
+		SetBulletLengthStatus(0);
+		SetBigPieceUpStatus(0);
+		SetChainRargeStatus(0);
+		SetBulletPowerStatus(0);
+		SetBulletTimeStatus(0);
 	}
 }
 //end basecross

@@ -37,17 +37,24 @@ namespace basecross {
 			m_moji[0] = AddGameObject<Sprite>(150, 75, L"DecisionButton", Vec3(500, -350.0f, 0.0f)); //「B決定」
 			m_moji[1] = AddGameObject<Sprite>(150, 75, L"SpaceButton", Vec3(500, -350.0f, 0.0f)); // 「Space」
 
-			auto skipMoji = AddGameObject<CommentManager>(11, 1, 0.0f, 512, 256, 512 * 1.5, 256 * 1.5, 13 * 2, 8, Vec3(-580, -300.0f, 0.0f), L"StatusMoji");
-			m_moji[2] = AddGameObject<Sprite>(100,50,L"Abutton",Vec3(-580, -370.0f, 0.0f));
-			m_moji[3] = AddGameObject<Sprite>(100, 100, L"SButton", Vec3(-590, -370.0f, 0.0f));
+			// 「選ばず次のステージへ」
+			auto skipMoji = AddGameObject<CommentManager>(11, 1, 0.0f, 512, 256, 512 * 1.5, 256 * 1.5, 13 * 2, 8, 
+				Vec3(-500, -300.0f, 0.0f), L"StatusMoji");
+			m_moji[2] = AddGameObject<Sprite>(100,50,L"Abutton",Vec3(-500, -370.0f, 0.0f)); // Aボタン
+			m_moji[3] = AddGameObject<Sprite>(150, 75, L"BackSpaceButton", Vec3(-540, -370.0f, 0.0f)); // BackSpaceキー
 
-			for (int i = 0; i < 4; i++) {
+			// 「タイトルに戻る」
+			auto titleMoji = AddGameObject <CommentManager>(8, 2, 0.0f, 512, 256, 512 * 1.5, 256 * 1.5, 13 * 2, 8,
+				Vec3(50, -250.0f, 0.0f), L"StatusMoji");
+			m_moji[4] = AddGameObject<Sprite>(100, 50, L"YButton", Vec3(50, -365.0f, 0.0f)); // Yボタン
+			m_moji[5] = AddGameObject<Sprite>(150, 75, L"DeleteButton", Vec3(0, -370.0f, 0.0f)); // Deleteキー
+			for (int i = 0; i < 6; i++) {
 				m_moji[i]->SetColor(Col4(0.0f));
 			}
 
-			auto black = AddGameObject<Sprite>(1280, 800, L"Black", Vec3(), -3);
+			//背景
 			auto back = AddGameObject<Sprite>(1280,800,L"Back",Vec3(),-1);
-			back->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
+			back->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 		catch (...) {
 			throw;
@@ -68,17 +75,22 @@ namespace basecross {
 			m_blinking = 2.0f;
 		}
 
+		//操作文字の透明度の切り替え
 		if (cntlVec[0].bConnected) {
 			m_moji[0]->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
-			m_moji[1]->SetColor(Col4(0.0f));
 			m_moji[2]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+			m_moji[4]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+			m_moji[1]->SetColor(Col4(0.0f));
 			m_moji[3]->SetColor(Col4(0.0f));
+			m_moji[5]->SetColor(Col4(0.0f));
 		}
 		else {
-			m_moji[0]->SetColor(Col4(0.0f));
 			m_moji[1]->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
-			m_moji[2]->SetColor(Col4(0.0f));
 			m_moji[3]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+			m_moji[5]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+			m_moji[0]->SetColor(Col4(0.0f));
+			m_moji[2]->SetColor(Col4(0.0f));
+			m_moji[4]->SetColor(Col4(0.0f));
 
 		}
 

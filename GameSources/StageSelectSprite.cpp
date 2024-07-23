@@ -120,6 +120,7 @@ namespace basecross {
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto selectTrans = m_selectSprite->GetComponent<Transform>();
 
+		//点滅処理
 		if (m_moveCheck && m_blinkTime >= 0) {
 			if ((int)m_blinkTime % 2 == 0) {
 				m_selectSprite->SetColor(Col4(0, 0, 0, 0));
@@ -134,6 +135,7 @@ namespace basecross {
 			}
 		}
 
+		//ロックがかかっている部分の色を変える
 		if (!m_baseColorFlag) {
 			for (int i = 0; i < m_widthNum * m_heightNum; i++) {
 				if (m_closeNum[i]) {
