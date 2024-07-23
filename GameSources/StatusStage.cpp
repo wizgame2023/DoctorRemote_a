@@ -31,11 +31,19 @@ namespace basecross {
 			auto statusManager = AddGameObject<StatusManager>();
 			SetSharedGameObject(L"StatusManager", statusManager);
 
-			auto moji = AddGameObject<Comment>(16, 0, 0.2f, 512, 256, 700 * 1.2, 350 * 1.2, 26, 8, Vec3(-250, 350.0f, 0.0f), L"StatusMoji");
-			m_moji2 = AddGameObject<Sprite>(150,75, L"DecisionButton",Vec3(500, -350.0f, 0.0f));
-			SetSharedGameObject(L"Moji2", m_moji2);
+			
+			auto moji = AddGameObject<Comment>(16, 0, 0.2f, 512, 256, 700 * 1.2, 350 * 1.2, 26, 8, 
+				Vec3(-250, 350.0f, 0.0f), L"StatusMoji"); //「ステータスを1つ選んでください」
+			m_moji[0] = AddGameObject<Sprite>(150, 75, L"DecisionButton", Vec3(500, -350.0f, 0.0f)); //「B決定」
+			m_moji[1] = AddGameObject<Sprite>(150, 75, L"SpaceButton", Vec3(500, -350.0f, 0.0f)); // 「Space」
 
-			auto aButton = AddGameObject<CommentManager>(11, 1, 0.0f, 512, 256, 512*1.5, 256*1.5, 13 * 2, 8, Vec3(-580, -300.0f, 0.0f), L"StatusMoji");
+			auto skipMoji = AddGameObject<CommentManager>(11, 1, 0.0f, 512, 256, 512 * 1.5, 256 * 1.5, 13 * 2, 8, Vec3(-580, -300.0f, 0.0f), L"StatusMoji");
+			m_moji[2] = AddGameObject<Sprite>(100,50,L"Abutton",Vec3(-580, -370.0f, 0.0f));
+			m_moji[3] = AddGameObject<Sprite>(100, 100, L"SButton", Vec3(-590, -370.0f, 0.0f));
+
+			for (int i = 0; i < 4; i++) {
+				m_moji[i]->SetColor(Col4(0.0f));
+			}
 
 			auto black = AddGameObject<Sprite>(1280, 800, L"Black", Vec3(), -3);
 			auto back = AddGameObject<Sprite>(1280,800,L"Back",Vec3(),-1);
@@ -51,6 +59,7 @@ namespace basecross {
 		auto statusManager = GetSharedGameObject<StatusManager>(L"StatusManager");
 		auto status = statusManager->GetStatus();
 		auto elapsed = App::GetApp()->GetElapsedTime();
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
 		if (m_blinking > 0) {
 			m_blinking -= elapsed;
@@ -58,7 +67,20 @@ namespace basecross {
 		else {
 			m_blinking = 2.0f;
 		}
-		m_moji2->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
+
+		if (cntlVec[0].bConnected) {
+			m_moji[0]->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
+			m_moji[1]->SetColor(Col4(0.0f));
+			m_moji[2]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+			m_moji[3]->SetColor(Col4(0.0f));
+		}
+		else {
+			m_moji[0]->SetColor(Col4(0.0f));
+			m_moji[1]->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
+			m_moji[2]->SetColor(Col4(0.0f));
+			m_moji[3]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+
+		}
 
 		//デバック用
 		//wstringstream wss(L"");
