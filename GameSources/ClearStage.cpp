@@ -21,13 +21,19 @@ namespace basecross {
 	}
 	void ClearStage::OnCreate() {
 		try {
-			App::GetApp()->GetScene<Scene>()->ResetButton();
 			//BGM
 			BaseBGM();
+			auto scene = App::GetApp()->GetScene<Scene>();
+			scene->SetAchievementPoint(0);
+			scene->SetDashStatus(0);
+			scene->SetBulletLengthStatus(0);
+			scene->SetBigPieceUpStatus(0);
+			scene->SetChainRargeStatus(0);
+			scene->SetBulletPowerStatus(0);
+			scene->SetBulletTimeStatus(0);
 
 			//ビューとライトの作成
 			CreateViewLight();
-			auto scene = App::GetApp()->GetScene<Scene>();
 			scene->SetPlayFlag(false);
 
 
@@ -47,7 +53,9 @@ namespace basecross {
 	}
 
 	void ClearStage::OnUpdate() {
+		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto elapsed = App::GetApp()->GetElapsedTime();
+		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto messege = GetSharedGameObject<Sprite>(L"Messege");
 		auto button = GetSharedGameObject<Sprite>(L"Button");
 		m_time += elapsed * 0.5;
