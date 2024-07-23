@@ -297,11 +297,11 @@ namespace basecross {
 			m_timeCount++;
 			m_control++;
 		}
-		int test = scene->GetAchievementPoint();//デバック用変数
-		wstringstream wss(L"");
-		wss << test << "\n" << test << endl;
+		//int test = scene->GetAchievementPoint();//デバック用変数
+		//wstringstream wss(L"");
+		//wss << test << "\n" << test << endl;
 
-		scene->SetDebugString(wss.str());
+		//scene->SetDebugString(wss.str());
 	}
 
 	void ScoreStage::OnDestroy()
