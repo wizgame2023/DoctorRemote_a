@@ -81,9 +81,9 @@ namespace basecross {
 		auto ptrEnemy = AddGameObject<Enemy>(Vec3(37.0f, 0.5f, -20.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
-		EnemyPos.y = 0.5;
+		EnemyPos.y = 0.5f;
 		//Enemyのムービーシーン
-		AddGameObject<EnemyMovieManager>(EnemyPos + Vec3(0.0f, -1.0f, -13.5f), Vec3(40.0f, 0.1f, 40.0f), Vec3(62.38f, 4.0f, 20.69f), EnemyPos);
+		AddGameObject<EnemyMovieManager>(Vec3(40.0f, 0.0f, -15.0f), Vec3(30.0f, 0.1f, 29.0f), Vec3(37.8f, 4.0f, -26.5f), EnemyPos);
 
 	}
 
