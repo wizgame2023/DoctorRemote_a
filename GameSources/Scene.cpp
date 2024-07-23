@@ -163,7 +163,7 @@ namespace basecross {
 		app->RegisterTexture(L"MiniMapStage10", strTexture);
 		strTexture = texPath + L"MiniMapStage11ver2.0.png";//ミニマップStage11
 		app->RegisterTexture(L"MiniMapStage11", strTexture);
-		strTexture = texPath + L"MiniMapStage12.png";//ミニマップStage12
+		strTexture = texPath + L"MiniMapStage12ver2.0.png";//ミニマップStage12
 		app->RegisterTexture(L"MiniMapStage12", strTexture);
 		strTexture = texPath + L"MiniMapDataTutorialVer2.0.png";//ミニマップチュートリアル
 		app->RegisterTexture(L"MiniMapTutorial", strTexture);
@@ -482,6 +482,8 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"Charge2", soundWav);
 		soundWav = SoundPath + L"Charge3.wav";
 		App::GetApp()->RegisterWav(L"Charge3", soundWav);
+		soundWav = SoundPath + L"PlayerbreakSE.wav";
+		App::GetApp()->RegisterWav(L"PlayerbreakSE", soundWav);
 
 		//BGM
 		soundWav = SoundPath + L"ScaryBGM.wav";
