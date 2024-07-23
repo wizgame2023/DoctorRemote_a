@@ -72,7 +72,7 @@ namespace basecross {
 				m_moveStick = false;
 		}
 
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A|| keyState.m_bPressedKeyTbl['S']) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A|| keyState.m_bPressedKeyTbl[VK_BACK]) {
 			auto stage = App::GetApp()->GetScene<Scene>()->GetGameStage();
 			//stage = 1;
 			wstring nextStage = to_wstring(stage + 1);
@@ -82,7 +82,14 @@ namespace basecross {
 				pieceSE->Start(L"ChoiceSE", 0, 0.4f);
 				m_aButtonSEFlag = true;
 			}
-
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y || keyState.m_bPressedKeyTbl[VK_DELETE]) {
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
+			if (!m_aButtonSEFlag) {
+				auto pieceSE = App::GetApp()->GetXAudio2Manager();
+				pieceSE->Start(L"ChoiceSE", 0, 0.4f);
+				m_aButtonSEFlag = true;
+			}
 		}
 
 		//スティックを動かすとコメントが変わる
@@ -177,9 +184,10 @@ namespace basecross {
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 
+		//選択できるスプライト
 		m_selectSprite = stage->AddGameObject<StageSelectSprite>(Vec3(-450, 170, 0.0f),
 			sizeX, sizeY, 300, 300, 3, 2, 40, L"White_2", L"White_2", false, false);
-
+		//ステータスのスプライト
 		auto dashButton = stage->AddGameObject<Sprite>(sizeX, sizeY, L"DashButton", m_selectSprite->GetSpritePostion(1, 1));
 		auto bulletLenght = stage->AddGameObject<Sprite>(sizeX, sizeY, L"BulletButton", m_selectSprite->GetSpritePostion(2, 1));
 		auto pieceButton = stage->AddGameObject<Sprite>(sizeX, sizeY, L"GageButton", m_selectSprite->GetSpritePostion(3, 1));
@@ -187,8 +195,10 @@ namespace basecross {
 		auto bulletPower = stage->AddGameObject<Sprite>(sizeX, sizeY, L"PowerButton", m_selectSprite->GetSpritePostion(2, 2));
 		auto bulletTime = stage->AddGameObject<Sprite>(sizeX, sizeY, L"ChargeButton", m_selectSprite->GetSpritePostion(3, 2));
 
-		auto frame = stage->AddGameObject<Sprite>(350, 300, L"CommentFrame", Vec3(450.0f, 100.0f, 0.0f));
 		m_score = scene->GetAchievementPoint();
+		//説明コメントの枠
+		auto frame = stage->AddGameObject<Sprite>(350, 300, L"CommentFrame", Vec3(450.0f, 100.0f, 0.0f));
+		//補足説明
 		auto levelSetumei = stage->AddGameObject<Sprite>(256, 256, L"StatusSetumei2", Vec3(450.0f, -200.0f, 0.0f));
 		levelSetumei->SetColor(green);
 		//ポイントの表示
@@ -202,6 +212,7 @@ namespace basecross {
 		pointTex->SetColor(green);
 
 	}
+
 	//ポイントの表示　レベルの表示等
 	void StatusManager::PointLevelDis() {
 		auto& scene = App::GetApp()->GetScene<Scene>();
