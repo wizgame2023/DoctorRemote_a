@@ -52,7 +52,7 @@ namespace basecross {
 		const wstring frame  //フレームの画像
 	):
 		GameObject(stagePtr),
-		m_pos(Vec3(-200.0f,70.0f,0.0f)),//位置
+		m_pos(Vec3(-100.0f,120.0f,0.0f)),//位置
 		m_sizeX(70.0f),
 		m_sizeY(70.0f),
 		m_widthUnit(100.0f),
@@ -145,48 +145,48 @@ namespace basecross {
 
 		if (m_moveCheck) return;
 		//左スティック
-		if (cntlVec[0].fThumbLX < -0.9f || keyState.m_bPressedKeyTbl['A']) {
+		if (cntlVec[0].fThumbLX < -0.9f || (keyState.m_bPressedKeyTbl['A'] || keyState.m_bPressedKeyTbl[VK_LEFT])) {
 			if (m_widthMin < m_width && !m_checkL) {
 				m_width -= m_widthUnit;
 				m_checkL = true;
 				m_stageNum--;
 			}
 		}
-		else if (cntlVec[0].fThumbLX > -0.9f || keyState.m_bLastKeyTbl['A'] && m_checkL) {
+		else if ((cntlVec[0].fThumbLX > -0.9f || (keyState.m_bLastKeyTbl['A']|| keyState.m_bPressedKeyTbl[VK_LEFT])) && m_checkL) {
 			m_checkL = false;
 		}
 		//右スティック
-		if (cntlVec[0].fThumbLX > 0.9f || keyState.m_bPressedKeyTbl['D']) {
+		if (cntlVec[0].fThumbLX > 0.9f || (keyState.m_bPressedKeyTbl['D']|| keyState.m_bPressedKeyTbl[VK_RIGHT])) {
 			if (m_widthMax > m_width && !m_checkR) {
 				m_width += m_widthUnit;
 				m_checkR = true;
 				m_stageNum++;
 			}
 		}
-		else if (cntlVec[0].fThumbLX < 0.9f || keyState.m_bLastKeyTbl['D'] && m_checkR) {
+		else if ((cntlVec[0].fThumbLX < 0.9f || (keyState.m_bLastKeyTbl['D']|| keyState.m_bPressedKeyTbl[VK_RIGHT])) && m_checkR) {
 			m_checkR = false;
 		}
 
 		//上スティック
-		if (cntlVec[0].fThumbLY > 0.9f || keyState.m_bPressedKeyTbl['W']) {
+		if (cntlVec[0].fThumbLY > 0.9f || (keyState.m_bPressedKeyTbl['W']|| keyState.m_bPressedKeyTbl[VK_UP])) {
 			if (m_heightMax > m_height && !m_checkU) {
 				m_height += m_heightUnit;
 				m_checkU = true;
 				m_stageNum -= m_widthNum;
 			}
 		}
-		else if (cntlVec[0].fThumbLY < 0.9f || keyState.m_bLastKeyTbl['W'] && m_checkU) {
+		else if ((cntlVec[0].fThumbLY < 0.9f || (keyState.m_bLastKeyTbl['W']|| keyState.m_bPressedKeyTbl[VK_UP])) && m_checkU) {
 			m_checkU = false;
 		}
 		//下スティック
-		if (cntlVec[0].fThumbLY < -0.9f || keyState.m_bPressedKeyTbl['S']) {
+		if (cntlVec[0].fThumbLY < -0.9f || (keyState.m_bPressedKeyTbl['S']|| keyState.m_bPressedKeyTbl[VK_DOWN])) {
 			if (m_heightMin < m_height && !m_checkD) {
 				m_height -= m_heightUnit;
 				m_checkD = true;
 				m_stageNum += m_widthNum;
 			}
 		}
-		else if (cntlVec[0].fThumbLY > -0.9f || keyState.m_bLastKeyTbl['S'] && m_checkD) {
+		else if ((cntlVec[0].fThumbLY > -0.9f || (keyState.m_bLastKeyTbl['S'] || keyState.m_bPressedKeyTbl[VK_DOWN])) && m_checkD) {
 			m_checkD = false;
 		}
 
