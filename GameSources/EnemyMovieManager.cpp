@@ -101,7 +101,7 @@ namespace basecross {
 			m_padSkip = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip_pad", Vec3(620.0f - 150.0f, -390.0f + 50.0f, 0.0f), 0);//文字生成
 			m_padSkip->AddTag(L"MovieSprite");
 
-			m_speceMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Space", Vec3(620.0f - 290.0f, -390.0f + 42.0f, 0.0f), 0);//文字生成
+			m_speceMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"BackSpaceButton", Vec3(620.0f - 300.0f, -390.0f + 42.0f, 0.0f), 0);//文字生成
 			m_speceMoji->AddTag(L"MovieSprite");
 
 			m_skipMoji = GetStage()->AddGameObject<Sprite>(200, 100, L"Skip", Vec3(620.0f - 100.0f, -390.0f + 40.0f, 0.0f), 0);//文字生成
@@ -237,7 +237,7 @@ namespace basecross {
 			}
 			if (m_rockSkip < 0)
 			{
-				if (pad[0].wPressedButtons & XINPUT_GAMEPAD_B || keyBoard.m_bPushKeyTbl[VK_SPACE])
+				if (pad[0].wPressedButtons & XINPUT_GAMEPAD_A || keyBoard.m_bPressedKeyTbl[VK_BACK])
 				{
 					MyRemove();//自分自身を消去
 				}
@@ -300,6 +300,8 @@ namespace basecross {
 		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
 		GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
 
+		GetStage()->RemoveGameObject<Sprite>(m_padSkip);//スキップの文字列を消す
+		GetStage()->RemoveGameObject<Sprite>(m_speceMoji);//スキップの文字列を消す
 		GetStage()->RemoveGameObject<Sprite>(m_skipMoji);//スキップの文字列を消す
 
 		GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//進行度を進める(Bossが攻撃するようになる予定)

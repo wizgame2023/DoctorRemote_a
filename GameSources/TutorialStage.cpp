@@ -56,9 +56,9 @@ namespace basecross {
 	//Playerを追加する関数
 	void TutorialStage::CreatePlayer()//改善すべき点
 	{
-		float deg = -90.0f;
+		float deg = 90.0f;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, 0.0f, 0.0f),2.5f);//Player生成
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),200.5f);//Player生成
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 

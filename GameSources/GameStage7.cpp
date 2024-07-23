@@ -16,7 +16,7 @@ namespace basecross {
 
 
 		// カメラの設定
-		auto camera = ObjectFactory::Create<MainCamera>(180.0f);
+		auto camera = ObjectFactory::Create<MainCamera>(90.0f);
 		//camera->SetEye(Vec3(0.0f, 15.0f, -5.0f));
 		//camera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
 
@@ -56,7 +56,7 @@ namespace basecross {
 	void GameStage7::CreatePlayer()//改善すべき点
 	{
 		//Playerの出現場所を決める
-		float deg = 90;
+		float deg = -180;
 		float rad = XMConvertToRadians(deg);
 		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, rad, 0.0f), 1.7f);
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
@@ -441,7 +441,7 @@ namespace basecross {
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
 
-			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(13.0f, 0.5f, 0.0f));//導入を追加
+			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//導入を追加
 
 			//BGM
 			BaseBGM();
@@ -480,8 +480,8 @@ namespace basecross {
 		if (m_CareerFlag == 3)//敵を倒したとき
 		{
 
-			AddGameObject<EscapeManager>(Vec3(24.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(7.0f, 0.5f, -9.0f), Vec3(15.0f, 0.5f, 11.0f), Vec3(19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));
-			AddGameObject<EscapeManager>(Vec3(-19.7f, 3.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-17.0f, 0.5f, -9.3f), Vec3(-4.7f, 0.5f, 9.54f), Vec3(-19.7f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, -18.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, -17.0f), Vec3(9.0f, 0.5f, -12.0f), Vec3(0.0f, 0.5f, -13.0f), Vec3(0.0f, 0.5f, 0.0f));
+			AddGameObject<EscapeManager>(Vec3(0.0f, 3.0f, 20.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(-9.0f, 0.5f, 12.0f), Vec3(9.0f, 0.5f, 17.0f), Vec3(0.0f, 0.5f, 10.0f), Vec3(0.0f, 0.5f, 0.0f));
 
 			GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(4);//進行度を更新
 			m_CareerFlag = 4;
