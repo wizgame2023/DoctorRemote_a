@@ -17,7 +17,8 @@ namespace basecross {
 		m_meshResName(L"NumbersWhite"),
 		m_width(40.0f),
 		m_heigth(80.0f),
-		m_color(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f))
+		m_color(Col4(0.1640f, 0.8632f, 0.2109f, 1.0f)),
+		m_mojiNum(11)
 	{}
 	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos,float width,float heigth, Col4 color) :
 		GameObject(stagePtr),
@@ -26,16 +27,18 @@ namespace basecross {
 		m_meshResName(L"NumbersWhite"),
 		m_width(width),
 		m_heigth(heigth),
-		m_color(color)
+		m_color(color),
+		m_mojiNum(11)
 	{}
-	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth , wstring meshResName, Col4 color) :
+	UITime::UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth , wstring meshResName, Col4 color,int mojiNum) :
 		GameObject(stagePtr),
 		m_number(number),
 		m_pos(pos),
 		m_width(width),
 		m_heigth(heigth),
 		m_meshResName(meshResName),
-		m_color(color)
+		m_color(color),
+		m_mojiNum(mojiNum)
 	{}
 
 
@@ -47,7 +50,7 @@ namespace basecross {
 			GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiTimePtr(GetThis<UITime>());//自分自身のポインタを渡す
 		}
 
-		m_moveW = (512.0f / 11) / 512.0f;
+		m_moveW = (512.0f / m_mojiNum) / 512.0f;
 		m_moveH = 75.0f/128.0f;
 		//m_moveW = 50.0f/512.0f;
 		//m_moveH = 100.0f/128.0f;
