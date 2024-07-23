@@ -577,7 +577,7 @@ namespace basecross {
 			ResetActiveStage<GameStage12>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<TitleStage>();
+			ResetActiveStage<GameStage1>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();
@@ -845,21 +845,18 @@ namespace basecross {
 		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto& keyState = App::GetApp()->GetInputDevice().GetKeyState();
 
-		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_START && 
-			cntlVec[0].wButtons & XINPUT_GAMEPAD_BACK) {
+		if ((cntlVec[0].wButtons & XINPUT_GAMEPAD_START && cntlVec[0].wButtons & XINPUT_GAMEPAD_BACK)||
+			(keyState.m_bPressedKeyTbl[VK_DELETE] && keyState.m_bLastKeyTbl[VK_SHIFT])) {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
+			//ポイント類のリセット
+			SetAchievementPoint(0);
+			SetDashStatus(0);
+			SetBulletLengthStatus(0);
+			SetBigPieceUpStatus(0);
+			SetChainRargeStatus(0);
+			SetBulletPowerStatus(0);
+			SetBulletTimeStatus(0);
 		}
-		if (keyState.m_bPressedKeyTbl[VK_DELETE] && keyState.m_bLastKeyTbl[VK_SHIFT]) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
-		}
-		//ポイント類のリセット
-		SetAchievementPoint(0);
-		SetDashStatus(0);
-		SetBulletLengthStatus(0);
-		SetBigPieceUpStatus(0);
-		SetChainRargeStatus(0);
-		SetBulletPowerStatus(0);
-		SetBulletTimeStatus(0);
 	}
 }
 //end basecross
