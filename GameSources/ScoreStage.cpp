@@ -170,8 +170,6 @@ namespace basecross {
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-58.0f, -223.0f, 0.0f));//「80」を表示
 				rank->UpdateIfClear(0);
 				m_achievementPoint += 80;//80成果(achievement)ポイント獲得  
-				scene->SetAchievementPoint(m_achievementPoint);
-
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから10秒後で、ステージクリアした時の残りタイムが2分秒以上だったらポイント「60」を表示
@@ -180,7 +178,6 @@ namespace basecross {
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-60.0f, -228.0f, 0.0f));//「60」を表示
 				rank->UpdateIfClear(1);
 				m_achievementPoint += 60;//60成果(achievement)ポイント獲得
-				scene->SetAchievementPoint(m_achievementPoint);
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから10秒後で、ステージクリアした時の残りタイムが1分30秒以上だったらポイント「40」を表示
@@ -189,7 +186,6 @@ namespace basecross {
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-59.0f, -230.0f, 0.0f));//「40」を表示 
 				rank->UpdateIfClear(2);
 				m_achievementPoint += 40;//40成果(achievement)ポイント獲得
-				scene->SetAchievementPoint(m_achievementPoint);
 				m_timeCount++;
 			}
 			//スコアステージが生成されてから10秒後で、ステージクリアしたらポイント「20」を表示
@@ -198,7 +194,6 @@ namespace basecross {
 				auto rank = AddGameObject<Sprite>(100, 100, L"Point", Vec3(-60.0f, -225.0f, 0.0f));//「20」を表示
 				rank->UpdateIfClear(3);
 				m_achievementPoint += 20;//20成果(achievement)ポイント獲得
-				scene->SetAchievementPoint(m_achievementPoint);
 				m_timeCount++;
 			}
 
@@ -243,7 +238,7 @@ namespace basecross {
 				if (kakeracount == 6) {
 					m_achievementPoint += 30;
 				}
-				scene->SetAchievementPoint(m_achievementPoint);
+				scene->AddAchievementPoint(m_achievementPoint);
 				m_timeCount++;
 			}
 
@@ -302,11 +297,11 @@ namespace basecross {
 			m_timeCount++;
 			m_control++;
 		}
-		//int test = scene->GetAchievementPoint();//デバック用変数
-		//wstringstream wss(L"");
-		//wss << test << "\n" << test << endl;
+		int test = scene->GetAchievementPoint();//デバック用変数
+		wstringstream wss(L"");
+		wss << test << "\n" << test << endl;
 
-		//scene->SetDebugString(wss.str());
+		scene->SetDebugString(wss.str());
 	}
 
 	void ScoreStage::OnDestroy()
