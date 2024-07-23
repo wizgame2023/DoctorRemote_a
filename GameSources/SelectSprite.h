@@ -41,6 +41,7 @@ namespace basecross {
 		shared_ptr<Sprite> m_retrunCom;
 		shared_ptr<Sprite> m_creditTex;
 		shared_ptr<Sprite> m_back;
+		shared_ptr<Sprite> m_level[3];
 		shared_ptr<StageSelectSprite> m_selectStage;
 		Col4 m_color;
 
