@@ -48,7 +48,7 @@ namespace basecross {
 			m_buttonTime -= elapsed;
 			if (m_buttonTime <= 0) {
 				AddGameObject<Sprite>(150, 50, L"ReStart", Vec3(-300.0f, -300.0f, 0.0f));//リスタート
-				AddGameObject<Sprite>(150, 50, L"ReStart", Vec3(150.0f, -300.0f, 0.0f));//
+				AddGameObject<Sprite>(150, 50, L"TitleMoji", Vec3(150.0f, -300.0f, 0.0f));//
 
 				if (cntlVec[0].bConnected) {
 

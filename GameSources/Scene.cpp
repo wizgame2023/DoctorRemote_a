@@ -99,6 +99,8 @@ namespace basecross {
 		app->RegisterTexture(L"Hard", strTexture);
 		strTexture = texPath + L"ReStart.png";
 		app->RegisterTexture(L"ReStart", strTexture);
+		strTexture = texPath + L"TitleMoji.png";
+		app->RegisterTexture(L"TitleMoji", strTexture);
 		strTexture = texPath + L"GameOverBackSpace.png";
 		app->RegisterTexture(L"GameOverBackSpace", strTexture);
 		strTexture = texPath + L"GameOverSpace.png";
@@ -111,6 +113,7 @@ namespace basecross {
 		app->RegisterTexture(L"GameOverCommentName1", strTexture);
 		strTexture = texPath + L"GameOverCommentName2.png";
 		app->RegisterTexture(L"GameOverCommentName2", strTexture);
+		
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"GameOver.jpg";
@@ -536,7 +539,7 @@ namespace basecross {
 
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameOverStage");
 		}
 		catch (...) {
 			throw;
