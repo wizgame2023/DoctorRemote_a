@@ -246,6 +246,10 @@ namespace basecross {
 		app->RegisterTexture(L"YButton", strTexture);
 		strTexture = texPath + L"DeleteButton.png";
 		app->RegisterTexture(L"DeleteButton", strTexture);
+		strTexture = texPath + L"GameOverAButton.png";
+		app->RegisterTexture(L"GameOverAButton", strTexture);
+		strTexture = texPath + L"GameOverBButton.png";
+		app->RegisterTexture(L"GameOverBButton", strTexture);
 
 
 
@@ -541,7 +545,7 @@ namespace basecross {
 
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameOverStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToStartStage");
 		}
 		catch (...) {
 			throw;
