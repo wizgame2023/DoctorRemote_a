@@ -102,9 +102,9 @@ namespace basecross {
 				}
 				if (m_displayNumber) {
 					//10‚Ü‚Å‚Ì”Žš‚ð•\Ž¦
-					m_numberSprites[(i + j * m_widthNum)] = stage->AddGameObject<UITime>((i + j * m_widthNum) + 1,
+					m_numberSprites[(i + j * m_widthNum)] = stage->AddGameObject<UITime>((i + j * m_widthNum),
 						Vec3((m_pos.x - m_sizeX / 2) + i * m_widthUnit + m_widthUnit * 0.15,
-							(m_pos.y + m_sizeY / 2) + j * -m_heightUnit - m_heightUnit * 0.20, 0.0f), m_sizeX * 0.5, m_sizeY * 0.7, L"Numbers10");
+							(m_pos.y + m_sizeY / 2) + j * -m_heightUnit - m_heightUnit * 0.10, 0.0f), m_sizeX * 0.5, m_sizeY * 0.7, (512.0f/12)/512.0f,1.0,L"Numbers12",Col4(1.0f), 11);
 					m_numberSprites[(i + j * m_widthNum)]->SetColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
 				}
 			}
