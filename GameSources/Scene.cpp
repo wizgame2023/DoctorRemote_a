@@ -204,6 +204,8 @@ namespace basecross {
 		app->RegisterTexture(L"NumbersTen", strTexture);
 		strTexture = texPath + L"Numbers10.png";
 		app->RegisterTexture(L"Numbers10", strTexture);
+		strTexture = texPath + L"Numbers12.png";
+		app->RegisterTexture(L"Numbers12", strTexture);
 		strTexture = texPath + L"WallSkin1.png";
 		app->RegisterTexture(L"WallSkin", strTexture);
 		strTexture = texPath + L"WallSkin2.png";
