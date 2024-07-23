@@ -14,7 +14,7 @@ namespace basecross {
 		float m_blinking;
 		void CreateViewLight(); //ƒrƒ…[‚Ìì¬
 
-		shared_ptr<Sprite> m_moji[4];
+		shared_ptr<Sprite> m_moji[6];
 		
 
 	public:
