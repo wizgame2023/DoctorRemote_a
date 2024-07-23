@@ -15,8 +15,9 @@ namespace basecross {
 		float m_width;
 		float m_heigth;
 		float m_moveH;
-		int m_number;
 		float m_moveW;
+		int m_number;
+		int m_mojiNum;
 
 		//頂点の情報
 		vector<VertexPositionColorTexture> m_vertices;
@@ -33,7 +34,7 @@ namespace basecross {
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos);
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth, Col4 color = Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
 		UITime(const shared_ptr<Stage>& stagePtr, int number, Vec3 pos, float width, float heigth, 
-			wstring meshResName,Col4 color= Col4(0.1640f, 0.8632f, 0.2109f, 1.0f));
+			wstring meshResName,Col4 color= Col4(0.1640f, 0.8632f, 0.2109f, 1.0f),int mojiNum = 11);
 
 		virtual ~UITime(){}
 
