@@ -43,10 +43,33 @@ namespace basecross {
 		App::GetApp()->GetScene<Scene>()->ResetButton();
 		auto elapsed = App::GetApp()->GetElapsedTime();
 		auto& scene = App::GetApp()->GetScene<Scene>();
+		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (!m_buttonFlag) {
 			m_buttonTime -= elapsed;
 			if (m_buttonTime <= 0) {
-				AddGameObject<Sprite>(250, 150, L"OverButton", Vec3(0.0f, -100.0f, 0.0f));
+				AddGameObject<Sprite>(150, 50, L"ReStart", Vec3(-300.0f, -300.0f, 0.0f));//リスタート
+				AddGameObject<Sprite>(150, 50, L"ReStart", Vec3(150.0f, -300.0f, 0.0f));//
+
+				if (cntlVec[0].bConnected) {
+
+				}
+				else {
+					AddGameObject<Sprite>(150, 50, L"GameOverSpace", Vec3(-130, -300, 0.0f));//Space
+					AddGameObject<Sprite>(150, 50, L"GameOverBackSpace", Vec3(310, -300, 0.0f));//BackSpace
+
+				}
+
+				if (scene->GetTime() <= 0) {
+					//時間切れ
+					AddGameObject<Sprite>(500, 100, L"GameOverCommentName1", Vec3());
+					AddGameObject<Sprite>(400, 100, L"GameOverComment1", Vec3(0,-150,0));
+				}
+				else{
+					//体力が0
+					AddGameObject<Sprite>(500, 100, L"GameOverCommentName2", Vec3());
+					AddGameObject<Sprite>(400, 100, L"GameOverComment2", Vec3(0, -150, 0));
+				}
+				
 				m_buttonFlag = true;
 			}
 		}
