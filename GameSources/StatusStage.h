@@ -14,7 +14,8 @@ namespace basecross {
 		float m_blinking;
 		void CreateViewLight(); //ƒrƒ…[‚Ìì¬
 
-		shared_ptr<Sprite> m_moji2;
+		shared_ptr<Sprite> m_moji[4];
+		
 
 	public:
 		StatusStage() :Stage() {}

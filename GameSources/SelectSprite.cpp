@@ -15,7 +15,7 @@ namespace basecross {
 		EXIT,
 	};
 
-	SelectSprite::SelectSprite(const shared_ptr<Stage>& stagePtr):
+	SelectSprite::SelectSprite(const shared_ptr<Stage>& stagePtr) :
 		GameObject(stagePtr),
 		m_height(-100),
 		m_heightMax(-100),
@@ -32,17 +32,17 @@ namespace basecross {
 		m_stageStart(false),
 		m_aButtonSEFlag(true),
 		m_bButtonSEFlag(false),
-		m_color(1.0f,1.0f,1.0f,1.0f)
+		m_color(1.0f, 1.0f, 1.0f, 1.0f)
 	{}
 
 	void SelectSprite::OnCreate() {
 		auto stage = GetStage();
-		m_sprite = stage->AddGameObject<Sprite>(170, 70, L"SelectWhite", Vec3(0.0f, -175.0f, 0.0f),-1);
+		m_sprite = stage->AddGameObject<Sprite>(170, 70, L"SelectWhite", Vec3(0.0f, -175.0f, 0.0f), -1);
 		m_trans = m_sprite->GetComponent<Transform>();
 		m_trans->SetPosition(Vec3(0, -100, 0));
 		m_color = Col4(1.0f, 1.0f, 1.0f, 0.5f);
 		m_sprite->SetColor(m_color);
-		m_back = stage->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0.0f),-2);
+		m_back = stage->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0.0f), -2);
 		m_back->SetColor(Col4(0.0f));
 
 	}
@@ -55,11 +55,14 @@ namespace basecross {
 
 
 		//Aボタンが押されたらステージセレクト画面を消す
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == STAGESELECT||keyState.m_bPressedKeyTbl[VK_BACK] && m_stage == STAGESELECT) {
+		if ((cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A || keyState.m_bPressedKeyTbl[VK_BACK]) && m_stage == STAGESELECT) {
 			if (m_selectStageFlag) {
 				m_selectStage->ThisDestroy();
 				m_retrunCom->ThisDestroy();
 				m_stageFrame->ThisDestroy();
+				m_level[0]->ThisDestroy();
+				m_level[1]->ThisDestroy();
+				m_level[2]->ThisDestroy();
 				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
 				m_back->SetColor(Col4(0.0f));
 				m_count = 10.0f;
@@ -75,7 +78,7 @@ namespace basecross {
 		}
 
 		//Aボタンが押されたらExit画面を消す
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A && m_stage == EXIT|| keyState.m_bPressedKeyTbl[VK_BACK] && m_stage == EXIT) {
+		if ((cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A || keyState.m_bPressedKeyTbl[VK_BACK]) && m_stage == EXIT) {
 			if (m_exitFlag) {
 				m_creditTex->ThisDestroy();
 				m_sprite->SetColor(Col4(1.0f, 1.0f, 1.0, 0.5f));
@@ -121,8 +124,16 @@ namespace basecross {
 					m_bButtonSEFlag = false;
 					m_aButtonSEFlag = false;
 					m_back->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.7));
-					m_stageFrame = stage->AddGameObject<Sprite>(600, 300, L"Score", Vec3(0.0f));
-					m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
+					m_stageFrame = stage->AddGameObject<Sprite>(600, 450, L"Score", Vec3(0.0f));
+					if (cntlVec[0].bConnected) {
+						m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
+					}
+					else {
+						m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"BackSpaceButton", Vec3(220.0f, -170.0f, 0.0f));
+					}
+					m_level[0] = stage->AddGameObject<Sprite>(150, 75, L"Easy", Vec3(-200.0f, 120.0f, 0.0f));
+					m_level[1] = stage->AddGameObject<Sprite>(150, 75, L"Normal", Vec3(-200.0f, 20.0f, 0.0f));
+					m_level[2] = stage->AddGameObject<Sprite>(150, 75, L"Hard", Vec3(-200.0f, -80.0f, 0.0f));
 					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
 					m_selectStage->SetLimitNum(12);
 					//for (int i = 1; i < 12; i++) {
@@ -176,7 +187,7 @@ namespace basecross {
 		if (m_exitFlag) return;
 
 		//ステージを選ぶ
-		if (cntlVec[0].fThumbLY < -0.9f||keyState.m_bPressedKeyTbl['S']) {
+		if (cntlVec[0].fThumbLY < -0.9f || (keyState.m_bPressedKeyTbl['S'] || keyState.m_bPressedKeyTbl[VK_DOWN])) {
 			if (m_moveCheck) return;
 			if (m_heightMin < m_height && !m_checkD) {
 				m_height -= m_spaces;
@@ -184,12 +195,12 @@ namespace basecross {
 				m_checkD = true;
 			}
 		}
-		if (cntlVec[0].fThumbLY > -0.9f || keyState.m_bLastKeyTbl['S']&& m_checkD == true ) {
+		if (cntlVec[0].fThumbLY > -0.9f || (keyState.m_bLastKeyTbl['S'] || keyState.m_bPressedKeyTbl[VK_DOWN]) && m_checkD == true) {
 			if (m_moveCheck) return;
 			m_checkD = false;
 		}
 
-		if (cntlVec[0].fThumbLY > 0.9 || keyState.m_bPressedKeyTbl['W']) {
+		if (cntlVec[0].fThumbLY > 0.9 || (keyState.m_bPressedKeyTbl['W'] || keyState.m_bPressedKeyTbl[VK_UP])) {
 			if (m_moveCheck) return;
 			if (m_heightMax > m_height && !m_checkU) {
 				m_height += m_spaces;
@@ -197,13 +208,13 @@ namespace basecross {
 				m_checkU = true;
 			}
 		}
-		if (cntlVec[0].fThumbLY < 0.9 || keyState.m_bLastKeyTbl['W'] && m_checkU == true) {
+		if (cntlVec[0].fThumbLY < 0.9 || (keyState.m_bLastKeyTbl['W'] || keyState.m_bPressedKeyTbl[VK_UP]) && m_checkU == true) {
 			if (m_moveCheck) return;
 			m_checkU = false;
 		}
 
 		//Bボタンで決定
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B ||keyState.m_bPressedKeyTbl[VK_SPACE] && !m_checkU && !m_checkD) {
+		if ((cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE]) && !m_checkU && !m_checkD) {
 			if (m_stage == TUTORIAL) {
 				m_moveCheck = true;
 			}
@@ -225,7 +236,7 @@ namespace basecross {
 		if (m_height == m_heightMax) {
 			m_stage = TUTORIAL;
 		}
-		else if (m_height == m_heightMax-m_spaces) {
+		else if (m_height == m_heightMax - m_spaces) {
 			m_stage = STAGESELECT;
 		}
 		else if (m_height == m_heightMax - m_spaces * 2) {
@@ -258,7 +269,7 @@ namespace basecross {
 		m_stageStart = start;
 	}
 	void SelectSprite::StageMove(wstring stage) {
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage"+stage);
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage" + stage);
 	}
 
 }

@@ -67,6 +67,8 @@ namespace basecross {
 		app->RegisterTexture(L"TriDot", strTexture);
 		strTexture = texPath + L"Button.png";
 		app->RegisterTexture(L"Bbutton", strTexture);
+		strTexture = texPath + L"Abutton.png";
+		app->RegisterTexture(L"Abutton", strTexture);
 		strTexture = texPath + L"Bbutton2.png";
 		app->RegisterTexture(L"Bbutton2", strTexture);
 		strTexture = texPath + L"DecisionButton.png";
@@ -89,6 +91,12 @@ namespace basecross {
 		app->RegisterTexture(L"Stage", strTexture);
 		strTexture = texPath + L"CAUTION.png";
 		app->RegisterTexture(L"CAUTION", strTexture);
+		strTexture = texPath + L"Easy.png";
+		app->RegisterTexture(L"Easy", strTexture);
+		strTexture = texPath + L"Normal.png";
+		app->RegisterTexture(L"Normal", strTexture);
+		strTexture = texPath + L"Hard.png";
+		app->RegisterTexture(L"Hard", strTexture);
 		
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
@@ -212,6 +220,8 @@ namespace basecross {
 		app->RegisterTexture(L"Sensuikan", strTexture);
 		strTexture = texPath + L"SpaceButton.png";
 		app->RegisterTexture(L"SpaceButton", strTexture);
+		strTexture = texPath + L"BackSpaceButton.png";
+		app->RegisterTexture(L"BackSpaceButton", strTexture);
 		strTexture = texPath + L"SButton.png";
 		app->RegisterTexture(L"SButton", strTexture);
 

@@ -56,10 +56,10 @@ namespace basecross {
 		}
 
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (keyState.m_bPushKeyTbl['D']) {
+		if (keyState.m_bPushKeyTbl['D']|| keyState.m_bPushKeyTbl[VK_RIGHT]) {
 			m_angleY -= 30.0 * delta;
 		}
-		if (keyState.m_bPushKeyTbl['A']) {
+		if (keyState.m_bPushKeyTbl['A']|| keyState.m_bPushKeyTbl[VK_LEFT]) {
 			m_angleY += 30.0 * delta;
 		}
 

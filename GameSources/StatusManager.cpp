@@ -72,7 +72,7 @@ namespace basecross {
 				m_moveStick = false;
 		}
 
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A|| keyState.m_bPressedKeyTbl[VK_BACK]) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A|| keyState.m_bPressedKeyTbl['S']) {
 			auto stage = App::GetApp()->GetScene<Scene>()->GetGameStage();
 			//stage = 1;
 			wstring nextStage = to_wstring(stage + 1);
