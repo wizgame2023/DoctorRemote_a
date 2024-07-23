@@ -282,8 +282,12 @@ namespace basecross {
 		app->RegisterTexture(L"EnemyDamageEffect", strTexture);
 		strTexture = texPath + L"EnemyPiece.png";
 		app->RegisterTexture(L"EnemyPieceEffect", strTexture);
-		strTexture = texPath + L"BigPiece.png";
-		app->RegisterTexture(L"BigPieceEffect", strTexture);
+		strTexture = texPath + L"BigPiece2.png";
+		app->RegisterTexture(L"BigPieceEffect2", strTexture);
+		strTexture = texPath + L"BigPiece2-1.png";
+		app->RegisterTexture(L"BigPieceEffect2-1", strTexture);
+		strTexture = texPath + L"BigPiece2-2.png";
+		app->RegisterTexture(L"BigPieceEffect2-2", strTexture);
 		//文字の表示等
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
@@ -577,7 +581,7 @@ namespace basecross {
 			ResetActiveStage<GameStage12>();
 		}
 		else if (event->m_MsgStr == L"ToStartStage") {
-			ResetActiveStage<GameStage1>();
+			ResetActiveStage<TitleStage>();
 		}
 		else if (event->m_MsgStr == L"ToTutorialStage") {
 			ResetActiveStage<TutorialStage>();

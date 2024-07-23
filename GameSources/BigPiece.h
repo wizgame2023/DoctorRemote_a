@@ -25,6 +25,7 @@ namespace basecross {
 		Vec3 m_velocity;
 		wstring m_meshResName;
 		wstring m_myMiniMapName;
+		wstring m_effectName;;
 		shared_ptr<Transform> m_trans;
 		weak_ptr<Bullet> m_bullet;
 

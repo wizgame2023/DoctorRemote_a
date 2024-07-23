@@ -63,14 +63,18 @@ namespace basecross {
 		if (m_var == 1)
 		{
 			m_meshResName = L"Kakera_Mesh3";
+			m_effectName = L"BigPieceEffectPurple2";
 		}
 		if (m_var == 2)
 		{
 			m_meshResName = L"Kakera_Mesh4";
+			m_effectName = L"BigPieceEffectPurple2-1";
 		}
 		if (m_var == 3)
 		{
 			m_meshResName = L"Kakera_Mesh5";
+			m_effectName = L"BigPieceEffectPurple2-2";
+
 		}
 		//オブジェクトの描画
 		auto ptrDraw = AddComponent<PNTBoneModelDraw>();
@@ -145,7 +149,7 @@ namespace basecross {
 			pieceSE->Start(L"BreakSE", 0, 1.5f);
 
 			auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
-			PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"BigPieceEffectPurple", false);
+			PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(m_effectName, false);
 			PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition() - Vec3(0.0f, 1.0f, 0.0f));
 
 
