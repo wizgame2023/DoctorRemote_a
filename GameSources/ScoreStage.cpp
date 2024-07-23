@@ -50,8 +50,8 @@ namespace basecross {
 					Vec3(325.0f, 360.0f, 0.0f), L"ResultMoji4"); //「Aボタンでスキップ」を表示
 			}
 			else {
-				auto moji = AddGameObject<Sprite>(100, 100, L"SButton", Vec3(370.0f, 330.0f, 0.0f)); //S
-
+				auto moji = AddGameObject<Sprite>(100, 100, L"SButton", Vec3(440.0f, 330.0f, 0.0f)); //S
+				auto moji2 = AddGameObject<Sprite>(100, 100, L"Skip", Vec3(520.0f, 330.0f, 0.0f)); // 「スキップ」
 			}
 
 			m_time = App::GetApp()->GetScene<Scene>()->GetTime();
