@@ -126,21 +126,17 @@ namespace basecross {
 					m_back->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.7));
 					m_stageFrame = stage->AddGameObject<Sprite>(600, 450, L"Score", Vec3(0.0f));
 					if (cntlVec[0].bConnected) {
-						m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -100.0f, 0.0f));
+						m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"RetrunButton", Vec3(200.0f, -150.0f, 0.0f)); //A戻る
 					}
 					else {
-						m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"BackSpaceButton", Vec3(220.0f, -170.0f, 0.0f));
+						m_retrunCom = stage->AddGameObject<Sprite>(120, 60, L"BackSpaceButton", Vec3(220.0f, -170.0f, 0.0f)); //BackSpace
 					}
 					m_level[0] = stage->AddGameObject<Sprite>(150, 75, L"Easy", Vec3(-200.0f, 120.0f, 0.0f));
 					m_level[1] = stage->AddGameObject<Sprite>(150, 75, L"Normal", Vec3(-200.0f, 20.0f, 0.0f));
 					m_level[2] = stage->AddGameObject<Sprite>(150, 75, L"Hard", Vec3(-200.0f, -80.0f, 0.0f));
 					m_selectStage = GetStage()->AddGameObject<StageSelectSprite>(L"Kakera", L"Kakera");
 					m_selectStage->SetLimitNum(12);
-					//for (int i = 1; i < 12; i++) {
-					//	if (i % 4 != 0) {
-					//		m_selectStage->SetCloseNum(i);
-					//	}
-					//}
+					//アンロック
 					for (int i = 0; i < 12; i++) {
 						bool firstTime = App::GetApp()->GetScene<Scene>()->GetFirstTimeStage(i);
 						if (firstTime) {
@@ -185,6 +181,7 @@ namespace basecross {
 
 
 		if (m_exitFlag) return;
+		if (m_selectStageFlag) return;
 
 		//ステージを選ぶ
 		if (cntlVec[0].fThumbLY < -0.9f || (keyState.m_bPressedKeyTbl['S'] || keyState.m_bPressedKeyTbl[VK_DOWN])) {
@@ -195,7 +192,7 @@ namespace basecross {
 				m_checkD = true;
 			}
 		}
-		if (cntlVec[0].fThumbLY > -0.9f || (keyState.m_bLastKeyTbl['S'] || keyState.m_bPressedKeyTbl[VK_DOWN]) && m_checkD == true) {
+		if ((cntlVec[0].fThumbLY > -0.9f || (keyState.m_bLastKeyTbl['S'] || keyState.m_bPressedKeyTbl[VK_DOWN])) && m_checkD == true) {
 			if (m_moveCheck) return;
 			m_checkD = false;
 		}
@@ -208,7 +205,7 @@ namespace basecross {
 				m_checkU = true;
 			}
 		}
-		if (cntlVec[0].fThumbLY < 0.9 || (keyState.m_bLastKeyTbl['W'] || keyState.m_bPressedKeyTbl[VK_UP]) && m_checkU == true) {
+		if ((cntlVec[0].fThumbLY < 0.9 || (keyState.m_bLastKeyTbl['W'] || keyState.m_bPressedKeyTbl[VK_UP])) && m_checkU == true) {
 			if (m_moveCheck) return;
 			m_checkU = false;
 		}
@@ -246,8 +243,8 @@ namespace basecross {
 
 
 		//wstringstream wss(L"");
-		//wss	<<L"\ncount"
-		//	<<m_count
+		//wss	<<L"\nstage"
+		//	<<m_stage
 		//	<<"\n"
 		//	<<m_blinkCheck
 		//	<< endl;
