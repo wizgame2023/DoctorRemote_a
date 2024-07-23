@@ -149,11 +149,10 @@ namespace basecross {
 	}
 	void LoadStage::StageChange() {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto& keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto& scene = App::GetApp()->GetScene<Scene>();
-		if (cntlVec[0].bConnected) {
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				m_onFade = true;
-			}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B||keyState.m_bPressedKeyTbl[VK_SPACE]) {
+			m_onFade = true;
 		}
 		if (m_anCollar>=1)
 		{
