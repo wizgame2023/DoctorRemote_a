@@ -437,7 +437,8 @@ namespace basecross {
 			CreateMiniMap();//ミニマップ生成
 			auto stageCollsionManager = AddGameObject<StageCollisionManager>();//コリジョンマネージャー追加
 			SetSharedGameObject(L"StageCollisionManager", stageCollsionManager);
-			auto joinManager = AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(13.0f, 0.5f, 0.0f));
+			AddGameObject<JoinManager>(Vec3(0.0f, 0.5f, 0.0f), Vec3(0.0f, 0.5f, -13.0f));//導入を追加
+
 
 			//BGM
 			BaseBGM();
