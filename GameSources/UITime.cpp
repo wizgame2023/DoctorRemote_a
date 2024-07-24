@@ -68,17 +68,13 @@ namespace basecross {
 			GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->SetUiTimePtr(GetThis<UITime>());//自分自身のポインタを渡す
 		}
 
-		//m_moveW = 50.0f/512.0f;
-		//m_moveH = 100.0f/128.0f;
-		int number = m_number;
-
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 
 		m_vertices = {
-			{Vec3(0.0f,0.0f,0.0f),color,Vec2((m_moveW * number),0.0f)},
-			{Vec3(m_width,0.0f,0.0f),color,Vec2((m_moveW * (number + 1)),0.0f)},
-			{Vec3(0.0f,-m_heigth,0.0f),color,Vec2((m_moveW * number),1.0f)},
-			{Vec3(m_width,-m_heigth,0.0f),color,Vec2((m_moveW * (number + 1)),1.0f)},
+			{Vec3(0.0f,0.0f,0.0f),color,Vec2((m_moveW * m_number),0.0f)},
+			{Vec3(m_width,0.0f,0.0f),color,Vec2((m_moveW * (m_number + 1)),0.0f)},
+			{Vec3(0.0f,-m_heigth,0.0f),color,Vec2((m_moveW * m_number),1.0f)},
+			{Vec3(m_width,-m_heigth,0.0f),color,Vec2((m_moveW * (m_number + 1)),1.0f)},
 		};
 
 		m_indices = {
