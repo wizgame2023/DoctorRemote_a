@@ -46,6 +46,7 @@ namespace basecross {
 		m_outCol = m_blackout->GetColor();
 	}
 	void TimeManager::OnUpdate() {
+		auto lastCol = Col4(1.0f, 0.0f, 0.0f, 1.0f);
 
 		if (m_move) {
 			float elapsedTime = App::GetApp()->GetElapsedTime();
@@ -61,6 +62,13 @@ namespace basecross {
 				//	PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 				//}
 			}
+		}
+		if (m_time <= 60.0f) {
+			m_firstNum->SetColor(lastCol);
+			m_secondNum->SetColor(lastCol);
+			m_thirdNum->SetColor(lastCol);
+			m_fourthNum->SetColor(lastCol);
+			m_ten->SetColor(lastCol);
 		}
 
 		if (m_time <= 0.0f) {
