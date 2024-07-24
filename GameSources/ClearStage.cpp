@@ -79,7 +79,7 @@ namespace basecross {
 	void ClearStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"GameClearBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
+		m_BGM = XAPtr->Start(L"GameClearBGM",0.0f, 0.2f);
 	}
 
 	void ClearStage::OnDestroy()

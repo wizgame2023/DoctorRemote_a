@@ -82,7 +82,7 @@ namespace basecross {
 	void GameOverStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"GameOverBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
+		m_BGM = XAPtr->Start(L"GameOverBGM", 0.0f, 0.2f);
 	}
 
 	void GameOverStage::OnDestroy()
