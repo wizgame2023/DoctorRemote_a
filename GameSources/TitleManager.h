@@ -13,8 +13,14 @@ namespace basecross {
 	private:
 		shared_ptr<Sprite> m_blackBoard;
 		shared_ptr<SelectSprite>m_selectSprite;
+		shared_ptr<Transform> m_trans;
+
 		float m_anCollar;
 		float m_NextStandMovie;
+		float m_bulletTime;
+		float m_bulletChargeTime;
+		float m_bulletRatio;
+
 		bool m_StandTimeReset;
 	public:
 		TitleManager(const shared_ptr<Stage>& stagePtr);
@@ -24,5 +30,41 @@ namespace basecross {
 		virtual void OnUpdate() override;
 
 		void StandTimeReset();//‘Ò‹@ŠÔ‚ğƒŠƒZƒbƒg‚·‚é
+	};
+
+	class BoneDraw1 : public GameObject {
+		Vec3 m_StartPos;
+		bool m_TextureUse;
+	public:
+		//\’z‚Æ”jŠü
+		BoneDraw1(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos);
+		virtual ~BoneDraw1();
+		//‰Šú‰»
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
+	};
+
+	class BoneDraw2 : public GameObject {
+		Vec3 m_StartPos;
+		bool m_TextureUse;
+	public:
+		//\’z‚Æ”jŠü
+		BoneDraw2(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos);
+		virtual ~BoneDraw2();
+		//‰Šú‰»
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
+	};
+
+	class BoneDraw3 : public GameObject {
+		Vec3 m_StartPos;
+		bool m_TextureUse;
+	public:
+		//\’z‚Æ”jŠü
+		BoneDraw3(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos);
+		virtual ~BoneDraw3();
+		//‰Šú‰»
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
 	};
 }
