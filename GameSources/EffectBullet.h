@@ -24,18 +24,23 @@ namespace basecross {
 		//バックアップ頂点データ
 		vector<VertexPositionColorTexture> m_Vertices;
 		Vec3 m_Bullet;
+
+		float m_sizeW;
+		float m_sizeH;
 		
+		shared_ptr<PCTSpriteDraw> m_drawComp;
 
 	public:
 		EffectBullet(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey,
 			uint32_t PieceXCount, uint32_t PieceYCount,Vec3 Bulletpos,
-			float AnimeTime);
+			float AnimeTime, float sizeW, float sizeH);
 		//破棄
 		virtual ~EffectBullet();
 		//初期化
 		virtual void OnCreate() override;
 		//更新
 		virtual void OnUpdate()override;
+		void SetColor(Col4 color);
 
 	};
 

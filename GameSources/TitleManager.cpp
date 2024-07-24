@@ -16,8 +16,8 @@ namespace basecross {
 
 	void TitleManager::OnCreate() {
 		GetStage()->AddGameObject<BoneDraw1>(Vec3(-2.3f, 0.0f, -1.9f));
-		GetStage()->AddGameObject<BoneDraw2>(Vec3(2.8f, 0.0f, -2.2f));
-		GetStage()->AddGameObject<BoneDraw3>(Vec3(2.2f, 0.0f, -1.0f));
+		GetStage()->AddGameObject<BoneDraw2>(Vec3(1.8f, 1.0f, -2.6f));
+		GetStage()->AddGameObject<BoneDraw3>(Vec3(2.9f, 0.0f, -1.1f));
 
 		m_blackBoard = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0), 3);
 		m_blackBoard->SetColor(Col4(1, 1, 1, 0));
@@ -192,7 +192,7 @@ namespace basecross {
 	void BoneDraw3::OnCreate() {
 		//‰ŠúˆÊ’u‚È‚Ç‚Ìİ’è
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(1.5f, 1.5f, 1.5f);
+		ptrTrans->SetScale(2.0f, 2.0f, 2.0f);
 		ptrTrans->SetRotation(0.0f, 0.0f, 0.0f);
 		ptrTrans->SetPosition(m_StartPos);
 

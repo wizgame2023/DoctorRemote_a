@@ -317,6 +317,10 @@ namespace basecross {
 		app->RegisterTexture(L"BigPieceEffect2-1", strTexture);
 		strTexture = texPath + L"BigPiece2-2.png";
 		app->RegisterTexture(L"BigPieceEffect2-2", strTexture);
+		strTexture = texPath + L"LStickMove.png";
+		app->RegisterTexture(L"LStickMove", strTexture);
+		strTexture = texPath + L"KeyPush.png";
+		app->RegisterTexture(L"KeyPush", strTexture);
 		//文字の表示等
 		strTexture = texPath + L"Rank.png";
 		app->RegisterTexture(L"Rank", strTexture);
