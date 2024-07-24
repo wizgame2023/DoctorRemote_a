@@ -565,7 +565,7 @@ namespace basecross {
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
 		if (event->m_MsgStr == L"ToGameStage1") {
 			//ゲームステージの設定
-			ResetActiveStage<GameStage10>();
+			ResetActiveStage<GameStage1>();
 		}
 		else if (event->m_MsgStr == L"ToGameStage2") {
 			//ゲームステージの設定
