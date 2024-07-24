@@ -59,6 +59,8 @@ namespace basecross {
 
 		stage->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerの操作を効かなくさせる
 
+		stage->GetSharedGameObject<MiniMapPlayer>(L"MiniMapPlayer")->OnClear(true);//ミニマップのPlayerを見えなくさせる
+
 		m_Camera = ObjectFactory::Create<Camera>();//カメラの生成
 		m_Camera->SetEye(m_CameraEye);
 		m_Camera->SetAt(m_CameraAt);
