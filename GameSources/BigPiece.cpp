@@ -114,6 +114,14 @@ namespace basecross {
 		m_trans = GetComponent<Transform>();
 		m_trans->SetScale(m_scale);
 
+		auto StageFlag = stage->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();
+		if (StageFlag >= 3)//StageFlag‚ª“G‚ð“|‚µ‚Ä‚¢‚½Žž‚Ìis“x‚ÌŽž
+		{
+			stage->RemoveGameObject<BigPiece>(GetThis < BigPiece>());//Ž©•ª‚ðÁ‹Ž‚·‚é
+			//Ž©•ªŽ©g(BigPiece)‚ª‚¢‚È‚­‚È‚é‚±‚Æ‚ð“`‚¦‚é
+			GetStage()->GetSharedGameObject<MiniMapBigPiece>(m_myMiniMapName)->SetExistence(false);
+		}
+
 	}
 
 	void BigPiece::OnCollisionEnter(shared_ptr<GameObject>& other) {
