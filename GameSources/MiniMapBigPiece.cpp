@@ -26,15 +26,23 @@ namespace basecross {
 
 	void MiniMapBigPiece::OnUpdate()
 	{	
-		
+		auto stageFlag = GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();
 		auto uiManager = GetStage()->GetSharedGameObject<UIManager>(L"UIManager");
 		if (m_Existence == false)
 		{
-			//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(m_numPtr);//自分を消す前に配列に自分のポインタを消す
-			GetStage()->RemoveGameObject<MiniMapBigPiece>(GetThis<MiniMapBigPiece>());//自分を消す
-			auto scene = App::GetApp()->GetScene<Scene>();
-			scene->AddBigPieceCount(1);
+			if (stageFlag < 3)
+			{
+				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(m_numPtr);//自分を消す前に配列に自分のポインタを消す
+				GetStage()->RemoveGameObject<MiniMapBigPiece>(GetThis<MiniMapBigPiece>());//自分を消す
+				auto scene = App::GetApp()->GetScene<Scene>();
+				scene->AddBigPieceCount(1);
+			}
+			if (stageFlag >= 3)
+			{
+				GetStage()->RemoveGameObject<MiniMapBigPiece>(GetThis<MiniMapBigPiece>());//自分を消す
+			}
 		}
+		
 	}
 
 	void MiniMapBigPiece::SetExistence(bool Existence)
