@@ -325,7 +325,7 @@ namespace basecross {
 			else if (m_stageCount <= 9) {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
 			}
-			else if (m_stageCount == 10) {
+			else if (m_stageCount == 12) {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 			}
 			if (!m_SEFlag) {
