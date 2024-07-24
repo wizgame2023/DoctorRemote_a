@@ -96,21 +96,4 @@ namespace basecross {
 		//ResetButton();
 	}
 
-	void TitleStage::ResetButton() {
-		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		auto& keyState = App::GetApp()->GetInputDevice().GetKeyState();
-		auto scene = App::GetApp()->GetScene<Scene>();
-
-		if (cntlVec[0].wButtons & XINPUT_GAMEPAD_START &&
-			cntlVec[0].wButtons & XINPUT_GAMEPAD_BACK) {
-			for (int i = 0; i < 12; i++) {
-				scene->SetFirstTimeStage(i, false);
-			}
-		}
-		if (keyState.m_bPressedKeyTbl[VK_DELETE]) {
-			for (int i = 0; i < 12; i++) {
-				scene->SetFirstTimeStage(i, false);
-			}
-		}
-	}
 }
