@@ -45,7 +45,8 @@ namespace basecross {
 		m_display(display),
 		m_displayNumber(displayNumber),
 		m_closeNum{(false)},
-		m_bButtonSEFlag(false)
+		m_bButtonSEFlag(false),
+		m_baseColorFlag(true)
 	{}
 	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr,
 		const wstring sprites,//‘I‘ð‚·‚é‰æ‘œ
