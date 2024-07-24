@@ -36,7 +36,8 @@ namespace basecross {
 
 		auto delta = App::GetApp()->GetElapsedTime();
 
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto& cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto& keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		Vec2 ret;
 		auto speed = 50.0f;
 
@@ -50,17 +51,21 @@ namespace basecross {
 			}
 
 		}
-
 		if (abs(ret.x) > 0.5) {
 			m_angleY -= speed * delta * ret.x;
 		}
+		else {
+			if (m_MoveFlag) {
+				if (keyState.m_bPushKeyTbl['D']|| keyState.m_bPushKeyTbl[VK_RIGHT]) {
+					m_angleY -= 40.0 * delta;
+				}
+			
+				else if (keyState.m_bPushKeyTbl['A']|| keyState.m_bPushKeyTbl[VK_LEFT]) {
+					m_angleY += 40.0 * delta;
+				}
 
-		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
-		if (keyState.m_bPushKeyTbl['D']|| keyState.m_bPushKeyTbl[VK_RIGHT]) {
-			m_angleY -= 30.0 * delta;
-		}
-		if (keyState.m_bPushKeyTbl['A']|| keyState.m_bPushKeyTbl[VK_LEFT]) {
-			m_angleY += 30.0 * delta;
+			}
+
 		}
 
 		//ディグリー角からラジアン角に直す
