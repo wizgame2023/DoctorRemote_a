@@ -61,6 +61,7 @@ namespace basecross {
 	void TitleManager::StandTimeReset()
 	{
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto keyBoard = App::GetApp()->GetInputDevice().GetKeyState();//キーボードを取得
 		Vec2 AStick;//アナログスティック
 		AStick.x = cntlVec[0].fThumbLX;
 		AStick.y = cntlVec[0].fThumbLY;
@@ -68,12 +69,10 @@ namespace basecross {
 		{
 			m_StandTimeReset = true;
 		}
-		if (cntlVec[0].wPressedButtons)//コントローラーのボタンが押されたとき
+		if (cntlVec[0].wPressedButtons || keyBoard.m_KeyMessageActive)//コントローラーのボタンが押されたとき
 		{
 			m_StandTimeReset = true;
 		}
-		//if(cntlVec)
-		//m_NextStandMovie = 0.0f;//待機時間をリセットする
 	}
 
 	BoneDraw1::BoneDraw1(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos) :
