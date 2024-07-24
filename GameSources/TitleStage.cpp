@@ -49,6 +49,12 @@ namespace basecross {
 			SetSharedGameObject(L"spaceButton", spaceButton);
 			//AddGameObject<Player>(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 			AddGameObject<Sprite>(1280, 800, L"Title", Vec3(0, 0, 0),-5);
+			auto LStickMove=AddGameObject<EffectBullet>(L"LStickMove", 3, 2, Vec3(180.0f, -175.0f, 1.0f), 0.4f, 60, 60);
+			LStickMove->SetColor(Col4(0.0f));
+			SetSharedGameObject(L"LStickMove", LStickMove);
+			auto KeyPush = AddGameObject<EffectBullet>(L"KeyPush", 3, 2, Vec3(180.0f, -175.0f, 1.0f), 0.4f, 100, 100);
+			KeyPush->SetColor(Col4(0.0f));
+			SetSharedGameObject(L"KeyPush", KeyPush);
 
 		}
 		catch (...) {
@@ -77,6 +83,8 @@ namespace basecross {
 		auto elapsed = App::GetApp()->GetElapsedTime();
 		auto decButton = GetSharedGameObject<Sprite>(L"decisionButton");
 		auto spaceButton = GetSharedGameObject<Sprite>(L"spaceButton");
+		auto LStickMove = GetSharedGameObject<EffectBullet>(L"LStickMove");
+		auto KeyPush = GetSharedGameObject<EffectBullet>(L"KeyPush");
 
 		if (m_blinking > 0) {
 			m_blinking -= elapsed;
@@ -88,10 +96,14 @@ namespace basecross {
 		if (cntlVec[0].bConnected) {
 			decButton->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking)); 
 			spaceButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f));
+			LStickMove->SetColor(Col4(0.0f, 1.0f, 0.0, 1.0f));
+			KeyPush->SetColor(Col4(0.0f));
 		}
 		else {
 			decButton->SetColor(Col4(0.0f, 1.0f, 0.0f, 0.0f));
 			spaceButton->SetColor(Col4(0.0f, 1.0f, 0.0f, m_blinking));
+			LStickMove->SetColor(Col4(0.0f));
+			KeyPush->SetColor(Col4(0.0f, 1.0f, 0.0, 1.0f));
 		}
 		//ResetButton();
 	}

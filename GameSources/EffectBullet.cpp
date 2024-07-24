@@ -7,8 +7,8 @@
 #include "Project.h"
 
 namespace basecross {
-	EffectBullet::EffectBullet(const shared_ptr<Stage>& StagePtr,const wstring& TextureKey,
-		uint32_t PieceXCount, uint32_t PieceYCount,const Vec3 Bulletpos, float AnimeTime) :
+	EffectBullet::EffectBullet(const shared_ptr<Stage>& StagePtr, const wstring& TextureKey,
+		uint32_t PieceXCount, uint32_t PieceYCount, const Vec3 Bulletpos, float AnimeTime, float sizeW,float sizeH) :
 	    GameObject(StagePtr),
 		m_TextureKey(TextureKey),
 		m_displayTime(0.0f),
@@ -16,7 +16,9 @@ namespace basecross {
 		m_PieceYCount(PieceYCount),
 		m_PieceIndex(0),
 		m_Bullet(Bulletpos),
-		m_AnimeTime(AnimeTime)
+		m_AnimeTime(AnimeTime),
+		m_sizeW(sizeW),
+		m_sizeH(sizeH)
 	{
 	}
 
@@ -27,14 +29,12 @@ namespace basecross {
 	void EffectBullet::OnCreate()
 	{
 		Col4 color(1, 1, 1, 1); // ポリゴンの色
-		const float w = 100.0f; // ポリゴンの幅
-		const float h = 100.0f; // ポリゴンの高さ
 		m_Vertices = { // 頂点データ
 			//             座標           ,頂点色,        UV座標
-			{Vec3(-w * 0.5f, +h * 0.5f, 0), color, Vec2(0.0f, 0.0f)}, // 0
-			{Vec3(+w * 0.5f, +h * 0.5f, 0), color, Vec2(1.0f, 0.0f)}, // 1
-			{Vec3(-w * 0.5f, -h * 0.5f, 0), color, Vec2(0.0f, 1.0f)}, // 2
-			{Vec3(+w * 0.5f, -h * 0.5f, 0), color, Vec2(1.0f, 1.0f)}, // 3
+			{Vec3(-m_sizeW * 0.5f, +m_sizeH * 0.5f, 0), color, Vec2(0.0f, 0.0f)}, // 0
+			{Vec3(+m_sizeW * 0.5f, +m_sizeH * 0.5f, 0), color, Vec2(1.0f, 0.0f)}, // 1
+			{Vec3(-m_sizeW * 0.5f, -m_sizeH * 0.5f, 0), color, Vec2(0.0f, 1.0f)}, // 2
+			{Vec3(+m_sizeW * 0.5f, -m_sizeH * 0.5f, 0), color, Vec2(1.0f, 1.0f)}, // 3
 		};
 
 		vector<uint16_t> indices = { // 頂点インデックス（頂点のつなげ順）
@@ -42,10 +42,10 @@ namespace basecross {
 			2, 1, 3  // ←こっちも
 		};
 
-		auto drawComp = AddComponent<PCTSpriteDraw>(m_Vertices, indices); // スプライト用のドローコンポーネント
-		drawComp->SetTextureResource(m_TextureKey);//白のテクスチャが欲しいときはHAKUSIを選択してください
-		drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
-		drawComp->SetDiffuse(Col4(1, 1, 1, 1.0f)); // ポリゴンを色を設定する
+		m_drawComp = AddComponent<PCTSpriteDraw>(m_Vertices, indices); // スプライト用のドローコンポーネント
+		m_drawComp->SetTextureResource(m_TextureKey);//白のテクスチャが欲しいときはHAKUSIを選択してください
+		m_drawComp->SetSamplerState(SamplerState::LinearWrap); // テクスチャを繰り返して貼り付ける設定
+		m_drawComp->SetDiffuse(Col4(0, 1, 0, 1.0f)); // ポリゴンを色を設定する
 
 		auto Trans = GetComponent<Transform>();//トランスフォームを取得
 		Vec3 Pos = Trans->GetPosition();//自分のPositionを取得
@@ -71,7 +71,7 @@ namespace basecross {
 			{	
 
 				m_PieceIndex = 0;
-				GetStage()->RemoveGameObject<EffectBullet>(GetThis<EffectBullet>());
+				//GetStage()->RemoveGameObject<EffectBullet>(GetThis<EffectBullet>());
 
 			}				
 
@@ -128,6 +128,9 @@ namespace basecross {
 
 	}
 
+	void EffectBullet::SetColor(Col4 color) {
+		m_drawComp->SetDiffuse(color);
 
+	}
 }
 //end namespace basecross
