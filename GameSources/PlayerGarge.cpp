@@ -50,16 +50,22 @@ namespace basecross {
 		m_garge->UpdateValue(piece);
 		auto position = m_garge->GetComponent<Transform>()->GetPosition();
 
+		if (piece <= 0.25) {
+			m_garge->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+		}
+  		else if (piece <= 0.65) {
+			m_garge->SetColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
+		}
+
 		////デバック用ストリーム
 		//wstringstream wss(L"");
 		////デバック用
 		//auto scene = App::GetApp()->GetScene<Scene>();
-		//wss << L"transform :" <<
-		//	position. y<<"\n" << position.x <<
-		//	"\n" <<
-		//	endl;
-		//auto dstr = scene->GetDebugString();
-		//scene->SetDebugString(dstr + wss.str());
+		//wss << m_ratioHp 
+		//	<<"\n"
+		//	<<m_currentHp
+		//	<< endl;
+		//scene->SetDebugString(wss.str());
 
 	}
 

@@ -131,12 +131,8 @@ namespace basecross {
 			{
 				if (!m_comFlag2) 
 				{
-					if (m_com[0]) {
-						m_com[0]->ThisDestroy();
-					}
-					if (m_com[1]) {
-						m_com[1]->ThisDestroy();
-					}
+					m_com[0]->ThisDestroy();
+					m_com[1]->ThisDestroy();
 					m_com[2] = GetStage()->AddGameObject<CommentManager>(13 * 3, 0, Vec3(250, -180, 0.0f), L"Dassyutu");
 					m_comFlag2 = true;
 				}
@@ -326,7 +322,7 @@ namespace basecross {
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();
 
-		auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);//枠
+		//auto frame = stage->AddGameObject<Sprite>(1280, 800, L"Frame", Vec3(), 1);//枠
 
 		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f), 2);//415,265
 		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
@@ -335,7 +331,7 @@ namespace basecross {
 		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
 
 		//画面上のライト
-		auto light = stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
+		//auto light = stage->AddGameObject<Sprite>(1280, 800, L"Ligth2", Vec3(), 0);
 
 		//弾のチャージを表すゲージ
 		auto chargeFrame = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 1.0f, 150, 15, Col4(1.0f), Col4(1.0f,1.0f,1.0f,0.5f), Vec3(-220.0f+150, -290.0f, 0.0f), Vec3(0.0f));//こいつのカラーを何とかする
