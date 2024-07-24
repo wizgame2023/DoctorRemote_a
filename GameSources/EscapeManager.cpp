@@ -19,6 +19,7 @@ namespace basecross {
 		m_PlayerStartPos(playerStartPos),
 		m_TargetPos(TagetPos),
 		m_MapSize(mapSize),
+		m_endTime(0.0f),
 		m_paint(1.0f)
 	{
 
