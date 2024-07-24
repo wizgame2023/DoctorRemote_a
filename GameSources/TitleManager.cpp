@@ -19,6 +19,8 @@ namespace basecross {
 		GetStage()->AddGameObject<BoneDraw2>(Vec3(2.8f, 0.0f, -2.2f));
 		GetStage()->AddGameObject<BoneDraw3>(Vec3(2.2f, 0.0f, -1.0f));
 
+		m_blackBoard = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0), 3);
+		m_blackBoard->SetColor(Col4(1, 1, 1, 0));
 		m_selectSprite = GetStage()->GetSharedGameObject<SelectSprite>(L"SelectSprite");
 	}
 
