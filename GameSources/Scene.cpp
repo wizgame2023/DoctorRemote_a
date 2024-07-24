@@ -113,6 +113,13 @@ namespace basecross {
 		app->RegisterTexture(L"GameOverCommentName1", strTexture);
 		strTexture = texPath + L"GameOverCommentName2.png";
 		app->RegisterTexture(L"GameOverCommentName2", strTexture);
+		strTexture = texPath + L"ClearTitle.png";
+		app->RegisterTexture(L"ClearTitle", strTexture);
+		strTexture = texPath + L"GameClearAButton.png";
+		app->RegisterTexture(L"GameClearAButton", strTexture);
+		strTexture = texPath + L"GameClearSpace.png";
+		app->RegisterTexture(L"GameClearSpace", strTexture);
+
 		
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
@@ -884,6 +891,11 @@ namespace basecross {
 			SetChainRargeStatus(0);
 			SetBulletPowerStatus(0);
 			SetBulletTimeStatus(0);
+			//ステージアンロックリセット
+			for (int i = 0; i < 12; i++) {
+				SetFirstTimeStage(i, false);
+			}
+
 		}
 	}
 }

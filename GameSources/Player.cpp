@@ -94,7 +94,7 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto colPtr = AddComponent<CollisionObb>();
-		colPtr->SetDrawActive(true);
+		colPtr->SetDrawActive(false);
 		colPtr->SetAfterCollision(AfterCollision::Auto);
 
 		AddTag(L"Player");
@@ -155,8 +155,6 @@ namespace basecross {
 							m_chargeBulletSE[2] = true;
 						}
 					}
-
-
 				}
 				else {
 					m_bulletTime = m_bulletChargeTime * 3;
@@ -204,8 +202,6 @@ namespace basecross {
 
 			//EnemyPieceに触れたら押し出し
 			if (m_enemyPieceFlag) {
-
-
 				auto obj = GetObj();
 				auto objTrans = obj->GetComponent<Transform>();
 				auto pullTrans = objTrans->GetPosition() - ptrPos;
@@ -223,7 +219,7 @@ namespace basecross {
 				}
 			}
 
-
+			//ダメージを食らったときの演出
 			if (m_enemyPieceFlag || m_blinkCnt < 7.0) {
 				m_blinkCnt -= elapsedTime*7.0;
 
@@ -252,30 +248,14 @@ namespace basecross {
 
 		Dash();//これでダッシュの動きをする
 
-
-
-		//auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
-
-		//auto rad = XMConvertToRadians(30.0f);
-		////Dキーを押したとき
-		//if (keyState.m_bPushKeyTbl[0x44]) {
-		//	//auto rot = m_trans->GetRotation();
-		//	
-		//	m_rotY += rad * elapsedTime;
-		//}
-		//if (keyState.m_bPushKeyTbl[0x41]) {
-		//	m_rotY -= rad * elapsedTime;
-		//}
-		//m_trans->SetRotation(Vec3(0,m_rotY,0));
-
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();//デバック用です
 
 
 		auto trans = GetComponent<Transform>();
 		//デバック用
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		auto gameStage = scene->GetGameStage();
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//auto gameStage = scene->GetGameStage();
 		//wss << L"transform : "
 		//	<< L"\n"
 		//	<< L"postion : ("
@@ -308,20 +288,20 @@ namespace basecross {
 		//	<<scene->GetBulletPower()
 		//	<< endl;
 
-		wss << L"Rot:"
-			<< L"\nx." << m_trans->GetRotation().x
-			<< L"\ny." << m_trans->GetRotation().y
-			<< L"\nz." << m_trans->GetRotation().z
-			<< endl;
+		//wss << L"Rot:"
+		//	<< L"\nx." << m_trans->GetRotation().x
+		//	<< L"\ny." << m_trans->GetRotation().y
+		//	<< L"\nz." << m_trans->GetRotation().z
+		//	<< endl;
 
-		scene->SetDebugString(wss.str());
+		//scene->SetDebugString(wss.str());
 
 	}
 
 	//衝突判定
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& other) {
 		auto ptrTrans = GetComponent<Transform>();
-
+		//欠片
 		if (other->FindTag(L"PieceLittle")) {
 			if (!m_radarFlag) {
 				AddPiece(m_onePiece);
@@ -334,8 +314,8 @@ namespace basecross {
 			EffectFlag(3);
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
 			pieceSE->Start(L"GetPieceSE", 0, 0.2f);
-
 		}
+		//大きいウイルスから出る欠片
 		if (other->FindTag(L"BigPieceLittle")) {
 			if (!m_radarFlag) {
 				AddPiece(m_onePiece * 1.5);
@@ -348,8 +328,8 @@ namespace basecross {
 			EffectFlag(3);
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
 			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
-
 		}
+		//大きいウイルス
 		if (other->FindTag(L"BigPiece")) {
 
 			m_enemyPieceFlag = true;
@@ -360,6 +340,7 @@ namespace basecross {
 			damegeSE->Start(L"DamageSE", 0, 1.5f);
 
 		}
+		//ウイルス
 		if (other->FindTag(L"EnemyPiece")) {
 			EffectFlag(2);
 			m_enemyPieceFlag = true;
@@ -386,6 +367,7 @@ namespace basecross {
 
 			}
 		}
+		//キーボード用
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (keyState.m_bPushKeyTbl['W'] || keyState.m_bPushKeyTbl[VK_UP]) {
 			ret += 30.0f * elapsed;
@@ -430,43 +412,15 @@ namespace basecross {
 
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto rad = XMConvertToRadians(3.0f);
-		//float frontAngle = PlayerAngle();
-		////Dキーを押したとき
-		//if (keyState.m_bPushKeyTbl[0x44]) {
-		//	m_rotY = m_rotY + rad;
-
-		//}
-		//if (keyState.m_bPushKeyTbl[0x41]) {
-		//	m_rotY = m_rotY - rad;
-		//}
 
 		angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
 		//正規化
-		//angle.normalize();
+		angle.normalize();
 
 		//Y軸は変化させない
 		angle.y = 0.0f;
 		//最後に傾けた値を保存する
 		m_lastAngle = angle;
-
-
-		//if (moveX != 0 || moveZ != 0) {//コントローラー(アナログステック)を動かしたら
-
-
-		//	//コントローラの向きを計算
-		//	//Vec2 moveVec(moveX, moveZ);
-		//	//角度からベクトルを作成
-		//	angle = Vec3(cos(m_rotY), 0.0f, sin(m_rotY));
-		//	//正規化
-		//	angle.normalize();
-
-		//	//Y軸は変化させない
-		//	angle.y = 0.0f;
-		//	//最後に傾けた値を保存する
-		//	m_lastAngle = angle;
-
-		//}
-		
 
 
 		return angle;
@@ -485,11 +439,6 @@ namespace basecross {
 		if (angle.length() >= 0.0f) {
 
 			Vec3 moveAngle = angle;
-			//if (m_PadLastAngle.y < 0.0f) {//yの数値がマイナスの場合バックする
-			//	auto subAngle = atan2(moveAngle.z, moveAngle.x);
-			//	subAngle += XM_PI;
-			//	moveAngle = Vec3(cos(subAngle), 0.0f, sin(subAngle));
-			//}
 
 			auto pos = GetComponent<Transform>()->GetPosition();
 			pos += moveAngle * elapsedTime * m_speed;//ここで進む距離を決めている
@@ -506,21 +455,6 @@ namespace basecross {
 			//補間処理を行う回転
 			unilPtr->RotToHead(angle, 0.7f);
 		}
-
-		////Dキーを押したとき
-		//if (keyState.m_bPushKeyTbl[0x44]) {
-		//	m_rotY += rad * elapsedTime;
-		//	m_trans->SetRotation(Vec3(0, m_rotY, 0));
-
-		//}
-		//if (keyState.m_bPushKeyTbl[0x41]) {
-		//	m_rotY -= rad * elapsedTime;
-		//	m_trans->SetRotation(Vec3(0, m_rotY, 0));
-
-		//}
-		////m_trans->SetRotation(Vec3(0, m_rotY, 0));
-
-
 
 	}
 
@@ -688,20 +622,6 @@ namespace basecross {
 		auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
 		switch (Flag)
 		{
-			//case 1:
-			//	//リカバリーウォールの場合
-			//	if (PtrEffect) {
-			//		PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"PlayerEffectRecovery", false);
-			//		PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
-			//	}
-				break;
-		case 2:
-			////ブレイクウォールの場合
-			//if (PtrEffect) {
-			//	PtrEffect = GetStage()->GetSharedGameObject<EffectChase>(L"EffectChase", false);
-			//	PtrEffect->InsertEffect(GetComponent<Transform>()->GetPosition());
-			//}
-			break;
 		case 3:
 			//かけらを拾った場合
 			if (PtrEffect)
