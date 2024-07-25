@@ -12,6 +12,7 @@ namespace basecross {
 		GameObject(stagePtr),
 		m_time(300.0f),
 		m_move(true),
+		m_SEFlag(false),
 		m_pos(-90.0f,350.0f,0.0f)
 	{}
 	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,int time,Vec3 pos) :
@@ -69,6 +70,12 @@ namespace basecross {
 			m_thirdNum->SetColor(lastCol);
 			m_fourthNum->SetColor(lastCol);
 			m_ten->SetColor(lastCol);
+			if (!m_SEFlag) {
+				auto Keikoku = App::GetApp()->GetXAudio2Manager();
+				Keikoku->Start(L"KeikokuSE", 0, 0.5f);
+				m_SEFlag = true;
+			}
+
 		}
 
 		if (m_time <= 0.0f) {
