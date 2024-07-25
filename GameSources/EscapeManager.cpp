@@ -95,10 +95,6 @@ namespace basecross {
 
 		m_Sprite = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0));
 		m_Sprite->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
-		auto MovieBand = stage->AddGameObject<Sprite>(1280, 800, L"MovieBand", Vec3(), 0);//帯を出す
-		MovieBand->AddTag(L"MovieSprite");//ムービー用のスプライトタグを追加
-
-
 	}
 
 	void EscapeManager::OnUpdate()
