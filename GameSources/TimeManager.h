@@ -20,6 +20,7 @@ namespace basecross {
 		int m_fourth;
 
 		bool m_move;
+		bool m_SEFlag;
 
 		Vec3 m_pos;
 
