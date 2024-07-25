@@ -21,6 +21,7 @@ namespace basecross {
 	}
 	void ClearStage::OnCreate() {
 		try {
+			PieceManager::enemyPieces.clear();
 			//BGM
 			BaseBGM();
 			auto scene = App::GetApp()->GetScene<Scene>();

@@ -21,6 +21,8 @@ namespace basecross {
 	}
 	void GameOverStage::OnCreate() {
 		try {
+			PieceManager::enemyPieces.clear();
+
 			//BGM
 			BaseBGM();
 

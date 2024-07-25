@@ -902,6 +902,7 @@ namespace basecross {
 			for (int i = 0; i < 12; i++) {
 				SetFirstTimeStage(i, false);
 			}
+			PieceManager::enemyPieces.clear();
 
 		}
 	}
