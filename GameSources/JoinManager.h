@@ -11,9 +11,9 @@ namespace basecross {
 	class JoinManager :public GameObject
 	{
 	private:
-		shared_ptr<MainCamera> m_Camera;
 		shared_ptr<Sprite> m_Sprite;
 		shared_ptr<StageCollisionManager> m_stageCollionManager;
+		weak_ptr<MainCamera> m_Camera;
 		weak_ptr<Player> m_Player;
 		Vec3 m_PlayerPos;//Playerのポジション
 		Vec3 m_PlayerStartPos;//Startした際のPlayerのポジション

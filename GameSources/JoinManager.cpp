@@ -53,9 +53,10 @@ namespace basecross {
 		auto ptrCamera = stage->GetView()->GetTargetCamera();
 //		MainCamera
 		m_Camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
-		if (m_Camera) 
+		auto mainCamera = m_Camera.lock();
+		if (mainCamera) 
 		{
-			m_Camera->SetMove(false);//ƒJƒƒ‰‚Ì‘€ì‚ğ–³‹‚³‚¹‚é
+			mainCamera->SetMove(false);//ƒJƒƒ‰‚Ì‘€ì‚ğ–³‹‚³‚¹‚é
 		}
 	}
 
