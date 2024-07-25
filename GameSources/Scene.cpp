@@ -526,6 +526,9 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"Charge3", soundWav);
 		soundWav = SoundPath + L"PlayerbreakSE.wav";
 		App::GetApp()->RegisterWav(L"PlayerbreakSE", soundWav);
+		soundWav = SoundPath + L"Keikoku.wav";
+		App::GetApp()->RegisterWav(L"KeikokuSE", soundWav);
+
 
 		//BGM
 		soundWav = SoundPath + L"ScaryBGM.wav";
