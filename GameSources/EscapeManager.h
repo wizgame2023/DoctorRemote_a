@@ -8,6 +8,7 @@
 #include "stdafx.h"
 #include "Sprite.h"
 #include "MainCamera.h"
+#include "Player.h"
 
 namespace basecross {
 	class EscapeManager : public GameObject
