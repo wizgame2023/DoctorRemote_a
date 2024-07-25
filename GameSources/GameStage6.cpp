@@ -228,7 +228,7 @@ namespace basecross {
 			Vec3(54.7f,0.3f,65.0f),//3
 			Vec3(62.0f,0.3f,5.0f),//4
 			Vec3(10.0f,0.3f,-67.0f),//5
-			Vec3(-65.0f,0.3f,65.0f)//6
+			Vec3(-65.0f,0.3f,-65.0f),//6
 
 		};
 		m_BigPieceLength = sizeof(Pos) / sizeof(Vec3);//BigPieceの合計の数
