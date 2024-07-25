@@ -82,7 +82,7 @@ namespace basecross {
 	//敵を作成
 	void GameStage7::CreateEnemy()
 	{
-		auto ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));//Enemy����
+		auto ptrEnemy = AddGameObject<Enemy>(Vec3(60.0f, 0.5f, 31.0f), Vec3(-0.0f, 0.0f, 0.0f), Vec3(3.0f, 3.0f, 3.0f));//Enemy
 		SetSharedGameObject(L"Enemy", ptrEnemy);//ゲームオブジェクトを取得
 		auto EnemyPos = ptrEnemy->GetComponent<Transform>()->GetPosition();
 		EnemyPos.y = 0.5;
