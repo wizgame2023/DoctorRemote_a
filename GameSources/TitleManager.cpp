@@ -48,14 +48,14 @@ namespace basecross {
 			m_NextStandMovie = 0.0f;
 			m_StandTimeReset = false;
 		}
-		wstringstream wss(L"");
-		auto scene = App::GetApp()->GetScene<Scene>();
-		auto gameStage = scene->GetGameStage();
-		wss << L"m_NextStandMovie : "
-			<<m_NextStandMovie
-			<< endl;
+		//wstringstream wss(L"");
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//auto gameStage = scene->GetGameStage();
+		//wss << L"m_NextStandMovie : "
+		//	<<m_NextStandMovie
+		//	<< endl;
 
-		scene->SetDebugString(wss.str());
+		//scene->SetDebugString(wss.str());
 	}
 
 	void TitleManager::StandTimeReset()
