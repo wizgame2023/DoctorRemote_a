@@ -115,7 +115,7 @@ namespace basecross {
 		m_trans->SetScale(m_scale);
 
 		auto StageFlag = stage->GetSharedGameObject<StageManager>(L"StageManager")->GetStageFlag();
-		if (StageFlag >= 3)//StageFlagが敵を倒していた時の進行度の時
+		if (StageFlag >= 3&&GetThis<BigPiece>()->FindTag(L"fieldBigPiece"))//StageFlagが敵を倒していた時の進行度の時
 		{
 			stage->RemoveGameObject<BigPiece>(GetThis < BigPiece>());//自分を消去する
 			//自分自身(BigPiece)がいなくなることを伝える

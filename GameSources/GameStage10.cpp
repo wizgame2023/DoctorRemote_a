@@ -240,6 +240,7 @@ namespace basecross {
 			auto Piece = AddGameObject<BigPiece>(Pos[i], Vec3(0.0f, 0.0f, 0.0f), Vec3(3.5f, 3.5f, 3.5f), randMesh);//オブジェクトを生成する
 			wstring Name = L"BigPiece";//オブジェクトの共通の名前を決める
 			Name += to_wstring(i + 1);//オブジェクトの共通の名前にプラスして番号をふる　例：BigPiece1,BigPiece2
+			Piece->AddTag(L"fieldBigPiece");//フィールドのタグ生成
 			SetSharedGameObject(Name, Piece);//生成したオブジェクトに名前を付ける
 		}
 	}
