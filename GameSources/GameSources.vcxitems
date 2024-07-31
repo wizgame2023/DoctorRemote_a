@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RecoveryWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIScroll.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BigPiece.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block.h" />
@@ -92,6 +93,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage12.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RecoveryWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIScroll.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BigPiece.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp" />
@@ -103,7 +105,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Comment.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CommentManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Data.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectBreakWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectBullet.cpp" />

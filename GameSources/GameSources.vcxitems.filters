@@ -267,6 +267,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h">
       <Filter>Headers\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RecoveryWall.h">
+      <Filter>Headers\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -295,9 +298,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp">
       <Filter>Sources\SmapleStage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Data.cpp">
-      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp">
       <Filter>Sources\Stage</Filter>
@@ -493,6 +493,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp">
       <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RecoveryWall.cpp">
+      <Filter>Sources\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
