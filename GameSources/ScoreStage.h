@@ -1,6 +1,7 @@
 /*!
 @file ScoreStage.h
 @brief スコアステージ
+担当：ちなみ
 */
 
 #pragma once

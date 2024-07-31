@@ -1,7 +1,7 @@
 /*!
 @file RandCreateManager.h
 @brief ランダムオブジェクトの配置
-担当：三瓶裕太
+担当：三瓶
 */
 
 #pragma once

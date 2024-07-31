@@ -1,6 +1,7 @@
 /*!
 @file ClearStage.cpp
 @brief スコアステージ実体
+担当:ちなみ
 */
 
 #include "stdafx.h"

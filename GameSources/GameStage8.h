@@ -1,5 +1,5 @@
 /*!
-@file GameStage2.h
+@file GameStage8.h
 @brief ゲームステージ8
 */
 

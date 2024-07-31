@@ -1,6 +1,7 @@
 /*!
 @file BigPiece.cpp
 @brief ‘å‚«‚¢Œ‡•Ğ‚ÌÀ‘•
+’S“–FˆíŒ©
 */
 
 #include "stdafx.h"

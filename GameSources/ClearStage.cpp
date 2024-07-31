@@ -1,6 +1,7 @@
 /*!
 @file ClearStage.cpp
 @brief クリアステージ実体
+担当：逸見
 */
 
 #include "stdafx.h"

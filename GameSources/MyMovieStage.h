@@ -1,7 +1,7 @@
 /*!
 @file MyMovieStage.cpp
 @brief ムービーを流す
-担当：三瓶裕太
+担当：三瓶
 */
 
 #pragma once

@@ -1,6 +1,7 @@
 /*!
 @file ClearStage.h
 @brief クリアステージ
+担当：逸見
 */
 
 #pragma once

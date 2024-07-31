@@ -1,7 +1,7 @@
 /*!
 @file EnemyMovieManager.h
 @brief Enemyに出会ったときの演出
-担当：三瓶裕太
+担当：三瓶
 */
 
 #pragma once

@@ -1,6 +1,7 @@
 /*!
 @file TitleStage.cpp
 @brief タイトルステージ実体
+担当：逸見
 */
 
 #include "stdafx.h"

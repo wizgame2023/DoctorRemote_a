@@ -2,6 +2,7 @@
 @file MiniMapPlayer.cpp
 @brief 
 ミニマップに映るPlayerの表示
+担当：三瓶裕太
 */
 
 #include "stdafx.h"

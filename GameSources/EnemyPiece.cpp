@@ -1,6 +1,7 @@
 /*!
 @file EnemyPiece.cpp
 @brief “G‚ÌŒ‡•ĞÀ‘Ì
+’S“–FˆíŒ©
 */
 
 #include "stdafx.h"

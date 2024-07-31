@@ -1,7 +1,7 @@
 /*!
 @file StageCollisionManager.h
 @brief ŠÔ‚Ì•\¦
-’S“–FO•r—T‘¾
+’S“–FO•r
 */
 
 #pragma once

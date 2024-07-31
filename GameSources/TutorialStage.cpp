@@ -1,6 +1,7 @@
 /*!
 @file TutorialStage.cpp
 @brief チュートリアルステージ実体
+担当：三瓶
 */
 
 #include "stdafx.h"

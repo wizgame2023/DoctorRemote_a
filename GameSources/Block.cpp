@@ -1,6 +1,7 @@
 /*!
 @file Block.cpp
 @brief ブロックのオブジェクトの実装
+担当：大河原
 */
 
 #include "stdafx.h"

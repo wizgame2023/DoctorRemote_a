@@ -1,6 +1,7 @@
 /*!
 @file TitleStage.h
 @brief タイトルステージ
+担当：逸見
 */
 
 #pragma once

@@ -1,6 +1,7 @@
 /*!
 @file EffectBullet.cpp
 @brief 弾の当たった時のエフェクト
+担当：三瓶
 */
 
 #include "stdafx.h"

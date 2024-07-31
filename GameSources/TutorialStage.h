@@ -1,6 +1,7 @@
 /*!
 @file TutorialStage.h
 @brief チュートリアルステージ
+担当：三瓶
 */
 
 #pragma once

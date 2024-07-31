@@ -1,7 +1,7 @@
 /*!
 @file EscapeManager.h
 @brief 脱出するシーンの処理等
-担当：三瓶裕太
+担当：三瓶
 */
 
 #pragma once

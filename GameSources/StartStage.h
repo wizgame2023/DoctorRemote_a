@@ -1,6 +1,7 @@
 /*!
 @file StartStage.h
 @brief スタートステージ
+担当：ちなみ
 */
 
 #pragma once
