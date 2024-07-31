@@ -1,7 +1,7 @@
 /*!
 @file UIManager.cpp
 @brief Stageをプレイする際に必要なUIを管理
-担当：三瓶裕太
+担当：三瓶、（逸見）
 */
 
 #include "stdafx.h"
@@ -56,19 +56,6 @@ namespace basecross {
 		}
 
 		EraseUiPtr();
-		//if (m_EraseUiPtrNum.size() >= 1)//Uiが消えたとき
-		//{
-		//	PushUiPtr();//配列の更新
-		//	//m_EraseUiPtrNum = -1;//フラグリセット
-		//}
-
-		//if (m_EraseUiCommentPtrNum > -1)//コメントUiが消えたとき
-		//{
-		//	PushUiCommentPtr();//配列の更新
-		//	m_EraseUiCommentPtrNum = -1;//フラグリセット
-		//}
-
-
 
 		auto stage = GetStage();
 		auto& scene = App::GetApp()->GetScene<Scene>();

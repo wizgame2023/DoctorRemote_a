@@ -1,6 +1,7 @@
 /*!
-@file ClearStage.cpp
-@brief クリアステージ実体
+@file LoadStage.cpp
+@brief ロードシーン実体
+担当:ちなみ
 */
 
 #include "stdafx.h"

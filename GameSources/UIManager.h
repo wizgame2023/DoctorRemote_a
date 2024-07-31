@@ -1,7 +1,7 @@
 /*!
 @file UIManager.h
 @brief Stageをプレイする際に必要なUIを管理
-担当：三瓶裕太
+担当：三瓶
 */
 
 #pragma once

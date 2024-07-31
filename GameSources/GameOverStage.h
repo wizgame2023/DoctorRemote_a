@@ -1,6 +1,7 @@
 /*!
 @file GameOverStage.h
 @brief ゲームオーバーステージ
+担当：逸見
 */
 
 #pragma once

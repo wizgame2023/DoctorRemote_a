@@ -1,6 +1,7 @@
 /*!
 @file GameStage5.h
-@brief ゲームステージ6
+@brief ゲームステージ5
+担当：三瓶
 */
 
 #pragma once

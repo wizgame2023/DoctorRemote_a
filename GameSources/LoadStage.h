@@ -1,6 +1,7 @@
 /*!
 @file ClearStage.h
 @brief ロードステージ
+担当：ちなみ
 */
 
 #pragma once

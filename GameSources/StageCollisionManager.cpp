@@ -1,6 +1,6 @@
 /*!
 @file StageCollisionManager.cpp
-@brief 時間の表示
+@brief ステージのコリジョンの管理
 担当：三瓶裕太
 */
 

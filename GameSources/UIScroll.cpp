@@ -1,6 +1,7 @@
 /*!
 @file UIScroll.cpp
 @brief ゲームステージ実体
+担当：ちなみ
 */
 
 #include "stdafx.h"

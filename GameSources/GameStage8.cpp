@@ -1,6 +1,7 @@
 /*!
 @file GameStage8.cpp
 @brief ゲームステージ8の実体
+担当：(三瓶)
 */
 
 #include "stdafx.h"

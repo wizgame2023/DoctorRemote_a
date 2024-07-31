@@ -1,6 +1,7 @@
 /*!
 @file Block.h
 @brief ブロックのオブジェクト
+担当：三瓶
 */
 
 #pragma once

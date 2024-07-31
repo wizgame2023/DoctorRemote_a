@@ -1,7 +1,7 @@
 /*!
 @file BreakWall.cpp
 @brief ‰ó‚ê‚é•Ç
-’S“–@O•r—T‘¾
+’S“–FO•r
 */
 
 #include "stdafx.h"

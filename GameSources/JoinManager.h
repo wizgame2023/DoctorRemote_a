@@ -1,7 +1,7 @@
 /*!
-@file TimeManager.h
-@brief 時間の表示
-担当：
+@file JoinManager.h
+@brief ステージが始まる際のムービー
+担当：三瓶
 */
 
 #pragma once
