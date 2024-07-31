@@ -179,30 +179,6 @@ namespace basecross {
 			m_Time -= delta;
 			if (m_Time < 0)
 			{
-				//m_Player.lock()->GetComponent<Transform>()->SetScale(m_AfterPlayerScale);//変更前のサイズに戻す
-				//m_Player.lock()->GetComponent<PNTBoneModelDraw>()->SetMeshToTransformMatrix(m_AfterPlayerMat);//変更前の差分行列の数値に戻す
-
-				//GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(true);//Playerの操作を効かせる
-
-				//auto View = GetStage()->CreateView<SingleView>();
-				//View->SetCamera(m_StageCamera.lock());
-				//GetStage()->SetView(View);
-				////GetStage()->GetSharedGameObject<UIManager>(L"UIManager")
-				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
-
-				////int numPtr1 = m_BossMoji->GetNumPtr();//スプライトの配列番号を取得
-				////GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
-				//GetStage()->RemoveGameObject<Sprite>(m_BossMoji);//文字を消す
-
-				////int numPtr2 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
-				////numPtr1 = m_MovieBand->GetNumPtr();//スプライトの配列番号を取得
-				////GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr1);//配列に帯のポインタを消す
-				//GetStage()->RemoveGameObject<Sprite>(m_MovieBand);//帯を消す
-
-				//GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(2);//進行度を進める(Bossが攻撃するようになる予定)
-
-				//GetStage()->RemoveGameObject<EnemyMovieManager>(GetThis<EnemyMovieManager>());//自分自身を消す
-
 				MyRemove();//自分自身を消去
 			}
 
