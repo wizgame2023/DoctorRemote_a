@@ -27,7 +27,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Comment.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommentManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Data.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectBreakWall.h" />
@@ -70,7 +69,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Radar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RandCreateManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)RecoveryWall.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SanpeiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreStage.h" />
@@ -79,11 +77,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageSelectSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StatusStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
@@ -91,7 +87,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UITools.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wall.h" />
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +145,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Radar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RandCreateManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RecoveryWall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SanpeiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreStage.cpp" />
@@ -159,11 +153,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageSelectSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StatusStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
@@ -171,7 +163,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UITime.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UITools.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Wall.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>

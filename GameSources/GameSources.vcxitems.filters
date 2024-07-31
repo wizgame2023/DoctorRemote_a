@@ -72,16 +72,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TaruiStage.h">
       <Filter>Headers\SampleStage</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TestCamera.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Data.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage4.h">
-      <Filter>Headers\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StartStage.h">
       <Filter>Headers\Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h">
@@ -118,9 +109,6 @@
       <Filter>Headers\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
-      <Filter>Headers\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)RecoveryWall.h">
       <Filter>Headers\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)UITime.h">
@@ -264,9 +252,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UIManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)UITools.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
@@ -311,9 +296,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TaruiStage.cpp">
       <Filter>Sources\SmapleStage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TestCamera.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Data.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -321,9 +303,6 @@
       <Filter>Sources\Stage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage4.cpp">
-      <Filter>Sources\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StartStage.cpp">
       <Filter>Sources\Stage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp">
@@ -357,9 +336,6 @@
       <Filter>Sources\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
-      <Filter>Sources\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)RecoveryWall.cpp">
       <Filter>Sources\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceGarge.cpp">
@@ -505,9 +481,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PieceManager.cpp">
       <Filter>Sources\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)UITools.cpp">
-      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UIScroll.cpp">
       <Filter>Sources\UI</Filter>
