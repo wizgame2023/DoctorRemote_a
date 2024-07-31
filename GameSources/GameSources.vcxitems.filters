@@ -270,7 +270,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PieceManager.h">
       <Filter>Headers\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIScroll.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
@@ -278,6 +277,9 @@
       <Filter>Headers\Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage12.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMovieStage.h">
       <Filter>Headers\Stage</Filter>
     </ClInclude>
   </ItemGroup>
@@ -507,7 +509,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UITools.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIScroll.cpp">
       <Filter>Sources\UI</Filter>
     </ClCompile>
@@ -515,6 +516,9 @@
       <Filter>Sources\Stage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage12.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMovieStage.cpp">
       <Filter>Sources\Stage</Filter>
     </ClCompile>
   </ItemGroup>
