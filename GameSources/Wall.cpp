@@ -37,6 +37,8 @@ namespace basecross {
 		ptrColl->SetFixed(true);
 		ptrColl->SetDrawActive(false);
 
+		AddTag(L"Obj");
+
 
 		GetStage()->SetCollisionPerformanceActive(true);
 		GetStage()->SetUpdatePerformanceActive(true);
