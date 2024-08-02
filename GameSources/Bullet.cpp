@@ -184,6 +184,10 @@ namespace basecross {
 		if (other->FindTag(L"EnemyPiece")) {
 			ThisDestroy();
 		}
+		if (other->FindTag(L"BigPiece"))
+		{
+			ThisDestroy();
+		}
 	}
 
 	//自分自身と自分についているエフェクトを消す関数
