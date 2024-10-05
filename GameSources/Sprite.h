@@ -17,6 +17,8 @@ namespace basecross {
 		float m_heigth;
 		int m_layer;
 
+		bool m_OnOff;//“§–¾ó‘Ô‚©‚ğ¦‚·•Ï”
+
 		vector<VertexPositionColorTexture> m_vertices;
 		vector<uint16_t> m_indices;
 		shared_ptr<PCTSpriteDraw> m_draw;
@@ -53,6 +55,8 @@ namespace basecross {
 		int GetNumPtr();//©•ª‚Ì“o˜^‚³‚ê‚Ä‚¢‚é”z—ñ‚Ì”Ô†‚ğ•Ô‚·
 		void SetNumPtr(int afterNum);//©•ª‚Ì”z—ñ‚Ì”Ô†‚ğ“ü‚ê‚é
 		void OnClear(bool OnOff);//“§–¾‚É‚È‚éŠÖ”
+		//bool SetOnOff(bool OnOff);//“§–¾‚É‚È‚Á‚Ä‚¢‚é‚©‹³‚¦‚é
+		bool GetOnOff();
 	};
 
 }

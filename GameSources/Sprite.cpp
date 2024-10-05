@@ -155,6 +155,7 @@ namespace basecross {
 
 	void Sprite::OnClear(bool OnOff)
 	{
+		m_OnOff = OnOff;
 		if (OnOff == true)//ƒIƒ“‚È‚ç
 		{		
 			m_color = m_draw->GetDiffuse();
@@ -164,6 +165,11 @@ namespace basecross {
 		{
 			m_draw->SetDiffuse(m_color);//“§–¾‚Å‚È‚©‚Á‚½‚ÌF‚É–ß‚é
 		}
+	}
+
+	bool Sprite::GetOnOff()
+	{
+		return m_OnOff;
 	}
 
 }
