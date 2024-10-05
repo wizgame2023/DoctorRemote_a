@@ -13,7 +13,7 @@ namespace basecross {
 		m_time(300.0f),
 		m_move(true),
 		m_SEFlag(false),
-		m_pos(-570, 85, 0.0f)
+		m_pos(-535, 85, 0.0f)
 	{}
 	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,int time,Vec3 pos) :
 		GameObject(stagePtr),
