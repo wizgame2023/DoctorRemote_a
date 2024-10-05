@@ -58,7 +58,7 @@ namespace basecross {
 			if (m_outCol.w <= 0)//GameOver条件を達成した１回のみ発動させる(この条件式は１回しか使えないため使用)
 			{
 				auto pieceSE = App::GetApp()->GetXAudio2Manager();
-				pieceSE->Start(L"PlayerbreakSE", 0, 1.0f);
+				pieceSE->Start(L"PlayerbreakSE", 0, 3.0f);
 			}
 
 			m_outCol.w += elapsedTime * 0.4f;//暗転する
@@ -96,7 +96,7 @@ namespace basecross {
 
 					if (!m_startSEFlag) {
 						auto soundE = App::GetApp()->GetXAudio2Manager();
-						soundE->Start(L"CountDownSE", 0, 0.8f);
+						soundE->Start(L"CountDownSE", 0, 2.7f);
 						m_startSEFlag = true;
 					}
 

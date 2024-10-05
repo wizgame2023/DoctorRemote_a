@@ -119,7 +119,7 @@ namespace basecross {
 				m_flag = true;
 				if (!m_loadSEFlag) {
 					auto loadSE = App::GetApp()->GetXAudio2Manager();
-					loadSE->Start(L"TitleSE", 0, 0.3f);
+					loadSE->Start(L"TitleSE", 0, 0.9f);
 					m_loadSEFlag = true;
 				}
 

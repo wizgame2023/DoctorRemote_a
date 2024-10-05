@@ -204,7 +204,7 @@ namespace basecross {
 			}
 			if (!m_bButtonSEFlag) {
 				auto pieceSE = App::GetApp()->GetXAudio2Manager();
-				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+				pieceSE->Start(L"ChoiceSE", 0, 0.9f);
 				m_bButtonSEFlag = true;
 			}
 

@@ -135,7 +135,7 @@ namespace basecross {
 			
 			//効果音
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"BreakSE", 0, 1.5f);//SEはじめ
+			pieceSE->Start(L"BreakSE", 0, 4.5f);//SEはじめ
 
 			//エフェクト
 			auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
