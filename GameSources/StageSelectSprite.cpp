@@ -215,21 +215,6 @@ namespace basecross {
 		//auto scene = App::GetApp()->GetScene<Scene>();
 		//auto gameStage = scene->GetGameStage();
 		//wss << L"widthMax : "
-		//	<<m_widthMax
-		//	<< L"\nwidthMin : "
-		//	<<m_widthMin
-		//	<<L"\nwidth"
-		//	<<m_width
-		//	<<L"\nheightMax : "
-		//	<<m_heightMax
-		//	<< L"\nheightMin : "
-		//	<<m_heightMin
-		//	<<L"\nheight"
-		//	<<m_height
-		//	<<L"\nstageNum"
-		//	<<m_stageNum
-		//	<<L"\nblinkTime : "
-		//	<<m_blinkTime
 		//	<< endl;
 		//scene->SetDebugString(wss.str());
 
