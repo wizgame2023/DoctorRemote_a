@@ -28,20 +28,18 @@ namespace basecross {
 		try {
 			//BGM
 			BaseBGM();
+			auto& scene = App::GetApp()->GetScene<Scene>();
 
 			PieceManager::enemyPieces.clear();
-			//App::GetApp()->GetScene<Scene>()->SetGameStage(-1);
-			App::GetApp()->GetScene<Scene>()->SetPlayFlag(false);
-
-
-			//何回クリアしたか
-			auto& scene = App::GetApp()->GetScene<Scene>();
+			//前のステージを取得
 			m_stageCount = scene->GetGameStage();
-			scene->SetGameStage(m_stageCount);
+			scene->SetGameStage(0);
+			scene->SetPlayFlag(false);
+
 
 			CreateViewLight();
 			auto stage = scene->GetGameStage();
-			scene->SetFirstTimeStage(stage);
+			scene->SetFirstTimeStage(m_stageCount);
 
 			AddGameObject<Sprite>(1280, 800, L"ScoreWaku", Vec3(), -1);
 
@@ -239,7 +237,11 @@ namespace basecross {
 				if (kakeracount == 6) {
 					m_achievementPoint += 30;
 				}
-				scene->AddAchievementPoint(m_achievementPoint);
+
+				//ゲームステージのみポイントを加算
+				if (m_stageCount > 0) {
+					scene->AddAchievementPoint(m_achievementPoint);
+				}
 				m_timeCount++;
 			}
 
