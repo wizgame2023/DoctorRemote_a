@@ -1,7 +1,7 @@
 /*!
 @file StageSelectSprite.cpp
-@brief “®‚©‚·‚±‚Æ‚ª‚Å‚«‚éƒXƒvƒ‰ƒCƒg
-’S“–FˆíŒ©
+@brief å‹•ã‹ã™ã“ã¨ãŒã§ãã‚‹ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+æ‹…å½“ï¼šé€¸è¦‹
 */
 
 #include "stdafx.h"
@@ -16,15 +16,15 @@ namespace basecross {
 		const float heightUnit,
 		const float widthNum,
 		const float heightNum,
-		const float frameSize, //ƒtƒŒ[ƒ€•”•ª‚Ì‘å‚«‚³
-		const wstring sprites,//‘I‘ğ‚·‚é‰æ‘œ
-		const wstring frame,  //ƒtƒŒ[ƒ€‚Ì‰æ‘œ
+		const float frameSize, //ãƒ•ãƒ¬ãƒ¼ãƒ éƒ¨åˆ†ã®å¤§ãã•
+		const wstring sprites,//é¸æŠã™ã‚‹ç”»åƒ
+		const wstring frame,  //ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç”»åƒ
 		const bool display,
 		const bool displayNumber
 
 	) :
 		GameObject(stagePtr),
-		m_pos(pos),//ˆÊ’u
+		m_pos(pos),//ä½ç½®
 		m_sizeX(sizeX),
 		m_sizeY(sizeY),
 		m_widthUnit(widthUnit),
@@ -49,11 +49,11 @@ namespace basecross {
 		m_baseColorFlag(true)
 	{}
 	StageSelectSprite::StageSelectSprite(const shared_ptr<Stage>& stagePtr,
-		const wstring sprites,//‘I‘ğ‚·‚é‰æ‘œ
-		const wstring frame  //ƒtƒŒ[ƒ€‚Ì‰æ‘œ
+		const wstring sprites,//é¸æŠã™ã‚‹ç”»åƒ
+		const wstring frame  //ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç”»åƒ
 	):
 		GameObject(stagePtr),
-		m_pos(Vec3(-100.0f,120.0f,0.0f)),//ˆÊ’u
+		m_pos(Vec3(-100.0f,120.0f,0.0f)),//ä½ç½®
 		m_sizeX(70.0f),
 		m_sizeY(70.0f),
 		m_widthUnit(100.0f),
@@ -83,7 +83,7 @@ namespace basecross {
 		m_trans = GetComponent<Transform>();
 		m_trans->SetPosition(m_pos);
 
-		//•K—v‚Èî•ñ‚ğ‘ã“ü
+		//å¿…è¦ãªæƒ…å ±ã‚’ä»£å…¥
 		m_widthMax = m_pos.x + m_widthUnit * (m_widthNum - 1);
 		m_widthMin = m_pos.x;
 		m_width = m_pos.x;
@@ -92,17 +92,17 @@ namespace basecross {
 		m_height = m_pos.y;
 
 		auto stage = GetStage();
-		//“¯‚¶ƒXƒvƒ‰ƒCƒg‚ğ•\¦
+		//åŒã˜ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’è¡¨ç¤º
 		for (int j = 0; j < m_heightNum; j++) {
 			for (int i = 0; i < m_widthNum; i++) {
 				if (m_display) {
-					//˜g‘g‚İ‚Ì•\¦
+					//æ çµ„ã¿ã®è¡¨ç¤º
 					m_baseSprite[(i + j * m_widthNum)] = stage->AddGameObject<Sprite>(m_sizeX, m_sizeY,
 						m_spritesName, Vec3(m_pos.x + i * m_widthUnit, m_pos.y + j * -m_heightUnit, m_pos.z),1);
 					m_baseSprite[(i + j * m_widthNum)]->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 				}
 				if (m_displayNumber) {
-					//10‚Ü‚Å‚Ì”š‚ğ•\¦
+					//10ã¾ã§ã®æ•°å­—ã‚’è¡¨ç¤º
 					m_numberSprites[(i + j * m_widthNum)] = stage->AddGameObject<UITime>((i + j * m_widthNum),
 						Vec3((m_pos.x - m_sizeX / 2) + i * m_widthUnit + m_widthUnit * 0.15,
 							(m_pos.y + m_sizeY / 2) + j * -m_heightUnit - m_heightUnit * 0.10, 0.0f), m_sizeX * 0.5, m_sizeY * 0.7, (512.0f/12)/512.0f,1.0,L"Numbers12",Col4(1.0f), 11);
@@ -121,7 +121,7 @@ namespace basecross {
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto selectTrans = m_selectSprite->GetComponent<Transform>();
 
-		//“_–Åˆ—
+		//ç‚¹æ»…å‡¦ç†
 		if (m_moveCheck && m_blinkTime >= 0) {
 			if ((int)m_blinkTime % 2 == 0) {
 				m_selectSprite->SetColor(Col4(0, 0, 0, 0));
@@ -136,18 +136,18 @@ namespace basecross {
 			}
 		}
 
-		//ƒƒbƒN‚ª‚©‚©‚Á‚Ä‚¢‚é•”•ª‚ÌF‚ğ•Ï‚¦‚é
+		//ãƒ­ãƒƒã‚¯ãŒã‹ã‹ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®è‰²ã‚’å¤‰ãˆã‚‹
 		if (!m_baseColorFlag) {
 			for (int i = 0; i < m_widthNum * m_heightNum; i++) {
 				if (m_closeNum[i]) {
-					m_baseSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.7f));
+					m_baseSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.2f));
 				}
 			}
 			m_baseColorFlag = true;
 		}
 
 		if (m_moveCheck) return;
-		//¶ƒXƒeƒBƒbƒN
+		//å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯
 		if (cntlVec[0].fThumbLX < -0.9f || (keyState.m_bPressedKeyTbl['A'] || keyState.m_bPressedKeyTbl[VK_LEFT])) {
 			if (m_widthMin < m_width && !m_checkL) {
 				m_width -= m_widthUnit;
@@ -158,7 +158,7 @@ namespace basecross {
 		else if ((cntlVec[0].fThumbLX > -0.9f || (keyState.m_bLastKeyTbl['A']|| keyState.m_bPressedKeyTbl[VK_LEFT])) && m_checkL) {
 			m_checkL = false;
 		}
-		//‰EƒXƒeƒBƒbƒN
+		//å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯
 		if (cntlVec[0].fThumbLX > 0.9f || (keyState.m_bPressedKeyTbl['D']|| keyState.m_bPressedKeyTbl[VK_RIGHT])) {
 			if (m_widthMax > m_width && !m_checkR) {
 				m_width += m_widthUnit;
@@ -170,7 +170,7 @@ namespace basecross {
 			m_checkR = false;
 		}
 
-		//ãƒXƒeƒBƒbƒN
+		//ä¸Šã‚¹ãƒ†ã‚£ãƒƒã‚¯
 		if (cntlVec[0].fThumbLY > 0.9f || (keyState.m_bPressedKeyTbl['W']|| keyState.m_bPressedKeyTbl[VK_UP])) {
 			if (m_heightMax > m_height && !m_checkU) {
 				m_height += m_heightUnit;
@@ -181,7 +181,7 @@ namespace basecross {
 		else if ((cntlVec[0].fThumbLY < 0.9f || (keyState.m_bLastKeyTbl['W']|| keyState.m_bPressedKeyTbl[VK_UP])) && m_checkU) {
 			m_checkU = false;
 		}
-		//‰ºƒXƒeƒBƒbƒN
+		//ä¸‹ã‚¹ãƒ†ã‚£ãƒƒã‚¯
 		if (cntlVec[0].fThumbLY < -0.9f || (keyState.m_bPressedKeyTbl['S']|| keyState.m_bPressedKeyTbl[VK_DOWN])) {
 			if (m_heightMin < m_height && !m_checkD) {
 				m_height -= m_heightUnit;
@@ -195,18 +195,24 @@ namespace basecross {
 
 		selectTrans->SetPosition(Vec3(m_width, m_height, 0.0f));
 
-		//Bƒ{ƒ^ƒ“‚ÅŠm’è
+		//Bãƒœã‚¿ãƒ³ã§ç¢ºå®š
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || keyState.m_bPressedKeyTbl[VK_SPACE]) {
 			if (m_stageNum <= m_limitNum) {
 				if (!m_closeNum[m_stageNum - 1]) {
 					m_moveCheck = true;
+					auto pieceSE = App::GetApp()->GetXAudio2Manager();
+					pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+
+				}
+				else {
+					auto pieceSE = App::GetApp()->GetXAudio2Manager();
+					pieceSE->Start(L"NotChoiceSE", 0, 0.3f);
+
 				}
 			}
-			if (!m_bButtonSEFlag) {
-				auto pieceSE = App::GetApp()->GetXAudio2Manager();
-				pieceSE->Start(L"ChoiceSE", 0, 0.9f);
-				m_bButtonSEFlag = true;
-			}
+
+			//auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			//pieceSE->Start(L"ChoiceSE", 0, 0.3f);
 
 		}
 
@@ -221,7 +227,7 @@ namespace basecross {
 
 	}
 	
-	//‰¡‰½”Ô–ÚAc‰½”Ô–Ú‚Ì‰æ‘œ‚ÌˆÊ’u‚ğæ“¾
+	//æ¨ªä½•ç•ªç›®ã€ç¸¦ä½•ç•ªç›®ã®ç”»åƒã®ä½ç½®ã‚’å–å¾—
 	Vec3 StageSelectSprite::GetSpritePostion(const int widthNum, const int HeightNum) {
 		auto pos = Vec3();
 		int w = widthNum - 1;

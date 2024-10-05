@@ -528,6 +528,8 @@ namespace basecross {
 		App::GetApp()->RegisterWav(L"PlayerbreakSE", soundWav);
 		soundWav = SoundPath + L"Keikoku.wav";
 		App::GetApp()->RegisterWav(L"KeikokuSE", soundWav);
+		soundWav = SoundPath + L"NotChoice.wav";
+		App::GetApp()->RegisterWav(L"NotChoiceSE", soundWav);
 
 
 		//BGM
