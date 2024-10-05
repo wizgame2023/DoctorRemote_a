@@ -140,7 +140,7 @@ namespace basecross {
 		if (!m_baseColorFlag) {
 			for (int i = 0; i < m_widthNum * m_heightNum; i++) {
 				if (m_closeNum[i]) {
-					m_baseSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.7f));
+					m_baseSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.2f));
 				}
 			}
 			m_baseColorFlag = true;
@@ -200,11 +200,20 @@ namespace basecross {
 			if (m_stageNum <= m_limitNum) {
 				if (!m_closeNum[m_stageNum - 1]) {
 					m_moveCheck = true;
+					auto pieceSE = App::GetApp()->GetXAudio2Manager();
+					pieceSE->Start(L"ChoiceSE", 0, 0.3f);
+
+				}
+				else {
+					auto pieceSE = App::GetApp()->GetXAudio2Manager();
+					pieceSE->Start(L"NotChoiceSE", 0, 0.3f);
+
 				}
 			}
+
+			//auto pieceSE = App::GetApp()->GetXAudio2Manager();
+			//pieceSE->Start(L"ChoiceSE", 0, 0.3f);
 			if (!m_bButtonSEFlag) {
-				auto pieceSE = App::GetApp()->GetXAudio2Manager();
-				pieceSE->Start(L"ChoiceSE", 0, 0.3f);
 				m_bButtonSEFlag = true;
 			}
 
