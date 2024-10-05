@@ -64,12 +64,13 @@ namespace basecross {
 				//}
 			}
 		}
-		if (m_time <= 60.0f) {
+		if (m_time <= 60.0f && App::GetApp()->GetScene<Scene>()->GetGameStage() != 0) {
 			m_firstNum->SetColor(lastCol);
 			m_secondNum->SetColor(lastCol);
 			m_thirdNum->SetColor(lastCol);
 			m_fourthNum->SetColor(lastCol);
 			m_ten->SetColor(lastCol);
+			//Œø‰Ê‰¹
 			if (!m_SEFlag) {
 				auto Keikoku = App::GetApp()->GetXAudio2Manager();
 				Keikoku->Start(L"KeikokuSE", 0, 0.5f);
