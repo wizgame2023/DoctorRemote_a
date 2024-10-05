@@ -107,6 +107,8 @@ namespace basecross {
 
 	void UITime::OnClear(bool OnOff)
 	{
+		m_OnOff = OnOff;
+
 		if (OnOff == true)//オンなら
 		{
 			//m_color = m_draw->GetDiffuse();
@@ -137,6 +139,10 @@ namespace basecross {
 	}
 	void UITime::SetColor(Col4 color) {
 		m_draw->SetDiffuse(color);
+	}
+
+	bool UITime::GetOnOff(){
+		return m_OnOff;
 	}
 
 }
