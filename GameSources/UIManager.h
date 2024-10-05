@@ -33,6 +33,7 @@ namespace basecross {
 		shared_ptr<StageManager> m_StageManager;
 		shared_ptr<Garge> m_chargeGarge;
 		shared_ptr<Sprite> m_dashLight;
+		shared_ptr<Sprite> m_clock;
 		list<weak_ptr<Sprite>> m_AllUiPtr;//ステージ上の全てのUiのポインタを取得
 		vector<weak_ptr<UITime>> m_UiTimePtr;//制限時間のポインタ取得
 		vector<weak_ptr<Garge>> m_UiGargePtr;//Gargeのポインタ取得
