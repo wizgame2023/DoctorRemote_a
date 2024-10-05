@@ -90,7 +90,7 @@ namespace basecross {
 			//piece = rand() % 3;//ランダムにどのピースが出るのかを決める変数
 
 			auto soundSE = App::GetApp()->GetXAudio2Manager();
-			soundSE->Start(L"BreakWallSE", 0, 0.5f);
+			soundSE->Start(L"BreakWallSE", 0, 1.5f);
 
 			GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);
 			GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
