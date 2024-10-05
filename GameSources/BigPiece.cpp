@@ -155,7 +155,7 @@ namespace basecross {
 
 			//Œø‰Ê‰¹
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"BreakSE", 0, 1.5f);
+			pieceSE->Start(L"BreakSE", 0, 4.5f);
 
 			auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
 			PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(m_effectName, false);

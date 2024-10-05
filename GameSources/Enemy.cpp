@@ -245,7 +245,7 @@ namespace basecross {
 		if (m_hp <= 0) {
 			if (!m_SEflag) {
 				auto deadSE = App::GetApp()->GetXAudio2Manager();
-				deadSE->Start(L"DeadSE", 0, 1.9f);
+				deadSE->Start(L"DeadSE", 0, 5.0f);
 				m_SEflag = true;
 			}
 
@@ -271,7 +271,7 @@ namespace basecross {
 					//m_scale -= m_scaleReduct;
 					//m_pos.y -= m_posYRedect;
 					auto damegeSE = App::GetApp()->GetXAudio2Manager();
-					damegeSE->Start(L"AttackSE", 0, 0.8f);
+					damegeSE->Start(L"AttackSE", 0, 2.4f);
 
 					auto PtrEffect = GetStage()->GetSharedGameObject<Effect>(L"Effect", false);
 					PtrEffect = GetStage()->GetSharedGameObject<EffectMove>(L"EnemyEffectPurple", false);

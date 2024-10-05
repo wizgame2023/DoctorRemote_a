@@ -87,7 +87,7 @@ namespace basecross {
 	void GameOverStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"GameOverBGM", 0.0f, 0.2f);
+		m_BGM = XAPtr->Start(L"GameOverBGM", 0.0f, 0.6f);
 	}
 
 	void GameOverStage::OnDestroy()
@@ -109,7 +109,7 @@ namespace basecross {
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
 			if (!m_buttonSEFlag) {
 				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
+				choiceSE->Start(L"ChoiceSE", 0, 1.2f);
 				m_buttonSEFlag = true;
 			}
 		}
@@ -127,7 +127,7 @@ namespace basecross {
 				
 			if (!m_buttonSEFlag) {
 				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
+				choiceSE->Start(L"ChoiceSE", 0, 1.2f);
 				m_buttonSEFlag = false;
 			}
 

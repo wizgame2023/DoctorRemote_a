@@ -13,7 +13,7 @@ namespace basecross {
 		m_time(300.0f),
 		m_move(true),
 		m_SEFlag(false),
-		m_pos(-90.0f,350.0f,0.0f)
+		m_pos(-570, 125, 0.0f)
 	{}
 	TimeManager::TimeManager(const shared_ptr<Stage>& stagePtr,int time,Vec3 pos) :
 		GameObject(stagePtr),
@@ -72,7 +72,7 @@ namespace basecross {
 			m_ten->SetColor(lastCol);
 			if (!m_SEFlag) {
 				auto Keikoku = App::GetApp()->GetXAudio2Manager();
-				Keikoku->Start(L"KeikokuSE", 0, 0.5f);
+				Keikoku->Start(L"KeikokuSE", 0, 1.5f);
 				m_SEFlag = true;
 			}
 
@@ -87,7 +87,7 @@ namespace basecross {
 			if (m_outCol.w <= 0)//GameOverðŒ‚ð’B¬‚µ‚½‚P‰ñ‚Ì‚Ý”­“®‚³‚¹‚é(‚±‚ÌðŒŽ®‚Í‚P‰ñ‚µ‚©Žg‚¦‚È‚¢‚½‚ßŽg—p)
 			{
 				auto pieceSE = App::GetApp()->GetXAudio2Manager();
-				pieceSE->Start(L"PlayerbreakSE", 0, 1.0f);
+				pieceSE->Start(L"PlayerbreakSE", 0, 1.5f);
 			}
 
 			m_outCol.w += elapsedTime * 0.4f;//‚¾‚ñ‚¾‚ñ‚ÆˆÃ“]‚·‚é

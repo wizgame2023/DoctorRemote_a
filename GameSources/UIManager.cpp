@@ -151,7 +151,7 @@ namespace basecross {
 			else {
 				if (!m_ligthSEFlag) {
 					auto lampSE = App::GetApp()->GetXAudio2Manager();
-					lampSE->Start(L"LampSE", 0, 0.9f);
+					lampSE->Start(L"LampSE", 0, 2.7f);
 					m_ligthSEFlag = true;
 				}
 				
@@ -314,7 +314,7 @@ namespace basecross {
 		m_comFrame = stage->AddGameObject<Sprite>(256 * 1.5, 200, L"CommentFrame", Vec3(m_comX, -265.0f, 0.0f), 2);//415,265
 		m_comFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
 
-		auto mapFrame = stage->AddGameObject<Sprite>(235, 235, L"CommentFrame", Vec3(475, 238, 0.0f), 2);
+		auto mapFrame = stage->AddGameObject<Sprite>(237, 237, L"CommentFrame", Vec3(-478, 238, 0.0f), 2);
 		mapFrame->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
 
 		//‰æ–Êã‚Ìƒ‰ƒCƒg
@@ -325,9 +325,10 @@ namespace basecross {
 		chargeFrame->SetDrawLayer(1);
 		m_chargeGarge = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 0.5f, 150, 15, Col4(1.0f), Col4(1.0f), Vec3(-220.0f, -290.0f, 0.0f), Vec3(0.0f));
 		m_chargeGarge->SetDrawLayer(2);
-		if (scene->GetDashStatus() > 0) {
+		if (scene->GetDashStatus() >= 0) {
 			m_dashLight = stage->AddGameObject<Sprite>(70, 70, L"DashIcon", Vec3(-150.0f, -320.0f, 0.0f));
 			m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
+			//m_dashLight->SetDrawLayer(2);
 
 		}
 

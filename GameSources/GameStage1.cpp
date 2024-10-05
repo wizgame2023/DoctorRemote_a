@@ -261,7 +261,7 @@ namespace basecross {
 
 		//ミニマップ表示のために使用
 		float SpriteLenght = 225.0f;
-		Vec3 SpriteStartPos = Vec3(640.0f - (SpriteLenght / 2.0f) - 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.0f, 0.0f);
+		Vec3 SpriteStartPos = Vec3(-640.0f + (SpriteLenght / 2.0f) + 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.0f, 0.0f);
 
 		for (int r = 0; r < stageMap.size(); r++)
 		{
@@ -325,7 +325,7 @@ namespace basecross {
 	void GameStage1::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径	
-		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
+		Vec3 StartPos = Vec3(-640.0f + (Lenght / 2.0f) + 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 100.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
 		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapStage1", StartPos, 5);//ミニマップ生成
@@ -356,11 +356,11 @@ namespace basecross {
 	void GameStage1::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.9f);
 	}
 	void GameStage1::BossBGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.9f);
 	}
 	void GameStage1::OnDestroy()
 	{

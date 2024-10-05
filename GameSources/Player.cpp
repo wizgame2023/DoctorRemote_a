@@ -313,7 +313,7 @@ namespace basecross {
 
 			EffectFlag(3);
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"GetPieceSE", 0, 0.2f);
+			pieceSE->Start(L"GetPieceSE", 0, 1.8f);
 		}
 		//大きいウイルスから出る欠片
 		if (other->FindTag(L"BigPieceLittle")) {
@@ -327,7 +327,7 @@ namespace basecross {
 
 			EffectFlag(3);
 			auto pieceSE = App::GetApp()->GetXAudio2Manager();
-			pieceSE->Start(L"GetPieceSE", 0, 0.5f);
+			pieceSE->Start(L"GetPieceSE", 0, 1.5f);
 		}
 		//大きいウイルス
 		if (other->FindTag(L"BigPiece")) {
@@ -337,7 +337,7 @@ namespace basecross {
 
 			EffectFlag(2);
 			auto damegeSE = App::GetApp()->GetXAudio2Manager();
-			damegeSE->Start(L"DamageSE", 0, 1.5f);
+			damegeSE->Start(L"DamageSE", 0, 4.5f);
 
 		}
 		//ウイルス
@@ -347,7 +347,7 @@ namespace basecross {
 			SetObj(other);
 
 			auto damegeSE = App::GetApp()->GetXAudio2Manager();
-			damegeSE->Start(L"DamageSE", 0, 1.5f);
+			damegeSE->Start(L"DamageSE", 0, 4.5f);
 		}
 	}
 
@@ -614,7 +614,7 @@ namespace basecross {
 
 	void Player::BulletSE() {
 		auto soundE = App::GetApp()->GetXAudio2Manager();
-		soundE->Start(L"ShotSE", 0, 0.5f);
+		soundE->Start(L"ShotSE", 0, 1.5f);
 	}
 
 	void Player::EffectFlag(int Flag)

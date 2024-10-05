@@ -65,7 +65,7 @@ namespace basecross {
 	void ScoreStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"ScoreBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
+		m_BGM = XAPtr->Start(L"ScoreBGM", XAUDIO2_LOOP_INFINITE, 0.6f);
 	}
 
 	void ScoreStage::OnUpdate()
@@ -86,7 +86,7 @@ namespace basecross {
 				m_mojispeed1 = 0.0f;
 				m_countUp += 12;
 				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
+				choiceSE->Start(L"ChoiceSE", 0, 1.2f);
 
 			}
 
@@ -331,13 +331,13 @@ namespace basecross {
 			}
 			if (!m_SEFlag) {
 				auto choiceSE = App::GetApp()->GetXAudio2Manager();
-				choiceSE->Start(L"ChoiceSE", 0, 0.4f);
+				choiceSE->Start(L"ChoiceSE", 0, 1.2f);
 				m_SEFlag = true;
 			}
 		}
 	}
 	void ScoreStage::ScoreSE() {
 		auto scoreSE = App::GetApp()->GetXAudio2Manager();
-		scoreSE->Start(L"ScoreSE", 0, 0.3f);
+		scoreSE->Start(L"ScoreSE", 0, 1.2f);
 	}
 }

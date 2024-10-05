@@ -63,7 +63,7 @@ namespace basecross {
 	{
 		float deg = 90.0f;
 		float rad = XMConvertToRadians(deg);
-		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),2.5f);//Player生成
+		shared_ptr<Player> ptrPlayer = AddGameObject<Player>(Vec3(-27.5f, 0.5f, -13.0f), Vec3(0.0f, rad, 0.0f),200.5f);//Player生成
 		SetSharedGameObject(L"GamePlayer", ptrPlayer);//ゲームオブジェクトを生成
 
 
@@ -255,7 +255,7 @@ namespace basecross {
 
 		//ミニマップ表示のために使用
 		float SpriteLenght = 225.0f;
-		Vec3 SpriteStartPos = Vec3(640.0f - (SpriteLenght / 2.0f) - 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.5f, 0.0f);
+		Vec3 SpriteStartPos = Vec3(-640.0f + (SpriteLenght / 2.0f) + 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.5f, 0.0f);
 
 		for (int r = 0; r < stageMap.size(); r++)
 		{
@@ -304,13 +304,13 @@ namespace basecross {
 	void TutorialStage::CreateMiniMap()
 	{
 		float Lenght = 225.0f;//ミニマップの直径
-		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapTutorial", Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
+		auto miniMap = AddGameObject<Sprite>(Lenght, Lenght, L"MiniMapTutorial", Vec3(-640.0f + (Lenght / 2.0f) + 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 5);//ミニマップ生成
 		SetSharedGameObject(L"MiniMap", miniMap);
 
-		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(Vec3(640.0f - (Lenght / 2.0f) - 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 3.0f, 75.0f, Lenght);//ミニマップ上でPlayerの位置を表示
+		auto miniMapPlayer = AddGameObject<MiniMapPlayer>(Vec3(-640.0f + (Lenght / 2.0f) + 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f), 3.0f, 75.0f, Lenght);//ミニマップ上でPlayerの位置を表示
 		SetSharedGameObject(L"MiniMapPlayer", miniMapPlayer);
 
-		Vec3 StartPos = Vec3(640.0f - (Lenght / 2.0f) - 50.0f, 400.0f - (Lenght / 2.0f) - 50.5f, 0.0f);
+		Vec3 StartPos = Vec3(-640.0f + (Lenght / 2.0f) + 50.0f, 400.0f - (Lenght / 2.0f) - 50.5f, 0.0f);
 		float Bairitu = Lenght / 75.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
 		for (int i = 0; i < m_BigPieceLength; i++)
@@ -334,16 +334,16 @@ namespace basecross {
 	void TutorialStage::FirstBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"TutorialBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
+		m_BGM = XAPtr->Start(L"TutorialBGM", XAUDIO2_LOOP_INFINITE, 0.6f);
 	}
 	void TutorialStage::BaseBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.2f);
+		m_BGM = XAPtr->Start(L"ScaryBGM", XAUDIO2_LOOP_INFINITE, 0.6f);
 	}
 	void TutorialStage::BossBGM() {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+		m_BGM = XAPtr->Start(L"BossBGM", XAUDIO2_LOOP_INFINITE, 0.9f);
 	}
 	void TutorialStage::OnDestroy()
 	{
