@@ -119,8 +119,8 @@ namespace basecross {
 		app->RegisterTexture(L"GameClearAButton", strTexture);
 		strTexture = texPath + L"GameClearSpace.png";
 		app->RegisterTexture(L"GameClearSpace", strTexture);
-
-		
+		strTexture = texPath + L"Clock.png";
+		app->RegisterTexture(L"Clock", strTexture);
 
 		//背景など1280x800//////////////////////////////////////////////////////////////
 		strTexture = texPath + L"GameOver.jpg";
