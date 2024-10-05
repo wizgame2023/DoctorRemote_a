@@ -32,10 +32,10 @@ namespace basecross {
 		Col4 color(0, 1, 0, 1.0f);//色と透明度
 		vector<VertexPositionColorTexture> vertices = // 頂点データ
 		{
-			{Vec3((m_Lenght * -0.5f),(m_Lenght * +0.5f), 0) * m_MapMagnification, color, Vec2(0.0f, 0.0f)}, // 0
-			{Vec3((m_Lenght * +0.5f),(m_Lenght * +0.5f), 0) * m_MapMagnification, color, Vec2(1.0f, 0.0f)}, // 1
-			{Vec3((m_Lenght * -0.5f),(m_Lenght * -0.5f), 0) * m_MapMagnification, color, Vec2(0.0f, 1.0f)}, // 2
-			{Vec3((m_Lenght * +0.5f),(m_Lenght * -0.5f), 0) * m_MapMagnification, color, Vec2(1.0f, 1.0f)}, // 3
+			{Vec3((m_Lenght*1.4f * -0.5f),(m_Lenght * +0.5f), 0) * m_MapMagnification, color, Vec2(0.0f, 0.0f)}, // 0
+			{Vec3((m_Lenght*1.4f * +0.5f),(m_Lenght * +0.5f), 0) * m_MapMagnification, color, Vec2(1.0f, 0.0f)}, // 1
+			{Vec3((m_Lenght*1.4f * -0.5f),(m_Lenght * -0.5f), 0) * m_MapMagnification, color, Vec2(0.0f, 1.0f)}, // 2
+			{Vec3((m_Lenght*1.4f * +0.5f),(m_Lenght * -0.5f), 0) * m_MapMagnification, color, Vec2(1.0f, 1.0f)}, // 3
 
 		};
 
