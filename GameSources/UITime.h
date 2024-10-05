@@ -19,6 +19,8 @@ namespace basecross {
 		int m_number;
 		int m_mojiNum;
 
+		bool m_OnOff;//透明状態かを示す変数
+
 		//頂点の情報
 		vector<VertexPositionColorTexture> m_vertices;
 		shared_ptr<PCTSpriteDraw> m_draw;
@@ -49,6 +51,7 @@ namespace basecross {
 		void ThisDestroy();
 		Col4 GetColor();
 		void SetColor(Col4 color);
+		bool GetOnOff();
 	};
 }
 //end namespace basecross
