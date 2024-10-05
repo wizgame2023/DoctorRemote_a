@@ -144,7 +144,7 @@ namespace basecross {
 
 		if (m_dashLight) {
 			if (player->GetDashFlag()) {
-				if (m_dashLight->GetOnOff() == true)return;
+				if (m_dashLight->GetOnOff() == true)return;//“§–¾‚É‚µ‚½‚¢‚Æ‚«‚ÍÔ‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
 				m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
 				m_ligthSEFlag = false;
 
@@ -162,9 +162,11 @@ namespace basecross {
 		}
 
 		if (scene->GetTime() < 60) {
+			if (m_clock->GetOnOff() == true)return;//“§–¾‚É‚µ‚½‚¢‚Æ‚«‚ÍÔ‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
   			m_clock->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 		else {
+			if (m_clock->GetOnOff() == true)return;//“§–¾‚É‚µ‚½‚¢‚Æ‚«‚Í—Î‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
 			m_clock->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 		}
 
