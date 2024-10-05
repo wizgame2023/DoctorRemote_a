@@ -29,12 +29,12 @@ namespace basecross {
 		float sh = App::GetApp()->GetGameHeight();
 
 		Vec3 screen(-sw * 0.5f, -sh * 0.5f, 0);
-		Vec3 dis(70, 300, 0);
+		Vec3 dis(72, 280, 0);
 		Vec3 zero(0, 0, 0);
 
-		m_garge = stage->AddGameObject<Garge>(0, 92, m_meshResName, m_ratio, 32*2.5, 92*2.5, color, color2, screen, dis);
+		m_garge = stage->AddGameObject<Garge>(0, 92, m_meshResName, m_ratio, 32*2.35, 92*2.4, color, color2, screen, dis);
 
-		auto frame = stage->AddGameObject<Sprite>(32*2.5, 128*2.5, L"GargeBar",Vec3(-530, -170, 1.0f),2);
+		auto frame = stage->AddGameObject<Sprite>(32*2.4, 128*2.4, L"GargeBar",Vec3(-530, -190, 1.0f),2);
 	}
 
 	void PieceGarge2::OnUpdate() {
@@ -45,15 +45,14 @@ namespace basecross {
 
 
 		if (stage->GetSharedGameObject<Player>(L"GamePlayer")->GetRadarFlag()) {
+			//ƒQ[ƒW‚ªMax‚É‚È‚Á‚½‚ç
 			if (!m_gargeMaxFlag) {
 				m_garge->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
-				auto gargeLight = stage->AddGameObject<Sprite>(32 * 2.5, 128 * 2.5, 
-					L"GargeLight", Vec3(-530, -170.f, 1.0f), 2);
+				auto gargeLight = stage->AddGameObject<Sprite>(32 * 2.4, 128 * 2.4, 
+					L"GargeLight", Vec3(-530, -190.f, 1.0f), 2);
 				gargeLight->SetColor(Col4(1.0f, 0.0, 0.0f, 1.0f));
 				m_ratio = 1.0f;
-				m_gargeMaxFlag=true;
-				//m_garge->UpdateValue(piece);
-
+				m_gargeMaxFlag = true;
 			}
 		}
 		else {
