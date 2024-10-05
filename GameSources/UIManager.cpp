@@ -337,6 +337,8 @@ namespace basecross {
 		stage->SetSharedGameObject(L"Garge", garge);
 		auto PGarge = stage->AddGameObject<PlayerGarge>();
 
+		auto clock = stage->AddGameObject<Sprite>(40, 40, L"Clock", Vec3(-562.0f, 50.0f, 0.0f), 1);
+		clock->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 	}
 
 	void UIManager::AllClear()//UI‚ð‚·‚×‚Ä“§–¾‚É‚·‚é

@@ -116,20 +116,20 @@ namespace basecross {
 			break;
 		case 5:
 			//ゲージの説明
-			UIComment(13 * 4, L"Garge_s", Vec3(-462, -50, 0.0f),-90, Vec2(1280, 800), L"GageWaku", Vec3(0.0f));
+			UIComment(13 * 4, L"Garge_s", Vec3(-462, -50, 0.0f), -90, Vec2(1280, 750), L"GageWaku", Vec3(0.0f, -30.0f, 0.0f));
 			break;
 		case 6:
 			//時間の説明
-			UIComment(13 * 4, L"Time_s", Vec3(-111, 320, 0.0f), 90, Vec2(1280, 800), L"TimeWaku", Vec3(0.0f));
+			UIComment(13 * 4, L"Time_s", Vec3(-346, 50, 0.0f), -90, Vec2(1280, 800), L"TimeWaku", Vec3(0.0f));
 			break;
 		case 7:
 			//マップの説明
-			UIComment(13 * 4, L"Charge_s", Vec3(330, 320, 0.0f), 90, Vec2(1280, 800), L"MapWaku", Vec3(0.0f));
+			UIComment(13 * 4, L"Charge_s", Vec3(-300, 320, 0.0f), -90, Vec2(1280.0f, 800.0f), L"MapWaku", Vec3(0.0f));
 			break;
 		case 8:
-			UIComment(13 * 4, L"Map_s2", Vec3(330, 100, 0.0f), 90, Vec2(1280, 800), L"Map_sWaku", Vec3(0.0f));
+			UIComment(13 * 4, L"Map_s2", Vec3(-100, 340, 0.0f), -90, Vec2(1280, 800), L"Map_sWaku", Vec3(-670, 240, 0.0f));
 			if (!m_mapSetumeiCheck) {
-				m_mapSetumei = stage->AddGameObject<Sprite>(256*0.8, 128*0.8,L"MapSetumei", Vec3(450, 80, 0.0f), 3);
+				m_mapSetumei = stage->AddGameObject<Sprite>(256*0.8, 128*0.8, L"MapSetumei", Vec3(-230, 320, 0.0f), 3);
 				m_mapSetumeiCheck = true;
 			}
 			break;
