@@ -255,7 +255,7 @@ namespace basecross {
 		float stageD = static_cast<float>(stageMap.size());
 
 		//ミニマップ表示のために使用
-		float SpriteLenght = 225.0f;
+		float SpriteLenght = 225.0f * 1.15f;
 		Vec3 SpriteStartPos = Vec3(-640.0f + (SpriteLenght / 2.0f) + 50.0f, 400.0f - (SpriteLenght / 2.0f) - 50.0f, 0.0f);
 
 		for (int r = 0; r < stageMap.size(); r++)
@@ -319,7 +319,7 @@ namespace basecross {
 
 	void GameStage2::CreateMiniMap()
 	{
-		float Lenght = 225.0f;//ミニマップの直径	
+		float Lenght = 225.0f*1.15f;//ミニマップの直径	
 		Vec3 StartPos = Vec3(-640.0f + (Lenght / 2.0f) + 50.5f, 400.0f - (Lenght / 2.0f) - 50.0f, 0.0f);
 		float Bairitu = Lenght / 100.0f;//現在のミニマップの倍率(どれくらい引き延ばしているかを表す)
 
