@@ -78,12 +78,6 @@ namespace basecross {
 		m_effect2 = GetStage()->AddGameObject<EffectPiece>(1.0f, 0.18f*m_scale.length(), 0.18f * m_scale.length(), 150 * m_scale.length(), Vec2(1.0f, 1.0f),
 			Col4(0.0f, 1.0f, 1.0f, 0.5f), Col4(0.0f, 1.0f, 1.0f, 0.5f), L"BulletEffect", Vec2(-1.0f, 0.0f), m_position);
 
-
-		//m_effect.lock()->GetComponent<Transform>()->SetRotation(Vec3(0.0f, 0.0f, XMConvertToRadians(90)));
-		//m_effect.lock()->GetComponent<Transform>()->SetQuaternion(Quat(Vec3(1, 0, 0), XM_PIDIV2));
-		//auto player = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
-		//auto playerAngle = player->FrontVec();
-
 		m_shotRange = App::GetApp()->GetScene<Scene>()->GetBulletLength();
 	}
 	void Bullet::OnUpdate()
@@ -101,7 +95,6 @@ namespace basecross {
 		auto& effectTrans = effect->GetComponent<Transform>();
 		auto& effectTrans2 = effect2->GetComponent<Transform>();
 
-		//delta = floor(delta * 100) / 100;
 		m_velocity.x = cos(m_angle);
 		m_velocity.y = 0;
 		m_velocity.z = sin(m_angle);
@@ -146,11 +139,6 @@ namespace basecross {
 
 		//wstringstream wss;//デバック用文字列
 		//wss << L"m_effectPos.x :" << m_effectPos.x << endl;
-		//wss << L"m_effectPos.y :" << m_effectPos.y << endl;
-		//wss << L"m_effectPos.z :" << m_effectPos.z << endl;
-		//wss << L"m_bulletPos.y :" << m_Position.y << endl;
-		//wss << L"angle:" << XMConvertToDegrees(m_angle) << endl;
-
 		//auto scene = app->GetScene<Scene>();//シーン取得
 		//scene->SetDebugString(L"a\n" + wss.str());
 
@@ -162,8 +150,6 @@ namespace basecross {
 		//もしぶつかったコリジョンがEnemyのものだったら
 		if (other->FindTag(L"Enemy"))
 		{			
-			//GetStage()->AddGameObject<EffectBullet>(L"DamageBullet", 3, 2, GetComponent<Transform>()->GetPosition(), 0.1f);
-			//DestroyGameObject();//自分は消える
 			ThisDestroy();
 
 		}
