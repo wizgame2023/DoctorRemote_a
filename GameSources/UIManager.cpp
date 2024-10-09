@@ -144,7 +144,7 @@ namespace basecross {
 
 		if (m_dashLight) {
 			if (player->GetDashFlag()) {
-				if (m_dashLight->GetOnOff() == true)return;
+				if (m_dashLight->GetOnOff() == true)return;//“§–¾‚É‚µ‚½‚¢‚Æ‚«‚ÍÔ‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
 				m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.6f));
 				m_ligthSEFlag = false;
 
@@ -162,9 +162,11 @@ namespace basecross {
 		}
 
 		if (scene->GetTime() < 60) {
+			if (m_clock->GetOnOff() == true)return;//“§–¾‚É‚µ‚½‚¢‚Æ‚«‚ÍÔ‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
   			m_clock->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 		else {
+			if (m_clock->GetOnOff() == true)return;//“§–¾‚É‚µ‚½‚¢‚Æ‚«‚Í—Î‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
 			m_clock->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 		}
 
@@ -333,7 +335,7 @@ namespace basecross {
 		chargeFrame->SetDrawLayer(1);
 		m_chargeGarge = stage->AddGameObject<Garge>(1024, 0, L"BarSide", 0.5f, 150, 15, Col4(1.0f), Col4(1.0f), Vec3(-220.0f, -290.0f, 0.0f), Vec3(0.0f));
 		m_chargeGarge->SetDrawLayer(2);
-		if (scene->GetDashStatus() >= 0) {
+		if (scene->GetDashStatus() > 0) {
 			m_dashLight = stage->AddGameObject<Sprite>(70, 70, L"DashIcon", Vec3(-150.0f, -320.0f, 0.0f));
 			m_dashLight->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.8f));
 			m_dashLight->SetDrawLayer(2);

@@ -65,6 +65,9 @@ namespace basecross {
 			}
 		}
 		if (m_time <= 60.0f && App::GetApp()->GetScene<Scene>()->GetGameStage() != 0) {
+
+			if (m_firstNum->GetOnOff() == true)return;//“§–¾‚É‚È‚Á‚Ä‚¢‚é‚Æ‚«‹­§“I‚ÉÔ‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
+
 			m_firstNum->SetColor(lastCol);
 			m_secondNum->SetColor(lastCol);
 			m_thirdNum->SetColor(lastCol);
