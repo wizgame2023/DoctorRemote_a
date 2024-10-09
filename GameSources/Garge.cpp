@@ -144,6 +144,7 @@ namespace basecross {
 
 	void Garge::OnClear(bool OnOff)
 	{
+		m_OnOff = OnOff;
 		if (OnOff == true)//ƒIƒ“‚È‚ç
 		{
 			m_color2 = m_draw->GetDiffuse();
@@ -164,6 +165,12 @@ namespace basecross {
 	void Garge::ThisDestroy() {
 		GetStage()->RemoveGameObject<Garge>(GetThis<Garge>());
 	}
+
+	bool Garge::GetOnOff()
+	{
+		return m_OnOff;
+	}
+
 
 
 }

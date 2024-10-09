@@ -25,6 +25,8 @@ namespace basecross {
 		float m_height;
 		float m_width;
 
+		bool m_OnOff;
+
 
 		//頂点データ
 		vector<VertexPositionColorTexture> m_vertices;
@@ -58,6 +60,7 @@ namespace basecross {
 		void UpdateValue(float ratio);
 		void SetColor(Col4 color);
 		void ThisDestroy();
+		bool GetOnOff();
 
 	};
 }

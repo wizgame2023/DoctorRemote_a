@@ -50,10 +50,12 @@ namespace basecross {
 		m_garge->UpdateValue(piece);
 		auto position = m_garge->GetComponent<Transform>()->GetPosition();
 
-		if (piece <= 0.25) {
+		if (piece <= 0.25f) {
+			if (m_garge->GetOnOff() == true)return;//“§–¾‚É‚µ‚½‚¢‚Æ‚«‚ÍÔ‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
 			m_garge->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
 		}
-  		else if (piece <= 0.65) {
+  		else if (piece <= 0.65f) {
+			if (m_garge->GetOnOff() == true)return;//“§–¾‚É‚µ‚½‚¢‚Æ‚«‚ÍÔ‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
 			m_garge->SetColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
 		}
 
