@@ -318,6 +318,7 @@ namespace basecross {
 	}
 
 	void ScoreStage::StageChange() {
+		auto& scene = App::GetApp()->GetScene<Scene>();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto keyState = App::GetApp()->GetInputDevice().GetKeyState();
 		if (m_countUp >= 17.0f && cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B || m_countUp >= 17.0f && keyState.m_bPressedKeyTbl[VK_SPACE])
@@ -326,6 +327,7 @@ namespace basecross {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStartStage");
 			}
 			else if (m_stageCount <= 11) {
+				scene->SetGameStage(m_stageCount);
 				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStatusStage");
 			}
 			else if (m_stageCount == 12) {
