@@ -1,6 +1,6 @@
 /*!
 @file effect.cpp
-@brief キャラクターなど実体
+@brief エフェクト関係
 担当：三瓶裕太
 */
 
@@ -36,9 +36,6 @@ namespace basecross {
 		//親クラスのOnUpdate()を呼ぶ
 		MultiParticle::OnUpdate();
 
-		//auto ptrTarget = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");//GamePlayerというオブジェクトを取得
-		//auto pos = ptrTarget->GetComponent<Transform>()->GetPosition();
-		//m_ptrParticle->SetEmitterPos(pos);
 
 		float ElapsedTime = App::GetApp()->GetElapsedTime();//エルダータイム追加
 
@@ -48,11 +45,8 @@ namespace basecross {
 			{
 				if (rParticleSprite.m_Active)
 				{		
-					//rParticleSprite.m_LocalPos = Vec3(0.0f,0.0f,0.0f);
-					//m_movePos += rParticleSprite.m_Velocity * ElapsedTime;
-					//rParticleSprite.m_LocalPos += Vec3(0.0f, 0.0f, 0.0f) + (rParticleSprite.m_Velocity * ElapsedTime);
  					rParticleSprite.m_LocalScale = m_Scale;//エフェクトのサイズを決める
-					//rParticleSprite.m_Color += 0.05f;
+
 					if (rParticleSprite.m_Color.z >= 1.0f)
 					{
 						rParticleSprite.m_Color.z = 1.0f;
@@ -69,7 +63,7 @@ namespace basecross {
 		m_ptrParticle->SetEmitterPos(Pos);
 		m_ptrParticle->SetTextureResource(m_TextureName);
 		m_ptrParticle->SetMaxTime(m_maxTime);
-		//srand(time(0));
+
 		float randamPosX = (float)(rand() % 30 + 10);
 		randamPosX -= 20;
 		randamPosX /= 10;//小数点を入れる

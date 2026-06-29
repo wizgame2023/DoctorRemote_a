@@ -252,15 +252,6 @@ namespace basecross {
 
 
 		auto trans = GetComponent<Transform>();
-		//デバック用
-		//wstringstream wss(L"");
-		//auto scene = App::GetApp()->GetScene<Scene>();
-		//auto gameStage = scene->GetGameStage();
-		//wss << L"transform : "
-		//	<< endl;
-
-		//scene->SetDebugString(wss.str());
-
 	}
 
 	//衝突判定

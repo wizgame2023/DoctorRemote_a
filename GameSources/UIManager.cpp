@@ -170,12 +170,6 @@ namespace basecross {
 			m_clock->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 		}
 
-		//デバック用
-		//auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		//if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-		//	float a = 1.0f;
-		//	AllClear();
-		//}
 
 		auto ptrPlayer = GetStage()->GetSharedGameObject<Player>(L"GamePlayer");
 

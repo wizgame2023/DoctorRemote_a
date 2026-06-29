@@ -21,7 +21,6 @@ namespace basecross {
 
 	void EffectBreakWall::InsertEffect(const Vec3& Pos)
 	{
-		//Effect::InsertEffect(Pos);//eƒNƒ‰ƒX‚ÌInsertEffect‚ðŒÄ‚Ô
 		auto ptrParticle = InsertParticle(m_addNumber);
 		ptrParticle->SetEmitterPos(Pos);
 		ptrParticle->SetTextureResource(m_TextureName);

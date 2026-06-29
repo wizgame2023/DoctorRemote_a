@@ -51,14 +51,9 @@ namespace basecross {
 		auto Trans = GetComponent<Transform>();//トランスフォームを取得
 		Vec3 Pos = Trans->GetPosition();//自分のPositionを取得
 		Trans->SetPosition(m_Bullet);
-		//Trans
-
-		//auto Trans = GetComponent<Transform>();
-		//Trans->SetPosition(Vec3(10.0f,0.0f,5.0f));
 
 		// アルファブレンド(透過処理)を有効にする
 		SetAlphaActive(true); // true:透過を有効、false:透過を無効
-
 	}
 
 	void EffectBullet::OnUpdate()
@@ -70,10 +65,7 @@ namespace basecross {
 			m_PieceIndex++;
 			if (m_PieceIndex >= m_PieceXCount * m_PieceYCount)
 			{	
-
 				m_PieceIndex = 0;
-				//GetStage()->RemoveGameObject<EffectBullet>(GetThis<EffectBullet>());
-
 			}				
 
 			m_displayTime = 0.0f;

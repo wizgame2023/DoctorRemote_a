@@ -11,7 +11,7 @@ namespace basecross {
 	class EffectChase : public EffectMove
 	{
 	private:
-		//int m_addNumber;
+
 	public:
 		EffectChase(shared_ptr<Stage>& Stageptr, wstring TextureName, float maxTime, int addNumber,float lenght, Vec3 pushPos = Vec3(1.0f, 1.0f, 1.0f), Vec3 Scale = Vec3(1.0f, 1.0f, 1.0f));
 		~EffectChase() override;

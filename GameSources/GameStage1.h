@@ -35,7 +35,7 @@ namespace basecross {
 		virtual ~GameStage1() {}
 
 		virtual void OnCreate()override; //初期化
-		void OnUpdate()override;//更新
+		virtual void OnUpdate()override;//更新
 
 		void BaseBGM();
 		void BossBGM();

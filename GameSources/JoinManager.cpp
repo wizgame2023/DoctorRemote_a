@@ -51,7 +51,6 @@ namespace basecross {
 
 		
 		auto ptrCamera = stage->GetView()->GetTargetCamera();
-//		MainCamera
 		m_Camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		auto mainCamera = m_Camera.lock();
 		if (mainCamera) 
@@ -64,8 +63,6 @@ namespace basecross {
 	{	
 		m_PlayerPos = m_Player.lock()->GetComponent<Transform>()->GetPosition();//Positionを取得
 		auto stage = GetStage();
-		//wstringstream wss;//デバック用文字列
-		//wss << L"エスケープマネージャー：" << endl;
 
 
 		float speed = 5.0f;//速さ
@@ -73,7 +70,6 @@ namespace basecross {
 		float VecZ = m_TargetPos.z - m_PlayerPos.z;//目標位置とPlayerとのZ座標の距離を測っている
 		float rad = atan2(VecZ, VecX);//角度を求める（ラジアン）
 
-		//wss << "VecX:" << VecX << endl << "VecZ:" << VecZ << endl;//デバック文字列
 
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();//デルタタイムを取得
@@ -89,8 +85,6 @@ namespace basecross {
 				m_stageCollionManager->SetCollisionSwhich(true);//ステージ上のコリジョン判定を復活させる
 				auto stageManager = stage->GetSharedGameObject<StageManager>(L"StageManager");
 				stageManager->SetCountFlag(true);//ステージのカウントを開始する
-				//int numPtr = m_Sprite->GetNumPtr();
-				//stage->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(numPtr);
 				stage->RemoveGameObject<Sprite>(m_Sprite);//スプライトを削除
 				stage->RemoveGameObject<JoinManager>(GetThis<JoinManager>());//自分自身を削除
 			}

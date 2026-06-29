@@ -21,28 +21,21 @@ namespace basecross
 
 	void MyMovieStage::OnCreate()
 	{
-		MovieStage::OnCreate();//親クラスのクリエイト呼び出し
-		//wstring data;
-		auto path = App::GetApp()->GetDataDirWString();
-		wstring MoviePass = path + L"Movies/";
-		wstring strMovie = MoviePass + L"DoctorRemoteTitlever2.mp4";
-		SetMovieFileName(strMovie);
-		Play();
+		//MovieStage::OnCreate();//親クラスのクリエイト呼び出し
+		////wstring data;
+		//auto path = App::GetApp()->GetDataDirWString();
+		//wstring MoviePass = path + L"Movies/";
+		//wstring strMovie = MoviePass + L"DoctorRemoteTitlever2.mp4";
+		//SetMovieFileName(strMovie);
+		//Play();
+
+		AddGameObject<Sprite>(10.0f, 10.0f, L"TitleMoji", Vec3(0.0));
 	}
 
 	void MyMovieStage::OnUpdate()
 	{
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_InputHandler.PushHandle(GetThis<MyMovieStage>());
-		//デバック用
-		//auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		//if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-		//	float a = 1.0f;
-		//	//OnPushB();
-		//	//AllClear();
-		//}
-
-
 	}
 
 	void MyMovieStage::OnPushA()

@@ -56,7 +56,6 @@ namespace basecross {
 		GetStage()->GetSharedGameObject<Player>(L"GamePlayer")->SetSpeed(0.0f);//Playerの慣性を消す
 
 		auto stage = GetStage();//ステージ取得
-		//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->AllClear();//透明から戻す	
 
 		stage->GetSharedGameObject<StageManager>(L"StageManager")->SetStartFlag(false);//Playerの操作を効かなくさせる
 
@@ -71,7 +70,6 @@ namespace basecross {
 		View->SetCamera(m_Camera);
 		stage->SetView(View);//ステージのビューを設定
 
-		//m_Player = stage->GetSharedGameObject<Player>(L"GamePlayer");//Playerを取得
 		Vec3 test = m_PlayerStartPos;
 
 		m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerStartPos);
@@ -90,8 +88,6 @@ namespace basecross {
 
 		auto stageManager = stage->GetSharedGameObject<StageCollisionManager>(L"StageCollisionManager");//コリジョンマネージャー取得
 		stageManager->SetCollisionSwhich(false);//当たり判定を消す
-		//AABB CollisionActiveArea(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
-		//stage->GetCollisionManager()->SetRootAABB(CollisionActiveArea);
 
 		m_Sprite = GetStage()->AddGameObject<Sprite>(1280, 800, L"Black", Vec3(0, 0, 0));
 		m_Sprite->SetColor(Col4(0.0f, 0.0f, 0.0f, 0.0f));
@@ -139,26 +135,12 @@ namespace basecross {
 				GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
 				m_UpdateFlag = 2;
 			}
-			//if (m_UpdateFlag == 3)
-			//{
-			//	//int number = m_MyMiniMap->GetNumPtr();
-			//	//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
-			//	//GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
-			//	//GetStage()->RemoveGameObject<EscapeManager>(GetThis<EscapeManager>());//自分を消す
-			//	//m_UpdateFlag = 4;
-
-			//}
 			if (m_UpdateFlag == 0)//Playerに当たったのが自分でなかった場合
 			{
-				//int number = m_MyMiniMap->GetNumPtr();
-				//GetStage()->GetSharedGameObject<UIManager>(L"UIManager")->EraseUiPtr(number);
-				//GetStage()->RemoveGameObject<Sprite>(m_MyMiniMap);//ミニマップの自分を消す
-				//GetStage()->RemoveGameObject<EscapeManager>(GetThis<EscapeManager>());//自分を消す
 				m_MyMiniMap->SetColor(Col4(1.0f, 1.0f, 1.0f, 0.0f));//透明度が変化する
 
 				m_UpdateFlag = 3;
 			}
-			//GetStage()->GetSharedGameObject<StageManager>(L"StageManager")->SetCareerFlag(5);//進行度を進める
 
 		}
 
@@ -167,7 +149,6 @@ namespace basecross {
 			GetStage()->GetSharedGameObject<TimeManager>(L"TimeManager")->SetTimeFlag(false);//制限時間のカウントを終わらせる
 			
 			wstringstream wss;//デバック用文字列
-			//wss << L"エスケープマネージャー：" << endl;
 
 
 			float speed = 5.0f;//速さ
@@ -178,16 +159,11 @@ namespace basecross {
 			
 			m_Player.lock()->GetComponent<Transform>()->SetRotation(0.0f, playerrad - DifferenceRad(playerrad), 0.0f);//進む方向に向く
 
-			//float degConvert = 180.0f / XM_PI;//radからdegに変換するための変数
-			//float deg = (rad * degConvert);//ラジアンをディグリーに変換
-
 			wss << "90.0f:" << XMConvertToDegrees(-DifferenceRad(playerrad)) << endl << "playerrad:" << XMConvertToDegrees(playerrad) << endl;//デバック文字列
 			wss << m_UpdateFlag<<endl;
 			m_Time += delta;//時間経過
 			m_PlayerPos.x += (speed * cos(rad)) * delta;//間接的に距離を足している
 			m_PlayerPos.z += (speed * sin(rad)) * delta;//間接的に距離を足している
-			//auto PlayerRot = m_Player.lock()->GetComponent<Transform>()->GetRotation();
-			//wss << "RosX:" << PlayerRot.x << endl << "RosY:" << PlayerRot.y << endl << "RotZ" << PlayerRot.z << endl;//デバック文字列
 
 
 			m_Player.lock()->GetComponent<Transform>()->SetPosition(m_PlayerPos);
@@ -205,10 +181,6 @@ namespace basecross {
 					}
 				}
 			}
-			//デバック用文字列を生成
-			//auto scene = app->GetScene<Scene>();
-			//scene->SetDebugString(L"a\n" + wss.str());
-
 		}
 	}
 

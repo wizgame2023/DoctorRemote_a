@@ -30,14 +30,12 @@ namespace basecross {
 		//接触のコリジョンを追加
 		auto ptrCollider = AddComponent<CollisionObb>();
 		ptrCollider->SetFixed(false);//これでぶつかっても動かないようにする
-		//ptrCollider->SetDrawActive(true);
 
 
 		//描画コンポーネント
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetTextureResource(L"WallRecovery");
 		ptrDraw->SetMeshResource(L"Obstacle_Mesh1");
-		//ptrDraw->SetTextureResource(L"Internal");
 
 
 		AddTag(L"RecoveryWall");//BreakWallタグを追加
@@ -75,8 +73,6 @@ namespace basecross {
 			if (Other->FindTag(L"Bullet"))
 			{
 				m_hp -= Attack;
-				//GetStage()->RemoveGameObject<BreakWall>(GetThis<BreakWall>());
-
 			}
 
 		}

@@ -61,17 +61,8 @@ namespace basecross {
 			float fKakeraPosX = (float)kakeraPosX;
 			int kakeraPosZ = (m_MapSize / 2) - charkZ;
 			float fKakeraPosZ = (float)kakeraPosZ;
-			//int kakeraPosX = (rand() % (m_MapSize * 10)) - (m_MapSize * 10) / 2;//ランダムにかけらの場所を決める
-			//float fKakeraPosX = (float)kakeraPosX / 10.0f;//floatに変更
-			//kakeraPosX /= 10;//小数点切り捨て
-			//int kakeraPosZ = (rand() % (m_MapSize * 10)) - (m_MapSize * 10) / 2;//ランダムにかけらの場所を決める
-			//float fKakeraPosZ = (float)kakeraPosZ / 10.0f;//floatに変更
-			//kakeraPosZ /= 10;//小数点切り捨て
 
 			Vec3 Pos(fKakeraPosX, 0.1f, fKakeraPosZ);//かけらの場所
-
-			//int charkX = (kakeraPosX + 75) - 1;//csvの座標に合わせる
-			//int charkZ = (kakeraPosZ + 75) - 1;//csvの座標に合わせる
 
 			switch (kakeraMap[charkZ][charkX])
 			{

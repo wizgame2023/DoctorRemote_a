@@ -1,6 +1,6 @@
 /*!
 @file MiniMapPlayer.h
-@brief 光、光源の表現
+@brief ミニマップのプレイヤ
 担当　三瓶裕太
 */
 

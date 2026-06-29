@@ -21,8 +21,6 @@ namespace basecross {
 
 		auto ptrDraw = AddComponent<PNTStaticModelDraw>();
 		ptrDraw->SetMultiMeshResource(L"Obstacle_Gate");
-		//ptrDraw->SetTextureResource(L"Obstacle3-1");
-		//ptrDraw->SetFogEnabled(true);
 		Mat4x4 spanMat;
 		spanMat.affineTransformation(
 			Vec3(0.6f, 0.7f, 0.6f),
